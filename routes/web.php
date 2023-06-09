@@ -15,17 +15,14 @@ use App\Http\Controllers\ProjectrequestController;
 |
 */
 
-Route::get('/', function () {
-    return view('Client.index');
-});
-
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::get('forgot', [AuthController::class, 'forgot'])->name('forgot');
 
 Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
 
-Route::get('projectclient', [ProjectclientController::class, 'projectclient'])->name('projectclient');
+Route::get('indexclient', [IndexcController::class, 'indexclient'])->name('indexclient');
+Route::get('clientproreq', [ClientproreqController::class, 'clientproreq'])->name('clientproreq');
 
 Route::get('admin', function () {
     return view('Admin.index');
