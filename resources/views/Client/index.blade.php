@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <img src="{{ asset('ProjectManagement/dashmin/img/icon4.png') }}" style="width:26%; height:26%;">
+                            <img src="{{ asset('ProjectManagement/dashmin/img/icon4.png') }}" style="width:24%; height:24%;">
                             <div class="ms-3">
                                 <p class="mb-2">Project Selesai</p>
                                 <h6 class="mb-0">10</h6>
