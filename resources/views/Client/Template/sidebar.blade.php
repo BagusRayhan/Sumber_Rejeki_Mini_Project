@@ -8,17 +8,17 @@
                 </a>
 
                 <div class="navbar-nav w-100" >
-                    <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="index.html" class="nav-item nav-link {{ Request::routeIs('indexclient*') ? 'active' : '' }}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Project</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Project Request</a>
-                            <a href="typography.html" class="dropdown-item">Project Disetujui</a>
-                            <a href="element.html" class="dropdown-item">Project Selesai</a>
-                            <a href="element.html" class="dropdown-item">Project Ditolak</a>
+                        <a href="#" class="nav-link dropdown-toggle {{ Request::routeIs('drequestclient*','setujuclient*','selesaiclient*','ditolakclient*') ? 'active' : '' }}" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Project</a>
+                        <div class="dropdown-menu bg-transparent border-0" style="margin-left: 20%;">
+                            <a href="{{ route('drequestclient') }}" class="dropdown-item {{ Request::routeIs('drequestclient*') ? 'active' : '' }}">Project Request</a>
+                            <a href="typography.html" class="dropdown-item {{ Request::routeIs('setujuclient*') ? 'active' : '' }}">Project Disetujui</a>
+                            <a href="element.html" class="dropdown-item {{ Request::routeIs('selesaiclient*') ? 'active' : '' }}">Project Selesai</a>
+                            <a href="element.html" class="dropdown-item {{ Request::routeIs('ditolakclient*') ? 'active' : '' }}">Project Ditolak</a>
                         </div>
                     </div>
-                    <a href="widget.html" class="nav-item nav-link"><i class="fa-solid fa-wallet"></i>Transaksi</a>
+                    <a href="widget.html" class="nav-item nav-link {{ Request::routeIs('bayarclient*') ? 'active' : '' }}"><i class="fa-solid fa-wallet"></i>Transaksi</a>
                 </div>
             </nav>
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\clientproreq;
 use Illuminate\Http\Request;
 
 class IndexcController extends Controller
@@ -10,5 +11,9 @@ class IndexcController extends Controller
         {
             return view('Client.index');
         }
+
+    public function drequestclient(){
+        return view('Client.clientproreq');
+    }
     
 }
