@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ProjectrequestController extends Controller
 {
-    public function projectreq(){
+    public function indexclient(){
         return view('Admin.projectreq');
     }
 }

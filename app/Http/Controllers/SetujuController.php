@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class SetujuController extends Controller
 {
-    //
+        public function setujuclient()
+        {
+            return view('Client.index');
+        }
 }
