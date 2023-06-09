@@ -76,77 +76,76 @@
                                 <h6 class="mb-0">Estimasi</h6>
                             </div>
                             <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px; margin-bottom:8%;" >
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Aplikasi Toko Online</h6>
-                                    </div>
-                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;3 jam lagi
-                                    <div class="col-sm-12 col-xl-10 " style="margin-left: 10%;">
-                                           <div class="bg-light rounded h-100 p-10" style="margin-left: 50%; margin-bottom: 5%;"">
-                                            <div class="pg-bar mb-3">
-                                            <div class="progress">
-                                           <div class="progress-bar progress-bar-striped"  role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                   </div></span>
-                                        
+                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;" >
+                               <div class="w-100 ms-3 d-flex align-items-center">
+                                <div>
+                                    <h6 class="mb-0">Aplikasi Toko Online</h6>
+                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;3 jam lagi</span>
                                 </div>
+                                <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
+                                    <div class="bg-light rounded h-100 p-10">
+                                        <div class="pg-bar mb-3">
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                             <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px; margin-bottom:8%;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Website Berita</h6>
+                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;" >
+                               <div class="w-100 ms-3 d-flex align-items-center">
+                                <div>
+                                    <h6 class="mb-0">Aplikasi Toko Online</h6>
+                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;3 jam lagi</span>
                                 </div>
-                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;4 jam lagi
-                                     <div class="col-sm-12 col-xl-10 " style="margin-left: 10%;">
-                                           <div class="bg-light rounded h-100 p-10" style="margin-left: 50%; margin-bottom: 5%;"">
-                                            <div class="pg-bar mb-3">
+                                <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
+                                    <div class="bg-light rounded h-100 p-10">
+                                        <div class="pg-bar mb-3">
                                             <div class="progress">
-                                           <div class="progress-bar progress-bar-striped"  role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
+                                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
                                         </div>
-                                      </div>
-                                   </div></span>
+                                    </div>
                                 </div>
+                            </div>
                             </div>
                             <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;  margin-bottom:8%;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Website Sekolah</h6>
-                                    </div>
-                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;30 menit lagi
-                                     <div class="col-sm-12 col-xl-10 " style="margin-left: 10%;">
-                                           <div class="bg-light rounded h-100 p-10" style="margin-left: 50%; margin-bottom: 5%;"">
-                                            <div class="pg-bar mb-3">
+                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;" >
+                               <div class="w-100 ms-3 d-flex align-items-center">
+                                <div>
+                                    <h6 class="mb-0">Aplikasi Toko Online</h6>
+                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;3 jam lagi</span>
+                                </div>
+                                <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
+                                    <div class="bg-light rounded h-100 p-10">
+                                        <div class="pg-bar mb-3">
                                             <div class="progress">
-                                           <div class="progress-bar progress-bar-striped"  role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
+                                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
                                         </div>
-                                      </div>
-                                   </div></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-center pt-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;  margin-bottom:8%;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                    </div>
-                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;1 menit lagi
-                                     <div class="col-sm-12 col-xl-10 " style="margin-left: 10%;">
-                                           <div class="bg-light rounded h-100 p-10" style="margin-left: 50%; margin-bottom: 5%;"">
-                                            <div class="pg-bar mb-3">
-                                            <div class="progress">
-                                           <div class="progress-bar progress-bar-striped"  role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                   </div></span>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-3">
+                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;" >
+                               <div class="w-100 ms-3 d-flex align-items-center">
+                                <div>
+                                    <h6 class="mb-0">Aplikasi Toko Online</h6>
+                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;3 jam lagi</span>
                                 </div>
+                                <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
+                                    <div class="bg-light rounded h-100 p-10">
+                                        <div class="pg-bar mb-3">
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
