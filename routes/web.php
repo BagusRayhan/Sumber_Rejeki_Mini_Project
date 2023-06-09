@@ -25,6 +25,8 @@ Route::get('forgot', [AuthController::class, 'forgot'])->name('forgot');
 
 Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
 
+Route::get('projectclient', [ProjectclientController::class, 'projectclient'])->name('projectclient');
+
 Route::get('admin', function () {
     return view('Admin.index');
 });
