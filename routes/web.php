@@ -15,15 +15,15 @@ use App\Http\Controllers\ProjectrequestController;
 |
 */
 
+// Login Register
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::get('forgot', [AuthController::class, 'forgot'])->name('forgot');
 
-Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
-
+// Halaman Client
 Route::get('indexclient', [IndexcController::class, 'indexclient'])->name('indexclient');
 Route::get('clientproreq', [ClientproreqController::class, 'clientproreq'])->name('clientproreq');
 
-Route::get('admin', function () {
-    return view('Admin.index');
-});
+// Halaman Admin
+Route::get('indexa', [IndexaController::class, 'indexa'])->name('indexa');
+Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
