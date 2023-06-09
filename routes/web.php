@@ -28,7 +28,7 @@ Route::get('forgot', [AuthController::class, 'forgot'])->name('forgot');
 
 // Halaman Client
 Route::get('indexclient', [IndexcController::class, 'indexclient'])->name('indexclient');
-Route::get('drequestclient', [IndexcController::class, 'indexclient'])->name('indexclient');
+Route::get('drequestclient', [IndexcController::class, 'drequestclient'])->name('drequestclient');
 Route::get('requestclient', [IndexcController::class, 'requestclient'])->name('requestclient');
 Route::get('setujuclient', [SetujuController::class, 'setujuclient'])->name('setujuclient');
 Route::get('selesaiclient', [SelesaiController::class, 'selesaiclient'])->name('selesaiclient');
