@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProjectClientController extends Controller
+class IndexcController extends Controller
 {
-    public function projectclient()
+    public function indexclient()
         {
             return view('Client.index');
         }
