@@ -14,7 +14,7 @@ Login
 <div class="wrap-input100 validate-input m-b-23" data-validate="Email is reauired">
 <span class="label-input100">Email</span>
 <input class="input100" type="text" name="email" placeholder="Type your email">
-<span class="focus-input100" data-symbol="&#xf199;"></span>
+<span class="focus-input100" data-symbol="&#xf190;"></span>
 </div>
 <div class="wrap-input100 validate-input" data-validate="Password is required">
 <span class="label-input100">Password</span>
@@ -36,7 +36,7 @@ Login
 </div>
 <div class="txt1 text-center p-t-54 p-b-20">
 <span>
-Or Sign Up Using
+Atau Daftar Menggunakan
 </span>
 </div>
 <div class="flex-c-m">
@@ -50,11 +50,11 @@ Or Sign Up Using
 <i class="fa fa-google"></i>
 </a>
 </div>
-<div class="flex-col-c p-t-155">
+<div class="flex-col-c p-t-80">
  <span class="txt1 p-b-17">
-Or Sign Up Using
+Atau Daftar Menggunakan
 </span>
-<a href="#" class="txt2">
+<a href="{{ route('register') }}" class="txt2">
 Sign Up
 </a>
 </div>

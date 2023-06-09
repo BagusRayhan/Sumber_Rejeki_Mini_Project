@@ -3,7 +3,7 @@
 
 <!-- Mirrored from colorlib.com/etc/lf/Login_v4/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Jun 2023 06:45:50 GMT -->
 <head>
-<title>Sign Up</title>
+<title>Forgot Pass</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -34,36 +34,11 @@
 <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 <form class="login100-form validate-form">
 <span class="login100-form-title p-b-49">
-REGISTER
-</span>
-<div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
-<span class="label-input100">Name</span>
-<input class="input100" type="text" name="username" placeholder="Type your name">
-<span class="focus-input100" data-symbol="&#xf206;"></span>
-</div>
-
+Forgot Pass
 <div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
 <span class="label-input100">Email</span>
 <input class="input100" type="text" name="username" placeholder="Type your email">
 <span class="focus-input100" data-symbol="&#xf206;"></span>
-</div>
-
-<div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
-<span class="label-input100">Password</span>
-<input class="input100" type="password" name="pass" placeholder="Type your password">
-<span class="focus-input100" data-symbol="&#xf190;"></span>
-</div>
-
-<div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
-<span class="label-input100">Confirm Password</span>
-<input class="input100" type="password" name="pass" placeholder="Type your confirm password">
-<span class="focus-input100" data-symbol="&#xf190;"></span>
-</div>
-
-<div class="wrap-input100 validate-input" data-validate="Password is required">
-<span class="label-input100">Input Opsional</span>
-<input class="input100" type="text" name="opsional" placeholder="Type your input opsional">
-<span class="focus-input100" data-symbol="&#xf190;"></span>
 </div>
 
 
