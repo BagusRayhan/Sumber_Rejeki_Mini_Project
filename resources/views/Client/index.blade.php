@@ -83,8 +83,8 @@
                                     </div>
                                     <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;3 jam lagi
                                     <div class="col-sm-12 col-xl-10 " style="margin-left: 10%;">
-                                           <div class="bg-light rounded h-100 p-10" style="margin-left: 50%;">
-                                            <div class="pg-bar mb-3" style="margin-bottom: 400%;">
+                                           <div class="bg-light rounded h-100 p-10" style="margin-left: 50%; margin-bottom: 5%;"">
+                                            <div class="pg-bar mb-3">
                                             <div class="progress">
                                            <div class="progress-bar progress-bar-striped"  role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                           </div>
@@ -95,30 +95,57 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px; margin-bottom:8%;">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h6 class="mb-0">Website Berita</h6>
                                 </div>
-                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;4 jam lagi</span>
+                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;4 jam lagi
+                                     <div class="col-sm-12 col-xl-10 " style="margin-left: 10%;">
+                                           <div class="bg-light rounded h-100 p-10" style="margin-left: 50%; margin-bottom: 5%;"">
+                                            <div class="pg-bar mb-3">
+                                            <div class="progress">
+                                           <div class="progress-bar progress-bar-striped"  role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                   </div></span>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;  margin-bottom:8%;">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h6 class="mb-0">Website Sekolah</h6>
                                     </div>
-                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;30 menit lagi</span>
+                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;30 menit lagi
+                                     <div class="col-sm-12 col-xl-10 " style="margin-left: 10%;">
+                                           <div class="bg-light rounded h-100 p-10" style="margin-left: 50%; margin-bottom: 5%;"">
+                                            <div class="pg-bar mb-3">
+                                            <div class="progress">
+                                           <div class="progress-bar progress-bar-striped"  role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                   </div></span>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center pt-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;  margin-bottom:8%;">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h6 class="mb-0">Jhon Doe</h6>
                                     </div>
-                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;1 menit lagi</span>
+                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;1 menit lagi
+                                     <div class="col-sm-12 col-xl-10 " style="margin-left: 10%;">
+                                           <div class="bg-light rounded h-100 p-10" style="margin-left: 50%; margin-bottom: 5%;"">
+                                            <div class="pg-bar mb-3">
+                                            <div class="progress">
+                                           <div class="progress-bar progress-bar-striped"  role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                   </div></span>
                                 </div>
                             </div>
                         </div>
@@ -132,7 +159,7 @@
                                 <a href="#">Tampilkan Semua</a>
                             </div>
                             <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px; ">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h6 class="mb-0">Jhon Doe</h6>
