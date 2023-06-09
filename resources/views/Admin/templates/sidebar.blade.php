@@ -3,7 +3,7 @@
     <nav class="navbar bg-light navbar-light">
         <a href="index.html" class="navbar-brand mx-4 mb-3">
             <h3 class="text-dark">
-                <img src="{{ assets('ProjectManagement/dashmin/img/') }}" alt="">
+                <img src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="">
             </h3>
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
