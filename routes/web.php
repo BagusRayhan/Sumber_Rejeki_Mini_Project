@@ -3,6 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectrequestController;
+use App\Http\Controllers\BayarController;
+use App\Http\Controllers\IndexcController;
+use App\Http\Controllers\SelesaiController;
+use App\Http\Controllers\SetujuController;
+use App\Http\Controllers\TolakController;
+
 
 /*
 |--------------------------------------------------------------------------
