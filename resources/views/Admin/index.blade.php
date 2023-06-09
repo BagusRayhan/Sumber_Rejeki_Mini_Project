@@ -23,7 +23,7 @@
             
             @include('Admin.templates.navbar')
             
-            <!-- Sale & Revenue Start -->
+            <!-- Counter Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-3">
@@ -65,7 +65,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Sale & Revenue End -->
+            <!-- Counter End -->
 
 
             <!-- Sales Chart Start -->
