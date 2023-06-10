@@ -45,7 +45,7 @@ REGISTER
 <div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
 <span class="label-input100">Email</span>
 <input class="input100" type="text" name="username" placeholder="Type your email">
-<span class="focus-input100" data-symbol="&#xf206;"></span>
+<span class="focus-input100" data-symbol="&#xf15a;"></span>
 </div>
 
 <div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
