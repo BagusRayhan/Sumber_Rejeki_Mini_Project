@@ -39,7 +39,7 @@ REGISTER
 <div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
 <span class="label-input100">Name</span>
 <input class="input100" type="text" name="username" placeholder="Type your name">
-<span class="focus-input100" data-symbol="&#xf206;"></span>
+<span class="focus-input100" data-symbol="&#xf207;"></span>
 </div>
 
 <div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
@@ -51,16 +51,14 @@ REGISTER
 <div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
 <span class="label-input100">Password</span>
 <input class="input100" type="password" name="pass" placeholder="Type your password">
-<span class="focus-input100" data-symbol="&#xf190;"></span>
+<span class="focus-input100" data-symbol="&#xf191;"></span>
 </div>
 
 <div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
 <span class="label-input100">Confirm Password</span>
 <input class="input100" type="password" name="pass" placeholder="Type your confirm password">
-<span class="focus-input100" data-symbol="&#xf190;"></span>
+<span class="focus-input100" data-symbol="&#xf191;"></span>
 </div>
-
-
 
 <div class="text-left p-t-8 p-b-31">
     <input type="checkbox"> <a href="">Kebijakan Privasi</a>

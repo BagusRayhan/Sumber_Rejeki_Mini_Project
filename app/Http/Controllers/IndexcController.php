@@ -15,5 +15,8 @@ class IndexcController extends Controller
     public function drequestclient(){
         return view('Client.clientproreq');
     }
-    
+
+    public function createproreq(){
+        return view ('Client.createproreq');
+    }
 }

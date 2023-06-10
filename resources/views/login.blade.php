@@ -20,7 +20,7 @@ Login
 <div class="wrap-input100 validate-input" data-validate="Password is required">
 <span class="label-input100">Password</span>
 <input class="input100" type="password" name="pass" placeholder="Type your password">
-<span class="focus-input100" data-symbol="&#xf190;"></span>
+<span class="focus-input100" data-symbol="&#xf191;"></span>
 </div>
 
 <div class="text-right p-t-8 p-b-31">
