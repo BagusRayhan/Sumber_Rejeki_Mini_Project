@@ -8,6 +8,6 @@ class TolakController extends Controller
 {
         public function ditolakclient()
         {
-            return view('Client.index');
+            return view('Client.ditolak');
         }
 }

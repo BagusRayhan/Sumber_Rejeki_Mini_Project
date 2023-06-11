@@ -52,38 +52,29 @@
 
        <div class="col-sm-12 col-xl-11" style="margin-left: 2%;     margin-top:5%;">
                         <div class="bg-light rounded h-100 p-4">
-                            <div class="d-flex justify-content-end mb-3">
-                               <a href="{{ route('createproreq') }}" class="btn btn-primary">Request Project</a>
-                            </div>
-                           
-                            <h6 class="mb-4">Project Request</h6>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Nama Client</th>
-                                        <th scope="col">Nama Project</th>
-                                        <th scope="col">Deadline</th>
+                                        <th scope="col" class="w-25 ">Nama Project</th>
+                                        <th scope="col" ><center>Alasan</center></th>
+                                        <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mr.Daniel</td>
-                                        <td>Website Sekolah</td>
-                                        <td>26-Juni-2023 - 15:00</td>
+                                        <td>Toko ATK</td>
+                                        <td><center>Kami telah mengevaluasi project ini secara menyeluruh dan menyimpulkan bahwa manfaatnya tidak sebanding dengan biaya dan risiko yang terlibat.</center></td>
+                                        <td><button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">2</th>
-                                        <td>Mr.Andreans</td>
-                                        <td>Website Toko</td>
-                                        <td>25-September-2023 - 13:00</td>
+                                        <td>Web sekolah</td>
+                                        <td><center>Kami telah mengevaluasi project ini secara menyeluruh dan menyimpulkan bahwa manfaatnya tidak sebanding dengan biaya dan risiko yang terlibat.</center></td>
+                                        <td><button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">3</th>
-                                        <td>Mr.Johanes</td>
-                                        <td>Website Pertanian</td>
-                                        <td>20-Desember-2023 - 17:00</td>
+                                        <td>Web Marketing</td>
+                                        <td><center>Kami telah mengevaluasi project ini secara menyeluruh dan menyimpulkan bahwa manfaatnya tidak sebanding dengan biaya dan risiko yang terlibat.</center> </td>
+                                        <td><button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button></td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -14,7 +14,7 @@
                             <a href="{{ route('drequestclient') }}" class="dropdown-item {{ Request::routeIs('drequestclient*') ? 'active' : '' }}">Project Request</a>
                             <a href="typography.html" class="dropdown-item {{ Request::routeIs('setujuclient*') ? 'active' : '' }}">Project Disetujui</a>
                             <a href="element.html" class="dropdown-item {{ Request::routeIs('selesaiclient*') ? 'active' : '' }}">Project Selesai</a>
-                            <a href="element.html" class="dropdown-item {{ Request::routeIs('ditolakclient*') ? 'active' : '' }}">Project Ditolak</a>
+                            <a href="{{ route('ditolakclient') }}" class="dropdown-item {{ Request::routeIs('ditolakclient*') ? 'active' : '' }}">Project Ditolak</a>
                         </div>
                     </div>
                     <a href="widget.html" class="nav-item nav-link {{ Request::routeIs('bayarclient*') ? 'active' : '' }}"><i class="fa-solid fa-wallet"></i>Transaksi</a>
