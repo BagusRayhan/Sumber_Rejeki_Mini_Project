@@ -20,7 +20,7 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle {{ (Request::routeIs('setuju-bayar-admin') ? 'active' : Request::routeIs('bayar-digital-admin')) ? 'active' : ''}}" data-bs-toggle="dropdown"><i class="fa fa-wallet me-2"></i>Pembayaran</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="/persetujuan-pembayaran" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('setuju-bayar-admin') ? 'text-primary' : '' }}">Persetujuan</a>
+                    <a href="/persetujuan-pembayaran-pending" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('setuju-bayar-admin') ? 'text-primary' : '' }}">Persetujuan</a>
                     <a href="/pembayaran-digital" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('bayar-digital-admin') ? 'text-primary' : '' }}">Pembayaran Digital</a>
                 </div>
             </div>

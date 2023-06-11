@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class AdminBayarController extends Controller
 {
     public function persetujuan() {
-        return view('Admin.persetujuan-pembayaran');
+        return view('Admin.persetujuan-pembayaran-pending');
     }
 
     public function pembayaranDigital() {

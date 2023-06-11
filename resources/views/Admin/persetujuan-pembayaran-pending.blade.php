@@ -23,12 +23,41 @@
             
             @include('Admin.templates.navbar')
             
-            
+            <!-- Bank Table Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nama Client</th>
+                                        <th scope="col">Nama Project</th>
+                                        <th scope="col">Harga Project</th>
+                                        <th scope="col" class="text-center">Bukti Pembayaran</th>
+                                        <th scope="col" class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Harja</td>
+                                        <td>Website Online Shop</td>
+                                        <td>15.000.000</td>
+                                        <td class="text-center"><a href="" class="btn btn-primary"><i class="fa-solid fa-image"></i></a></td>
+                                        <td class="d-flex justify-content-evenly">
+                                            <a href="#" class="btn btn-primary rounded-circle"><i class="fa-solid fa-check"></i></a>
+                                            <a href="#" class="btn btn-danger rounded-circle"><i class="fa-solid fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bank Table End -->
         <!-- Content End -->
 
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
     <!-- JavaScript Libraries -->
