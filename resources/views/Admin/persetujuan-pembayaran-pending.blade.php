@@ -23,9 +23,9 @@
             
             @include('Admin.templates.navbar')
             
-            <!-- Bank Table Start -->
+            <!-- Confirm Payment Table Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="w-25">
+                <div class="search-form w-25">
                     <form action="">
                         <div class="input-group rounded-pill" style="background: #E9EEF5">
                             <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
@@ -33,7 +33,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="row g-4">
+                <div class="row g-4 mt-3">
                     <div class="col-12">
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -51,7 +51,7 @@
                                         <td>Harja</td>
                                         <td>Website Online Shop</td>
                                         <td>15.000.000</td>
-                                        <td class="text-center"><a href="" class="btn btn-primary"><i class="fa-solid fa-image"></i></a></td>
+                                        <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal" class="btn btn-primary"><i class="fa-solid fa-image"></i></a></td>
                                         <td class="d-flex justify-content-evenly">
                                             <a href="#" class="btn btn-primary rounded-circle"><i class="fa-solid fa-check"></i></a>
                                             <a href="#" class="btn btn-danger rounded-circle"><i class="fa-solid fa-times"></i></a>
@@ -62,8 +62,42 @@
                         </div>
                     </div>
                 </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end mt-sm-3">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <!-- Bank Table End -->
+            <!-- Confirm Payment Table End -->
+            
+            <!-- Payment Proof Modal Start -->
+            <div class="modal fade" id="buktiTransaksiModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
+                            <img src="{{ asset('ProjectManagement/dashmin/img/bukti-pembayaran.png') }}" class="w-75">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Payment Proof Modal End -->
         <!-- Content End -->
 
     </div>

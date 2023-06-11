@@ -121,22 +121,21 @@
             </div>
             <!-- Modal Box Edit Bank End-->
 
-                <!-- Modal Box Edit QR Start -->
-                <div class="modal fade" id="editQRModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-sm">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">DANA</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
-                                <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="w-75">
-                                <input type="file" class="form-control" name="" id="">
-                            </div>
-                            <div class="modal-footer d-flex justify-content-evenly">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                                <button type="button" class="btn btn-primary">Simpan</button>
-                            </div>
+            <!-- Modal Box Edit QR Start -->
+            <div class="modal fade" id="editQRModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">DANA</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
+                            <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="w-75">
+                            <input type="file" class="form-control" name="" id="">
+                        </div>
+                        <div class="modal-footer d-flex justify-content-evenly">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                            <button type="button" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
                 </div>
@@ -144,7 +143,6 @@
             <!-- Modal Box Edit QR End -->
         </div>
         <!-- Content End -->
-
     </div>
 
     <!-- JavaScript Libraries -->
