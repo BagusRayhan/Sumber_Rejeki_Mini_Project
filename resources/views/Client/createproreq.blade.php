@@ -24,12 +24,14 @@
         .td-spacing {
             margin-right: 20px;
         }
+        td {
+        margin-top: 20px;
+    }
     </style>
      <table>
         <tr>
-            <td style="padding-right: 50px;">
-            </td>
-            <td class="td-spacing">
+            <td style="padding-right: 25px;"></td>
+            <td width="50%">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Request Project</h5>
@@ -55,31 +57,26 @@
                     </div>
                 </div>
             </td>
-            <td style="padding-right: 220px;">
-            </td>
 
-             <td class="td-spacing">
+            <td style="padding-right: 25px; margin-top: 20px;"></td>
+            <td width="50%">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Fitur Fitur</h5>
                         <form>
                             <div class="form-group">
                                 <label for="input1">Fitur</label>
-                                <input type="text" class="form-control" id="input1" placeholder="Masukkan fitur yang anda inginkan">
-                            </div><br>
+                                <input type="text" class="form-control" id="input1" placeholder="masukkan fitur yang anda inginkan">
+                            </div><br><br>
                             <div class="form-group">
-                                <label for="input2">Nama Project</label>
-                                <input type="text" class="form-control" id="input2" placeholder="Masukkan nama project anda">
-                            </div><br>
+                                <input type="text" class="form-control" id="input2" placeholder="Masukkan fitur">
+                            </div><br><br>
                             <div class="form-group">
-                                <label for="input3">Dokumen Pendukung</label>
-                                <input type="file" class="form-control" id="input3">
-                            </div><br>
+                                <input type="text" class="form-control" id="input3" placeholder="masukkan fitur">
+                            </div><br><br>
                             <div class="form-group">
-                                <label for="input4">Deadline</label>
-                                <input type="datetime-local" class="form-control" id="input4" placeholder="Input 4">
-                            </div><br>
-                            <button type="submit" class="btn btn-primary">Kirim Request</button>
+                                <input type="te" class="form-control" id="input4" placeholder="masukkan fitur">
+                            </div>
                         </form>
                     </div>
                 </div>
