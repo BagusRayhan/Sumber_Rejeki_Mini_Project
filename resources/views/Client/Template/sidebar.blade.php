@@ -12,7 +12,7 @@
                         <a href="{{ route('drequestclient') }}" class="nav-link dropdown-toggle {{ Request::routeIs('drequestclient*','setujuclient*','selesaiclient*','ditolakclient*') ? 'active' : '' }}" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Project</a>
                         <div class="dropdown-menu bg-transparent border-0" style="margin-left: 20%;">
                             <a href="{{ route('drequestclient') }}" class="dropdown-item {{ Request::routeIs('drequestclient*') ? 'active' : '' }}">Project Request</a>
-                            <a href="typography.html" class="dropdown-item {{ Request::routeIs('setujuclient*') ? 'active' : '' }}">Project Disetujui</a>
+                            <a href="{{ route('setujuclient') }}" class="dropdown-item {{ Request::routeIs('setujuclient*') ? 'active' : '' }}">Project Disetujui</a>
                             <a href="element.html" class="dropdown-item {{ Request::routeIs('selesaiclient*') ? 'active' : '' }}">Project Selesai</a>
                             <a href="{{ route('ditolakclient') }}" class="dropdown-item {{ Request::routeIs('ditolakclient*') ? 'active' : '' }}">Project Ditolak</a>
                         </div>

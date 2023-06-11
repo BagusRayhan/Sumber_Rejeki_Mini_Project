@@ -8,6 +8,6 @@ class SetujuController extends Controller
 {
         public function setujuclient()
         {
-            return view('Client.index');
+            return view('Client.disetujui');
         }
 }
