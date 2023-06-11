@@ -13,11 +13,11 @@
                         <div class="dropdown-menu bg-transparent border-0" style="margin-left: 20%;">
                             <a href="{{ route('drequestclient') }}" class="dropdown-item {{ Request::routeIs('drequestclient*') ? 'active' : '' }}">Project Request</a>
                             <a href="{{ route('setujuclient') }}" class="dropdown-item {{ Request::routeIs('setujuclient*') ? 'active' : '' }}">Project Disetujui</a>
-                            <a href="element.html" class="dropdown-item {{ Request::routeIs('selesaiclient*') ? 'active' : '' }}">Project Selesai</a>
+                            <a href="{{ route('selesaiclient') }}" class="dropdown-item {{ Request::routeIs('selesaiclient*') ? 'active' : '' }}">Project Selesai</a>
                             <a href="{{ route('ditolakclient') }}" class="dropdown-item {{ Request::routeIs('ditolakclient*') ? 'active' : '' }}">Project Ditolak</a>
                         </div>
                     </div>
-                    <a href="widget.html" class="nav-item nav-link {{ Request::routeIs('bayarclient*') ? 'active' : '' }}"><i class="fa-solid fa-wallet"></i>Transaksi</a>
+                    <a href="{{ route('bayarclient') }}" class="nav-item nav-link {{ Request::routeIs('bayarclient*') ? 'active' : '' }}"><i class="fa-solid fa-wallet"></i>Transaksi</a>
                 </div>
             </nav>
         </div>

@@ -22,12 +22,11 @@
       @include('Client.Template.navbar')
 
      {{-- //code Search --}}
-     <div class="form-group row" style="margin-left: 1%; margin-top:3%;">
+<div class="w-25" style="margin-left: 3%; margin-top:2%;">
         <form action="#" method="GET">
-            <div class="col-sm-3">
+            <div class="input-group rounded-pill" style="background: #E9EEF5">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="search" id="search"
-                        placeholder="Search..." value=""> &nbsp;
+                    <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ..."> &nbsp;
                     <script>
                         // Simpan nilai input pencarian ke dalam localStorage setiap kali nilai berubah
                         document.getElementById('search').addEventListener('input', function() {
@@ -41,10 +40,8 @@
                             searchInput.value = searchValue;
                         }
                     </script>
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="submit"><i
-                                class="fa fa-search"></i></button>
-                    </div>
+                        <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
+                
                 </div>
 
             </div>

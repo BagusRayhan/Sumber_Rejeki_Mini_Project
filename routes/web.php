@@ -34,7 +34,7 @@ Route::get('requestclient', [IndexcController::class, 'requestclient'])->name('r
 Route::get('setujuclient', [SetujuController::class, 'setujuclient'])->name('setujuclient');
 Route::get('selesaiclient', [SelesaiController::class, 'selesaiclient'])->name('selesaiclient');
 Route::get('ditolakclient', [TolakController::class, 'ditolakclient'])->name('ditolakclient');
-Route::get('bayarclient', [BayarController::class, 'Bayarclient'])->name('Bayarclient');
+Route::get('bayarclient', [BayarController::class, 'bayarclient'])->name('bayarclient');
 
 // Halaman Admin
 Route::get('indexa', [IndexaController::class, 'indexa'])->name('indexa');

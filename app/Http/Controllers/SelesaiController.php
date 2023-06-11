@@ -8,6 +8,6 @@ class SelesaiController extends Controller
 {
         public function selesaiclient()
         {
-            return view('Client.index');
+            return view('Client.selesai');
         }
 }

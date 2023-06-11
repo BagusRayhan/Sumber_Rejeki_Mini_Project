@@ -22,7 +22,7 @@
       @include('Client.Template.navbar')
 
      {{-- //code Search --}}
-     <div class="w-25" style="margin-left: 3%; margin-top:2%;">
+<div class="w-25" style="margin-left: 3%; margin-top:2%;">
         <form action="#" method="GET">
             <div class="input-group rounded-pill" style="background: #E9EEF5">
                 <div class="input-group">
@@ -49,42 +49,36 @@
 
        <div class="col-sm-12 col-xl-11" style="margin-left: 2%;     margin-top:5%;">
                         <div class="bg-light rounded h-100 p-4">
-                            <div class="d-flex justify-content-end mb-3">
-                               <a href="{{ route('createproreq') }}" class="btn btn-primary">Request Project</a>
-                            </div>
-                           
-                            <h6 class="mb-4">Project Request</h6>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Nama Client</th>
-                                        <th scope="col">Nama Project</th>
-                                        <th scope="col">Deadline</th>
-                                        <th scope="col">Aksi</th>
+                                        <th scope="col" >Nama Project</th>
+                                        <th scope="col" >Status</th>
+                                        <th scope="col" >Harga Project</th>
+                                        <th scope="col"><center>Aksi</center></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mr.Daniel</td>
-                                        <td>Website Sekolah</td>
-                                        <td>26-Juni-2023 - 15:00</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                                        <td>Toko ATK</td>
+                                        <td>Selesai</td>
+                                        <td>5.000.000</td>
+                                        <td><center><button type="button" class="btn btn-primary"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</button>&nbsp;
+                                        <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</button></center></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">2</th>
-                                        <td>Mr.Andreans</td>
-                                        <td>Website Toko</td>
-                                        <td>25-September-2023 - 13:00</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                                        <td>Web sekolah</td>
+                                        <td>Selesai</td>
+                                        <td>10.000.000</td>
+                                        <td><center><button type="button" class="btn btn-primary"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</button>&nbsp;
+                                        <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</button></center></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">3</th>
-                                        <td>Mr.Johanes</td>
-                                        <td>Website Pertanian</td>
-                                        <td>20-Desember-2023 - 17:00</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                                        <td>Web Marketing</td>
+                                        <td>Selesai</td>
+                                        <td>15.000.000</td>
+                                        <td><center><button type="button" class="btn btn-primary"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</button>&nbsp;
+                                        <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</button></center></td>
                                     </tr>
                                 </tbody>
                             </table>
