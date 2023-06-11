@@ -35,6 +35,7 @@ Route::get('setujuclient', [SetujuController::class, 'setujuclient'])->name('set
 Route::get('selesaiclient', [SelesaiController::class, 'selesaiclient'])->name('selesaiclient');
 Route::get('ditolakclient', [TolakController::class, 'ditolakclient'])->name('ditolakclient');
 Route::get('bayarclient', [BayarController::class, 'bayarclient'])->name('bayarclient');
+Route::get('bayar2client', [BayarController::class, 'bayar2client'])->name('bayar2client');
 
 // Halaman Admin
 Route::get('indexa', [IndexaController::class, 'indexa'])->name('indexa');

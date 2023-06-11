@@ -10,4 +10,9 @@ class BayarController extends Controller
         {
             return view('Client.bayar');
         }
+
+        public function bayar2client()
+        {
+            return view('Client.bayar2');
+        }
 }
