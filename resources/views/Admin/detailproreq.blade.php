@@ -22,6 +22,16 @@
         <div class="content">
             
             @include('Admin.templates.navbar')
+
+        <!-- style css -->
+        <script>
+            .modal-line {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        </script>
             
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
@@ -99,28 +109,34 @@
             <!-- Sale & Revenue End -->
 
             <!-- Sales Chart Start -->
-            <div class="modal" id="myModal">
+            <div class="modal" id="myModal" style="height: 540px">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <!-- Isi modal di sini -->
                         <div class="modal-body">
                             <h4>Detail Fitur</h4>
                         </div>
-                        <div class="modal-footer">
-                        </div>
-                        <div class="modal-header mb-2">
+                        <hr>
+                        <div class="modal-header">
                             <div class="row mb-3 mt-sm-2">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="input1">Nama Client</label>
-                                        <input type="text" value="Suharto" class="form-control" id="input1" name="input1" disabled>
+                                        <label for="input1">Nama Fitur</label>
+                                        <input type="text" value="Halaman Login" class="form-control mt-1" id="input1" name="input1" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="input2">Nama Project</label>
-                                        <input type="text" value="Website Berita" class="form-control" id="input2" name="input2" disabled>
+                                        <label for="input2">Harga Fitur</label>
+                                        <input type="number" class="form-control mt-1" id="input2" name="input2">
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="input1">Deskripsi Fitur</label>
+                                    <textarea class="form-control mt-1" id="textarea1" style="height: 200px" name="textarea1" disabled>Halaman login terdiri dari kolom input yang meminta pengguna untuk memasukkan informasi seperti nama pengguna atau alamat email, diikuti oleh kolom kata sandi. Pengguna kemudian dapat mengklik tombol "masuk" untuk mengirimkan informasi tersebut untuk verifikasi. Halaman login juga sering dilengkapi dengan fitur seperti "ingat saya" untuk menyimpan informasi login pengguna secara otomatis, dan tautan "lupa kata sandi" untuk membantu pengguna yang lupa kata sandi mereka.</textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="detailproreq" class="btn btn-primary mt-3" style="background-color: #009CFF;opacity: 70%;border: none;margin-left: 385px">Simpan</a>
                                 </div>
                             </div>
                         </div>
