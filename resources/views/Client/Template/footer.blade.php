@@ -1,8 +1,8 @@
-<div class="my-5" style="margin-top: 200px;">
-  <footer class="text-center text-white" style="background-color: #f1f1f1;">
-    <div class="container pt-4">
+<div style="margin-top: 10%;">
+  <footer class="text-center text-white" style="background-color: #F3F6F9;">
+    <div class="container pt-800">
       <!-- Section: Social media -->
-      <section class="mb-4">
+      <section class="mb-500">
         <!-- Facebook -->
         <a
           class="btn btn-link btn-floating btn-lg text-dark m-1"
@@ -33,8 +33,8 @@
       <!-- Section: Social media -->
     </div>
   
-    <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2023 PROREQ
+    <div class="text-center text-dark p-3" style="background-color: #E1ECF8;">
+      © Copyright 2023 
       <a class="text-dark" href="https://mdbootstrap.com/">PROREQ</a>
     </div>
   </footer>
