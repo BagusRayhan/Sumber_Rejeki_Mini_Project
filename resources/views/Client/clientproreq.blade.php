@@ -60,6 +60,7 @@
                                         <td>Website Sekolah</td>
                                         <td>26-Juni-2023 - 15:00</td>
                                         <td><button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>
+
                                     </tr>
                                     <tr>
                                         <td>Mr.Andreans</td>
@@ -76,6 +77,9 @@
                                 </tbody>
                             </table>
                         </div>
+
+
+
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-end mt-sm-3">
                                 <li class="page-item">

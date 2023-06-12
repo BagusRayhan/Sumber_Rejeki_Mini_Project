@@ -19,4 +19,7 @@ class IndexcController extends Controller
     public function createproreq(){
         return view ('Client.createproreq');
     }
+    public function editproreq(){
+        return view('Client.editproreq');
+    }
 }

@@ -41,7 +41,7 @@
                         }
                     </script>
                         <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
-                
+
                 </div>
 
             </div>
@@ -75,7 +75,7 @@
                                             </div>
                                         </td>
                                         <td>5.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"></i></button></td>
+                                        <td><a href="{{ route('detailsetujui') }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a></td>
                                     </tr>
                                     <tr>
                                         <td>Web sekolah</td>
@@ -90,7 +90,7 @@
                                     </div>
                                 </div></td>
                                         <td>10.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"></i></button></td>
+                                        <td><a href="{{ route('detailsetujui') }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a></td>
                                     </tr>
                                     <tr>
                                         <td>Web Marketing</td>
@@ -105,7 +105,7 @@
                                     </div>
                                 </div></td>
                                         <td>15.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"></i></button></td>
+                                        <td><a href="{{ route('detailsetujui') }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -130,7 +130,7 @@
                             </ul>
                         </nav>
                     </div>
-                    
+
 
       @include('Client.Template.footer')
         </div>

@@ -10,4 +10,7 @@ class SetujuController extends Controller
         {
             return view('Client.disetujui');
         }
+        public function detailsetujui(){
+            return view('Client.detailsetujui');
+        }
 }
