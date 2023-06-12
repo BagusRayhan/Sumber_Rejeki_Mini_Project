@@ -41,13 +41,18 @@
                         }
                     </script>
                         <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
-                
+                            </div>
+                        </div>
                 </div>
-
-            </div>
-    </div>
-
-       <div class="col-sm-12 col-xl-11" style="margin-left: 2%;margin-top:5%;">
+                    <div class="nav w-25 mt-4 d-flex" style="margin-left: 4%;">
+                        <a href="/selesaiclient" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('selesaiclient') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
+                         Selesai
+                         </a>
+                         <a href="/revisiclient" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('revisiclient') ? 'fw-bold border-dark border-bottom-2' : '' }}">
+                          Revisi
+                         </a>
+                    </div>
+              <div class="col-sm-12 col-xl-11" style="margin-left: 2%;margin-top:5%;">
                         <div class="bg-light rounded h-100 p-4">
                             <table class="table table-striped">
                                 <thead>
