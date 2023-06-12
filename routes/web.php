@@ -40,3 +40,10 @@ Route::get('bayar2client', [BayarController::class, 'bayar2client'])->name('baya
 // Halaman Admin
 Route::get('indexa', [IndexaController::class, 'indexa'])->name('indexa');
 Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
+Route::get('detailproreq', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
+Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
+Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
+Route::get('persetujuan-pembayaran', [AdminBayarController::class, 'persetujuan'])->name('setuju-bayar-admin');
+Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');
+Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard'); Route::get('persetujuan-pembayaran-pending', [AdminBayarController::class, 'persetujuan'])->name('setuju-bayar-admin');
+Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');
