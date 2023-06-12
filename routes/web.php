@@ -46,4 +46,5 @@ Route::get('detailproreq', [ProjectrequestController::class, 'detailproreq'])->n
 Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
 Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
 Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');
-Route::get('persetujuan-pembayaran-pending', [AdminBayarController::class, 'persetujuan'])->name('setuju-bayar-admin');
+Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
+Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');

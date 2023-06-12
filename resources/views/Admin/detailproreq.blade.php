@@ -67,7 +67,7 @@
                           <tr>
                             <td>Halaman Login</td>
                             <td>150.000</td>
-                            <td><a href="#" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;height: 30px;border: none"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <td><a href="#" id="buktiTransaksiModal" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;height: 30px;border: none" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                 <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                               </svg></i></a></td>
@@ -99,6 +99,46 @@
             <!-- Sale & Revenue End -->
 
             <!-- Sales Chart Start -->
+            <div class="modal" id="myModal">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <!-- Isi modal di sini -->
+                        <div class="modal-body">
+                            <h4>Detail Fitur</h4>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                        <div class="modal-header mb-2">
+                            <div class="row mb-3 mt-sm-2">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="input1">Nama Client</label>
+                                        <input type="text" value="Suharto" class="form-control" id="input1" name="input1" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="input2">Nama Project</label>
+                                        <input type="text" value="Website Berita" class="form-control" id="input2" name="input2" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="input1">Dokumen Pendukung</label>
+                                        <input type="text" value="website-berita.pdf" class="form-control" id="input1" name="input1" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="input2">Deadline</label>
+                                        <input type="datetime-local" class="form-control" id="input2" name="input2" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             <!-- Sales Chart End -->
 
@@ -129,6 +169,10 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('ProjectManagement/dashmin/js/main.js') }}"></script>
+    <script>
+        var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+    </script>
+    
 </body>
 
 @include('Admin.templates.script')
