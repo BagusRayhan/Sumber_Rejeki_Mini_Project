@@ -41,7 +41,7 @@
                         }
                     </script>
                         <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
-                
+
                 </div>
 
             </div>
@@ -60,17 +60,17 @@
                                 <tbody>
                                     <tr>
                                         <td>Toko ATK</td>
-                                        <td><center>Kami telah mengevaluasi project ini secara menyeluruh dan menyimpulkan bahwa manfaatnya tidak sebanding dengan biaya dan risiko yang terlibat.</center></td>
+                                        <td>Kami telah mengevaluasi project ini secara menyeluruh dan menyimpulkan bahwa manfaatnya tidak sebanding dengan biaya dan risiko yang terlibat.</td>
                                         <td><button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Web sekolah</td>
-                                        <td><center>Kami telah mengevaluasi project ini secara menyeluruh dan menyimpulkan bahwa manfaatnya tidak sebanding dengan biaya dan risiko yang terlibat.</center></td>
+                                        <td>Kami telah mengevaluasi project ini secara menyeluruh dan menyimpulkan bahwa manfaatnya tidak sebanding dengan biaya dan risiko yang terlibat.</td>
                                         <td><button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Web Marketing</td>
-                                        <td><center>Kami telah mengevaluasi project ini secara menyeluruh dan menyimpulkan bahwa manfaatnya tidak sebanding dengan biaya dan risiko yang terlibat.</center> </td>
+                                        <td>Kami telah mengevaluasi project ini secara menyeluruh dan menyimpulkan bahwa manfaatnya tidak sebanding dengan biaya dan risiko yang terlibat.</td>
                                         <td><button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button></td>
                                     </tr>
                                 </tbody>
@@ -96,7 +96,7 @@
                             </ul>
                         </nav>
                     </div>
-                    
+
 
       @include('Client.Template.footer')
         </div>

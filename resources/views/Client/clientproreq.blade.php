@@ -59,7 +59,7 @@
                                         <td>Mr.Daniel</td>
                                         <td>Website Sekolah</td>
                                         <td>26-Juni-2023 - 15:00</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                                        <td><a href="{{ route('editproreq') }}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a></td>
 
                                     </tr>
                                     <tr>
