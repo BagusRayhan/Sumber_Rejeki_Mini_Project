@@ -75,7 +75,7 @@
                           <tr>
                             <td>Halaman Register</td>
                             <td>-</td>
-                            <td><a href="#" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;height: 30px;border: none"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <td><a href="#" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;height: 30px;border: none" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                 <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                               </svg></i></a></td>
@@ -83,7 +83,7 @@
                           <tr>
                             <td>Landing Page</td>
                             <td>-</td>
-                            <td><a href="#" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;height: 30px;border: none"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <td><a href="#" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;height: 30px;border: none" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                 <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                               </svg></i></a></td>
@@ -120,18 +120,6 @@
                                     <div class="form-group">
                                         <label for="input2">Nama Project</label>
                                         <input type="text" value="Website Berita" class="form-control" id="input2" name="input2" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                    <div class="form-group">
-                                        <label for="input1">Dokumen Pendukung</label>
-                                        <input type="text" value="website-berita.pdf" class="form-control" id="input1" name="input1" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                    <div class="form-group">
-                                        <label for="input2">Deadline</label>
-                                        <input type="datetime-local" class="form-control" id="input2" name="input2" disabled>
                                     </div>
                                 </div>
                             </div>

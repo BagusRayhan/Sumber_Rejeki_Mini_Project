@@ -48,3 +48,4 @@ Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name(
 Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');
 Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
 Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
+Route::get('editproreq', [IndexcController::class, 'editproreq'])->name('editproreq');
