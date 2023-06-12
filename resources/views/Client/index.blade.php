@@ -155,7 +155,7 @@
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <h6 class="mb-0">Pesan</h6>
-                                <a href="#">Tampilkan Semua</a>
+                                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#">Tampilkan Semua</a>
                             </div>
                             <div class="d-flex align-items-center border-bottom py-3">
                                 <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px; ">
