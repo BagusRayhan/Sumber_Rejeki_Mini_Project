@@ -10,4 +10,8 @@ class SelesaiController extends Controller
         {
             return view('Client.selesai');
         }
+
+        public function revisiclient(){
+            return view('Client.revisi');
+        }
 }
