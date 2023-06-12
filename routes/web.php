@@ -8,6 +8,8 @@ use App\Http\Controllers\IndexcController;
 use App\Http\Controllers\SelesaiController;
 use App\Http\Controllers\SetujuController;
 use App\Http\Controllers\TolakController;
+use App\Http\Controllers\AdminBayarController;
+use App\Http\Controllers\AdminController;
 
 
 /*
