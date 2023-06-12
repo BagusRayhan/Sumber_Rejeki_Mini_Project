@@ -40,12 +40,14 @@ Route::get('ditolakclient', [TolakController::class, 'ditolakclient'])->name('di
 Route::get('bayarclient', [BayarController::class, 'bayarclient'])->name('bayarclient');
 Route::get('bayar2client', [BayarController::class, 'bayar2client'])->name('bayar2client');
 Route::get('editproreq', [IndexcController::class, 'editproreq'])->name('editproreq');
+Route::get('detailsetujui', [SetujuController::class, 'detailsetujui'])->name('detailsetujui');
 
 // Halaman Admin
 Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
 Route::get('detailproreq', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
 Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
 Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
+Route::get('projectselesai', [ProjectrequestController::class, 'projectselesai'])->name('projectselesai');
 Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');
 Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
 Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');

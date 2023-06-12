@@ -13,4 +13,8 @@ class ProjectrequestController extends Controller
     public function detailproreq(){
         return view('Admin.detailproreq');
     }
+
+    public function projectselesai(){
+        return view('Admin.projectselesai');
+    }
 }

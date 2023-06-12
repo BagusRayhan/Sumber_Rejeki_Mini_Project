@@ -33,8 +33,41 @@
                     </div>
                 </form>
             </div>
-                  
-            
+
+                <div class="container-fluid">
+                    <div class="row">
+                    <table class="table table-striped table-hover mt-4">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nama Project</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Harga Project</th>
+                            <th scope="col">Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Website Berita</td>
+                            <td>Selesai</td>
+                            <td>15.000.000</td>
+                            <td><button type="button" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;border: none" disabled><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</button>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>Website Sekolah</td>
+                            <td>Revisi</td>
+                            <td>10.000.000</td>
+                            <td><button type="button" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</button>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>Website Kesehatan</td>
+                            <td>Revisi</td>
+                            <td>9.000.000</td>
+                            <td><button type="button" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</button>&nbsp;</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
                 </div>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination mt-sm-5" style="margin-left: 910px">
