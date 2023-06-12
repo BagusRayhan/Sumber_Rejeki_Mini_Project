@@ -39,6 +39,7 @@ Route::get('revisiclient', [SelesaiController::class, 'revisiclient'])->name('re
 Route::get('ditolakclient', [TolakController::class, 'ditolakclient'])->name('ditolakclient');
 Route::get('bayarclient', [BayarController::class, 'bayarclient'])->name('bayarclient');
 Route::get('bayar2client', [BayarController::class, 'bayar2client'])->name('bayar2client');
+Route::get('editproreq', [IndexcController::class, 'editproreq'])->name('editproreq');
 
 // Halaman Admin
 Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
@@ -48,4 +49,3 @@ Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name(
 Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');
 Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
 Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
-Route::get('editproreq', [IndexcController::class, 'editproreq'])->name('editproreq');

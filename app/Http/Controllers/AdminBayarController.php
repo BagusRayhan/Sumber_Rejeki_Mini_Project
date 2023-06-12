@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class AdminBayarController extends Controller
 {
-    public function persetujuan() {
+    public function pending() {
         return view('Admin.persetujuan-pembayaran-pending');
     }
 
