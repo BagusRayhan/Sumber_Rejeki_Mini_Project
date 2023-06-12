@@ -54,7 +54,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                 <div class="modal-header">
-                                                <div class="row mb-3 mt-sm-2">
+                                <div class="row mb-3 mt-sm-2">
                                   <button type="button" style="margin-right:2%;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 <div class="form-group">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel"><center><img src="{{ asset('ProjectManagement/dashmin/img/user2.png') }}" alt="" style="width:40%; height:40%;"><br>Suharjo</center></h1>
@@ -101,7 +101,7 @@
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">
                                     <center>
                                     <label for="file-upload">
-                                        <img id="profile-image" src="{{ asset('ProjectManagement/dashmin/img/user.png') }}" alt="" style="width:40%; height:40%;">
+                                        <img id="profile-image" src="{{ asset('ProjectManagement/dashmin/img/user.png') }}" alt="" style="width:40%; height:40%; border-radius: 50%;">
                                         <br>Suharjo
                                     </label>
                                     <input id="file-upload" type="file" style="display: none;">
