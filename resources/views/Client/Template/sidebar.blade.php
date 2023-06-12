@@ -15,8 +15,8 @@
                         <a href="{{ route('drequestclient') }}" class="nav-link dropdown-toggle {{ Request::routeIs('drequestclient*','setujuclient*','selesaiclient*','ditolakclient*') ? 'active' : '' }}" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Project</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="{{ route('drequestclient') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('drequestclient*') ? 'text-primary' : '' }}">Project Request</a>
-                            <a href="typography.html" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('setujuclient*') ? 'text-primary' : '' }}">Project Disetujui</a>
-                            <a href="element.html" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('selesaiclient*') ? 'text-primary' : '' }}">Project Selesai</a>
+                            <a href="{{ route('setujuclient') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('setujuclient*') ? 'text-primary' : '' }}">Project Disetujui</a>
+                            <a href="{{ route('selesaiclient') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('selesaiclient*') ? 'text-primary' : '' }}">Project Selesai</a>
                             <a href="{{ route('ditolakclient') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('ditolakclient*') ? 'text-primary' : '' }}">Project Ditolak</a>
                         </div>
                     </div>

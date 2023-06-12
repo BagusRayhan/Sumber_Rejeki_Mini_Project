@@ -33,6 +33,7 @@ Route::get('createproreq', [IndexcController::class, 'createproreq'])->name('cre
 Route::get('requestclient', [IndexcController::class, 'requestclient'])->name('requestclient');
 Route::get('setujuclient', [SetujuController::class, 'setujuclient'])->name('setujuclient');
 Route::get('selesaiclient', [SelesaiController::class, 'selesaiclient'])->name('selesaiclient');
+Route::get('revisiclient', [SelesaiController::class, 'revisiclient'])->name('revisiclient');
 Route::get('ditolakclient', [TolakController::class, 'ditolakclient'])->name('ditolakclient');
 Route::get('bayarclient', [BayarController::class, 'bayarclient'])->name('bayarclient');
 Route::get('bayar2client', [BayarController::class, 'bayar2client'])->name('bayar2client');

@@ -63,22 +63,19 @@
                                         <td>Toko ATK</td>
                                         <td>Selesai</td>
                                         <td><center>5.000.000</center></td>
-                                        <td><center><button type="button" class="btn btn-primary"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</button>&nbsp;
-                                        <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</button></center></td>
+                                        <td><center><button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Web sekolah</td>
                                         <td>Selesai</td>
                                         <td><center>10.000.000</center></td>
-                                        <td><center><button type="button" class="btn btn-primary"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</button>&nbsp;
-                                        <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</button></center></td>
+                                        <td><center><button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Web Marketing</td>
                                         <td>Selesai</td>
                                         <td><center>15.000.000</center></td>
-                                        <td><center><button type="button" class="btn btn-primary"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</button>&nbsp;
-                                        <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</button></center></td>
+                                        <td><center><button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"></i></button></td>
                                     </tr>
                                 </tbody>
                             </table>
