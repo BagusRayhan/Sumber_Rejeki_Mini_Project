@@ -63,7 +63,7 @@
                                         <td>Toko ATK</td>
                                         <td>Selesai</td>
                                         <td><center>5.000.000</center></td>
-                                        <td><center><button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"></i></button></td>
+                                        <td><center><button type="button" class="btn btn-primary"   ><i class="fa-solid fa-eye" ></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Web sekolah</td>
