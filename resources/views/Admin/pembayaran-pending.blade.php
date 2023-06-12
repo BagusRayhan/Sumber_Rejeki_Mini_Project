@@ -33,7 +33,15 @@
                         </div>
                     </form>
                 </div>
-                <div class="row g-4 mt-3">
+                <div class="nav w-25 mt-4 d-flex">
+                    <a href="/pembayaran-pending" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('pending-bayar-admin') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
+                        Pending
+                    </a>
+                    <a href="/pembayaran-disetujui" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('setuju-bayar-admin') ? 'fw-bold border-dark border-bottom-2' : '' }}">
+                        Disetujui
+                    </a>
+                </div>
+                <div class="row mt-4">
                     <div class="col-12">
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -85,8 +93,8 @@
             <!-- Confirm Payment Table End -->
             
             <!-- Payment Proof Modal Start -->
-            <div class="modal fade" id="buktiTransaksiModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal">
+            <div class="modal fade" id="buktiTransaksiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" style="width: 400px">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
