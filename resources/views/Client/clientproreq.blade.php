@@ -66,13 +66,13 @@
                                         <td>Mr.Andreans</td>
                                         <td>Website Toko</td>
                                         <td>25-September-2023 - 13:00</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                                        <td><a href="{{ route('editproreq') }}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                     </tr>
                                     <tr>
                                         <td>Mr.Johanes</td>
                                         <td>Website Pertanian</td>
                                         <td>20-Desember-2023 - 17:00</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                                        <td><a href="{{ route('editproreq') }}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                     </tr>
                                 </tbody>
                             </table>

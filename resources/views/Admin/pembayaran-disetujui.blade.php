@@ -20,9 +20,9 @@
 
         <!-- Content Start -->
         <div class="content">
-            
+
             @include('Admin.templates.navbar')
-            
+
             <!-- Confirm Payment Table Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="search-form w-25">
