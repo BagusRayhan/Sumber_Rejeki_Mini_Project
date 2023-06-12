@@ -50,19 +50,19 @@
                             <td>Website Berita</td>
                             <td>Selesai</td>
                             <td>15.000.000</td>
-                            <td><button type="button" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;border: none" disabled><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</button>&nbsp;</td>
+                            <td><a type="button" href="revisiproselesai" class="btn btn-primary disabled" style="background-color: #009CFF;opacity: 100%;border: none" disabled><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>&nbsp;</td>
                           </tr>
                           <tr>
                             <td>Website Sekolah</td>
                             <td>Revisi</td>
                             <td>10.000.000</td>
-                            <td><button type="button" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</button>&nbsp;</td>
+                            <td><a type="button" href="revisiproselesai" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>&nbsp;</td>
                           </tr>
                           <tr>
                             <td>Website Kesehatan</td>
                             <td>Revisi</td>
                             <td>9.000.000</td>
-                            <td><button type="button" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</button>&nbsp;</td>
+                            <td><a type="button" href="revisiproselesai" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>&nbsp;</td>
                           </tr>
                         </tbody>
                       </table>
