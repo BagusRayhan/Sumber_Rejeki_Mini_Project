@@ -23,71 +23,76 @@
             
             @include('Admin.templates.navbar')
             
-            <!-- Bank Table Start -->
+            <!-- Table Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-12">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">BANK</h6>
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Nama Bank</th>
-                                            <th scope="col">Nomor Rekening</th>
-                                            <th scope="col">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>BANK BRI</td>
-                                            <td>8765785xxx</td>
-                                            <td><a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>BANK BCA</td>
-                                            <td>8657673xxx</td>
-                                            <td><a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>BANK Mandiri</td>
-                                            <td>8652342xxx</td>
-                                            <td><a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <h6 class="mb-4">BANK</h6>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nama Bank</th>
+                                        <th scope="col">Nomor Rekening</th>
+                                        <th scope="col">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>BANK BRI</td>
+                                        <td>8765785xxx</td>
+                                        <td><a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>BANK BCA</td>
+                                        <td>8657673xxx</td>
+                                        <td><a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>BANK Mandiri</td>
+                                        <td>8652342xxx</td>
+                                        <td><a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="col-12">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">E-Wallet</h6>
-                            <div class="d-flex justify-content-evenly">
-                                <div class="col-3">
-                                    <div class="card">
-                                        <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
-                                        <div class="card-body justify-content-between align-items-center">
-                                            <h5 class="card-title">DANA</h5>
-                                            <a href="#" class="btn btn-primary rounded-circle float-end" data-bs-toggle="modal" data-bs-target="#editQRModal"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        </div>
+                        <h6 class="mb-4">E-Wallet</h6>
+                        <div class="d-flex justify-content-evenly">
+                            <div class="col-2">
+                                <div class="card">
+                                    <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
+                                    <div class="card-body justify-content-between align-items-center">
+                                        <h6 class="card-title">DANA</h6>
+                                        <a href="#" class="btn btn-primary rounded-circle float-end" data-bs-toggle="modal" data-bs-target="#editQRModal"><i class="fa-solid fa-pen-to-square"></i></a>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <div class="card">
-                                        <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
-                                        <div class="card-body justify-content-between align-items-center">
-                                            <h5 class="card-title">OVO</h5>
-                                            <a href="#" class="btn btn-primary rounded-circle float-end"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="card">
+                                    <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
+                                    <div class="card-body justify-content-between align-items-center">
+                                        <h6 class="card-title">OVO</h6>
+                                        <a href="#" class="btn btn-primary rounded-circle float-end"><i class="fa-solid fa-pen-to-square"></i></a>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <div class="card">
-                                        <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
-                                        <div class="card-body justify-content-between align-items-center">
-                                            <h5 class="card-title">GoPay</h5>
-                                            <a href="#" class="btn btn-primary rounded-circle float-end"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="card">
+                                    <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
+                                    <div class="card-body justify-content-between align-items-center">
+                                        <h6 class="card-title">GoPay</h6>
+                                        <a href="#" class="btn btn-primary rounded-circle float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="card">
+                                    <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
+                                    <div class="card-body justify-content-between align-items-center">
+                                        <h6 class="card-title">LinkAja</h6>
+                                        <a href="#" class="btn btn-primary rounded-circle float-end"><i class="fa-solid fa-pen-to-square"></i></a>
                                     </div>
                                 </div>
                             </div>

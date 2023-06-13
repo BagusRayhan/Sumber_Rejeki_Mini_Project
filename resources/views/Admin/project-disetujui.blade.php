@@ -20,26 +20,28 @@
 
         <!-- Content Start -->
         <div class="content">
-
+            
             @include('Admin.templates.navbar')
-
+            
             <!-- Confirm Payment Table Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="search-form w-25">
-                    <form action="">
-                        <div class="input-group rounded-pill" style="background: #E9EEF5">
-                            <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
-                            <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
-                        </div>
-                    </form>
-                </div>
-                <div class="nav w-25 mt-4 d-flex">
-                    <a href="/pembayaran-pending" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('pending-bayar-admin') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
-                        Pending
-                    </a>
-                    <a href="/pembayaran-disetujui" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('setuju-bayar-admin') ? 'fw-bold border-2  border-bottom border-dark' : '' }}">
-                        Disetujui
-                    </a>
+                <div class="d-flex justify-content-between">
+                    <div class="search-form w-25">
+                        <form action="">
+                            <div class="input-group rounded-pill" style="background: #E9EEF5">
+                                <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+                                <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="sortir-project">
+                        <select class="form-select bg-primary text-white" aria-label="Default select example">
+                            <option class="bg-white text-dark" selected disabled>Sortir Project</option>
+                            <option class="bg-white text-dark" value="1">Deadline</option>
+                            <option class="bg-white text-dark" value="2">Fitur</option>
+                            <option class="bg-white text-dark" value="3">Harga</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="row mt-4">
                     <div class="col-12">
@@ -47,20 +49,25 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Nama Client</th>
                                         <th scope="col">Nama Project</th>
+                                        <th scope="col">Progress Project</th>
                                         <th scope="col">Harga Project</th>
                                         <th scope="col" class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Harja</td>
-                                        <td>Website Online Shop</td>
+                                        <td>Website Olshop</td>
+                                        <td>
+                                            <div class="pg-bar pt-2 mb-3">
+                                                <div class="progress bg-white w-75">
+                                                    <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td>15.000.000</td>
                                         <td class="d-flex justify-content-evenly">
-                                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentDetailModal"><i class="fa-solid fa-eye"></i></a>
-                                            <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                            <a href="/detail-project-disetujui" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -90,41 +97,6 @@
             </div>
             <!-- Confirm Payment Table End -->
 
-            <!-- Payment Detail Modal Start -->
-            <div class="modal fade" id="paymentDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5">Detail Pembayaran</h1>
-                        </div>
-                        <div class="modal-body mt-0 d-flex justify-content-evenly">
-                            <img src="{{ asset('ProjectManagement/dashmin/img/bukti-pembayaran.png') }}" class="w-50">
-                            <div class="container">
-                                <div class="mb-2">
-                                    <label for="namaClient">Nama Client</label>
-                                    <input type="text" id="namaClient" class="form-control" value="Ahmad" disabled>
-                                </div>
-                                <div class="mb-2">
-                                    <label for="namaProject">Nama Project</label>
-                                    <input type="text" id="namaProject" class="form-control" value="Website Sekolah" disabled>
-                                </div>
-                                <div class="mb-2">
-                                    <label for="hargaProject">Harga Project</label>
-                                    <input type="text" id="hargaProject" class="form-control" value="10.000.000" disabled>
-                                </div>
-                                <div class="mb-2">
-                                    <label for="metodePembayaran">Metode Pembayaran</label>
-                                    <input type="text" id="metodePembayaran" class="form-control" value="DANA" disabled>
-                                </div>
-                                <div class="mt-5">
-                                    <button type="button" class="btn btn-primary fw-medium rounded-pill w-100 p-2" data-bs-dismiss="modal" aria-label="Close">KEMBALI</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Payment Detail Modal End -->
         <!-- Content End -->
 
     </div>
