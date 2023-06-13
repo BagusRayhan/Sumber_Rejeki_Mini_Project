@@ -14,4 +14,10 @@ class SelesaiController extends Controller
         public function revisiclient(){
             return view('Client.revisi');
         }
+        public function revisiselesai(){
+            return view('Client.selesai');
+        }
+        public function revisibutton(){
+            return view('Client.revisibutton');
+        }
 }

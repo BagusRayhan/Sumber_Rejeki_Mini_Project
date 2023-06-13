@@ -50,20 +50,20 @@
             </nav>
 
 <!-- Modal -->
-            <div class="modal" id="MyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal" id="MyModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                        <div class="modal-header">
-                            <div class="row mb-3 mt-sm-2">
+                <div class="modal-header">
+                                <div class="row mb-3 mt-sm-2">
                                   <button type="button" style="margin-right:2%;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 <div class="form-group">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel"><center><img src="{{ asset('ProjectManagement/dashmin/img/user2.png') }}" alt="" style="width:40%; height:40%;"><br>Suharjo</center></h1>
                                 </div>
-                                <div class="form-group w-80 p-3">
+                                <div class="form-group w-100 p-3">
                                     <label for="input1">Nama</label>
                                     <input class="form-control mt-1" value="Suharjo" id="textarea1"  name="textarea1" disabled>
                                 </div><br><br>
-                                <div class="col-md-6">
+                                <div class="col-md-6 ">
                                     <div class="form-group ">
                                         <label for="input1">Email</label>
                                         <input type="email" value="Halaman Login" class="form-control mt-1" id="input1" name="input1" disabled>
@@ -75,7 +75,7 @@
                                         <input type="number" value="0867253616173" class="form-control mt-1" id="input2" name="input2" disabled>
                                     </div>
                                 </div>
-                                <div class="form-group w-10 p-3">
+                                <div class="form-group w-1 p-3">
                                     <label for="input1">Nama Perusahaan</label>
                                     <input class="form-control mt-1" value="Sumber Rejeki" id="textarea1"  name="textarea1" disabled>
                                 </div>
@@ -83,12 +83,76 @@
                                     <label for="input1">Alamat Perusahaan</label>
                                     <textarea class="form-control mt-1" id="textarea1" style="height: 100px" name="textarea1" disabled>Malang, Jawa Timur Indonesia</textarea>
                                 </div>
-                                <div class="modal-footer">
-                                    <a href="#" class="btn btn-primary mt-3" style="background-color: #009CFF;opacity: 70%;border: none;margin-left: 385px">Edit</a>
+                            </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Edit Profil</button>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-header">
+                            <div class="row mb-3 mt-sm-2">
+                                  <button type="button" style="margin-right:2%;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                               <div class="form-group">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                    <center>
+                                    <label for="file-upload">
+                                        <img id="profile-image" src="{{ asset('ProjectManagement/dashmin/img/user.png') }}" alt="" style="width:40%; height:40%; border-radius: 50%;">
+                                        <br>Suharjo
+                                    </label>
+                                    <input id="file-upload" type="file" style="display: none;">
+                                    </center>
+                                </h1>
+                                </div>
+                                <script>
+                                    document.getElementById("file-upload").addEventListener("change", function(event) {
+                                        var input = event.target;
+                                        if (input.files && input.files[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function(e) {
+                                            document.getElementById("profile-image").setAttribute("src", e.target.result);
+                                        };
+                                        reader.readAsDataURL(input.files[0]);
+                                        }
+                                    });
+                                    </script>
+
+                                <div class="form-group w-100 p-3">
+                                    <label for="input1">Nama</label>
+                                    <input class="form-control mt-1" value="Suharjo" id="textarea1"  name="textarea1" >
+                                </div><br><br>
+                                <div class="col-md-6 ">
+                                    <div class="form-group ">
+                                        <label for="input1">Email</label>
+                                        <input type="email" value="Halaman Login" class="form-control mt-1" id="input1" name="input1" >
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="input2">No.Telpon</label>
+                                        <input type="number" value="0867253616173" class="form-control mt-1" id="input2" name="input2">
+                                    </div>
+                                </div>
+                                <div class="form-group w-1 p-3">
+                                    <label for="input1">Nama Perusahaan</label>
+                                    <input class="form-control mt-1" value="Sumber Rejeki" id="textarea1"  name="textarea1">
+                                </div>
+                                <div class="form-group w-80 p-3">
+                                    <label for="input1">Alamat Perusahaan</label>
+                                    <textarea class="form-control mt-1" id="textarea1" style="height: 100px" name="textarea1" >Malang, Jawa Timur Indonesia</textarea>
                                 </div>
                             </div>
-                        </div>
-    </div>
-  </div>
-</div>
+                </div>
+                <div class="modal-footer">
+                     <button class="btn btn-danger" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Batal</button>
+                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Simpan</button>
+                </div>
+                </div>
+            </div>
+            </div>
+           
             <!-- Navbar End -->
