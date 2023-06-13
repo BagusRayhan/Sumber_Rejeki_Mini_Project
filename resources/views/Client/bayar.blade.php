@@ -54,8 +54,8 @@
                          </a>
                     </div>
 
-       <div class="col-sm-12 col-xl-11" style="margin-left: 2%;     margin-top:5%;">
-                        <div class="bg-light rounded h-100 p-4">
+       <div class="col-sm-12 col-xl-11" style="margin-left: 2%; margin-top:5%;">
+                       <div class="rounded h-100 p-4" >
                             <table class="table table-striped">
                                 <thead>
                                     <tr>

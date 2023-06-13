@@ -39,8 +39,6 @@
      </div>
        <div class="col-sm-12 col-xl-11" style="margin-left: 2%; margin-top:5%;">
                         <div class="col-12">
-
-
                             {{-- <h6 class="mb-4">Project Request</h6> --}}
                             <div class="table-responsive">
 
