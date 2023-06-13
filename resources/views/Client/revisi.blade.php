@@ -68,19 +68,19 @@
                                 <tbody>
                                     <tr>
                                         <td>Toko ATK</td>
-                                        <td>Selesai</td>
+                                        <td>Revisi</td>
                                         <td><center>5.000.000</center></td>
                                         <td><center><button type="button" class="btn btn-primary"   ><i class="fa-solid fa-eye" ></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Web sekolah</td>
-                                        <td>Selesai</td>
+                                        <td>Revisi</td>
                                         <td><center>10.000.000</center></td>
                                         <td><center><button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Web Marketing</td>
-                                        <td>Selesai</td>
+                                        <td>Revisi</td>
                                         <td><center>15.000.000</center></td>
                                         <td><center><button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"></i></button></td>
                                     </tr>
