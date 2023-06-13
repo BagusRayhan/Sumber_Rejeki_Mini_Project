@@ -108,7 +108,8 @@
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-start mb-3">
-                                <a href="{{ route('setujuclient') }}" class="btn btn-primary"><i class="fa fa-reply"></i> Kembali</a>
+                                <a href="projectselesai" class="btn btn-primary" style="margin-right: 15px"><i class="fa fa-reply"></i> Kembali</a>
+                                <a href="projectselesai" class="btn btn-primary"><i class="fa fa-pencil-square"></i> Edit Project</a>
                             </div>
 
                         </div>
@@ -126,24 +127,24 @@
                         <div class="modal-body">
                             <form action="">
 
-                                <div class="col-sm-12 col-xl-11 d-flex justify-content-between" style="margin-left: 2%; margin">
-                                    <div class="mb-3" style="width: 13em">
+                                <div class="col-sm-11 col-xl-12 d-flex justify-content-between" style="margin-right: 20px">
+                                    <div class="mb-3" style="width: 14em">
                                         <div class="form-group">
                                             <label for="input1">Nama Fitur</label>
-                                            <input type="text" class="form-control" id="input1" value="Aplikasi toko online" disabled>
+                                            <input type="text" class="form-control" id="input1" value="Halaman Login" disabled>
                                         </div>
                                     </div>
                                     <div class="mb-3" style="width: 13em">
                                         <div class="form-group">
                                             <label for="input3">Harga Fitur</label>
-                                            <input type="text" class="form-control" id="input3" value="Website toko online.pdf" disabled>
+                                            <input type="text" class="form-control" id="input3" value="150.000" disabled>
                                         </div><br>
                                     </div>
                                 </div>
-                                <div class="mb-3    ">
+                                <div class="mb-4">
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam totam. Vel nemo amet modi laborum nihil aspernatur quod! Vitae, corporis, earum consequuntur dicta repudiandae facilis voluptatum placeat nisi odio necessitatibus debitis eligendi eveniet enim amet laboriosam ipsum nulla fuga in soluta velit cumque a, esse qui. Suscipit sed odit iste ullam quos! Iusto cum maiores quisquam excepturi cumque, quae nostrum fuga eveniet voluptatibus?</textarea>
+                                        <textarea class="form-control" style="height: 180px" id="exampleFormControlTextarea1" rows="3" disabled>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam totam. Vel nemo amet modi laborum nihil aspernatur quod! Vitae, corporis, earum consequuntur dicta repudiandae facilis voluptatum placeat nisi odio necessitatibus debitis eligendi eveniet enim amet laboriosam ipsum nulla fuga in soluta velit cumque a, esse qui. Suscipit sed odit iste ullam quos! Iusto cum maiores quisquam excepturi cumque, quae nostrum fuga eveniet voluptatibus?</textarea>
                                     </div>
                                 </div>
                             </form>
