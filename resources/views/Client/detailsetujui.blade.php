@@ -110,9 +110,7 @@
                             <div class="d-flex justify-content-start mb-3">
                                 <a href="{{ route('setujuclient') }}" class="btn btn-primary"><i class="fa fa-reply"></i> Kembali</a>
                             </div>
-
                         </div>
-
                     </div>
 
                      <!-- Modal Box Edit Bank Start -->
@@ -140,7 +138,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3    ">
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam totam. Vel nemo amet modi laborum nihil aspernatur quod! Vitae, corporis, earum consequuntur dicta repudiandae facilis voluptatum placeat nisi odio necessitatibus debitis eligendi eveniet enim amet laboriosam ipsum nulla fuga in soluta velit cumque a, esse qui. Suscipit sed odit iste ullam quos! Iusto cum maiores quisquam excepturi cumque, quae nostrum fuga eveniet voluptatibus?</textarea>

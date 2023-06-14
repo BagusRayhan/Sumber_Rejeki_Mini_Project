@@ -34,7 +34,7 @@
             <a href="/selesaiclient" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('selesaiclient') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
                 Selesai
             </a>
-            <a href="/revisiclient" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('revisiclient') ? 'fw-bold border-dark border-bottom-2' : '' }}">
+            <a href="/revisiclient" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('revisiclient') ? 'fw-bold border-2  border-bottom border-dark' : '' }}">
                 Revisi
             </a>
         </div>
