@@ -21,4 +21,8 @@ class ProjectrequestController extends Controller
     public function revisiproselesai(){
         return view('Admin.revisiproselesai');
     }
+
+    public function editproselesai(){
+        return view('Admin.editproselesai');
+    }
 }

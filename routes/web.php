@@ -42,6 +42,8 @@ Route::get('bayar2client', [BayarController::class, 'bayar2client'])->name('baya
 Route::get('editproreq', [IndexcController::class, 'editproreq'])->name('editproreq');
 Route::get('detailsetujui', [SetujuController::class, 'detailsetujui'])->name('detailsetujui');
 Route::get('revisiselesai', [SelesaiController::class, 'revisiselesai'])->name('revisiselesai');
+Route::get('revisibutton', [SelesaiController::class, 'revisibutton'])->name('revisibutton');
+Route::get('detail-revisi-client', [SelesaiController::class, 'detail'])->name('detail-revisi-client');
 
 // Halaman Admin
 Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
@@ -50,6 +52,9 @@ Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
 Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
 Route::get('projectselesai', [ProjectrequestController::class, 'projectselesai'])->name('projectselesai');
 Route::get('revisiproselesai', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
+Route::get('editproselesai', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
+Route::get('project-disetujui', [ProjectDisetujuiController::class, 'disetujui'])->name('project-disetujui-admin');
+Route::get('detail-project-disetujui', [ProjectDisetujuiController::class, 'detailDisetujui'])->name('detail-disetujui-admin');
 Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');
 Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
 Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
