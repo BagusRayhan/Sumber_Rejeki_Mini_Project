@@ -70,19 +70,19 @@
                                         <td>Toko ATK</td>
                                         <td>5.000.000</td>
                                         <td><center><span class="badge text-bg-danger">Menunggu Pembayaran</center></span></td>
-                                        <td><center><button type="button" class="btn btn-primary"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
+                                        <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" class="btn btn-primary"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
                                     </tr>
                                     <tr>
                                         <td>Web sekolah</td>
                                         <td>10.000.000</td>
                                         <td><center><span class="badge text-bg-danger">Menunggu Pembayaran</span></center></td>
-                                        <td><center><button type="button" class="btn btn-primary"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
+                                        <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
                                     </tr>
                                     <tr>
                                         <td>Web Marketing</td>
                                         <td>15.000.000</td>
                                         <td><center><span class="badge text-bg-danger">Menunggu Pembayaran</span></center></td>
-                                        <td><center><button type="button" class="btn btn-primary"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
+                                        <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -107,7 +107,120 @@
                             </ul>
                         </nav>
                     </div>
-                    
+                        <div class="modal fade" id="Modalbayar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                         <div class="modal-dialog modal-dialog-centered" >
+                            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
+                            <div class="modal-header" style="border: none;">
+                                <img id="profile-image" src="{{ asset('ProjectManagement/dashmin/img/ikonm.png') }}" alt="" style="width:15%; height:15%; margin-top:1%;">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom:10%;" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" style="border: none;">
+                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="font-weight: bold;">Pembayaran Awal</h1><br>
+                                        <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
+                                            <h6 style="align-self: center;">Nama Project :</h6>
+                                            <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="Website Berita" disabled>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <h6>Harga Pembayaran :</h6>
+                                            <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="2.000.000" disabled>
+                                        </div>
+                                <br>
+                            </div>
+                            <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center>
+                            <div class="modal-footer" style="border: none;">
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered" >
+                            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
+                                <div class="modal-header" >
+                                    <div style="display: flex; flex-direction: column;">
+                                        <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
+                                        <div style="display: flex; align-items: center;">
+                                            <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="Website Berita" disabled>
+                                        </div>
+                                        <div style="display: flex; align-items: center; margin-top:3%;">
+                                            <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="2.000.000" disabled>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" style="border: none;">
+                                        <div class="d-grid" style="display: flex; justify-content: space-between;">
+                                            <h6 style="align-self: center;">Metode</h6>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Pilih Pembayaran
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">Cash</a></li>
+                                                    <li><a class="dropdown-item" href="#">E-Wallet</a></li>
+                                                    <li><a class="dropdown-item" href="#">Bank</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    <br>
+                                </div>
+                            <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button></center>
+                            <div class="modal-footer" style="border: none;">
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+
+                         <div class="modal fade" id="exampleModalToggle4" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered" >
+                            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
+                                <div class="modal-header" >
+                                    <div style="display: flex; flex-direction: column;">
+                                        <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
+                                        <div style="display: flex; align-items: center;">
+                                            <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="Website Berita" disabled>
+                                        </div>
+                                        <div style="display: flex; align-items: center; margin-top:3%;">
+                                            <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="2.000.000" disabled>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" style="border: none;">
+                                    <div class="container m-0 p-0 d-flex justify-content-between">
+                                        <div class="d-grid" style="display: flex; justify-content: space-between;">
+                                            <h6 style="align-self: center;">Metode</h6>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Pilih Pembayaran
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item active" href="#">Cash</a></li>
+                                                    <li><a class="dropdown-item" href="#">E-Wallet</a></li>
+                                                    <li><a class="dropdown-item" href="#">Bank</a></li>
+                                                    <li><a href="#" class="dropdown-item">Test</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <h6 style="">Harga Pembayaran :</h6>
+                                            <input type="text" class="form-control" value="2.000.000" disabled>
+                                        </div>
+                                    </div>
+    <br>
+    
+</div>
+
+                            <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button></center>
+                            <div class="modal-footer" style="border: none;">
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                                
 
       @include('Client.Template.footer')
         </div>
