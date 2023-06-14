@@ -3,7 +3,7 @@
 
 <!-- Mirrored from colorlib.com/etc/lf/Login_v4/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Jun 2023 06:45:50 GMT -->
 <head>
-<title>Sign Up</title>
+<title>Daftar Dulu </title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -36,27 +36,27 @@
 <span class="login100-form-title p-b-49">
 REGISTER
 </span>
-<div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
+<div class="wrap-input100 validate-input m-b-23" data-validate="Name is required">
 <span class="label-input100">Name</span>
-<input class="input100" type="text" name="username" placeholder="Type your name">
+<input class="input100" type="text" name="username" placeholder="Masukkan Nama anda">
 <span class="focus-input100" data-symbol="&#xf207;"></span>
 </div>
 
-<div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
+<div class="wrap-input100 validate-input m-b-23" data-validate="Email is required">
 <span class="label-input100">Email</span>
-<input class="input100" type="text" name="username" placeholder="Type your email">
+<input class="input100" type="text" name="username" placeholder="Masukkan email anda">
 <span class="focus-input100" data-symbol="&#xf15a;"></span>
 </div>
 
-<div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
+<div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
 <span class="label-input100">Password</span>
-<input class="input100" type="password" name="pass" placeholder="Type your password">
+<input class="input100" type="password" name="pass" placeholder="Masukkan password anda">
 <span class="focus-input100" data-symbol="&#xf191;"></span>
 </div>
 
-<div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
+<div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
 <span class="label-input100">Confirm Password</span>
-<input class="input100" type="password" name="pass" placeholder="Type your confirm password">
+<input class="input100" type="password" name="pass" placeholder="Masukkan password anda">
 <span class="focus-input100" data-symbol="&#xf191;"></span>
 </div>
 
@@ -64,23 +64,20 @@ REGISTER
     <input type="checkbox"> <a href="">Kebijakan Privasi</a>
 </div>
 
-
 <div class="container-login100-form-btn">
 <div class="wrap-login100-form-btn">
 <div class="login100-form-bgbtn"></div>
 <button class="login100-form-btn bg-primary">
-SIGN UP
+register
 </button>
 </div>
 </div>
-
 <div class="flex-col-c p-t-50">
  <span class="txt1 p-b-17">
-Atau Masuk Menggunakan
-</span>
+Sudah punya akun ?
 <a href="{{ route('login') }}" class="txt2">
-Sign In
-</a>
+login
+</a></span>
 </div>
 </form>
 </div>

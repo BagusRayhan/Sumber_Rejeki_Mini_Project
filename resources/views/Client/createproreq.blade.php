@@ -117,7 +117,7 @@
                         </div>
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
+                                <li data-bs-toggle="modal" data-bs-target="#detailfitur"><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
                             </ul>
                         </div>
                     </div><br>
@@ -151,6 +151,35 @@
         </div>
     </div>
 
+     <!-- Modal Box Edit Bank Start -->
+     <div class="modal fade" id="detailfitur" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Deskripsi</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+
+                        <div class="col-sm-12 col-xl-11" style="margin-left: 2%; margin">
+                            <div class="mb-3">
+                                    <label for="input1">Deskripsi</label>
+                                    <textarea class="form-control w-100" name="deskirpsi" placeholder="Masukkan deskripsi yang anda inginkan"></textarea>
+                            </div>
+                            </div>
+                        <div class="col-sm-12 col-xl-11 d-flex justify-content-end" style="margin-left: 2%; margin">
+                            <div class="mb-3">
+                                    <a href="" class="btn btn-danger">Batal</a>
+                                    <a href="" class="btn btn-primary">Simpan</a>
+                            </div>
+                    </form>
+                </div>
+
+        </div>
+    </div>
+</div>
+<!-- Modal Box Edit Bank End-->
 
 
 
