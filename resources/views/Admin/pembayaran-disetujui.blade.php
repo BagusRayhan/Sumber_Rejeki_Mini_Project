@@ -104,13 +104,15 @@
                                     <label for="namaClient">Nama Client</label>
                                     <input type="text" id="namaClient" class="form-control" value="Ahmad" disabled>
                                 </div>
-                                <div class="mb-2">
-                                    <label for="namaProject">Nama Project</label>
-                                    <input type="text" id="namaProject" class="form-control" value="Website Sekolah" disabled>
-                                </div>
-                                <div class="mb-2">
-                                    <label for="hargaProject">Harga Project</label>
-                                    <input type="text" id="hargaProject" class="form-control" value="10.000.000" disabled>
+                                <div class="d-flex">
+                                    <div class="mb-2">
+                                        <label for="namaProject">Nama Project</label>
+                                        <input type="text" id="namaProject" class="form-control" value="Website Sekolah" disabled>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="hargaProject">Harga Project</label>
+                                        <input type="text" id="hargaProject" class="form-control" value="10.000.000" disabled>
+                                    </div>
                                 </div>
                                 <div class="mb-2">
                                     <label for="metodePembayaran">Metode Pembayaran</label>

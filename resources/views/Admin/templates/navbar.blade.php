@@ -40,39 +40,65 @@
     </div>
 </nav>
 <!-- Navbar End -->
-
+<style>
+  .profile-modal {
+      width: 400px;
+  }
+</style>
 <!-- Profile Start -->
 <div class="modal fade" id="profileModal" aria-hidden="true" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5">My Profile</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="modal-dialog modal-dialog-centered profile-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">My Profile</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3 d-flex flex-column align-items-center justify-content-center">
+            <img class="rounded-circle border border-dark" style="width: 8em" src="{{ asset('ProjectManagement/dashmin/img/default-pp.jpg') }}" alt="">
+            <h5 class="mt-2">Kaja</h5>
         </div>
-        <div class="modal-body">
-          Show a second modal and hide this one with the button below.
+        <div class="mb-1">
+          <label for="exampleFormControlInput1" class="form-label">Nama</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" value="Kaja" disabled>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-bs-target="#editProfileModal" data-bs-toggle="modal">Edit</button>
+        <div class="mb-1">
+          <label for="exampleFormControlInput1" class="form-label">Email</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" value="kaja@gmail.com" disabled>
         </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#editProfileModal" data-bs-toggle="modal">Edit</button>
       </div>
     </div>
   </div>
-  <div class="modal fade" id="editProfileModal" aria-hidden="true" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5">My Profile</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal fade" id="editProfileModal" aria-hidden="true" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered profile-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">My Profile</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3 d-flex flex-column align-items-center justify-content-center">
+            <img class="rounded-circle border border-dark" style="width: 8em" src="{{ asset('ProjectManagement/dashmin/img/default-pp.jpg') }}" alt="">
+            <h5 class="mt-2">Kaja</h5>
         </div>
-        <div class="modal-body">
-          Hide this modal and show the first with the button below.
+        <div class="mb-1">
+          <label for="exampleFormControlInput1" class="form-label">Nama</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" value="Kaja">
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-danger" data-bs-target="ProfileModal" data-bs-toggle="modal">Batal</button>
-          <button class="btn btn-primary" data-bs-toggle="modal">Simpan</button>
+        <div class="mb-1">
+          <label for="exampleFormControlInput1" class="form-label">Email</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" value="kaja@gmail.com">
         </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#profileModal">Batal</button>
+        <button class="btn btn-primary">Simpan</button>
       </div>
     </div>
   </div>
+</div>
 {{-- Profile End --}}
