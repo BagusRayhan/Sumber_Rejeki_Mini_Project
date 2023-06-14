@@ -137,17 +137,15 @@
 
 
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-$('.input-icon').click(function() {
-$(this).siblings('.dropdown-menu').toggle();
-});
-});
+                    <script>
+                    $(document).ready(function() {
+                    $('.input-icon').click(function() {
+                    $(this).siblings('.dropdown-menu').toggle();
+                    });
+                    });
 
-</script>
-<center>
-                    {{-- <button type="submit" class="btn btn-primary">Kirim Request</button><br><br>
-                    <a  href="http://127.0.0.1:8000/drequestclient">Kembali</a></center> --}}
+                    </script>
+                    <center>
                 </form>
             </div>
         </div>

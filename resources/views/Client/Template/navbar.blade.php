@@ -66,7 +66,7 @@
                                 <div class="col-md-6 ">
                                     <div class="form-group ">
                                         <label for="input1">Email</label>
-                                        <input type="email" value="Halaman Login" class="form-control mt-1" id="input1" name="input1" disabled>
+                                        <input type="email" value="Harjoya@gmail.com" class="form-control mt-1" id="input1" name="input1" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="form-group w-1 p-3">
                                     <label for="input1">Nama Perusahaan</label>
-                                    <input class="form-control mt-1" value="Sumber Rejeki" id="textarea1"  name="textarea1" disabled>
+                                    <input  type="text" class="form-control mt-1" value="Sumber Rejeki" id="textarea1"  name="textarea1" disabled>
                                 </div>
                                 <div class="form-group w-80 p-3">
                                     <label for="input1">Alamat Perusahaan</label>
@@ -128,7 +128,7 @@
                                 <div class="col-md-6 ">
                                     <div class="form-group ">
                                         <label for="input1">Email</label>
-                                        <input type="email" value="Halaman Login" class="form-control mt-1" id="input1" name="input1" >
+                                        <input type="email" value="Harjoya@gmail.com" class="form-control mt-1" id="input1" name="input1" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">

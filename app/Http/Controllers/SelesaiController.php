@@ -20,4 +20,7 @@ class SelesaiController extends Controller
         public function revisibutton(){
             return view('Client.revisibutton');
         }
+        public function detail(){
+            return view('Client.detailrevisi');
+        }
 }

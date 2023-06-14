@@ -108,8 +108,10 @@
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-start mb-3">
-                                <a href="{{ route('setujuclient') }}" class="btn btn-primary"><i class="fa fa-reply"></i> Kembali</a>
+                                <td><center><a href="#" class="btn btn-primary"><i class="fa-solid fa-circle-check"></i>&nbsp;Setuju</a>&nbsp;
+                                    <button type="button" class="btn btn-danger"><i class="fa-solid fa-circle-xmark"></i>&nbsp;Tolak</button></center></td>
                             </div>
+
 
                         </div>
 
@@ -166,5 +168,4 @@
 
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:45:02 GMT -->
 </html>
-
 
