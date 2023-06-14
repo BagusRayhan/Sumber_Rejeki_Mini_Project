@@ -49,7 +49,7 @@
                                 <td>Aplikasi toko online</td>
                                 <td>1 hari</td>
                                 <td>
-                                    <div class="col-sm-12 col-xl-5" style="margin-left:2%;">
+                                    <div class="col-sm-12 col-xl-5 mt-3" style="margin-left:2%;">
                                         <div class="bg-light rounded h-100 p-10">
                                             <div class="pg-bar mb-3">
                                                 <div class="progress">
@@ -68,7 +68,7 @@
                                 <td>Website Berita</td>
                                 <td>3 jam</td>
                                 <td>
-                                    <div class="col-sm-12 col-xl-5" style="margin-left:2%;">
+                                    <div class="col-sm-12 col-xl-5 mt-3" style="margin-left:2%;">
                                         <div class="bg-light rounded h-100 p-10">
                                             <div class="pg-bar mb-3">
                                                 <div class="progress">
@@ -87,7 +87,7 @@
                                 <td>Website Sekolah</td>
                                 <td>4 hari</td>
                                 <td>
-                                    <div class="col-sm-12 col-xl-5" style="margin-left:2%;">
+                                    <div class="col-sm-12 col-xl-5 mt-3" style="margin-left:2%;">
                                         <div class="bg-light rounded h-100 p-10">
                                             <div class="pg-bar mb-3">
                                                 <div class="progress">
