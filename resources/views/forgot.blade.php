@@ -4,7 +4,7 @@
 <!-- Mirrored from colorlib.com/etc/lf/Login_v4/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Jun 2023 06:45:50 GMT -->
 
 <head>
-    <title>Forgot Pass</title>
+    <title>Lupa Password</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -42,7 +42,7 @@ Forgot Pass
 </span>
 <div class="wrap-input100 validate-input m-b-23" data-validate="Email is reauired">
 <span class="label-input100">Email</span>
-<input class="input100" type="text" name="email" placeholder="Type your email">
+<input class="input100" type="text" name="email" placeholder="Masukkan email anda">
 <span class="focus-input100" data-symbol="&#xf15a;"></span>
 </div>
 
@@ -60,11 +60,10 @@ Reset
 </div>
 <div class="flex-col-c p-t-50">
  <span class="txt1 p-b-17">
-Already have a account?
-</span>
+Sudah punya akun ?
 <a href="{{ route('login') }}" class="txt2">
-Sign In
-</a>
+Login
+</a></span>
 </div>
 </form>
 </div>

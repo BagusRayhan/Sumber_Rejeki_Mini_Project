@@ -53,26 +53,26 @@
                         <tbody>
                             <tr>
                                 <td>Aplikasi toko online</td>
-                                <td>Selesai</td>
+                                <td><span class="badge text-bg-success">Selesai</span></td>
                                 <td>5.000.000</td>
                                 <td><center>
-                                    <a href="{{ route('revisibutton') }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a></center>
+                                    <a href="{{ route('detail-revisi-client') }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a></center>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Website Pertanian</td>
-                                <td>Selesai</td>
+                                <td><span class="badge text-bg-success">Selesai</span></td>
                                 <td>5.000.000</td>
                                 <td><center>
-                                    <a href="{{ route('revisibutton') }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a></center>
+                                    <a href="{{ route('detail-revisi-client') }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a></center>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Aplikasi Timer Waktu Solat</td>
-                                <td>Selesai</td>
+                                <td><span class="badge text-bg-success">Selesai</span></td>
                                 <td>5.000.000</td>
                                 <td><center>
-                                    <a href="{{ route('revisibutton') }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a></center>
+                                    <a href="{{ route('detail-revisi-client') }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a></center>
                                 </td>
                             </tr>
                         </tbody>

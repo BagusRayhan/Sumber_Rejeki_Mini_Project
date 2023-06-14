@@ -117,7 +117,7 @@
 
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
+                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Edit deskripsi</li>
                             </ul>
                         </div>
                     </div><br>
@@ -130,7 +130,7 @@
 
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
+                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Edit deskripsi</li>
                             </ul>
                         </div>
                     </div><br>
@@ -143,7 +143,7 @@
 
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
+                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Edit deskripsi</li>
                             </ul>
                         </div>
                     </div><br>
@@ -156,7 +156,7 @@
 
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
+                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Edit deskripsi</li>
                             </ul>
                         </div>
                     </div><br>
@@ -169,7 +169,7 @@
 
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
+                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Edit deskripsi</li>
                             </ul>
                         </div>
                     </div><br>
@@ -182,7 +182,7 @@
 
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
+                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Edit deskripsi</li>
                             </ul>
                         </div>
                     </div><br>

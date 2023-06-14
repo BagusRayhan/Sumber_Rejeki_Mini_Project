@@ -53,16 +53,16 @@
                         <tbody>
                             <tr>
                                 <td>Aplikasi toko online</td>
-                                <td>Selesai</td>
+                                <td><span class="badge text-bg-success">Selesai</span></td>
                                 <td>5.000.000</td>
                                 <td><center>
-                                    <a href="{{ route('detail-revisi-client') }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
+                                    <a href="{{ route('revisibutton') }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
                                     <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</a></center>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Website Pertanian</td>
-                                <td>Selesai</td>
+                                <td><span class="badge text-bg-success">Selesai</span></td>
                                 <td>5.000.000</td>
                                 <td><center>
                                     <a href="{{ route('detail-revisi-client') }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
@@ -71,7 +71,7 @@
                             </tr>
                             <tr>
                                 <td>Aplikasi Timer Waktu Solat</td>
-                                <td>Selesai</td>
+                                <td><span class="badge text-bg-success">Selesai</span></td>
                                 <td>5.000.000</td>
                                 <td><center>
                                     <a href="{{ route('detail-revisi-client') }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>

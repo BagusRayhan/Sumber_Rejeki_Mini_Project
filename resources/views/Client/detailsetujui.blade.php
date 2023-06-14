@@ -16,7 +16,6 @@
         </div>
         <!-- Spinner End -->
         @include('Client.Template.sidebar')
-
         <!-- Content Start -->
         <div class="content">
       @include('Client.Template.navbar')
@@ -47,7 +46,6 @@
         </div>
         </div>
 
-
         {{-- table  --}}
      <div class="col-sm-12 col-xl-11 d-flex justify-content-between" style="margin-left: 2%; margin">
          <div class="w-25">
@@ -71,37 +69,37 @@
                                 <tbody>
                                     <tr>
                                         <td>Halaman Login</td>
-                                        <td>Selesai</td>
+                                <td><span class="badge text-bg-success">Selesai</span></td>
                                         <td>15.000.000</td>
                                         <td><a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailfitur"><i class="fa fa-eye"></i></a></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman Register</td>
-                                        <td>Belum selesai</td>
+                                        <td><span class="badge text-bg-danger">Belum selesai</span></td>
                                         <td>11.000.000</td>
                                         <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Landing Page</td>
-                                        <td>Belum selesai</td>
+                                        <td><span class="badge text-bg-success">Selesai</span></td>
                                         <td>5.000.000</td>
                                         <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman dashboard</td>
-                                        <td>Selesai</td>
+                                        <td><span class="badge text-bg-danger">Belum selesai</span></td>
                                         <td>12.000.000</td>
                                         <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman pembelian</td>
-                                        <td>Selesai</td>
+                                        <td><span class="badge text-bg-success">Selesai</span></td>
                                         <td>5.000.000</td>
                                         <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman penjualan</td>
-                                        <td>Belum selesai</td>
+                                        <td><span class="badge text-bg-danger">Belum selesai</span></td>
                                         <td>10.000.000</td>
                                         <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
                                     </tr>
@@ -123,7 +121,6 @@
                         </div>
                         <div class="modal-body">
                             <form action="">
-
                                 <div class="col-sm-12 col-xl-11 d-flex justify-content-between" style="margin-left: 2%; margin">
                                     <div class="mb-3" style="width: 13em">
                                         <div class="form-group">
@@ -138,30 +135,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-3    ">
+                                <div class="mb-3">
                                     <div class="mb-3">
                                         <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam totam. Vel nemo amet modi laborum nihil aspernatur quod! Vitae, corporis, earum consequuntur dicta repudiandae facilis voluptatum placeat nisi odio necessitatibus debitis eligendi eveniet enim amet laboriosam ipsum nulla fuga in soluta velit cumque a, esse qui. Suscipit sed odit iste ullam quos! Iusto cum maiores quisquam excepturi cumque, quae nostrum fuga eveniet voluptatibus?</textarea>
                                     </div>
                                 </div>
                             </form>
-                        </div>
-
+                     </div>
                 </div>
             </div>
         </div>
         <!-- Modal Box Edit Bank End-->
-
-
       @include('Client.Template.footer')
         </div>
         <!-- Content End -->
-
-
 @include('Client.Template.script')
 </body>
-
-
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:45:02 GMT -->
 </html>
 

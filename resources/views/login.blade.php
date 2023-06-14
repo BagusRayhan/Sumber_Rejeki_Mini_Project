@@ -3,7 +3,7 @@
 
 <!-- Mirrored from colorlib.com/etc/lf/Login_v4/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Jun 2023 06:45:50 GMT -->
 <head>
-    <title>Sign In</title>
+    <title>Selamat datang</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ asset('colorlib.com/vendor/bootstrap/css/bootstrap.min.css') }}">
@@ -38,38 +38,39 @@ Login
 </span>
 <div class="wrap-input100 validate-input m-b-23" data-validate="Email is reauired">
     <span class="label-input100">Email</span>
-    <input class="input100" type="text" name="email" placeholder="Type your email">
+    <input class="input100" type="text" name="email" placeholder="Masukkan email anda">
     <span class="focus-input100" data-symbol="&#xf15a;"></span>
   </div>
 
 <div class="wrap-input100 validate-input" data-validate="Password is required">
 <span class="label-input100">Password</span>
-<input class="input100" type="password" name="pass" placeholder="Type your password">
+<input class="input100" type="password" name="pass" placeholder="Masukkan password anda">
 <span class="focus-input100" data-symbol="&#xf191;"></span>
-</div>
+</div><br>
 
-<div class="text-right p-t-8 p-b-31">
-<a href="{{ route('forgot') }}">
-Forgot password?
-</a>
+<div class="d-flex justify-content-between">
+<div class="d-flex justify-content-start">
+<input type="checkbox"><a href="">&nbsp;Kebijakan Privasi</a>
 </div>
-
+<div class=" d-flex justify-content-end">
+<a href="{{ route('forgot') }}">&nbsp;Forgot Paswword</a>
+</div>
+</div><br>
 
 <div class="container-login100-form-btn">
 <div class="wrap-login100-form-btn">
 <div class="login100-form-bgbtn"></div>
 <button class="login100-form-btn bg-primary">
-SIGN IN
+LOGIN
 </button>
 </div>
 </div>
 <div class="flex-col-c p-t-50">
  <span class="txt1 p-b-17">
-Don't have a account?
-</span>
+Belum punya akun ?
 <a href="{{ route('register') }}" class="txt2">
-Sign Up
-</a>
+Register
+</a></span>
 </div>
 </form>
 </div>
