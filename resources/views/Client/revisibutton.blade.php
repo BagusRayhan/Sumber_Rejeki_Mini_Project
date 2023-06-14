@@ -108,7 +108,7 @@
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-start mb-3">
-                                <a href="{{ route('selesaiclient') }}" class="btn btn-primary"><i class="fa fa-reply"></i> Kembali</a>
+                                <a href="{{ route('revisiclient') }}" class="btn btn-primary"><i class="fa fa-reply"></i> Kembali</a>
                             </div>
 
                         </div>
