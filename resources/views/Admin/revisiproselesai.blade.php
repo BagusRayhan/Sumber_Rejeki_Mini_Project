@@ -109,7 +109,7 @@
                             </table>
                             <div class="d-flex justify-content-start mb-3">
                                 <a href="projectselesai" class="btn btn-primary" style="margin-right: 15px"><i class="fa fa-reply"></i> Kembali</a>
-                                <a href="projectselesai" class="btn btn-primary"><i class="fa fa-pencil-square"></i> Edit Project</a>
+                                <a href="editproselesai" class="btn btn-warning" style="color: #ffffff"><i class="fa fa-pencil-square"></i> Edit Project</a>
                             </div>
 
                         </div>

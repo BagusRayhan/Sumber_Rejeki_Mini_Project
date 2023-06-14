@@ -3,7 +3,7 @@
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
-    @include('Admin.templates.head')
+@include('Admin.templates.head')
 </head>
 
 <body>
@@ -16,9 +16,11 @@
         </div>
         <!-- Spinner End -->
         @include('Admin.templates.sidebar')
+
         <!-- Content Start -->
         <div class="content">
-            @include('Admin.templates.navbar')
+      @include('Admin.templates.navbar')
+
       <style>
         .td-spacing {
             margin-right: 20px;
@@ -77,10 +79,13 @@
 
 
                     </style>
-    <div class="container mt-4 d-flex justify-content-evenly">
+      
+      <!-- Modal Box Edit Bank Start -->
+
+      <div class="container mt-4 d-flex justify-content-evenly">
         <div class="card" style="width: 28em">
             <div class="card-body">
-                <h5 class="card-title">Edit requet</h5>
+                <h5 class="card-title">Edit Project</h5>
                 <form>
                     <div class="form-group">
                         <label for="input1">Nama Client</label>
@@ -100,7 +105,7 @@
                     </div><br>
                     <center>
                     <button type="submit" class="btn btn-primary w-100">Edit Request</button><br><br>
-                    <a  href="{{ route('drequestclient') }}">Kembali</a></center>
+                    <a  href="revisiproselesai">Kembali</a></center>
                 </form>
             </div>
         </div>
@@ -186,6 +191,19 @@
                         </div>
                     </div><br>
 
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="input1" placeholder="Add fitur">
+                        <div class="input-icon">
+                                  <i class="fas fa-plus"></i>
+
+                        </div>
+                        <div class="dropdown-menu">
+                            <ul class="dropdown-options">
+                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
+                            </ul>
+                        </div>
+                    </div><br>
+
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -197,11 +215,25 @@ $(this).siblings('.dropdown-menu').toggle();
 </script>
 <center>
                     {{-- <button type="submit" class="btn btn-primary">Kirim Request</button><br><br>
-                    <a  href="http://127.0.0.1:8000/drequestclient">Kembali</a></center> --}}
+                    <a  href="revisiproselesai">Kembali</a></center> --}}
                 </form>
             </div>
         </div>
     </div>
 
+        <!-- Modal Box Edit Bank End-->
 
-@include('Admin.templates.script')
+
+      @include('Client.Template.footer')
+        </div>
+        <!-- Content End -->
+
+
+@include('Client.Template.script')
+</body>
+
+
+<!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:45:02 GMT -->
+</html>
+
+
