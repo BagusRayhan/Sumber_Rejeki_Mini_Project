@@ -77,7 +77,7 @@
                           <tr>
                             <td>Halaman Login</td>
                             <td>150.000</td>
-                            <td><a href="#" id="buktiTransaksiModal" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;height: 30px;border: none" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <td><a href="#" id="buktiTransaksiModal" class="btn btn-primary" style="height: 30px;border: none" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                 <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                               </svg></i></a></td>
@@ -85,7 +85,7 @@
                           <tr>
                             <td>Halaman Register</td>
                             <td>-</td>
-                            <td><a href="#" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;height: 30px;border: none" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <td><a href="#" class="btn btn-primary" style="height: 30px;border: none" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                 <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                               </svg></i></a></td>
@@ -93,14 +93,14 @@
                           <tr>
                             <td>Landing Page</td>
                             <td>-</td>
-                            <td><a href="#" class="btn btn-primary" style="background-color: #009CFF;opacity: 70%;height: 30px;border: none" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <td><a href="#" class="btn btn-primary" style="height: 30px;border: none" data-bs-toggle="modal" data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                 <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                               </svg></i></a></td>
                           </tr>
                         </tbody>
                       </table>                   
-                    <a href="projectreq" type="button" style="background-color: #009CFF;border: none;opacity: 70%;" class="btn btn-primary">Setuju</a>
+                    <a href="projectreq" type="button" style="border: none;" class="btn btn-primary">Setuju</a>
                     <a href="projectreq" type="button" class="btn btn-danger">Tolak</a>
                   </form>
             </div>
@@ -136,7 +136,7 @@
                                     <textarea class="form-control mt-1" id="textarea1" style="height: 200px" name="textarea1" disabled>Halaman login terdiri dari kolom input yang meminta pengguna untuk memasukkan informasi seperti nama pengguna atau alamat email, diikuti oleh kolom kata sandi. Pengguna kemudian dapat mengklik tombol "masuk" untuk mengirimkan informasi tersebut untuk verifikasi. Halaman login juga sering dilengkapi dengan fitur seperti "ingat saya" untuk menyimpan informasi login pengguna secara otomatis, dan tautan "lupa kata sandi" untuk membantu pengguna yang lupa kata sandi mereka.</textarea>
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="detailproreq" class="btn btn-primary mt-3" style="background-color: #009CFF;opacity: 70%;border: none;margin-left: 385px">Simpan</a>
+                                    <a href="detailproreq" class="btn btn-primary mt-3" style="border: none;margin-left: 385px">Simpan</a>
                                 </div>
                             </div>
                         </div>

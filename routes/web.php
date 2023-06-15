@@ -11,6 +11,7 @@ use App\Http\Controllers\TolakController;
 use App\Http\Controllers\AdminBayarController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProjectDisetujuiController;
+use App\Http\Controllers\PengaturanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,7 @@ Route::get('detailproreq', [ProjectrequestController::class, 'detailproreq'])->n
 Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
 Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
 Route::get('projectselesai', [ProjectrequestController::class, 'projectselesai'])->name('projectselesai');
+Route::get('pengaturan', [PengaturanController::class, 'pengaturan'])->name('pengaturan');
 Route::get('revisiproselesai', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
 Route::get('editproselesai', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
 Route::get('project-disetujui', [ProjectDisetujuiController::class, 'disetujui'])->name('project-disetujui-admin');
