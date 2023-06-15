@@ -111,27 +111,27 @@
                                 <div class="chat-box d-grid p-2">
                                     <div class="chat-line-admin">
                                         <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum, a nihil. Mollitia aliquid eaque reiciendis dolores officia doloremque deleniti architecto? Dicta cupiditate explicabo provident consequatur, quasi porro non reiciendis inventore eum neque iste iusto facilis quo nobis odio suscipit! Sit nostrum tenetur nesciunt, numquam dolor nisi perspiciatis magnam non eum vitae blanditiis corporis mollitia. Ipsum, neque! Suscipit fuga vel dolor officia corrupti ipsum neque.</p>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error architecto rem ea totam sequi doloremque.</p>
                                         </div>
                                     </div>
                                     <div class="chat-line-admin">
                                         <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                            <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste, a!</p>
                                         </div>
                                     </div>
                                     <div class="chat-line-client">
                                         <div class="bubble-chat-client mb-2 float-start py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                            <p>Hehe iya ja</p>
+                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
                                         </div>
                                     </div>
                                     <div class="chat-line-admin">
                                         <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                            <p>Waduh jaga makanan ya minum obat biar lekas sembuh mau tak beliin obat ta</p>
+                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam inventore doloribus nobis minima provident eveniet, id aliquid fuga, reiciendis dolor eaque ut repellat necessitatibus recusandae laborum voluptatibus, illo ad rem expedita natus?</p>
                                         </div>
                                     </div>
                                     <div class="chat-line-client">
                                         <div class="bubble-chat-client mb-2 float-start py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                            <p>Hehe ga usah repot repot, kosanku sepi nih yuk</p>
+                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
                                         </div>
                                     </div>
                                 </div>
