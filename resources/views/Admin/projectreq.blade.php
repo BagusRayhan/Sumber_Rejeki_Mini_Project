@@ -33,111 +33,62 @@
                     </div>
                 </form>
             </div>
-
-                <div class="row">
-                    <div class="col-sm-4 mb-3 mb-sm-3 mt-5">
-                      <div class="card" style="background-color: #F3F6F9;border: none">
-                        <div class="card-body">
-                          <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
-                          <a href="detailproreq" class="btn btn-primary" style="margin-left: 265px;height: 30px;border: none"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                          </svg></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-4 mb-3 mb-sm-3 mt-5">
-                      <div class="card" style="background-color: #F3F6F9;border: none">
-                        <div class="card-body">
-                          <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Aplikasi Berita</h5>
-                          <a href="detailproreq" class="btn btn-primary" style="margin-left: 265px;height: 30px;border: none"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                          </svg></i></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-4 mb-3 mb-sm-3 mt-5">
-                      <div class="card" style="background-color: #F3F6F9;border: none">
-                        <div class="card-body">
-                          <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Aplikasi Sekolah</h5>
-                          <a href="detailproreq" class="btn btn-primary" style="margin-left: 265px;height: 30px;border: none"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                          </svg></i></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="card" style="background-color: #F3F6F9;border: none">
-                        <div class="card-body">
-                          <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Sekolah</h5>
-                          <a href="detailproreq" class="btn btn-primary" style="margin-left: 265px;height: 30px;border: none"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                          </svg></i></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="card" style="background-color: #F3F6F9;border: none">
-                        <div class="card-body">
-                          <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Kesehatan</h5>
-                          <a href="detailproreq" class="btn btn-primary" style="margin-left: 265px;height: 30px;border: none"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                          </svg></i></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-4">
-                      <div class="card" style="background-color: #F3F6F9;border: none">
-                        <div class="card-body">
-                          <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Aplikasi Kesehatan</h5>
-                          <a href="detailproreq" class="btn btn-primary" style="margin-left: 265px;height: 30px;border: none"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                          </svg></i></a>
-                        </div>
-                      </div>
-                    </div>
+            <style>
+              .col {
+                background: blue;
+                border: 1px solid black;
+              }
+            </style>
+            <div class="row mt-4">
+              <div class="col-sm-4 mb-2 mb-sm-2 mt-3">
+                <div class="card" style="background-color: #F3F6F9;border: none">
+                  <div class="card-body">
+                    <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
+                    <a href="/detailproreq" class="btn btn-primary float-end"><i class="fa-solid fa-eye"></i></a>
                   </div>
-                  
                 </div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination mt-sm-5" style="margin-left: 910px">
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                          <span class="sr-only">Next</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
+              </div>
+              <div class="col-sm-4 mb-2 mb-sm-2 mt-3">
+                <div class="card" style="background-color: #F3F6F9;border: none">
+                  <div class="card-body">
+                    <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
+                    <a href="/detailproreq" class="btn btn-primary float-end"><i class="fa-solid fa-eye"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 mb-2 mb-sm-2 mt-3">
+                <div class="card" style="background-color: #F3F6F9;border: none">
+                  <div class="card-body">
+                    <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
+                    <a href="/detailproreq" class="btn btn-primary float-end"><i class="fa-solid fa-eye"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 mb-2 mb-sm-2 mt-3">
+                <div class="card" style="background-color: #F3F6F9;border: none">
+                  <div class="card-body">
+                    <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
+                    <a href="/detailproreq" class="btn btn-primary float-end"><i class="fa-solid fa-eye"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 mb-2 mb-sm-2 mt-3">
+                <div class="card" style="background-color: #F3F6F9;border: none">
+                  <div class="card-body">
+                    <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
+                    <a href="/detailproreq" class="btn btn-primary float-end"><i class="fa-solid fa-eye"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 mb-2 mb-sm-2 mt-3">
+                <div class="card" style="background-color: #F3F6F9;border: none">
+                  <div class="card-body">
+                    <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
+                    <a href="/detailproreq" class="btn btn-primary float-end"><i class="fa-solid fa-eye"></i></a>
+                  </div>
+                </div>
+              </div>
             </div>
-            </div>
-            <!-- Sale & Revenue End -->
-            <!-- Sales Chart Start -->
-
-            <!-- Sales Chart End -->
-
-
-            <!-- Recent Sales Start -->
-
-            <!-- Recent Sales End -->
-
-
-            <!-- Widgets Start -->
-            <!-- Widgets End -->
 
         </div>
         <!-- Content End -->
