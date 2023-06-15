@@ -155,8 +155,6 @@
         </div>
         <!-- Modal Box Edit Bank End-->
 
-
-      @include('Client.Template.footer')
         </div>
         <!-- Content End -->
 

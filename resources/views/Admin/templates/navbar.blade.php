@@ -1,4 +1,28 @@
 <!-- Navbar Start -->
+
+<style>
+  .profile {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.change-profile-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+</style>
+
 <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
     
     <a href="#" class="sidebar-toggler flex-shrink-0 text-decoration-none">
@@ -55,7 +79,7 @@
       </div>
       <div class="modal-body">
         <div class="mb-3 d-flex flex-column align-items-center justify-content-center">
-            <img class="rounded-circle border border-dark" style="width: 8em" src="{{ asset('ProjectManagement/dashmin/img/default-pp.jpg') }}" alt="">
+            <img class="rounded-circle" style="width: 8em" src="{{ asset('ProjectManagement/dashmin/img/user-new.png') }}" alt="">
             <h5 class="mt-2">Kaja</h5>
         </div>
         <div class="mb-1">
@@ -81,10 +105,16 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="mb-3 d-flex flex-column align-items-center justify-content-center">
-            <img class="rounded-circle border border-dark" style="width: 8em" src="{{ asset('ProjectManagement/dashmin/img/default-pp.jpg') }}" alt="">
-            <h5 class="mt-2">Kaja</h5>
-        </div>
+        <center>
+            <div class="profile">
+              <img src="{{ asset('ProjectManagement/dashmin/img/user-new.png') }}" alt="Gambar Profil" class="profile-images">
+              <a href="#" type="file" class="change-profile-button" id="chooseFileButtonA" style="width: 45px">
+                <i class="fa-sharp fa-solid fa-image"></i>
+                <input type="file" id="fileInputA" style="display:none" accept=".jpg,.png,.pdf">
+              </a>
+              <input id="file-upload" type="file" style="display: none;">
+            </div>   
+          </center>                                       
         <div class="mb-1">
           <label for="exampleFormControlInput1" class="form-label">Nama</label>
           <input type="text" class="form-control" id="exampleFormControlInput1" value="Kaja">
@@ -99,6 +129,40 @@
         <button class="btn btn-primary">Simpan</button>
       </div>
     </div>
+    <script>
+      document.getElementById('chooseFileButtonA').addEventListener('click', function() {
+      document.getElementById('fileInputA').click();
+      });
+
+      document.getElementById('fileInputA').addEventListener('change', function() {
+      var selectedFile = this.files[0];
+      // Lakukan sesuatu dengan file yang dipilih, misalnya mengunggahnya ke server
+      console.log('Selected file:', selectedFile);
+      });
+
+  </script>
+  <script>
+  $(document).ready(function() {
+  $('.change-profile-button').on('click', function(e) {
+      e.preventDefault();
+      // Tambahkan kode yang ingin Anda jalankan ketika tombol perubahan profil diklik
+      // Misalnya, tampilkan dialog atau tampilkan form perubahan profil
+  });
+  });
+
+  </script>
+ <script>
+   document.getElementById("file-upload").addEventListener("change", function(event) {
+       var input = event.target;
+       if (input.files && input.files[0]) {
+       var reader = new FileReader();
+       reader.onload = function(e) {
+           document.getElementById("profile-image").setAttribute("src", e.target.result);
+       };
+       reader.readAsDataURL(input.files[0]);
+       }
+   });
+   </script>
   </div>
 </div>
 {{-- Profile End --}}

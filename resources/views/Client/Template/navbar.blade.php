@@ -127,7 +127,7 @@
                                         <div class="profile">
                                             <img src="{{ asset('ProjectManagement/dashmin/img/user-new.png') }}" alt="Gambar Profil" class="profile-image">
                                             <a href="#" type="file" class="change-profile-button" id="chooseFileButton" style="width: 45px">
-                                              <i class="fas fa-camera"></i>
+                                              <i class="fa-sharp fa-solid fa-image"></i>
                                               <input type="file" id="fileInput" style="display:none" accept=".jpg,.png,.pdf">
                                             </a>
                                           </div>                                          

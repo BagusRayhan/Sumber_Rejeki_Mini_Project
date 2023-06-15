@@ -109,36 +109,30 @@
             <!-- Sale & Revenue End -->
 
             <!-- Sales Chart Start -->
-            <div class="modal" id="myModal" style="height: 540px">
+            <div class="modal fade" id="myModal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                        <!-- Isi modal di sini -->
-                        <div class="modal-body">
-                            <h4>Detail Fitur</h4>
-                        </div>
-                        <hr>
                         <div class="modal-header">
-                            <div class="row mb-3 mt-sm-2">
-                                <div class="col-md-6">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Detail Fitur</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="">
+                                <div class="mb-2 d-flex justify-content-between">
                                     <div class="form-group">
-                                        <label for="input1">Nama Fitur</label>
-                                        <input type="text" value="Halaman Login" class="form-control mt-1" id="input1" name="input1" disabled>
+                                        <label for="" class="form-label">Nama Fitur</label>
+                                        <input type="text" class="form-control" value="Halaman Login" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Harga Fitur</label>
+                                        <input type="text" class="form-control" value="150.000">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="input2">Harga Fitur</label>
-                                        <input type="number" class="form-control mt-1" id="input2" name="input2">
-                                    </div>
+                                <div class="mb-2">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" disabled>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore, consequatur eos! Tempore consectetur, nam expedita dicta iusto vitae natus itaque necessitatibus rem quos dolore saepe repellendus dolor qui voluptatum sapiente totam veritatis voluptatibus! Modi perferendis quaerat, assumenda laborum necessitatibus eos ex vero nulla facere accusantium possimus ullam ea culpa quae itaque dolores quasi quas labore voluptas numquam quo adipisci at. Sint corporis et deserunt!</textarea>
                                 </div>
-                                <div class="form-group">
-                                    <label for="input1">Deskripsi Fitur</label>
-                                    <textarea class="form-control mt-1" id="textarea1" style="height: 200px" name="textarea1" disabled>Halaman login terdiri dari kolom input yang meminta pengguna untuk memasukkan informasi seperti nama pengguna atau alamat email, diikuti oleh kolom kata sandi. Pengguna kemudian dapat mengklik tombol "masuk" untuk mengirimkan informasi tersebut untuk verifikasi. Halaman login juga sering dilengkapi dengan fitur seperti "ingat saya" untuk menyimpan informasi login pengguna secara otomatis, dan tautan "lupa kata sandi" untuk membantu pengguna yang lupa kata sandi mereka.</textarea>
-                                </div>
-                                <div class="modal-footer">
-                                    <a href="detailproreq" class="btn btn-primary mt-3" style="border: none;margin-left: 385px">Simpan</a>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
