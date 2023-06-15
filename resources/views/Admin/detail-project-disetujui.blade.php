@@ -109,9 +109,9 @@
                         <div class="collapse" id="chatbox-container">
                             <div class="py-3 border border-bottom-0 border-top-0 border-dark" id="chatbox" style="height: 50vh; overflow-y: scroll; background:#f3f6f9">
                                 <div class="chat-box d-grid p-2">
-                                    <div class="chat-line-client">
-                                        <div class="bubble-chat-client mb-2 float-start py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                                    <div class="chat-line-admin">
+                                        <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
+                                            <p>Reva sakit ta?</p>
                                         </div>
                                     </div>
                                     <div class="chat-line-client">

@@ -28,7 +28,7 @@
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon1.png') }}" alt="">
+                            <i class="fa-regular fa-user fa-2x text-primary"></i>
                             <div class="ms-1">
                                 <p class="mb-2">Jumlah Client</p>
                                 <h6 class="mb-0">0</h6>

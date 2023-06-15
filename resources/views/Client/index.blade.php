@@ -26,37 +26,37 @@
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <img src="{{ asset('ProjectManagement/dashmin/img/icon1.png') }}" style="width:29%; height:29%;">
-                            <div class="ms-3">
+                            <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon1.png') }}" alt="">
+                            <div class="ms-1">
                                 <p class="mb-2">Project Disetujui</p>
-                                <h6 class="mb-0">6</h6>
+                                <h6 class="mb-0">0</h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <img src="{{ asset('ProjectManagement/dashmin/img/icon2.png') }}" style="width:26%; height:26%;">
-                            <div class="ms-3">
+                            <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon2.png') }}" alt="">
+                            <div class="ms-1">
                                 <p class="mb-2">Project Ditolak</p>
-                                <h6 class="mb-0">15</h6>
+                                <h6 class="mb-0">0</h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <img src="{{ asset('ProjectManagement/dashmin/img/icon3.png') }}" style="width:26%; height:26%;">
-                            <div class="ms-3">
+                            <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon3.png') }}" alt="">
+                            <div class="ms-1">
                                 <p class="mb-2">Project Dikerjakan</p>
-                                <h6 class="mb-0">25</h6>
+                                <h6 class="mb-0">0</h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <img src="{{ asset('ProjectManagement/dashmin/img/icon4.png') }}" style="width:24%; height:24%;">
-                            <div class="ms-3">
+                            <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon4.png') }}" alt="">
+                            <div class="ms-1">
                                 <p class="mb-2">Project Selesai</p>
-                                <h6 class="mb-0">10</h6>
+                                <h6 class="mb-0">0</h6>
                             </div>
                         </div>
                     </div>
