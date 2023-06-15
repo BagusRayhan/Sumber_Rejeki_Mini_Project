@@ -111,6 +111,57 @@
                         </div>
                     </div>
 
+                    <div class="container my-5">
+                        <div class="panel" style="height: 80vh;">
+                            <h5 class="fw-bold fs-5">Diskusi</h5>
+                            <p class="text-secondary">Aplikasi Toko Online</p>
+                            <div class="chatbox d-flex align-items-center justify-content-between align-items-lg-center px-3 border rounded border-1 border-dark">
+                                <div class="d-flex align-items-center">
+                                    <i class="fa-solid fa-comments fs-4 me-3"></i>
+                                    <p class="fw-medium mt-3">Diskusikan project dengan admin</p>
+                                </div>
+                                <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm">Hubungi admin</button>
+                            </div>
+                            <div class="collapse" id="chatbox-container">
+                                <div class="py-3 border border-bottom-0 border-top-0 border-dark" id="chatbox" style="height: 50vh; overflow-y: scroll; background:#f3f6f9">
+                                    <div class="chat-box d-grid p-2">
+                                        <div class="chat-line-admin">
+                                            <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime!</p>
+                                            </div>
+                                        </div>
+                                        <div class="chat-line-admin">
+                                            <div class="bubble-chat-admin mb-2 float-start py-1 px-3 bg-white rounded-3" style="max-width: 28em">
+                                                <p>batuk & flu kyk e</p>
+                                            </div>
+                                        </div>
+                                        <div class="chat-line-client">
+                                            <div class="bubble-chat-client mb-2 float-start py-1 px-3 bg-white rounded-3" style="max-width: 28em">
+                                                <p>Lorem ipsum dolor sit amet.</p>
+                                            </div>
+                                        </div>
+                                        <div class="chat-line-admin">
+                                            <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                            </div>
+                                        </div>
+                                        <div class="chat-line-client">
+                                            <div class="bubble-chat-client mb-2 float-start py-1 px-3 bg-white rounded-3" style="max-width: 28em">
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group p-1 d-flex px-2 border border-top-0 border-dark rounded-bottom" style="bottom: 0; background: #f3f6f9;">
+                                    <textarea class="form-control" style="height: 5vh; max-height: 150px" placeholder="Ketik pesan ..."></textarea>
+                                    <button class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
                      <!-- Modal Box Edit Bank Start -->
             <div class="modal fade" id="detailfitur" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">

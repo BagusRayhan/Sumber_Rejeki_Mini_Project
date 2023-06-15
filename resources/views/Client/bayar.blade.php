@@ -21,92 +21,83 @@
         <div class="content">
       @include('Client.Template.navbar')
 
-     {{-- //code Search --}}
-<div class="w-25" style="margin-left: 3%; margin-top:2%;">
-        <form action="#" method="GET">
-            <div class="input-group rounded-pill" style="background: #E9EEF5">
-                <div class="input-group">
-                    <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ..."> &nbsp;
-                    <script>
-                        // Simpan nilai input pencarian ke dalam localStorage setiap kali nilai berubah
-                        document.getElementById('search').addEventListener('input', function() {
-                            localStorage.setItem('searchValue', this.value);
-                        });
+      <div class="container-fluid pt-4 px-4">
+        <div class="search-form w-25">
+            <form action="">
+                <div class="input-group rounded-pill" style="background: #E9EEF5">
+                    <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+                    <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex justify-content-between">
+        <div class="nav w-25 mt-4 d-flex">
+            <a href="/bayarclient" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayarclient') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
+                Pending
+            </a>
+            <a href="/bayar2client" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayar2client') ? 'fw-bold border-2  border-bottom border-dark' : '' }}">
+                Pembayaran
+            </a>
+        </div>
+    </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nama Project</th>
+                                <th scope="col">Harga Project</th>
+                                <th scope="col">Status</th>
+                                <th scope="col" class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Aplikasi toko online</td>
+                                <td>15.000.000</td>
+                                <td><span class="badge text-bg-danger">Menunggu Pembayaran</span></td>
+                                <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
+                            </tr>
+                            <tr>
+                                <td>Website Sekolah</td>
+                                <td>10.000.000</td>
+                                <td><span class="badge text-bg-danger">Menunggu Pembayaran</span></td>
+                                <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
+                            </tr>
+                            <tr>
+                                <td>Website Berita</td>
+                                <td>5.000.000  </td>
+                                <td><span class="badge text-bg-danger">Menunggu Pembayaran</span></center></td>
+                                <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end mt-sm-3">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
-                        // Set nilai input pencarian dengan nilai yang disimpan di localStorage (jika ada)
-                        var searchInput = document.getElementById('search');
-                        var searchValue = localStorage.getItem('searchValue');
-                        if (searchValue) {
-                            searchInput.value = searchValue;
-                        }
-                    </script>
-                        <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>     
-                            </div>
-                        </div>
-                   </div>
 
-                   <div class="nav w-25 mt-4 d-flex" style="margin-left: 4%;">
-                        <a href="/bayarclient" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayarclient') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
-                         Pending
-                         </a>
-                         <a href="/bayar2client" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayar2client') ? 'fw-bold border-dark border-bottom-2' : '' }}">
-                          Pembayaran
-                         </a>
-                    </div>
-
-       <div class="col-sm-12 col-xl-11" style="margin-left: 2%; margin-top:5%;">
-                       <div class="rounded h-100 p-4" >
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" >Nama Project</th>
-                                        <th scope="col" >Harga Project</th>
-                                        <th scope="col" ><center>Status</center></th>
-                                        <th scope="col"><center>Aksi</center></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Toko ATK</td>
-                                        <td>5.000.000</td>
-                                        <td><center><span class="badge text-bg-danger">Menunggu Pembayaran</center></span></td>
-                                        <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" class="btn btn-primary"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Web sekolah</td>
-                                        <td>10.000.000</td>
-                                        <td><center><span class="badge text-bg-danger">Menunggu Pembayaran</span></center></td>
-                                        <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Web Marketing</td>
-                                        <td>15.000.000</td>
-                                        <td><center><span class="badge text-bg-danger">Menunggu Pembayaran</span></center></td>
-                                        <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-end mt-sm-3">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
                         <div class="modal fade" id="Modalbayar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                          <div class="modal-dialog modal-dialog-centered" >
                             <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
@@ -165,7 +156,7 @@
                                         </div>
                                     <br>
                                 </div>
-                            <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button></center>
+                            <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;" disabled>Bayar Sekarang</button></center>
                             <div class="modal-footer" style="border: none;">
                             </div>
                             </div>
@@ -211,13 +202,13 @@
                                     </div>
                                 <br>
                             </div>
-                            <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button></center>
+                            <center><a href="{{ route('bayarclient') }}" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</a></center>
                             <div class="modal-footer" style="border: none;">
                             </div>
                             </div>
                           </div>
                         </div>
-                                
+
 
                     <div class="modal fade" id="wallet" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered" >
@@ -273,7 +264,7 @@
                                             <input class="form-control" type="file" id="formFile" style="width: 35%">
                                         </div>
                             </div>
-                            <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button></center>
+                            <center><a href="{{ route('bayarclient') }}" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</a></center>
                             <div class="modal-footer" style="border: none;">
                             </div>
                             </div>
@@ -337,7 +328,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button></center>
+                            <center><a href="{{ route('bayarclient') }}" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</a></center>
                             <div class="modal-footer" style="border: none;">
                             </div>
                             </div>
@@ -406,13 +397,13 @@
 
                                 <br>
                             </div>
-                            <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button></center>
+                            <center><a href="{{ route('bayarclient') }}" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</a></center>
                             <div class="modal-footer" style="border: none;">
                             </div>
                             </div>
                           </div>
                         </div>
-                                
+
 
       @include('Client.Template.footer')
         </div>

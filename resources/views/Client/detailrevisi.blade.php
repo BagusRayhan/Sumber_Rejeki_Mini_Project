@@ -111,11 +111,9 @@
                                 <td><center><a href="#" class="btn btn-primary"><i class="fa-solid fa-circle-check"></i>&nbsp;Setuju</a>&nbsp;
                                     <button type="button" class="btn btn-danger"><i class="fa-solid fa-circle-xmark"></i>&nbsp;Tolak</button></center></td>
                             </div>
-
-
                         </div>
-
                     </div>
+                    
 
                      <!-- Modal Box Edit Bank Start -->
             <div class="modal fade" id="detailfitur" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
