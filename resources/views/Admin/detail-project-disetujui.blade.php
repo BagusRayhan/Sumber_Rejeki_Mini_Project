@@ -96,37 +96,55 @@
                     <button class="btn btn-warning text-white p-1" data-bs-toggle="modal" data-bs-target="#estimasiModal"><i class="fa-solid fa-clock-rotate-left"></i> Estimasi</button>
                 </div>
                 <div class="container my-5">
-                    <h5 class="fw-bold fs-5">Diskusi</h5>
-                    <p class="text-secondary">Aplikasi Toko Online</p>
-                    <div class="chatbox d-flex align-items-center justify-content-between align-items-lg-center px-3 border rounded border-1 border-dark">
-                        <div class="d-flex align-items-center">
-                            <i class="fa-solid fa-comments fs-4 me-3"></i>
-                            <p class="fw-medium mt-3">Diskusikan project dengan client</p>
+                    <div class="panel" style="height: 80vh;">
+                        <h5 class="fw-bold fs-5">Diskusi</h5>
+                        <p class="text-secondary">Aplikasi Toko Online</p>
+                        <div class="chatbox d-flex align-items-center justify-content-between align-items-lg-center px-3 border rounded border-1 border-dark">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-comments fs-4 me-3"></i>
+                                <p class="fw-medium mt-3">Diskusikan project dengan client</p>
+                            </div>
+                            <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm">Hubungi Client</button>
                         </div>
-                        <button class="btn btn-primary fw-semibold btn-sm">Hubungi Client</button>
-                    </div>
-                    <div class="py-3 border border-1 border-bottom-0 border-dark rounded-top" style="height: 50vh;background:#f3f6f9">
-                        <div class="chat-box d-grid p-2">
-                            <div class="chat-line-client">
-                                <div class="bubble-chat-client mb-2 float-start py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                        <div class="collapse" id="chatbox-container">
+                            <div class="py-3 border border-bottom-0 border-top-0 border-dark" id="chatbox" style="height: 50vh; overflow-y: scroll; background:#f3f6f9">
+                                <div class="chat-box d-grid p-2">
+                                    <div class="chat-line-client">
+                                        <div class="bubble-chat-client mb-2 float-start py-1 px-3 bg-white rounded-3" style="max-width: 28em">
+                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                                        </div>
+                                    </div>
+                                    <div class="chat-line-client">
+                                        <div class="bubble-chat-client mb-2 float-start py-1 px-3 bg-white rounded-3" style="max-width: 28em">
+                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                                        </div>
+                                    </div>
+                                    <div class="chat-line-admin">
+                                        <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
+                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam inventore doloribus nobis minima provident eveniet, id aliquid fuga, reiciendis dolor eaque ut repellat necessitatibus recusandae laborum voluptatibus, illo ad rem expedita natus?</p>
+                                        </div>
+                                    </div>
+                                    <div class="chat-line-admin">
+                                        <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
+                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam inventore doloribus nobis minima provident eveniet, id aliquid fuga, reiciendis dolor eaque ut repellat necessitatibus recusandae laborum voluptatibus, illo ad rem expedita natus?</p>
+                                        </div>
+                                    </div>
+                                    <div class="chat-line-client">
+                                        <div class="bubble-chat-client mb-2 float-start py-1 px-3 bg-white rounded-3" style="max-width: 28em">
+                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="chat-line-admin">
-                                <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam inventore doloribus nobis minima provident eveniet, id aliquid fuga, reiciendis dolor eaque ut repellat necessitatibus recusandae laborum voluptatibus, illo ad rem expedita natus?</p>
-                                </div>
-                            </div> 
+                            <div class="form-group p-1 d-flex px-2 border border-top-0 border-dark rounded-bottom" style="bottom: 0; background: #f3f6f9;">
+                                <textarea class="form-control" style="height: 5vh; max-height: 150px" placeholder="Ketik pesan ..."></textarea>
+                                <button class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group p-2 d-flex px-2 border border-top-0 border-dark rounded-bottom" style="bottom: 0; background: #f3f6f9;">
-                        <textarea class="form-control" style="height: 5vh; max-height: 150px" placeholder="Ketik pesan ..."></textarea>
-                        <button class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- Modal Box Detail Fitur Start -->
         <div class="modal fade" id="detailFitur" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">

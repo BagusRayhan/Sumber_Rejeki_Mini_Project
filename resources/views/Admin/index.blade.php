@@ -28,7 +28,7 @@
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa-solid fa-user fa-2x text-primary"></i>
+                            <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon1.png') }}" alt="">
                             <div class="ms-1">
                                 <p class="mb-2">Jumlah Client</p>
                                 <h6 class="mb-0">0</h6>
@@ -37,8 +37,7 @@
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa-solid fa-file-circle-check fa-2x text-primary"></i>
-                            <i class=""></i>
+                            <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon2.png') }}" alt="">
                             <div class="ms-1">
                                 <p class="mb-2">Project Disetujui</p>
                                 <h6 class="mb-0">0</h6>
@@ -47,7 +46,7 @@
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa-solid fa-business-time fa-2x text-primary"></i>
+                            <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon3.png') }}" alt="">
                             <div class="ms-1">
                                 <p class="mb-2">Project Dikerjakan</p>
                                 <h6 class="mb-0">0</h6>
@@ -56,7 +55,7 @@
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa-solid fa-calendar-check fa-2x text-primary"></i>
+                            <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon4.png') }}" alt="">
                             <div class="ms-1">
                                 <p class="mb-2">Project Selesai</p>
                                 <h6 class="mb-0">0</h6>
