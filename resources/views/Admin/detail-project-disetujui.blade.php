@@ -114,14 +114,14 @@
                                             <p>Reva sakit ta?</p>
                                         </div>
                                     </div>
+                                    <div class="chat-line-admin">
+                                        <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
+                                            <p>batuk & flu kyk e</p>
+                                        </div>
+                                    </div>
                                     <div class="chat-line-client">
                                         <div class="bubble-chat-client mb-2 float-start py-1 px-3 bg-white rounded-3" style="max-width: 28em">
                                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                                        </div>
-                                    </div>
-                                    <div class="chat-line-admin">
-                                        <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam inventore doloribus nobis minima provident eveniet, id aliquid fuga, reiciendis dolor eaque ut repellat necessitatibus recusandae laborum voluptatibus, illo ad rem expedita natus?</p>
                                         </div>
                                     </div>
                                     <div class="chat-line-admin">
