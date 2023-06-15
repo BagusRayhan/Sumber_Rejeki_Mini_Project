@@ -111,12 +111,12 @@
                                 <div class="chat-box d-grid p-2">
                                     <div class="chat-line-admin">
                                         <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                            <p>Reva sakit ta?</p>
+                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum, a nihil. Mollitia aliquid eaque reiciendis dolores officia doloremque deleniti architecto? Dicta cupiditate explicabo provident consequatur, quasi porro non reiciendis inventore eum neque iste iusto facilis quo nobis odio suscipit! Sit nostrum tenetur nesciunt, numquam dolor nisi perspiciatis magnam non eum vitae blanditiis corporis mollitia. Ipsum, neque! Suscipit fuga vel dolor officia corrupti ipsum neque.</p>
                                         </div>
                                     </div>
                                     <div class="chat-line-admin">
                                         <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                            <p>batuk & flu kyk e</p>
+                                            <p>Lorem ipsum dolor sit amet consectetur.</p>
                                         </div>
                                     </div>
                                     <div class="chat-line-client">
