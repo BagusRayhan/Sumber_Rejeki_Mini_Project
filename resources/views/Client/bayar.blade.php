@@ -370,9 +370,9 @@
                                                     Pilih Pembayaran
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item active" href="#">Cash</a></li>
+                                                    <li><a class="dropdown-item" href="#">Cash</a></li>
                                                     <li><a class="dropdown-item" href="#" data-bs-target="#wallet" data-bs-toggle="modal">E-Wallet</a></li>
-                                                    <li><a class="dropdown-item" href="#">Bank</a></li>
+                                                    <li><a class="dropdown-item active" href="#">Bank</a></li>
                                                 </ul>
                                             </div>
                                         </div>

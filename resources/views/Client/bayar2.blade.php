@@ -133,7 +133,7 @@
                <br>
            </div>
            <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center><br>
-           <center><a href="#" data-bs-target="#modalawal" data-bs-toggle="modal">Lihat Pembayaran Awal</a></center>
+           <center><a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#modalawal" data-bs-toggle="modal">Lihat Pembayaran Awal</a></center>
            <div class="modal-footer" style="border: none;">
            </div>
            </div>
@@ -170,7 +170,7 @@
                <br>
            </div>
            <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;" disabled>Selesai</button></center><br>
-           <center><a href="#" data-bs-target="#Modalbayar" data-bs-toggle="modal">Kembali</a></center>
+           <center><a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar" data-bs-toggle="modal">Kembali</a></center>
            <div class="modal-footer" style="border: none;">
            </div>
            </div>
@@ -427,9 +427,9 @@
                                    Pilih Pembayaran
                                </button>
                                <ul class="dropdown-menu">
-                                   <li><a class="dropdown-item active" href="#">Cash</a></li>
+                                   <li><a class="dropdown-item" href="#">Cash</a></li>
                                    <li><a class="dropdown-item" href="#" data-bs-target="#wallet" data-bs-toggle="modal">E-Wallet</a></li>
-                                   <li><a class="dropdown-item" href="#">Bank</a></li>
+                                   <li><a class="dropdown-item  active" href="#">Bank</a></li>
                                </ul>
                            </div>
                        </div>
