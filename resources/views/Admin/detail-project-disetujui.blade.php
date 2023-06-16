@@ -104,34 +104,65 @@
                                 <i class="fa-solid fa-comments fs-4 me-3"></i>
                                 <p class="fw-medium mt-3">Diskusikan project dengan client</p>
                             </div>
-                            <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm">Hubungi Client</button>
+                            <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm" onclick="openChat()">Hubungi Client</button>
                         </div>
+                        <style>
+                            #chatbox {
+                                height: 350px;
+                                overflow-y: scroll;
+                                scroll-behavior: smooth;
+                                background:#f3f6f9;
+                            }
+                        </style>
                         <div class="collapse" id="chatbox-container">
-                            <div class="py-3 border border-bottom-0 border-top-0 border-dark" id="chatbox" style="height: 50vh; overflow-y: scroll; background:#f3f6f9">
-                                <div class="chat-box d-grid p-2">
-                                    <div class="chat-line-admin">
-                                        <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error architecto rem ea totam sequi doloremque.</p>
+                            <div class="py-3 border border-bottom-0 border-top-0 border-dark" id="chatbox">
+                                <div class="chat-box d-flex flex-column p-2">
+                                    <div class="col">
+                                        <div class="bubble-chat-admin d-flex flex-column mb-2 float-end py-2 px-3 bg-primary text-white rounded-3" style="max-width: 33em; font-size: 14px">
+                                            <p class="messages m-0 p-0">Gimana kabarnya?</p>
+                                            <label for="" class="text-secondary text-white-50 mt-2" style="font-size: 9px">11:45 AM</label>
                                         </div>
                                     </div>
-                                    <div class="chat-line-admin">
-                                        <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste, a!</p>
+                                    <div class="col">
+                                        <div class="bubble-chat-client d-flex flex-column mb-2 float-start py-2 px-3 bg-white rounded-3" style="max-width: 33em; font-size: 14px">
+                                            <p class="messages m-0 p-0">Baik, kamu gimana? sehat?</p>
+                                            <label for="" class="text-secondary mt-2" style="font-size: 9px">11:45 AM</label>
                                         </div>
                                     </div>
-                                    <div class="chat-line-client">
-                                        <div class="bubble-chat-client mb-2 float-start py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                                    <div class="col">
+                                        <div class="bubble-chat-admin d-flex flex-column mb-2 float-end py-2 px-3 bg-primary text-white rounded-3" style="max-width: 33em; font-size: 14px">
+                                            <p class="messages m-0 p-0">Alhamdulillah sehat</p>
+                                            <label for="" class="text-secondary text-white-50 mt-2" style="font-size: 9px">11:45 AM</label>
                                         </div>
                                     </div>
-                                    <div class="chat-line-admin">
-                                        <div class="bubble-chat-admin mb-2 float-end py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam inventore doloribus nobis minima provident eveniet, id aliquid fuga, reiciendis dolor eaque ut repellat necessitatibus recusandae laborum voluptatibus, illo ad rem expedita natus?</p>
+                                    <div class="col">
+                                        <div class="bubble-chat-client d-flex flex-column mb-2 float-start py-2 px-3 bg-white rounded-3" style="max-width: 33em; font-size: 14px">
+                                            <p class="messages m-0 p-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur, quod eligendi quam nisi et quae obcaecati nobis sapiente a voluptas?</p>
+                                            <label for="" class="text-secondary mt-2" style="font-size: 9px">11:45 AM</label>
                                         </div>
                                     </div>
-                                    <div class="chat-line-client">
-                                        <div class="bubble-chat-client mb-2 float-start py-1 px-3 bg-white rounded-3" style="max-width: 28em">
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                                    <div class="col">
+                                        <div class="bubble-chat-admin d-flex flex-column mb-2 float-end py-2 px-3 bg-primary text-white rounded-3" style="max-width: 33em; font-size: 14px">
+                                            <p class="messages m-0 p-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur, quod eligendi quam nisi et quae obcaecati nobis sapiente a voluptas?</p>
+                                            <label for="" class="text-secondary text-white-50 mt-2" style="font-size: 9px">11:45 AM</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="bubble-chat-client d-flex flex-column mb-2 float-start py-2 px-3 bg-white rounded-3" style="max-width: 33em; font-size: 14px">
+                                            <p class="messages m-0 p-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                                            <label for="" class="text-secondary mt-2" style="font-size: 9px">11:45 AM</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="bubble-chat-admin d-flex flex-column mb-2 float-end py-2 px-3 bg-primary text-white rounded-3" style="max-width: 33em; font-size: 14px">
+                                            <p class="messages m-0 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem deserunt eveniet mollitia maiores molestias!</p>
+                                            <label for="" class="text-secondary text-white-50 mt-2" style="font-size: 9px">11:45 AM</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="bubble-chat-client d-flex flex-column mb-2 float-start py-2 px-3 bg-white rounded-3" style="max-width: 33em; font-size: 14px">
+                                            <p class="messages m-0 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. At ratione facere neque illum, magnam blanditiis expedita obcaecati culpa perferendis laborum non impedit!</p>
+                                            <label for="" class="text-secondary mt-2" style="font-size: 9px">11:45 AM</label>
                                         </div>
                                     </div>
                                 </div>
@@ -215,6 +246,5 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('ProjectManagement/dashmin/js/main.js') }}"></script>
+    @include('Admin.templates.script')
 </body>
-
-@include('Admin.templates.script')
