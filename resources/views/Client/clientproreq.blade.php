@@ -55,7 +55,7 @@
                                 <td>Website Online Shop</td>
                                 <td>15.000.000</td>
                                 <td class="d-flex justify-content-evenly">
-                                    <a href="{{ route('editproreq') }}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="{{ route('editproreq') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                             </tr>
                             <tr>
@@ -63,7 +63,7 @@
                                 <td>Website Toko </td>
                                 <td>15.000.000</td>
                                 <td class="d-flex justify-content-evenly">
-                                    <a href="{{ route('editproreq') }}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="{{ route('editproreq') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                             </tr>
                             <tr>
@@ -71,7 +71,7 @@
                                 <td>Website kantin</td>
                                 <td>15.000.000</td>
                                 <td class="d-flex justify-content-evenly">
-                                    <a href="{{ route('editproreq') }}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="{{ route('editproreq') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                             </tr>
                         </tbody>

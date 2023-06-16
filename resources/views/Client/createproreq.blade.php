@@ -130,7 +130,8 @@
                         </div>
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li data-bs-toggle="modal" data-bs-target="#detailfitur"><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
+                                <li data-bs-toggle="modal" data-bs-target="#detailfitur"><span class="option-icon"><i class="fa-solid fa-circle-plus"></i></span> Tambah deskripsi</li>
+                                <li data-bs-toggle="modal" data-bs-target="#"><span class="option-icon"><i class="fa fa-trash"></i></span> Hapus</li>
                             </ul>
                         </div>
                     </div><br>
@@ -144,7 +145,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" id="input1" placeholder="Add fitur">
                         <div class="input-icon" style="z-index: 5">
-                        <i class="fas fa-plus" onclick="addInput(event)"></i>
+                        <i class="fa-solid fa-circle-plus" onclick="addInput(event)"></i>
                         </div>
                     </div><br>
 

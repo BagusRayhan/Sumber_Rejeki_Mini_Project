@@ -61,7 +61,7 @@
                                 </td>
                                 <td>15.000.000</td>
                                 <td class="d-flex justify-content-evenly">
-                                    <a href="{{ route('detailsetujui') }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                    <a href="{{ route('detailsetujui') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                 </td>
                             </tr>
                             <tr>
@@ -80,7 +80,7 @@
                                 </td>
                                 <td>15.000.000</td>
                                 <td class="d-flex justify-content-evenly">
-                                    <a href="{{ route('detailsetujui') }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                    <a href="{{ route('detailsetujui') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                 </td>
                             </tr>
                             <tr>
@@ -99,7 +99,7 @@
                                 </td>
                                 <td>15.000.000</td>
                                 <td class="d-flex justify-content-evenly">
-                                    <a href="{{ route('detailsetujui') }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                    <a href="{{ route('detailsetujui') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                 </td>
                             </tr>
 
