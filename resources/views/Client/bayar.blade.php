@@ -92,11 +92,10 @@
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Next</span>
                     </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-
+                  </li>
+                </ul>
+            </nav>
+        </div>
 
                         <div class="modal fade" id="Modalbayar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                          <div class="modal-dialog modal-dialog-centered" >
@@ -129,15 +128,15 @@
                                 <div class="modal-header" >
                                     <div style="display: flex; flex-direction: column;">
                                         <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
-                                        <div style="display: flex; align-items: center;">
-                                            <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
+                                          <div style="display: flex; align-items: center;">
+                                             <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
                                             <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="Website Berita" disabled>
-                                        </div>
-                                        <div style="display: flex; align-items: center; margin-top:3%;">
+                                          </div>
+                                     <div style="display: flex; align-items: center; margin-top:3%;">
                                             <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
                                             <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="2.000.000" disabled>
                                         </div>
-                                    </div>
+                                      </div>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body" style="border: none;">
@@ -154,14 +153,14 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    <br>
-                                </div>
-                            <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;" disabled>Bayar Sekarang</button></center>
-                            <div class="modal-footer" style="border: none;">
-                            </div>
-                            </div>
-                          </div>
-                        </div>
+                                     <br>
+                                   </div>
+                                 <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;" disabled>Bayar Sekarang</button></center>
+                               <div class="modal-footer" style="border: none;">
+                              </div>
+                             </div>
+                           </div>
+                         </div>
 
                     <div class="modal fade" id="cash" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered" >
