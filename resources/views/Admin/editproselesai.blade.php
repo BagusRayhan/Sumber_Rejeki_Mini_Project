@@ -3,7 +3,7 @@
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
-@include('Admin.templates.head')
+@include('Client.Template.head')
 </head>
 
 <body>
@@ -15,12 +15,11 @@
             </div>
         </div>
         <!-- Spinner End -->
-        @include('Admin.templates.sidebar')
+        @include('Client.Template.sidebar')
 
         <!-- Content Start -->
         <div class="content">
-      @include('Admin.templates.navbar')
-
+      @include('Client.Template.navbar')
       <style>
         .td-spacing {
             margin-right: 20px;
@@ -77,15 +76,24 @@
           margin-right: 5px;
         }
 
+        .input-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .input-group .form-control {
+      flex: 1;
+    }
+
+    .input-container {
+      margin-bottom: 10px;
+    }
 
                     </style>
-      
-      <!-- Modal Box Edit Bank Start -->
-
-      <div class="container mt-4 d-flex justify-content-evenly">
+    <div class="container mt-4 d-flex justify-content-evenly">
         <div class="card" style="width: 28em">
             <div class="card-body">
-                <h5 class="card-title">Edit Project</h5>
+                <h5 class="card-title">Request Project</h5>
                 <form>
                     <div class="form-group">
                         <label for="input1">Nama Client</label>
@@ -93,7 +101,7 @@
                     </div><br>
                     <div class="form-group">
                         <label for="input2">Nama Project</label>
-                        <input type="text" class="form-control" id="input2" value="Website Sekolah">
+                        <input type="text" class="form-control" id="input2" placeholder="Masukkan nama project anda">
                     </div><br>
                     <div class="form-group">
                         <label for="input3">Dokumen Pendukung</label>
@@ -101,139 +109,111 @@
                     </div><br>
                     <div class="form-group">
                         <label for="input4">Deadline</label>
-                        <input type="datetime-local" class="form-control" id="input4">
+                        <input type="datetime-local" class="form-control" id="input4" placeholder="Input 4">
                     </div><br>
                     <center>
-                    <button type="submit" class="btn btn-primary w-100">Edit Request</button><br><br>
-                    <a  href="revisiproselesai">Kembali</a></center>
+                    <button type="submit" class="btn btn-primary w-100">Kirim Request</button><br><br>
+                    <a  href="{{ route('revisiproselesai') }}">Kembali</a></center>
                 </form>
             </div>
         </div>
         <div class="card" style="width: 28em">
-            <div class="card-body">
+            <div class="card-body" style="height: 300px; overflow-y: scroll;">
                 <h5 class="card-title">Fitur</h5>
                 <form>
+                    {{-- CODE START ICON TITIK 3 --}}
                     <div class="input-group">
                         <input type="text" class="form-control" id="input1" value="Landing Page">
-                        <div class="input-icon">
+                        <div class="input-icon" style="z-index: 5">
                                   <i class="fas fa-ellipsis-v"></i>
-                                </div>
 
+                        </div>
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
+                                <li data-bs-toggle="modal" data-bs-target="#detailfitur"><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
                             </ul>
                         </div>
                     </div><br>
 
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="input1" value="Halaman login register">
-                        <div class="input-icon">
-                                  <i class="fas fa-ellipsis-v"></i>
-                                </div>
+                    {{-- AKHIR CODE ICON TITIK 3 --}}
 
-                        <div class="dropdown-menu">
-                            <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
-                            </ul>
-                        </div>
-                    </div><br>
 
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="input1" value="Halaman dashboard admin">
-                        <div class="input-icon">
-                                  <i class="fas fa-ellipsis-v"></i>
-                                </div>
-
-                        <div class="dropdown-menu">
-                            <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
-                            </ul>
-                        </div>
-                    </div><br>
-
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="input1" value="Halaman dashboard guru">
-                        <div class="input-icon">
-                                  <i class="fas fa-ellipsis-v"></i>
-                                </div>
-
-                        <div class="dropdown-menu">
-                            <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
-                            </ul>
-                        </div>
-                    </div><br>
-
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="input1" value="Halaman dashboard siswa">
-                        <div class="input-icon">
-                                  <i class="fas fa-ellipsis-v"></i>
-                                </div>
-
-                        <div class="dropdown-menu">
-                            <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
-                            </ul>
-                        </div>
-                    </div><br>
-
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="input1" value="Halaman Pembayaran">
-                        <div class="input-icon">
-                                  <i class="fas fa-ellipsis-v"></i>
-                                </div>
-
-                        <div class="dropdown-menu">
-                            <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
-                            </ul>
-                        </div>
-                    </div><br>
+                    {{-- CODE START ADD FITUR --}}
+                    <div id="container"></div>
 
                     <div class="input-group">
                         <input type="text" class="form-control" id="input1" placeholder="Add fitur">
-                        <div class="input-icon">
-                                  <i class="fas fa-plus"></i>
-
-                        </div>
-                        <div class="dropdown-menu">
-                            <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
-                            </ul>
+                        <div class="input-icon" style="z-index: 5">
+                        <i class="fas fa-plus" onclick="addInput(event)"></i>
                         </div>
                     </div><br>
 
-                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-$('.input-icon').click(function() {
-$(this).siblings('.dropdown-menu').toggle();
-});
-});
 
-</script>
-<center>
-                    {{-- <button type="submit" class="btn btn-primary">Kirim Request</button><br><br>
-                    <a  href="revisiproselesai">Kembali</a></center> --}}
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script>
+                        function addInput(event) {
+                          event.preventDefault();
+                          var container = document.getElementById('container');
+                          var inputElement = document.createElement('input');
+                          inputElement.type = 'text';
+                          inputElement.classList.add('form-control');
+                          var inputContainer = document.createElement('div');
+                          inputContainer.classList.add('input-container');
+                          inputContainer.appendChild(inputElement);
+                          container.insertBefore(inputContainer, container.firstChild);
+                        }
+                      </script>
+
+                    <script>
+                    $(document).ready(function() {
+                    $('.input-icon').click(function() {
+                    $(this).siblings('.dropdown-menu').toggle();
+                    });
+                    });
+                    </script>
+
+                    {{-- AKHIR CODE ADD FITUR --}}
+                    <center>
                 </form>
             </div>
         </div>
     </div>
 
-        <!-- Modal Box Edit Bank End-->
+     <!-- Modal Box Edit Bank Start -->
+     <div class="modal fade" id="detailfitur" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Deskripsi</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
 
+                        <div class="col-sm-12 col-xl-11" style="margin-left: 2%; margin">
+                            <div class="mb-3">
+                                    <label for="input1">Deskripsi</label>
+                                    <textarea class="form-control w-100" name="deskirpsi" placeholder="Masukkan deskripsi yang anda inginkan"></textarea>
+                            </div>
+                            </div>
+                        <div class="col-sm-12 col-xl-11 d-flex justify-content-end" style="margin-left: 2%; margin">
+                            <div class="mb-3">
+                                    <a href="" class="btn btn-danger">Batal</a>
+                                    <a href="" class="btn btn-primary">Simpan</a>
+                            </div>
+                    </form>
+                </div>
 
-      @include('Client.Template.footer')
         </div>
-        <!-- Content End -->
+    </div>
+</div>
+<!-- Modal Box Edit Bank End-->
+
 
 
 @include('Client.Template.script')
-</body>
 
 
-<!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:45:02 GMT -->
-</html>
+
 
 

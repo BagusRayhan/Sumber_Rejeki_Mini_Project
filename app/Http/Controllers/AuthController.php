@@ -15,4 +15,7 @@ class AuthController extends Controller
     public function forgot(){
         return view('forgot');
     }
+    public function kebijakan(){
+        return view('kebijakanprivasi');
+    }
 }

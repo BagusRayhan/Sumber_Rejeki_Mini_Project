@@ -50,7 +50,7 @@ Login
 
 <div class="d-flex justify-content-between">
 <div class="d-flex justify-content-start">
-<input type="checkbox"><a href="">&nbsp;Kebijakan Privasi</a>
+<input type="checkbox"><a href="{{ route('kebijakan') }}">&nbsp;Kebijakan Privasi</a>
 </div>
 <div class=" d-flex justify-content-end">
 <a href="{{ route('forgot') }}">&nbsp;Forgot Paswword</a>

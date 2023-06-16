@@ -54,7 +54,7 @@
                                 </th>
                                 <th scope="col">Nama Project</th>
                                 <th scope="col">Harga Project</th>
-                                <th scope="col">Status</th>
+                                <th scope="col" class="text-center">Status</th>
                                 <th scope="col" class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -65,7 +65,7 @@
                                     </div></td>
                                 <td>Aplikasi toko online</td>
                                 <td>15.000.000</td>
-                                <td><span class="badge text-bg-success">Lunas</span></td>
+                                <td><center><span class="badge text-bg-success">Lunas</span></td></center>
                                 <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#strukPembayaranModal" class="btn btn-warning text-white btn-sm"><i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk</button></center></td>
                             </tr>
                             <tr>
@@ -74,7 +74,7 @@
                                     </div></td>
                                 <td>Website Sekolah</td>
                                 <td>10.000.000</td>
-                                <td><span class="badge text-bg-success">Lunas</span></td>
+                                <td><center><span class="badge text-bg-success">Lunas</span></td></center>
                                 <td><center><button type="button" class="btn btn-warning text-white btn-sm"><i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk</button></center></td>
                             </tr>
                             <tr>
@@ -82,8 +82,8 @@
                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                     </div></td>
                                 <td>Website Berita</td>
-                                <td>5.000.000  </td>
-                                <td><span class="badge text-bg-danger">Belum lunas</span></td>
+                                <td>5.000.000</td>
+                                <td><center><span class="badge text-bg-danger">Belum lunas</span></td></center>
                                 <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
                             </tr>
                         </tbody>
@@ -471,61 +471,61 @@
    {{-- akhir modal pembayaran bank --}}
 
     {{-- Modal Struk Pembayaran --}}
-    <div class="modal fade" id="strukPembayaranModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" style="width: 22em">
-        <div class="modal-content">
-            <div class="modal-header p-2">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal fade" id="strukPembayaranModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="width: 22em">
+            <div class="modal-content">
+                <div class="modal-header p-2">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex mt-0 pt-0 justify-content-center">
+                        <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/success.png') }}" alt="">
+                    </div>
+                    <p class="text-center mt-3">Pembayaran Berhasil!</p>
+                    <h4 class="fw-bold text-center mt-1 border-bottom border-dark pb-2">5.000.000</h4>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-grid">
+                            <p class="text-center">Pembayaran Awal</p>
+                            <p class="fw-bold text-center">2.500.000</p>
+                        </div>
+                        <div class="d-grid">
+                            <p class="text-center">Pembayaran Awal</p>
+                            <p class="fw-bold text-center">2.500.000</p>
+                        </div>
+                    </div>
+                    <div class="container m-0 p-0">
+                        <div class="d-flex justify-content-between">
+                            <p class="text-secondary fs-10">Tanggal Pembayaran Awal</p>
+                            <p>15/06/2023</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-secondary fs-10">Tanggal Pembayaran Akhir</p>
+                            <p>15/06/2023</p>
+                        </div>
+                        <div class="d-flex pb-0 justify-content-between">
+                            <p class="text-secondary fs-10">Metode Pembayaran Awal</p>
+                            <p>E-Wallet</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-secondary fs-10">Metode Pembayaran Akhir</p>
+                            <p>Bank</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-secondary fs-10">Biaya Tambahan</p>
+                            <p>-</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-secondary fs-10">Total Bayar</p>
+                            <p>5.000.000</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary w-100 fw-bold"><i class="fa-solid fa-print"></i> Cetak PDF</button>
+                </div>
             </div>
-            <div class="modal-body">
-                <div class="d-flex mt-0 pt-0 justify-content-center">
-                    <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/success.png') }}" alt="">
-                </div>
-                <p class="text-center mt-3">Pembayaran Berhasil!</p>
-                <h4 class="fw-bold text-center mt-1 border-bottom border-dark pb-2">5.000.000</h4>
-                <div class="d-flex justify-content-between">
-                    <div class="d-grid">
-                        <p class="text-center">Pembayaran Awal</p>
-                        <p class="fw-bold text-center">2.500.000</p>
-                    </div>
-                    <div class="d-grid">
-                        <p class="text-center">Pembayaran Awal</p>
-                        <p class="fw-bold text-center">2.500.000</p>
-                    </div>
-                </div>
-                <div class="container m-0 p-0">
-                    <div class="d-flex justify-content-between">
-                        <p class="text-secondary fs-10">Tanggal Pembayaran Awal</p>
-                        <p>15/06/2023</p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p class="text-secondary fs-10">Tanggal Pembayaran Akhir</p>
-                        <p>15/06/2023</p>
-                    </div>
-                    <div class="d-flex pb-0 justify-content-between">
-                        <p class="text-secondary fs-10">Metode Pembayaran Awal</p>
-                        <p>E-Wallet</p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p class="text-secondary fs-10">Metode Pembayaran Akhir</p>
-                        <p>Bank</p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p class="text-secondary fs-10">Biaya Tambahan</p>
-                        <p>-</p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p class="text-secondary fs-10">Total Bayar</p>
-                        <p>5.000.000</p>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-primary w-100 fw-bold"><i class="fa-solid fa-print"></i> Cetak PDF</button>
             </div>
         </div>
-        </div>
-    </div>
 
 
       @include('Client.Template.footer')

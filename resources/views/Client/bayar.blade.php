@@ -48,7 +48,7 @@
                             <tr>
                                 <th scope="col">Nama Project</th>
                                 <th scope="col">Harga Project</th>
-                                <th scope="col">Status</th>
+                                <th scope="col" class="text-center">Status</th>
                                 <th scope="col" class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -56,19 +56,19 @@
                             <tr>
                                 <td>Aplikasi toko online</td>
                                 <td>15.000.000</td>
-                                <td><span class="badge text-bg-danger">Menunggu Pembayaran</span></td>
+                                <td><center><span class="badge text-bg-danger">Menunggu Pembayaran</span></td></center>
                                 <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
                             </tr>
                             <tr>
                                 <td>Website Sekolah</td>
                                 <td>10.000.000</td>
-                                <td><span class="badge text-bg-danger">Menunggu Pembayaran</span></td>
+                                <td><center><span class="badge text-bg-danger">Menunggu Pembayaran</span></td></center>
                                 <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
                             </tr>
                             <tr>
                                 <td>Website Berita</td>
                                 <td>5.000.000  </td>
-                                <td><span class="badge text-bg-danger">Menunggu Pembayaran</span></center></td>
+                                <td><center><span class="badge text-bg-danger">Menunggu Pembayaran</span></center></td>
                                 <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
                             </tr>
                         </tbody>

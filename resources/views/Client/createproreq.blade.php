@@ -76,6 +76,18 @@
           margin-right: 5px;
         }
 
+        .input-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .input-group .form-control {
+      flex: 1;
+    }
+
+    .input-container {
+      margin-bottom: 10px;
+    }
 
                     </style>
     <div class="container mt-4 d-flex justify-content-evenly">
@@ -106,12 +118,13 @@
             </div>
         </div>
         <div class="card" style="width: 28em">
-            <div class="card-body">
+            <div class="card-body" style="height: 300px; overflow-y: scroll;">
                 <h5 class="card-title">Fitur</h5>
                 <form>
+                    {{-- CODE START ICON TITIK 3 --}}
                     <div class="input-group">
                         <input type="text" class="form-control" id="input1" value="Landing Page">
-                        <div class="input-icon">
+                        <div class="input-icon" style="z-index: 5">
                                   <i class="fas fa-ellipsis-v"></i>
 
                         </div>
@@ -122,29 +135,44 @@
                         </div>
                     </div><br>
 
+                    {{-- AKHIR CODE ICON TITIK 3 --}}
+
+
+                    {{-- CODE START ADD FITUR --}}
+                    <div id="container"></div>
+
                     <div class="input-group">
                         <input type="text" class="form-control" id="input1" placeholder="Add fitur">
-                        <div class="input-icon">
-                                  <i class="fas fa-plus"></i>
-
-                        </div>
-                        <div class="dropdown-menu">
-                            <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
-                            </ul>
+                        <div class="input-icon" style="z-index: 5">
+                        <i class="fas fa-plus" onclick="addInput(event)"></i>
                         </div>
                     </div><br>
 
 
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                     <script>
+                        function addInput(event) {
+                          event.preventDefault();
+                          var container = document.getElementById('container');
+                          var inputElement = document.createElement('input');
+                          inputElement.type = 'text';
+                          inputElement.classList.add('form-control');
+                          var inputContainer = document.createElement('div');
+                          inputContainer.classList.add('input-container');
+                          inputContainer.appendChild(inputElement);
+                          container.insertBefore(inputContainer, container.firstChild);
+                        }
+                      </script>
+
+                    <script>
                     $(document).ready(function() {
                     $('.input-icon').click(function() {
                     $(this).siblings('.dropdown-menu').toggle();
                     });
                     });
-
                     </script>
+
+                    {{-- AKHIR CODE ADD FITUR --}}
                     <center>
                 </form>
             </div>
@@ -185,3 +213,8 @@
 
 @include('Client.Template.footer')
 @include('Client.Template.script')
+
+
+
+
+
