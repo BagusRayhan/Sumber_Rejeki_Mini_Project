@@ -85,11 +85,9 @@
 
                     </style>
       
-      <!-- Modal Box Edit Bank Start -->
-
-
+      <!-- Privacy Policy Start -->
         <div class="container mt-4 d-flex">
-            <div class="card" style="width: 675px;height: 800%;width:69%;background: #F3F6F9; border:none;">
+            <div class="card w-50" style="background: #F3F6F9; border:none;">
                 <div class="card-body">
                     <div id="editor">
                         <h5 class="card-title">Edit Kebijakan Privasi</h5>

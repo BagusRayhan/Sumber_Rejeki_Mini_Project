@@ -115,7 +115,7 @@
                             }
                         </style>
                         <div class="collapse" id="chatbox-container">
-                            <div class="py-3 border border-bottom-0 border-top-0 border-dark" id="chatbox">
+                            <div class="py-3" id="chatbox">
                                 <div class="chat-box d-flex flex-column p-2">
                                     <div class="col">
                                         <div class="bubble-chat-admin d-flex flex-column mb-2 float-end py-2 px-3 bg-primary text-white rounded-3" style="max-width: 33em; font-size: 14px">
@@ -164,10 +164,10 @@
                                             <p class="messages m-0 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. At ratione facere neque illum, magnam blanditiis expedita obcaecati culpa perferendis laborum non impedit!</p>
                                             <label for="" class="text-secondary mt-2" style="font-size: 9px">11:45 AM</label>
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
-                            <div class="form-group p-1 d-flex px-2 border border-top-0 border-dark rounded-bottom" style="bottom: 0; background: #f3f6f9;">
+                            <div class="form-group p-1 d-flex px-2 rounded-bottom" style="bottom: 0; background: #f3f6f9;">
                                 <textarea class="form-control" style="height: 5vh; max-height: 150px" placeholder="Ketik pesan ..."></textarea>
                                 <button class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
                             </div>
@@ -232,19 +232,5 @@
 
         <!-- Content End -->
     </div>
-
-    <!-- JavaScript Libraries -->
-    <script src="{{ asset('ProjectManagement/code.jquery.com/jquery-3.4.1.min.js') }}"></script>
-    <script src="{{ asset('ProjectManagement/cdn.jsdelivr.net/npm/bootstrap%405.0.0/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('ProjectManagement/dashmin/lib/chart/chart.min.js') }}"></script>
-    <script src="{{ asset('ProjectManagement/dashmin/lib/easing/easing.min.js') }}"></script>
-    <script src="{{ asset('ProjectManagement/dashmin/lib/waypoints/waypoints.min.js') }}"></script>
-    <script src="{{ asset('ProjectManagement/dashmin/lib/owlcarousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('ProjectManagement/dashmin/lib/tempusdominus/js/moment.min.js') }}"></script>
-    <script src="{{ asset('ProjectManagement/dashmin/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
-    <script src="{{ asset('ProjectManagement/dashmin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-
-    <!-- Template Javascript -->
-    <script src="{{ asset('ProjectManagement/dashmin/js/main.js') }}"></script>
     @include('Admin.templates.script')
 </body>
