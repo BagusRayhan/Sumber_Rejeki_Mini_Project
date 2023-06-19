@@ -37,9 +37,19 @@
                     <a href="/pembayaran-pending" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('pending-bayar-admin') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
                         Pending
                     </a>
-                    <a href="/pembayaran-disetujui" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('setuju-bayar-admin') ? 'fw-bold border-dark border-bottom-2' : '' }}">
+                    <a href="/pembayaran-disetujui" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('setuju-bayar-admin') ? 'fw-bold border-dark border-bottom-2' : '' }}"  data-url="/pembayaran-disetujui">
                         Disetujui
                     </a>
+                    <script>
+                        $(document).ready(function() {
+                            $('a[data-url]').click(function(e) {
+                                e.preventDefault();
+                                var url = $(this).attr('href');
+                                history.pushState(null, '', url);
+                                $('#konten').load(url + ' #konten');
+                            });
+                        });
+                    </script>                                           
                 </div>
                 <div class="row mt-4">
                     <div class="col-12">
