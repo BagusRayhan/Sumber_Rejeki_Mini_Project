@@ -23,7 +23,7 @@
             <div class="d-flex justify-content-between">
                 <!-- Privacy Policy Start -->
                 <div class="container mt-4">
-                    <div class="card">
+                    <div class="card" style="background: #f3f6f9">
                         <div class="card-body">
                             <div id="editor">
                                 <h5 class="card-title">Edit Kebijakan Privasi</h5>
@@ -33,22 +33,21 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="container mt-4 d-flex">
-                <div class="card w-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Edit Sosmed</h5>
-                        <label for="">WhatsApp</label><br>
-                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="" id=""><br>
-
-                        <label for="">Instagram</label><br>
-                        <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" name="" id=""><br>
-
-                        <label for="">Facebook</label><br>
-                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="" id="">
-                        <br>
-                        <button type="button" style="float: right;" class="btn btn-primary">Simpan</button>
+                <div class="container mt-4 d-flex">
+                    <div class="card w-100" style="background: #f3f6f9">
+                        <div class="card-body">
+                            <h5 class="card-title">Edit Sosmed</h5>
+                            <label for="">WhatsApp</label><br>
+                            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="" id=""><br>
+    
+                            <label for="">Instagram</label><br>
+                            <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" name="" id=""><br>
+    
+                            <label for="">Facebook</label><br>
+                            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="" id="">
+                            <br>
+                            <button type="button" style="float: right;" class="btn btn-primary">Simpan</button>
+                        </div>
                     </div>
                 </div>
             </div>
