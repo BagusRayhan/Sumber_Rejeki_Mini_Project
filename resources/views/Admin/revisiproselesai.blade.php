@@ -73,43 +73,43 @@
                                         <td>Halaman Login</td>
                                         <td>Selesai</td>
                                         <td>15.000.000</td>
-                                        <td><a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailfitur"><i class="fa fa-eye"></i></a></td>
+                                        <td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailfitur"><i class="fa fa-eye"></i></a></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman Register</td>
                                         <td>Belum selesai</td>
                                         <td>11.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Landing Page</td>
                                         <td>Belum selesai</td>
                                         <td>5.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman dashboard</td>
                                         <td>Selesai</td>
                                         <td>12.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman pembelian</td>
                                         <td>Selesai</td>
                                         <td>5.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman penjualan</td>
                                         <td>Belum selesai</td>
                                         <td>10.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-start mb-3">
-                                <a href="projectselesai" class="btn btn-primary" style="margin-right: 15px"><i class="fa fa-reply"></i> Kembali</a>
-                                <a href="editproselesai" class="btn btn-warning" style="color: #ffffff"><i class="fa fa-pencil-square"></i> Edit Project</a>
+                                <a href="projectselesai" class="btn btn-primary btn-sm" style="margin-right: 15px"><i class="fa fa-reply"></i> Kembali</a>
+                                <a href="editproselesai" class="btn btn-warning btn-sm" style="color: #ffffff"><i class="fa fa-pencil-square"></i> Edit Project</a>
                             </div>
 
                         </div>

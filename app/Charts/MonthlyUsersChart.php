@@ -17,7 +17,7 @@ class MonthlyUsersChart
     {
         return $this->chart->barChart()
             ->setTitle('Jumlah Project Selesai')
-            ->addData('Project Selesai', [20, 40, 25, 60, 67, 80])
+            ->addData('Project Selesai', [20, 25, 30, 35, 40, 50, 40, 35, 30,25, 20, 15])
             ->setXAxis(['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']);
     }
 }

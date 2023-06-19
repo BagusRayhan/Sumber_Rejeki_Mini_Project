@@ -20,9 +20,9 @@
 
         <!-- Content Start -->
         <div class="content">
-            
+
             @include('Admin.templates.navbar')
-            
+
             <!-- Confirm Payment Table Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="search-form w-25">
@@ -97,7 +97,7 @@
                 </nav>
             </div>
             <!-- Confirm Payment Table End -->
-            
+
             <!-- Payment Proof Modal Start -->
             <div class="modal fade" id="buktiTransaksiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" style="width: 400px">

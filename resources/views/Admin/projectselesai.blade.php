@@ -20,7 +20,7 @@
 
         <!-- Content Start -->
         <div class="content">
-            
+
             @include('Admin.templates.navbar')
 
             <!-- Sale & Revenue Start -->
@@ -50,19 +50,19 @@
                             <td>Website Berita</td>
                             <td><span class="badge text-bg-success">Selesai</span></td>
                             <td>15.000.000</td>
-                            <td><a type="button" href="revisiproselesai" class="btn btn-primary disabled" style="background-color:opacity: 70%;border: none" disabled><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>&nbsp;</td>
+                            <td><a type="button" href="revisiproselesai" class="btn btn-primary btn-sm disabled" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>&nbsp;</td>
                           </tr>
                           <tr>
                             <td>Website Sekolah</td>
                             <td><span class="badge text-bg-warning">Revisi</span></td>
                             <td>10.000.000</td>
-                            <td><a type="button" href="revisiproselesai" class="btn btn-primary" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>&nbsp;</td>
+                            <td><a type="button" href="revisiproselesai" class="btn btn-primary btn-sm" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>&nbsp;</td>
                           </tr>
                           <tr>
                             <td>Website Kesehatan</td>
                             <td><span class="badge text-bg-warning">Revisi</span></td>
                             <td>9.000.000</td>
-                            <td><a type="button" href="revisiproselesai" class="btn btn-primary" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>&nbsp;</td>
+                            <td><a type="button" href="revisiproselesai" class="btn btn-primary btn-sm" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>&nbsp;</td>
                           </tr>
                         </tbody>
                       </table>

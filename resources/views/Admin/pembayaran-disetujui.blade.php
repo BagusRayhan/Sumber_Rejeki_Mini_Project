@@ -55,8 +55,8 @@
                                         <td>Website Online Shop</td>
                                         <td>15.000.000</td>
                                         <td class="d-flex justify-content-evenly">
-                                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentDetailModal"><i class="fa-solid fa-eye"></i></a>
-                                            <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                            <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#paymentDetailModal"><i class="fa-solid fa-eye"></i></a>
+                                            <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>

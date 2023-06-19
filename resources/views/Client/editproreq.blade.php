@@ -111,91 +111,90 @@
                 <form>
                     <div class="input-group">
                         <input type="text" class="form-control" id="input1" value="Landing Page">
-                        <div class="input-icon">
+                        <div class="input-icon" style="z-index: 5">
                                   <i class="fas fa-ellipsis-v"></i>
                                 </div>
 
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Edit deskripsi</li>
+                                <li data-bs-toggle="modal" data-bs-target="#detaildeskripsi"><span class="option-icon"><i class="fa-solid fa-pen-to-square"></i></span> Edit deskripsi</li>
                             </ul>
                         </div>
                     </div><br>
 
                     <div class="input-group">
                         <input type="text" class="form-control" id="input1" value="Halaman login register">
-                        <div class="input-icon">
+                        <div class="input-icon" style="z-index: 5">
                                   <i class="fas fa-ellipsis-v"></i>
                                 </div>
 
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Edit deskripsi</li>
+                                <li data-bs-toggle="modal" data-bs-target="#detaildeskripsi"><span class="option-icon"><i class="fa-solid fa-pen-to-square"></i></span> Edit deskripsi</li>
                             </ul>
                         </div>
                     </div><br>
 
                     <div class="input-group">
                         <input type="text" class="form-control" id="input1" value="Halaman dashboard admin">
-                        <div class="input-icon">
+                        <div class="input-icon" style="z-index: 5">
                                   <i class="fas fa-ellipsis-v"></i>
                                 </div>
 
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Edit deskripsi</li>
+                                <li data-bs-toggle="modaal" data-bs-target="#detaildeskripsi"><span class="option-icon"><i class="fa-solid fa-pen-to-square"></i></span> Edit deskripsi</li>
                             </ul>
                         </div>
                     </div><br>
 
                     <div class="input-group">
                         <input type="text" class="form-control" id="input1" value="Halaman dashboard guru">
-                        <div class="input-icon">
+                        <div class="input-icon" style="z-index: 5">
                                   <i class="fas fa-ellipsis-v"></i>
                                 </div>
 
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Edit deskripsi</li>
+                                <li data-bs-toggle="modal" data-bs-target="#detaildeskripsi"><span class="option-icon"><i class="fa-solid fa-pen-to-square"></i></span> Edit deskripsi</li>
                             </ul>
                         </div>
                     </div><br>
 
                     <div class="input-group">
                         <input type="text" class="form-control" id="input1" value="Halaman dashboard siswa">
-                        <div class="input-icon">
+                        <div class="input-icon" style="z-index: 5">
                                   <i class="fas fa-ellipsis-v"></i>
                                 </div>
 
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Edit deskripsi</li>
+                                <li data-bs-toggle="modal" data-bs-target="#detaildeskripsi"><span class="option-icon"><i class="fa-solid fa-pen-to-square"></i></span> Edit deskripsi</li>
                             </ul>
                         </div>
                     </div><br>
 
                     <div class="input-group">
                         <input type="text" class="form-control" id="input1" value="Halaman Pembayaran">
-                        <div class="input-icon">
+                        <div class="input-icon" style="z-index: 5">
                                   <i class="fas fa-ellipsis-v"></i>
                                 </div>
 
                         <div class="dropdown-menu">
                             <ul class="dropdown-options">
-                                <li><span class="option-icon"><i class="fas fa-plus"></i></span> Edit deskripsi</li>
+                                <li data-bs-toggle="modal" data-bs-target="#detaildeskripsi"><span class="option-icon"><i class="fa-solid fa-pen-to-square"></i></span> Edit deskripsi</li>
                             </ul>
                         </div>
                     </div><br>
 
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-$('.input-icon').click(function() {
-$(this).siblings('.dropdown-menu').toggle();
-});
-});
-
-</script>
+                    <script>
+                    $(document).ready(function() {
+                    $('.input-icon').click(function() {
+                    $(this).siblings('.dropdown-menu').toggle();
+                    });
+                    });
+                    </script>
 <center>
                     {{-- <button type="submit" class="btn btn-primary">Kirim Request</button><br><br>
                     <a  href="http://127.0.0.1:8000/drequestclient">Kembali</a></center> --}}
@@ -209,3 +208,33 @@ $(this).siblings('.dropdown-menu').toggle();
 
 @include('Client.Template.footer')
 @include('Client.Template.script')
+
+
+ <!-- Modal Box tambah desripsi Start -->
+ <div class="modal fade" id="detaildeskripsi" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Deskripsi</h1>
+                {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+            </div>
+            <div class="modal-body">
+                <form action="">
+
+                    <div class="col-sm-12 col-xl-11" style="margin-left: 2%; margin">
+                        <div class="mb-3">
+                                <label for="input1">Deskripsi</label>
+                                <textarea class="form-control w-100" name="deskirpsi">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque, ipsum alias quam voluptate dignissimos culpa?</textarea>
+                        </div>
+                        </div>
+                    <div class="col-sm-12 col-xl-11 d-flex justify-content-end" style="margin-left: 2%; margin">
+                        <div class="mb-3">
+                                <a href="" class="btn btn-danger">Batal</a>
+                                <a href="" class="btn btn-primary">Simpan</a>
+                        </div>
+                </form>
+            </div>
+
+    </div>
+</div>
+</div>

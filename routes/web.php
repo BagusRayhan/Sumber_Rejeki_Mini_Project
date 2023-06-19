@@ -25,7 +25,8 @@ use App\Http\Controllers\PengaturanController;
 */
 
 // Login Register
-Route::get('/', [AuthController::class, 'login']);
+
+Route::get('/', [AuthController::class,'login']);
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::get('forgot', [AuthController::class, 'forgot'])->name('forgot');

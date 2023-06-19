@@ -32,9 +32,9 @@
       </section>
       <!-- Section: Social media -->
     </div>
-  
+
     <div class="text-center text-dark p-3" style="background-color: #E1ECF8;">
-      © Copyright 2023 
+      © Copyright 2023
       <a class="text-dark" href="https://mdbootstrap.com/">PROREQ</a>
     </div>
   </footer>
