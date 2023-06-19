@@ -2,9 +2,6 @@
 <html lang="en">
 <head>
     @include('Admin.templates.head')
-
-    <link rel="stylesheet" href="{{ asset('ProjectManagement/summernote/summernote-bs4.css') }}">
-    <script src="{{ asset('ProjectManagement/summernote/summernote-bs4.js') }}"></script>
 </head>
 
 <body>
@@ -58,11 +55,9 @@
         </div>
         <!-- Content End -->
 
-        @include('Client.Template.script')
+        @include('Admin.templates.script')
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+
         <script>
             $(document).ready(function() {
                 $('#summernote').summernote({
