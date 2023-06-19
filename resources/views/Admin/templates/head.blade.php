@@ -27,5 +27,8 @@
     
     <!-- Template Stylesheet -->
     <link href="{{ asset('ProjectManagement/dashmin/css/style.css') }}" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ asset('ProjectManagement/summernote/summernote-bs4.css') }}">
+    <script src="{{ asset('ProjectManagement/summernote/summernote-bs4.js') }}"></script>
 
 </head>
