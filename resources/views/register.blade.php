@@ -60,7 +60,27 @@ REGISTER
 <span class="focus-input100" data-symbol="&#xf191;"></span>
 </div>
 
-<div class="text-left p-t-8 p-b-31">
+<span class="label-input100">Input Opsional</span><br><br>
+
+<div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+<span class="label-input100">No.Telpon</span>
+<input class="input100" type="Number" name="pass" placeholder="Masukkan Nomer Telepon anda">
+<span class="focus-input100" data-symbol="&#xf2b5;"></span>
+</div>
+
+<div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+<span class="label-input100">Nama Perusahaan</span>
+<input class="input100" type="text" name="pass" placeholder="Masukkan Nama Perusahaan anda">
+<span class="focus-input100" data-symbol="&#xf132;"></span>
+</div>
+
+<div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+<span class="label-input100">Alamat Perusahaan</span>
+<textarea class="input100" name="" id="" cols="30" rows="10"></textarea>
+<span class="focus-input100" data-symbol="&#xf349;"></span>
+</div>
+
+<br><br><div class="text-left p-t-8 p-b-31">
     <input type="checkbox"> <a href="kebijakan">Kebijakan Privasi</a>
 </div>
 
