@@ -46,7 +46,7 @@
                             <tr>
                                 <th scope="col">Nama Project</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Harga Project</th>
+                                <th scope="col"><center>Harga Project</center></th>
                                 <th scope="col" class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -54,7 +54,7 @@
                             <tr>
                                 <td>Aplikasi toko online</td>
                                 <td><span class="badge text-bg-success">Selesai</span></td>
-                                <td>5.000.000</td>
+                                <td><center>5.000.000</center></td>
                                 <td><center>
                                     <a href="{{ route('detail-revisi-client') }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a></center>
                                 </td>
@@ -62,7 +62,7 @@
                             <tr>
                                 <td>Website Pertanian</td>
                                 <td><span class="badge text-bg-success">Selesai</span></td>
-                                <td>5.000.000</td>
+                                <td><center>5.000.000</center></td>
                                 <td><center>
                                     <a href="{{ route('detail-revisi-client') }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a></center>
                                 </td>
@@ -70,7 +70,7 @@
                             <tr>
                                 <td>Aplikasi Timer Waktu Solat</td>
                                 <td><span class="badge text-bg-success">Selesai</span></td>
-                                <td>5.000.000</td>
+                                <td><center>5.000.000</center></td>
                                 <td><center>
                                     <a href="{{ route('detail-revisi-client') }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a></center>
                                 </td>

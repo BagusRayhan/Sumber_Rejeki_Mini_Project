@@ -28,6 +28,7 @@ use App\Http\Controllers\PengaturanController;
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::get('forgot', [AuthController::class, 'forgot'])->name('forgot');
+Route::get('kebijakan', [AuthController::class, 'kebijakan'])->name('kebijakan');
 
 // Halaman Client
 Route::get('indexclient', [IndexcController::class, 'indexclient'])->name('indexclient');
