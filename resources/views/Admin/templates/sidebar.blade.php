@@ -14,7 +14,7 @@
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="projectreq" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('projectreq', 'detailproreq') ? 'text-primary' : ''}}">Project Masuk</a>
                     <a href="/project-disetujui" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('project-disetujui-admin', 'detail-disetujui-admin') ? 'text-primary' : ''}}">Project Disetujui</a>
-                    <a href="projectselesai" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('projectselesai','revisiproselesai') ? 'text-primary' : ''}}">Project Selesai</a>
+                    <a href="projectselesai" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('projectselesai','revisiproselesai','editproselesai') ? 'text-primary' : ''}}">Project Selesai</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
