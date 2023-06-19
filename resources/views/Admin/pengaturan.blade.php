@@ -25,7 +25,7 @@
 
             <div class="d-flex justify-content-between">
                 <!-- Privacy Policy Start -->
-                <div class="container mt-4 d-flex">
+                <div class="container mt-4">
                     <div class="card">
                         <div class="card-body">
                             <div id="editor">
