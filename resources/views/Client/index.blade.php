@@ -208,8 +208,8 @@
         </div>
         <!-- Content End -->
 
+        @include('Client.Template.script')
 
-@include('Client.Template.script')
 </body>
 
 
