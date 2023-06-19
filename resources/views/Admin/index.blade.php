@@ -76,7 +76,6 @@
                                 {!! $chart->container() !!}
                             </div>
                         </div>
-                        <canvas id="worldwide-sales"></canvas>
                     </div>
                 </div>
             </div>
@@ -84,7 +83,7 @@
 
             <!-- Widgets Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
+                <div class="row g-4 mb-5">
                     <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-start mb-2">

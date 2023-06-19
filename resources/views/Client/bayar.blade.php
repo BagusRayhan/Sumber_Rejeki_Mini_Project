@@ -185,7 +185,7 @@
                                             <h6 style="align-self: center;">Metode</h6>
                                             <div class="dropdown">
                                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Pilih Pembayaran
+                                                    Cash
                                                 </button>
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item active" href="#">Cash</a></li>
@@ -232,7 +232,7 @@
                                             <h6 style="align-self: center;">Metode</h6>
                                             <div class="dropdown">
                                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Pilih Pembayaran
+                                                    E-Wallet
                                                 </button>
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="#" data-bs-target="#cash" data-bs-toggle="modal">Cash</a></li>
@@ -294,7 +294,7 @@
                                                 <h6 style="align-self: center;">Metode</h6>
                                                 <div class="dropdown">
                                                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        Pilih Pembayaran
+                                                        E-Wallet
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item" href="#" data-bs-target="#cash" data-bs-toggle="modal">Cash</a></li>
@@ -307,7 +307,7 @@
                                                 <h6 style="align-self: center;">Layanan</h6>
                                                 <div class="dropdown">
                                                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        Pilih E-Wallet
+                                                        DANA
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item active" href="#">Dana</a></li>
