@@ -150,7 +150,7 @@
                <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom:10%;" aria-label="Close"></button>
            </div>
            <div class="modal-body" style="border: none;">
-               <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="font-weight: bold;">Pembayaran Akhir</h1><br>
+               <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="font-weight: bold;">Pembayaran Awal</h1><br>
                        <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
                            <h6 style="align-self: center;">Nama Project:</h6>
                            <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="Website Berita" disabled>
