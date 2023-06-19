@@ -41,17 +41,17 @@
                                     <tr>
                                         <td>BANK BRI</td>
                                         <td>8765785xxx</td>
-                                        <td><a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                        <td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                     </tr>
                                     <tr>
                                         <td>BANK BCA</td>
                                         <td>8657673xxx</td>
-                                        <td><a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                        <td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                     </tr>
                                     <tr>
                                         <td>BANK Mandiri</td>
                                         <td>8652342xxx</td>
-                                        <td><a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                        <td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -65,7 +65,7 @@
                                     <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
                                     <div class="card-body justify-content-between align-items-center">
                                         <h6 class="card-title">DANA</h6>
-                                        <a href="#" class="btn btn-primary rounded-circle float-end" data-bs-toggle="modal" data-bs-target="#editQRModal"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="#" class="btn btn-primary btn-sm rounded-circle float-end" data-bs-toggle="modal" data-bs-target="#editQRModal"><i class="fa-solid fa-pen-to-square"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                                     <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
                                     <div class="card-body justify-content-between align-items-center">
                                         <h6 class="card-title">OVO</h6>
-                                        <a href="#" class="btn btn-primary rounded-circle float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="#" class="btn btn-primary btn-sm rounded-circle float-end"><i class="fa-solid fa-pen-to-square"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                     <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
                                     <div class="card-body justify-content-between align-items-center">
                                         <h6 class="card-title">GoPay</h6>
-                                        <a href="#" class="btn btn-primary rounded-circle float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="#" class="btn btn-primary btn-sm rounded-circle float-end"><i class="fa-solid fa-pen-to-square"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                                     <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
                                     <div class="card-body justify-content-between align-items-center">
                                         <h6 class="card-title">LinkAja</h6>
-                                        <a href="#" class="btn btn-primary rounded-circle float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="#" class="btn btn-primary btn-sm rounded-circle float-end"><i class="fa-solid fa-pen-to-square"></i></a>
                                     </div>
                                 </div>
                             </div>
