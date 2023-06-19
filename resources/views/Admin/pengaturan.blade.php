@@ -29,52 +29,57 @@
 
 
       
-      <!-- Privacy Policy Start -->
-        <div class="container mt-4 d-flex">
-            <div class="card w-50" style="background: #F3F6F9; border:none;">
-                <div class="card-body">
-                    <div id="editor">
-                        <h5 class="card-title">Edit Kebijakan Privasi</h5>
-                        <textarea id="summernote" name="content"></textarea><br>
-                        <button type="button" style="float: right" class="btn btn-primary">Simpan</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Memuat skrip jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-        <!-- Memuat skrip Bootstrap dan Summernote -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
-
-        <script>
+      <div class="d-flex justify-content-between">
+        <!-- Privacy Policy Start -->
+          <div class="container mt-4 d-flex">
+              <div class="card">
+                  <div class="card-body">
+                      <div id="editor">
+                          <h5 class="card-title">Edit Kebijakan Privasi</h5>
+                          <textarea id="summernote" name="content"></textarea><br>
+                          <button type="button" style="float: right;" class="btn btn-primary">Simpan</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+          <script>
             $(document).ready(function() {
+                $('#summernote').summernote({
+                    height: 300,                 // set editor height
+                    minHeight: 300,             // set minimum height of editor
+                    maxHeight: 300,             // set maximum height of editor
+                    focus: true                  // set focus to editable area after initializing summernote
+                });
                 $('#summernote').summernote();
             });
-
-            var content = $('#summernote').summernote('code');
+            let content = $('#summernote').summernote('code');
             console.log(content);
-        </script>
 
-       <div class="container mt-4 d-flex">
-            <div class="card" style="width: 675px; margin-left:71%; margin-bottom:70%; height: 100%; width:40%;background: #F3F6F9; border:none;">
-                <div class="card-body">
-                        <h5 class="card-title">Edit Sosmed</h5>
-                        <label for="">WhatsApp</label><br>
-                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="" id=""><br>
-
-                        <label for="">Instagram</label><br>
-                        <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" name="" id=""><br>
-
-                        <label for="">Facebook</label><br>
-                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="" id="">
-                        <br>
-                        <button type="button" style="float: right;" class="btn btn-primary">Simpan</button>
-                </div>
-            </div>
-        </div>
+          </script>
+  
+  
+         <div class="container mt-4 d-flex">
+              <div class="card w-100">
+                  <div class="card-body">
+                          <h5 class="card-title">Edit Sosmed</h5>
+                          <label for="">WhatsApp</label><br>
+                          <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="" id=""><br>
+  
+                          <label for="">Instagram</label><br>
+                          <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" name="" id=""><br>
+  
+                          <label for="">Facebook</label><br>
+                          <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="" id="">
+                          <br>
+                          <button type="button" style="float: right;" class="btn btn-primary">Simpan</button>
+                  </div>
+              </div>
+          </div>
+      </div>
         <!-- Modal Box Edit Bank End-->
 
         </div>
