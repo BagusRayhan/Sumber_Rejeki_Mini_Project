@@ -57,7 +57,7 @@
                         <div class="col-12">
                             <div class="table-responsive">
                             </div>
-                            <table class="table table-striped">
+                            <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">Nama fitur</th>

@@ -46,7 +46,7 @@
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="text-center" style="width:5em">Status</th>
