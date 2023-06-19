@@ -4,6 +4,9 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
 @include('Client.Template.head')
+
+
+
 </head>
 
 <body>
@@ -44,7 +47,7 @@
         <div class="row mt-4">
             <div class="col-12">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>
@@ -472,6 +475,7 @@
 
     {{-- Modal Struk Pembayaran --}}
         <div class="modal fade" id="strukPembayaranModal" tabindex="-1" aria-hidden="true">
+            <div class="myModal">
             <div class="modal-dialog modal-dialog-centered" style="width: 22em">
             <div class="modal-content">
                 <div class="modal-header p-2">
@@ -521,10 +525,36 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-primary w-100 fw-bold"><i class="fa-solid fa-print"></i> Cetak PDF</button>
+                <button onclick="printModalAsPDF()" class="btn btn-primary w-100 fw-bold"><i class="fa-solid fa-print"></i> Cetak PDF</button>
                 </div>
             </div>
             </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+            <script>
+                function printModalAsPDF() {
+                  // Menginisialisasi dokumen PDF
+                  const doc = new jsPDF();
+            
+                  // Mengambil konten modal
+                  const modal = document.getElementById('myModal');
+            
+                  // Mengambil label, gambar, dan konten modal
+                  const judulModal = modal.querySelector('h2').innerText;
+                  const gambar = modal.querySelector('img').src;
+                  const kontenModal = modal.querySelector('p').innerText;
+            
+                  // Menambahkan label dan gambar ke dokumen PDF
+                  doc.text(judulModal, 10, 10);
+                  doc.addImage(gambar, 'JPEG', 10, 20, 180, 120);
+            
+                  // Menambahkan konten modal ke dokumen PDF
+                  doc.text(kontenModal, 10, 150);
+            
+                  // Membuka dokumen PDF dalam mode tampilan pratinjau (preview)
+                  doc.output('dataurlnewwindow');
+                }
+              </script>
+        </div>
         </div>
 
 

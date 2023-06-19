@@ -34,7 +34,7 @@
         <div class="row mt-4">
             <div class="col-12">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">Nama Project</th>
@@ -130,12 +130,12 @@
     </div>
 
 
-      @include('Client.Template.footer')
-        </div>
-        <!-- Content End -->
+</div>
+<!-- Content End -->
 
 
 @include('Client.Template.script')
+@include('Client.Template.footer')
 </body>
 
 
