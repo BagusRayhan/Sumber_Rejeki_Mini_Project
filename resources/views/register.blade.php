@@ -61,7 +61,7 @@ REGISTER
 </div>
 
 <div class="text-left p-t-8 p-b-31">
-    <input type="checkbox"> <a href="{{ route('kebijakan') }}">Kebijakan Privasi</a>
+    <input type="checkbox"> <a href="kebijakan">Kebijakan Privasi</a>
 </div>
 
 <div class="container-login100-form-btn">

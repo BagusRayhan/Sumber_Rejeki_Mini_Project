@@ -70,9 +70,11 @@
             <!-- Sales Chart Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="w-100">
-                    <div class="bg-light text-center rounded p-4">
+                    <div class="bg-light text-center rounded p-4" style="height: 550px">
                         <div class="d-flex align-items-center justify-content-start mb-4">
-                            <h6 class="mb-0">Jumlah Project Selesai</h6>
+                            <div class="" style="width: 1100px">
+                                {!! $chart->container() !!}
+                            </div>
                         </div>
                         <canvas id="worldwide-sales"></canvas>
                     </div>
@@ -232,5 +234,9 @@
 
     </div>
     
+    <script src="{{ $chart->cdn() }}"></script>
+
+{{ $chart->script() }}
+
     @include('Admin.templates.script')
 </body>

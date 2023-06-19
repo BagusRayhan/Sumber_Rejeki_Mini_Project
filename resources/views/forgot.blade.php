@@ -38,7 +38,7 @@
 <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 <form class="login100-form validate-form">
 <span class="login100-form-title p-b-49">
-Forgot Pass
+Forgot Password
 </span>
 <div class="wrap-input100 validate-input m-b-23" data-validate="Email is reauired">
 <span class="label-input100">Email</span>
@@ -47,7 +47,7 @@ Forgot Pass
 </div>
 
 <div class="text-left p-t-8 p-b-31">
-    <input type="checkbox"> <a href="{{ route('kebijakan') }}">Kebijakan Privasi</a>
+    <input type="checkbox"> <a href="kebijakan">Kebijakan Privasi</a>
 </div>
 
 <div class="container-login100-form-btn">
