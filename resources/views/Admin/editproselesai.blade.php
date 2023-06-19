@@ -3,7 +3,7 @@
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
-@include('Client.Template.head')
+@include('Admin.templates.head')
 </head>
 
 <body>
@@ -15,11 +15,11 @@
             </div>
         </div>
         <!-- Spinner End -->
-        @include('Client.Template.sidebar')
+        @include('Admin.templates.sidebar')
 
         <!-- Content Start -->
         <div class="content">
-      @include('Client.Template.navbar')
+      @include('Admin.templates.navbar')
       <style>
         .td-spacing {
             margin-right: 20px;
@@ -211,7 +211,7 @@
 
 
 
-@include('Client.Template.script')
+@include('Admin.templates.script')
 
 
 

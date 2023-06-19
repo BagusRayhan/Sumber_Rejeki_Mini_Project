@@ -36,7 +36,7 @@
                     <div id="editor">
                         <h5 class="card-title">Edit Kebijakan Privasi</h5>
                         <textarea id="summernote" name="content"></textarea><br>
-                        <button type="button" style="float: right;" class="btn btn-primary">Simpan</button>
+                        <button type="button" style="float: right" class="btn btn-primary">Simpan</button>
                     </div>
                 </div>
             </div>
