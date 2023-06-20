@@ -49,7 +49,11 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col" class="text-center" style="width:5em">Status</th>
+                                        <th scope="col" class="text-center" style="width:5em">
+                                        <div class="form-check">
+                                        <input class="form-check-input master-checkbox" onchange="toggleCheckboxes(this)" type="checkbox" value="" id="myCheckbox">
+                                        </div>
+                                        </th>
                                         <th scope="col">Nama Fitur</th>
                                         <th scope="col">Harga Fitur</th>
                                         <th scope="col" class="text-center">Aksi</th>
@@ -58,7 +62,9 @@
                                 <tbody>
                                     <tr>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <div class="form-check">
+                                        <input class="form-check-input child-checkbox" type="checkbox" value="" id="myCheckbox">
+                                        </div>
                                         </td>
                                         <td>Login & Register</td>
                                         <td>15.000.000</td>
@@ -68,8 +74,10 @@
                                     </tr>
                                     <tr>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        </td>
+                                            <div class="form-check">
+                                            <input class="form-check-input child-checkbox" type="checkbox" value="" id="myCheckbox">
+                                            </div>
+                                            </td>
                                         <td>Dashboard</td>
                                         <td>15.000.000</td>
                                         <td class="d-flex justify-content-evenly">
@@ -78,8 +86,10 @@
                                     </tr>
                                     <tr>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        </td>
+                                            <div class="form-check">
+                                            <input class="form-check-input child-checkbox" type="checkbox" value="" id="myCheckbox">
+                                            </div>
+                                            </td>
                                         <td>Pembayaran</td>
                                         <td>15.000.000</td>
                                         <td class="d-flex justify-content-evenly">
@@ -88,6 +98,14 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <script>
+                                function toggleCheckboxes(masterCheckbox) {
+                                  var checkboxes = document.getElementsByClassName('child-checkbox');
+                                  for (var i = 0; i < checkboxes.length; i++) {
+                                    checkboxes[i].checked = masterCheckbox.checked;
+                                  }
+                                }
+                              </script>
                         </div>
                     </div>
                 </div>

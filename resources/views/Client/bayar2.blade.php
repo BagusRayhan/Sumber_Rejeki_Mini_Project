@@ -10,6 +10,13 @@
 </head>
 
 <body>
+
+    <style>
+        #buttonContainer {
+        display: none;
+        margin-top: 10px;
+        }
+    </style>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -42,7 +49,7 @@
                 Pembayaran
             </a>
         </div>
-        <a href="#" class="btn btn-danger mt-4">Delete All</a>
+        <div id="buttonContainer"></div>
     </div>
         <div class="row mt-4">
             <div class="col-12">
@@ -52,7 +59,7 @@
                             <tr>
                                 <th>
                                     <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <input class="form-check-input master-checkbox" onchange="toggleCheckboxes(this)" type="checkbox" value="" id="myCheckbox">
                                     </div>
                                 </th>
                                 <th scope="col">Nama Project</th>
@@ -64,7 +71,7 @@
                         <tbody>
                             <tr>
                                 <td><div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <input class="form-check-input child-checkbox" type="checkbox" value="" id="myCheckbox">
                                     </div></td>
                                 <td>Aplikasi toko online</td>
                                 <td>15.000.000</td>
@@ -73,7 +80,7 @@
                             </tr>
                             <tr>
                                 <td><div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <input class="form-check-input child-checkbox" type="checkbox" value="" id="myCheckbox">
                                     </div></td>
                                 <td>Website Sekolah</td>
                                 <td>10.000.000</td>
@@ -82,7 +89,7 @@
                             </tr>
                             <tr>
                                 <td><div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <input class="form-check-input child-checkbox" type="checkbox" value="" id="myCheckbox">
                                     </div></td>
                                 <td>Website Berita</td>
                                 <td>5.000.000</td>
@@ -91,6 +98,28 @@
                             </tr>
                         </tbody>
                     </table>
+                    <script>
+                        function toggleCheckboxes(masterCheckbox) {
+                          var checkboxes = document.getElementsByClassName('child-checkbox');
+                          for (var i = 0; i < checkboxes.length; i++) {
+                            checkboxes[i].checked = masterCheckbox.checked;
+                          }
+                        }
+                      </script>
+                    <script>
+                        var checkbox = document.getElementById("myCheckbox");
+                        var buttonContainer = document.getElementById("buttonContainer");
+
+                        checkbox.addEventListener('change', function() {
+                        if (this.checked) {
+                            buttonContainer.innerHTML = '<button type="button" class="btn btn-danger btn-sm">Delete All</button>';
+                            buttonContainer.style.display = 'block';
+                        } else {
+                            buttonContainer.innerHTML = '';
+                            buttonContainer.style.display = 'none';
+                        }
+                        });
+                    </script>
                 </div>
             </div>
         </div>
