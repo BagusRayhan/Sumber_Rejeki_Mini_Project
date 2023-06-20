@@ -38,21 +38,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>BANK BRI</td>
-                                        <td>8765785xxx</td>
-                                        <td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>BANK BCA</td>
-                                        <td>8657673xxx</td>
-                                        <td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>BANK Mandiri</td>
-                                        <td>8652342xxx</td>
-                                        <td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                    </tr>
+                                    @foreach ($banks as $bank)
+                                        <tr>
+                                            <td>{{ $bank->nama }}</td>
+                                            <td>{{ $bank->rekening }}</td>
+                                            <td>
+                                                <a href="#" class="btn btn-primary btn-sm edit-btn" data-id="{{ $bank->id }}" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -111,9 +105,10 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="">
+                                <form action="" id="editRekeningForm" method="post">
+                                    @csrf
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" id="no-rekening" value="3235435">
+                                        <input type="text" value="" class="form-control" id="nomorRekening">
                                     </div>
                                 </form>
                             </div>
@@ -125,7 +120,7 @@
                 </div>
             </div>
             <!-- Modal Box Edit Bank End-->
-
+            
             <!-- Modal Box Edit QR Start -->
             <div class="modal fade" id="editQRModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -151,4 +146,20 @@
     </div>
 
     @include('Admin.templates.script')
+
+    <script>
+        $(document).ready(function() {
+            $('.edit-btn').click(function() {
+                let id = $(this).data('id');
+                $.ajax({
+                    url: '/pembayaran-digital/getrekening/' + id,
+                    method: 'GET',
+                    success: function(response) {
+                        $('#nomorRekening').val(response.nomorRekening);
+                        $('#simpanRekening').data('id', response.id);
+                    }
+                });
+            });
+        });
+    </script>
 </body>

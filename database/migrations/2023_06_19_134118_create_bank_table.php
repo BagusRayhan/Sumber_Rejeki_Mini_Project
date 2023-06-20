@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('bank', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->bigInteger('rekening');
+            $table->string('rekening');
             $table->timestamps();
         });
     }
