@@ -24,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('colorlib.com/css/main.css') }}">
 </head>
 <body>
-        <div class="mt-4" style="padding: 2em">
+        <div style="padding: 2em">
             <h4>
                 Kebijakan Privasi
             </h4><br>
@@ -48,10 +48,10 @@
    <p> Pengungkapan kepada Pihak Ketiga Kami tidak akan mengungkapkan informasi pribadi Anda kepada pihak ketiga tanpa persetujuan Anda, kecuali jika diwajibkan oleh hukum atau jika diperlukan untuk memberikan layanan yang Anda minta (misalnya, untuk pemrosesan pembayaran atau pengiriman barang).
     Kebijakan Privasi Situs Web Eksternal Layanan kami dapat mencakup tautan ke situs web eksternal yang tidak dioperasikan oleh kami. Kami tidak bertanggung jawab atas praktik privasi situs web eksternal tersebut dan kami mendorong Anda untuk membaca kebijakan privasi mereka sebelum memberikan informasi pribadi.</p>
     </p>
-</div>
+</div><br>
 <div class="text-center">
     <a href="{{ route('login') }}" class="btn btn-primary" style=" width: 10em; border-radius: 32px;">Accept</a>
-  </div>
+  </div><br>
 
 </body>
 </html>
