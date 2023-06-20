@@ -73,47 +73,47 @@
                                         <td>Halaman Login</td>
                                         <td><span class="badge text-bg-success">Selesai</span></td>
                                         <td>15.000.000</td>
-                                        <td><a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailfitur"><i class="fa fa-eye"></i></a></td>
+                                        <td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailfitur"><i class="fa fa-eye"></i></a></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman Register</td>
                                         <td><span class="badge text-bg-danger">Belum selesai</span></td>
                                         <td>11.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Landing Page</td>
                                         <td><span class="badge text-bg-success">selesai</span></td>
                                         <td>5.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman dashboard</td>
                                         <td><span class="badge text-bg-danger">Belum selesai</span></td>
                                         <td>12.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman pembelian</td>
                                         <td><span class="badge text-bg-success">Selesai</span></td>
                                         <td>5.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman penjualan</td>
                                         <td><span class="badge text-bg-danger ">Belum selesai</span></td>
                                         <td>10.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-start mb-3">
-                                <td><center><a href="#" class="btn btn-primary"><i class="fa-solid fa-circle-check"></i>&nbsp;Setuju</a>&nbsp;
-                                    <button type="button" class="btn btn-danger"><i class="fa-solid fa-circle-xmark"></i>&nbsp;Tolak</button></center></td>
+                                <td><center><a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-circle-check"></i>&nbsp;Setuju</a>&nbsp;
+                                    <button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-xmark"></i>&nbsp;Tolak</button></center></td>
                             </div>
                         </div>
                     </div>
-                    
+
 
                      <!-- Modal Box Edit Bank Start -->
             <div class="modal fade" id="detailfitur" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

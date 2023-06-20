@@ -4,6 +4,25 @@
 <!-- Mirrored from colorlib.com/etc/lf/Login_v4/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Jun 2023 06:45:50 GMT -->
 <head>
 <title>Daftar Dulu </title>
+<style>
+    .input-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .input-group .form-control {
+      flex: 1;
+    }
+
+    .input-container {
+      margin-top: 10px;
+    }
+
+    .label-input100 {
+      margin-right: 10px;
+    }
+
+  </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -65,31 +84,14 @@ REGISTER
 
 
 
-<style>
-    .input-group {
-      display: flex;
-      align-items: center;
-    }
 
-    .input-group .form-control {
-      flex: 1;
-    }
-
-    .input-container {
-      margin-top: 10px;
-    }
-
-    .label-input100 {
-      margin-right: 10px;
-    }
-  </style>
  {{-- CODE START ADD FITUR --}}
  <div class="input-group">
   <span class="label-input100" id="label">Input Opsional</span>
   <div class="input-icon" style="z-index: 5">
     <i class="fa fa-sort-desc" onclick="toggleInput(event)"></i>
   </div>
-</div>
+</div><br>
 
 <div id="container"></div>
 
@@ -105,24 +107,58 @@ REGISTER
 
     if (!isInputVisible) {
       // Membuat 3 elemen input baru
-      for (var i = 0; i < 3; i++) {
-        var inputElement = document.createElement('input');
-        inputElement.type = 'text';
-        inputElement.classList.add('form-control');
+      var inputElement1 = document.createElement('input');
+      inputElement1.type = 'text';
+      inputElement1.classList.add('input100');
+      inputElement1.classList.add('validate-input');
+      inputElement1.setAttribute('name', 'nama_perusahaan');
+      inputElement1.setAttribute('placeholder', 'Masukkan nama perusahaan');
 
-        var labelInput = "Label Input " + (i + 1);
+      var labelElement1 = document.createElement('span');
+      labelElement1.classList.add('label-input100');
+      labelElement1.innerHTML = 'Nama Perusahaan';
 
-        var labelElement = document.createElement('label');
-        labelElement.innerHTML = labelInput;
+      var inputContainer1 = document.createElement('div');
+      inputContainer1.classList.add('wrap-input100');
+      inputContainer1.appendChild(labelElement1);
+      inputContainer1.appendChild(inputElement1);
 
-        var inputContainer = document.createElement('div');
-        inputContainer.classList.add('input-container');
-        inputContainer.appendChild(labelElement);
-        inputContainer.appendChild(inputElement);
+      var inputElement2 = document.createElement('input');
+      inputElement2.type = 'text';
+      inputElement2.classList.add('input100');
+      inputElement2.classList.add('validate-input');
+      inputElement2.setAttribute('name', 'alamat_perusahaan');
+      inputElement2.setAttribute('placeholder', 'Masukkan alamat perusahaan');
 
-        // Menambahkan elemen input di bawah ikon plus
-        container.appendChild(inputContainer);
-      }
+      var labelElement2 = document.createElement('span');
+      labelElement2.classList.add('label-input100');
+      labelElement2.innerHTML = 'Alamat Perusahaan';
+
+      var inputContainer2 = document.createElement('div');
+      inputContainer2.classList.add('wrap-input100');
+      inputContainer2.appendChild(labelElement2);
+      inputContainer2.appendChild(inputElement2);
+
+      var inputElement3 = document.createElement('input');
+      inputElement3.type = 'text';
+      inputElement3.classList.add('input100');
+      inputElement3.classList.add('validate-input');
+      inputElement3.setAttribute('name', 'no_telephone');
+      inputElement3.setAttribute('placeholder', 'Masukkan nomor telepon perusahaan');
+
+      var labelElement3 = document.createElement('span');
+      labelElement3.classList.add('label-input100');
+      labelElement3.innerHTML = 'No Telephone';
+
+      var inputContainer3 = document.createElement('div');
+      inputContainer3.classList.add('wrap-input100');
+      inputContainer3.appendChild(labelElement3);
+      inputContainer3.appendChild(inputElement3);
+
+      // Menambahkan elemen input di bawah ikon plus
+      container.appendChild(inputContainer1);
+      container.appendChild(inputContainer2);
+      container.appendChild(inputContainer3);
 
       isInputVisible = true;
     } else {
@@ -135,8 +171,6 @@ REGISTER
     }
   }
 </script>
-
-
 
  {{-- AKHIR CODE ADD FITUR --}}
 

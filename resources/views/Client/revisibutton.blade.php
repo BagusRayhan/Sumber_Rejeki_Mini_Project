@@ -73,42 +73,42 @@
                                         <td>Halaman Login</td>
                                         <td><span class="badge text-bg-success">Selesai</span></td>
                                         <td>15.000.000</td>
-                                        <td><a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailfitur"><i class="fa fa-eye"></i></a></td>
+                                        <td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailfitur"><i class="fa fa-eye"></i></a></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman Register</td>
                                         <td><span class="badge text-bg-success">Selesai</span></td>
                                         <td>11.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Landing Page</td>
                                         <td><span class="badge text-bg-success">Selesai</span></td>
                                         <td>5.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman dashboard</td>
                                         <td><span class="badge text-bg-success">Selesai</span></td>
                                         <td>12.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman pembelian</td>
                                         <td><span class="badge text-bg-success">Selesai</span></td>
                                         <td>5.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td>Halaman penjualan</td>
                                         <td><span class="badge text-bg-success">Selesai</span></td>
                                         <td>10.000.000</td>
-                                        <td><button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-start mb-3">
-                                <a href="{{ route('selesaiclient') }}" class="btn btn-primary"><i class="fa fa-reply"></i> Kembali</a>
+                                <a href="{{ route('selesaiclient') }}" class="btn btn-primary btn-sm"><i class="fa fa-reply"></i> Kembali</a>
                             </div>
                         </div>
                     </div>
@@ -120,9 +120,9 @@
                             <div class="chatbox d-flex align-items-center justify-content-between align-items-lg-center px-3 border rounded border-1 border-dark">
                                 <div class="d-flex align-items-center">
                                     <i class="fa-solid fa-comments fs-4 me-3"></i>
-                                    <p class="fw-medium mt-3">Diskusikan project dengan client</p>
+                                    <p class="fw-medium mt-3">Diskusikan project dengan admin</p>
                                 </div>
-                                <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm" onclick="openChat()">Hubungi Client</button>
+                                <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm" onclick="openChat()">Hubungi Admin</button>
                             </div>
                             <style>
                                 #chatbox {
