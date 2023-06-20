@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+ <!-- Icon Font Stylesheet -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
 <link rel="stylesheet" type="text/css" href="{{ asset('colorlib.com/vendor/bootstrap/css/bootstrap.min.css') }}">
 
 <link rel="stylesheet" type="text/css" href="{{ asset('colorlib.com/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
@@ -60,25 +63,83 @@ REGISTER
 <span class="focus-input100" data-symbol="&#xf191;"></span>
 </div>
 
-<span class="label-input100">Input Opsional</span><br><br>
 
-<div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
-<span class="label-input100">No.Telpon</span>
-<input class="input100" type="Number" name="pass" placeholder="Masukkan Nomer Telepon anda">
-<span class="focus-input100" data-symbol="&#xf2b5;"></span>
+
+<style>
+    .input-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .input-group .form-control {
+      flex: 1;
+    }
+
+    .input-container {
+      margin-top: 10px;
+    }
+
+    .label-input100 {
+      margin-right: 10px;
+    }
+  </style>
+ {{-- CODE START ADD FITUR --}}
+ <div class="input-group">
+  <span class="label-input100" id="label">Input Opsional</span>
+  <div class="input-icon" style="z-index: 5">
+    <i class="fa fa-sort-desc" onclick="toggleInput(event)"></i>
+  </div>
 </div>
 
-<div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
-<span class="label-input100">Nama Perusahaan</span>
-<input class="input100" type="text" name="pass" placeholder="Masukkan Nama Perusahaan anda">
-<span class="focus-input100" data-symbol="&#xf132;"></span>
-</div>
+<div id="container"></div>
 
-<div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
-<span class="label-input100">Alamat Perusahaan</span>
-<textarea class="input100" name="" id="" cols="30" rows="10"></textarea>
-<span class="focus-input100" data-symbol="&#xf349;"></span>
-</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  var isInputVisible = false;
+
+  function toggleInput(event) {
+    event.preventDefault();
+
+    var container = document.getElementById('container');
+    var labelElement = document.getElementById('label');
+
+    if (!isInputVisible) {
+      // Membuat 3 elemen input baru
+      for (var i = 0; i < 3; i++) {
+        var inputElement = document.createElement('input');
+        inputElement.type = 'text';
+        inputElement.classList.add('form-control');
+
+        var labelInput = "Label Input " + (i + 1);
+
+        var labelElement = document.createElement('label');
+        labelElement.innerHTML = labelInput;
+
+        var inputContainer = document.createElement('div');
+        inputContainer.classList.add('input-container');
+        inputContainer.appendChild(labelElement);
+        inputContainer.appendChild(inputElement);
+
+        // Menambahkan elemen input di bawah ikon plus
+        container.appendChild(inputContainer);
+      }
+
+      isInputVisible = true;
+    } else {
+      // Menghapus elemen input yang ada
+      while (container.firstChild) {
+        container.removeChild(container.firstChild);
+      }
+
+      isInputVisible = false;
+    }
+  }
+</script>
+
+
+
+ {{-- AKHIR CODE ADD FITUR --}}
+
 
 <br><br><div class="text-left p-t-8 p-b-31">
     <input type="checkbox"> <a href="kebijakan">Kebijakan Privasi</a>

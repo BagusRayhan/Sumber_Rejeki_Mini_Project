@@ -20,9 +20,9 @@
 
         <!-- Content Start -->
         <div class="content">
-            
+
             @include('Admin.templates.navbar')
-            
+
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
               <div class="search-form w-25">
@@ -44,7 +44,7 @@
                 <div class="card" style="background-color: #F3F6F9;border: none">
                   <div class="card-body">
                     <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
-                    <a href="/detailproreq" class="btn btn-primary float-end"><i class="fa-solid fa-eye"></i></a>
+                    <a href="/detailproreq" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
                   </div>
                 </div>
               </div>
@@ -52,7 +52,7 @@
                 <div class="card" style="background-color: #F3F6F9;border: none">
                   <div class="card-body">
                     <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
-                    <a href="/detailproreq" class="btn btn-primary float-end"><i class="fa-solid fa-eye"></i></a>
+                    <a href="/detailproreq" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
                   </div>
                 </div>
               </div>
@@ -60,7 +60,7 @@
                 <div class="card" style="background-color: #F3F6F9;border: none">
                   <div class="card-body">
                     <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
-                    <a href="/detailproreq" class="btn btn-primary float-end"><i class="fa-solid fa-eye"></i></a>
+                    <a href="/detailproreq" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
                   </div>
                 </div>
               </div>
@@ -68,7 +68,7 @@
                 <div class="card" style="background-color: #F3F6F9;border: none">
                   <div class="card-body">
                     <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
-                    <a href="/detailproreq" class="btn btn-primary float-end"><i class="fa-solid fa-eye"></i></a>
+                    <a href="/detailproreq" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
                   </div>
                 </div>
               </div>
@@ -76,7 +76,7 @@
                 <div class="card" style="background-color: #F3F6F9;border: none">
                   <div class="card-body">
                     <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
-                    <a href="/detailproreq" class="btn btn-primary float-end"><i class="fa-solid fa-eye"></i></a>
+                    <a href="/detailproreq" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
                   </div>
                 </div>
               </div>
@@ -84,7 +84,7 @@
                 <div class="card" style="background-color: #F3F6F9;border: none">
                   <div class="card-body">
                     <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
-                    <a href="/detailproreq" class="btn btn-primary float-end"><i class="fa-solid fa-eye"></i></a>
+                    <a href="/detailproreq" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
                   </div>
                 </div>
               </div>

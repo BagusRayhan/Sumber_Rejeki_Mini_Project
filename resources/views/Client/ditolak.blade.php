@@ -75,12 +75,13 @@
             </ul>
         </nav>
     </div>
+    @include('Client.Template.footer')
 </div>
 <!-- Content End -->
 
 
 @include('Client.Template.script')
-@include('Client.Template.footer')
+
 </body>
 
 

@@ -20,9 +20,9 @@
 
         <!-- Content Start -->
         <div class="content">
-            
+
             @include('Admin.templates.navbar')
-            
+
             <!-- Confirm Payment Table Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="search-form w-25">
@@ -65,10 +65,10 @@
                                         <td>Harja</td>
                                         <td>Website Online Shop</td>
                                         <td>15.000.000</td>
-                                        <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal" class="btn btn-primary"><i class="fa-solid fa-image"></i></a></td>
+                                        <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal" class="btn btn-primary btn-sm"><i class="fa-solid fa-image"></i></a></td>
                                         <td class="d-flex justify-content-evenly">
-                                            <a href="#" class="btn btn-primary rounded-circle"><i class="fa-solid fa-check"></i></a>
-                                            <a href="#" class="btn btn-danger rounded-circle"><i class="fa-solid fa-times"></i></a>
+                                            <a href="#" class="btn btn-primary btn-sm rounded-circle"><i class="fa-solid fa-check"></i></a>
+                                            <a href="#" class="btn btn-danger btn-sm rounded-circle"><i class="fa-solid fa-times"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -97,7 +97,7 @@
                 </nav>
             </div>
             <!-- Confirm Payment Table End -->
-            
+
             <!-- Payment Proof Modal Start -->
             <div class="modal fade" id="buktiTransaksiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" style="width: 400px">

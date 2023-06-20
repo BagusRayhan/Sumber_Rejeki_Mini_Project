@@ -46,7 +46,7 @@
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th scope="col">Nama Project</th>
@@ -59,15 +59,15 @@
                                     <tr>
                                         <td>Website Olshop</td>
                                         <td>
-                                            <div class="pg-bar pt-2 mb-3">
-                                                <div class="progress bg-white w-75">
+                                            <div class="pg-bar">
+                                                <div class="progress w-75">
                                                     <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>15.000.000</td>
                                         <td class="d-flex justify-content-evenly">
-                                            <a href="/detail-project-disetujui" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                            <a href="/detail-project-disetujui" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -165,6 +165,7 @@
                         }
                       </script>
 
+                    {{-- AKHIR CODE ADD FITUR --}}
                     <script>
                     $(document).ready(function() {
                     $('.input-icon').click(function() {
@@ -173,20 +174,20 @@
                     });
                     </script>
 
-                    {{-- AKHIR CODE ADD FITUR --}}
+
                     <center>
                 </form>
             </div>
         </div>
     </div>
 
-     <!-- Modal Box Edit Bank Start -->
+     <!-- Modal Box tambah desripsi Start -->
      <div class="modal fade" id="detailfitur" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Deskripsi</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
                 <div class="modal-body">
                     <form action="">
