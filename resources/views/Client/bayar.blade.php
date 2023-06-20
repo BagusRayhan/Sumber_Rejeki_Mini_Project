@@ -143,7 +143,7 @@
                                         <div class="d-grid" style="display: flex; justify-content: space-between;">
                                             <h6 style="align-self: center;">Metode</h6>
                                             <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Pilih Pembayaran
                                                 </button>
                                                 <ul class="dropdown-menu">
@@ -184,8 +184,8 @@
                                         <div class="d-grid" style="display: flex; justify-content: space-between;">
                                             <h6 style="align-self: center;">Metode</h6>
                                             <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Cash
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Cash &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                                 </button>
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item active" href="#">Cash</a></li>
@@ -231,8 +231,8 @@
                                         <div class="d-grid" style="display: flex; justify-content: space-between;">
                                             <h6 style="align-self: center;">Metode</h6>
                                             <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    E-Wallet
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    E-Wallet &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                                 </button>
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="#" data-bs-target="#cash" data-bs-toggle="modal">Cash</a></li>
@@ -246,8 +246,8 @@
                                         <div class="d-grid" style="display: flex; justify-content: space-between; margin-top:3%;">
                                             <h6 style="align-self: center;">Layanan</h6>
                                             <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Pilih E-Wallet
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Pilih E-Wallet &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                                 </button>
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="#" data-bs-target="#dana" data-bs-toggle="modal" >Dana</a></li>
@@ -258,8 +258,8 @@
                                             </div>
                                         </div>
 
-                                        <div class="mb-3" style="margin-top:3%;">
-                                            <label for="formFile" class="form-label">Bukti Pembayaran</label>
+                                        <div class="mb-3" style="margin-top:3%; width:110%;">
+                                            <h6 style="align-self: center;">Bukti Pembayaran</h6>
                                             <input class="form-control" type="file" id="formFile" style="width: 35%">
                                         </div>
                             </div>
@@ -293,8 +293,8 @@
                                             <div class="d-grid" style="display: flex; justify-content: space-between;">
                                                 <h6 style="align-self: center;">Metode</h6>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        E-Wallet
+                                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        E-Wallet &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item" href="#" data-bs-target="#cash" data-bs-toggle="modal">Cash</a></li>
@@ -306,8 +306,8 @@
                                             <div class="d-grid" style="display: flex; justify-content: space-between; margin-top:3%;">
                                                 <h6 style="align-self: center;">Layanan</h6>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        DANA
+                                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Dana &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; 
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item active" href="#">Dana</a></li>
@@ -317,8 +317,8 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="mb-3" style="margin-top:3%;">
-                                            <label for="formFile" class="form-label">Bukti Pembayaran</label>
+                                            <div class="mb-3" style="margin-top:3%; width:120%;">
+                                            <h6 style="align-self: center;">Bukti Pembayaran</h6>
                                             <input class="form-control" type="file" id="formFile" style="width: 70%;">
                                         </div>
                                         </div>
@@ -356,8 +356,8 @@
                                         <div class="d-grid" style="display: flex; justify-content: space-between;">
                                             <h6 style="align-self: center;">Metode</h6>
                                             <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Pilih Pembayaran
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Bank &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                                 </button>
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="#">Cash</a></li>
@@ -369,8 +369,8 @@
                                         <div class="mb-7" style="margin-right: 10%;">
                                             <h6 style="">Layanan</h6>
                                             <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Layanan Bank
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Layanan Bank &nbsp; &nbsp; &nbsp; &nbsp;
                                                 </button>
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="#">BRI</a></li>
@@ -383,12 +383,12 @@
 
                                     <div class="container m-0 p-0 d-flex justify-content-between">
                                         <div class="d-grid" style="display: flex; justify-content: space-between;">
-                                           <div class="mb-3" style="margin-top:3%;">
-                                            <label for="formFile" class="form-label">Bukti Pembayaran</label>
+                                           <div class="mb-3" style="margin-top:3%; width:130%;">
+                                            <h6 style="">Bukti Pembayaran</h6>
                                             <input class="form-control" type="file" id="formFile" style="width: 58%;">
                                         </div>
                                         </div>
-                                        <div class="mb-7" style="margin-top: 2%;">
+                                        <div class="mb-7" style="margin-top: 2%; margin-right:10%; width:50%;">
                                             <h6 style="">No. Rekening</h6>
                                             <input type="text" class="form-control"  disabled>
                                         </div>
