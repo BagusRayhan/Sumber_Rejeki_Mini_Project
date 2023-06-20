@@ -311,7 +311,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item active" href="#">Dana</a></li>
-                                                        <li><a class="dropdown-item " href="#">Ovo</a></li>
+                                                        <li><a class="dropdown-item" href="#">Ovo</a></li>
                                                         <li><a class="dropdown-item" href="#">Gopay</a></li>
                                                         <li><a class="dropdown-item" href="#">LinkAja</a></li>
                                                     </ul>
@@ -343,9 +343,9 @@
                                         <div style="display: flex; align-items: center;">
                                             <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
                                             <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="Website Berita" disabled>
-                                        </div>
-                                        <div style="display: flex; align-items: center; margin-top:3%;">
-                                            <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
+                                            </div>
+                                             <div style="display: flex; align-items: center; margin-top:3%;">
+                                              <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
                                             <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="2.000.000" disabled>
                                         </div>
                                     </div>
@@ -360,7 +360,7 @@
                                                     Bank &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Cash</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-bs-target="#cash" data-bs-toggle="modal">Cash</a></li>
                                                     <li><a class="dropdown-item" href="#" data-bs-target="#wallet" data-bs-toggle="modal">E-Wallet</a></li>
                                                     <li><a class="dropdown-item active" href="#">Bank</a></li>
                                                 </ul>

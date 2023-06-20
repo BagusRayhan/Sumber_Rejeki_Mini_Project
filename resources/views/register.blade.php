@@ -98,7 +98,6 @@ REGISTER
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   var isInputVisible = false;
-
   function toggleInput(event) {
     event.preventDefault();
 
@@ -113,6 +112,7 @@ REGISTER
       inputElement1.classList.add('validate-input');
       inputElement1.setAttribute('name', 'nama_perusahaan');
       inputElement1.setAttribute('placeholder', 'Masukkan nama perusahaan');
+      
 
       var labelElement1 = document.createElement('span');
       labelElement1.classList.add('label-input100');
