@@ -50,6 +50,13 @@
                                     <a href="#" class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>Website Marketplace</td>
+                                <td>Kami telah mengevaluasi project ini seccara menyeluruh dan menyimpulkan bahwa manfaatnya tidak sebanding dengan biaya dan risiko yang terlibat.</td>
+                                <td class="text-center">
+                                    <a href="#" class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

@@ -117,68 +117,122 @@
                 </form>
             </div>
         </div>
-        <div class="card" style="width: 28em">
-            <div class="card-body" style="height: 300px; overflow-y: scroll;">
-                <h5 class="card-title">Fitur</h5>
-                <form>
-                    {{-- CODE START ICON TITIK 3 --}}
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="input1" value="Landing Page">
-                        <div class="input-icon" style="z-index: 5">
-                                  <i class="fas fa-ellipsis-v"></i>
+<div class="card" style="width: 28em">
+    <div class="card-body" style="height: 300px; overflow-y: scroll;">
+        <h5 class="card-title">Fitur</h5>
+        <form>
+            {{-- CODE START ICON TITIK 3 --}}
+            <div class="input-group">
+                <input type="text" class="form-control" id="input1" value="Landing Page">
+                <div class="input-icon" style="z-index: 5">
+                    <i class="fas fa-ellipsis-v"></i>
+                </div>
+                <div class="dropdown-menu">
+                    <ul class="dropdown-options">
+                        <li data-bs-toggle="modal" data-bs-target="#detailfitur"><span class="option-icon"><i class="fa-solid fa-circle-plus"></i></span> Tambah deskripsi</li>
+                        <li data-bs-toggle="modal" data-bs-target="#"><span class="option-icon"><i class="fa fa-trash"></i></span> Hapus</li>
+                    </ul>
+                </div>
+            </div><br>
+            {{-- AKHIR CODE ICON TITIK 3 --}}
 
-                        </div>
-                        <div class="dropdown-menu">
-                            <ul class="dropdown-options">
-                                <li data-bs-toggle="modal" data-bs-target="#detailfitur"><span class="option-icon"><i class="fa-solid fa-circle-plus"></i></span> Tambah deskripsi</li>
-                                <li data-bs-toggle="modal" data-bs-target="#"><span class="option-icon"><i class="fa fa-trash"></i></span> Hapus</li>
-                            </ul>
-                        </div>
-                    </div><br>
+            {{-- CODE START ADD FITUR --}}
+            <div id="container"></div>
 
-                    {{-- AKHIR CODE ICON TITIK 3 --}}
+            <div class="input-group">
+                <input type="text" class="form-control" id="inpu" placeholder="Add fitur">
+                <div class="input-icon" style="z-index: 5">
+                    <i class="fa-solid fa-circle-plus" onclick="addInput(event)"></i>
+                </div>
+            </div><br>
 
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                function addInput(event) {
+                    event.preventDefault();
+                    var container = document.getElementById('container');
+                    var inputElement = document.createElement('input');
+                    inputElement.type = 'text';
+                    inputElement.classList.add('form-control');
 
-                    {{-- CODE START ADD FITUR --}}
-                    <div id="container"></div>
+                    // Mendapatkan nilai input
+                    var inputValue = document.getElementById('inpu').value;
+                    inputElement.value = inputValue;
 
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="input1" placeholder="Add fitur">
-                        <div class="input-icon" style="z-index: 5">
-                        <i class="fa-solid fa-circle-plus" onclick="addInput(event)"></i>
-                        </div>
-                    </div><br>
+                    var inputContainer = document.createElement('div');
+                    inputContainer.classList.add('input-container');
 
+                    var inputGroup = document.createElement('div');
+                    inputGroup.classList.add('input-group');
+                    inputGroup.appendChild(inputElement);
 
-                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                    <script>
-                        function addInput(event) {
-                          event.preventDefault();
-                          var container = document.getElementById('container');
-                          var inputElement = document.createElement('input');
-                          inputElement.type = 'text';
-                          inputElement.classList.add('form-control');
-                          var inputContainer = document.createElement('div');
-                          inputContainer.classList.add('input-container');
-                          inputContainer.appendChild(inputElement);
-                          container.insertBefore(inputContainer, container.firstChild);
-                        }
-                      </script>
+                    var ellipsisIcon = document.createElement('i');
+                    ellipsisIcon.classList.add('fas', 'fa-ellipsis-v');
+                    var ellipsisDiv = document.createElement('div');
+                    ellipsisDiv.classList.add('input-icon');
+                    ellipsisDiv.style.zIndex = 5;
+                    ellipsisDiv.appendChild(ellipsisIcon);
+                    inputGroup.appendChild(ellipsisDiv);
 
-                    {{-- AKHIR CODE ADD FITUR --}}
-                    <script>
-                    $(document).ready(function() {
+                    var dropdownMenu = document.createElement('div');
+                    dropdownMenu.classList.add('dropdown-menu');
+                    var dropdownOptions = document.createElement('ul');
+                    dropdownOptions.classList.add('dropdown-options');
+                    var addDescriptionItem = document.createElement('li');
+                    addDescriptionItem.dataset.bsToggle = 'modal';
+                    addDescriptionItem.dataset.bsTarget = '#detailfitur';
+                    var addDescriptionSpan = document.createElement('span');
+                    addDescriptionSpan.classList.add('option-icon');
+                    var addDescriptionIcon = document.createElement('i');
+                    addDescriptionIcon.classList.add('fa-solid', 'fa-circle-plus');
+                    addDescriptionSpan.appendChild(addDescriptionIcon);
+                    addDescriptionItem.appendChild(addDescriptionSpan);
+                    addDescriptionItem.innerHTML += ' Tambah deskripsi';
+                    var deleteItem = document.createElement('li');
+                    deleteItem.dataset.bsToggle = 'modal';
+                    deleteItem.dataset.bsTarget = '#';
+                    var deleteSpan = document.createElement('span');
+                    deleteSpan.classList.add('option-icon');
+                    var deleteIcon = document.createElement('i');
+                    deleteIcon.classList.add('fa', 'fa-trash');
+                    deleteSpan.appendChild(deleteIcon);
+                    deleteItem.appendChild(deleteSpan);
+                    deleteItem.innerHTML += ' Hapus';
+                    dropdownOptions.appendChild(addDescriptionItem);
+                    dropdownOptions.appendChild(deleteItem);
+                    dropdownMenu.appendChild(dropdownOptions);
+                    inputGroup.appendChild(dropdownMenu);
+
+                    inputContainer.appendChild(inputGroup);
+                    container.appendChild(inputContainer);
+
+                    // Reset nilai input
+                    document.getElementById('inpu').value = '';
+
+                    // Mengaktifkan event klik pada ikon dropdown
                     $('.input-icon').click(function() {
-                    $(this).siblings('.dropdown-menu').toggle();
+                        $(this).siblings('.dropdown-menu').toggle();
                     });
+                }
+            </script>
+
+            {{-- AKHIR CODE ADD FITUR --}}
+            <script>
+                $(document).ready(function() {
+                    // Mengaktifkan event klik pada ikon dropdown
+                    $('.input-icon').click(function() {
+                        $(this).siblings('.dropdown-menu').toggle();
                     });
-                    </script>
+                });
+            </script>
+
+            <center>
+        </form>
+    </div>
+</div>
 
 
-                    <center>
-                </form>
-            </div>
-        </div>
+
     </div>
 
      <!-- Modal Box tambah desripsi Start -->
@@ -203,8 +257,8 @@
                                     <a href="" class="btn btn-danger">Batal</a>
                                     <a href="" class="btn btn-primary">Simpan</a>
                             </div>
-                    </form>
-                </div>
+                       </form>
+                  </div>
 
         </div>
     </div>
