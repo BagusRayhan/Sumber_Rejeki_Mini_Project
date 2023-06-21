@@ -49,6 +49,7 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
+                                        <th scope="col">Nama Client</th>
                                         <th scope="col">Nama Project</th>
                                         <th scope="col">Progress Project</th>
                                         <th scope="col">Harga Project</th>
@@ -56,8 +57,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($project as $pro)
                                     <tr>
-                                        <td>Website Olshop</td>
+                                        <td>{{ $pro->namaclient }}</td>
+                                        <td>{{ $pro->namaproject }}</td>
                                         <td>
                                             <div class="pg-bar">
                                                 <div class="progress w-75">
@@ -65,11 +68,12 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>15.000.000</td>
+                                        <td>{{ $pro->hargaproject }}</td>
                                         <td class="d-flex justify-content-evenly">
-                                            <a href="/detail-project-disetujui" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
+                                            <a href="/detail-project-disetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

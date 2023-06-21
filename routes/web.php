@@ -63,7 +63,11 @@ Route::post('updatesosmed', [PengaturanController::class, 'updatesosmed'])->name
 Route::get('revisiproselesai', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
 Route::get('editproselesai', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
 Route::get('project-disetujui', [ProjectDisetujuiController::class, 'disetujui'])->name('project-disetujui-admin');
-Route::get('detail-project-disetujui', [ProjectDisetujuiController::class, 'detailDisetujui'])->name('detail-disetujui-admin');
+Route::get('detail-project-disetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujui'])->name('detail-disetujui-admin');
 Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');
 Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
 Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
+
+
+//harja
+Route::get('pembayaran-digital/getrekening/{id}', [AdminBayarController::class, 'getRekening'])->name('getRekening');
