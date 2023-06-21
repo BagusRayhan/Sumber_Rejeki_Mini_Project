@@ -94,27 +94,30 @@
         <div class="card" style="width: 28em">
             <div class="card-body">
                 <h5 class="card-title">Request Project</h5>
-                <form>
-                    <div class="form-group">
-                        <label for="input1">Nama Client</label>
-                        <input type="text" class="form-control" id="input1" value="Ahmad" disabled>
-                    </div><br>
-                    <div class="form-group">
-                        <label for="input2">Nama Project</label>
-                        <input type="text" class="form-control" id="input2" placeholder="Masukkan nama project anda">
-                    </div><br>
-                    <div class="form-group">
-                        <label for="input3">Dokumen Pendukung</label>
-                        <input type="file" class="form-control" id="input3">
-                    </div><br>
-                    <div class="form-group">
-                        <label for="input4">Deadline</label>
-                        <input type="datetime-local" class="form-control" id="input4" placeholder="Input 4">
-                    </div><br>
-                    <center>
-                    <button type="submit" class="btn btn-primary w-100">Kirim Request</button><br><br>
-                    <a  href="http://127.0.0.1:8000/drequestclient">Kembali</a></center>
-                </form>
+<form action="{{ route('simpanpro') }}" method="POST"  enctype="multipart/form-data">
+    {{ csrf_field() }}
+    <div class="form-group">
+        <label for="input1">Nama Client</label>
+        <input type="text" class="form-control" id="input1" name="nama" placeholder="Masukkan Nama Anda">
+    </div><br>
+    <div class="form-group">
+        <label for="input2">Nama Project</label>
+        <input type="text" class="form-control" id="input2" name="napro" placeholder="Masukkan nama project anda">
+    </div><br>
+    <div class="form-group">
+        <label for="input3">Dokumen Pendukung</label>
+        <input type="file" class="form-control" id="input3" name="bukti">
+    </div><br>
+    <div class="form-group">
+        <label for="input4">Deadline</label>
+        <input type="datetime-local" class="form-control" id="input4" name="deadline" placeholder="Input 4">
+    </div><br>
+    <center>
+        <button type="submit" class="btn btn-primary w-100">Kirim Request</button><br><br>
+        <a href="http://127.0.0.1:8000/drequestclient">Kembali</a>
+    </center>
+</form>
+
             </div>
         </div>
 <div class="card" style="width: 28em">
@@ -123,10 +126,6 @@
         <form>
             {{-- CODE START ICON TITIK 3 --}}
             <div class="input-group">
-                <input type="text" class="form-control" id="input1" value="Landing Page">
-                <div class="input-icon" style="z-index: 5">
-                    <i class="fas fa-ellipsis-v"></i>
-                </div>
                 <div class="dropdown-menu">
                     <ul class="dropdown-options">
                         <li data-bs-toggle="modal" data-bs-target="#detailfitur"><span class="option-icon"><i class="fa-solid fa-circle-plus"></i></span> Tambah deskripsi</li>

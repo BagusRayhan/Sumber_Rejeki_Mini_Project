@@ -36,14 +36,16 @@ Route::get('kebijakan', [AuthController::class, 'kebijakan'])->name('kebijakan')
 Route::get('indexclient', [IndexcController::class, 'indexclient'])->name('indexclient');
 Route::get('drequestclient', [IndexcController::class, 'drequestclient'])->name('drequestclient');
 Route::get('createproreq', [IndexcController::class, 'createproreq'])->name('createproreq');
+Route::post('simpanpro', [IndexcController::class, 'simpan'])->name('simpanpro');
 Route::get('requestclient', [IndexcController::class, 'requestclient'])->name('requestclient');
+Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
+Route::put('updateproreq/{id}', [IndexcController::class, 'update'])->name('updateproreq');
 Route::get('setujuclient', [SetujuController::class, 'setujuclient'])->name('setujuclient');
 Route::get('selesaiclient', [SelesaiController::class, 'selesaiclient'])->name('selesaiclient');
 Route::get('revisiclient', [SelesaiController::class, 'revisiclient'])->name('revisiclient');
 Route::get('ditolakclient', [TolakController::class, 'ditolakclient'])->name('ditolakclient');
 Route::get('bayarclient', [BayarController::class, 'bayarclient'])->name('bayarclient');
 Route::get('bayar2client', [BayarController::class, 'bayar2client'])->name('bayar2client');
-Route::get('editproreq', [IndexcController::class, 'editproreq'])->name('editproreq');
 Route::get('detailsetujui', [SetujuController::class, 'detailsetujui'])->name('detailsetujui');
 Route::get('revisiselesai', [SelesaiController::class, 'revisiselesai'])->name('revisiselesai');
 Route::get('revisibutton', [SelesaiController::class, 'revisibutton'])->name('revisibutton');
