@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proreq;
 use App\Models\clientproreq;
+use App\Models\Sosmed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -11,16 +12,19 @@ class IndexcController extends Controller
 {
     public function indexclient()
         {
-            return view('Client.index');
+            $sosmed = Sosmed::all();
+            return view('Client.index', compact('sosmed'));
         }
 
     public function drequestclient(){
         $data = Proreq::all();
-        return view('Client.clientproreq',compact('data'));
+        $sosmed = Sosmed::all();
+        return view('Client.clientproreq',compact('data','sosmed'));
     }
 
     public function createproreq(){
-        return view ('Client.createproreq');
+        $sosmed = Sosmed::all();
+        return view ('Client.createproreq', compact('sosmed'));
     }
     public function simpan(Request $request){
         $nm = $request->bukti;
@@ -40,8 +44,9 @@ class IndexcController extends Controller
     }
 
     public function editproreq($id){
+        $sosmed = Sosmed::all();
         $data = Proreq::findorfail($id);
-        return view('Client.editproreq',compact('data'));
+        return view('Client.editproreq',compact('data','sosmed'));
     }
 
     public function update(Request $request, $id){
