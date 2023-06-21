@@ -5,13 +5,13 @@
     position: relative;
     display: inline-block;
   }
-  
+
   .profile-image {
     width: 200px;
     height: 200px;
     object-fit: cover;
   }
-  
+
   .change-profile-button {
     position: absolute;
     bottom: 10px;
@@ -22,9 +22,9 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   </style>
-  
+
   <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-      
+
       <a href="#" class="sidebar-toggler flex-shrink-0 text-decoration-none">
           <i class="fa fa-bars"></i>
       </a>
@@ -64,9 +64,14 @@
       </div>
   </nav>
   <!-- Navbar End -->
+  <style>
+    .profile-modal {
+        width: 400px;
+    }
+  </style>  
 <!-- Modal -->
         <div class="modal fade" id="MyModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered profile-modal">
                 <div class="modal-content">
                 <div class="modal-header">
                                 <div class="row mb-3 mt-sm-2">
@@ -121,7 +126,7 @@
                                               <i class="fa-sharp fa-solid fa-image"></i>
                                               <input type="file" id="fileInput" style="display:none" accept=".jpg,.png,.pdf">
                                             </a>
-                                          </div>                                          
+                                          </div>
                                     <input id="file-upload" type="file" style="display: none;">
                                     </center>
                                 </h1>
@@ -194,5 +199,5 @@
                 </div>
             </div>
             </div>
-           
+
             <!-- Navbar End -->

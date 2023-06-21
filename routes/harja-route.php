@@ -6,6 +6,7 @@ Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigita
 Route::get('revisibutton', [SelesaiController::class, 'revisibutton'])->name('revisibutton');
 
 
-
-
-
+<!-- route baru -->
+Route::post('postsignup', [AuthController::class, 'signupsave'])->name('postsignup');
+Route::post('postlogin', [AuthController::class, 'login'])->name('postlogin');
+Route::get('/', [AuthController::class, 'index'])->name('login');
