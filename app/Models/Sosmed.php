@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class projectreqAdmin extends Model
+class Sosmed extends Model
 {
     use HasFactory;
-    protected $table = 'projectreq';
+    protected $table = 'sosmed';
     protected $guarded = [];
 }

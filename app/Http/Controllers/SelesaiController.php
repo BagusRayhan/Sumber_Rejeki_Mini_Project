@@ -2,25 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sosmed;
 use Illuminate\Http\Request;
 
 class SelesaiController extends Controller
 {
         public function selesaiclient()
         {
-            return view('Client.selesai');
+            $sosmed = Sosmed::all();
+            return view('Client.selesai', compact('sosmed'));
         }
 
         public function revisiclient(){
-            return view('Client.revisi');
+            $sosmed = Sosmed::all();
+            return view('Client.revisi', compact('sosmed'));
         }
         public function revisiselesai(){
-            return view('Client.selesai');
+            $sosmed = Sosmed::all();
+            return view('Client.selesai', compact('sosmed'));
         }
         public function revisibutton(){
-            return view('Client.revisibutton');
+            $sosmed = Sosmed::all();
+            return view('Client.revisibutton', compact('sosmed'));
         }
         public function detail(){
-            return view('Client.detailrevisi');
+            $sosmed = Sosmed::all();
+            return view('Client.detailrevisi', compact('sosmed'));
         }
 }

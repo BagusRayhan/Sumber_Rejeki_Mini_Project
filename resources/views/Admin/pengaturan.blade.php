@@ -36,17 +36,20 @@
                 <div class="container mt-4 d-flex">
                     <div class="card w-100" style="background: #f3f6f9">
                         <div class="card-body">
-                            <h5 class="card-title">Edit Sosmed</h5>
+                          <h5 class="card-title">Edit Sosmed</h5>
+                          <form action="{{ route('updatesosmed') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <label for="">WhatsApp</label><br>
-                            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="" id=""><br>
+                            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="wa" id="wa" value="{{ $data->wa }}"><br>
     
                             <label for="">Instagram</label><br>
-                            <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" name="" id=""><br>
+                            <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" name="ig" id="ig" value="{{ $data->ig }}"><br>
     
-                            <label for="">Facebook</label><br>
-                            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="" id="">
+                            <label for="">Email</label><br>
+                            <input type="email" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="email" id="email" value="{{ $data->email }}">
                             <br>
-                            <button type="button" style="float: right;" class="btn btn-primary">Simpan</button>
+                            <button type="submit" style="float: right;" class="btn btn-primary">Simpan</button>
+                          </form>
                         </div>
                     </div>
                 </div>

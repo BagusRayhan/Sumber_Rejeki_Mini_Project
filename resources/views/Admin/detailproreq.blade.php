@@ -35,30 +35,31 @@
             
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
-                <form>
+                <form action="detailproreq" method="GET" enctype="multipart/form-data">
+                    @csrf
                     <div class="row mb-3 mt-sm-2">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="input1">Nama Client</label>
-                                <input type="text" value="Suharto" class="form-control" id="input1" name="input1" disabled>
+                                <input type="text" value="{{ $data->namaclient }}" class="form-control" id="input1" name="input1" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="input2">Nama Project</label>
-                                <input type="text" value="Website Berita" class="form-control" id="input2" name="input2" disabled>
+                                <input type="text" value="{{ $data->namaproject }}" class="form-control" id="input2" name="input2" disabled>
                             </div>
                         </div>
                         <div class="col-md-6 mt-3">
                             <div class="form-group">
                                 <label for="input1">Dokumen Pendukung</label>
-                                <input type="text" value="website-berita.pdf" class="form-control" id="input1" name="input1" disabled>
+                                <input type="text" value="{{ $data->dokumenpendukung }}" class="form-control" id="input1" name="input1" disabled>
                             </div>
                         </div>
                         <div class="col-md-6 mt-3">
                             <div class="form-group">
                                 <label for="input2">Deadline</label>
-                                <input type="datetime-local" class="form-control" id="input2" name="input2" disabled>
+                                <input type="datetime-local" value="{{ $data->deadline }}" class="form-control" id="input2" name="input2" disabled>
                             </div>
                         </div>
                     </div>
@@ -100,9 +101,19 @@
                           </tr>
                         </tbody>
                       </table>                   
-                    <a href="projectreq" type="button" style="border: none;" class="btn btn-primary">Setuju</a>
-                    <a href="projectreq" type="button" class="btn btn-danger">Tolak</a>
-                  </form>
+                    <a href="projectreq" id="backButton" type="button" style="border: none;" class="btn btn-primary">Setuju</a>
+                    <a href="projectreq" id="returnButton" type="button" class="btn btn-danger">Tolak</a>
+                </form>
+                <script>
+                    document.getElementById("backButton").addEventListener("click", function() {
+                      history.back();
+                    });
+                  </script>
+                <script>
+                    document.getElementById("returnButton").addEventListener("click", function() {
+                      history.back();
+                    });
+                  </script>
             </div>
             </div>
             </div>
@@ -132,6 +143,7 @@
                                     <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" disabled>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore, consequatur eos! Tempore consectetur, nam expedita dicta iusto vitae natus itaque necessitatibus rem quos dolore saepe repellendus dolor qui voluptatum sapiente totam veritatis voluptatibus! Modi perferendis quaerat, assumenda laborum necessitatibus eos ex vero nulla facere accusantium possimus ullam ea culpa quae itaque dolores quasi quas labore voluptas numquam quo adipisci at. Sint corporis et deserunt!</textarea>
                                 </div>
+                                <a href="" type="button" style="border: none;margin-left: 398px" class="btn btn-primary">Submit</a>
                             </form>
                         </div>
                     </div>

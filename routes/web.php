@@ -53,11 +53,12 @@ Route::get('detail-revisi-client', [SelesaiController::class, 'detail'])->name('
 
 // Halaman Admin
 Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
-Route::get('detailproreq', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
+Route::get('detailproreq/{id}', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
 Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
 Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
 Route::get('projectselesai', [ProjectrequestController::class, 'projectselesai'])->name('projectselesai');
 Route::get('pengaturan', [PengaturanController::class, 'pengaturan'])->name('pengaturan');
+Route::post('updatesosmed', [PengaturanController::class, 'updatesosmed'])->name('updatesosmed');
 Route::get('revisiproselesai', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
 Route::get('editproselesai', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
 Route::get('project-disetujui', [ProjectDisetujuiController::class, 'disetujui'])->name('project-disetujui-admin');
