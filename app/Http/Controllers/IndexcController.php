@@ -3,23 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\clientproreq;
+use App\Models\Sosmed;
 use Illuminate\Http\Request;
 
 class IndexcController extends Controller
 {
     public function indexclient()
         {
-            return view('Client.index');
+            $sosmed = Sosmed::all();
+            return view('Client.index', compact('sosmed'));
         }
 
     public function drequestclient(){
-        return view('Client.clientproreq');
+        $sosmed = Sosmed::all();
+        return view('Client.clientproreq', compact('sosmed'));
     }
 
     public function createproreq(){
-        return view ('Client.createproreq');
+        $sosmed = Sosmed::all();
+        return view ('Client.createproreq', compact('sosmed'));
     }
     public function editproreq(){
-        return view('Client.editproreq');
+        $sosmed = Sosmed::all();
+        return view('Client.editproreq', compact('sosmed'));
     }
 }

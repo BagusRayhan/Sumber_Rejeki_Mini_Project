@@ -40,54 +40,16 @@
               }
             </style>
             <div class="row mt-4">
+              @foreach ($data as $row)
               <div class="col-sm-4 mb-2 mb-sm-2 mt-3">
                 <div class="card" style="background-color: #F3F6F9;border: none">
                   <div class="card-body">
-                    <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
-                    <a href="/detailproreq" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
+                    <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">{{ $row->namaproject }}</h5>
+                    <a href="/detailproreq/{{ $row->id }}" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
                   </div>
                 </div>
               </div>
-              <div class="col-sm-4 mb-2 mb-sm-2 mt-3">
-                <div class="card" style="background-color: #F3F6F9;border: none">
-                  <div class="card-body">
-                    <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
-                    <a href="/detailproreq" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4 mb-2 mb-sm-2 mt-3">
-                <div class="card" style="background-color: #F3F6F9;border: none">
-                  <div class="card-body">
-                    <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
-                    <a href="/detailproreq" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4 mb-2 mb-sm-2 mt-3">
-                <div class="card" style="background-color: #F3F6F9;border: none">
-                  <div class="card-body">
-                    <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
-                    <a href="/detailproreq" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4 mb-2 mb-sm-2 mt-3">
-                <div class="card" style="background-color: #F3F6F9;border: none">
-                  <div class="card-body">
-                    <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
-                    <a href="/detailproreq" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4 mb-2 mb-sm-2 mt-3">
-                <div class="card" style="background-color: #F3F6F9;border: none">
-                  <div class="card-body">
-                    <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">Website Berita</h5>
-                    <a href="/detailproreq" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
-                  </div>
-                </div>
-              </div>
+              @endforeach
             </div>
 
         </div>

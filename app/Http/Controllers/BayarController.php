@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sosmed;
 use Illuminate\Http\Request;
 
 class BayarController extends Controller
 {
         public function bayarclient()
         {
-            return view('Client.bayar');
+            $sosmed = Sosmed::all();
+            return view('Client.bayar', compact('sosmed'));
         }
 
         public function bayar2client()
         {
-            return view('Client.bayar2');
+            $sosmed = Sosmed::all();
+            return view('Client.bayar2', compact('sosmed'));
         }
 }
