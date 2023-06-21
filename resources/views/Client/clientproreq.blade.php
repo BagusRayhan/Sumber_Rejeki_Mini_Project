@@ -50,30 +50,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($data as $item)
                             <tr>
-                                <td>Mr.Daniel</td>
-                                <td>Website Online Shop</td>
-                                <td>15.000.000</td>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->napro }}</td>
+                                <td>{{ $item->deadline }}</td>
                                 <td class="d-flex justify-content-evenly">
-                                    <a href="{{ route('editproreq') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="{{ route('editproreq', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Mr.Andreans</td>
-                                <td>Website Toko </td>
-                                <td>15.000.000</td>
-                                <td class="d-flex justify-content-evenly">
-                                    <a href="{{ route('editproreq') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mr.Zaka</td>
-                                <td>Website kantin</td>
-                                <td>15.000.000</td>
-                                <td class="d-flex justify-content-evenly">
-                                    <a href="{{ route('editproreq') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                </td>
-                            </tr>
+                             @endforeach
                         </tbody>
                     </table>
                 </div>

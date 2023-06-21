@@ -82,22 +82,25 @@
         <div class="card" style="width: 28em">
             <div class="card-body">
                 <h5 class="card-title">Edit requet</h5>
-                <form>
+                <form action="{{ route('updateproreq', $data->id) }}" method="POST"  enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    @method('PUT')
                     <div class="form-group">
                         <label for="input1">Nama Client</label>
-                        <input type="text" class="form-control" id="input1" value="Ahmad" disabled>
+                        <input type="text" class="form-control" name="nama" id="input1" value="{{ $data->nama }}">
                     </div><br>
                     <div class="form-group">
                         <label for="input2">Nama Project</label>
-                        <input type="text" class="form-control" id="input2" value="Website Sekolah">
+                        <input type="text" class="form-control" name="napro" id="input2" value="{{ $data->napro }}">
                     </div><br>
                     <div class="form-group">
-                        <label for="input3">Dokumen Pendukung</label>
-                        <input type="file" class="form-control" id="input3">
+                        <label for="input3">Dokumen Pendukung</label><br><br>
+                        <img src="{{ asset('gambar/'.$data->bukti) }}"  width="10%" height="10%">
+                        <input type="file" class="form-control" name="bukti" value="{{ 'gambar/'.$data->bukti }}" id="input3">
                     </div><br>
                     <div class="form-group">
                         <label for="input4">Deadline</label>
-                        <input type="datetime-local" class="form-control" id="input4">
+                        <input type="datetime-local" class="form-control" name="deadline" value="{{ $data->deadline }}" id="input4">
                     </div><br>
                     <center>
                     <button type="submit" class="btn btn-primary w-100">Edit Request</button><br><br>
