@@ -191,7 +191,13 @@
                     deleteItem.dataset.bsToggle = 'modal';
                     deleteItem.dataset.bsTarget = '#';
                     var deleteSpan = document.createElement('span');
+                    var deleteButton = document.createElement('button');
+                    deleteButton.classList.add('deleteButton');
+                    deleteButton.textContent = 'Hapus';
+                    deleteButton.addEventListener('click', deleteInput);
+                    inputGroup.appendChild(deleteButton);
                     deleteSpan.classList.add('option-icon');
+
                     var deleteIcon = document.createElement('i');
                     deleteIcon.classList.add('fa', 'fa-trash');
                     deleteSpan.appendChild(deleteIcon);
@@ -224,7 +230,14 @@
                     });
                 });
             </script>
+          <script>
+            function deleteInput(event) {
+    event.preventDefault();
+    var inputContainer = event.target.parentNode.parentNode;
+    inputContainer.remove();
+}
 
+          </script>
             <center>
         </form>
     </div>
