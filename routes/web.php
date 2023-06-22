@@ -65,6 +65,7 @@ Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name(
 Route::get('projectselesai', [ProjectrequestController::class, 'projectselesai'])->name('projectselesai');
 Route::get('pengaturan', [PengaturanController::class, 'pengaturan'])->name('pengaturan');
 Route::post('updatesosmed', [PengaturanController::class, 'updatesosmed'])->name('updatesosmed');
+Route::post('updatekebijakan', [PengaturanController::class, 'updatekebijakan'])->name('updatekebijakan');
 Route::get('revisiproselesai', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
 Route::get('editproselesai', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
 Route::get('project-disetujui', [ProjectDisetujuiController::class, 'disetujui'])->name('project-disetujui-admin');
@@ -73,6 +74,4 @@ Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigita
 Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
 Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
 
-
-//harja
 Route::get('pembayaran-digital/getrekening/{id}', [AdminBayarController::class, 'getRekening'])->name('getRekening');
