@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('namafitur');
             $table->string('hargafitur');
             $table->text('deskripsi');
+            $table->bigInteger('project_id');
             $table->timestamps();
         });
     }
