@@ -37,6 +37,22 @@
         <span class="login100-form-title p-b-49">
           Login
         </span>
+        
+        @if ($errors->any())
+            <div class="alert alert-danger">
+            <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+            @endforeach
+            </ul>
+            </div>
+            @endif
+            @if (session('status'))
+            <div class="alert alert-success">
+            {{ session('message') }}
+            </div>
+            @endif
+
         <div class="wrap-input100 validate-input m-b-23" data-validate="Email is required">
           <span class="label-input100">Email</span>
           <input class="input100" type="text" id="email" name="email" placeholder="Masukkan email anda">
@@ -49,18 +65,26 @@
           <span class="focus-input100" data-symbol="&#xf191;"></span>
         </div><br>
 
-        <div class="d-flex justify-content-between">
-          <div class="d-flex justify-content-start">
-            <input type="checkbox">
+    <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-start">
+            <input type="checkbox" id="acceptCheckbox" onchange="toggleLoginButton()">
             <a href="kebijakan">&nbsp;Kebijakan Privasi</a>
-          </div>
-          <div class="d-flex justify-content-end">
+    </div>
+    <div class="d-flex justify-content-end">
             <a href="{{ route('forgot') }}">&nbsp;Forgot Password</a>
-          </div>
-        </div><br>
+    </div>
+</div><br>
 
-        <button type="submit" class="btn btn-primary btn-user btn-block" style="border-radius: 20px;">Login</button>
+    <button type="submit" class="btn btn-primary btn-user btn-block" style="border-radius: 20px;" id="loginButton" disabled>Login</button>
 
+    <script>
+    function toggleLoginButton() {
+    const checkbox = document.getElementById('acceptCheckbox');
+    const loginButton = document.getElementById('loginButton');
+
+    loginButton.disabled = !checkbox.checked;
+    }
+    </script>
 
         <div class="flex-col-c p-t-50">
           <span class="txt1 p-b-17">

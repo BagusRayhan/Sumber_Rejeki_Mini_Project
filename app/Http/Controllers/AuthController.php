@@ -17,7 +17,12 @@ class AuthController extends Controller
     public function login(Request $request) {
     $request->validate([
     'email' => 'required',
-    'password' => 'required',
+    'password' => 'required|min:6',
+    ], [
+    'email.required' => 'email tidak boleh kosong',
+    'password.required' => 'password tidak boleh kosong',
+    'password.min' => 'password minimal 6 karakter',
+
     ]);
 
     $credentials = $request->only('email', 'password');
@@ -40,14 +45,16 @@ class AuthController extends Controller
     public function signupsave(Request $request)
     {
     $request->validate([
-    'name' => 'required',
+    'name' => 'required|regex:/^[a-zA-Z]+$/',
     'email' => 'required|email|unique:users',
-    'password' => 'required|min:6',
+    'password' => 'required_with:pass|same:pass|min:6',
     'nama_perusahaan' => 'required',
     'alamat_perusahaan' => 'required|min:6',
     'no_tlp' => 'required|min:12',
     ], [
-    'password.min' => 'Password harus memiliki minimal 6 karakter'
+    'password.min' => 'Password harus memiliki minimal 6 karakter',
+    'password.same' => 'Konfirmasi password tidak sesuai',
+    'email.unique' => 'email sudah terdaftar!',
     ]);
 
     $data = $request->all();
@@ -79,4 +86,14 @@ class AuthController extends Controller
     public function kebijakan(){
         return view('kebijakanprivasi');
     }
+
+    public function logout() {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect('/');
+    }
+
 }
+
+

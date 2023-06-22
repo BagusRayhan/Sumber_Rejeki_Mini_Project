@@ -58,7 +58,7 @@
               </a>
               <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                   <button type="button" class="dropdown-item" id="profile-btn" data-bs-toggle="modal" data-bs-target="#MyModal">My Profile</button>
-                  <a href="#" class="dropdown-item">Log Out</a>
+                  <a href="{{ route('logout') }}" class="dropdown-item">Log Out</a>
               </div>
           </div>
       </div>
@@ -68,7 +68,7 @@
     .profile-modal {
         width: 400px;
     }
-  </style>  
+  </style>
 <!-- Modal -->
         <div class="modal fade" id="MyModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered profile-modal">
