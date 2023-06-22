@@ -19,9 +19,9 @@ class AuthController extends Controller
     'email' => 'required',
     'password' => 'required|min:6',
     ], [
-    'email.required' => 'email tidak boleh kosong',
-    'password.required' => 'password tidak boleh kosong',
-    'password.min' => 'password minimal 6 karakter',
+    'email.required' => 'email tidak boleh kosong!',
+    'password.required' => 'password tidak boleh kosong!',
+    'password.min' => 'password minimal 6 karakter!',
 
     ]);
 
@@ -48,13 +48,13 @@ class AuthController extends Controller
     'name' => 'required|regex:/^[a-zA-Z]+$/',
     'email' => 'required|email|unique:users',
     'password' => 'required_with:pass|same:pass|min:6',
-    'nama_perusahaan' => 'required',
-    'alamat_perusahaan' => 'required|min:6',
-    'no_tlp' => 'required|min:12',
+
     ], [
-    'password.min' => 'Password harus memiliki minimal 6 karakter',
-    'password.same' => 'Konfirmasi password tidak sesuai',
+    'password.min' => 'Password minimal 6 karakter!',
+    'password.same' => 'Konfirmasi password tidak sesuai!',
     'email.unique' => 'email sudah terdaftar!',
+    'name.required' => 'nama tidak boleh kosong!',
+    'email.required' => 'email tidak boleh kosong!',
     ]);
 
     $data = $request->all();

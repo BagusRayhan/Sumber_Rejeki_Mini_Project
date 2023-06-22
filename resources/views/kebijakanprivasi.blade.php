@@ -50,8 +50,14 @@
     </p>
 </div><br>
 <div class="text-center">
-    <a href="{{ route('login') }}" class="btn btn-primary" style=" width: 10em; border-radius: 32px;">Accept</a>
+    <button class="btn btn-primary" onclick="goBack()" style=" width: 10em; border-radius: 32px;">Accept</button>
   </div><br>
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
 
 </body>
 </html>

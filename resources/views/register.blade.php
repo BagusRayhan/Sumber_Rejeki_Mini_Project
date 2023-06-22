@@ -3,7 +3,7 @@
 
 <!-- Mirrored from colorlib.com/etc/lf/Login_v4/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Jun 2023 06:45:50 GMT -->
 <head>
-<title>Daftar Dulu </title>
+<title>register</title>
 <style>
     .input-group {
       display: flex;
@@ -125,15 +125,38 @@
               <span class="focus-input100" data-symbol="&#xf2b6;"></span>
             </div>
 
-            <div class="d-flex justify-content-between">
-            </div>
+            <div class="d-flex justify-content-start">
+                <input type="checkbox" id="privacyCheckbox">
+                <a href="kebijakan">&nbsp;Kebijakan Privasi</a>
+              </div>
+              <br>
 
-            <button type="submit" class="btn btn-primary btn-user btn-block" style="border-radius: 20px;">Register</button>
+              <button type="submit" class="btn btn-primary btn-user btn-block" style="border-radius: 20px;" id="registerButton" disabled>Register</button>
+
+              <script>
+                const privacyCheckbox = document.getElementById("privacyCheckbox");
+                const registerButton = document.getElementById("registerButton");
+
+                privacyCheckbox.addEventListener("change", function() {
+                  if (privacyCheckbox.checked) {
+                    registerButton.disabled = false;
+                  } else {
+                    registerButton.disabled = true;
+                  }
+                });
+              </script>
+
+
+
+                    <div class="flex-col-c p-t-50">
+                      <span class="txt1 p-b-17">
+                        Sudah punya akun?
+                        <a href="{{ route('login') }}" class="txt2">
+                          Login
+                        </a>
+                      </span>
+                    </div>
           </form>
-
-
-
-
     </div>
   </div>
 </div>
