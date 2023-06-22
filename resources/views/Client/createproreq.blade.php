@@ -120,8 +120,3 @@
 
 
 @include('Client.Template.script')
-
-
-
-
-
