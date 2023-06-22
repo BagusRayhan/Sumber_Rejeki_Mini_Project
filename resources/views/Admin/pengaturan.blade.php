@@ -29,8 +29,14 @@
                         <div class="card-body">
                             <div id="editor">
                                 <h5 class="card-title">Edit Kebijakan Privasi</h5>
-                                <textarea id="summernote" name="content"></textarea><br>
-                                <button type="button" style="float: right;" class="btn btn-primary">Simpan</button>
+                                <form action="{{ route('updatekebijakan') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                {{-- @foreach ($data1 as $item) collection
+                                <textarea id="summernote" name="content">{{ $item->kebijakan }}</textarea><br>
+                                @endforeach --}}
+                                <textarea id="summernote" name="content">{{ $data1->kebijakan }}</textarea><br>
+                                <button type="submit" style="float: right;" class="btn btn-primary">Simpan</button>
+                            </form>
                             </div>
                         </div>
                     </div>

@@ -37,3 +37,11 @@ Route::get('detail-revisi-client', [SelesaiController::class, 'detail'])->name('
 
 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+
+
+
+Route::post('updatekebijakan', [PengaturanController::class, 'updatekebijakan'])->name('updatekebijakan');
+
+//harja
+Route::get('pembayaran-digital/getrekening/{id}', [AdminBayarController::class, 'getRekening'])->name('getRekening');
