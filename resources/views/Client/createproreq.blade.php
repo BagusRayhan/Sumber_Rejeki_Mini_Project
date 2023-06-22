@@ -244,8 +244,3 @@
 
 @include('Client.Template.footer')
 @include('Client.Template.script')
-
-
-
-
-
