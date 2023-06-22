@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Proreq;
-use App\Models\clientproreq;
+use App\Models\Fitur;
 use App\Models\Sosmed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -64,8 +64,8 @@ class IndexcController extends Controller
 
     $data = [
         'nama' => $request['nama'],
-	'napro' => $request['napro'],
-	'bukti' => $awal,
+        'napro' => $request['napro'],
+        'bukti' => $awal,
         'deadline' => $request['deadline'],
         
     ];
