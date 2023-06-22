@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function(){
     Route::get('requestclient', [IndexcController::class, 'requestclient'])->name('requestclient');
     Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
     Route::put('updateproreq/{id}', [IndexcController::class, 'update'])->name('updateproreq');
+    Route::post('simpanfitur', [IndexcController::class, 'simpanf'])->name('simpanfitur');
+    Route::post('simpandesk', [IndexcController::class, 'simpand'])->name('simpandesk');
     Route::get('setujuclient', [SetujuController::class, 'setujuclient'])->name('setujuclient');
     Route::get('selesaiclient', [SelesaiController::class, 'selesaiclient'])->name('selesaiclient');
     Route::get('revisiclient', [SelesaiController::class, 'revisiclient'])->name('revisiclient');
