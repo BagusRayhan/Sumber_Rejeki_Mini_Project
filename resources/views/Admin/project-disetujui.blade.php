@@ -57,23 +57,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($project as $pro)
-                                    <tr>
-                                        <td>{{ $pro->namaclient }}</td>
-                                        <td>{{ $pro->namaproject }}</td>
-                                        <td>
-                                            <div class="pg-bar">
-                                                <div class="progress w-75">
-                                                    <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>{{ $pro->hargaproject }}</td>
-                                        <td class="d-flex justify-content-evenly">
-                                            <a href="/detail-project-disetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
+                                    @if (count($project) !== 0)
+                                        @foreach ($project as $pro)
+                                            <tr>
+                                                <td>{{ $pro->namaclient }}</td>
+                                                <td>{{ $pro->namaproject }}</td>
+                                                <td>
+                                                    <div class="pg-bar">
+                                                        <div class="progress w-75">
+                                                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>{{ $pro->hargaproject }}</td>
+                                                <td class="d-flex justify-content-evenly">
+                                                    <a href="/detail-project-disetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        @else 
+                                            <tr>
+                                                <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
+                                            </tr>
+                                        @endif
                                 </tbody>
                             </table>
                         </div>

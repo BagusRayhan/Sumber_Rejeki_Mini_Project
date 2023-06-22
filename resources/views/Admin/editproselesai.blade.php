@@ -19,195 +19,101 @@
 
         <!-- Content Start -->
         <div class="content">
-      @include('Admin.templates.navbar')
-      <style>
-        .td-spacing {
-            margin-right: 20px;
-        }
-
-    </style>
-    <style>
-        .input-group {
-          position: relative;
-        }
-
-        .input-icon {
-          position: absolute;
-          top: 50%;
-          right: 10px;
-          transform: translateY(-50%);
-          pointer-events: auto;
-          cursor: pointer;
-        }
-
-        .dropdown-menu {
-          display: none;
-          position: absolute;
-          top: 100%;
-          right: 0;
-          z-index: 999;
-          /* Gaya lainnya yang diinginkan */
-        }
-
-        .dropdown-options {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          background-color: #fff;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-          position: absolute;
-          top: 100%;
-          right: 0;
-          width: 200px;
-        }
-
-        .dropdown-options li {
-          padding: 10px;
-          cursor: pointer;
-        }
-
-        .dropdown-options li:hover {
-          background-color: #f5f5f5;
-        }
-
-        .option-icon {
-          margin-right: 5px;
-        }
-
-        .input-group {
-      display: flex;
-      align-items: center;
-    }
-
-    .input-group .form-control {
-      flex: 1;
-    }
-
-    .input-container {
-      margin-bottom: 10px;
-    }
-
-                    </style>
-    <div class="container mt-4 d-flex justify-content-evenly">
-        <div class="card" style="width: 28em">
-            <div class="card-body">
-                <h5 class="card-title">Request Project</h5>
-                <form>
-                    <div class="form-group">
-                        <label for="input1">Nama Client</label>
-                        <input type="text" class="form-control" id="input1" value="Ahmad" disabled>
-                    </div><br>
-                    <div class="form-group">
-                        <label for="input2">Nama Project</label>
-                        <input type="text" class="form-control" id="input2" placeholder="Masukkan nama project anda">
-                    </div><br>
-                    <div class="form-group">
-                        <label for="input3">Dokumen Pendukung</label>
-                        <input type="file" class="form-control" id="input3">
-                    </div><br>
-                    <div class="form-group">
-                        <label for="input4">Deadline</label>
-                        <input type="datetime-local" class="form-control" id="input4" placeholder="Input 4">
-                    </div><br>
-                    <center>
-                    <button type="submit" class="btn btn-primary w-100">Kirim Request</button><br><br>
-                    <a  href="{{ route('revisiproselesai') }}">Kembali</a></center>
-                </form>
-            </div>
-        </div>
-        <div class="card" style="width: 28em">
-            <div class="card-body" style="height: 300px; overflow-y: scroll;">
-                <h5 class="card-title">Fitur</h5>
-                <form>
-                    {{-- CODE START ICON TITIK 3 --}}
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="input1" value="Landing Page">
-                        <div class="input-icon" style="z-index: 5">
-                                  <i class="fas fa-ellipsis-v"></i>
-
-                        </div>
-                        <div class="dropdown-menu">
-                            <ul class="dropdown-options">
-                                <li data-bs-toggle="modal" data-bs-target="#detailfitur"><span class="option-icon"><i class="fas fa-plus"></i></span> Tambah deskripsi</li>
-                            </ul>
-                        </div>
-                    </div><br>
-
-                    {{-- AKHIR CODE ICON TITIK 3 --}}
-
-
-                    {{-- CODE START ADD FITUR --}}
-                    <div id="container"></div>
-
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="input1" placeholder="Add fitur">
-                        <div class="input-icon" style="z-index: 5">
-                        <i class="fas fa-plus" onclick="addInput(event)"></i>
-                        </div>
-                    </div><br>
-
-
-                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                    <script>
-                        function addInput(event) {
-                          event.preventDefault();
-                          var container = document.getElementById('container');
-                          var inputElement = document.createElement('input');
-                          inputElement.type = 'text';
-                          inputElement.classList.add('form-control');
-                          var inputContainer = document.createElement('div');
-                          inputContainer.classList.add('input-container');
-                          inputContainer.appendChild(inputElement);
-                          container.insertBefore(inputContainer, container.firstChild);
-                        }
-                      </script>
-
-                    <script>
-                    $(document).ready(function() {
-                    $('.input-icon').click(function() {
-                    $(this).siblings('.dropdown-menu').toggle();
-                    });
-                    });
-                    </script>
-
-                    {{-- AKHIR CODE ADD FITUR --}}
-                    <center>
-                </form>
-            </div>
-        </div>
-    </div>
-
-     <!-- Modal Box Edit Bank Start -->
-     <div class="modal fade" id="detailfitur" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Deskripsi</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="">
-
-                        <div class="col-sm-12 col-xl-11" style="margin-left: 2%; margin">
-                            <div class="mb-3">
-                                    <label for="input1">Deskripsi</label>
-                                    <textarea class="form-control w-100" name="deskirpsi" placeholder="Masukkan deskripsi yang anda inginkan"></textarea>
+            @include('Admin.templates.navbar')
+            <div class="container mt-4 d-flex flex-column">
+                <div class="wrapper">
+                    <form action="" method="POST"  enctype="multipart/form-data">
+                    <h5 class="px-3 mb-2">Request Project</h5>
+                        @csrf
+                        <div class="mb-3 d-flex justify-content-between">
+                            <div class="wrapper w-50 px-3 d-flex flex-column">
+                                <div class="form-group mb-3">
+                                    <label for="input1">Nama Client</label>
+                                    <input type="text" class="form-control" id="input1" name="nama" placeholder="Masukkan Nama Anda">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="input2">Nama Project</label>
+                                    <input type="text" class="form-control" id="input2" name="napro" placeholder="Masukkan nama project anda">
+                                </div>
                             </div>
+                            <div class="wrapper w-50 px-3 d-flex flex-column">
+                                <div class="form-group mb-3">
+                                    <label for="input3">Dokumen Pendukung</label>
+                                    <input type="file" class="form-control" id="input3" name="bukti">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="input4">Deadline</label>
+                                    <input type="datetime-local" class="form-control" id="input4" name="deadline" placeholder="Input 4">
+                                </div>
                             </div>
-                        <div class="col-sm-12 col-xl-11 d-flex justify-content-end" style="margin-left: 2%; margin">
-                            <div class="mb-3">
-                                    <a href="" class="btn btn-danger">Batal</a>
-                                    <a href="" class="btn btn-primary">Simpan</a>
-                            </div>
+                        </div>
+                        <div class="wrapper m-3 d-flex">
+                            <a href="" class="btn btn-danger btn-sm mx-2">Kembali</a>
+                            <a href="" class="btn btn-primary btn-sm mx-2">Simpan</a>
+                        </div>
                     </form>
                 </div>
+                <div class="wrapper mt-3">
+                    <form action="">
+                        <div class="wrapper d-flex justify-content-between align-items-center mx-3">
+                            <h6>Fitur</h6>
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addFiturModal">Tambah Fitur</button>
+                        </div>
+                        <div class="table-responsive px-3">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="w-25" scope="col">Nama Fitur</th>
+                                        <th class="w-75" scope="col">Deskripsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{-- @if (count($fitur) !== 0) --}}
+                                    @if (0 !== 0)
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    @else
+                                        <tr>
+                                            <td class="text-center" colspan="2">Tidak ada data</td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
+            <!-- Add Fitur -->
+            <div class="modal fade" id="addFiturModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Fitur</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" id="" method="post">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="">Nama Fitur</label>
+                                    <input type="text" value="" class="form-control" id="nomorRekening">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Deskripsi</label>
+                                    <input type="text" value="" class="form-control" id="nomorRekening">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                        <button type="button" class="btn btn-primary">Simpan</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<!-- Modal Box Edit Bank End-->
 
 
 

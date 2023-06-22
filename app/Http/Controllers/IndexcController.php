@@ -24,7 +24,8 @@ class IndexcController extends Controller
 
     public function createproreq(){
         $sosmed = Sosmed::all();
-        return view ('Client.createproreq', compact('sosmed'));
+        $fitur = Fitur::all();
+        return view ('Client.createproreq', compact('sosmed','fitur'));
     }
     public function simpan(Request $request){
         $nm = $request->bukti;
