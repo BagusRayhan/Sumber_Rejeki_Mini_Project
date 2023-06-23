@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-            Schema::create('proreq', function (Blueprint $table) {
+        Schema::create('ewallet', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('napro');
-            $table->string('bukti');
-            $table->dateTime('deadline');
+            $table->string('qrcode');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proreq');
+        Schema::dropIfExists('ewallet');
     }
 };

@@ -50,7 +50,7 @@
                         </div>
                         <div class="wrapper m-3 d-flex">
                             <a href="" class="btn btn-danger btn-sm mx-2">Kembali</a>
-                            <button type="submit" class="btn btn-primary btn-sm mx-2">Simpan</button>
+                            <a href="" class="btn btn-primary btn-sm mx-2">Simpan</a>
                         </div>
                     </form>
                 </div>
@@ -71,18 +71,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if (count($fitur) !== 0)
                                         <tr>
                                             <td></td>
                                             <td></td>
                                         </tr>
+                                    @else
                                         <tr>
                                             <td class="text-center" colspan="2">Tidak ada data</td>
                                         </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </form>
+                @include('Client.Template.footer')
             </div>
 
             <!-- Add Fitur -->
@@ -98,11 +102,11 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="">Nama Fitur</label>
-                                    <input type="text" value="" class="form-control" id="fitur">
+                                    <input type="text" value="" class="form-control" id="nomorRekening">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Deskripsi</label>
-                                    <input type="text" value="" class="form-control" id="deskripsi">
+                                    <input type="text" value="" class="form-control" id="nomorRekening">
                                 </div>
                             </form>
                         </div>

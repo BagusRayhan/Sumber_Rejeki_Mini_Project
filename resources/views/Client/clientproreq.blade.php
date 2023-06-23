@@ -34,10 +34,7 @@
                     </form>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <form action="{{ route('simpanproj') }}" method="POST"  enctype="multipart/form-data">
-                        @csrf
-                        <button type="submit" class="btn btn-primary btn-sm mx-2">Request Project</button>
-                    </form>
+                    <a href="{{ route('createproreq') }}" class="btn btn-primary">Request Project</a>
                 </div>
             </div>
             <div class="row mt-4">
@@ -88,6 +85,7 @@
                 </ul>
             </nav>
         </div>
+        @include('Client.Template.footer')
             </div>
             <!-- Content End -->
 
