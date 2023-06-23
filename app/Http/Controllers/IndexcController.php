@@ -53,6 +53,10 @@ class IndexcController extends Controller
        return view('Client.createproreq');
     }
 
+    public function simpanfitur(Request $request){
+
+    }
+
     public function editproreq($id){
         $sosmed = Sosmed::all();
         $data = Proreq::findorfail($id);

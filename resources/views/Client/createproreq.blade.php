@@ -55,10 +55,12 @@
                     </form>
                 </div>
                 <div class="wrapper mt-3">
-                    <form action="">
+                    <form action="#">
                         <div class="wrapper d-flex justify-content-between align-items-center mx-3">
                             <h6>Fitur</h6>
+                            <form action="#">
                             <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addFiturModal">Tambah Fitur</button>
+                            </form>
                         </div>
                         <div class="table-responsive px-3">
                             <table class="table table-striped table-hover">
@@ -92,7 +94,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="" id="" method="post">
+                            <form action="{{ route('simpanfitur') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="">Nama Fitur</label>
@@ -116,3 +118,9 @@
 
 
 @include('Client.Template.script')
+
+    </body>
+
+
+    <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:45:02 GMT -->
+    </html>
