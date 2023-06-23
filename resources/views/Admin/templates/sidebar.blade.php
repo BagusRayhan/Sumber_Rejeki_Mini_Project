@@ -24,7 +24,7 @@
                     <a href="/pembayaran-digital" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('bayar-digital-admin') ? 'text-primary' : '' }}">Pembayaran Digital</a>
                 </div>
             </div>
-            <a href="pengaturan" class="nav-item nav-link {{ Request::routeIs('pengaturan') ? 'active' : ''}}"><i class="fa fa-gear me-2"></i>Pengaturan</a>
+            <a href="/pengaturan" class="nav-item nav-link {{ Request::routeIs('pengaturan') ? 'active' : ''}}"><i class="fa fa-gear me-2"></i>Pengaturan</a>
         </div>
     </nav>
 </div>

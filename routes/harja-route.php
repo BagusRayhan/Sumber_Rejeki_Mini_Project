@@ -45,3 +45,8 @@ Route::post('updatekebijakan', [PengaturanController::class, 'updatekebijakan'])
 
 //harja
 Route::get('pembayaran-digital/getrekening/{id}', [AdminBayarController::class, 'getRekening'])->name('getRekening');
+
+
+// route baru kebijakan
+
+Route::get('kebijakan', [PengaturanController::class, 'kebijakan'])->name('kebijakan');
