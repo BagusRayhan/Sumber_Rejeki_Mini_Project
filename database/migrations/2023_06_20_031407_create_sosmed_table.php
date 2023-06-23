@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('sosmed', function (Blueprint $table) {
             $table->id();
-            $table->string('wa');
-            $table->string('ig');
-            $table->string('email');
+            $table->string('wa')->unique();
+            $table->string('ig')->unique();
+            $table->string('email')->unique();
             $table->timestamps();
         });
     }
