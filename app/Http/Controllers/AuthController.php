@@ -13,29 +13,26 @@ class AuthController extends Controller
     public function index(){
         return view('login');
     }
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required|min:6',
+        ], [
+            'email.required' => 'Email tidak boleh kosong!',
+            'password.required' => 'Password tidak boleh kosong!',
+            'password.min' => 'Password minimal 6 karakter!',
+        ]);
 
-    public function login(Request $request) {
-    $request->validate([
-    'email' => 'required',
-    'password' => 'required|min:6',
-    ], [
-    'email.required' => 'email tidak boleh kosong!',
-    'password.required' => 'password tidak boleh kosong!',
-    'password.min' => 'password minimal 6 karakter!',
-
-    ]);
-
-    $credentials = $request->only('email', 'password');
-    if (Auth::attempt($credentials)) {
-    return redirect()->route('indexclient')
-    ->with('message', 'Login berhasil!');
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('indexclient')->with('message', 'Login berhasil!');
+        }
+        return redirect('/')
+            ->withErrors(['email' => 'Email atau password tidak valid!'])
+            ->withInput($request->except('password'));
     }
 
-    // Tampilkan pesan SweetAlert jika login gagal
-    return redirect('/')
-    ->with('message', 'Email atau password tidak valid!')
-    ->with('alert-type', 'error');
-    }
 
     public function register()
     {
@@ -60,7 +57,7 @@ class AuthController extends Controller
     $data = $request->all();
     $check = $this->create($data);
 
-    // Tampilkan pesan SweetAlert jika register berhasil
+
     return redirect("/")
     ->with('success', 'Anda berhasil melakukan register!')
     ->with('alert-type', 'success');

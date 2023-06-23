@@ -37,7 +37,7 @@
         <span class="login100-form-title p-b-49">
           Login
         </span>
-        
+
         @if ($errors->any())
             <div class="alert alert-danger">
             <ul>
