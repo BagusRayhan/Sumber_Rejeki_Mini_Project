@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function(){
     Route::get('revisiselesai', [SelesaiController::class, 'revisiselesai'])->name('revisiselesai');
     Route::get('revisibutton', [SelesaiController::class, 'revisibutton'])->name('revisibutton');
     Route::get('detail-revisi-client', [SelesaiController::class, 'detail'])->name('detail-revisi-client');
+    Route::delete('/destroy/{id}', [TolakController::class, 'destroy'])->name('destroy');
 
     // Halaman Admin
     Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
@@ -79,6 +80,7 @@ Route::middleware('auth')->group(function(){
     Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
     
     Route::get('pembayaran-digital/getrekening/{id}', [AdminBayarController::class, 'getRekening'])->name('getRekening');
+
     });
     
 // Halaman Admin

@@ -43,25 +43,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Website Sekolah</td>
-                                <td>Kami telah mengevaluasi project ini seccara menyeluruh dan menyimpulkan bahwa manfaatnya tidak sebanding dengan biaya dan risiko yang terlibat.</td>
-                                <td class="text-center">
-                                    <a href="#" class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Website Marketplace</td>
-                                <td>Kami telah mengevaluasi project ini seccara menyeluruh dan menyimpulkan bahwa manfaatnya tidak sebanding dengan biaya dan risiko yang terlibat.</td>
-                                <td class="text-center">
-                                    <a href="#" class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash"></i></a>
-                                </td>
-                            </tr>
+                            @foreach ($data as $row)
+                                <tr>
+                                    <td>{{ $row->namaproject }}</td>
+                                    <td>{{ $row->alasan }}</td>
+                                    <td class="text-center">
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                        action="{{ route('destroy', $row->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger"> <i class="fa-solid fa-trash"></i></button>
+                                    </form>
+
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-end mt-sm-3">
                 <li class="page-item">

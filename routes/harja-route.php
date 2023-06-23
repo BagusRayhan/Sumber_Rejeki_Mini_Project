@@ -50,3 +50,4 @@ Route::get('pembayaran-digital/getrekening/{id}', [AdminBayarController::class, 
 // route baru kebijakan
 
 Route::get('kebijakan', [PengaturanController::class, 'kebijakan'])->name('kebijakan');
+Route::delete('/destroy/{id}', [TolakController::class, 'destroy'])->name('destroy');
