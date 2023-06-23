@@ -23,7 +23,7 @@
             
             @include('Admin.templates.navbar')
             
-            <!-- Table Start -->
+            <!-- Bank Table Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-12">
@@ -38,128 +38,96 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($banks as $bank)
+                                    @if (count($banks) !== 0)
+                                        @foreach ($banks as $bank)
+                                            <tr>
+                                                <td>{{ $bank->nama }}</td>
+                                                <td>{{ $bank->rekening }}</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editRekeningModal{{ $bank->id }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                </td>
+                                            </tr>
+                                            <!-- Modal Box Edit Bank Start -->
+                                            <div class="modal fade" id="editRekeningModal{{ $bank->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ $bank->nama }}</h1>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="" id="editRekeningForm" method="post">
+                                                                    @csrf
+                                                                    <div class="mb-3">
+                                                                        <input type="text" value="{{ $bank->rekening }}" class="form-control" id="nomorRekening">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                                                            <a href="" class="btn btn-primary">Simpan</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Modal Box Edit Bank End-->
+                                        @endforeach
+                                    @else
                                         <tr>
-                                            <td>{{ $bank->nama }}</td>
-                                            <td>{{ $bank->rekening }}</td>
-                                            <td>
-                                                <a href="#" class="btn btn-primary btn-sm edit-btn" data-id="{{ $bank->id }}" data-bs-toggle="modal" data-bs-target="#editRekeningModal"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            </td>
+                                            <td class="text-center" colspan="3">Tidak ada data</td>
                                         </tr>
-                                    @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <!-- Bank Table End -->
+                    <!-- Bank E-Wallet Start -->
                     <div class="col-12">
                         <h6 class="mb-4">E-Wallet</h6>
                         <div class="d-flex justify-content-evenly">
-                            <div class="col-2">
-                                <div class="card">
-                                    <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
-                                    <div class="card-body justify-content-between align-items-center">
-                                        <h6 class="card-title">DANA</h6>
-                                        <a href="#" class="btn btn-primary btn-sm rounded-circle float-end" data-bs-toggle="modal" data-bs-target="#editQRModal"><i class="fa-solid fa-pen-to-square"></i></a>
+                            @if (count($ewallet) !== 0)
+                                @foreach ($ewallet as $ewl)
+                                    <div class="col-2">
+                                        <div class="card">
+                                            <img src="gambar/qr/{{ $ewl->qrcode }}" class="card-img-top p-2">
+                                            <div class="card-body justify-content-between align-items-center">
+                                                <h6 class="card-title">{{ $ewl->nama }}</h6>
+                                                <a href="#" class="btn btn-primary btn-sm rounded-circle float-end" data-bs-toggle="modal" data-bs-target="#editQRModal{{ $ewl->id }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="card">
-                                    <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
-                                    <div class="card-body justify-content-between align-items-center">
-                                        <h6 class="card-title">OVO</h6>
-                                        <a href="#" class="btn btn-primary btn-sm rounded-circle float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <!-- Modal Box Edit QR Start -->
+                                    <div class="modal fade" id="editQRModal{{ $ewl->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ $ewl->nama }}</h1>
+                                                </div>
+                                                <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
+                                                    <img src="gambar/qr/{{ $ewl->qrcode }}" class="w-75">
+                                                    <input type="file" class="form-control" name="" id="">
+                                                </div>
+                                                <div class="modal-footer d-flex justify-content-center">
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                                                    <button type="button" class="btn btn-primary">Simpan</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="card">
-                                    <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
-                                    <div class="card-body justify-content-between align-items-center">
-                                        <h6 class="card-title">GoPay</h6>
-                                        <a href="#" class="btn btn-primary btn-sm rounded-circle float-end"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="card">
-                                    <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="card-img-top p-2">
-                                    <div class="card-body justify-content-between align-items-center">
-                                        <h6 class="card-title">LinkAja</h6>
-                                        <a href="#" class="btn btn-primary btn-sm rounded-circle float-end"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                                    <!-- Modal Box Edit QR End -->
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Bank Table End -->
-
-            <!-- Modal Box Edit Bank Start -->
-            <div class="modal fade" id="editRekeningModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">UBAH NO REKENING</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="" id="editRekeningForm" method="post">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <input type="text" value="" class="form-control" id="nomorRekening">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                            <button type="button" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal Box Edit Bank End-->
+            <!-- E-Wallet Table End -->
             
-            <!-- Modal Box Edit QR Start -->
-            <div class="modal fade" id="editQRModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">DANA</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
-                            <img src="{{ asset('ProjectManagement/dashmin/img/qr-example.png') }}" class="w-75">
-                            <input type="file" class="form-control" name="" id="">
-                        </div>
-                        <div class="modal-footer d-flex justify-content-evenly">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                            <button type="button" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal Box Edit QR End -->
+            
         </div>
         <!-- Content End -->
     </div>
 
     @include('Admin.templates.script')
 
-    <script>
-        $(document).ready(function() {
-            $('.edit-btn').click(function() {
-                let id = $(this).data('id');
-                $.ajax({
-                    url: '/pembayaran-digital/getrekening/' + id,
-                    method: 'GET',
-                    success: function(response) {
-                        $('#nomorRekening').val(response.nomorRekening);
-                        $('#simpanRekening').data('id', response.id);
-                    }
-                });
-            });
-        });
-    </script>
 </body>

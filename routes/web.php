@@ -75,4 +75,4 @@ Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigita
 Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
 Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
 
-Route::get('pembayaran-digital/getrekening/{id}', [AdminBayarController::class, 'getRekening'])->name('getRekening');
+Route::get('simpan-rekening', [AdminBayarController::class, 'simpanRekening'])->name('simpan-rekening');
