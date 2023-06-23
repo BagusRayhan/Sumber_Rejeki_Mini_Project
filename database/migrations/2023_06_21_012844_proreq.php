@@ -15,10 +15,10 @@ return new class extends Migration
     {
             Schema::create('proreq', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('napro');
-            $table->string('bukti');
-            $table->dateTime('deadline');
+            $table->string('nama')->nullable();
+            $table->string('napro')->nullable();
+            $table->string('bukti')->nullable();
+            $table->dateTime('deadline')->nullable();
             $table->timestamps();
         });
     }

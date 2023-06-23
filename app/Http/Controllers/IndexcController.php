@@ -27,7 +27,7 @@ class IndexcController extends Controller
         $fitur = Fitur::all();
         return view ('Client.createproreq', compact('sosmed','fitur'));
     }
-    public function simpan(Request $request){
+    public function simpann(Request $request){
         $nm = $request->bukti;
         $namaFile =time().rand(100,999).".".$nm->getClientOriginalExtension();
         
@@ -44,6 +44,15 @@ class IndexcController extends Controller
        return redirect('drequestclient');
     }
 
+     public function simpan(Request $request){
+      
+        $dtUpload = new Proreq();
+        $dtUpload->id= $request->id;
+        
+        $dtUpload->save();
+       return view('Client.createproreq');
+    }
+
     public function editproreq($id){
         $sosmed = Sosmed::all();
         $data = Proreq::findorfail($id);
@@ -51,7 +60,7 @@ class IndexcController extends Controller
     }
 
     public function update(Request $request, $id){
-            $ubah = Proreq::findorfail($id);
+    $ubah = Proreq::findorfail($id);
     $awal = $ubah->bukti;
 
     if ($request->hasFile('bukti')) {

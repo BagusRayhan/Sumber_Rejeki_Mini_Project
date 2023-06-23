@@ -40,7 +40,8 @@ Route::middleware('auth')->group(function(){
     Route::get('indexclient', [IndexcController::class, 'indexclient'])->name('indexclient');
     Route::get('drequestclient', [IndexcController::class, 'drequestclient'])->name('drequestclient');
     Route::get('createproreq', [IndexcController::class, 'createproreq'])->name('createproreq');
-    Route::post('simpanpro', [IndexcController::class, 'simpan'])->name('simpanpro');
+    Route::post('simpanpro', [IndexcController::class, 'simpann'])->name('simpanpro');
+    Route::post('simpanproj', [IndexcController::class, 'simpan'])->name('simpanproj');
     Route::get('requestclient', [IndexcController::class, 'requestclient'])->name('requestclient');
     Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
     Route::put('updateproreq/{id}', [IndexcController::class, 'update'])->name('updateproreq');
