@@ -59,7 +59,6 @@ class IndexcController extends Controller
         'namafitur' => $request->namafitur,
         'deskripsi' => $request->deskripsi
     ]);                   
-    $fitur = Fitur::find($request->id);
 }
 
 
