@@ -50,42 +50,11 @@
                         </div>
                         <div class="wrapper m-3 d-flex">
                             <a href="" class="btn btn-danger btn-sm mx-2">Kembali</a>
-                            <button type="submit" class="btn btn-primary btn-sm mx-2">Simpan</button>
+                            <button type="submit" class="btn btn-primary btn-sm mx-2">Next Step</button>
                         </div>
                     </form>
                 </div>
                 <div class="wrapper mt-3">
-                    <form action="#">
-                        <div class="wrapper d-flex justify-content-between align-items-center mx-3">
-                            <h6>Fitur</h6>
-                            <form action="#">
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addFiturModal">Tambah Fitur</button>
-                            </form>
-                        </div>
-                        <div class="table-responsive px-3">
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th class="w-25" scope="col">Nama Fitur</th>
-                                        <th class="w-75" scope="col">Deskripsi</th>
-                                        <th class="w-75" scope="col">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($data as $item)
-                                        <tr>
-                                            <td>{{ $item->namafitur }}</td>
-                                            <td>{{ $item->deskripsi }}</td>
-                                            <td class="d-flex justify-content-evenly">
-                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            </td>
-                                    @endforeach
-                                        </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </form>
             </div>
 
             <!-- Add Fitur -->

@@ -52,7 +52,7 @@
                 </div>
                 <div class="wrapper m-3 d-flex">
                     <a href="{{ route('drequestclient') }}" class="btn btn-danger btn-sm mx-2">Kembali</a>
-                    <button type="submit" class="btn btn-primary btn-sm mx-2">Edit</button>
+                    <button type="submit" class="btn btn-primary btn-sm mx-2">Kirim Request</button>
                 </div>
             </form>
         </div>
@@ -100,18 +100,18 @@
                         @csrf
                         <div class="mb-3">
                             <label for="">Nama Fitur</label>
-                            <input type="text" value="" class="form-control" id="fitur">
+                            <input type="text" name="namafitur" class="form-control" id="fitur" placeholder="Masukkan Fitur">
                         </div>
                         <div class="mb-3">
                             <label for="">Deskripsi</label>
-                            <input type="text" value="" class="form-control" id="deskripsi">
+                            <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Masukkan Deskripsi"></textarea>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
-            </div>
         </div>
     </div>
 </div>

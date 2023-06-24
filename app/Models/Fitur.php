@@ -10,6 +10,11 @@ class Fitur extends Model
     protected $table = "fitur";
     protected $primarykey = "id";
     protected $fillable = [
-        'id', 'naproj','namafitur', 'hargafitur','deskripsi','projectid'
+        'id', 'id_project','namafitur', 'hargafitur','deskripsi'
     ];
+
+    public function napro()
+    {
+        return $this->belongsTo(proreq::class);
+    }
 }

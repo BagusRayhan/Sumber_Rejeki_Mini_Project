@@ -12,4 +12,10 @@ class proreq extends Model
     protected $fillable = [
         'id', 'nama', 'napro','bukti','deadline'
     ];
+
+        public function fitur()
+    {
+        return $this->hasMany(Fitur::class);
+    }
+
 }

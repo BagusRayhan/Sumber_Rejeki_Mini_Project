@@ -44,7 +44,7 @@ class IndexcController extends Controller
 
         $nm->move(public_path().'/gambar',$namaFile);
         $dtUpload->save();
-        return redirect('showproj');
+        return redirect('drequestclient');
     }
 
      public function showproj(Request $request){
@@ -53,19 +53,12 @@ class IndexcController extends Controller
        return view('Client.createproreq',compact('data'));
     }
 
- public function simpannn(Request $request)
-{
-    Fitur::create([
-        'namafitur' => $request->namafitur,
-        'deskripsi' => $request->deskripsi
-    ]);                   
-}
-
-
-    public function editproreq($id){
-        $sosmed = Sosmed::all();
-        $data = Proreq::findorfail($id);
-        return view('Client.editproreq',compact('data','sosmed'));
+    public function simpannn(Request $request)
+    {
+        Fitur::create([
+            'namafitur' => $request->namafitur,
+            'deskripsi' => $request->deskripsi
+        ]);                   
     }
 
     public function update(Request $request, $id){
@@ -94,4 +87,11 @@ class IndexcController extends Controller
     return redirect('drequestclient');
     }
     
+
+    public function editproreq($id){
+        $sosmed = Sosmed::all();
+        $data = Proreq::findorfail($id);
+        return view('Client.editproreq',compact('data','sosmed'));
+    }
+
 }

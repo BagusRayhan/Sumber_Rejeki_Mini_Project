@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function(){
     Route::get('createproreq', [IndexcController::class, 'createproreq'])->name('createproreq');
     Route::get('showproj', [IndexcController::class, 'showproj'])->name('showproj');
     Route::post('simpanpro', [IndexcController::class, 'simpann'])->name('simpanpro');
-    Route::post('simpanfitur', [IndexcController::class, 'simpannn'])->name('simpanfitur');
+    Route::post('simpanfitur/{id}', [IndexcController::class, 'simpannn'])->name('simpanfitur');
     
     Route::get('requestclient', [IndexcController::class, 'requestclient'])->name('requestclient');
     Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
