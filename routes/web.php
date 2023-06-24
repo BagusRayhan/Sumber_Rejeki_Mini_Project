@@ -42,13 +42,12 @@ Route::middleware('auth')->group(function(){
     Route::get('drequestclient', [IndexcController::class, 'drequestclient'])->name('drequestclient');
     Route::get('createproreq', [IndexcController::class, 'createproreq'])->name('createproreq');
     Route::post('simpanpro', [IndexcController::class, 'simpann'])->name('simpanpro');
-    Route::post('simpanproj', [IndexcController::class, 'simpan'])->name('simpanproj');
-    Route::post('simpanfitur', [IndexcController::class, 'simpanfitur'])->name('simpanfitur');
+    Route::get('simpanproj', [IndexcController::class, 'simpan'])->name('proj');
+    Route::post('simpanfitur', [IndexcController::class, 'simpannn'])->name('simpanfitur');
     
     Route::get('requestclient', [IndexcController::class, 'requestclient'])->name('requestclient');
     Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
     Route::put('updateproreq/{id}', [IndexcController::class, 'update'])->name('updateproreq');
-    Route::post('simpanfitur', [IndexcController::class, 'simpanf'])->name('simpanfitur');
     Route::post('simpandesk', [IndexcController::class, 'simpand'])->name('simpandesk');
     Route::get('setujuclient', [SetujuController::class, 'setujuclient'])->name('setujuclient');
     Route::get('selesaiclient', [SelesaiController::class, 'selesaiclient'])->name('selesaiclient');
@@ -60,31 +59,25 @@ Route::middleware('auth')->group(function(){
     Route::get('revisiselesai', [SelesaiController::class, 'revisiselesai'])->name('revisiselesai');
     Route::get('revisibutton', [SelesaiController::class, 'revisibutton'])->name('revisibutton');
     Route::get('detail-revisi-client', [SelesaiController::class, 'detail'])->name('detail-revisi-client');
-    Route::delete('/destroy/{id}', [TolakController::class, 'destroy'])->name('destroy');
 
+    // Halaman Admin
+    Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
+    Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
+    Route::get('detailproreq/{id}', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
+    Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
+    Route::get('projectselesai', [ProjectrequestController::class, 'projectselesai'])->name('projectselesai');
+    Route::get('pengaturan', [PengaturanController::class, 'pengaturan'])->name('pengaturan');
+    Route::post('updatesosmed', [PengaturanController::class, 'updatesosmed'])->name('updatesosmed');
+    Route::post('updatekebijakan', [PengaturanController::class, 'updatekebijakan'])->name('updatekebijakan');
+    Route::get('revisiproselesai', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
+    Route::get('editproselesai', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
+    Route::get('project-disetujui', [ProjectDisetujuiController::class, 'disetujui'])->name('project-disetujui-admin');
+    Route::get('detail-project-disetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujui'])->name('detail-disetujui-admin');
+    Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');
+    Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
+    Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
     
-});
-
-Route::middleware('admin')->group(function(){
-        // Halaman Admin
-        Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
-        Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
-        Route::get('detailproreq/{id}', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
-        Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
-        Route::get('projectselesai', [ProjectrequestController::class, 'projectselesai'])->name('projectselesai');
-        Route::get('pengaturan', [PengaturanController::class, 'pengaturan'])->name('pengaturan');
-        Route::post('updatesosmed', [PengaturanController::class, 'updatesosmed'])->name('updatesosmed');
-        Route::post('updatekebijakan', [PengaturanController::class, 'updatekebijakan'])->name('updatekebijakan');
-        Route::get('revisiproselesai', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
-        Route::get('editproselesai', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
-        Route::get('project-disetujui', [ProjectDisetujuiController::class, 'disetujui'])->name('project-disetujui-admin');
-        Route::get('detail-project-disetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujui'])->name('detail-disetujui-admin');
-        Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');
-        Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
-        Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
-        
-        Route::get('pembayaran-digital/getrekening/{id}', [AdminBayarController::class, 'getRekening'])->name('getRekening');
-        
+    Route::get('pembayaran-digital/getrekening/{id}', [AdminBayarController::class, 'getRekening'])->name('getRekening');
     });
     
 // Halaman Admin

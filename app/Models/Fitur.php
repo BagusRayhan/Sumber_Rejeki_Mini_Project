@@ -10,6 +10,6 @@ class Fitur extends Model
     protected $table = "fitur";
     protected $primarykey = "id";
     protected $fillable = [
-        'id', 'namafitur', 'hargafitur','deskripsi','projectid'
+        'id', 'naproj','namafitur', 'hargafitur','deskripsi','projectid'
     ];
 }

@@ -68,15 +68,18 @@
                                     <tr>
                                         <th class="w-25" scope="col">Nama Fitur</th>
                                         <th class="w-75" scope="col">Deskripsi</th>
+                                        <th class="w-75" scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($data as $item)
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center" colspan="2">Tidak ada data</td>
+                                            <td>{{ $item->namafitur }}</td>
+                                            <td>{{ $item->deskripsi }}</td>
+                                            <td class="d-flex justify-content-evenly">
+                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            </td>
+                                    @endforeach
                                         </tr>
                                 </tbody>
                             </table>
@@ -98,17 +101,17 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="">Nama Fitur</label>
-                                    <input type="text" value="" class="form-control" id="fitur">
+                                    <input type="text" value="" name="namafitur" class="form-control" id="namafitur">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Deskripsi</label>
-                                    <input type="text" value="" class="form-control" id="deskripsi">
+                                    <textarea class="form-control" id="deskripsi" name="deskripsi" cols="30" rows="10"></textarea>
                                 </div>
-                            </form>
                         </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                        <button type="button" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                         </form>
                     </div>
                 </div>
             </div>

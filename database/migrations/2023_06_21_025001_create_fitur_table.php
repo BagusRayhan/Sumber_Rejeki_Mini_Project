@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('fitur', function (Blueprint $table) {
             $table->id();
-            $table->string('namafitur');
-            $table->string('hargafitur');
-            $table->text('deskripsi');
-            $table->bigInteger('project_id');
+            $table->string('naproj');
+            $table->string('namafitur')->nullable();
+            $table->string('hargafitur')->nullable();
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
     }
