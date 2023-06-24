@@ -42,12 +42,13 @@ Route::middleware('auth')->group(function(){
     Route::get('drequestclient', [IndexcController::class, 'drequestclient'])->name('drequestclient');
     Route::get('createproreq', [IndexcController::class, 'createproreq'])->name('createproreq');
     Route::post('simpanpro', [IndexcController::class, 'simpann'])->name('simpanpro');
-    Route::get('simpanproj', [IndexcController::class, 'simpan'])->name('proj');
-    Route::post('simpanfitur', [IndexcController::class, 'simpannn'])->name('simpanfitur');
+    Route::get('simpanproj', [IndexcController::class, 'simpan'])->name('simpanproj');
+    Route::post('simpanfitur', [IndexcController::class, 'simpanfitur'])->name('simpanfitur');
     
     Route::get('requestclient', [IndexcController::class, 'requestclient'])->name('requestclient');
     Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
     Route::put('updateproreq/{id}', [IndexcController::class, 'update'])->name('updateproreq');
+    Route::post('simpanfitur', [IndexcController::class, 'simpanf'])->name('simpanfitur');
     Route::post('simpandesk', [IndexcController::class, 'simpand'])->name('simpandesk');
     Route::get('setujuclient', [SetujuController::class, 'setujuclient'])->name('setujuclient');
     Route::get('selesaiclient', [SelesaiController::class, 'selesaiclient'])->name('selesaiclient');
