@@ -47,18 +47,22 @@ class IndexcController extends Controller
         return redirect('drequestclient');
     }
 
-     public function showproj(Request $request){
-        $data= Proreq::all();
-   
+     public function showproj(Request $request, $id){
+        $data = Proreq::findorfail($id);
        return view('Client.createproreq',compact('data'));
     }
 
-    public function simpannn(Request $request)
+    public function simpannn(Request $request, $id)
     {
+        $sosmed = Sosmed::all();
+        $data = Proreq::findorfail($id);
+        $id_project = $data->id;  
         Fitur::create([
+            'id_project' => $id_project,
             'namafitur' => $request->namafitur,
             'deskripsi' => $request->deskripsi
-        ]);                   
+        ]);
+           return view('Client.editproreq',compact('data','sosmed'));                
     }
 
     public function update(Request $request, $id){
@@ -83,7 +87,7 @@ class IndexcController extends Controller
     ];
 
     $ubah->update($data);
-
+    $id_project = $ubah->id;
     return redirect('drequestclient');
     }
     
