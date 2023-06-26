@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+div<!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
@@ -80,7 +80,7 @@
                             <td>{{ $fitur->namafitur }}</td>
                             <td>{{ $fitur->deskripsi }}</td>
                             <td><center>
-                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ $data->id }}"><i class="fa-solid fa-pen-to-square"></i></button>
                             </td>
                             <td>
                                 <form action="{{ route('destroyfitur', $fitur->id) }}" method="POST">
@@ -135,6 +135,38 @@
 </div>
 
 
+    <!-- Edit Fitur -->
+<!-- Edit Fitur -->
+<div class="modal fade" id="editModal{{ $data->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editModalLabel{{ $data->id }}">Edit Fitur</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('updatefitur', $fitur->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="fitur" >Nama Fitur</label>
+                            <input type="text" name="namafitur" value="{{ $fitur->namafitur }}" class="form-control" id="fitur" placeholder="Masukkan Fitur">
+                        </div>
+                        <div class="mb-3">
+                            <label for="deskripsi">Deskripsi</label>
+                            <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Masukkan Deskripsi">{{ $fitur->deskripsi }}</textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>                   
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
