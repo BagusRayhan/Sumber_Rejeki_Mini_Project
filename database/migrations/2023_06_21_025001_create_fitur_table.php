@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('fitur', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_project');
+            $table->unsignedBigInteger('project_id');
             $table->string('namafitur')->nullable();
             $table->string('hargafitur')->nullable();
             $table->text('deskripsi')->nullable();

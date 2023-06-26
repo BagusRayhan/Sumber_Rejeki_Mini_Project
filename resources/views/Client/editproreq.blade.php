@@ -60,9 +60,8 @@
             <form action="#">
                 <div class="wrapper d-flex justify-content-between align-items-center mx-3">
                     <h6>Fitur</h6>
-                    <form action="#">
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addFiturModal">Tambah Fitur</button>
-                    </form>
+                    <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#addFiturModal">Tambah Fitur</button>
+
                 </div>
                 <div class="table-responsive px-3">
                     <table class="table table-striped table-hover">
@@ -72,15 +71,20 @@
                                 <th class="w-75" scope="col">Deskripsi</th>
                             </tr>
                         </thead>
-                        <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center" colspan="2">Tidak ada data</td>
-                                </tr>
-                        </tbody>
+                       <tbody>
+                    @foreach($dataa as $fitur)
+                        <tr>
+                            <td>{{ $fitur->namafitur }}</td>
+                            <td>{{ $fitur->deskripsi }}</td>
+                        </tr>
+                    @endforeach
+                    @if($dataa->isEmpty())
+                        <tr>
+                            <td class="text-center" colspan="2">Tidak ada data</td>
+                        </tr>
+                    @endif
+
+                </tbody>
                     </table>
                 </div>
             </div>
@@ -126,30 +130,4 @@
 
 
  <!-- Modal Box tambah desripsi Start -->
- <div class="modal fade" id="detaildeskripsi" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Deskripsi</h1>
-                {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-            </div>
-            <div class="modal-body">
-                <form action="">
 
-                    <div class="col-sm-12 col-xl-11" style="margin-left: 2%; margin">
-                        <div class="mb-3">
-                                <label for="input1">Deskripsi</label>
-                                <textarea class="form-control w-100" name="deskirpsi">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque, ipsum alias quam voluptate dignissimos culpa?</textarea>
-                        </div>
-                        </div>
-                    <div class="col-sm-12 col-xl-11 d-flex justify-content-end" style="margin-left: 2%; margin">
-                        <div class="mb-3">
-                                <a href="" class="btn btn-danger">Batal</a>
-                                <a href="" class="btn btn-primary">Simpan</a>
-                        </div>
-                </form>
-            </div>
-
-    </div>
-</div>
-</div>
