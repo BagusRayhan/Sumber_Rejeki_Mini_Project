@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\projectreqAdmin;
+use App\Models\Projectrequest;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class ProjectrequestController extends Controller
 {
     public function projectreq(){
-        $data = projectreqAdmin::all();
-        return view('Admin.projectreq', ['data' => $data]);
+        $projectreq = projectreqAdmin::where('status','pending')->get();
+        return view('Admin.projectreq', ['projectreq'=>$projectreq]);
     }
 
     public function detailproreq($id){
@@ -29,4 +30,6 @@ class ProjectrequestController extends Controller
     public function editproselesai(){
         return view('Admin.editproselesai');
     }
+
+
 }

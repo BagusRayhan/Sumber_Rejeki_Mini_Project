@@ -40,7 +40,7 @@
               }
             </style>
             <div class="row mt-4">
-              @foreach ($data as $row)
+              @foreach ($projectreq as $row)
               <div class="col-sm-4 mb-2 mb-sm-2 mt-3">
                 <div class="card" style="background-color: #F3F6F9;border: none">
                   <div class="card-body">

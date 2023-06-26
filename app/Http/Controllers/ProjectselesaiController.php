@@ -9,8 +9,8 @@ class ProjectselesaiController extends Controller
 {
         public function index()
         {
-            $selesai = projectreqAdmin::all();
-            return view('Admin.projectselesai', compact('selesai'));
+            $selesai = projectreqAdmin::where('status','selesai')->get();
+            return view('Admin.projectselesai', ['selesai'=>$selesai]);
         }
 }
-        
+
