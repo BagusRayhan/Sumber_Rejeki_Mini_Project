@@ -9,9 +9,7 @@ class Fitur extends Model
 {
     protected $table = "fitur";
     protected $primarykey = "id";
-    protected $fillable = [
-        'id', 'id_project','namafitur', 'hargafitur','deskripsi'
-    ];
+    protected $fillable = ['id', 'project_id', 'namafitur', 'hargafitur', 'deskripsi'];
 
     public function napro()
     {

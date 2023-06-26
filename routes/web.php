@@ -44,7 +44,6 @@ Route::middleware('auth')->group(function(){
     Route::get('showproj', [IndexcController::class, 'showproj'])->name('showproj');
     Route::post('simpanpro', [IndexcController::class, 'simpann'])->name('simpanpro');
     Route::post('simpanfitur/{id}', [IndexcController::class, 'simpannn'])->name('simpanfitur');
-    
     Route::get('requestclient', [IndexcController::class, 'requestclient'])->name('requestclient');
     Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
     Route::put('updateproreq/{id}', [IndexcController::class, 'update'])->name('updateproreq');
@@ -59,7 +58,11 @@ Route::middleware('auth')->group(function(){
     Route::get('revisiselesai', [SelesaiController::class, 'revisiselesai'])->name('revisiselesai');
     Route::get('revisibutton', [SelesaiController::class, 'revisibutton'])->name('revisibutton');
     Route::get('detail-revisi-client', [SelesaiController::class, 'detail'])->name('detail-revisi-client');
+    Route::delete('/destroy/{id}', [TolakController::class, 'destroy'])->name('destroy');
+    
+});
 
+Route::middleware('admin')->group(function(){
     // Halaman Admin
     Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
@@ -76,8 +79,5 @@ Route::middleware('auth')->group(function(){
     Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');
     Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
     Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
-    
-    Route::get('pembayaran-digital/getrekening/{id}', [AdminBayarController::class, 'getRekening'])->name('getRekening');
-    });
-    
-// Halaman Admin
+    Route::post('detail-project-disetujui', [ProjectDisetujuiController::class, 'projectChat'])->name('project-chat');
+});
