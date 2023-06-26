@@ -57,7 +57,7 @@
                                     <td>{{ $item->napro }}</td>
                                     <td>{{ $item->deadline }}</td>
                                     <td class="d-flex justify-content-evenly">
-                                        <a href="{{ route('editproreq', $item->id) }}" class="btn btn-primary btn-sm">Next Step</a>
+                                        <a href="{{ route('editproreq', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

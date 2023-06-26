@@ -29,42 +29,42 @@ class IndexcController extends Controller
         return view ('Client.createproreq', compact('sosmed','fitur'));
     }
 
-    public function simpann(Request $request){
-        $data = Proreq::all();
-        $nm = $request->bukti;
-        $namaFile =time().rand(100,999).".".$nm->getClientOriginalExtension();
-        
-        $dtUpload = new Proreq();
-        $dtUpload->nama= $request->nama;
-        $dtUpload->napro= $request->napro;
-	    $dtUpload->bukti = $namaFile;
-        $dtUpload->deadline= $request->deadline;
-        
+public function simpann(Request $request)
+{
+    $data = Proreq::all();
+    $nm = $request->bukti;
+    $namaFile = time() . rand(100, 999) . "." . $nm->getClientOriginalExtension();
 
+    $dtUpload = new Proreq();
+    $dtUpload->nama = $request->nama;
+    $dtUpload->napro = $request->napro;
+    $dtUpload->bukti = $namaFile;
+    $dtUpload->deadline = $request->deadline;
 
-        $nm->move(public_path().'/gambar',$namaFile);
-        $dtUpload->save();
-        return redirect('drequestclient');
-    }
+    $nm->move(public_path() . '/gambar', $namaFile);
+    $dtUpload->save();
+    $id = $dtUpload->id;
+    return redirect()->route('editproreq', ['id' => $id]);
+}
 
      public function showproj(Request $request){
         return view('Client.createproreq');
     }
 
-public function simpannn(Request $request, $id)
-{
-    $sosmed = Sosmed::all();
-    $data = Proreq::findOrFail($id);
-    $project_id = $data->id;  
+    public function simpannn(Request $request, $id)
+    {
+        $sosmed = Sosmed::all();
+        $data = Proreq::findOrFail($id);
+        $project_id = $data->id;  
 
-    Fitur::create([
-        'project_id' => $project_id,
-        'namafitur' => $request->namafitur,
-        'deskripsi' => $request->deskripsi
-    ]);
-        
-    return redirect()->route('editproreq', $id)->with(compact('data', 'sosmed'));
-}
+        Fitur::create([
+            'project_id' => $project_id,
+            'namafitur' => $request->namafitur,
+            'deskripsi' => $request->deskripsi
+        ]);
+            
+        return redirect()->route('editproreq', $id)->with(compact('data', 'sosmed'));
+    }
 
 
     public function update(Request $request, $id){

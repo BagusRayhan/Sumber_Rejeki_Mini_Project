@@ -88,7 +88,8 @@
                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
                                 </form>
 
-                            </td></center>
+                            </td>
+                        </center>
                         </tr>
                     @endforeach
                     @if($dataa->isEmpty())
