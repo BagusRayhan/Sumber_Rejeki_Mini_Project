@@ -112,13 +112,13 @@ use \Carbon\Carbon;
                 <div class="container my-5">
                     <div class="panel" style="height: 90vh;">
                         <h5 class="fw-bold fs-5">Diskusi</h5>
-                        <p class="text-secondary">Aplikasi Toko Online</p>
+                        <p class="text-secondary">{{ $detail->namaproject }}</p>
                         <div class="chatbox d-flex align-items-center justify-content-between align-items-lg-center px-3 border rounded border-1 border-dark">
                             <div class="d-flex align-items-center">
                                 <i class="fa-solid fa-comments fs-4 me-3"></i>
-                                <p class="fw-medium mt-3">Harja</p>
+                                <p class="fw-medium mt-3">Diskusikan project dengan admin</p>
                             </div>
-                            <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm" onclick="openChat()">Chat</button>
+                            <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm" onclick="openChat()">Hubungi Admin</button>
                         </div>
                         <style>
                             #chatbox {
