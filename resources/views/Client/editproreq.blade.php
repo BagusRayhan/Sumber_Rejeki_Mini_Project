@@ -69,6 +69,8 @@
                             <tr>
                                 <th class="w-25" scope="col">Nama Fitur</th>
                                 <th class="w-75" scope="col">Deskripsi</th>
+                                <th class="w-90" scope="col"><center>Aksi</center></th>
+                                <th></th>
                             </tr>
                         </thead>
                        <tbody>
@@ -76,6 +78,17 @@
                         <tr>
                             <td>{{ $fitur->namafitur }}</td>
                             <td>{{ $fitur->deskripsi }}</td>
+                            <td><center>
+                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                            </td>
+                            <td>
+                                <form action="{{ route('destroyfitur', $fitur->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                                </form>
+
+                            </td></center>
                         </tr>
                     @endforeach
                     @if($dataa->isEmpty())

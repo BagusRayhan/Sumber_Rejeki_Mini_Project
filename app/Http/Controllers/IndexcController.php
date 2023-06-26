@@ -51,20 +51,21 @@ class IndexcController extends Controller
         return view('Client.createproreq');
     }
 
-    public function simpannn(Request $request, $id)
-    {
-        $sosmed = Sosmed::all();
-        $data = Proreq::findorfail($id);
-        $dataa = Fitur::where('project_id', $id)->get();
-        $project_id = $data->id;  
-        Fitur::create([
-            'project_id' => $project_id,
-            'namafitur' => $request->namafitur,
-            'deskripsi' => $request->deskripsi
-        ]);
-            
-           return view('Client.editproreq',compact('data','sosmed','dataa'));                
-    }
+public function simpannn(Request $request, $id)
+{
+    $sosmed = Sosmed::all();
+    $data = Proreq::findOrFail($id);
+    $project_id = $data->id;  
+
+    Fitur::create([
+        'project_id' => $project_id,
+        'namafitur' => $request->namafitur,
+        'deskripsi' => $request->deskripsi
+    ]);
+        
+    return redirect()->route('editproreq', $id)->with(compact('data', 'sosmed'));
+}
+
 
     public function update(Request $request, $id){
     $ubah = Proreq::findorfail($id);
@@ -99,5 +100,21 @@ class IndexcController extends Controller
         $dataa = Fitur::where('project_id', $id)->get();
         return view('Client.editproreq',compact('data','sosmed','dataa'));
     }
+
+    public function showeditfitur(){
+
+    }
+
+    public function editfitur(){
+
+    }
+
+public function destroyfitur($id)
+{
+    $data = Fitur::findOrFail($id);
+    $data->delete();
+    return redirect()->route('editproreq', ['id' => $data->project_id]);
+}
+
 
 }
