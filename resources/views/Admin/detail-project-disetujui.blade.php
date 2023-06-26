@@ -157,9 +157,9 @@
                         <div class="chatbox d-flex align-items-center justify-content-between align-items-lg-center px-3 border rounded border-1 border-dark">
                             <div class="d-flex align-items-center">
                                 <i class="fa-solid fa-comments fs-4 me-3"></i>
-                                <p class="fw-medium mt-3">Diskusikan project dengan client</p>
+                                <p class="fw-medium mt-3">Reva</p>
                             </div>
-                            <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm" onclick="openChat()">Hubungi Client</button>
+                            <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm" onclick="openChat()">Chat</button>
                         </div>
                         <style>
                             #chatbox {
@@ -174,12 +174,12 @@
                                 <div class="chat-box d-flex flex-column p-2">
                                     @if (count($chats) > 0)
                                         @foreach ($chats as $cht)
-                                            <div class="col">
-                                                <div class="bubble-chat-admin d-flex flex-column mb-2 float-end py-2 px-3 bg-primary text-white rounded-3" style="max-width: 33em; font-size: 14px">
-                                                    <p class="messages m-0 p-0">{{ $cht->chat }}</p>
-                                                    <label for="" class="text-secondary text-white mt-2" style="font-size: 9px">{{ Carbon::parse($cht->chat_time)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</label>
-                                                </div>
+                                        <div class="col">
+                                            <div class="{{ ($cht->user_id == 1) ? 'bubble-chat-admin float-end bg-primary text-white' : 'bubble-chat-client float-start bg-white'}} d-flex flex-column mb-2 py-2 px-3 rounded-3" style="max-width: 33em; font-size: 14px">
+                                                <p class="messages m-0 p-0">{{ $cht->chat }}</p>
+                                                <label for="" class="{{ ($cht->user_id == 1) ? 'text-white' : 'text-secondary'}} mt-2" style="font-size: 9px">{{ Carbon::parse($cht->chat_time)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</label>
                                             </div>
+                                        </div>
                                         @endforeach
                                     @endif
                                 </div>

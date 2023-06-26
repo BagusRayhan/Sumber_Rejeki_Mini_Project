@@ -44,64 +44,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Aplikasi toko online</td>
-                                    <td>1 hari</td>
-                                    <td>
-                                        <div class="col-sm-12 col-xl-5" style="margin-left:2%;">
-                                            <div class="bg-light rounded h-100 p-10">
-                                                <div class="pg-bar mb-3">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                @if (count($project) !== 0)
+                                    @foreach ($project as $pro)
+                                        <tr>
+                                            <td>{{ $pro->namaproject }}</td>
+                                            <td>{{ $pro->estimasi }}</td>
+                                            <td>
+                                                <div class="col-sm-12 col-xl-5" style="margin-left:2%;">
+                                                    <div class="bg-light rounded h-100 p-10">
+                                                        <div class="pg-bar mb-3">
+                                                            <div class="progress">
+                                                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>15.000.000</td>
-                                    <td class="d-flex justify-content-evenly">
-                                        <a href="{{ route('detailsetujui') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Website Berita</td>
-                                    <td>3 jam</td>
-                                    <td>
-                                        <div class="col-sm-12 col-xl-5" style="margin-left:2%;">
-                                            <div class="bg-light rounded h-100 p-10">
-                                                <div class="pg-bar mb-3">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>15.000.000</td>
-                                    <td class="d-flex justify-content-evenly">
-                                        <a href="{{ route('detailsetujui') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Website Sekolah</td>
-                                    <td>4 hari</td>
-                                    <td>
-                                        <div class="col-sm-12 col-xl-5" style="margin-left:2%;">
-                                            <div class="bg-light rounded h-100 p-10">
-                                        <div class="pg-bar mb-3">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>15.000.000</td>
-                                    <td class="d-flex justify-content-evenly">
-                                        <a href="{{ route('detailsetujui') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
-                                    </td>
-                                </tr>
+                                            </td>
+                                            <td>{{ $pro->hargaproject }}</td>
+                                            <td class="d-flex justify-content-evenly">
+                                                <a href="/detailsetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
 
+                                @endif
                             </tbody>
                         </table>
                     </div>

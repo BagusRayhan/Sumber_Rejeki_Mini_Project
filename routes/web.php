@@ -48,13 +48,14 @@ Route::middleware('auth')->group(function(){
     Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
     Route::put('updateproreq/{id}', [IndexcController::class, 'update'])->name('updateproreq');
     Route::post('simpandesk', [IndexcController::class, 'simpand'])->name('simpandesk');
-    Route::get('setujuclient', [SetujuController::class, 'setujuclient'])->name('setujuclient');
+    Route::get('setujuclient', [ProjectDisetujuiController::class, 'disetujuiClient'])->name('setujuclient');
     Route::get('selesaiclient', [SelesaiController::class, 'selesaiclient'])->name('selesaiclient');
     Route::get('revisiclient', [SelesaiController::class, 'revisiclient'])->name('revisiclient');
     Route::get('ditolakclient', [TolakController::class, 'ditolakclient'])->name('ditolakclient');
     Route::get('bayarclient', [BayarController::class, 'bayarclient'])->name('bayarclient');
     Route::get('bayar2client', [BayarController::class, 'bayar2client'])->name('bayar2client');
-    Route::get('detailsetujui', [SetujuController::class, 'detailsetujui'])->name('detailsetujui');
+    Route::get('detailsetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujuiClient'])->name('detailsetujui');
+    Route::post('detailsetujui', [ProjectDisetujuiController::class, 'projectChatClient'])->name('project-chat-client');
     Route::get('revisiselesai', [SelesaiController::class, 'revisiselesai'])->name('revisiselesai');
     Route::get('revisibutton', [SelesaiController::class, 'revisibutton'])->name('revisibutton');
     Route::get('detail-revisi-client', [SelesaiController::class, 'detail'])->name('detail-revisi-client');
