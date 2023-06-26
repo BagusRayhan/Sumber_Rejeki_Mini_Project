@@ -69,6 +69,7 @@ Route::middleware('admin')->group(function(){
     Route::get('detailproreq/{id}', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('projectselesai', [ProjectrequestController::class, 'projectselesai'])->name('projectselesai');
+    Route::resource('projectselesai' , App\Http\Controllers\ProjectselesaiController::class);
     Route::get('pengaturan', [PengaturanController::class, 'pengaturan'])->name('pengaturan');
     Route::post('updatesosmed', [PengaturanController::class, 'updatesosmed'])->name('updatesosmed');
     Route::post('updatekebijakan', [PengaturanController::class, 'updatekebijakan'])->name('updatekebijakan');
