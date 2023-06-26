@@ -20,9 +20,9 @@
 
         <!-- Content Start -->
         <div class="content">
-            
+
             @include('Admin.templates.navbar')
-            
+
             <!-- Confirm Payment Table Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="d-flex justify-content-between">
@@ -69,13 +69,13 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>{{ $pro->hargaproject }}</td>
+                                                <td>{{ $pro->harga }}</td>
                                                 <td class="d-flex justify-content-evenly">
                                                     <a href="/detail-project-disetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        @else 
+                                        @else
                                             <tr>
                                                 <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
                                             </tr>

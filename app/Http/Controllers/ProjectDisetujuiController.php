@@ -6,16 +6,16 @@ use App\Models\Chat;
 use App\Models\Fitur;
 use Illuminate\Http\Request;
 use App\Models\ProjectDisetujui;
+use App\Models\projectreqAdmin;
 use App\Models\Sosmed;
 
 class ProjectDisetujuiController extends Controller
 {
     public function disetujui() {
-        $project = ProjectDisetujui::all();
-        return view('Admin.project-disetujui', [
-            'project' => $project
-        ]);
+        $project = projectreqAdmin::where('status','setuju')->get();
+        return view('Admin.project-disetujui', ['project' => $project]);
     }
+
 
     public function detailDisetujui($id) {
         $detail = ProjectDisetujui::find($id);

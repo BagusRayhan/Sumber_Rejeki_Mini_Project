@@ -19,6 +19,11 @@ return new class extends Migration
             $table->string('napro')->nullable();
             $table->string('bukti')->nullable();
             $table->dateTime('deadline')->nullable();
+            $table->string('status')->nullable();
+            $table->integer('harga')->nullable();
+            $table->string('alasan')->nullable();
+            $table->string('statusbayar')->nullable();
+
             $table->timestamps();
         });
     }
