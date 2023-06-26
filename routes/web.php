@@ -49,8 +49,7 @@ Route::middleware('auth')->group(function(){
 Route::get('fitur/{id}/edit', [IndexcController::class, 'showFormModal'])->name('fituredit');
 
 // Memperbarui fitur
-Route::put('updatefitur/{id}', [IndexcController::class, 'updateFitur'])->name('updatefitur');
-
+    Route::put('updatefitur/{id}', [IndexcController::class, 'updateFitur'])->name('updatefitur');
 
     Route::get('requestclient', [IndexcController::class, 'requestclient'])->name('requestclient');
     Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');

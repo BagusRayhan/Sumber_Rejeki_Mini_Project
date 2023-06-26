@@ -118,7 +118,7 @@ public function updateFitur(Request $request, $id)
 
     $fitur->save();
 
-    return redirect()->route('editproreq');
+    return back();
 }
 
 public function destroyfitur($id)
