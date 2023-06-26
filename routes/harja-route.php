@@ -51,3 +51,7 @@ Route::get('pembayaran-digital/getrekening/{id}', [AdminBayarController::class, 
 
 Route::get('kebijakan', [PengaturanController::class, 'kebijakan'])->name('kebijakan');
 Route::delete('/destroy/{id}', [TolakController::class, 'destroy'])->name('destroy');
+
+
+
+Route::resource('projectselesai' , App\Http\Controllers\ProjectselesaiController::class);
