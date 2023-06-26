@@ -60,8 +60,7 @@ Route::middleware('auth')->group(function(){
     Route::get('revisibutton', [SelesaiController::class, 'revisibutton'])->name('revisibutton');
     Route::get('detail-revisi-client', [SelesaiController::class, 'detail'])->name('detail-revisi-client');
     Route::delete('/destroy/{id}', [TolakController::class, 'destroy'])->name('destroy');
-    
-      Route::delete('destroyfitur/{id}', [IndexcController::class, 'destroyfitur'])->name('destroyfitur');
+    Route::delete('destroyfitur/{id}', [IndexcController::class, 'destroyfitur'])->name('destroyfitur');
 
 });
 

@@ -75,6 +75,7 @@
                         </thead>
                        <tbody>
                     @foreach($dataa as $fitur)
+                   
                         <tr>
                             <td>{{ $fitur->namafitur }}</td>
                             <td>{{ $fitur->deskripsi }}</td>
@@ -84,10 +85,9 @@
                             <td>
                                 <form action="{{ route('destroyfitur', $fitur->id) }}" method="POST">
                                     @csrf
-                                    @method('DELETE')
+                                    @method('delete')
                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
                                 </form>
-
                             </td>
                         </center>
                         </tr>
