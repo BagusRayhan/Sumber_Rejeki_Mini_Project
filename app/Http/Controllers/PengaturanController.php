@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sosmed;
 use App\Models\Kebijakan;
+use App\Models\User;
 
 class PengaturanController extends Controller
 {
@@ -21,10 +22,11 @@ class PengaturanController extends Controller
     // }
 
     public function pengaturan() {
+        $admin = User::where('role', 'admin')->first();
         $data = sosmed::all()->first();
         $data1 = Kebijakan::all()->first();
 
-        return view('Admin.pengaturan', compact('data', 'data1'));
+        return view('Admin.pengaturan', compact('data', 'data1','admin'));
     }
 
     public function updatekebijakan(Request $request) {
@@ -51,9 +53,10 @@ class PengaturanController extends Controller
     }
 
     public function kebijakan() {
+        $admin = User::where('role', 'admin')->first();
         $dataa = Kebijakan::all()->first();
 
-        return view('kebijakanprivasi', compact('dataa'));
+        return view('kebijakanprivasi', compact('dataa','admin'));
     }
 
     /**

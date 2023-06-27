@@ -10,12 +10,24 @@ use App\Models\User;
 class AdminController extends Controller
 {
     public function index(MonthlyUsersChart $chart, AnnualyDoneChart $ychart) {
-        $clientCounter = User::where('role', 'client')->count();
+        $admin = User::where('role', 'admin')->first();
         return view('Admin.index', [
-            'clientCounter' => $clientCounter,
+            'admin' => $admin,
+            'clientCounter' => User::where('role', 'client')->count(),
             'chart' => $chart->build(),
             'ychart' => $ychart->build(),
         ]);
     }
-}
 
+    public function updateProfile(Request $request)
+    {
+        $admin = User::where('role', 'admin')->first();
+        $admin->name = $request->input('name');
+        $admin->email = $request->input('email');
+        $admin->save();
+
+        // Redirect atau melakukan aksi lain setelah update berhasil
+
+        return redirect()->back()->with('success', 'Profil berhasil diperbarui');
+    }
+}

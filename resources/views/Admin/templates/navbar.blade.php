@@ -83,11 +83,11 @@
         </div>
         <div class="mb-1">
           <label for="exampleFormControlInput1" class="form-label">Nama</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" value="sugab" disabled>
+          <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $admin->name }}" disabled>
         </div>
         <div class="mb-1">
           <label for="exampleFormControlInput1" class="form-label">Email</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" value="sugabus@gmail.com" disabled>
+          <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $admin->email }}" disabled>
         </div>
       </div>
       <div class="modal-footer">
@@ -113,20 +113,24 @@
               </a>
               <input id="file-upload" type="file" style="display: none;">
             </div>   
-          </center>                                       
+          </center>
+          <form action="{{ route('admin.updateProfile') }}" method="POST">
+            @csrf
+            @method('PUT')                                       
         <div class="mb-1">
           <label for="exampleFormControlInput1" class="form-label">Nama</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" value="sugab">
+          <input type="text" class="form-control" id="exampleFormControlInput1" name="name" value="{{ $admin->name }}">
         </div>
         <div class="mb-1">
           <label for="exampleFormControlInput1" class="form-label">Email</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" value="sugabus@gmail.com">
+          <input type="text" class="form-control" id="exampleFormControlInput1" name="email" value="{{ $admin->email }}">
         </div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#profileModal">Batal</button>
-        <button class="btn btn-primary">Simpan</button>
+        <button class="btn btn-primary" type="submit" id="saveProfileButton">Simpan</button>
       </div>
+    </form>
     </div>
     <script>
       document.getElementById('chooseFileButtonA').addEventListener('click', function() {

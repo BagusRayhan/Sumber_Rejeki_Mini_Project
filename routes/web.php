@@ -73,6 +73,7 @@ Route::get('fitur/{id}/edit', [IndexcController::class, 'showFormModal'])->name(
 Route::middleware('admin')->group(function(){
     // Halaman Admin
     Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
+    Route::put('/admin/update-profile', [AdminController::class, 'updateProfile'])->name('admin.updateProfile');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('detailproreq/{id}', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
