@@ -53,24 +53,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($bayar1 as $client1)
+
+
                             <tr>
-                                <td>Aplikasi toko online</td>
-                                <td>15.000.000</td>
-                                <td><center><span class="badge text-bg-danger">Menunggu Pembayaran</span></td></center>
+                                <td>{{ $client1->napro }}</td>
+                                <td>{{ $client1->harga }}</td>
+                                <td><center><span class="badge text-bg-danger">{{ $client1->status }}</span></td></center>
                                 <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
                             </tr>
+                            @empty
                             <tr>
-                                <td>Website Sekolah</td>
-                                <td>10.000.000</td>
-                                <td><center><span class="badge text-bg-danger">Menunggu Pembayaran</span></td></center>
-                                <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
+                                <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
                             </tr>
-                            <tr>
-                                <td>Website Berita</td>
-                                <td>5.000.000  </td>
-                                <td><center><span class="badge text-bg-danger">Menunggu Pembayaran</span></center></td>
-                                <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
-                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
