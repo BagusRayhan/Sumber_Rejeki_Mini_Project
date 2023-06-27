@@ -50,7 +50,6 @@
                           <form action="{{ route('updatesosmed') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <label for="">WhatsApp</label><br>
-
                             <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="wa" id="wa" value="{{ $data->wa }}"><br>
 
                             <label for="">Instagram</label><br>

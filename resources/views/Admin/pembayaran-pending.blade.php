@@ -62,7 +62,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Harja</td>
+                                        <td>Rival Fahri </td>
                                         <td>Website Online Shop</td>
                                         <td>15.000.000</td>
                                         <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal" class="btn btn-primary btn-sm"><i class="fa-solid fa-image"></i></a></td>
