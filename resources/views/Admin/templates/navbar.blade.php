@@ -54,7 +54,7 @@
         </div>
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <img class="rounded-circle me-lg-2" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                <img class="rounded-circle me-lg-2" src="{{ asset($admin->profil) }}" alt="" style="width: 40px; height: 40px;">
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                 <button type="button" class="dropdown-item" id="profile-btn" data-bs-toggle="modal" data-bs-target="#profileModal">My Profile</button>
@@ -79,7 +79,7 @@
       </div>
       <div class="modal-body">
         <div class="mb-3 d-flex flex-column align-items-center justify-content-center">
-          <img src="{{ asset('ProjectManagement/dashmin/img/user-new.png') }}" alt="Gambar Profil" class="profile-images">
+          <img src="{{ asset($admin->profil) }}" alt="Gambar Profil" class="profile-images">
         </div>
         <div class="mb-1">
           <label for="exampleFormControlInput1" class="form-label">Nama</label>
@@ -104,33 +104,32 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <center>
+        <form action="{{ route('admin.updateProfile') }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          @method('PUT')                                       
+          <center>
             <div class="profile">
-              <img src="{{ asset('ProjectManagement/dashmin/img/user-new.png') }}" alt="Gambar Profil" class="profile-images">
+              <img src="{{ asset($admin->profil) }}" alt="Gambar Profil" class="profile-images">
               <a href="#" type="file" class="change-profile-button" id="chooseFileButtonA" style="width: 45px">
                 <i class="fa-sharp fa-solid fa-image"></i>
-                <input type="file" id="fileInputA" style="display:none" accept=".jpg,.png,.pdf">
+                <input type="file" id="fileInputA" name="profile_image" style="display:none" accept=".jpg,.png,.pdf">
               </a>
               <input id="file-upload" type="file" style="display: none;">
             </div>   
           </center>
-          <form action="{{ route('admin.updateProfile') }}" method="POST">
-            @csrf
-            @method('PUT')                                       
-        <div class="mb-1">
-          <label for="exampleFormControlInput1" class="form-label">Nama</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" name="name" value="{{ $admin->name }}">
-        </div>
-        <div class="mb-1">
-          <label for="exampleFormControlInput1" class="form-label">Email</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" name="email" value="{{ $admin->email }}">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#profileModal">Batal</button>
-        <button class="btn btn-primary" type="submit" id="saveProfileButton">Simpan</button>
-      </div>
-    </form>
+          <div class="mb-1">
+            <label for="exampleFormControlInput1" class="form-label">Nama</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" name="name" value="{{ $admin->name }}">
+          </div>
+          <div class="mb-1">
+            <label for="exampleFormControlInput1" class="form-label">Email</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" name="email" value="{{ $admin->email }}">
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#profileModal">Batal</button>
+            <button class="btn btn-primary" type="submit" id="saveProfileButton">Simpan</button>
+          </div>
+        </form>        
     </div>
     <script>
       document.getElementById('chooseFileButtonA').addEventListener('click', function() {
