@@ -67,7 +67,7 @@
             <!-- Counter End -->
 
 
-            <!-- Sales Chart Start -->
+            <!-- Monthly Chart Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="w-100">
                     <div class="bg-light text-center rounded p-4" style="height: 550px">
@@ -79,7 +79,21 @@
                     </div>
                 </div>
             </div>
-            <!-- Sales Chart End -->
+            <!-- Monthly Chart End -->
+            
+            <!-- Annualy Chart Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="w-100">
+                    <div class="bg-light text-center rounded p-4" style="height: 550px">
+                        <div class="d-flex align-items-center justify-content-start mb-4">
+                            <div class="" style="width: 1100px">
+                                {!! $ychart->container() !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Annualy Chart End -->
 
             <!-- Widgets Start -->
             <div class="container-fluid pt-4 px-4">
@@ -233,9 +247,7 @@
 
     </div>
     
-    <script src="{{ $chart->cdn() }}"></script>
-
-{{ $chart->script() }}
+    
 
     @include('Admin.templates.script')
 </body>

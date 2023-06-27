@@ -1,7 +1,9 @@
     <!-- JavaScript Libraries -->
     <script src="{{ asset('ProjectManagement/code.jquery.com/jquery-3.4.1.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-    
+    <script src="{{ $chart->cdn() }}"></script>
+    {{ $chart->script() }}
+    {{ $ychart->script() }}
     <script src="{{ asset('ProjectManagement/dashmin/lib/chart/chart.min.js') }}"></script>
     <script src="{{ asset('ProjectManagement/dashmin/lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('ProjectManagement/dashmin/lib/waypoints/waypoints.min.js') }}"></script>
