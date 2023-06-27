@@ -60,8 +60,8 @@
                                     @if (count($project) !== 0)
                                         @foreach ($project as $pro)
                                             <tr>
-                                                <td>{{ $pro->namaclient }}</td>
-                                                <td>{{ $pro->namaproject }}</td>
+                                                <td>{{ $pro->nama }}</td>
+                                                <td>{{ $pro->napro }}</td>
                                                 <td>
                                                     <div class="pg-bar">
                                                         <div class="progress w-75">
