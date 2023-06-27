@@ -98,16 +98,28 @@ public function simpann(Request $request)
         $sosmed = Sosmed::all();
         $data = Proreq::findorfail($id);
         $dataa = Fitur::where('project_id', $id)->get();
+        
         return view('Client.editproreq',compact('data','sosmed','dataa'));
     }
 
-    public function showeditfitur(){
+public function showFormModal($id)
+{
+    $data = Fitur::findOrFail($id);
 
-    }
+    return view('Client.editproreq', compact('data'));
+}
 
-    public function editfitur(){
+public function updateFitur(Request $request, $id)
+{
+    $fitur = Fitur::findOrFail($id);
 
-    }
+    $fitur->namafitur = $request->input('namafitur');
+    $fitur->deskripsi = $request->input('deskripsi');
+
+    $fitur->save();
+
+    return back();
+}
 
 public function destroyfitur($id)
 {

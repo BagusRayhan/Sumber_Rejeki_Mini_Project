@@ -44,6 +44,13 @@ Route::middleware('auth')->group(function(){
     Route::get('showproj', [IndexcController::class, 'showproj'])->name('showproj');
     Route::post('simpanpro', [IndexcController::class, 'simpann'])->name('simpanpro');
     Route::post('simpanfitur/{id}', [IndexcController::class, 'simpannn'])->name('simpanfitur');
+  
+    // Menampilkan form modal
+Route::get('fitur/{id}/edit', [IndexcController::class, 'showFormModal'])->name('fituredit');
+
+// Memperbarui fitur
+    Route::put('updatefitur/{id}', [IndexcController::class, 'updateFitur'])->name('updatefitur');
+
     Route::get('requestclient', [IndexcController::class, 'requestclient'])->name('requestclient');
     Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
     Route::put('updateproreq/{id}', [IndexcController::class, 'update'])->name('updateproreq');
@@ -61,7 +68,6 @@ Route::middleware('auth')->group(function(){
     Route::get('detail-revisi-client', [SelesaiController::class, 'detail'])->name('detail-revisi-client');
     Route::delete('/destroy/{id}', [TolakController::class, 'destroy'])->name('destroy');
     Route::delete('destroyfitur/{id}', [IndexcController::class, 'destroyfitur'])->name('destroyfitur');
-
 });
 
 Route::middleware('admin')->group(function(){

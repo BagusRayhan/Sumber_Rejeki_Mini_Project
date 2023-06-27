@@ -12,9 +12,9 @@
                 <div class="navbar-nav w-100" >
                     <a href="{{ route('indexclient') }}" class="nav-item nav-link {{ Request::routeIs('indexclient*') ? 'active' : '' }}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
-                        <a href="{{ route('drequestclient') }}" class="nav-link dropdown-toggle {{ Request::routeIs('drequestclient*','setujuclient*','selesaiclient*','revisiclient*','ditolakclient*','revisibutton*','detail-revisi-client*','*detailsetujui','createproreq*','editproreq*') ? 'active' : '' }}" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Project</a>
+                        <a href="{{ route('drequestclient') }}" class="nav-link dropdown-toggle {{ Request::routeIs('drequestclient*','setujuclient*','selesaiclient*','revisiclient*','ditolakclient*','revisibutton*','detail-revisi-client*','*detailsetujui','createproreq*','editproreq*','showproj*') ? 'active' : '' }}" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Project</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="{{ route('drequestclient') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('drequestclient*','createproreq*','editproreq*') ? 'text-primary' : '' }}">Project Request</a>
+                            <a href="{{ route('drequestclient') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('drequestclient*','createproreq*','editproreq*','showproj*') ? 'text-primary' : '' }}">Project Request</a>
                             <a href="{{ route('setujuclient') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('setujuclient*','detailsetujui*') ? 'text-primary' : '' }}">Project Disetujui</a>
                             <a href="{{ route('selesaiclient') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('selesaiclient*','revisiclient*','revisibutton*','detail-revisi-client*') ? 'text-primary' : '' }}">Project Selesai</a>
                             <a href="{{ route('ditolakclient') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('ditolakclient*') ? 'text-primary' : '' }}">Project Ditolak</a>
