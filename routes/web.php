@@ -72,7 +72,7 @@ Route::get('fitur/{id}/edit', [IndexcController::class, 'showFormModal'])->name(
 
 Route::middleware('admin')->group(function(){
     // Halaman Admin
-    Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
+    Route::get('admin/{id}', [AdminController::class, 'index'])->name('admin-dashboard');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('detailproreq/{id}', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
@@ -89,4 +89,5 @@ Route::middleware('admin')->group(function(){
     Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
     Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
     Route::post('detail-project-disetujui', [ProjectDisetujuiController::class, 'projectChat'])->name('project-chat');
+    Route::post('pembayaran-digital/update-bank', [AdminBayarController::class, 'updateBank'])->name('update-bank');
 });

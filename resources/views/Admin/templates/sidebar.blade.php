@@ -8,7 +8,7 @@
             </h3>
         </a>
         <div class="navbar-nav w-100">
-            <a href="/admin" class="nav-item nav-link {{ Request::routeIs('admin-dashboard') ? 'active' : ''}}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+            <a href="/admin/{$id}" class="nav-item nav-link {{ Request::routeIs('admin-dashboard') ? 'active' : ''}}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle {{ Request::routeIs('project-disetujui-admin', 'detail-disetujui-admin', 'projectselesai', 'revisiproselesai', 'editproselesai', 'projectreq', 'detailproreq', 'projectselesai','revisiproselesai','editproselesai') ? 'active' : ''}}" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Project</a>
                 <div class="dropdown-menu bg-transparent border-0">

@@ -79,16 +79,15 @@
       </div>
       <div class="modal-body">
         <div class="mb-3 d-flex flex-column align-items-center justify-content-center">
-            <img class="rounded-circle" style="width: 8em" src="{{ asset('ProjectManagement/dashmin/img/user-new.png') }}" alt="">
-            <h5 class="mt-2">Kaja</h5>
+          <img src="{{ asset('ProjectManagement/dashmin/img/user-new.png') }}" alt="Gambar Profil" class="profile-images">
         </div>
         <div class="mb-1">
           <label for="exampleFormControlInput1" class="form-label">Nama</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" value="Kaja" disabled>
+          <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $users->name }}" disabled>
         </div>
         <div class="mb-1">
           <label for="exampleFormControlInput1" class="form-label">Email</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" value="kaja@gmail.com" disabled>
+          <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $users->email }}" disabled>
         </div>
       </div>
       <div class="modal-footer">
@@ -117,11 +116,11 @@
           </center>                                       
         <div class="mb-1">
           <label for="exampleFormControlInput1" class="form-label">Nama</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" value="Kaja">
+          <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $users->name }}">
         </div>
         <div class="mb-1">
           <label for="exampleFormControlInput1" class="form-label">Email</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" value="kaja@gmail.com">
+          <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $users->email }}">
         </div>
       </div>
       <div class="modal-footer">
