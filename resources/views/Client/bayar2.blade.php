@@ -69,33 +69,38 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($bayar2 as $client2)
+
                             <tr>
                                 <td><div class="form-check">
                                     <input class="form-check-input child-checkbox" type="checkbox" value="" id="myCheckbox">
-                                    </div></td>
-                                <td>Aplikasi toko online</td>
-                                <td>15.000.000</td>
-                                <td><center><span class="badge text-bg-success">Lunas</span></td></center>
-                                <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#strukPembayaranModal" class="btn btn-warning text-white btn-sm"><i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk</button></center></td>
+                                </div></td>
+                                <td>{{ $client2->napro }}</td>
+                                <td>{{ $client2->harga }}</td>
+                                <td class="text-center ">
+                                    @if ($client2->status == 'lunas')
+                                      <span class="badge text-bg-success">{{ $client2->status }}</span>
+                                    @elseif ($client2->status == 'belum lunas')
+                                      <span class="badge text-bg-warning text-white">{{ $client2->status }}</span>
+                                    @else
+                                      <span class="badge">{{ $client2->status }}</span>
+                                    @endif
+                                  </td>
+                                  <td class="text-center">
+                                    @if ($client2->status == 'lunas')
+                                      <button type="button" data-bs-toggle="modal" data-bs-target="#strukPembayaranModal" class="btn btn-warning text-white btn-sm" style="background-color: none">
+                                        <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk</button>
+                                    @elseif ($client2->status == 'belum lunas')
+                                      <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" class="btn btn-primary btn-sm" style="background-color: none">
+                                        <i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button>
+                                    @endif
+                                  </td>
                             </tr>
+                            @empty
                             <tr>
-                                <td><div class="form-check">
-                                    <input class="form-check-input child-checkbox" type="checkbox" value="" id="myCheckbox">
-                                    </div></td>
-                                <td>Website Sekolah</td>
-                                <td>10.000.000</td>
-                                <td><center><span class="badge text-bg-success">Lunas</span></td></center>
-                                <td><center><button type="button" class="btn btn-warning text-white btn-sm"><i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk</button></center></td>
+                                <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
                             </tr>
-                            <tr>
-                                <td><div class="form-check">
-                                    <input class="form-check-input child-checkbox" type="checkbox" value="" id="myCheckbox">
-                                    </div></td>
-                                <td>Website Berita</td>
-                                <td>5.000.000</td>
-                                <td><center><span class="badge text-bg-danger">Belum lunas</span></td></center>
-                                <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
-                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                     <script>
@@ -390,7 +395,7 @@
                                <h6 style="align-self: center;">Metode</h6>
                                <div class="dropdown">
                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                       E-Wallet &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                                       E-Wallet &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                    </button>
                                    <ul class="dropdown-menu">
                                        <li><a class="dropdown-item" href="#" data-bs-target="#cash" data-bs-toggle="modal">Cash</a></li>
@@ -403,7 +408,7 @@
                                <h6 style="align-self: center;">Layanan</h6>
                                <div class="dropdown">
                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                       Dana &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  
+                                       Dana &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;
                                    </button>
                                    <ul class="dropdown-menu">
                                        <li><a class="dropdown-item active" href="#">Dana</a></li>
@@ -575,12 +580,12 @@
             <script>
                 document.getElementById('printBtn').addEventListener('click', function() {
                   // Logika untuk mencetak PDF modal
-              
+
                   // Contoh: Menggunakan window.print() untuk mencetak halaman saat ini
                   window.print();
                 });
               </script>
-              
+
         </div>
         </div>
 
