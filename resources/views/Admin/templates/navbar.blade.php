@@ -83,11 +83,11 @@
         </div>
         <div class="mb-1">
           <label for="exampleFormControlInput1" class="form-label">Nama</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $users->name }}" disabled>
+          <input type="text" class="form-control" id="exampleFormControlInput1" value="sugab" disabled>
         </div>
         <div class="mb-1">
           <label for="exampleFormControlInput1" class="form-label">Email</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $users->email }}" disabled>
+          <input type="text" class="form-control" id="exampleFormControlInput1" value="sugabus@gmail.com" disabled>
         </div>
       </div>
       <div class="modal-footer">
@@ -116,11 +116,11 @@
           </center>                                       
         <div class="mb-1">
           <label for="exampleFormControlInput1" class="form-label">Nama</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $users->name }}">
+          <input type="text" class="form-control" id="exampleFormControlInput1" value="sugab">
         </div>
         <div class="mb-1">
           <label for="exampleFormControlInput1" class="form-label">Email</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $users->email }}">
+          <input type="text" class="form-control" id="exampleFormControlInput1" value="sugabus@gmail.com">
         </div>
       </div>
       <div class="modal-footer">

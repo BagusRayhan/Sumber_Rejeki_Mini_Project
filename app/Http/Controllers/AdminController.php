@@ -9,14 +9,12 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
-    public function index(MonthlyUsersChart $chart, AnnualyDoneChart $ychart, $id) {
+    public function index(MonthlyUsersChart $chart, AnnualyDoneChart $ychart) {
         $clientCounter = User::where('role', 'client')->count();
-        $users = User::find($id);
         return view('Admin.index', [
             'clientCounter' => $clientCounter,
             'chart' => $chart->build(),
             'ychart' => $ychart->build(),
-            'users' => $users
         ]);
     }
 }
