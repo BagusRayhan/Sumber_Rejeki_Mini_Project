@@ -503,6 +503,19 @@
    {{-- akhir modal pembayaran bank --}}
 
     {{-- Modal Struk Pembayaran --}}
+       <style>
+        @media print {
+        /* Sembunyikan button saat cetakan */
+        .modal button {
+            display: none;
+        }
+        .modal {
+        background: none;
+        box-shadow: none;
+        }
+        }
+       </style>
+
         <div class="modal fade" id="strukPembayaranModal" tabindex="-1" aria-hidden="true">
             <div class="myModal">
             <div class="modal-dialog modal-dialog-centered" style="width: 22em">
@@ -554,35 +567,20 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                <button onclick="printModalAsPDF()" class="btn btn-primary w-100 fw-bold"><i class="fa-solid fa-print"></i> Cetak PDF</button>
+                <button id="printBtn" class="btn btn-primary w-100 fw-bold"><i class="fa-solid fa-print"></i> Cetak PDF</button>
                 </div>
             </div>
             </div>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
             <script>
-                function printModalAsPDF() {
-                  // Menginisialisasi dokumen PDF
-                  const doc = new jsPDF();
-            
-                  // Mengambil konten modal
-                  const modal = document.getElementById('myModal');
-            
-                  // Mengambil label, gambar, dan konten modal
-                  const judulModal = modal.querySelector('h2').innerText;
-                  const gambar = modal.querySelector('img').src;
-                  const kontenModal = modal.querySelector('p').innerText;
-            
-                  // Menambahkan label dan gambar ke dokumen PDF
-                  doc.text(judulModal, 10, 10);
-                  doc.addImage(gambar, 'JPEG', 10, 20, 180, 120);
-            
-                  // Menambahkan konten modal ke dokumen PDF
-                  doc.text(kontenModal, 10, 150);
-            
-                  // Membuka dokumen PDF dalam mode tampilan pratinjau (preview)
-                  doc.output('dataurlnewwindow');
-                }
+                document.getElementById('printBtn').addEventListener('click', function() {
+                  // Logika untuk mencetak PDF modal
+              
+                  // Contoh: Menggunakan window.print() untuk mencetak halaman saat ini
+                  window.print();
+                });
               </script>
+              
         </div>
         </div>
 
