@@ -22,17 +22,17 @@
 
         <!-- Content Start -->
         <div class="content">
-            
+
             @include('Admin.templates.navbar')
             <div class="container-fluid pt-3 px-4">
                 <div class="mb-3 d-flex justify-content-between">
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Nama Project</label>
-                        <input type="text" value="{{ $detail->namaproject }}" class="form-control" placeholder="" disabled>
+                        <input type="text" value="{{ $detail->napro }}" class="form-control" placeholder="" disabled>
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Dokumen Pendukung</label>
-                        <input type="text" value="{{ $detail->dokumenpendukung }}" class="form-control" placeholder="" disabled>
+                        <input type="text" value="{{ $detail->bukti }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
                 <div class="mb-3 d-flex justify-content-between">
@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                        <input type="text" value="{{ $detail->hargaproject }}" class="form-control" placeholder="" disabled>
+                        <input type="text" value="{{ $detail->harga }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
                 <div class="row mt-4">

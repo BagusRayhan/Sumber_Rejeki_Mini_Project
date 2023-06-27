@@ -55,16 +55,17 @@
                                                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ $bank->nama }}</h1>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="" id="editRekeningForm" method="post">
+                                                                <form action="{{ route('update-bank') }}" id="editRekeningForm" method="post">
                                                                     @csrf
+                                                                    <input type="hidden" name="idrekening" value="{{ $bank->id }}">
                                                                     <div class="mb-3">
-                                                                        <input type="text" value="{{ $bank->rekening }}" class="form-control" id="nomorRekening">
+                                                                        <input type="text" value="{{ $bank->rekening }}" class="form-control" id="nomorRekening" name="rekening">
                                                                     </div>
-                                                                </form>
                                                             </div>
                                                             <div class="modal-footer">
                                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                                                            <a href="" class="btn btn-primary">Simpan</a>
+                                                            <button class="btn btn-primary" type="submit">Simpan</button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>

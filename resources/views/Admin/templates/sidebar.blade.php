@@ -10,7 +10,7 @@
         <div class="navbar-nav w-100">
             <a href="/admin/{$id}" class="nav-item nav-link {{ Request::routeIs('admin-dashboard') ? 'active' : ''}}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle {{ Request::routeIs('project-disetujui-admin', 'detail-disetujui-admin', 'projectselesai', 'revisiproselesai', 'editproselesai', 'projectreq', 'detailproreq', 'projectselesai','revisiproselesai','editproselesai') ? 'active' : ''}}" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Project</a>
+                <a href="#" class="nav-link dropdown-toggle {{ Request::routeIs('project-disetujui-admin', 'detail-disetujui-admin', 'projectreq', 'detailproreq', 'projectselesai', 'revisiproselesai', 'editproselesai') ? 'active' : ''}}" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Project</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="projectreq" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('projectreq', 'detailproreq') ? 'text-primary' : ''}}">Project Masuk</a>
                     <a href="/project-disetujui" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('project-disetujui-admin', 'detail-disetujui-admin') ? 'text-primary' : ''}}">Project Disetujui</a>

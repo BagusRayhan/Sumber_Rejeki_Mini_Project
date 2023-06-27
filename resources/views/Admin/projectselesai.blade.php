@@ -48,7 +48,7 @@
                         <tbody>
                             @forelse ($selesai as $project )
                             <tr>
-                                <td>{{ $project->namaproject }}</td>
+                                <td>{{ $project->nama }}</td>
                                 <td>
                                     @if ($project->status == 'selesai')
                                       <span class="badge text-bg-success">{{ $project->status }}</span>
