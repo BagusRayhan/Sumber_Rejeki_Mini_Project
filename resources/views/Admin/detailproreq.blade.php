@@ -20,7 +20,7 @@
 
         <!-- Content Start -->
         <div class="content">
-            
+
             @include('Admin.templates.navbar')
 
         <!-- style css -->
@@ -32,7 +32,7 @@
             margin-bottom: 0;
         }
         </script>
-            
+
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
                 <form action="detailproreq" method="GET" enctype="multipart/form-data">
@@ -41,19 +41,19 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="input1">Nama Client</label>
-                                <input type="text" value="{{ $data->namaclient }}" class="form-control" id="input1" name="input1" disabled>
+                                <input type="text" value="{{ $data->nama }}" class="form-control" id="input1" name="nama" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="input2">Nama Project</label>
-                                <input type="text" value="{{ $data->namaproject }}" class="form-control" id="input2" name="input2" disabled>
+                                <input type="text" value="{{ $data->napro }}" class="form-control" id="input2" name="input2" disabled>
                             </div>
                         </div>
                         <div class="col-md-6 mt-3">
                             <div class="form-group">
                                 <label for="input1">Dokumen Pendukung</label>
-                                <input type="text" value="{{ $data->dokumenpendukung }}" class="form-control" id="input1" name="input1" disabled>
+                                <input type="text" value="{{ $data->bukti }}" class="form-control" id="input1" name="input1" disabled>
                             </div>
                         </div>
                         <div class="col-md-6 mt-3">
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <table class="table table-striped table-hover mb-sm-3">
                         <thead>
                           <tr>
@@ -100,7 +100,7 @@
                               </svg></i></a></td>
                           </tr>
                         </tbody>
-                      </table>                   
+                      </table>
                     <a href="projectreq" id="backButton" type="button" style="border: none;" class="btn btn-primary">Setuju</a>
                     <a href="projectreq" id="returnButton" type="button" class="btn btn-danger">Tolak</a>
                 </form>
@@ -149,7 +149,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Sales Chart End -->
 
 
@@ -166,6 +166,6 @@
 
     </div>
 
-    
+
     @include('Admin.templates.script')
 </body>

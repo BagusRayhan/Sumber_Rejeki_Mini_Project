@@ -6,19 +6,19 @@ use App\Models\Chat;
 use App\Models\Fitur;
 use Illuminate\Http\Request;
 use App\Models\ProjectDisetujui;
-use App\Models\projectreqAdmin;
+use App\Models\Proreq;
 use App\Models\Sosmed;
 
 class ProjectDisetujuiController extends Controller
 {
     public function disetujui() {
-        $project = projectreqAdmin::where('status','setuju')->get();
+        $project = proreq::where('status','setuju')->get();
         return view('Admin.project-disetujui', ['project' => $project]);
     }
 
 
     public function detailDisetujui($id) {
-        $detail = ProjectDisetujui::find($id);
+        $detail = Proreq::find($id);
         // $fitur = Fitur::where('project_id', $id);
         $fitur = Fitur::all();
         $chats = Chat::all();
