@@ -31,7 +31,7 @@
                             <i class="fa-regular fa-user fa-2x text-primary"></i>
                             <div class="ms-1">
                                 <p class="mb-2">Jumlah Client</p>
-                                <h6 class="mb-0">0</h6>
+                                <h6 class="mb-0">{{ $clientCounter }}</h6>
                             </div>
                         </div>
                     </div>
@@ -247,7 +247,9 @@
 
     </div>
     
-    
+    <script src="{{ $chart->cdn() }}"></script>
+    {{ $chart->script() }}
+    {{ $ychart->script() }}
 
     @include('Admin.templates.script')
 </body>

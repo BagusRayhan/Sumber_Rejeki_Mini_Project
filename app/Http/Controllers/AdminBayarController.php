@@ -24,7 +24,11 @@ class AdminBayarController extends Controller
         ]);
     }
 
-    public function simpanRekening(Request $request, $id) {
-        
+    public function updateBank(Request $request) {
+        $bank = Bank::findOrFail($request->idrekening);
+        $bank->update([
+            'rekening' => $request->rekening
+        ]);
+        return back();
     }
 }
