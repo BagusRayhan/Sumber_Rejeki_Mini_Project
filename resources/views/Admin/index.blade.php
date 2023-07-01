@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon2.png') }}" alt="">
+                            <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon1.png') }}" alt="">
                             <div class="ms-1">
                                 <p class="mb-2">Project Disetujui</p>
                                 <h6 class="mb-0">0</h6>
@@ -103,46 +103,25 @@
                             <div class="d-flex align-items-center justify-content-start mb-2">
                                 <h6 class="mb-0">Project Masuk</h6>
                             </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
+                            @if (count($incomeProject) !== 0)
+                                @foreach ($incomeProject as $inc)
+                                    <div class="d-flex align-items-center border-bottom py-3">
+                                        <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                                        <div class="w-100 ms-3">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-0">{{ $inc->nama }}</h6>
+                                                <small>{{ $inc->harga }}</small>
+                                            </div>
+                                            <span>{{ $inc->napro }}</span>
+                                        </div>
                                     </div>
-                                    <span>Short message goes here...</span>
+                                @endforeach
+                            @else
+                                <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+                                    <img src="gambar/empty-icon/empty-directory.png" class="w-50">
+                                    <p>Tidak ada project masuk</p>
                                 </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center pt-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6 col-xl-4">
@@ -150,46 +129,25 @@
                             <div class="d-flex align-items-center justify-content-start mb-2">
                                 <h6 class="mb-0">Pembayaran Masuk</h6>
                             </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
+                            @if (count($incomePayment) !== 0)
+                                @foreach ($incomePayment as $inc)
+                                    <div class="d-flex align-items-center border-bottom py-3">
+                                        <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                                        <div class="w-100 ms-3">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-0">{{ $inc->namaclient }}</h6>
+                                                <small>{{ $inc->hargaproject }}</small>
+                                            </div>
+                                            <span>{{ $inc->namaproject }}</span>
+                                        </div>
                                     </div>
-                                    <span>Short message goes here...</span>
+                                @endforeach
+                            @else
+                                <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+                                    <img src="gambar/empty-icon/empty-directory.png" class="w-50">
+                                    <p>Tidak ada pembayaran masuk</p>
                                 </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center pt-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6 col-xl-4">
@@ -197,46 +155,25 @@
                             <div class="d-flex align-items-center justify-content-start mb-2">
                                 <h6 class="mb-0">Pesan</h6>
                             </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
+                            @if (count($message) !== 0)
+                                @foreach ($message as $msg)
+                                    <div class="d-flex align-items-center border-bottom py-3">
+                                        <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                                        <div class="w-100 ms-3">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-0">{{ $msg->namaclient }}</h6>
+                                                <small>{{ $msg->hargaproject }}</small>
+                                            </div>
+                                            <span>{{ $msg->namaproject }}</span>
+                                        </div>
                                     </div>
-                                    <span>Short message goes here...</span>
+                                @endforeach
+                            @else
+                                <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+                                    <img src="gambar/empty-icon/empty-directory.png" class="w-50">
+                                    <p>Tidak ada pesan masuk</p>
                                 </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center pt-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

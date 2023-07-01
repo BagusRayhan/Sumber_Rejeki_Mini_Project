@@ -61,16 +61,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Rival Fahri </td>
-                                        <td>Website Online Shop</td>
-                                        <td>15.000.000</td>
-                                        <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal" class="btn btn-primary btn-sm"><i class="fa-solid fa-image"></i></a></td>
-                                        <td class="d-flex justify-content-evenly">
-                                            <a href="#" class="btn btn-primary btn-sm rounded-circle"><i class="fa-solid fa-check"></i></a>
-                                            <a href="#" class="btn btn-danger btn-sm rounded-circle"><i class="fa-solid fa-times"></i></a>
-                                        </td>
-                                    </tr>
+                                    @if (count($propend))
+                                        @foreach ($propend as $pro)
+                                            <tr>
+                                                <td>{{ $pro->namaclient }}</td>
+                                                <td>{{ $pro->namaproject }}</td>
+                                                <td>{{ $pro->hargaproject }}</td>
+                                                <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal" class="btn btn-primary btn-sm"><i class="fa-solid fa-image"></i></a></td>
+                                                <td class="d-flex justify-content-evenly">
+                                                    <form action="{{ route('setujui-pembayaran') }}" method="post">
+                                                        @csrf
+                                                        @method('put')
+                                                        <input type="hidden" name="idpropend" value="{{ $pro->id }}">
+                                                        <button class="btn btn-primary btn-sm rounded-circle" type="submit"><i class="fa-solid fa-check"></i></button>
+                                                    </form>
+                                                    <a href="#" class="btn btn-danger btn-sm rounded-circle"><i class="fa-solid fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="5" class="text-center">Tidak ada data</td>
+                                        </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

@@ -2,22 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Charts\AnnualyDoneChart;
-use Illuminate\Http\Request;
-use App\Charts\MonthlyUsersChart;
+use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use App\Models\proreq;
+use App\Models\Pembayaran;
+use Illuminate\Http\Request;
+use App\Charts\AnnualyDoneChart;
+use App\Charts\MonthlyUsersChart;
 
 class AdminController extends Controller
 {
-    public function index(MonthlyUsersChart $chart, AnnualyDoneChart $ychart)
-    {
+    public function index(MonthlyUsersChart $chart, AnnualyDoneChart $ychart) {
         $admin = User::where('role', 'admin')->first();
+        $clientCounter = User::where('role', 'client')->count();
+        $incomePayment = Pembayaran::limit(4)->latest()->get();
+        $incomeProject = proreq::limit(4)->latest()->get();
+        $message = Chat::limit(4)->latest()->get();
+        
         return view('Admin.index', [
             'admin' => $admin,
-            'clientCounter' => User::where('role', 'client')->count(),
+            'clientCounter' => $clientCounter,
             'chart' => $chart->build(),
             'ychart' => $ychart->build(),
+            'incomePayment' => $incomePayment,
+            'incomeProject' => $incomeProject,
+            'message' => $message
         ]);
     }
 

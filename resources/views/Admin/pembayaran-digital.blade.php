@@ -54,17 +54,18 @@
                                                             <div class="modal-header">
                                                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ $bank->nama }}</h1>
                                                             </div>
-                                                            <div class="modal-body">
-                                                                <form action="{{ route('update-bank') }}" id="editRekeningForm" method="post">
+                                                            <form action="{{ route('update-bank') }}" id="editRekeningForm" method="post">
+                                                                <div class="modal-body">
                                                                     @csrf
                                                                     <input type="hidden" name="idrekening" value="{{ $bank->id }}">
                                                                     <div class="mb-3">
                                                                         <input type="text" value="{{ $bank->rekening }}" class="form-control" id="nomorRekening" name="rekening">
                                                                     </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                                                            <button class="btn btn-primary" type="submit">Simpan</button>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                                                                    <button class="btn btn-primary" type="submit">Simpan</button>
+                                                                </div>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -83,7 +84,7 @@
                     </div>
                     <!-- Bank Table End -->
                     <!-- Bank E-Wallet Start -->
-                    <div class="col-12">
+                    <div class="col-12 mb-5">
                         <h6 class="mb-4">E-Wallet</h6>
                         <div class="d-flex justify-content-evenly">
                             @if (count($ewallet) !== 0)
@@ -104,14 +105,18 @@
                                                 <div class="modal-header">
                                                     <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ $ewl->nama }}</h1>
                                                 </div>
-                                                <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
-                                                    <img src="gambar/qr/{{ $ewl->qrcode }}" class="w-75">
-                                                    <input type="file" class="form-control" name="" id="">
-                                                </div>
-                                                <div class="modal-footer d-flex justify-content-center">
-                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                                                    <button type="button" class="btn btn-primary">Simpan</button>
-                                                </div>
+                                                <form action="{{ route('update-ewallet') }}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
+                                                        <input type="hidden" name="idewallet" value="{{ $ewl->id }}">
+                                                        <img src="gambar/qr/{{ $ewl->qrcode }}" class="w-75">
+                                                        <input type="file" class="form-control" name="qrcode" id="qrcode">
+                                                    </div>
+                                                    <div class="modal-footer d-flex justify-content-center">
+                                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

@@ -50,15 +50,58 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Harja</td>
-                                        <td>Website Online Shop</td>
-                                        <td>15.000.000</td>
-                                        <td class="d-flex justify-content-evenly">
-                                            <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#paymentDetailModal"><i class="fa-solid fa-eye"></i></a>
-                                            <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
-                                        </td>
-                                    </tr>
+                                    @if (count($approved) !== 0)
+                                        @foreach ($approved as $apv)
+                                            <tr>
+                                                <td>{{ $apv->namaclient }}</td>
+                                                <td>{{ $apv->namaproject }}</td>
+                                                <td>{{ $apv->hargaproject }}</td>
+                                                <td class="d-flex justify-content-evenly">
+                                                    <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#paymentDetailModal{{ $apv->id }}"><i class="fa-solid fa-eye"></i></a>
+                                                    <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                            <!-- Payment Detail Modal Start -->
+                                            <div class="modal fade" id="paymentDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5">Detail Pembayaran</h1>
+                                                        </div>
+                                                        <div class="modal-body mt-0 d-flex justify-content-evenly">
+                                                            <img src="{{ asset('ProjectManagement/dashmin/img/bukti-pembayaran.png') }}" class="w-50">
+                                                            <div class="container">
+                                                                <div class="mb-2">
+                                                                    <label for="namaClient">Nama Client</label>
+                                                                    <input type="text" id="namaClient" class="form-control" value="Ahmad" disabled>
+                                                                </div>
+                                                                <div class="mb-2">
+                                                                    <label for="namaProject">Nama Project</label>
+                                                                    <input type="text" id="namaProject" class="form-control" value="Website Sekolah" disabled>
+                                                                </div>
+                                                                <div class="mb-2">
+                                                                    <label for="hargaProject">Harga Project</label>
+                                                                    <input type="text" id="hargaProject" class="form-control" value="10.000.000" disabled>
+                                                                </div>
+                                                                <div class="mb-2">
+                                                                    <label for="metodePembayaran">Metode Pembayaran</label>
+                                                                    <input type="text" id="metodePembayaran" class="form-control" value="DANA" disabled>
+                                                                </div>
+                                                                <div class="mt-5">
+                                                                    <button type="button" class="btn btn-primary fw-medium rounded-pill w-100 p-2" data-bs-dismiss="modal" aria-label="Close">KEMBALI</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Payment Detail Modal End -->
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="4" class="text-center">Tidak ada data</td>
+                                        </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -85,42 +128,7 @@
                 </nav>
             </div>
             <!-- Confirm Payment Table End -->
-
-            <!-- Payment Detail Modal Start -->
-            <div class="modal fade" id="paymentDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5">Detail Pembayaran</h1>
-                        </div>
-                        <div class="modal-body mt-0 d-flex justify-content-evenly">
-                            <img src="{{ asset('ProjectManagement/dashmin/img/bukti-pembayaran.png') }}" class="w-50">
-                            <div class="container">
-                                <div class="mb-2">
-                                    <label for="namaClient">Nama Client</label>
-                                    <input type="text" id="namaClient" class="form-control" value="Ahmad" disabled>
-                                </div>
-                                <div class="mb-2">
-                                    <label for="namaProject">Nama Project</label>
-                                    <input type="text" id="namaProject" class="form-control" value="Website Sekolah" disabled>
-                                </div>
-                                <div class="mb-2">
-                                    <label for="hargaProject">Harga Project</label>
-                                    <input type="text" id="hargaProject" class="form-control" value="10.000.000" disabled>
-                                </div>
-                                <div class="mb-2">
-                                    <label for="metodePembayaran">Metode Pembayaran</label>
-                                    <input type="text" id="metodePembayaran" class="form-control" value="DANA" disabled>
-                                </div>
-                                <div class="mt-5">
-                                    <button type="button" class="btn btn-primary fw-medium rounded-pill w-100 p-2" data-bs-dismiss="modal" aria-label="Close">KEMBALI</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Payment Detail Modal End -->
+            
         <!-- Content End -->
 
     </div>
