@@ -19,7 +19,7 @@ class AdminController extends Controller
         $incomePayment = Pembayaran::limit(4)->latest()->get();
         $incomeProject = proreq::limit(4)->latest()->get();
         $message = Chat::limit(4)->latest()->get();
-        
+
         return view('Admin.index', [
             'admin' => $admin,
             'clientCounter' => $clientCounter,
@@ -37,16 +37,16 @@ class AdminController extends Controller
         $admin->name = $request->input('name');
         $admin->email = $request->input('email');
 
-        if ($request->hasFile('profile_image')) {
-            $file = $request->file('profile_image');
-            $fileName = time() . '_' . $file->getClientOriginalName();
+        // if ($request->hasFile('profile_image')) {
+        //     $file = $request->file('profile_image');
+        //     $fileName = time() . '_' . $file->getClientOriginalName();
 
-            // Simpan file gambar ke folder "public/image" di dalam direktori storage
-            $path = $file->storeAs('public/image', $fileName);
+        //     // Simpan file gambar ke folder "public/image" di dalam direktori storage
+        //     $path = $file->storeAs('public/image', $fileName);
 
-            // Update kolom "profil" pada tabel users dengan path file yang baru
-            $admin->profil = 'img/' . $fileName;
-        }
+        //     // Update kolom "profil" pada tabel users dengan path file yang baru
+        //     $admin->profil = 'img/' . $fileName;
+        // }
 
         $admin->save();
 

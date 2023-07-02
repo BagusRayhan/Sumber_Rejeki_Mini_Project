@@ -13,36 +13,36 @@ class AuthController extends Controller
     public function index(){
         return view('login');
     }
-    
-    public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required|min:6',
-        ], [
-            'email.required' => 'Email tidak boleh kosong!',
-            'password.required' => 'Password tidak boleh kosong!',
-            'password.min' => 'Password minimal 6 karakter!',
-        ]);
-    
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            // Ambil pengguna yang berhasil login
-            $user = Auth::user();
-    
-            if ($user->role === 'admin') {
-                return redirect()->route('admin-dashboard');
-            } else {
-                return redirect()->route('indexclient');
-            }
+
+
+public function login(Request $request)
+{
+    $request->validate([
+        'email' => 'required',
+        'password' => 'required|min:6',
+    ], [
+        'email.required' => 'Email tidak boleh kosong!',
+        'password.required' => 'Password tidak boleh kosong!',
+        'password.min' => 'Password minimal 6 karakter!',
+    ]);
+
+    $credentials = $request->only('email', 'password');
+    if (Auth::attempt($credentials)) {
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            return redirect()->route('admin-dashboard');
+        } else {
+            return redirect()->route('indexclient');
         }
-    
-        // Tampilkan pesan SweetAlert jika login gagal
-        return redirect('/')
-            ->with('message', 'Email atau password tidak valid!')
-            ->with('alert-type', 'error');
     }
-    
+    return redirect('/')
+        ->withErrors(['email' => 'Email atau password tidak valid!'])
+        ->withInput()
+        ->with('alert-type', 'error');
+}
+
+
 
 
     public function register()
@@ -63,21 +63,20 @@ class AuthController extends Controller
             'name.required' => 'nama tidak boleh kosong!',
             'email.required' => 'email tidak boleh kosong!',
         ]);
-    
+
         $data = $request->all();
         $check = $this->create($data);
-    
-        // Tampilkan pesan SweetAlert jika register berhasil
+
         return redirect("/")
             ->with('success', 'Anda berhasil melakukan register!')
             ->with('alert-type', 'success');
     }
-    
+
 
     public function create(array $data)
     {
-        $data['role'] = 'client'; // Mengisi nilai role sebagai 'client'
-        
+        $data['role'] = 'client';
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

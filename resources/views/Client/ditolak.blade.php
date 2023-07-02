@@ -43,21 +43,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $row)
-                                <tr>
-                                    <td>{{ $row->namaproject }}</td>
-                                    <td>{{ $row->alasan }}</td>
-                                    <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                        action="{{ route('destroy', $row->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger"> <i class="fa-solid fa-trash"></i></button>
-                                    </form>
+                            @forelse ($data as $row)
 
-                                    </td>
-                                </tr>
-                            @endforeach
+                            <tr>
+                                <td>{{ $row->napro }}</td>
+                                <td>{{ $row->alasan }}</td>
+                                <td class="text-center">
+                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                    action="{{ route('destroy', $row->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger"> <i class="fa-solid fa-trash"></i></button>
+                                </form>
+
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
+                        </tr>
+                        @endforelse
+
                         </tbody>
                     </table>
                 </div>
