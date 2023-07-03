@@ -20,7 +20,7 @@
         <!-- Content Start -->
         <div class="content">
             @include('Client.Template.navbar')
-    
+
             <div class="container mt-4 d-flex flex-column">
                 <div class="wrapper">
                     <form action="{{ route('simpanpro') }}" method="POST"  enctype="multipart/form-data">
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="wrapper m-3 d-flex">
-                            <a href="" class="btn btn-danger btn-sm mx-2">Kembali</a>
+                            <a href="{{ route('drequestclient') }}" class="btn btn-danger btn-sm mx-2">Kembali</a>
                             <button type="submit" class="btn btn-primary btn-sm mx-2">Next Step</button>
                         </div>
                     </form>

@@ -37,7 +37,8 @@ public function login(Request $request)
         }
     }
     return redirect('/')
-        ->withErrors(['email' => 'Email atau password tidak valid!'])
+        ->withErrors(['email' => 'Email tidak valid!'])
+        ->withErrors(['password' => 'Password tidak valid!'])
         ->withInput()
         ->with('alert-type', 'error');
 }
