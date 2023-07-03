@@ -7,15 +7,16 @@
 }
 
 .profile-image {
-  width: 200px;
-  height: 200px;
+  width: 40%;
+  height: 40%;
   object-fit: cover;
 }
 
 .change-profile-button {
+  width: 34px;
   position: absolute;
   bottom: 10px;
-  right: 10px;
+  right: 7em;
   background-color: #fff;
   border-radius: 50%;
   padding: 8px;
@@ -57,7 +58,7 @@
                 <img class="rounded-circle me-lg-2" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                <button type="button" class="dropdown-item" id="profile-btn" data-bs-toggle="modal" data-bs-target="#profileModal">My Profile</button>
+                <button type="button" class="dropdown-item" id="profile-btn" data-bs-toggle="modal" data-bs-target="#editProfileModal">My Profile</button>
                 <a href="{{ route('logout') }}" class="dropdown-item">Log Out</a>
             </div>
         </div>
@@ -69,72 +70,38 @@
       width: 400px;
   }
 </style>
-<!-- Profile Start -->
-<div class="modal fade" id="profileModal" aria-hidden="true" tabindex="-1">
+<div class="modal fade" data-bs-backdrop="static" id="editProfileModal" aria-hidden="true" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered profile-modal">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5">My Profile</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="mb-3 d-flex flex-column align-items-center justify-content-center">
-          <img src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="Gambar Profil" class="profile-images">
-        </div>
-        <div class="mb-1">
-          <label for="exampleFormControlInput1" class="form-label">Nama</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $admin->name }}" disabled>
-        </div>
-        <div class="mb-1">
-          <label for="exampleFormControlInput1" class="form-label">Email</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $admin->email }}" disabled>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#editProfileModal" data-bs-toggle="modal">Edit</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="editProfileModal" aria-hidden="true" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered profile-modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5">My Profile</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="{{ route('admin.updateProfile') }}" method="POST" enctype="multipart/form-data">
+          <form action="{{ route('admin.updateProfile') }}" method="POST" enctype="multipart/form-data">
           @csrf
-          @method('PUT')
-          <center>
-            <div class="profile">
-              <img src="{{ asset($admin->profil) }}" alt="Gambar Profil" class="profile-images">
-              <a href="#" type="file" class="change-profile-button" id="chooseFileButtonA" style="width: 45px">
-                <i class="fa-sharp fa-solid fa-image"></i>
-                <input type="file" id="fileInputA" style="display:none" accept=".jpg,.png,.pdf">
-              </a>
-              <input id="file-upload" type="file" style="display: none;">
+          @method('put')
+            <div class="profile d-flex justify-content-center">
+                <img src="gambar/user-profile/{{ $admin->profil }}" class="rounded-circle profile-image">
+                <a href="#" type="file" class="change-profile-button d-flex justify-content-center" id="chooseFileButtonA">
+                  <i class="fa-sharp fa-solid fa-image"></i>
+                  <input type="file" id="fileInputA" name="fileInputA" style="display:none" accept=".jpg,.png,.pdf">
+                </a>
             </div>
-          </center>
-          <form action="{{ route('admin.updateProfile') }}" method="POST">
-            @csrf
-            @method('PUT')
-        <div class="mb-1">
-          <label for="exampleFormControlInput1" class="form-label">Nama</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" name="name" value="{{ $admin->name }}">
+          <div class="mb-1">
+            <label for="exampleFormControlInput1" class="form-label">Nama</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" name="name" value="{{ $admin->name }}">
+          </div>
+          <div class="mb-1">
+            <label for="exampleFormControlInput1" class="form-label">Email</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" name="email" value="{{ $admin->email }}">
+          </div>
         </div>
-        <div class="mb-1">
-          <label for="exampleFormControlInput1" class="form-label">Email</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" name="email" value="{{ $admin->email }}">
+        <div class="modal-footer">
+          <button class="btn btn-danger" class="btn-close" data-bs-dismiss="modal" type="button">Batal</button>
+          <button class="btn btn-primary" type="submit" id="saveProfileButton">Simpan</button>
         </div>
+      </form>
       </div>
-      <div class="modal-footer">
-        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#profileModal">Batal</button>
-        <button class="btn btn-primary" type="submit" id="saveProfileButton">Simpan</button>
-      </div>
-    </form>
-    </div>
     <script>
       document.getElementById('chooseFileButtonA').addEventListener('click', function() {
       document.getElementById('fileInputA').click();

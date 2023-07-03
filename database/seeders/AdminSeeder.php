@@ -17,7 +17,7 @@ class AdminSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            // 'profil' => 'ProjectManagement/dashmin/img/user-new.png',
+            'profil' => 'gambar/user-profile/default.jpg',
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' =>Hash::make('sandi123'),

@@ -10,6 +10,7 @@ use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use App\Charts\AnnualyDoneChart;
 use App\Charts\MonthlyUsersChart;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
@@ -33,24 +34,40 @@ class AdminController extends Controller
 
     public function updateProfile(Request $request)
     {
+        $upProfile = [];
         $admin = User::where('role', 'admin')->first();
-        $admin->name = $request->input('name');
-        $admin->email = $request->input('email');
+        if ($request->has('fileInputA')) {
+            if (File::exists(public_path('gambar/user-profile/' . $admin->profil))) {
+                unlink(public_path('gambar/user-profile/' . $admin->profil));
+            }
+            $file = $request->file('fileInputA');
+            $newFile = $file->hashName();
+            $file->move(public_path('gambar/user-profile/'), $newFile);
+            $upProfile['profil'] = $newFile;
+            $upProfile['name'] = $request->input('name');
+            $upProfile['email'] = $request->input('email');
+            $admin->update($upProfile);
+        }
 
-        // if ($request->hasFile('profile_image')) {
-        //     $file = $request->file('profile_image');
-        //     $fileName = time() . '_' . $file->getClientOriginalName();
-
-        //     // Simpan file gambar ke folder "public/image" di dalam direktori storage
-        //     $path = $file->storeAs('public/image', $fileName);
-
-        //     // Update kolom "profil" pada tabel users dengan path file yang baru
-        //     $admin->profil = 'img/' . $fileName;
-        // }
-
-        $admin->save();
-
-        // Redirect atau melakukan aksi lain setelah update berhasil
         return redirect()->back()->with('success', 'Profil berhasil diperbarui');
+
+        // $upQR = [];
+        // $ewallet = EWallet::find($request->idewallet);
+        // if ($request->has('qrcode')) {
+        //     // $request->validate([
+        //     //     'qrcode' => 'mimes:jpg,jpeg,png'
+        //     // ], [
+        //     //     'qrcode.mimes' => 'QR tidak valid'
+        //     // ]);
+        //     if (File::exists(public_path('gambar/qr/' . $ewallet->qrcode))) {
+        //         unlink(public_path('gambar/qr/' . $ewallet->qrcode));
+        //     }
+        //     $file = $request->file('qrcode');
+        //     $newQRCode = $file->hashName();
+        //     $file->move(public_path('gambar/qr/'), $newQRCode);
+        //     $upQR['qrcode'] = $newQRCode;
+        //     $ewallet->update($upQR);
+        // }
+        // return back();
     }
 }
