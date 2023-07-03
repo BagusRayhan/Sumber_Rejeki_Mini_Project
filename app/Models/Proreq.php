@@ -18,4 +18,8 @@ class proreq extends Model
         return $this->hasMany(Fitur::class);
     }
 
+    public function projectchat() {
+        return $this->hasMany(Chat::class);
+    }
+
 }

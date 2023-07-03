@@ -187,6 +187,7 @@
                             <form action="{{ route('project-chat') }}" method="post">
                                 @csrf
                                 <div class="form-group p-1 d-flex px-2 rounded-bottom" style="bottom: 0; background: #f3f6f9;">
+                                    <input type="hidden" name="project_id" value="{{ $detail->id }}">
                                     <input type="hidden" name="chat_time" value="{{ Carbon::now() }}">
                                     <textarea class="form-control" id="chat" name="chat" style="height: 5vh; max-height: 100px" placeholder="Ketik pesan ..."></textarea>
                                     <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>

@@ -11,4 +11,8 @@ class Chat extends Model
 
     protected $table = 'projectchat';
     protected $fillable = ['user_id', 'project_id', 'chat', 'chat_time'];
+
+    public function proreq() {
+        $this->belongsTo(proreq::class, 'id');
+    }
 }

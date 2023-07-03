@@ -9,6 +9,7 @@ use App\Models\ProjectDisetujui;
 use App\Models\Proreq;
 use App\Models\Sosmed;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectDisetujuiController extends Controller
 {
@@ -21,13 +22,11 @@ class ProjectDisetujuiController extends Controller
         ]);
     }
 
-
     public function detailDisetujui($id) {
         $admin = User::where('role', 'admin')->first();
         $detail = Proreq::find($id);
-        // $fitur = Fitur::where('project_id', $id);
         $fitur = Fitur::all();
-        $chats = Chat::all();
+        $chats = Chat::where('project_id', $id)->get();
         return view('Admin.detail-project-disetujui', [
             'detail' => $detail,
             'fitur' => $fitur,
@@ -38,8 +37,8 @@ class ProjectDisetujuiController extends Controller
 
     public function projectChat(Request $request) {
         $createChat = Chat::create([
-            'user_id' => 1,
-            'project_id' => 1,
+            'user_id' => Auth()->user()->id,
+            'project_id' => $request->project_id,
             'chat' => $request->chat,
             'chat_time' => $request->chat_time
         ]);
