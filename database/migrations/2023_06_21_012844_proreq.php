@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama')->nullable();
             $table->string('napro')->nullable();
+            $table->string('progress')->nullable();
             $table->string('bukti')->nullable();
             $table->dateTime('deadline')->nullable();
             $table->string('status')->nullable();
