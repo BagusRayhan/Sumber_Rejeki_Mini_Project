@@ -65,7 +65,7 @@ class ProjectDisetujuiController extends Controller
             'fitur' => $fitur,
             'chats' => $chats,
             'sosmed' => $sosmed,
-            'admin' =>$client]);
+            'client' =>$client]);
     }
 
     public function projectChatClient(Request $request) {
