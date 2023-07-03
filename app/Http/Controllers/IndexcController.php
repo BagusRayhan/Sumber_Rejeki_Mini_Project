@@ -13,7 +13,7 @@ class IndexcController extends Controller
 {
     public function indexclient()
         {
-            $client = User::where('role', 'client')->first();
+        $client = User::where('role', 'client')->first();
         $sosmed = Sosmed::all();
         return view('Client.index', compact('sosmed','client'));
         }
@@ -24,6 +24,7 @@ class IndexcController extends Controller
         $sosmed = Sosmed::all();
         return view('Client.clientproreq',compact('data','sosmed','client'));
     }
+   
 
     public function createproreq(){
         $sosmed = Sosmed::all();

@@ -51,33 +51,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Aplikasi toko online</td>
-                                <td><span class="badge text-bg-success">Selesai</span></td>
-                                <td><center>5.000.000</center></td>
-                                <td><center>
+                             @foreach ($data as $item)
+                                @if ($item->status === 'selesai')
+                                <tr>
+                                    <td>{{ $item->napro }}</td>
+                                    <td><span class="badge text-bg-success">{{ $item->status }}</span></td>
+                                    <td><center>{{ $item->harga}}</center></td>
+                                    <td class="d-flex justify-content-evenly">
                                     <a href="{{ route('revisibutton') }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
                                     <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</a></center>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Website Pertanian</td>
-                                <td><span class="badge text-bg-success">Selesai</span></td>
-                                <td><center>5.000.000</center></td>
-                                <td><center>
-                                    <a href="{{ route('detail-revisi-client') }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
-                                    <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</a></center>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Aplikasi Timer Waktu Solat</td>
-                                <td><span class="badge text-bg-success">Selesai</span></td>
-                                <td><center>5.000.000</center></td>
-                                <td><center>
-                                    <a href="{{ route('detail-revisi-client') }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
-                                    <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</a></center>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                                @endif
+                                @endforeach
                         </tbody>
                     </table>
                 </div>

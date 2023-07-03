@@ -24,10 +24,12 @@
       <div class="container-fluid">
             <h4 class="mb-3 mt-3" style="margin-left: 2%;">Detail Project</h4>
         <div class="col-sm-12 col-xl-11 d-flex justify-content-between" style="margin-left: 2%; margin">
+            <form action="{{ route('setuju-revisi-client', $data->id) }}" method="GET">
+                 {{ csrf_field() }}
                 <div class="mb-3" style="width: 27em">
                     <div class="form-group">
                         <label for="input1">Nama Project</label>
-                        <input type="text" class="form-control" id="input1" value="Aplikasi toko online" disabled>
+                        <input type="text" class="form-control" id="input1" value="{{ $data->napro }}" disabled>
                     </div><br>
                     <div class="form-group">
                         <label for="input2">Deadline</label>
@@ -44,6 +46,7 @@
                         <input type="text" class="form-control" id="input4" value="58.000.000" disabled>
                     </div>
                 </div>
+                </form>
         </div>
         </div>
 
