@@ -32,20 +32,32 @@
                                     <label for="input1">Nama Client</label>
                                     <input type="text" class="form-control" id="input1" name="nama" placeholder="Masukkan Nama Anda">
                                 </div>
+                                @error('nama')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="form-group mb-3">
                                     <label for="input2">Nama Project</label>
                                     <input type="text" class="form-control" id="input2" name="napro" placeholder="Masukkan nama project anda">
                                 </div>
+                                @error('napro')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="wrapper w-50 px-3 d-flex flex-column">
                                 <div class="form-group mb-3">
                                     <label for="input3">Dokumen Pendukung</label>
                                     <input type="file" class="form-control" id="input3" name="bukti">
                                 </div>
+                                @error('bukti')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="form-group mb-3">
                                     <label for="input4">Deadline</label>
                                     <input type="datetime-local" class="form-control" id="input4" name="deadline" placeholder="Input 4">
                                 </div>
+                                @error('deadline')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="wrapper m-3 d-flex">
