@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Proreq;
 use App\Models\Fitur;
 use App\Models\Sosmed;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class IndexcController extends Controller
 {
     public function indexclient()
-        {
-          
-            $sosmed = Sosmed::all();
-            return view('Client.index', compact('sosmed'));
+        {  
+        $sosmed = Sosmed::all();
+        return view('Client.index', compact('sosmed'));
         }
 
     public function drequestclient(){
@@ -29,11 +29,28 @@ class IndexcController extends Controller
         return view ('Client.createproreq', compact('sosmed','fitur'));
     }
 
-public function simpann(Request $request)
+ public function simpann(Request $request)
 {
+    $this->validate($request,[
+        'nama' => 'required|min:5|max:30',
+        'napro' => 'required',
+        'bukti' => 'mimes:pdf,png,jpeg',
+        'deadline' => 'required',
+    ], [
+        'nama.required' => 'Nama tidak boleh kosong',
+        'napro.required' => 'Nama project tidak boleh kosong',
+        'bukti.mimes' => 'Dokumen harus pdf/png/jpeg',
+        'deadline.required' => 'deadline harus terisi',
+    ]);
+
     $data = Proreq::all();
-    $nm = $request->bukti;
-    $namaFile = time() . rand(100, 999) . "." . $nm->getClientOriginalExtension();
+    $namaFile = null; // Inisialisasi $namaFile dengan nilai null
+
+    if ($request->hasFile('bukti')) {
+        $nm = $request->bukti;
+        $namaFile = time() . rand(100, 999) . "." . $nm->getClientOriginalExtension();
+        $nm->move(public_path() . '/gambar', $namaFile);
+    }
 
     $dtUpload = new Proreq();
     $dtUpload->nama = $request->nama;
@@ -41,11 +58,11 @@ public function simpann(Request $request)
     $dtUpload->bukti = $namaFile;
     $dtUpload->deadline = $request->deadline;
 
-    $nm->move(public_path() . '/gambar', $namaFile);
     $dtUpload->save();
     $id = $dtUpload->id;
     return redirect()->route('editproreq', ['id' => $id]);
 }
+
 
      public function showproj(Request $request){
         return view('Client.createproreq');
@@ -85,7 +102,7 @@ public function simpann(Request $request)
         'napro' => $request['napro'],
         'bukti' => $awal,
         'deadline' => $request['deadline'],
-        
+        'status' => 'pending',    
     ];
 
     $ubah->update($data);
@@ -105,7 +122,6 @@ public function simpann(Request $request)
 public function showFormModal($id)
 {
     $data = Fitur::findOrFail($id);
-
     return view('Client.editproreq', compact('data'));
 }
 

@@ -20,7 +20,7 @@
         <!-- Content Start -->
         <div class="content">
             @include('Client.Template.navbar')
-    
+
             <div class="container mt-4 d-flex flex-column">
                 <div class="wrapper">
                     <form action="{{ route('simpanpro') }}" method="POST"  enctype="multipart/form-data">
@@ -32,24 +32,36 @@
                                     <label for="input1">Nama Client</label>
                                     <input type="text" class="form-control" id="input1" name="nama" placeholder="Masukkan Nama Anda">
                                 </div>
+                                @error('nama')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="form-group mb-3">
                                     <label for="input2">Nama Project</label>
                                     <input type="text" class="form-control" id="input2" name="napro" placeholder="Masukkan nama project anda">
                                 </div>
+                                @error('napro')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="wrapper w-50 px-3 d-flex flex-column">
                                 <div class="form-group mb-3">
                                     <label for="input3">Dokumen Pendukung</label>
                                     <input type="file" class="form-control" id="input3" name="bukti">
                                 </div>
+                                @error('bukti')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="form-group mb-3">
                                     <label for="input4">Deadline</label>
                                     <input type="datetime-local" class="form-control" id="input4" name="deadline" placeholder="Input 4">
                                 </div>
+                                @error('deadline')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="wrapper m-3 d-flex">
-                            <a href="" class="btn btn-danger btn-sm mx-2">Kembali</a>
+                            <a href="{{ route('drequestclient') }}" class="btn btn-danger btn-sm mx-2">Kembali</a>
                             <button type="submit" class="btn btn-primary btn-sm mx-2">Next Step</button>
                         </div>
                     </form>
