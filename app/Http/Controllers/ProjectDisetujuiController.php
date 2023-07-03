@@ -50,8 +50,19 @@ class ProjectDisetujuiController extends Controller
         $client = User::where('role', 'client')->first();
         $project = proreq::all();
         $sosmed = Sosmed::all();
-        return view('Client.disetujui', compact('project', 'sosmed','client'));
+        $data = proreq::where('status','setuju')->get();
+        return view('Client.disetujui', compact('project','data', 'sosmed','client'));
     }
+
+//    public function detailDisetujuiClient($id) {
+//     $client = User::where('role', 'client')->first();
+//     $detail = proreq::find($id);
+//     $fitur = Fitur::all();
+//     $chats = Chat::all();
+//     $sosmed = Sosmed::all();
+
+//     return view('Client.detailsetujui', compact('detail', 'fitur', 'chats', 'sosmed', 'client'));
+// }
 
     public function detailDisetujuiClient($id) {
         $client = User::where('role', 'client')->first();
@@ -65,7 +76,7 @@ class ProjectDisetujuiController extends Controller
             'fitur' => $fitur,
             'chats' => $chats,
             'sosmed' => $sosmed,
-            'admin' =>$client]);
+            'client' =>$client]);
     }
 
     public function projectChatClient(Request $request) {
