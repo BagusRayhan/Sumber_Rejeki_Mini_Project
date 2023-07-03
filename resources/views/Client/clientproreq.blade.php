@@ -52,6 +52,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($data as $item)
+                                @if ($item->status === null || $item->status === 'pending')
                                 <tr>
                                     <td>{{ $item->nama }}</td>
                                     <td>{{ $item->napro }}</td>
@@ -60,6 +61,7 @@
                                         <a href="{{ route('editproreq', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                                     </td>
                                 </tr>
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -91,6 +93,8 @@
 
 
     @include('Client.Template.script')
+    @include('sweetalert::alert')
+
     </body>
 
 

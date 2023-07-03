@@ -35,7 +35,7 @@ Route::get('kebijakan', [AuthController::class, 'kebijakan'])->name('kebijakan')
 Route::get('kebijakan', [PengaturanController::class, 'kebijakan'])->name('kebijakan');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::middleware('auth')->group(function(){
+Route::middleware(['web', 'auth'])->group(function(){
 
     //Halaman Client
     Route::get('indexclient', [IndexcController::class, 'indexclient'])->name('indexclient');

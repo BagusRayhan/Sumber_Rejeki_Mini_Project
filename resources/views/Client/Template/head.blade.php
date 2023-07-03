@@ -25,3 +25,4 @@
     
     <!-- Template Stylesheet -->
     <link href="{{ asset('ProjectManagement/dashmin/css/style.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>

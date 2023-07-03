@@ -107,7 +107,7 @@ class IndexcController extends Controller
 
     $ubah->update($data);
     $project_id = $ubah->id;
-    return redirect('drequestclient');
+    return redirect('drequestclient')->with('success', 'Project Berhasil dikirim!');
     }
     
 

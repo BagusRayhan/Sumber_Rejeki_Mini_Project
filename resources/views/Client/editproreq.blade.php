@@ -52,7 +52,39 @@
                 </div>
                 <div class="wrapper m-3 d-flex">
                     <a href="{{ route('drequestclient') }}" class="btn btn-danger btn-sm mx-2">Kembali</a>
-                    <button type="submit" class="btn btn-primary btn-sm mx-2">Kirim Request</button>
+                    <button type="submit" onclick="showConfirmation(event)" class="btn btn-primary btn-sm mx-2">Kirim Request</button>
+
+<script>
+    function showConfirmation(event) {
+        event.preventDefault(); // Mencegah perilaku default tombol submit
+
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: 'Ingin Mengirim Request?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Aksi yang akan dijalankan jika pengguna menekan tombol "Ya"
+           
+                // Setelah sweet alert ditampilkan, formulir dapat dikirim secara manual
+                document.querySelector('form').submit();
+            } else {
+                // Aksi yang akan dijalankan jika pengguna menekan tombol "Batal"
+                Swal.fire(
+                    'Tindakan dibatalkan',
+                    'Project tidak dikirim',
+                    'error'
+                );
+            }
+        });
+    }
+</script>
+
                 </div>
             </form>
         </div>
@@ -170,8 +202,11 @@
 
 
 
+
 @include('Client.Template.footer')
 @include('Client.Template.script')
+@include('sweetalert::alert')
+
 
 
  <!-- Modal Box tambah desripsi Start -->
