@@ -47,8 +47,8 @@
                                 @if (count($project) !== 0)
                                     @foreach ($project as $pro)
                                         <tr>
-                                            <td>{{ $pro->namaproject }}</td>
-                                            <td>{{ $pro->estimasi }}</td>
+                                            <td>{{ $pro->napro }}</td>
+                                            <td>22-Juli-2023 12:00</td>
                                             <td>
                                                 <div class="col-sm-12 col-xl-5" style="margin-left:2%;">
                                                     <div class="bg-light rounded h-100 p-10">
@@ -60,7 +60,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>{{ $pro->hargaproject }}</td>
+                                            <td>{{ $pro->harga }}</td>
                                             <td class="d-flex justify-content-evenly">
                                                 <a href="/detailsetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                             </td>

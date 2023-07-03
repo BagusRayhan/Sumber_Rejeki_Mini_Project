@@ -12,15 +12,17 @@ use Illuminate\Support\Facades\File;
 class IndexcController extends Controller
 {
     public function indexclient()
-        {  
+        {
+            $client = User::where('role', 'client')->first();
         $sosmed = Sosmed::all();
-        return view('Client.index', compact('sosmed'));
+        return view('Client.index', compact('sosmed','client'));
         }
 
     public function drequestclient(){
+        $client = User::where('role', 'client')->first();
         $data = Proreq::all();
         $sosmed = Sosmed::all();
-        return view('Client.clientproreq',compact('data','sosmed'));
+        return view('Client.clientproreq',compact('data','sosmed','client'));
     }
 
     public function createproreq(){
@@ -42,6 +44,7 @@ class IndexcController extends Controller
         'bukti.mimes' => 'Dokumen harus pdf/png/jpeg',
         'deadline.required' => 'deadline harus terisi',
     ]);
+
 
     $data = Proreq::all();
     $namaFile = null; // Inisialisasi $namaFile dengan nilai null
@@ -65,21 +68,22 @@ class IndexcController extends Controller
 
 
      public function showproj(Request $request){
-        return view('Client.createproreq');
+        $client = User::where('role', 'client')->first();
+        return view('Client.createproreq',compact('client'));
     }
 
     public function simpannn(Request $request, $id)
     {
         $sosmed = Sosmed::all();
         $data = Proreq::findOrFail($id);
-        $project_id = $data->id;  
+        $project_id = $data->id;
 
         Fitur::create([
             'project_id' => $project_id,
             'namafitur' => $request->namafitur,
             'deskripsi' => $request->deskripsi
         ]);
-            
+
         return redirect()->route('editproreq', $id)->with(compact('data', 'sosmed'));
     }
 
@@ -102,27 +106,29 @@ class IndexcController extends Controller
         'napro' => $request['napro'],
         'bukti' => $awal,
         'deadline' => $request['deadline'],
-        'status' => 'pending',    
+        'status' => 'pending',
     ];
 
     $ubah->update($data);
     $project_id = $ubah->id;
     return redirect('drequestclient')->with('success', 'Project Berhasil dikirim!');
     }
-    
+
 
     public function editproreq($id){
+        $client = User::where('role', 'client')->first();
         $sosmed = Sosmed::all();
         $data = Proreq::findorfail($id);
         $dataa = Fitur::where('project_id', $id)->get();
-        
-        return view('Client.editproreq',compact('data','sosmed','dataa'));
+
+        return view('Client.editproreq',compact('data','sosmed','dataa','client'));
     }
 
 public function showFormModal($id)
 {
+    $client = User::where('role', 'client')->first();
     $data = Fitur::findOrFail($id);
-    return view('Client.editproreq', compact('data'));
+    return view('Client.editproreq', compact('data','client'));
 }
 
 public function updateFitur(Request $request, $id)

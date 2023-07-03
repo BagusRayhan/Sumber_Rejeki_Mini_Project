@@ -57,6 +57,7 @@
                   <img class="rounded-circle me-lg-2" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
               </a>
               <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                
                   <button type="button" class="dropdown-item" id="profile-btn" data-bs-toggle="modal" data-bs-target="#MyModal">My Profile</button>
                   <a href="{{ route('logout') }}" class="dropdown-item">Log Out</a>
               </div>
@@ -70,48 +71,70 @@
     }
   </style>
 <!-- Modal -->
-        <div class="modal fade" id="MyModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered profile-modal">
-                <div class="modal-content">
-                <div class="modal-header">
-                                <div class="row mb-3 mt-sm-2">
-                                  <button type="button" style="margin-right:2%;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                <div class="form-group">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel"><center><img src="{{ asset('ProjectManagement/dashmin/img/user-new.png') }}" alt="" style="width:40%; height:40%;"><br>Suharjo</center></h1>
-                                </div>
-                                <div class="form-group w-100 p-3">
-                                    <label for="input1">Nama</label>
-                                    <input class="form-control mt-1" value="Suharjo" id="textarea1"  name="textarea1" disabled>
-                                </div><br><br>
-                                <div class="col-md-6 ">
-                                    <div class="form-group ">
-                                        <label for="input1">Email</label>
-                                        <input type="email" value="Harjoya@gmail.com" class="form-control mt-1" id="input1" name="input1" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="input2">No.Telpon</label>
-                                        <input type="number" value="0867253616173" class="form-control mt-1" id="input2" name="input2" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-group w-1 p-3">
-                                    <label for="input1">Nama Perusahaan</label>
-                                    <input  type="text" class="form-control mt-1" value="Sumber Rejeki" id="textarea1"  name="textarea1" disabled>
-                                </div>
-                                <div class="form-group w-80 p-3">
-                                    <label for="input1">Alamat Perusahaan</label>
-                                    <textarea class="form-control mt-1" id="textarea1" style="height: 100px" name="textarea1" disabled>Malang, Jawa Timur Indonesia</textarea>
-                                </div>
-                            </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Edit Profil</button>
-                </div>
-                </div>
+<div class="modal fade" id="MyModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered profile-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="row mb-3 mt-sm-2">
+            <button type="button" style="margin-right:2%;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="form-group">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                <center>
+                    <div class="profile">
+                        <img src="{{ asset('ProjectManagement/dashmin/img/user-new.png') }}" alt="Gambar Profil" class="profile-image">
+                        <a href="#" type="file" class="change-profile-button" id="chooseFileButton" style="width: 45px">
+                          <i class="fa-sharp fa-solid fa-image"></i>
+                          <input typ e="file" id="fileInput" style="display:none" accept=".jpg,.png,.pdf">
+                        </a>
+                      </div>
+                        <input id="file-upload" type="file" style="display: none;">
+                </center>
+                {{-- <center><img src="{{ asset('ProjectManagement/dashmin/img/user-new.png') }}" alt="" style="width:40%; height:40%;"><br></center> --}}
+              </h1>
             </div>
+            <div class="mb-1">
+              <label for="exampleFormControlInput1" class="form-label">Nama</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $client->name }}" disabled>
+            </div><br><br>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="input1">Email</label>
+                <input type="email" class="form-control mt-1" id="exampleFormControlInput2" value="{{ $client->email }}" disabled>
+              </div>
             </div>
-            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="input2">No.Telpon</label>
+                <input type="number" class="form-control mt-1" id="exampleFormControlInput3" value="{{ $client->no_tlp }}" disabled>
+              </div>
+            </div>
+            <div class="form-group w-1 p-3">
+              <label for="input1">Nama Perusahaan</label>
+              <input type="text" class="form-control mt-1" id="exampleFormControlInput4" value="{{ $client->nama_perusahaan }}" disabled>
+            </div>
+            <div class="form-group w-80 p-3">
+              <label for="input1">Alamat Perusahaan</label>
+              <textarea class="form-control mt-1" id="exampleFormControlInput5" style="height: 100px" disabled>{{ $client->alamat_perusahaan }}</textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" id="editProfileButton">Edit Profil</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('editProfileButton').addEventListener('click', function() {
+      var inputs = document.querySelectorAll('#MyModal input, #MyModal textarea');
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].disabled = false;
+      }
+    });
+  </script>
+
+            {{-- <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -141,7 +164,7 @@
                                     // Lakukan sesuatu dengan file yang dipilih, misalnya mengunggahnya ke server
                                     console.log('Selected file:', selectedFile);
                                     });
-
+`
                                 </script>
                                 <script>
                                 $(document).ready(function() {
@@ -198,6 +221,6 @@
                 </div>
                 </div>
             </div>
-            </div>
+            </div> --}}
 
             <!-- Navbar End -->

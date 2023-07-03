@@ -36,6 +36,7 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                                 <div class="form-group mb-3">
+                                    
                                     <label for="input2">Nama Project</label>
                                     <input type="text" class="form-control" id="input2" name="napro" placeholder="Masukkan nama project anda">
                                 </div>

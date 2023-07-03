@@ -47,25 +47,25 @@ class ProjectDisetujuiController extends Controller
     }
 
     public function disetujuiClient() {
-        $admin = User::where('role', 'admin')->first();
-        $project = ProjectDisetujui::all();
+        $client = User::where('role', 'client')->first();
+        $project = proreq::all();
         $sosmed = Sosmed::all();
-        return view('Client.disetujui', compact('project', 'sosmed','admin'));
+        return view('Client.disetujui', compact('project', 'sosmed','client'));
     }
 
     public function detailDisetujuiClient($id) {
-        $admin = User::where('role', 'admin')->first();
-        $detail = ProjectDisetujui::find($id);
+        $client = User::where('role', 'client')->first();
+        $detail = proreq::find($id);
         $fitur = Fitur::all();
         $chats = Chat::all();
         $sosmed = Sosmed::all();
-        return view('Client.detailsetujui', [
+        return view('Client.detailsetujui',
+        [
             'detail' => $detail,
             'fitur' => $fitur,
             'chats' => $chats,
             'sosmed' => $sosmed,
-            'admin' =>$admin
-        ]);
+            'admin' =>$client]);
     }
 
     public function projectChatClient(Request $request) {
