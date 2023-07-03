@@ -15,7 +15,7 @@ class ProjectDisetujuiController extends Controller
 {
     public function disetujui() {
         $admin = User::where('role', 'admin')->first();
-        $project = proreq::where('status','setuju')->get();
+        $project = proreq::where('status','setuju',)->get();
         return view('Admin.project-disetujui', [
             'project' => $project,
             'admin' =>$admin

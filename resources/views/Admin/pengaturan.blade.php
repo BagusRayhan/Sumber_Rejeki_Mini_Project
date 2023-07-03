@@ -34,7 +34,7 @@
                                 {{-- @foreach ($data1 as $item) collection
                                 <textarea id="summernote" name="content">{{ $item->kebijakan }}</textarea><br>
                                 @endforeach --}}
-                                <textarea id="summernote" name="content">{{ $data1->kebijakan }}</textarea><br>
+                                <textarea id="summernote" name="content">{{ $data1->kebijakan}}</textarea><br>
                                 <button type="submit" style="float: right;" class="btn btn-primary">Simpan</button>
                             </form>
                             </div>

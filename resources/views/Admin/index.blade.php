@@ -20,9 +20,9 @@
 
         <!-- Content Start -->
         <div class="content">
-            
+
             @include('Admin.templates.navbar')
-            
+
             <!-- Counter Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
@@ -80,7 +80,7 @@
                 </div>
             </div>
             <!-- Monthly Chart End -->
-            
+
             <!-- Annualy Chart Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="w-100">
@@ -183,7 +183,7 @@
         <!-- Content End -->
 
     </div>
-    
+
     <script src="{{ $chart->cdn() }}"></script>
     {{ $chart->script() }}
     {{ $ychart->script() }}
