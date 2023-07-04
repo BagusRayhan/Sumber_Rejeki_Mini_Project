@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
-use App\Models\proreq;
+use App\Models\Proreq;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use App\Charts\AnnualyDoneChart;
@@ -17,6 +17,9 @@ class AdminController extends Controller
     public function index(MonthlyUsersChart $chart, AnnualyDoneChart $ychart) {
         $admin = User::where('role', 'admin')->first();
         $clientCounter = User::where('role', 'client')->count();
+        $tolakCounter = Proreq::where('status', 'tolak')->count();
+        $progressCounter = Proreq::where('status', 'setuju')->count();
+        $selesaiCounter = Proreq::where('status', 'selesai')->count();
         $incomePayment = Pembayaran::limit(4)->latest()->get();
         $incomeProject = proreq::limit(4)->latest()->get();
         $message = Chat::limit(4)->latest()->get();
@@ -24,6 +27,9 @@ class AdminController extends Controller
         return view('Admin.index', [
             'admin' => $admin,
             'clientCounter' => $clientCounter,
+            'tolakCounter' => $tolakCounter,
+            'progressCounter' => $progressCounter,
+            'selesaiCounter' => $selesaiCounter,
             'chart' => $chart->build(),
             'ychart' => $ychart->build(),
             'incomePayment' => $incomePayment,
