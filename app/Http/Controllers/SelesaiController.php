@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Fitur;
 use App\Models\Proreq;
 use App\Models\Sosmed;
 use Illuminate\Http\Request;
@@ -37,6 +38,7 @@ class SelesaiController extends Controller
             $data = Proreq::findOrFail($id);
             $sosmed = Sosmed::all();
             $client = User::where('role', 'client')->first();
-            return view('Client.detailrevisi', compact( 'data','sosmed','client'));
+            $dataa = Fitur::where('project_id', $id)->get();
+            return view('Client.detailrevisi', compact( 'data','sosmed','client','dataa'));
         }
 }

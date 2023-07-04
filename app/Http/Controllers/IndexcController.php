@@ -37,12 +37,10 @@ class IndexcController extends Controller
     $this->validate($request,[
         'nama' => 'required|min:5|max:30',
         'napro' => 'required',
-        'bukti' => 'mimes:pdf,png,jpeg',
         'deadline' => 'required',
     ], [
         'nama.required' => 'Nama tidak boleh kosong',
         'napro.required' => 'Nama project tidak boleh kosong',
-        'bukti.mimes' => 'Dokumen harus pdf/png/jpeg',
         'deadline.required' => 'deadline harus terisi',
     ]);
 
