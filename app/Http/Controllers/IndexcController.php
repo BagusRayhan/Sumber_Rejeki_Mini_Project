@@ -24,7 +24,7 @@ class IndexcController extends Controller
         $sosmed = Sosmed::all();
         return view('Client.clientproreq',compact('data','sosmed','client'));
     }
-   
+
 
     public function createproreq(){
         $sosmed = Sosmed::all();
@@ -144,6 +144,35 @@ public function updateFitur(Request $request, $id)
     return back();
 }
 
+public function updateProfile(Request $request)
+{
+    $updateProfile = [];
+    $client = User::where('role', 'client')->first();
+
+    if ($request->has('fileInputA')) {
+        if (File::exists(public_path('gambar/user-profile/' . $client->profil))) {
+            File::delete(public_path('gambar/user-profile/' . $client->profil));
+        }
+
+        $file = $request->file('fileInputA');
+        $newFile = $file->hashName();
+        $file->move(public_path('gambar/user-profile/'), $newFile);
+        $updateProfile['profil'] = $newFile;
+    }
+
+    $updateProfile['name'] = $request->input('name');
+    $updateProfile['email'] = $request->input('email');
+    $updateProfile['no_tlp'] = $request->input('no_tlp');
+    $updateProfile['nama_perusahaan'] = $request->input('nama_perusahaan');
+    $updateProfile['alamat_perusahaan'] = $request->input('alamat_perusahaan');
+
+    $client->update($updateProfile);
+
+    return redirect()->back()->with('success', 'Profil berhasil diperbarui');
+}
+
+
+
 public function destroyfitur($id)
 {
     $data = Fitur::findOrFail($id);
@@ -153,3 +182,4 @@ public function destroyfitur($id)
 
 
 }
+

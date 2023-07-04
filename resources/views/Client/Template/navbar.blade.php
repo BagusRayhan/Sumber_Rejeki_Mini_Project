@@ -15,7 +15,7 @@
   .change-profile-button {
     position: absolute;
     bottom: 10px;
-    right: 10px;
+    right: 6em;
     background-color: #fff;
     border-radius: 50%;
     padding: 8px;
@@ -57,8 +57,8 @@
                   <img class="rounded-circle me-lg-2" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
               </a>
               <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                
-                  <button type="button" class="dropdown-item" id="profile-btn" data-bs-toggle="modal" data-bs-target="#MyModal">My Profile</button>
+
+                <button type="button" class="dropdown-item" id="profile-btn" data-bs-toggle="modal" data-bs-target="#mymodal">My Profile</button>
                   <a href="{{ route('logout') }}" class="dropdown-item">Log Out</a>
               </div>
           </div>
@@ -70,69 +70,93 @@
         width: 400px;
     }
   </style>
-<!-- Modal -->
-<div class="modal fade" id="MyModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal fade" data-bs-backdrop="static" id="mymodal" aria-hidden="true" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered profile-modal">
       <div class="modal-content">
         <div class="modal-header">
-          <div class="row mb-3 mt-sm-2">
-            <button type="button" style="margin-right:2%;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            <div class="form-group">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
-                <center>
-                    <div class="profile">
-                        <img src="{{ asset('ProjectManagement/dashmin/img/user-new.png') }}" alt="Gambar Profil" class="profile-image">
-                        <a href="#" type="file" class="change-profile-button" id="chooseFileButton" style="width: 45px">
-                          <i class="fa-sharp fa-solid fa-image"></i>
-                          <input typ e="file" id="fileInput" style="display:none" accept=".jpg,.png,.pdf">
-                        </a>
-                      </div>
-                        <input id="file-upload" type="file" style="display: none;">
-                </center>
-                {{-- <center><img src="{{ asset('ProjectManagement/dashmin/img/user-new.png') }}" alt="" style="width:40%; height:40%;"><br></center> --}}
-              </h1>
+          <h1 class="modal-title fs-5">My Profile</h1>
+        </div>
+        <div class="modal-body">
+            <form action="{{ route('client.updateProfile') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('put')
+              <div class="profile d-flex justify-content-center">
+                  <img src="gambar/user-profile/{{ $client->profil }}" class="rounded-circle profile-image">
+                  <a href="#" type="file" class="change-profile-button d-flex justify-content-center" id="chooseFileButtonA">
+                    <i class="fa-sharp fa-solid fa-image"></i>
+                    <input type="file" id="fileInputA" name="fileInputA" style="display:none" accept=".jpg,.png,.pdf">
+                  </a>
             </div>
             <div class="mb-1">
-              <label for="exampleFormControlInput1" class="form-label">Nama</label>
-              <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ $client->name }}" disabled>
-            </div><br><br>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="input1">Email</label>
-                <input type="email" class="form-control mt-1" id="exampleFormControlInput2" value="{{ $client->email }}" disabled>
+                <label for="exampleFormControlInput1" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1"  name="name" value="{{ $client->name }}">
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="input2">No.Telpon</label>
-                <input type="number" class="form-control mt-1" id="exampleFormControlInput3" value="{{ $client->no_tlp }}" disabled>
+            <div class="row">
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                      <label for="input1">Email</label>
+                      <input type="email" class="form-control mt-1" id="exampleFormControlInput2" name="email" value="{{ $client->email }}">
+                    </div>
+                  </div>
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                      <label for="input2">No.Telpon</label>
+                      <input type="number" class="form-control mt-1" id="exampleFormControlInput3" name="no_tlp" value="{{ $client->no_tlp }}">
+                    </div>
+                  </div>
+                  <div class="mb-1 mt-2">
+                    <label for="exampleFormControlInput1" class="form-label">Nama Perusahaan</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" name="nama_perusahaan" value="{{ $client->nama_perusahaan }}">
+                  </div>
+                  <div class="mb-1 mt-2">
+                    <label for="input1">Alamat Perusahaan</label>
+                    <textarea class="form-control mt-1" id="exampleFormControlInput5" style="height: 100px" name="alamat_perusahaan">{{ $client->alamat_perusahaan }}</textarea>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="form-group w-1 p-3">
-              <label for="input1">Nama Perusahaan</label>
-              <input type="text" class="form-control mt-1" id="exampleFormControlInput4" value="{{ $client->nama_perusahaan }}" disabled>
-            </div>
-            <div class="form-group w-80 p-3">
-              <label for="input1">Alamat Perusahaan</label>
-              <textarea class="form-control mt-1" id="exampleFormControlInput5" style="height: 100px" disabled>{{ $client->alamat_perusahaan }}</textarea>
-            </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-danger" class="btn-close" data-bs-dismiss="modal" type="button">Batal</button>
+            <button class="btn btn-primary" type="submit" id="saveProfileButton">Simpan</button>
           </div>
+        </form>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" id="editProfileButton">Edit Profil</button>
-        </div>
-      </div>
+      <script>
+        document.getElementById('chooseFileButtonA').addEventListener('click', function() {
+        document.getElementById('fileInputA').click();
+        });
+
+        document.getElementById('fileInputA').addEventListener('change', function() {
+        var selectedFile = this.files[0];
+        // Lakukan sesuatu dengan file yang dipilih, misalnya mengunggahnya ke server
+        console.log('Selected file:', selectedFile);
+        });
+
+    </script>
+    <script>
+    $(document).ready(function() {
+    $('.change-profile-button').on('click', function(e) {
+        e.preventDefault();
+        // Tambahkan kode yang ingin Anda jalankan ketika tombol perubahan profil diklik
+        // Misalnya, tampilkan dialog atau tampilkan form perubahan profil
+    });
+    });
+
+    </script>
+   <script>
+     document.getElementById("file-upload").addEventListener("change", function(event) {
+         var input = event.target;
+         if (input.files && input.files[0]) {
+         var reader = new FileReader();
+         reader.onload = function(e) {
+             document.getElementById("profile-image").setAttribute("src", e.target.result);
+         };
+         reader.readAsDataURL(input.files[0]);
+         }
+     });
+     </script>
     </div>
   </div>
-
-  <script>
-    document.getElementById('editProfileButton').addEventListener('click', function() {
-      var inputs = document.querySelectorAll('#MyModal input, #MyModal textarea');
-      for (var i = 0; i < inputs.length; i++) {
-        inputs[i].disabled = false;
-      }
-    });
-  </script>
 
             {{-- <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
