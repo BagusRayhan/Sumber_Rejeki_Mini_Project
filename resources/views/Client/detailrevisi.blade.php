@@ -24,7 +24,7 @@
       <div class="container-fluid">
             <h4 class="mb-3 mt-3" style="margin-left: 2%;">Detail Project</h4>
         <div class="col-sm-12 col-xl-11 d-flex justify-content-between" style="margin-left: 2%; margin">
-            <form action="{{ route('setuju-revisi-client', $data->id) }}" method="GET">
+            <form action="#" method="GET">
                  {{ csrf_field() }}
                 <div class="mb-3" style="width: 27em">
                     <div class="form-group">

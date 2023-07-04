@@ -58,7 +58,7 @@
                                     <td><span class="badge text-bg-warning">{{ $item->status }}</span></td>
                                     <td><center>{{ $item->harga }}</center></td>
                                     <td class="d-flex justify-content-evenly">
-                                     <a href="{{ route('detail-revisi-client', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a></center>
+                                     <a href="{{ url('detail-revisi-client', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a></center>
                                     </td>
                                 </tr>
                                 @endif

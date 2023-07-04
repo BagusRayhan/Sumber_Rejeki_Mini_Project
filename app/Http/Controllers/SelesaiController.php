@@ -33,17 +33,10 @@ class SelesaiController extends Controller
             $sosmed = Sosmed::all();
             return view('Client.revisibutton', compact('sosmed','client'));
         }
-        public function detail(){
-            $client = User::where('role', 'client')->first();
+        public function detail($id){
+            $data = Proreq::findOrFail($id);
             $sosmed = Sosmed::all();
-            $data = Proreq::all();
-            return view('Client.detailrevisi', compact('sosmed','client','data'));
-        }
-
-            public function detaill($id){
             $client = User::where('role', 'client')->first();
-            $sosmed = Sosmed::all();
-             $data = Proreq::findorfail($id);
-            return view('Client.detailrevisi', compact('sosmed','client','data'));
+            return view('Client.detailrevisi', compact( 'data','sosmed','client'));
         }
 }
