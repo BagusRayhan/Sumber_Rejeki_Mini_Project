@@ -7,6 +7,7 @@ use App\Models\Proreq;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ProjectrequestController extends Controller
 {
@@ -39,6 +40,30 @@ class ProjectrequestController extends Controller
     $fitur->save();
 
     return back();
+}
+
+public function alasantolak(Request $request)
+{
+    $id = $request->dataid;
+    $pro = Proreq::findOrFail($id);
+
+    $pro->alasan = $request->input('alasan');
+    $pro->status = 'tolak';
+
+    $pro->save();
+
+    return redirect()->route('projectreq')->with('sukses', 'Data berhasil ditolak');
+}
+
+public function updateproreqa($id)
+{
+    $setuju = Proreq::findOrFail($id);
+
+    $setuju->status = 'setuju';
+
+    $setuju->save();
+
+    return Redirect::route('projectreq')->with('sukses', 'Data berhasil disetujui');
 }
 
     public function projectselesai(){

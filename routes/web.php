@@ -80,6 +80,8 @@ Route::middleware('admin')->group(function(){
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('detailproreq/{id}', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
     Route::put('simpanharga/{id}', [ProjectrequestController::class, 'simpanharga'])->name('simpanharga');
+    Route::put('alasantolak', [ProjectrequestController::class, 'alasantolak'])->name('alasantolak');
+    Route::get('updateproreqa/{id}', [ProjectrequestController::class, 'updateproreqa'])->name('updateproreqa');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('projectselesai', [ProjectrequestController::class, 'projectselesai'])->name('projectselesai');
     Route::resource('projectselesai' , App\Http\Controllers\ProjectselesaiController::class);

@@ -162,6 +162,7 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     @include('Admin.templates.head')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
@@ -181,9 +182,9 @@
 
       <div class="container mt-4 d-flex flex-column">
         <div class="wrapper">
-            <form action="{{ route('updateproreq', $data->id) }}" method="POST"  enctype="multipart/form-data">
+            <form action="{{ route('updateproreqa', $data->id) }}" method="GET">
             <h5 class="px-3 mb-2">Request Project</h5>
-            {{ csrf_field() }}
+            @csrf
             @method('PUT')
                 <div class="mb-3 d-flex justify-content-between">
                     <div class="wrapper w-50 px-3 d-flex flex-column">
@@ -207,31 +208,92 @@
                         </div>
                     </div>
                 </div>
-                <button id="" type="submit" style="border: none;" class="btn btn-primary">Setuju</button>
-                <a href="#" id="Modal" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal">Tolak</a>
+                <button type="submit" style="border: none;" onclick="konfirmasi(event)" class="btn btn-primary">Setuju</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myyModal{{ $data->id }}">Tolak</button>
             </form>
+            <script>
+                function konfirmasi(event) {
+                            event.preventDefault(); // Mencegah perilaku default tombol submit
+                    
+                            Swal.fire({
+                                title: 'Apakah Anda yakin?',
+                                text: 'Ingin Menyetujui Project?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Ya',
+                                cancelButtonText: 'Batal'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // Aksi yang akan dijalankan jika pengguna menekan tombol "Ya"
+                            
+                                    // Setelah sweet alert ditampilkan, formulir dapat dikirim secara manual
+                                    document.querySelector('form').submit();
+                                } else {
+                                    // Aksi yang akan dijalankan jika pengguna menekan tombol "Batal"
+                                    Swal.fire(
+                                        'Tindakan dibatalkan',
+                                        'Project tidak disetujui',
+                                        'error'
+                                    );
+                                }
+                            });
+                        }
+            </script>
         </div>
-        <div class="modal fade" id="Modal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+        <div class="modal fade" id="myyModal{{ $data->id }}">
+            <div class="modal-dialog modal-dialog-centered align-items-center">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Detail Fitur</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="" method="">
-                            @csrf
-                            @method('PUT')
-                            <div class="mb-2">
-                                <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                                <textarea class="form-control" name="deskripsi" id="exampleFormControlTextarea1" rows="6" disabled></textarea>
-                            </div>
-                            <button type="submit" style="border: none;margin-left: 398px" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
+                        <h5 class="modal-title">Ditolak</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('alasantolak') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="dataid" value="{{ $data->id }}">
+                        <label for="" class="form-label">Alasan Ditolak</label>
+                        <textarea rows="4" cols="50" name="alasan" required></textarea>
+                        <button type="submit" onclick="showConfirmation(event)" class="btn btn-primary mt-4">Submit</button>
+                    </form>
+                    <script>
+                        function showConfirmation(event) {
+                            event.preventDefault(); // Mencegah perilaku default tombol submit
+                    
+                            Swal.fire({
+                                title: 'Apakah Anda yakin?',
+                                text: 'Ingin Menolak Project?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Ya',
+                                cancelButtonText: 'Batal'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // Aksi yang akan dijalankan jika pengguna menekan tombol "Ya"
+                            
+                                    // Setelah sweet alert ditampilkan, formulir dapat dikirim secara manual
+                                    document.querySelector('form').submit();
+                                } else {
+                                    // Aksi yang akan dijalankan jika pengguna menekan tombol "Batal"
+                                    Swal.fire(
+                                        'Tindakan dibatalkan',
+                                        'Project tidak ditolak',
+                                        'error'
+                                    );
+                                }
+                            });
+                        }
+                    </script>
                 </div>
             </div>
         </div>
+    </div>
+
+          
+          
         <div class="wrapper mt-1">
                 <div class="wrapper d-flex justify-content-between align-items-center mx-3">
                 </div>
@@ -242,7 +304,6 @@
                                 <th class="w-25" scope="col">Nama Fitur</th>
                                 <th class="w-75" scope="col">Harga</th>
                                 <th class="w-90" scope="col" colspan="2"><center>Aksi</center></th>
-                                
                             </tr>
                         </thead>
                        <tbody>
@@ -334,6 +395,7 @@
     <!-- Edit Fitur -->
 
     @include('Admin.templates.script')
+    @include('sweetalert::alert')
 
 
  <!-- Modal Box tambah desripsi Start -->
