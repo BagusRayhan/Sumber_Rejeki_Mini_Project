@@ -15,6 +15,7 @@ return new class extends Migration
     {
             Schema::create('proreq', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('nama')->nullable();
             $table->string('napro')->nullable();
             $table->string('progress')->nullable();

@@ -15,7 +15,7 @@ class ProjectDisetujuiController extends Controller
 {
     public function disetujui() {
         $admin = User::where('role', 'admin')->first();
-        $project = proreq::where('status','setuju',)->get();
+        $project = proreq::where('status','setuju')->get();
         return view('Admin.project-disetujui', [
             'project' => $project,
             'admin' =>$admin
@@ -27,17 +27,21 @@ class ProjectDisetujuiController extends Controller
         $detail = Proreq::find($id);
         $fitur = Fitur::all();
         $chats = Chat::where('project_id', $id)->get();
+        $userid = Auth()->user()->id . $id;
         return view('Admin.detail-project-disetujui', [
             'detail' => $detail,
             'fitur' => $fitur,
             'chats' => $chats,
+            'userid' => $userid,
             'admin' =>$admin
         ]);
     }
 
     public function projectChat(Request $request) {
+        $id = $request->input('project_id');
+        $userid = Auth()->user()->id . $id;
         $createChat = Chat::create([
-            'user_id' => Auth()->user()->id,
+            'user_id' => $userid,
             'project_id' => $request->project_id,
             'chat' => $request->chat,
             'chat_time' => $request->chat_time
@@ -65,23 +69,28 @@ class ProjectDisetujuiController extends Controller
 
     public function detailDisetujuiClient($id) {
         $client = User::where('role', 'client')->first();
+        $userid = Auth()->user()->id . $id;
         $detail = proreq::find($id);
         $fitur = Fitur::all();
-        $chats = Chat::all();
+        $chats = Chat::where('project_id', $id)->get();
         $sosmed = Sosmed::all();
         return view('Client.detailsetujui',
         [
+            'userid' => $userid,
             'detail' => $detail,
             'fitur' => $fitur,
             'chats' => $chats,
             'sosmed' => $sosmed,
-            'client' =>$client]);
+            'client' =>$client
+        ]);
     }
 
     public function projectChatClient(Request $request) {
+        $projectid = $request->input('project_id');
+        $userid = Auth()->user()->id . $projectid;
         $createChat = Chat::create([
-            'user_id' => 2,
-            'project_id' => 1,
+            'user_id' => $userid,
+            'project_id' => $projectid,
             'chat' => $request->chat,
             'chat_time' => $request->chat_time
         ]);
