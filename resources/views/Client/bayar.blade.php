@@ -53,20 +53,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($bayar1 as $client1)
+                            @forelse ($data as $item)
+                                @if ( $item->status === 'menunggu pembayaran')
+                                    <tr>
+                                        <td>{{ $item->napro }}</td>
+                                        <td>{{ $item->harga }}</td>
+                                        <td><center><span class="badge text-bg-danger">{{ $item->status }}</span></td></center>
+                                        <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar{{ $item->id }}"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
+                                    </tr>
 
-
-                            <tr>
-                                <td>{{ $client1->napro }}</td>
-                                <td>{{ $client1->harga }}</td>
-                                <td><center><span class="badge text-bg-danger">{{ $client1->status }}</span></td></center>
-                                <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
-                            </tr>
-                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -93,7 +88,7 @@
             </nav>
         </div>
 
-                        <div class="modal fade" id="Modalbayar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                        <div class="modal fade" id="Modalbayar{{ $item->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                          <div class="modal-dialog modal-dialog-centered" >
                             <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
                             <div class="modal-header" style="border: none;">
@@ -104,11 +99,11 @@
                                 <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="font-weight: bold;">Pembayaran Awal</h1><br>
                                         <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
                                             <h6 style="align-self: center;">Nama Project :</h6>
-                                            <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="Website Berita" disabled>
+                                            <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="{{ $item->napro }}" disabled>
                                         </div>
                                         <div style="display: flex; justify-content: space-between;">
                                             <h6>Harga Pembayaran :</h6>
-                                            <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="2.000.000" disabled>
+                                            <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="{{ $item->harga }}" disabled>
                                         </div>
                                 <br>
                             </div>
@@ -126,11 +121,11 @@
                                         <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
                                           <div style="display: flex; align-items: center;">
                                              <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="Website Berita" disabled>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="{{ $item->napro }}" disabled>
                                           </div>
                                      <div style="display: flex; align-items: center; margin-top:3%;">
                                             <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="2.000.000" disabled>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="{{ $item->harga }}" disabled>
                                         </div>
                                       </div>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
@@ -166,11 +161,11 @@
                                         <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
                                         <div style="display: flex; align-items: center;">
                                             <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="Website Berita" disabled>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="{{ $item->napro }}" disabled>
                                         </div>
                                         <div style="display: flex; align-items: center; margin-top:3%;">
                                             <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="2.000.000" disabled>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="{{ $item->harga }}" disabled>
                                         </div>
                                     </div>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
@@ -213,11 +208,11 @@
                                         <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
                                         <div style="display: flex; align-items: center;">
                                             <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="Website Berita" disabled>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="{{ $item->napro }}" disabled>
                                         </div>
                                         <div style="display: flex; align-items: center; margin-top:3%;">
                                             <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="2.000.000" disabled>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="{{ $item->harga }}" disabled>
                                         </div>
                                     </div>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
@@ -274,11 +269,11 @@
                                         <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
                                         <div style="display: flex; align-items: center;">
                                             <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="Website Berita" disabled>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="{{ $item->napro }}" disabled>
                                         </div>
                                         <div style="display: flex; align-items: center; margin-top:3%;">
                                             <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="2.000.000" disabled>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="{{ $item->harga }}" disabled>
                                         </div>
                                     </div>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
@@ -338,11 +333,11 @@
                                         <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
                                         <div style="display: flex; align-items: center;">
                                             <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="Website Berita" disabled>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="{{ $item->napro }}" disabled>
                                             </div>
                                              <div style="display: flex; align-items: center; margin-top:3%;">
                                               <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="2.000.000" disabled>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="{{ $item->harga }}" disabled>
                                         </div>
                                     </div>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
@@ -399,6 +394,12 @@
                           </div>
                         </div>
 
+                        @endif
+                            @empty
+                                <tr>
+                                    <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
+                                </tr>
+                        @endforelse
 
       @include('Client.Template.footer')
         </div>
