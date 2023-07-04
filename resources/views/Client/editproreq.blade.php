@@ -27,7 +27,7 @@
             <h5 class="px-3 mb-2">Request Project</h5>
             {{ csrf_field() }}
             @method('PUT')
-                <div class="mb-3 d-flex justify-content-between">
+                <div class="mb-3 w-100 d-flex justify-content-between">
                     <div class="wrapper w-50 px-3 d-flex flex-column">
                         <div class="form-group mb-3">
                             <label for="input1">Nama Client</label>
@@ -106,7 +106,6 @@
                         </thead>
                        <tbody>
                     @foreach($dataa as $fitur)
-                   
                         <tr>
                             <td>{{ $fitur->namafitur }}</td>
                             <td>{{ $fitur->deskripsi }}</td>

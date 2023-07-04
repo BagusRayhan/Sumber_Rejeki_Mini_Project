@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('namafitur')->nullable();
             $table->string('hargafitur')->nullable();
             $table->text('deskripsi')->nullable();
+            $table->enum('status',['selesai','revisi']);
             $table->timestamps();
         });
     }
