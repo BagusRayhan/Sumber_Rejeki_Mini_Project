@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chat;
 use App\Models\User;
 use App\Models\Fitur;
 use App\Models\Proreq;
@@ -17,7 +18,7 @@ class SelesaiController extends Controller
             $sosmed = Sosmed::all();
             return view('Client.selesai', compact('sosmed','client','data'));
         }
-
+        
         public function revisiclient(){
             $client = User::where('role', 'client')->first();
             $data = Proreq::all();
@@ -27,12 +28,16 @@ class SelesaiController extends Controller
         public function revisiselesai(){
             $client = User::where('role', 'client')->first();
             $sosmed = Sosmed::all();
-            return view('Client.selesai', compact('sosmed','client'));
+            return view('Client.selesai', compact('sosmed','client','detail'));
         }
-        public function revisibutton(){
+        public function revisibutton($id){
             $client = User::where('role', 'client')->first();
+            $detail = Proreq::find($id);
             $sosmed = Sosmed::all();
-            return view('Client.revisibutton', compact('sosmed','client'));
+            $fitur = Fitur::all();
+            $chats = Chat::where('project_id', $id)->get();
+            $userid = Auth()->user()->id . $id;
+            return view('Client.revisibutton', compact('sosmed','client','detail','fitur','chats','userid'));
         }
         public function detail($id){
             $data = Proreq::findOrFail($id);

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->integer('harga')->nullable();
             $table->string('alasan')->nullable();
             $table->string('statusbayar')->nullable();
-
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

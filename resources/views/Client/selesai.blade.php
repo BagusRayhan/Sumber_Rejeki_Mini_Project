@@ -58,7 +58,7 @@
                                     <td><span class="badge text-bg-success">{{ $item->status }}</span></td>
                                     <td><center>{{ $item->harga}}</center></td>
                                     <td class="d-flex justify-content-evenly">
-                                    <a href="{{ route('revisibutton') }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
+                                    <a href="/revisibutton/{{ $item->id }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
                                     <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</a></center>
                                     </td>
                                 </tr>
