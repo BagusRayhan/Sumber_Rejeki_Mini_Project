@@ -52,7 +52,7 @@
                         </thead>
                         <tbody>
                              @foreach ($data as $item)
-                                @if ($item->status === 'selesai')
+                                @if ($item->status === 'selesai'|| $item->status === 'revisi' )
                                 <tr>
                                     <td>{{ $item->napro }}</td>
                                     <td><span class="badge text-bg-success">{{ $item->status }}</span></td>

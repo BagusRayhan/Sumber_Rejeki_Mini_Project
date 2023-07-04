@@ -25,6 +25,28 @@ class SelesaiController extends Controller
             $sosmed = Sosmed::all();
             return view('Client.revisi', compact('sosmed','client','data'));
         }
+
+        public function updatestatus(Request $request, $id){
+            $client = User::where('role', 'client')->first();
+            $data = Proreq::findOrFail($id);
+            $sosmed = Sosmed::all();
+            $data->status = null;
+            $data->statusbayar = 'belum lunas';
+            $data->save();
+             return redirect()->route('revisiclient')->with('success', 'Status pembayaran berhasil diupdate')->with(compact('sosmed', 'client', 'data'));
+        }    
+        
+            public function updatestatuss(Request $request, $id){
+            $client = User::where('role', 'client')->first();
+            $data = Proreq::findOrFail($id);
+            $sosmed = Sosmed::all();
+            $data->status = 'selesai';
+            $data->statusbayar = 'lunas';
+            $data->save();
+             return redirect()->route('revisiclient')->with('success', 'Status pembayaran berhasil diupdate')->with(compact('sosmed', 'client', 'data'));
+        }  
+        
+
         public function revisiselesai(){
             $client = User::where('role', 'client')->first();
             $sosmed = Sosmed::all();

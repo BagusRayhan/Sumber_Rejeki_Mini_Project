@@ -23,8 +23,9 @@
 
       <div class="container-fluid">
             <h4 class="mb-3 mt-3" style="margin-left: 2%;">Detail Project</h4>
-            <form action="#" method="GET">
-                {{ csrf_field() }}
+            <form action="{{ route('update-status',$data->id) }}" method="POST">
+                @csrf
+                @method('PUT')
             <div class="mb-3 d-flex justify-content-between">
                 <div class="wrapper w-50 px-3 d-flex flex-column">
                     <div class="form-group">
@@ -48,8 +49,20 @@
                     </div>
                 </div>
             </div>
+              </div>
+                <div class="d-flex justify-content-start mb-3" style="margin-left: 2%;">
+                    <td>
+                        <center>
+                            <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-circle-check"></i>&nbsp;Setuju</button>&nbsp;
+                        </form>
+                        <form action="{{ route('update-statuss',$data->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-xmark"></i>&nbsp;Tolak</button>
+                        </form>
+                        </center>
+                    </td>
                 </div>
-                </form>
         </div>
 
 
@@ -81,50 +94,48 @@
                                         <td>{{ $item->hargafitur }}</td>
                                         <td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailfitur{{ $item->id }}"><i class="fa fa-eye"></i></a></td>
                                     </tr>
+                                    <div class="modal fade" id="detailfitur{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="detailfiturLabel{{ $item->id }}">Detail Fitur</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                        <div class="col-sm-12 col-xl-11 d-flex justify-content-between" style="margin-left: 2%; margin">
+                                                            <div class="mb-3" style="width: 13em">
+                                                                <div class="form-group">
+                                                                    <label for="input1">Nama Fitur</label>
+                                                                    <input type="text" class="form-control" id="input1" value="{{ $item->namafitur }}" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3" style="width: 13em">
+                                                                <div class="form-group">
+                                                                    <label for="input3">Harga Fitur</label>
+                                                                    <input type="text" class="form-control" id="input3" value="{{ $item->hargafitur }}" disabled>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <div class="mb-3">
+                                                                <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
+                                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>{{ $item->deskripsi }}</textarea>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
                                 </tbody>
                             </table>
-                            <div class="d-flex justify-content-start mb-3">
-                                <td><center><a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-circle-check"></i>&nbsp;Setuju</a>&nbsp;
-                                    <button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-xmark"></i>&nbsp;Tolak</button></center></td>
-                            </div>
                         </div>
                     </div>
 
 
                      <!-- Modal Box Edit Bank Start -->
-            <div class="modal fade" id="detailfitur{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="detailfiturLabel{{ $item->id }}">Detail Fitur</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                                <div class="col-sm-12 col-xl-11 d-flex justify-content-between" style="margin-left: 2%; margin">
-                                    <div class="mb-3" style="width: 13em">
-                                        <div class="form-group">
-                                            <label for="input1">Nama Fitur</label>
-                                            <input type="text" class="form-control" id="input1" value="{{ $item->namafitur }}" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3" style="width: 13em">
-                                        <div class="form-group">
-                                            <label for="input3">Harga Fitur</label>
-                                            <input type="text" class="form-control" id="input3" value="{{ $item->hargafitur }}" disabled>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>{{ $item->deskripsi }}</textarea>
-                                    </div>
-                                </div>  
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
+            
 
         <!-- Modal Box Edit Bank End-->
 

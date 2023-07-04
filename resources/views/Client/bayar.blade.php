@@ -54,11 +54,11 @@
                         </thead>
                         <tbody>
                             @forelse ($data as $item)
-                                @if ( $item->status === 'menunggu pembayaran')
+                                @if ( $item->statusbayar === 'menunggu pembayaran')
                                     <tr>
                                         <td>{{ $item->napro }}</td>
                                         <td>{{ $item->harga }}</td>
-                                        <td><center><span class="badge text-bg-danger">{{ $item->status }}</span></td></center>
+                                        <td><center><span class="badge text-bg-danger">{{ $item->statusbayar }}</span></td></center>
                                         <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar{{ $item->id }}"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
                                     </tr>
 
@@ -187,7 +187,7 @@
                                         </div>
                                         <div class="mb-7">
                                             <h6 style="">Harga Pembayaran :</h6>
-                                            <input type="text" class="form-control" value="2.000.000" disabled>
+                                            <input type="text" class="form-control" {{ $item->harga }} disabled>
                                         </div>
                                     </div>
                                 <br>
@@ -199,7 +199,8 @@
                           </div>
                         </div>
 
-
+                        @foreach ($ewallet as $item)
+                        {{-- ewallet --}}
                     <div class="modal fade" id="wallet" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered" >
                             <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
@@ -314,7 +315,7 @@
                                         </div>
                                         </div>
                                         <div class="w-50">
-                                            <img class="w-100" src="{{ asset('ProjectManagement/dashmin/img/qr.png') }}">
+                                            <img class="w-100" src="{{ asset('gambar/qr/' . $item->qrcode) }}">
                                         </div>
                                     </div>
                                 </div>
@@ -324,6 +325,9 @@
                             </div>
                           </div>
                         </div>
+                        @endforeach
+
+                        {{-- bankk --}}
 
                     <div class="modal fade" id="bank" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered" >

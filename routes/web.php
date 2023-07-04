@@ -67,6 +67,8 @@ Route::get('fitur/{id}/edit', [IndexcController::class, 'showFormModal'])->name(
     Route::get('revisiselesai', [SelesaiController::class, 'revisiselesai'])->name('revisiselesai');
     Route::get('revisibutton/{id}', [SelesaiController::class, 'revisibutton'])->name('revisibutton');
     Route::get('detail-revisi-client/{id}', [SelesaiController::class, 'detail'])->name('detail-revisi-client');
+    Route::put('update-status/{id}', [SelesaiController::class, 'updatestatus'])->name('update-status');
+    Route::put('update-statuss/{id}', [SelesaiController::class, 'updatestatuss'])->name('update-statuss');
     Route::delete('/destroy/{id}', [TolakController::class, 'destroy'])->name('destroy');
     Route::delete('destroyfitur/{id}', [IndexcController::class, 'destroyfitur'])->name('destroyfitur');
 });
