@@ -47,7 +47,7 @@ class IndexcController extends Controller
 
 
     $data = Proreq::all();
-    $namaFile = null; // Inisialisasi $namaFile dengan nilai null
+    $namaFile = null; 
 
     if ($request->hasFile('bukti')) {
         $nm = $request->bukti;

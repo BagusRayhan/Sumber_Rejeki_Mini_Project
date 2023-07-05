@@ -85,7 +85,7 @@ public function create(array $data)
         'nama_perusahaan' => $data['nama_perusahaan'],
         'alamat_perusahaan' => $data['alamat_perusahaan'],
         'no_tlp' => $data['no_tlp'],
-        'profil' => $data['profil'], // Save the default profile picture
+        'profil' => $data['profil'], 
     ]);
 }
 
