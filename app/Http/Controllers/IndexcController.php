@@ -7,13 +7,14 @@ use App\Models\Fitur;
 use App\Models\Sosmed;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class IndexcController extends Controller
 {
     public function indexclient()
         {
-        $client = User::where('role', 'client')->first();
+        $client = User::find(Auth::user()->id);
         $sosmed = Sosmed::all();
         return view('Client.index', compact('sosmed','client'));
         }

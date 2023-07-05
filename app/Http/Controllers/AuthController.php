@@ -29,7 +29,6 @@ public function login(Request $request)
     $credentials = $request->only('email', 'password');
     if (Auth::attempt($credentials)) {
         $user = Auth::user();
-
         if ($user->role === 'admin') {
             return redirect()->route('admin-dashboard');
         } else {
@@ -46,48 +45,50 @@ public function login(Request $request)
 
 
 
-    public function register()
-    {
+public function register()
+{
     return view('register');
-    }
+}
 
-    public function signupsave(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|regex:/^[a-zA-Z]+$/',
-            'email' => 'required|email|unique:users',
-            'password' => 'required_with:pass|same:pass|min:6',
-        ], [
-            'password.min' => 'Password minimal 6 karakter!',
-            'password.same' => 'Konfirmasi password tidak sesuai!',
-            'email.unique' => 'email sudah terdaftar!',
-            'name.required' => 'nama tidak boleh kosong!',
-            'email.required' => 'email tidak boleh kosong!',
-        ]);
+public function signupsave(Request $request)
+{
+    $request->validate([
+        'name' => 'required|regex:/^[a-zA-Z]+$/',
+        'email' => 'required|email|unique:users',
+        'password' => 'required_with:pass|same:pass|min:6',
+    ], [
+        'password.min' => 'Password minimal 6 karakter!',
+        'password.same' => 'Konfirmasi password tidak sesuai!',
+        'email.unique' => 'Email sudah terdaftar!',
+        'name.required' => 'Nama tidak boleh kosong!',
+        'email.required' => 'Email tidak boleh kosong!',
+    ]);
 
-        $data = $request->all();
-        $check = $this->create($data);
+    $data = $request->all();
+    $data['role'] = 'client';
+    $data['profil'] = 'user.jpg';
 
-        return redirect("/")
-            ->with('success', 'Anda berhasil melakukan register!')
-            ->with('alert-type', 'success');
-    }
+    $user = $this->create($data);
 
+    return redirect("/")
+        ->with('success', 'Anda berhasil melakukan registrasi!')
+        ->with('alert-type', 'success');
+}
 
-    public function create(array $data)
-    {
-        $data['role'] = 'client';
+public function create(array $data)
+{
+    return User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password']),
+        'role' => $data['role'],
+        'nama_perusahaan' => $data['nama_perusahaan'],
+        'alamat_perusahaan' => $data['alamat_perusahaan'],
+        'no_tlp' => $data['no_tlp'],
+        'profil' => $data['profil'], // Save the default profile picture
+    ]);
+}
 
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'role' => $data['role'],
-            'nama_perusahaan' => $data['nama_perusahaan'],
-            'alamat_perusahaan' => $data['alamat_perusahaan'],
-            'no_tlp' => $data['no_tlp']
-        ]);
-    }
 
 
 
