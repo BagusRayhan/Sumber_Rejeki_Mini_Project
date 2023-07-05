@@ -54,7 +54,7 @@
                     <a href="{{ route('drequestclient') }}" class="btn btn-danger btn-sm mx-2">Kembali</a>
                     <button type="submit" onclick="showConfirmation(event)" class="btn btn-primary btn-sm mx-2">Kirim Request</button>
 
-<script>
+{{-- <script>
     function showConfirmation(event) {
         event.preventDefault(); // Mencegah perilaku default tombol submit
 
@@ -70,7 +70,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // Aksi yang akan dijalankan jika pengguna menekan tombol "Ya"
-           
+
                 // Setelah sweet alert ditampilkan, formulir dapat dikirim secara manual
                 document.querySelector('form').submit();
             } else {
@@ -83,7 +83,7 @@
             }
         });
     }
-</script>
+</script> --}}
 
                 </div>
             </form>
@@ -101,7 +101,7 @@
                                 <th class="w-25" scope="col">Nama Fitur</th>
                                 <th class="w-75" scope="col">Deskripsi</th>
                                 <th class="w-90" scope="col" colspan="2"><center>Aksi</center></th>
-                                
+
                             </tr>
                         </thead>
                        <tbody>
@@ -147,7 +147,7 @@
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
                                                 <button type="submit" class="btn btn-primary">Simpan</button>
                                             </div>
-                                        </form>                   
+                                        </form>
                                     </div>
                                 </div>
                             </div>

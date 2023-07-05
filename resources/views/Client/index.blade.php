@@ -29,7 +29,7 @@
                             <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon1.png') }}" alt="">
                             <div class="ms-1">
                                 <p class="mb-2">Project Disetujui</p>
-                                <h6 class="mb-0">0</h6>
+                                <h6 class="mb-0">{{ $setujuCounter }}</h6>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                             <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon2.png') }}" alt="">
                             <div class="ms-1">
                                 <p class="mb-2">Project Ditolak</p>
-                                <h6 class="mb-0">0</h6>
+                                <h6 class="mb-0">{{ $tolakCounter }}</h6>
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                             <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon3.png') }}" alt="">
                             <div class="ms-1">
                                 <p class="mb-2">Project Dikerjakan</p>
-                                <h6 class="mb-0">0</h6>
+                                <h6 class="mb-0">{{$kerjaCounter }}</h6>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                             <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon4.png') }}" alt="">
                             <div class="ms-1">
                                 <p class="mb-2">Project Selesai</p>
-                                <h6 class="mb-0">0</h6>
+                                <h6 class="mb-0">{{ $selesaiCounter }}</h6>
                             </div>
                         </div>
                     </div>
@@ -157,46 +157,21 @@
                                 <h6 class="mb-0">Pesan</h6>
                                 <a class="link-offset-2 link-underline link-underline-opacity-0" href="#">Tampilkan Semua</a>
                             </div>
+                            @foreach ($pesancht as $pesan)
                             <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px; ">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
+                              <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $pesan->user->profil }}" alt="" style="width: 40px; height: 40px; ">
+                              <div class="w-100 ms-3">
+                                <div class="d-flex w-100 justify-content-between">
+                                  <h6 class="mb-0">{{ $pesan->user->name }}</h6>
+                                  <small>{{ $pesan->chat_time->diffForHumans() }}</small>
                                 </div>
+                                <span>{{ $pesan->chat }}</span>
+                              </div>
                             </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center pt-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
+                          @endforeach
+
+
+
                         </div>
                     </div>
                 </div>

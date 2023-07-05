@@ -211,10 +211,10 @@
                 <button type="submit" style="border: none;" onclick="konfirmasi(event)" class="btn btn-primary">Setuju</button>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myyModal{{ $data->id }}">Tolak</button>
             </form>
-            <script>
+            {{-- <script>
                 function konfirmasi(event) {
                             event.preventDefault(); // Mencegah perilaku default tombol submit
-                    
+
                             Swal.fire({
                                 title: 'Apakah Anda yakin?',
                                 text: 'Ingin Menyetujui Project?',
@@ -227,7 +227,7 @@
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     // Aksi yang akan dijalankan jika pengguna menekan tombol "Ya"
-                            
+
                                     // Setelah sweet alert ditampilkan, formulir dapat dikirim secara manual
                                     document.querySelector('form').submit();
                                 } else {
@@ -240,7 +240,7 @@
                                 }
                             });
                         }
-            </script>
+            </script> --}}
         </div>
         <div class="modal fade" id="myyModal{{ $data->id }}">
             <div class="modal-dialog modal-dialog-centered align-items-center">
@@ -261,7 +261,7 @@
                     {{-- <script>
                         function showConfirmation(event) {
                             event.preventDefault(); // Mencegah perilaku default tombol submit
-                    
+
                             Swal.fire({
                                 title: 'Apakah Anda yakin?',
                                 text: 'Ingin Menolak Project?',
@@ -274,7 +274,7 @@
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     // Aksi yang akan dijalankan jika pengguna menekan tombol "Ya"
-                            
+
                                     // Setelah sweet alert ditampilkan, formulir dapat dikirim secara manual
                                     document.querySelector('form').submit();
                                 } else {
@@ -293,8 +293,8 @@
         </div>
     </div>
 
-          
-          
+
+
         <div class="wrapper mt-1">
                 <div class="wrapper d-flex justify-content-between align-items-center mx-3">
                 </div>
@@ -309,7 +309,7 @@
                         </thead>
                        <tbody>
                     @foreach($dataa as $fitur)
-                   
+
                         <tr>
                             <td>{{ $fitur->namafitur }}</td>
                             <td>{{ $fitur->hargafitur }}</td>
@@ -356,7 +356,7 @@
                         <td class="text-center" colspan="2">Tidak ada data</td>
                     </tr>
                     @endif
-                    
+
                 </tbody>
             </table>
                 </div>

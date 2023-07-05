@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chat;
 use App\Models\Proreq;
 use App\Models\Fitur;
 use App\Models\Sosmed;
@@ -15,8 +16,22 @@ class IndexcController extends Controller
     public function indexclient()
         {
         $client = User::find(Auth::user()->id);
+        $setujuCounter = Proreq::where('status', 'setuju')->count();
+        $tolakCounter = Proreq::where('status', 'tolak')->count();
+        $kerjaCounter = Proreq::where('status', 'setuju')->count();
+        $selesaiCounter = Proreq::where('status', 'selesai')->count();
+        $pesancht = Chat::all();
         $sosmed = Sosmed::all();
-        return view('Client.index', compact('sosmed','client'));
+        return view('Client.index',[
+
+            'setujuCounter' => $setujuCounter,
+            'tolakCounter' => $tolakCounter,
+            'kerjaCounter' => $kerjaCounter,
+            'selesaiCounter' => $selesaiCounter,
+            'pesancht' => $pesancht,
+            'sosmed' => $sosmed,
+            'client' => $client
+        ]);
         }
 
     public function drequestclient(){
@@ -47,7 +62,7 @@ class IndexcController extends Controller
 
 
     $data = Proreq::all();
-    $namaFile = null; 
+    $namaFile = null;
 
     if ($request->hasFile('bukti')) {
         $nm = $request->bukti;
