@@ -77,14 +77,13 @@ class ProjectDisetujuiController extends Controller
 
     public function detailDisetujuiClient($id) {
         $client = User::where('role', 'client')->first();
-        $userid = Auth()->user()->id . $id;
-        $detail = proreq::find($id);
+        $detail = Proreq::find($id);
         $fitur = Fitur::all();
         $chats = Chat::where('project_id', $id)->get();
         $sosmed = Sosmed::all();
         return view('Client.detailsetujui',
         [
-            'userid' => $userid,
+            'userid' => Auth()->user()->id,
             'detail' => $detail,
             'fitur' => $fitur,
             'chats' => $chats,

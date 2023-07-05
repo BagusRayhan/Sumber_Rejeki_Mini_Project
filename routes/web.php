@@ -54,7 +54,7 @@ Route::get('fitur/{id}/edit', [IndexcController::class, 'showFormModal'])->name(
 
     Route::get('requestclient', [IndexcController::class, 'requestclient'])->name('requestclient');
     Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
-    Route::put('updateproreq/{id}', [IndexcController::class, 'update'])->name('updateproreq');
+    Route::put('updateproreq', [IndexcController::class, 'update'])->name('updateproreq');
     Route::post('simpandesk', [IndexcController::class, 'simpand'])->name('simpandesk');
     Route::get('setujuclient', [ProjectDisetujuiController::class, 'disetujuiClient'])->name('setujuclient');
     Route::get('selesaiclient', [SelesaiController::class, 'selesaiclient'])->name('selesaiclient');

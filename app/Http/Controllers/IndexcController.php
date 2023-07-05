@@ -51,30 +51,24 @@ class IndexcController extends Controller
  public function simpann(Request $request)
 {
     $this->validate($request,[
-        'nama' => 'required|min:5|max:30',
         'napro' => 'required',
         'deadline' => 'required',
     ], [
-        'nama.required' => 'Nama tidak boleh kosong',
         'napro.required' => 'Nama project tidak boleh kosong',
-        'deadline.required' => 'deadline harus terisi',
+        'deadline.required' => 'Isi deadline terlebih dahulu',
     ]);
-
-
     $data = Proreq::all();
-    $namaFile = null;
-
-    if ($request->hasFile('bukti')) {
-        $nm = $request->bukti;
+    $namaFile = null; 
+    if ($request->hasFile('dokumen')) {
+        $nm = $request->dokumen;
         $namaFile = time() . rand(100, 999) . "." . $nm->getClientOriginalExtension();
-        $nm->move(public_path() . '/gambar', $namaFile);
+        $nm->move(public_path() . 'gambar/dokumen/', $namaFile);
     }
-
     $dtUpload = new Proreq();
     $dtUpload->user_id = Auth()->user()->id;
-    $dtUpload->nama = $request->nama;
+    $dtUpload->nama = Auth()->user()->name;
     $dtUpload->napro = $request->napro;
-    $dtUpload->bukti = $namaFile;
+    $dtUpload->dokumen = $namaFile;
     $dtUpload->deadline = $request->deadline;
 
     $dtUpload->save();
@@ -85,7 +79,9 @@ class IndexcController extends Controller
 
      public function showproj(Request $request){
         $client = User::where('role', 'client')->first();
-        return view('Client.createproreq',compact('client'));
+        $userid = Auth::user()->id;
+        $username = User::where('id', $userid)->value('name');
+        return view('Client.createproreq',compact('client','username'));
     }
 
     public function simpannn(Request $request, $id)
@@ -104,30 +100,25 @@ class IndexcController extends Controller
     }
 
 
-    public function update(Request $request, $id){
-    $ubah = Proreq::findorfail($id);
-    $awal = $ubah->bukti;
-
-    if ($request->hasFile('bukti')) {
-        if (File::exists(public_path().'/gambar/'.$awal)) {
-            File::delete(public_path().'/gambar/'.$awal);
+    public function update(Request $request){
+        $upProject = [];
+        $id = $request->projectid;
+        $project = Proreq::findorfail($id);
+        if ($request->hasFile('dokumen')) {
+            if (File::exists(public_path().'gambar/dokumen/' . $project->dokumen)) {
+                unlink(public_path().'gambar/dokumen/' . $project->dokumen);
+            }
+            $newFile = $request->file('dokumen');
+            $newDocs = $newFile->hashName();
+            $newFile->move(public_path('gambar/dokumen/'), $newDocs);
+            $upProject['dokumen'] = $newDocs;
         }
-
-        $awal = $request->bukti->hashName();
-        $request->bukti->move(public_path().'/gambar', $awal);
-    }
-
-    $data = [
-        'nama' => $request['nama'],
-        'napro' => $request['napro'],
-        'bukti' => $awal,
-        'deadline' => $request['deadline'],
-        'status' => 'pending',
-    ];
-
-    $ubah->update($data);
-    $project_id = $ubah->id;
-    return redirect('drequestclient')->with('success', 'Project Berhasil dikirim!');
+        $upProject['nama'] = $request->nama;  
+        $upProject['napro'] = $request->napro;
+        $upProject['deadline'] = $request->deadline;
+        $upProject['status'] = $request->status;
+        $project->update($upProject);
+        return redirect('drequestclient')->with('success', 'Project Berhasil dikirim!');
     }
 
 

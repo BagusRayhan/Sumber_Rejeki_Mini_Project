@@ -74,7 +74,7 @@
                                                     <a href="/detail-project-disetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach 
                                         @else
                                             <tr>
                                                 <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>

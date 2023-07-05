@@ -23,15 +23,16 @@
 
       <div class="container mt-4 d-flex flex-column">
         <div class="wrapper">
-            <form action="{{ route('updateproreq', $data->id) }}" method="POST"  enctype="multipart/form-data">
-            <h5 class="px-3 mb-2">Request Project</h5>
-            {{ csrf_field() }}
-            @method('PUT')
+            <form action="{{ route('updateproreq') }}" method="POST" enctype="multipart/form-data">
+                <h5 class="px-3 mb-2">Request Project</h5>
+                @csrf
+                @method('PUT')
+                <input type="hidden" name="projectid" value="{{ $data->id }}">
                 <div class="mb-3 w-100 d-flex justify-content-between">
                     <div class="wrapper w-50 px-3 d-flex flex-column">
                         <div class="form-group mb-3">
                             <label for="input1">Nama Client</label>
-                            <input type="text" class="form-control" id="input1" name="nama" value="{{ $data->nama }}">
+                            <input type="text" class="form-control" id="input1" name="nama" value="{{ $data->nama }}" disabled>
                         </div>
                         <div class="form-group mb-3">
                             <label for="input2">Nama Project</label>
@@ -53,7 +54,6 @@
                 <div class="wrapper m-3 d-flex">
                     <a href="{{ route('drequestclient') }}" class="btn btn-danger btn-sm mx-2">Kembali</a>
                     <button type="submit" onclick="showConfirmation(event)" class="btn btn-primary btn-sm mx-2">Kirim Request</button>
-
 {{-- <script>
     function showConfirmation(event) {
         event.preventDefault(); // Mencegah perilaku default tombol submit
@@ -98,10 +98,9 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th class="w-25" scope="col">Nama Fitur</th>
+                                <th scope="col">Nama Fitur</th>
                                 <th class="w-75" scope="col">Deskripsi</th>
-                                <th class="w-90" scope="col" colspan="2"><center>Aksi</center></th>
-
+                                <th scope="col"><center>Aksi</center></th>
                             </tr>
                         </thead>
                        <tbody>
@@ -109,17 +108,14 @@
                         <tr>
                             <td>{{ $fitur->namafitur }}</td>
                             <td>{{ $fitur->deskripsi }}</td>
-                            <td><center>
+                            <td class="d-flex justify-content-evenly">
                                 <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ $fitur->id }}"><i class="fa-solid fa-pen-to-square"></i></button>
-                            </td>
-                            <td>
                                 <form action="{{ route('destroyfitur', ['id' => $fitur->id]) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
                                 </form>
                             </td>
-                        </center>
                         </tr>
                         <!-- Edit Fitur -->
                         <div class="modal fade" id="editModal{{ $fitur->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -140,7 +136,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="deskripsi">Deskripsi</label>
-                                                    <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Masukkan Deskripsi">{{ $fitur->deskripsi }}</textarea>
+                                                    <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6" placeholder="Masukkan Deskripsi">{{ $fitur->deskripsi }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -155,7 +151,7 @@
                     @endforeach
                     @if($dataa->isEmpty())
                         <tr>
-                            <td class="text-center" colspan="2">Tidak ada data</td>
+                            <td class="text-center" colspan="3">Tidak ada data</td>
                         </tr>
                     @endif
 
@@ -182,7 +178,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="">Deskripsi</label>
-                            <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Masukkan Deskripsi"></textarea>
+                            <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6" placeholder="Masukkan Deskripsi"></textarea>
                             <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
                             <button type="submit" class="btn btn-primary">Simpan</button>
