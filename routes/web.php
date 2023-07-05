@@ -62,6 +62,7 @@ Route::get('fitur/{id}/edit', [IndexcController::class, 'showFormModal'])->name(
     Route::get('ditolakclient', [TolakController::class, 'ditolakclient'])->name('ditolakclient');
     Route::get('bayarclient', [BayarController::class, 'bayarclient'])->name('bayarclient');
     Route::get('bayar2client', [BayarController::class, 'bayar2client'])->name('bayar2client');
+    Route::put('update-status-bayar/{id}', [BayarController::class, 'updatebayar'])->name('update-status-bayar');
     Route::get('detailsetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujuiClient'])->name('detailsetujui');
     Route::post('detailsetujui', [ProjectDisetujuiController::class, 'projectChatClient'])->name('project-chat-client');
     Route::get('revisiselesai', [SelesaiController::class, 'revisiselesai'])->name('revisiselesai');

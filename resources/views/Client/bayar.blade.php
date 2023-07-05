@@ -4,6 +4,26 @@ div <!DOCTYPE html>
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
 @include('Client.Template.head')
+<style>
+    .bank-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bank-container label {
+    margin-bottom: 10px;
+}
+
+.bank-container select,
+.bank-container input {
+    width: 900px;
+    height: 40px;
+    font-size: 16px;    
+    margin-bottom: 10px;
+}
+
+</style>
 </head>
 
 <body>
@@ -107,12 +127,14 @@ div <!DOCTYPE html>
                                         </div>
                                 <br>
                             </div>
-                            <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center>
+                            <center><button class="btn btn-primary" data-bs-target="#cash" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center>
                             <div class="modal-footer" style="border: none;">
                             </div>
                             </div>
                           </div>
                         </div>
+
+
                         <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered" >
                             <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
@@ -153,51 +175,162 @@ div <!DOCTYPE html>
                            </div>
                          </div>
 
-                    <div class="modal fade" id="cash" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                        <div class="modal-dialog modal-dialog-centered" >
-                            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-                                <div class="modal-header" >
-                                    <div style="display: flex; flex-direction: column;">
-                                        <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
-                                        <div style="display: flex; align-items: center;">
-                                            <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="{{ $item->napro }}" disabled>
-                                        </div>
-                                        <div style="display: flex; align-items: center; margin-top:3%;">
-                                            <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="{{ $item->harga }}" disabled>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body" style="border: none;">
-                                    <div class="container m-0 p-0 d-flex justify-content-between">
-                                        <div class="d-grid" style="display: flex; justify-content: space-between;">
-                                            <h6 style="align-self: center;">Metode</h6>
-                                            <div class="dropdown">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Cash &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item active" href="#">Cash</a></li>
-                                                    <li><a class="dropdown-item" href="#" data-bs-target="#wallet" data-bs-toggle="modal">E-Wallet</a></li>
-                                                    <li><a class="dropdown-item" href="#" data-bs-target="#bank" data-bs-toggle="modal">Bank</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="mb-7">
-                                            <h6 style="">Harga Pembayaran :</h6>
-                                            <input type="text" class="form-control" value="{{ $item->harga }}" disabled>
-                                        </div>
-                                    </div>
-                                <br>
-                            </div>
-                            <center><a href="{{ route('bayarclient') }}" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</a></center>
-                            <div class="modal-footer" style="border: none;">
-                            </div>
-                            </div>
-                          </div>
+<div class="modal fade" id="cash" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="{{ route('update-status-bayar', $data->first()->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
+                <div class="modal-header">
+                    <div style="display: flex; flex-direction: column;">
+                        <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
+                        <div style="display: flex; align-items: center;">
+                            <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
+                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="{{ $item->napro }}" disabled>
                         </div>
+                        <div style="display: flex; align-items: center; margin-top:3%;">
+                            <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
+                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="{{ $item->harga }}" disabled>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="border: none;">
+                    <div class="container m-0 p-0 d-flex justify-content-between">
+                        <div class="d-grid" style="display: flex; justify-content: space-between;">
+                            <h6 style="align-self: center; font-size: 16px;">Metode</h6>
+                            <select class="form-select form-select-lg mb-3" name="metodepembayaran" style="width: 200px; height: 40px; font-size: 16px;" aria-label=".form-select-lg example" id="selectMetode">
+                                <option selected class="dropdown-menu" disabled>Pilih Pembayaran</option>
+                                <option value="cash">Cash</option>
+                                <option value="ewallet">E-Wallet</option>
+                                <option value="bank">Bank</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="additionalSelectContainer"></div>
+                    <div id="fileInputContainer"></div>
+                    <br>
+                </div>
+                <center>
+                    <button type="submit" class="btn btn-primary" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button>
+                </center>
+                <div class="modal-footer" style="border: none;"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <script>
+    selectMetode.addEventListener('change', function () {
+        const selectedValue = this.value;
+
+        // Hapus select, input file, dan input text sebelumnya jika ada
+        additionalSelectContainer.innerHTML = '';
+        fileInputContainer.innerHTML = '';
+
+        if (selectedValue === 'ewallet') {
+            // Buat label "Layanan" baru
+            const layananLabel = document.createElement('label');
+            layananLabel.textContent = 'Layanan';
+
+            // Buat select "Layanan" baru
+            const layananSelect = document.createElement('select');
+            layananSelect.className = 'form-select form-select-lg mb-3';
+            layananSelect.name = 'metode';
+            layananSelect.style.width = '200px';
+            layananSelect.style.height = '40px';
+            layananSelect.style.fontSize = '16px';
+            layananSelect.innerHTML = `
+                <option selected class="dropdown-menu" name="layanan" disabled>Pilih E-Wallet</option>
+                <option value="dana">Dana</option>
+                <option value="ovo">Ovo</option>
+                <option value="gopay">Gopay</option>
+                <option value="linkaja">Linkaja</option>
+            `;
+
+            additionalSelectContainer.appendChild(layananLabel);
+            additionalSelectContainer.appendChild(layananSelect);
+
+            // Buat label "Upload Bukti Pembayaran" baru
+            const fileInputLabel = document.createElement('label');
+            fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
+
+            // Buat input file baru
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.name = 'buktipembayaran';
+            fileInput.className = 'form-control';
+            fileInput.style.border = 'none';
+            fileInput.style.fontFamily = 'ubuntu';
+            fileInput.style.height = '1%';
+            fileInput.style.width = '50%';
+            fileInput.setAttribute('required', true);
+
+            fileInputContainer.appendChild(fileInputLabel);
+            fileInputContainer.appendChild(fileInput);
+        } else if (selectedValue === 'bank') {
+            // Buat label "Bank" baru
+            const bankLabel = document.createElement('label');
+            bankLabel.textContent = 'Bank';
+
+            // Buat select "Bank" baru
+            const bankSelect = document.createElement('select');
+            bankSelect.className = 'form-select form-select-lg mb-3';
+            bankSelect.name = 'metode';
+            bankSelect.style.width = '200px';
+            bankSelect.style.height = '40px';
+            
+            bankSelect.style.fontSize = '16px';
+            bankSelect.innerHTML = `
+                <option selected class="dropdown-menu" name="bank" disabled>Pilih Bank</option>
+                <option value="Bank BRI">Bank BRI</option>
+                <option value="Bank BCA">Bank BCA</option>
+                <option value="Bank Mandiri">Bank Mandiri</option>
+            `;
+
+            // Buat label "Upload Bukti Pembayaran" baru
+            const fileInputLabel = document.createElement('label');
+            fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
+
+            // Buat input file baru
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.name = 'buktipembayaran';
+            fileInput.className = 'form-control';
+            fileInput.style.border = 'none';
+            fileInput.style.fontFamily = 'ubuntu';
+            fileInput.style.height = '1%';
+            fileInput.style.width = '50%';
+            fileInput.setAttribute('required', true);
+
+                // Buat label "Input Bank" baru
+                const inputBankLabel = document.createElement('label');
+                inputBankLabel.textContent = 'No.Rekening:';
+
+                // Buat input teks baru untuk memasukkan nama bank
+                const inputBank = document.createElement('input');
+                inputBank.type = 'text';
+                inputBank.name = 'No.Rekening';
+                inputBank.className = 'form-control';
+                inputBank.style.border = 'none';
+                inputBank.style.fontFamily = 'ubuntu';
+                inputBank.style.height = '1%';
+                inputBank.style.width = '50%';
+                inputBank.setAttribute('required', true);
+
+            additionalSelectContainer.appendChild(bankLabel);
+            additionalSelectContainer.appendChild(bankSelect);
+            additionalSelectContainer.appendChild(inputBankLabel);
+            additionalSelectContainer.appendChild(inputBank);
+            fileInputContainer.appendChild(fileInputLabel);
+            fileInputContainer.appendChild(fileInput);
+
+            // Setelah menambahkan elemen-elemen di atas, tambahkan kelas 'bank-container' ke additionalSelectContainer
+            additionalSelectContainer.className = 'bank-container';
+        }
+    });
+
+    </script>
 
 
 
