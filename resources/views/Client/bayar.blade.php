@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+div <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
@@ -187,7 +187,7 @@
                                         </div>
                                         <div class="mb-7">
                                             <h6 style="">Harga Pembayaran :</h6>
-                                            <input type="text" class="form-control" {{ $item->harga }} disabled>
+                                            <input type="text" class="form-control" value="{{ $item->harga }}" disabled>
                                         </div>
                                     </div>
                                 <br>
@@ -199,10 +199,13 @@
                           </div>
                         </div>
 
-                        @foreach ($ewallet as $item)
+
+
+
                         {{-- ewallet --}}
-                    <div class="modal fade" id="wallet" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                        <div class="modal-dialog modal-dialog-centered" >
+
+                        <div class="modal fade" id="wallet" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered" >
                             <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
                                 <div class="modal-header" >
                                     <div style="display: flex; flex-direction: column;">
@@ -218,51 +221,78 @@
                                     </div>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body" style="border: none;">
-                                    <div class="container m-0 p-0 d-flex justify-content-between">
-                                        <div class="d-grid" style="display: flex; justify-content: space-between;">
-                                            <h6 style="align-self: center;">Metode</h6>
-                                            <div class="dropdown">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    E-Wallet &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#" data-bs-target="#cash" data-bs-toggle="modal">Cash</a></li>
-                                                    <li><a class="dropdown-item active" href="#">E-Wallet</a></li>
-                                                    <li><a class="dropdown-item" href="#" data-bs-target="#bank" data-bs-toggle="modal">Bank</a></li>
-                                                </ul>
+                                <div class="modal-body d-flex justify-content-center" style="border: none;">
+                                    <div class="d-flex">
+                                        <div class="container m-0 p-0 d-flex flex-column">
+                                            <div class="d-flex flex-column">
+                                                <h6>Metode</h6>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        E-Wallet &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="#" data-bs-target="#cash" data-bs-toggle="modal">Cash</a></li>
+                                                        <li><a class="dropdown-item active" href="#">E-Wallet</a></li>
+                                                        <li><a class="dropdown-item" href="#" data-bs-target="#bank" data-bs-toggle="modal">Bank</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-column mt-2">
+                                                <h6>Layanan</h6>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            Pilih E-Wallet &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item" href="#" onclick="qr('dana')" >Dana</a></li>
+                                                            <script>
+                                                                function qr(wallet) {
+                                                                    console.log(wallet);
+                                                                    if (wallet == 'dana') {
+                                                                        $('#gambar_qr').removeAttr('src');
+                                                                        $('#gambar_qr').attr('src', '/gambar/qr/{{ $dana->qrcode }}');
+                                                                    } else if (wallet == 'ovo') {
+                                                                        $('#gambar_qr').removeAttr('src');
+                                                                        $('#gambar_qr').attr('src', '/gambar/qr/{{ $ovo->qrcode }}');
+                                                                    } else if (wallet == 'gopay') {
+                                                                        $('#gambar_qr').removeAttr('src');
+                                                                        $('#gambar_qr').attr('src', '/gambar/qr/{{ $gopay->qrcode }}');
+                                                                    } else if (wallet == 'linkaja') {
+                                                                        $('#gambar_qr').removeAttr('src');
+                                                                        $('#gambar_qr').attr('src', '/gambar/qr/{{ $linkaja->qrcode }}');
+                                                                    }
+                                                                }
+                                                            </script>
+                                                            <li><a class="dropdown-item " href="#" onclick="qr('ovo')">Ovo</a></li>
+                                                            <li><a class="dropdown-item" href="#" onclick="qr('gopay')">Gopay</a></li>
+                                                            <li><a class="dropdown-item" href="#" onclick="qr('linkaja')">LinkAja</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            <div class="mb-3" style="margin-top:3%; width:140%;">
+                                            <h6 style="align-self: center;">Bukti Pembayaran</h6>
+                                            <input class="form-control" type="file" id="formFile" style="width: 45%;">
+                                        </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between" style="margin-left: 10%;">
+                                            <div>
+                                                <img class="w-75" id="gambar_qr" src="gambar/qr/pp.jpg">
                                             </div>
                                         </div>
                                     </div>
-
-                                        <div class="d-grid" style="display: flex; justify-content: space-between; margin-top:3%;">
-                                            <h6 style="align-self: center;">Layanan</h6>
-                                            <div class="dropdown">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Pilih E-Wallet &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#" data-bs-target="#dana" data-bs-toggle="modal" >Dana</a></li>
-                                                    <li><a class="dropdown-item " href="#">Ovo</a></li>
-                                                    <li><a class="dropdown-item" href="#">Gopay</a></li>
-                                                    <li><a class="dropdown-item" href="#">LinkAja</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3" style="margin-top:3%; width:110%;">
-                                            <h6 style="align-self: center;">Bukti Pembayaran</h6>
-                                            <input class="form-control" type="file" id="formFile" style="width: 35%">
-                                        </div>
+                                        
+                                    <center><a href="{{ route('bayarclient') }}" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</a></center>
+                                    <div class="modal-footer" style="border: none;">
+                                    </div>
+                                </div>
                             </div>
-                            <center><a href="{{ route('bayarclient') }}" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</a></center>
-                            <div class="modal-footer" style="border: none;">
-                            </div>
-                            </div>
-                          </div>
                         </div>
 
-                         <div class="modal fade" id="dana" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+
+                        {{-- danaaa --}}
+                        
+                <div class="modal fade" id="dana" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered" >
                             <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
                                 <div class="modal-header" >
@@ -309,14 +339,12 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="mb-3" style="margin-top:3%; width:120%;">
+                                        <div class="mb-3" style="margin-top:3%; width:120%;">
                                             <h6 style="align-self: center;">Bukti Pembayaran</h6>
                                             <input class="form-control" type="file" id="formFile" style="width: 70%;">
                                         </div>
                                         </div>
-                                        <div class="w-50">
-                                            <img class="w-100" src="{{ asset('gambar/qr/' . $item->qrcode) }}">
-                                        </div>
+
                                     </div>
                                 </div>
                             <center><a href="{{ route('bayarclient') }}" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</a></center>
@@ -325,7 +353,9 @@
                             </div>
                           </div>
                         </div>
-                        @endforeach
+
+
+
 
                         {{-- bankk --}}
 
@@ -368,9 +398,21 @@
                                                     Layanan Bank &nbsp; &nbsp; &nbsp; &nbsp;
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">BRI</a></li>
-                                                    <li><a class="dropdown-item" href="#">BCA</a></li>
-                                                    <li><a class="dropdown-item" href="#">Mandiri</a></li>
+                                                    <li><a class="dropdown-item" href="#" onclick="bank('bri')">BRI</a></li>
+                                                         <script>
+                                                                function bank(bank) {
+                                                                    console.log(bank);
+                                                                    if (bank == 'bri') {
+                                                                        $('#norek').val('{{ $bri->rekening }}');
+                                                                    } else if (bank == 'bca') {
+                                                                        $('#norek').val('{{ $bca->rekening }}');
+                                                                    } else if (bank == 'mandiri') {
+                                                                        $('#norek').val('{{ $mandiri->rekening }}');
+                                                                    }
+                                                                }
+                                                            </script>
+                                                    <li><a class="dropdown-item" href="#" onclick="bank('bca')">BCA</a></li>
+                                                    <li><a class="dropdown-item" href="#" onclick="bank('mandiri')">Mandiri</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -385,7 +427,7 @@
                                         </div>
                                         <div class="mb-7" style="margin-top: 2%; margin-right:10%; width:50%;">
                                             <h6 style="">No. Rekening</h6>
-                                            <input type="text" class="form-control"  disabled>
+                                            <input type="text" id="norek" class="form-control"  disabled>
                                         </div>
                                     </div>
 
@@ -404,15 +446,12 @@
                                     <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
                                 </tr>
                         @endforelse
-
-      @include('Client.Template.footer')
-        </div>
-        <!-- Content End -->
-
-
-@include('Client.Template.script')
-</body>
-
-
+                    </div>
+                    <!-- Content End -->
+                    
+                    
+                    @include('Client.Template.script')
+                </body>
+              
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:45:02 GMT -->
 </html>

@@ -26,7 +26,7 @@
             <form action="{{ route('update-status',$data->id) }}" method="POST">
                 @csrf
                 @method('PUT')
-            <div class="mb-3 d-flex justify-content-between">
+            <div class="d-flex justify-content-between mb-3" style="margin-left: 2%;">
                 <div class="wrapper w-50 px-3 d-flex flex-column">
                     <div class="form-group">
                         <label for="input1">Nama Project</label>
@@ -53,9 +53,9 @@
                 <div class="d-flex justify-content-start mb-3" style="margin-left: 2%;">
                     <td>
                         <center>
-                            <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-circle-check"></i>&nbsp;Setuju</button>&nbsp;
+                            <button type="submit" class="btn btn-primary btn-sm float"><i class="fa-solid fa-circle-check"></i>&nbsp;Setuju</button>&nbsp;
                         </form>
-                        <form action="{{ route('update-statuss',$data->id) }}" method="POST">
+                        <form action="{{ route('update-statuss',$data->id) }}" method="POST" style="margin-left: 90%; width:170%;">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-xmark"></i>&nbsp;Tolak</button>
