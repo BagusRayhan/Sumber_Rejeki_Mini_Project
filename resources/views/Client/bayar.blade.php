@@ -1,4 +1,4 @@
-div <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
@@ -395,7 +395,7 @@ div <!DOCTYPE html>
         // Buat input teks baru untuk memasukkan nama bank
         const inputBank = document.createElement('input');
         inputBank.type = 'text';
-        inputBank.name = 'No.Rekening';
+        inputBank.name = 'rekening';
         inputBank.className = 'form-control';
         inputBank.style.border = 'none';
         inputBank.style.fontFamily = 'ubuntu';
@@ -410,11 +410,33 @@ div <!DOCTYPE html>
         fileInputContainer.appendChild(fileInputLabel);
         fileInputContainer.appendChild(fileInput);
 
-        // Setelah menambahkan elemen-elemen di atas, tambahkan kelas 'bank-container' ke additionalSelectContainer
-        additionalSelectContainer.className = 'bank-container';
+// Menambahkan event listener ke select "Pilih Bank"
+bankSelect.addEventListener('change', function () {
+  const selectedBank = this.value;
+
+  // Menggunakan jQuery untuk mengambil data rekening dari database
+  $.ajax({
+    url: '/bayarclient',
+    method: 'GET',
+    data: { bank: selectedBank },
+    success: function(response) {
+      const rekening = response;
+
+      // Menampilkan data rekening ke dalam input "No.Rekening"
+      inputBank.value = rekening.rekening;
+    },
+    error: function(error) {
+      console.error('Error:', error);
+    }
+  });
+});
+
+
+        
       }
     });
   </script>
+  
 
 
 
