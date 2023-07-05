@@ -30,6 +30,42 @@ class BayarController extends Controller
             return view('Client.bayar', compact('sosmed','client','data','bank','ewallet', 'dana', 'ovo', 'gopay', 'linkaja','bri','bca','mandiri'));
         }
 
+        public function updatebayar(Request $request, $id){
+        $client = User::where('role', 'client')->first();
+        $sosmed = Sosmed::all();
+        $data = Proreq::findOrFail($id);
+
+        // Mengunggah file gambar
+        if ($request->hasFile('buktipembayaran')) {
+            $file = $request->file('buktipembayaran');
+            $filename = $file->store('gambar'); // Ubah "path/to/storage" sesuai dengan lokasi penyimpanan yang diinginkan
+            $file->move(public_path() . '/gambar', $filename);
+            $data->buktipembayaran = $filename;
+        }
+
+        $data->status = null;
+        $data->metodepembayaran = $request->input('metodepembayaran');
+        $data->metode = $request->input('metode');
+        $data->statusbayar = 'pending';
+        $data->save();
+
+        return redirect()->route('bayarclient')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));
+    }
+
+
+            public function updatebayarr(Request $request, $id){
+            $client = User::where('role', 'client')->first();
+            $sosmed = Sosmed::all();
+            $data = Proreq::findOrFail($id);
+
+            $data->status = null;
+            $data->metodepembayaran = $request->input('metodepembayaran');
+            $data->statusbayar = 'pending';
+            $data->save();
+
+            return redirect()->route('bayarclient')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));
+        }
+
         public function bayar2client()
         {
             $client = User::where('role', 'client')->first();

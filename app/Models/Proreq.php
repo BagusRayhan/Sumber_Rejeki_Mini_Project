@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Bank;
+use App\Models\Chat;
+use App\Models\Fitur;
+use App\Models\EWallet;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class proreq extends Model
 {
@@ -22,4 +26,13 @@ class proreq extends Model
         return $this->hasMany(Chat::class);
     }
 
+    public function bank()
+    {
+        return $this->hasMany(Bank::class);
+    }
+
+    public function ewallet()
+    {
+        return $this->hasMany(EWallet::class);
+    }
 }

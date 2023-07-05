@@ -56,7 +56,7 @@ class IndexcController extends Controller
     }
 
     $dtUpload = new Proreq();
-$dtUpload->user_id = Auth()->user()->id;
+    $dtUpload->user_id = Auth()->user()->id;
     $dtUpload->nama = $request->nama;
     $dtUpload->napro = $request->napro;
     $dtUpload->bukti = $namaFile;
