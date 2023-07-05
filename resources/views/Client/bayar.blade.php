@@ -209,6 +209,7 @@ div <!DOCTYPE html>
                     </div>
                     <div id="additionalSelectContainer"></div>
                     <div id="fileInputContainer"></div>
+                    <div id="imageContainer"></div>
                     <br>
                 </div>
                 <center>
@@ -220,117 +221,200 @@ div <!DOCTYPE html>
     </div>
 </div>
 
-    <script>
+  <script>
+    const selectMetode = document.getElementById('selectMetode');
+    const additionalSelectContainer = document.getElementById('additionalSelectContainer');
+    const fileInputContainer = document.getElementById('fileInputContainer');
+
     selectMetode.addEventListener('change', function () {
-        const selectedValue = this.value;
+      const selectedValue = this.value;
 
-        // Hapus select, input file, dan input text sebelumnya jika ada
-        additionalSelectContainer.innerHTML = '';
-        fileInputContainer.innerHTML = '';
+      // Hapus select, input file, dan input text sebelumnya jika ada
+      additionalSelectContainer.innerHTML = '';
+      fileInputContainer.innerHTML = '';
 
-        if (selectedValue === 'ewallet') {
-            // Buat label "Layanan" baru
-            const layananLabel = document.createElement('label');
-            layananLabel.textContent = 'Layanan';
+      if (selectedValue === 'ewallet') {
+        // Buat label "Layanan" baru
+        const layananLabel = document.createElement('label');
+        layananLabel.textContent = 'Layanan';
 
-            // Buat select "Layanan" baru
-            const layananSelect = document.createElement('select');
-            layananSelect.className = 'form-select form-select-lg mb-3';
-            layananSelect.name = 'metode';
-            layananSelect.style.width = '200px';
-            layananSelect.style.height = '40px';
-            layananSelect.style.fontSize = '16px';
-            layananSelect.innerHTML = `
-                <option selected class="dropdown-menu" name="layanan" disabled>Pilih E-Wallet</option>
-                <option value="dana">Dana</option>
-                <option value="ovo">Ovo</option>
-                <option value="gopay">Gopay</option>
-                <option value="linkaja">Linkaja</option>
-            `;
+        // Buat select "Layanan" baru
+        const layananSelect = document.createElement('select');
+        layananSelect.className = 'form-select form-select-lg mb-3';
+        layananSelect.name = 'metode';
+        layananSelect.style.width = '200px';
+        layananSelect.style.height = '40px';
+        layananSelect.style.fontSize = '16px';
+        layananSelect.innerHTML = `
+          <option selected class="dropdown-menu" name="layanan" disabled>Pilih E-Wallet</option>
+          <option value="dana">Dana</option>
+          <option value="ovo">Ovo</option>
+          <option value="gopay">Gopay</option>
+          <option value="linkaja">Linkaja</option>
+        `;
 
-            additionalSelectContainer.appendChild(layananLabel);
-            additionalSelectContainer.appendChild(layananSelect);
+        additionalSelectContainer.appendChild(layananLabel);
+        additionalSelectContainer.appendChild(layananSelect);
 
-            // Buat label "Upload Bukti Pembayaran" baru
-            const fileInputLabel = document.createElement('label');
-            fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
+        // Buat label "Upload Bukti Pembayaran" baru
+        const fileInputLabel = document.createElement('label');
+        fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
 
-            // Buat input file baru
-            const fileInput = document.createElement('input');
-            fileInput.type = 'file';
-            fileInput.name = 'buktipembayaran';
-            fileInput.className = 'form-control';
-            fileInput.style.border = 'none';
-            fileInput.style.fontFamily = 'ubuntu';
-            fileInput.style.height = '1%';
-            fileInput.style.width = '50%';
-            fileInput.setAttribute('required', true);
+        // Buat input file baru
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.name = 'buktipembayaran';
+        fileInput.className = 'form-control';
+        fileInput.style.border = 'none';
+        fileInput.style.fontFamily = 'ubuntu';
+        fileInput.style.height = '1%';
+        fileInput.style.width = '50%';
+        fileInput.setAttribute('required', true);
 
-            fileInputContainer.appendChild(fileInputLabel);
-            fileInputContainer.appendChild(fileInput);
-        } else if (selectedValue === 'bank') {
-            // Buat label "Bank" baru
-            const bankLabel = document.createElement('label');
-            bankLabel.textContent = 'Bank';
+        fileInputContainer.appendChild(fileInputLabel);
+        fileInputContainer.appendChild(fileInput);
 
-            // Buat select "Bank" baru
-            const bankSelect = document.createElement('select');
-            bankSelect.className = 'form-select form-select-lg mb-3';
-            bankSelect.name = 'metode';
-            bankSelect.style.width = '200px';
-            bankSelect.style.height = '40px';
-            
-            bankSelect.style.fontSize = '16px';
-            bankSelect.innerHTML = `
-                <option selected class="dropdown-menu" name="bank" disabled>Pilih Bank</option>
-                <option value="Bank BRI">Bank BRI</option>
-                <option value="Bank BCA">Bank BCA</option>
-                <option value="Bank Mandiri">Bank Mandiri</option>
-            `;
+        // Tambahkan kode berikut untuk menampilkan gambar
+        const imageContainer = document.createElement('div');
+        imageContainer.id = 'imageContainer';
+        additionalSelectContainer.appendChild(imageContainer);
 
-            // Buat label "Upload Bukti Pembayaran" baru
-            const fileInputLabel = document.createElement('label');
-            fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
+        layananSelect.addEventListener('change', function () {
+          const selectedLayanan = this.value;
+          const imageContainer = document.getElementById('imageContainer');
 
-            // Buat input file baru
-            const fileInput = document.createElement('input');
-            fileInput.type = 'file';
-            fileInput.name = 'buktipembayaran';
-            fileInput.className = 'form-control';
-            fileInput.style.border = 'none';
-            fileInput.style.fontFamily = 'ubuntu';
-            fileInput.style.height = '1%';
-            fileInput.style.width = '50%';
-            fileInput.setAttribute('required', true);
+          // Hapus gambar sebelumnya jika ada
+          imageContainer.innerHTML = '';
 
-                // Buat label "Input Bank" baru
-                const inputBankLabel = document.createElement('label');
-                inputBankLabel.textContent = 'No.Rekening:';
+          if (selectedLayanan === 'dana') {
+            // Ambil nama file gambar dari database
+            const imageFilename = 'dana.png';
 
-                // Buat input teks baru untuk memasukkan nama bank
-                const inputBank = document.createElement('input');
-                inputBank.type = 'text';
-                inputBank.name = 'No.Rekening';
-                inputBank.className = 'form-control';
-                inputBank.style.border = 'none';
-                inputBank.style.fontFamily = 'ubuntu';
-                inputBank.style.height = '1%';
-                inputBank.style.width = '50%';
-                inputBank.setAttribute('required', true);
+            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
+            const imageUrl = 'gambar/qr/' + imageFilename;
 
-            additionalSelectContainer.appendChild(bankLabel);
-            additionalSelectContainer.appendChild(bankSelect);
-            additionalSelectContainer.appendChild(inputBankLabel);
-            additionalSelectContainer.appendChild(inputBank);
-            fileInputContainer.appendChild(fileInputLabel);
-            fileInputContainer.appendChild(fileInput);
+            // Buat elemen <img> untuk menampilkan gambar
+            const imageElement = document.createElement('img');
+            imageElement.style.width = '100px';
+            imageElement.style.height = '100px';
+            imageElement.src = imageUrl;
 
-            // Setelah menambahkan elemen-elemen di atas, tambahkan kelas 'bank-container' ke additionalSelectContainer
-            additionalSelectContainer.className = 'bank-container';
-        }
+            // Tambahkan elemen <img> ke dalam container gambar
+            imageContainer.appendChild(imageElement);
+          }
+
+          if (selectedLayanan === 'ovo') {
+            // Ambil nama file gambar dari database
+            const imageFilename = 'ovo.png';
+
+            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
+            const imageUrl = 'gambar/qr/' + imageFilename;
+
+            // Buat elemen <img> untuk menampilkan gambar
+            const imageElement = document.createElement('img');
+            imageElement.style.width = '100px';
+            imageElement.style.height = '100px';
+            imageElement.src = imageUrl;
+
+            // Tambahkan elemen <img> ke dalam container gambar
+            imageContainer.appendChild(imageElement);
+          }
+
+          if (selectedLayanan === 'gopay') {
+            // Ambil nama file gambar dari database
+            const imageFilename = 'gopay.png';
+
+            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
+            const imageUrl = 'gambar/qr/' + imageFilename;
+
+            // Buat elemen <img> untuk menampilkan gambar
+            const imageElement = document.createElement('img');
+            imageElement.style.width = '100px';
+            imageElement.style.height = '100px';
+            imageElement.src = imageUrl;
+
+            // Tambahkan elemen <img> ke dalam container gambar
+            imageContainer.appendChild(imageElement);
+          }
+
+          if (selectedLayanan === 'linkaja') {
+            // Ambil nama file gambar dari database
+            const imageFilename = 'linkaja.png';
+
+            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
+            const imageUrl = 'gambar/qr/' + imageFilename;
+
+            // Buat elemen <img> untuk menampilkan gambar
+            const imageElement = document.createElement('img');
+            imageElement.style.width = '100px';
+            imageElement.style.height = '100px';
+            imageElement.src = imageUrl;
+
+            // Tambahkan elemen <img> ke dalam container gambar
+            imageContainer.appendChild(imageElement);
+          }
+        });
+      } else if (selectedValue === 'bank') {
+        // Buat label "Bank" baru
+        const bankLabel = document.createElement('label');
+        bankLabel.textContent = 'Bank';
+
+        // Buat select "Bank" baru
+        const bankSelect = document.createElement('select');
+        bankSelect.className = 'form-select form-select-lg mb-3';
+        bankSelect.name = 'metode';
+        bankSelect.style.width = '200px';
+        bankSelect.style.height = '40px';
+        bankSelect.style.fontSize = '16px';
+        bankSelect.innerHTML = `
+          <option selected class="dropdown-menu" name="bank" disabled>Pilih Bank</option>
+          <option value="Bank BRI">Bank BRI</option>
+          <option value="Bank BCA">Bank BCA</option>
+          <option value="Bank Mandiri">Bank Mandiri</option>
+        `;
+
+        // Buat label "Upload Bukti Pembayaran" baru
+        const fileInputLabel = document.createElement('label');
+        fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
+
+        // Buat input file baru
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.name = 'buktipembayaran';
+        fileInput.className = 'form-control';
+        fileInput.style.border = 'none';
+        fileInput.style.fontFamily = 'ubuntu';
+        fileInput.style.height = '1%';
+        fileInput.style.width = '50%';
+        fileInput.setAttribute('required', true);
+
+        // Buat label "Input Bank" baru
+        const inputBankLabel = document.createElement('label');
+        inputBankLabel.textContent = 'No.Rekening:';
+
+        // Buat input teks baru untuk memasukkan nama bank
+        const inputBank = document.createElement('input');
+        inputBank.type = 'text';
+        inputBank.name = 'No.Rekening';
+        inputBank.className = 'form-control';
+        inputBank.style.border = 'none';
+        inputBank.style.fontFamily = 'ubuntu';
+        inputBank.style.height = '1%';
+        inputBank.style.width = '50%';
+        inputBank.setAttribute('required', true);
+
+        additionalSelectContainer.appendChild(bankLabel);
+        additionalSelectContainer.appendChild(bankSelect);
+        additionalSelectContainer.appendChild(inputBankLabel);
+        additionalSelectContainer.appendChild(inputBank);
+        fileInputContainer.appendChild(fileInputLabel);
+        fileInputContainer.appendChild(fileInput);
+
+        // Setelah menambahkan elemen-elemen di atas, tambahkan kelas 'bank-container' ke additionalSelectContainer
+        additionalSelectContainer.className = 'bank-container';
+      }
     });
-
-    </script>
+  </script>
 
 
 
