@@ -16,3 +16,22 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('ProjectManagement/dashmin/js/main.js') }}"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        function statusFitur(id) {
+            $.ajax({
+                url: "{{route('status-fitur')}}",
+                type: 'POST',
+                data: {
+                    fitur_id: id,
+                },
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        }
+    </script>

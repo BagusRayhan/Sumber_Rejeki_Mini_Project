@@ -42,8 +42,25 @@
                     <div class="wrapper w-50 px-3 d-flex flex-column">
                         <div class="form-group mb-3">
                             <label for="input3">Dokumen Pendukung</label>
-                            <img src="{{ asset('gambar/'.$data->bukti) }}" width="10%" height="10%">
-                            <input type="file" class="form-control" name="bukti" value="{{ 'gambar/'.$data->bukti }}" id="input3">
+                            <div class="wrapper d-flex">
+                                <input type="file" class="form-control" name="dokumen" id="input3">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#suppDocs">View</button>
+                            </div>
+                            <div class="modal fade" id="suppDocs"tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Dokumen Pendukung</h1>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <iframe class="w-100" src="{{ asset('document/'.$data->dokumen) }}" frameborder="0"></iframe>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group mb-3">
                             <label for="input4">Deadline</label>

@@ -37,6 +37,13 @@ class ProjectDisetujuiController extends Controller
         ]);
     }
 
+    public function statusFitur(Request $request) {
+        $status = Fitur::find($request->fitur_id);
+        $status->update([
+            'status' => 'selesai'
+        ]);
+    }
+
     public function upEstimasi(Request $request) {
         $pro = Proreq::find($request->project_id);
         $pro->update([
@@ -47,9 +54,10 @@ class ProjectDisetujuiController extends Controller
 
     public function projectChat(Request $request) {
         $id = $request->input('project_id');
-        $userid = Auth()->user()->id . $id;
+        $userchat = Auth()->user()->id . $id;
         $createChat = Chat::create([
-            'user_id' => $userid,
+            'user_id' => Auth()->user()->id,
+            'userchat_id' => $userchat,
             'project_id' => $request->project_id,
             'chat' => $request->chat,
             'chat_time' => $request->chat_time

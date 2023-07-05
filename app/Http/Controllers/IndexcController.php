@@ -57,20 +57,17 @@ class IndexcController extends Controller
         'napro.required' => 'Nama project tidak boleh kosong',
         'deadline.required' => 'Isi deadline terlebih dahulu',
     ]);
-    $data = Proreq::all();
-    $namaFile = null; 
-    if ($request->hasFile('dokumen')) {
-        $nm = $request->dokumen;
-        $namaFile = time() . rand(100, 999) . "." . $nm->getClientOriginalExtension();
-        $nm->move(public_path() . 'gambar/dokumen/', $namaFile);
-    }
     $dtUpload = new Proreq();
+    if ($request->has('dokumen')) {
+        $file = $request->file('dokumen');
+        $newFile = $file->hashName();
+        $file->move(public_path('document/'), $newFile);
+        $dtUpload->dokumen = $newFile;
+    }
     $dtUpload->user_id = Auth()->user()->id;
     $dtUpload->nama = Auth()->user()->name;
     $dtUpload->napro = $request->napro;
-    $dtUpload->dokumen = $namaFile;
     $dtUpload->deadline = $request->deadline;
-
     $dtUpload->save();
     $id = $dtUpload->id;
     return redirect()->route('editproreq', ['id' => $id]);
@@ -104,16 +101,16 @@ class IndexcController extends Controller
         $upProject = [];
         $id = $request->projectid;
         $project = Proreq::findorfail($id);
-        if ($request->hasFile('dokumen')) {
-            if (File::exists(public_path().'gambar/dokumen/' . $project->dokumen)) {
-                unlink(public_path().'gambar/dokumen/' . $project->dokumen);
+        if ($request->has('dokumen')) {
+            if (File::exists(public_path().'document/' . $project->dokumen)) {
+                unlink(public_path().'document/' . $project->dokumen);
             }
             $newFile = $request->file('dokumen');
             $newDocs = $newFile->hashName();
-            $newFile->move(public_path('gambar/dokumen/'), $newDocs);
+            $newFile->move(public_path('document/'), $newDocs);
             $upProject['dokumen'] = $newDocs;
         }
-        $upProject['nama'] = $request->nama;  
+        $upProject['nama'] = Auth()->user()->name;
         $upProject['napro'] = $request->napro;
         $upProject['deadline'] = $request->deadline;
         $upProject['status'] = $request->status;

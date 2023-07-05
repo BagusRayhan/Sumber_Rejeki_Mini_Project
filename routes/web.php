@@ -101,5 +101,5 @@ Route::middleware('admin')->group(function(){
     Route::put('estimasi-project', [ProjectDisetujuiController::class, 'upEstimasi'])->name('estimasi-project');
     Route::post('pembayaran-digital/update-bank', [AdminBayarController::class, 'updateBank'])->name('update-bank');
     Route::post('pembayaran-digital', [AdminBayarController::class, 'updateEWallet'])->name('update-ewallet');
-
+    Route::post('statusfitur', [ProjectDisetujuiController::class, 'statusFitur'])->name('status-fitur');
 });

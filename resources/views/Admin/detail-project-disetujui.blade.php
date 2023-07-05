@@ -67,7 +67,7 @@
                                             <tr>
                                                 <td class="text-center">
                                                     <div class="form-check">
-                                                        <input class="form-check-input child-checkbox" type="checkbox" value="" id="myCheckbox">
+                                                        <input class="form-check-input child-checkbox" {{ ($f->status == 'selesai') ? 'checked' : '' }} onchange="statusFitur({{ $f->id }})" type="checkbox" id="myCheckbox">
                                                     </div>
                                                 </td>
                                                 <td>{{ $f->namafitur }}</td>
