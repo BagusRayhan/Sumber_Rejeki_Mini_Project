@@ -25,6 +25,9 @@ return new class extends Migration
             $table->integer('harga')->nullable();
             $table->string('alasan')->nullable();
             $table->string('statusbayar')->nullable();
+            $table->string('metodepembayaran')->nullable();
+            $table->string('metode')->nullable();
+            $table->string('buktipembayaran')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
