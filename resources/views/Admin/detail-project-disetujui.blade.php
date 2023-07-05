@@ -134,15 +134,18 @@
                                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Atur Estimasi</h1>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="">
+                                    <form action="{{ route('estimasi-project') }}" method="post">
+                                        @csrf
+                                        @method('put')
                                         <div class="mb-3">
-                                            <input type="datetime-local" class="form-control" value="3235435">
+                                            <input type="hidden" name="project_id" value="{{ $detail->id }}">
+                                            <input type="datetime-local" name="estimasi" class="form-control" value="{{ $detail->estimasi }}">
                                         </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
                                     </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                                    <button type="button" class="btn btn-primary">Simpan</button>
                                 </div>
                             </div>
                         </div>

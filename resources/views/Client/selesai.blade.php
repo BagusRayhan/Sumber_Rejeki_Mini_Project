@@ -46,20 +46,20 @@
                             <tr>
                                 <th scope="col">Nama Project</th>
                                 <th scope="col">Status</th>
-                                <th scope="col"><center>Harga Project</center></th>
-                                <th scope="col" class="text-center">Aksi</th>
+                                <th scope="col">Harga Project</th>
+                                <th scope="col" class="text-center" style="width: 11em">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                             @foreach ($data as $item)
+                            @foreach ($data as $item)
                                 @if ($item->status === 'selesai'|| $item->status === 'revisi' )
                                 <tr>
                                     <td>{{ $item->napro }}</td>
                                     <td><span class="badge text-bg-success">{{ $item->status }}</span></td>
-                                    <td><center>{{ $item->harga}}</center></td>
+                                    <td>{{ $item->harga}}</td>
                                     <td class="d-flex justify-content-evenly">
-                                    <a href="/revisibutton/{{ $item->id }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
-                                    <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</a></center>
+                                        <a href="/revisibutton/{{ $item->id }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
+                                        <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</a></center>
                                     </td>
                                 </tr>
                                 @endif

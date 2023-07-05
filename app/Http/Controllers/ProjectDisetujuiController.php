@@ -37,6 +37,14 @@ class ProjectDisetujuiController extends Controller
         ]);
     }
 
+    public function upEstimasi(Request $request) {
+        $pro = Proreq::find($request->project_id);
+        $pro->update([
+            'estimasi' => $request->estimasi
+        ]);
+        return back();
+    }
+
     public function projectChat(Request $request) {
         $id = $request->input('project_id');
         $userid = Auth()->user()->id . $id;

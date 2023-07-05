@@ -7,13 +7,14 @@ use App\Models\Fitur;
 use App\Models\Sosmed;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class IndexcController extends Controller
 {
     public function indexclient()
         {
-        $client = User::where('role', 'client')->first();
+        $client = User::find(Auth::user()->id);
         $sosmed = Sosmed::all();
         return view('Client.index', compact('sosmed','client'));
         }
@@ -46,7 +47,7 @@ class IndexcController extends Controller
 
 
     $data = Proreq::all();
-    $namaFile = null; // Inisialisasi $namaFile dengan nilai null
+    $namaFile = null; 
 
     if ($request->hasFile('bukti')) {
         $nm = $request->bukti;
@@ -55,6 +56,7 @@ class IndexcController extends Controller
     }
 
     $dtUpload = new Proreq();
+$dtUpload->user_id = Auth()->user()->id;
     $dtUpload->nama = $request->nama;
     $dtUpload->napro = $request->napro;
     $dtUpload->bukti = $namaFile;
