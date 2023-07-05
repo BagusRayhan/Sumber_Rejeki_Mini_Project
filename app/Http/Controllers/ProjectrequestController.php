@@ -59,12 +59,14 @@ public function updateproreqa($id)
 {
     $setuju = Proreq::findOrFail($id);
 
-    $setuju->status = 'setuju';
+    $setuju->status = null;
+    $setuju->statusbayar = 'menunggu pembayaran';
 
     $setuju->save();
 
-    return Redirect::route('projectreq')->with('sukses', 'Data berhasil disetujui');
+    return redirect()->route('projectreq')->with('sukses', 'Data berhasil disetujui');
 }
+
 
     public function projectselesai(){
         $admin = User::where('role', 'admin')->first();
