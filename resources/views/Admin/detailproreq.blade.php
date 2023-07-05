@@ -252,12 +252,13 @@
                 <div class="modal-body">
                     <form action="{{ route('alasantolak') }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <input type="hidden" name="dataid" value="{{ $data->id }}">
                         <label for="" class="form-label">Alasan Ditolak</label>
                         <textarea rows="4" cols="50" name="alasan" required></textarea>
                         <button type="submit" onclick="showConfirmation(event)" class="btn btn-primary mt-4">Submit</button>
                     </form>
-                    <script>
+                    {{-- <script>
                         function showConfirmation(event) {
                             event.preventDefault(); // Mencegah perilaku default tombol submit
                     
@@ -285,7 +286,7 @@
                                     );
                                 }
                             });
-                        }
+                        } --}}
                     </script>
                 </div>
             </div>
