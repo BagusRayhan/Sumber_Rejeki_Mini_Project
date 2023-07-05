@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('hargafitur')->nullable();
             $table->text('deskripsi')->nullable();
             $table->enum('status',['selesai','revisi']);
-            $table->foreign('project_id')->references('id')->on('proreq')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('project_id')->references('id')->on('proreq')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
