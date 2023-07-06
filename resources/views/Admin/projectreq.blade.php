@@ -25,6 +25,7 @@
 
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
+              @if (count($projectreq) !== 0)
               <div class="search-form w-25">
                 <form action="">
                     <div class="input-group rounded-pill" style="background: #E9EEF5">
@@ -33,6 +34,17 @@
                     </div>
                 </form>
             </div>
+          @endif
+              {{-- @if($projectreq->isEmpty())
+              <div class="search-form w-25">
+                <form action="">
+                    <div class="input-group rounded-pill" style="background: #E9EEF5">
+                        <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+                        <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
+              @endif --}}
             <style>
               .col {
                 background: blue;
@@ -50,6 +62,12 @@
                 </div>
               </div>
               @endforeach
+              @if($projectreq->isEmpty())
+              <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+                <img src="gambar/empty-icon/empty-directory.png" class="w-35" style="margin-top: 90px">
+                <p>Tidak ada project masuk</p>
+              </div>
+              @endif
             </div>
 
         </div>

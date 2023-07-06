@@ -14,9 +14,9 @@ class proreq extends Model
     protected $table = "proreq";
     protected $primarykey = "id";
     protected $guard = "proreq";
-    // protected $fillable = [
-    //     'id', 'nama', 'napro','dokumen','estimasi','estimasi','deadline','status','harga','alasan','statusbayar'
-    // ];
+    protected $fillable = [
+        'id', 'nama', 'napro','dokumen','estimasi','estimasi','deadline','status','harga','alasan','statusbayar'
+    ];
 
         public function fitur()
     {

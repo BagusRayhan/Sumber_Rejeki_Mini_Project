@@ -64,14 +64,14 @@
                                     @if (count($propend))
                                         @foreach ($propend as $pro)
                                             <tr>
-                                                <td>{{ $pro->namaclient }}</td>
-                                                <td>{{ $pro->namaproject }}</td>
-                                                <td>{{ $pro->hargaproject }}</td>
+                                                <td>{{ $pro->nama }}</td>
+                                                <td>{{ $pro->napro }}</td>
+                                                <td>{{ $pro->harga }}</td>
                                                 <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal" class="btn btn-primary btn-sm"><i class="fa-solid fa-image"></i></a></td>
                                                 <td class="d-flex justify-content-evenly">
-                                                    <form action="{{ route('setujui-pembayaran') }}" method="post">
+                                                    <form action="{{ route('setujui.pembayaran', ['id' => $id]) }}" method="POST">
                                                         @csrf
-                                                        @method('put')
+                                                        @method('PUT')
                                                         <input type="hidden" name="idpropend" value="{{ $pro->id }}">
                                                         <button class="btn btn-primary btn-sm rounded-circle" type="submit"><i class="fa-solid fa-check"></i></button>
                                                     </form>

@@ -6,6 +6,7 @@ use App\Models\Bank;
 use App\Models\EWallet;
 use App\Models\User;
 use App\Models\Pembayaran;
+use App\Models\proreq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -13,15 +14,18 @@ class AdminBayarController extends Controller
 {
     public function pending() {
         $admin = User::where('role', 'admin')->first();
-        $propend = Pembayaran::where('status', 'pending')->get();
+        $propend = proreq::where('statusbayar', 'menunggu pembayaran')->get();
         return view('Admin.pembayaran-pending', compact('propend', 'admin'));
     }
 
-    public function setujuiPembayaran(Request $request) {
-        $project = Pembayaran::find($request->idpropend);
-        $project->update([
-            'status' => 'disetujui'
-        ]);
+    public function setujuiPembayaran(Request $request, $id) {
+        $project = Proreq::findOrFail($id);
+    
+        $project->status = 'setuju';
+        $project->statusbayar = null;
+    
+        $project->save();
+        
         return back();
     }
 

@@ -15,6 +15,14 @@ use Illuminate\Support\Facades\File;
 class AdminController extends Controller
 {
     public function index(MonthlyUsersChart $chart, AnnualyDoneChart $ychart) {
+        $selesaiProjects = Proreq::where('status', 'selesai')
+        ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+        ->groupBy('month')
+        ->orderBy('month')
+        ->pluck('count')
+        ->toArray();
+
+        $chartData = $chart->build()->addData('Project Selesai', $selesaiProjects);
         $admin = User::where('role', 'admin')->first();
         $clientCounter = User::where('role', 'client')->count();
         $tolakCounter = Proreq::where('status', 'tolak')->count();
@@ -25,6 +33,7 @@ class AdminController extends Controller
         $message = Chat::limit(4)->latest()->get();
 
         return view('Admin.index', [
+            'chart' => $chartData,
             'admin' => $admin,
             'clientCounter' => $clientCounter,
             'tolakCounter' => $tolakCounter,
