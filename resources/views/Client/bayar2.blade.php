@@ -768,7 +768,7 @@ console.log(selectedBank)
                     </div>
                     <div class="container m-0 p-0">
                     <div class="d-flex justify-content-between">
-                        <p class="text-secondary fs-10">Tanggal Pembayaran Akhir</p>
+                        <p class="text-secondary fs-10">Tanggal Pembayaran Awal</p>
                         <p>{{ \Carbon\Carbon::parse($client2->tanggalpembayaran)->format('Y-m-d') }}</p>
                     </div>
 
