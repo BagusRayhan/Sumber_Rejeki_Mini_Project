@@ -60,7 +60,9 @@ Route::middleware(['web', 'auth'])->group(function(){
     Route::get('ditolakclient', [TolakController::class, 'ditolakclient'])->name('ditolakclient');
     Route::get('bayarclient', [BayarController::class, 'bayarclient'])->name('bayarclient');
     Route::get('bayar2client', [BayarController::class, 'bayar2client'])->name('bayar2client');
+    Route::post('ambilrek', [BayarController::class, 'ambilrek'])->name('ambilrek');
     Route::put('update-status-bayar/{id}', [BayarController::class, 'updatebayar'])->name('update-status-bayar');
+    Route::put('update-status-bayarakhir/{id}', [BayarController::class, 'updatebayarakhir'])->name('update-status-bayarakhir');
     Route::get('detailsetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujuiClient'])->name('detailsetujui');
     Route::post('detailsetujui', [ProjectDisetujuiController::class, 'projectChatClient'])->name('project-chat-client');
     Route::get('revisiselesai', [SelesaiController::class, 'revisiselesai'])->name('revisiselesai');

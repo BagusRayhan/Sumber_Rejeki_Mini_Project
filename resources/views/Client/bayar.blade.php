@@ -81,32 +81,12 @@
                                         <td><center><span class="badge text-bg-danger">{{ $item->statusbayar }}</span></td></center>
                                         <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar{{ $item->id }}"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
                                     </tr>
-
-                        </tbody>
-                    </table>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-end mt-sm-3">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                  </li>
-                </ul>
-            </nav>
-        </div>
 
                         <div class="modal fade" id="Modalbayar{{ $item->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                          <div class="modal-dialog modal-dialog-centered" >
@@ -413,17 +393,23 @@
 // Menambahkan event listener ke select "Pilih Bank"
 bankSelect.addEventListener('change', function () {
   const selectedBank = this.value;
-
+console.log(selectedBank)
   // Menggunakan jQuery untuk mengambil data rekening dari database
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
   $.ajax({
-    url: '/bayarclient',
-    method: 'GET',
-    data: { bank: selectedBank },
+    url: '/ambilrek',
+    method: 'POST',
+    data: { id: selectedBank },
     success: function(response) {
+        console.log(response)
       const rekening = response;
 
       // Menampilkan data rekening ke dalam input "No.Rekening"
-      inputBank.value = rekening.rekening;
+      inputBank.value = rekening;
     },
     error: function(error) {
       console.error('Error:', error);
