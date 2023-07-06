@@ -59,7 +59,37 @@
               <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
 
                 <button type="button" class="dropdown-item" id="profile-btn" data-bs-toggle="modal" data-bs-target="#mymodal">My Profile</button>
-                  <a href="{{ route('logout') }}" class="dropdown-item">Log Out</a>
+                 <a href="{{ route('logout') }}" onclick="konfirmasi(event)" class="dropdown-item">Log Out</a>
+
+                <script>
+                    function konfirmasi(event) {
+                        event.preventDefault(); // Mencegah perilaku default dari tautan
+
+                        Swal.fire({
+                            title: 'Apakah Anda yakin?',
+                            text: 'Ingin Logout',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Aksi yang akan dijalankan jika pengguna menekan tombol "Ya"
+                                window.location.href = event.target.href; // Melakukan pengalihan ke URL logout
+
+                            } else {
+                                // Aksi yang akan dijalankan jika pengguna menekan tombol "Batal"
+                                Swal.fire(
+                                    'Gagal',
+                                    'Logout Gagal',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                </script>
               </div>
           </div>
       </div>
