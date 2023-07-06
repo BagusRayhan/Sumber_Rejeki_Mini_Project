@@ -109,7 +109,6 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Ditolak</h5>
-                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('alasantolak') }}" method="POST">
@@ -117,39 +116,12 @@
                         @method('PUT')
                         <input type="hidden" name="dataid" value="{{ $data->id }}">
                         <label for="" class="form-label">Alasan Ditolak</label>
-                        <textarea rows="4" cols="50" name="alasan" required></textarea>
-                        <button type="submit" onclick="showConfirmation(event)" class="btn btn-primary mt-4">Submit</button>
+                        <textarea class="form-control" placeholder="Masukkan alasan ..." rows="6" cols="50" name="alasan" required></textarea>
                     </form>
-                    {{-- <script>
-                        function showConfirmation(event) {
-                            event.preventDefault(); // Mencegah perilaku default tombol submit
-
-                            Swal.fire({
-                                title: 'Apakah Anda yakin?',
-                                text: 'Ingin Menolak Project?',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Ya',
-                                cancelButtonText: 'Batal'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    // Aksi yang akan dijalankan jika pengguna menekan tombol "Ya"
-
-                                    // Setelah sweet alert ditampilkan, formulir dapat dikirim secara manual
-                                    document.querySelector('form').submit();
-                                } else {
-                                    // Aksi yang akan dijalankan jika pengguna menekan tombol "Batal"
-                                    Swal.fire(
-                                        'Tindakan dibatalkan',
-                                        'Project tidak ditolak',
-                                        'error'
-                                    );
-                                }
-                            });
-                        } --}}
-                    </script>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal" class="btn btn-danger mt-4">Batal</button>
+                    <button type="submit" onclick="showConfirmation(event)" class="btn btn-primary mt-4">Kirim</button>
                 </div>
             </div>
         </div>

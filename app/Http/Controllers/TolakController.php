@@ -14,7 +14,7 @@ class TolakController extends Controller
         {
             $client = User::where('role', 'client')->first();
             $sosmed = Sosmed::all();
-            $data = proreq::where('status','ditolak')->get();
+            $data = proreq::where('status','tolak')->get();
             return view('Client.ditolak', compact('sosmed','data','client'));
         }
 
