@@ -31,6 +31,13 @@ class ProjectrequestController extends Controller
         ]);
     }
 
+    public function downloadSuppDocs($dokumen = null) {
+        $file = public_path('document/' . $dokumen);
+        if (file_exists($file)) {
+            return response()->download($file, $dokumen);
+        }
+    }
+
     public function simpanharga(Request $request, $id)
 {
     $fitur = Fitur::findOrFail($id);

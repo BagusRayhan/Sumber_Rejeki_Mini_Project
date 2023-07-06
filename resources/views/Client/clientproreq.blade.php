@@ -52,6 +52,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if (count($data) !== 0)
                                 @foreach ($data as $item)
                                 <tr>
                                     <td>{{ $item->nama }}</td>
@@ -69,6 +70,11 @@
                                     </td>
                                 </tr>
                                 @endforeach
+                                @else
+                                <tr>
+                                    <td class="text-center" colspan="5">Tidak ada data</td>
+                                </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>

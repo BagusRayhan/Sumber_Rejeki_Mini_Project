@@ -81,6 +81,7 @@ Route::middleware('admin')->group(function(){
     Route::put('/admin/update-profile', [AdminController::class, 'updateProfile'])->name('admin.updateProfile');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('detailproreq/{id}', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
+    Route::get('downloadsuppdocs/{dokumen?}', [ProjectrequestController::class, 'downloadSuppDocs'])->name('download-suppdocs');
     Route::put('simpanharga/{id}', [ProjectrequestController::class, 'simpanharga'])->name('simpanharga');
     Route::put('alasantolak', [ProjectrequestController::class, 'alasantolak'])->name('alasantolak');
     Route::get('updateproreqa/{id}', [ProjectrequestController::class, 'updateproreqa'])->name('updateproreqa');

@@ -40,21 +40,37 @@
                         </div>
                     </div>
                     <div class="wrapper w-50 px-3 d-flex flex-column">
-                        <div class="form-group mb-3">
+                        <div class="form-group">
                             <label for="input3">Dokumen Pendukung</label>
-                            <div class="wrapper d-flex">
-                                <input type="text" class="form-control" value="{{ $data->dokumen }}" name="dokumen" id="input3" disabled>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#suppDocs"><i class="fa-solid fa-eye"></i></button>
+                            <div class="input-group mb-3">
+                                <button type="button" class="form-control text-start" data-bs-toggle="modal" data-bs-target="#suppDocs" aria-describedby="suppdocsBtn">
+                                    <i class="fa-solid fa-eye pe-2"></i> lihat dokumen
+                                </button>
+                                @if ($data->dokumen == null)
+                                    <a onclick="emptyDocsDown()" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
+                                    <script>
+                                        function emptyDocsDown() {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Gagal',
+                                                text: 'Dokumen tidak tersedia',
+                                            })
+                                        }
+                                    </script>
+                                @else
+                                    <a href="{{ route('download-suppdocs', ['dokumen' => $data->dokumen]) }}" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
+                                @endif
                             </div>
-                            <div class="modal fade" id="suppDocs"tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal fade" id="suppDocs" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Dokumen Pendukung</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <iframe class="w-100" src="{{ asset('document/'.$data->dokumen) }}" frameborder="0"></iframe>
+                                                <iframe class="w-100" src="{{ asset('document/'.$data->dokumen) }}" frameborder="0" style="height: 400px"></iframe>
                                             </div>
                                         </div>
                                         <div class="modal-footer"></div>
@@ -68,41 +84,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="wrapper d-flex px-3 justify-content-between" style="width: 9em;">
-                    <button type="submit" onclick="konfirmasi(event)" class="btn btn-primary btn-sm">Setuju</button>
+                <div class="wrapper d-flex justify-content-between px-3" style="width: 14em;">
+                    <a href="{{ route('projectreq') }}" type="button" class="btn btn-secondary btn-sm">Kembali</a>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myyModal{{ $data->id }}">Tolak</button>
+                    <button type="submit" onclick="konfirmasi(event)" class="btn btn-primary btn-sm">Setuju</button>
                 </div>
             </form>
-            {{-- <script>
-                function konfirmasi(event) {
-                            event.preventDefault(); // Mencegah perilaku default tombol submit
-
-                            Swal.fire({
-                                title: 'Apakah Anda yakin?',
-                                text: 'Ingin Menyetujui Project?',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Ya',
-                                cancelButtonText: 'Batal'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    // Aksi yang akan dijalankan jika pengguna menekan tombol "Ya"
-
-                                    // Setelah sweet alert ditampilkan, formulir dapat dikirim secara manual
-                                    document.querySelector('form').submit();
-                                } else {
-                                    // Aksi yang akan dijalankan jika pengguna menekan tombol "Batal"
-                                    Swal.fire(
-                                        'Tindakan dibatalkan',
-                                        'Project tidak disetujui',
-                                        'error'
-                                    );
-                                }
-                            });
-                        }
-            </script> --}}
         </div>
         <div class="modal fade" id="myyModal{{ $data->id }}">
             <div class="modal-dialog modal-dialog-centered align-items-center">
@@ -165,7 +152,7 @@
                         <thead>
                             <tr>
                                 <th class="w-25" scope="col">Nama Fitur</th>
-                                <th class="w-75" scope="col">Harga</th>
+                                <th class="w-75" scope="col">Deskripsi</th>
                                 <th class="w-90" scope="col" colspan="2"><center>Aksi</center></th>
                             </tr>
                         </thead>
@@ -174,14 +161,11 @@
 
                         <tr>
                             <td>{{ $fitur->namafitur }}</td>
-                            <td>{{ $fitur->hargafitur }}</td>
-                            <td><a href="#" id="buktiTransaksiModal" class="btn btn-primary" style="height: 30px;border: none" data-bs-toggle="modal" data-bs-target="#myModal{{ $fitur->id }}"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 15px" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                              </svg></i></a></td>
+                            <td>{{ $fitur->deskripsi }}</td>
+                            <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#hargaFitur{{ $fitur->id }}"><i class="fa-solid fa-sack-dollar"></i></button></td>
                         </tr>
                         <!-- Edit Fitur -->
-                        <div class="modal fade" id="myModal{{ $fitur->id }}" tabindex="-1" aria-hidden="true">
+                        <div class="modal fade" id="hargaFitur{{ $fitur->id }}" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
