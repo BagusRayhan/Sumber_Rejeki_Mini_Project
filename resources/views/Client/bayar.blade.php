@@ -73,7 +73,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($data as $item)
+                            @foreach ($data as $item)
                                 @if ( $item->statusbayar === 'menunggu pembayaran')
                                     <tr>
                                         <td>{{ $item->napro }}</td>
@@ -671,7 +671,7 @@ console.log(selectedBank)
                                 <tr>
                                     <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
                                 </tr>
-                        @endforelse
+                        @endforeach
                     </div>
                     <!-- Content End -->
                     
