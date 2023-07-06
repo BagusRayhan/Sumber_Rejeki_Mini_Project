@@ -755,7 +755,7 @@ console.log(selectedBank)
                         <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/success.png') }}" alt="">
                     </div>
                     <p class="text-center mt-3">Pembayaran Berhasil!</p>
-                    <h4 class="fw-bold text-center mt-1 border-bottom border-dark pb-2">5.000.000</h4>
+                    <h4 class="fw-bold text-center mt-1 border-bottom border-dark pb-2">{{ $client2->harga }}</h4>
                     <div class="d-flex justify-content-between">
                         <div class="d-grid">
                             <p class="text-center">Pembayaran Awal</p>
@@ -767,21 +767,22 @@ console.log(selectedBank)
                         </div>
                     </div>
                     <div class="container m-0 p-0">
-                        <div class="d-flex justify-content-between">
-                            <p class="text-secondary fs-10">Tanggal Pembayaran Awal</p>
-                            <p>15/06/2023</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-secondary fs-10">Tanggal Pembayaran Akhir</p>
-                            <p>15/06/2023</p>
-                        </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="text-secondary fs-10">Tanggal Pembayaran Akhir</p>
+                        <p>{{ \Carbon\Carbon::parse($client2->tanggalpembayaran)->format('Y-m-d') }}</p>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <p class="text-secondary fs-10">Tanggal Pembayaran Akhir</p>
+                        <p >{{ \Carbon\Carbon::parse($client2->tanggalpembayaran2)->format('Y-m-d') }}</p>
+                    </div>
                         <div class="d-flex pb-0 justify-content-between">
                             <p class="text-secondary fs-10">Metode Pembayaran Awal</p>
-                            <p>E-Wallet</p>
+                            <p>{{ $client2->metodepembayaran }}</p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <p class="text-secondary fs-10">Metode Pembayaran Akhir</p>
-                            <p>Bank</p>
+                            <p>{{ $client2->metodepembayaran2 }}</p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <p class="text-secondary fs-10">Biaya Tambahan</p>
@@ -789,7 +790,7 @@ console.log(selectedBank)
                         </div>
                         <div class="d-flex justify-content-between">
                             <p class="text-secondary fs-10">Total Bayar</p>
-                            <p>5.000.000</p>
+                            <p>{{ $client2->harga }}</p>
                         </div>
                     </div>
                 </div>
