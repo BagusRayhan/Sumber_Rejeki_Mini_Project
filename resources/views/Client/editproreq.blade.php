@@ -70,7 +70,7 @@
                 </div>
                 <div class="wrapper m-3 d-flex">
                     <a href="{{ route('drequestclient') }}" class="btn btn-danger btn-sm mx-2">Kembali</a>
-                    <button type="submit" onclick="showConfirmation(event)" class="btn btn-primary btn-sm mx-2">Kirim Request</button>
+                    <a href="{{ route('send-request', $data->id) }}" class="btn btn-primary btn-sm">Kirim Request</a>
 {{-- <script>
     function showConfirmation(event) {
         event.preventDefault(); // Mencegah perilaku default tombol submit

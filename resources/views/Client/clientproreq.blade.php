@@ -46,22 +46,28 @@
                                 <tr>
                                     <th scope="col">Nama Client</th>
                                     <th scope="col">Nama Project</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Deadline</th>
-                                    <th scope="col" class="text-center">Aksi</th>
+                                    <th scope="col" class="text-center" style="width: 8em">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $item)
-                                @if ($item->status === null || $item->status === 'pending')
                                 <tr>
                                     <td>{{ $item->nama }}</td>
                                     <td>{{ $item->napro }}</td>
+                                    <td><span class="badge {{ ($item->status == 'draft') ? 'text-bg-danger' : '' }} text-bg-warning">{{ $item->status }}</span></td>
                                     <td>{{ $item->deadline }}</td>
                                     <td class="d-flex justify-content-evenly">
                                         <a href="{{ route('editproreq', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <form action="{{ route('destroy-pending-request') }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <input type="hidden" name="project_id" value="{{ $item->id }}">
+                                            <button class="btn btn-danger btn-sm" type="submit"><i class="fa-solid fa-trash"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
-                                @endif
                                 @endforeach
                             </tbody>
                         </table>

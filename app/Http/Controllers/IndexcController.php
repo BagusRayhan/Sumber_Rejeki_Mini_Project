@@ -36,7 +36,7 @@ class IndexcController extends Controller
 
     public function drequestclient(){
         $client = User::where('role', 'client')->first();
-        $data = Proreq::all();
+        $data = Proreq::where('status', 'draft')->orWhere('status', 'pending')->get();
         $sosmed = Sosmed::all();
         return view('Client.clientproreq',compact('data','sosmed','client'));
     }
@@ -67,6 +67,7 @@ class IndexcController extends Controller
     $dtUpload->user_id = Auth()->user()->id;
     $dtUpload->nama = Auth()->user()->name;
     $dtUpload->napro = $request->napro;
+    $dtUpload->status = 'draft';
     $dtUpload->deadline = $request->deadline;
     $dtUpload->save();
     $id = $dtUpload->id;
@@ -126,6 +127,19 @@ class IndexcController extends Controller
         $dataa = Fitur::where('project_id', $id)->get();
 
         return view('Client.editproreq',compact('data','sosmed','dataa','client'));
+    }
+
+    public function sendRequest($id) {
+        $pro = Proreq::find($id);
+        $pro->update([
+            'status' => 'pending'
+        ]);
+        return redirect(route('drequestclient'))->with('success', 'data berhasil dikirim');
+    }
+
+    public function destroyRequest(Request $request) {
+        Proreq::find($request->project_id)->delete();
+        return back();
     }
 
 public function showFormModal($id)
