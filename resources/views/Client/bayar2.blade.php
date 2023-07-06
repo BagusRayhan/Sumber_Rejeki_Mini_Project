@@ -124,25 +124,6 @@
                 </div>
             </div>
         </div>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-end mt-sm-3">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
     </div>
 
 {{-- modal pembayaran akhir --}}
@@ -481,255 +462,6 @@ console.log(selectedBank)
        {{-- akhir metode pembayaran --}}
 
 
-{{-- modal rincian pembayaran cash --}}
-   <div class="modal fade" id="cash" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-       <div class="modal-dialog modal-dialog-centered" >
-           <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-               <div class="modal-header" >
-                   <div style="display: flex; flex-direction: column;">
-                       <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
-                       <div style="display: flex; align-items: center;">
-                           <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-                           <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="Website Berita" disabled>
-                       </div>
-                       <div style="display: flex; align-items: center; margin-top:3%;">
-                           <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                           <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="2.000.000" disabled>
-                       </div>
-                   </div>
-                   <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
-               </div>
-               <div class="modal-body" style="border: none;">
-                   <div class="container m-0 p-0 d-flex justify-content-between">
-                       <div class="d-grid" style="display: flex; justify-content: space-between;">
-                           <h6 style="align-self: center;">Metode</h6>
-                           <div class="dropdown">
-                               <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                   Cash &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                               </button>
-                               <ul class="dropdown-menu">
-                                   <li><a class="dropdown-item active" href="#">Cash</a></li>
-                                   <li><a class="dropdown-item" href="#" data-bs-target="#wallet" data-bs-toggle="modal">E-Wallet</a></li>
-                                   <li><a class="dropdown-item" href="#" data-bs-target="#bank" data-bs-toggle="modal">Bank</a></li>
-                               </ul>
-                           </div>
-                       </div>
-                       <div class="mb-7">
-                           <h6 style="">Harga Pembayaran :</h6>
-                           <input type="text" class="form-control" value="2.000.000" disabled>
-                       </div>
-                   </div>
-               <br>
-           </div>
-           <center><a href="{{ route('bayar2client') }}" class="btn btn-primary" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</a></center>
-           <div class="modal-footer" style="border: none;">
-           </div>
-           </div>
-         </div>
-       </div>
-       {{-- akhir rinci pembayaran --}}
-
-{{-- modal rincian pembayaran ewallet --}}
-   <div class="modal fade" id="wallet" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-       <div class="modal-dialog modal-dialog-centered" >
-           <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-               <div class="modal-header" >
-                   <div style="display: flex; flex-direction: column;">
-                       <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
-                       <div style="display: flex; align-items: center;">
-                           <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-                           <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="Website Berita" disabled>
-                       </div>
-                       <div style="display: flex; align-items: center; margin-top:3%;">
-                           <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                           <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="2.000.000" disabled>
-                       </div>
-                   </div>
-                   <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
-               </div>
-               <div class="modal-body" style="border: none;">
-                   <div class="container m-0 p-0 d-flex justify-content-between">
-                       <div class="d-grid" style="display: flex; justify-content: space-between;">
-                           <h6 style="align-self: center;">Metode</h6>
-                           <div class="dropdown">
-                               <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                   E-Wallet &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                               </button>
-                               <ul class="dropdown-menu">
-                                   <li><a class="dropdown-item" href="#" data-bs-target="#cash" data-bs-toggle="modal">Cash</a></li>
-                                   <li><a class="dropdown-item active" href="#">E-Wallet</a></li>
-                                   <li><a class="dropdown-item" href="#" data-bs-target="#bank" data-bs-toggle="modal">Bank</a></li>
-                               </ul>
-                           </div>
-                       </div>
-                   </div>
-
-                       <div class="d-grid" style="display: flex; justify-content: space-between; margin-top:3%;">
-                           <h6 style="align-self: center;">Layanan</h6>
-                           <div class="dropdown">
-                               <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                   Pilih E-Wallet &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                               </button>
-                               <ul class="dropdown-menu">
-                                   <li><a class="dropdown-item" href="#" data-bs-target="#dana" data-bs-toggle="modal" >Dana</a></li>
-                                   <li><a class="dropdown-item " href="#">Ovo</a></li>
-                                   <li><a class="dropdown-item" href="#">Gopay</a></li>
-                                   <li><a class="dropdown-item" href="#">LinkAja</a></li>
-                               </ul>
-                           </div>
-                       </div>
-
-                       <div class="mb-3" style="margin-top:3%; width:110%;">
-                           <h6 style="align-self: center;">Bukti Pembayaran</h6>
-                           <input class="form-control" type="file" id="formFile" style="width: 35%">
-                       </div>
-           </div>
-           <center><a href="{{ route('bayar2client') }}" class="btn btn-primary"  style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</a></center>
-           <div class="modal-footer" style="border: none;">
-           </div>
-           </div>
-         </div>
-       </div>
-       {{-- akhir rincian pembayaran ewallet --}}
-
-
-       {{-- modal rincian pembayaran ewallet bukti pembayaran --}}
-        <div class="modal fade" id="dana" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-       <div class="modal-dialog modal-dialog-centered" >
-           <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-               <div class="modal-header" >
-                   <div style="display: flex; flex-direction: column;">
-                       <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
-                       <div style="display: flex; align-items: center;">
-                           <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-                           <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="Website Berita" disabled>
-                       </div>
-                       <div style="display: flex; align-items: center; margin-top:3%;">
-                           <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                           <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="2.000.000" disabled>
-                       </div>
-                   </div>
-                   <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
-               </div>
-               <div class="modal-body" style="border: none;">
-                   <div class="mb-3 d-flex justify-content-between">
-                       <div class="container m-0 p-0 w-50">
-                           <div class="d-grid" style="display: flex; justify-content: space-between;">
-                               <h6 style="align-self: center;">Metode</h6>
-                               <div class="dropdown">
-                                   <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                       E-Wallet &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                   </button>
-                                   <ul class="dropdown-menu">
-                                       <li><a class="dropdown-item" href="#" data-bs-target="#cash" data-bs-toggle="modal">Cash</a></li>
-                                       <li><a class="dropdown-item active" href="#">E-Wallet</a></li>
-                                       <li><a class="dropdown-item" href="#" data-bs-target="#bank" data-bs-toggle="modal">Bank</a></li>
-                                   </ul>
-                               </div>
-                           </div>
-                           <div class="d-grid" style="display: flex; justify-content: space-between; margin-top:3%;">
-                               <h6 style="align-self: center;">Layanan</h6>
-                               <div class="dropdown">
-                                   <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                       Dana &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;
-                                   </button>
-                                   <ul class="dropdown-menu">
-                                       <li><a class="dropdown-item active" href="#">Dana</a></li>
-                                       <li><a class="dropdown-item " href="#">Ovo</a></li>
-                                       <li><a class="dropdown-item" href="#">Gopay</a></li>
-                                       <li><a class="dropdown-item" href="#">LinkAja</a></li>
-                                   </ul>
-                               </div>
-                           </div>
-                           <div class="mb-3" style="margin-top:3%; width:120%;">
-                           <h6 style="align-self: center;">Bukti Pembayaran</h6>
-                           <input class="form-control" type="file" id="formFile" style="width: 70%;">
-                       </div>
-                       </div>
-                       <div class="w-50">
-                           <img class="w-100" src="{{ asset('ProjectManagement/dashmin/img/qr.png') }}">
-                       </div>
-                   </div>
-               </div>
-           <center><a href="{{ route('bayar2client') }}" class="btn btn-primary" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</a></center>
-           <div class="modal-footer" style="border: none;">
-           </div>
-           </div>
-         </div>
-       </div>
-{{-- akhir modal pembayaran ewallet --}}
-
-
-    {{-- modal pembayaran bank --}}
-   <div class="modal fade" id="bank" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-       <div class="modal-dialog modal-dialog-centered" >
-           <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-               <div class="modal-header" >
-                   <div style="display: flex; flex-direction: column;">
-                       <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
-                       <div style="display: flex; align-items: center;">
-                           <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-                           <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="Website Berita" disabled>
-                       </div>
-                       <div style="display: flex; align-items: center; margin-top:3%;">
-                           <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                           <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="2.000.000" disabled>
-                       </div>
-                   </div>
-                   <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
-               </div>
-               <div class="modal-body" style="border: none;">
-                   <div class="container m-0 p-0 d-flex justify-content-between">
-                       <div class="d-grid" style="display: flex; justify-content: space-between;">
-                           <h6 style="align-self: center;">Metode</h6>
-                           <div class="dropdown">
-                               <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                   Bank &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                               </button>
-                               <ul class="dropdown-menu">
-                                   <li><a class="dropdown-item" href="#">Cash</a></li>
-                                   <li><a class="dropdown-item" href="#" data-bs-target="#wallet" data-bs-toggle="modal">E-Wallet</a></li>
-                                   <li><a class="dropdown-item  active" href="#">Bank</a></li>
-                               </ul>
-                           </div>
-                       </div>
-                       <div class="mb-7" style="margin-right: 10%;">
-                           <h6 style="">Layanan</h6>
-                           <div class="dropdown">
-                               <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                   Layanan Bank &nbsp; &nbsp; &nbsp; &nbsp;
-                               </button>
-                               <ul class="dropdown-menu">
-                                   <li><a class="dropdown-item" href="#">BRI</a></li>
-                                   <li><a class="dropdown-item" href="#">BCA</a></li>
-                                   <li><a class="dropdown-item" href="#">Mandiri</a></li>
-                               </ul>
-                           </div>
-                       </div>
-                   </div>
-
-                   <div class="container m-0 p-0 d-flex justify-content-between">
-                       <div class="d-grid" style="display: flex; justify-content: space-between;">
-                          <div class="mb-3" style="margin-top:3%; width:130%;">
-                           <h6 style="">Bukti Pembayaran </h6>
-                           <input class="form-control" type="file" id="formFile" style="width: 58%;">
-                       </div>
-                       </div>
-                       <div class="mb-7" style="margin-top: 2%; margin-right:10%; width:50%;">
-                           <h6 style="">No. Rekening </h6>
-                           <input type="text" class="form-control"  disabled>
-                       </div>
-                   </div>
-               <br>
-           </div>
-           <center><a href="{{ route('bayar2client') }}" class="btn btn-primary" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</a></center>
-           <div class="modal-footer" style="border: none;">
-           </div>
-           </div>
-         </div>
-       </div>
-   {{-- akhir modal pembayaran bank --}}
-
     {{-- Modal Struk Pembayaran --}}
        <style>
         @media print {
@@ -763,7 +495,7 @@ console.log(selectedBank)
                             <p class="fw-bold text-center">2.500.000</p>
                         </div>
                         <div class="d-grid">
-                            <p class="text-center">Pembayaran Awal</p>
+                            <p class="text-center">Pembayaran Akhir</p>
                             <p class="fw-bold text-center">2.500.000</p>
                         </div>
                     </div>
@@ -808,23 +540,23 @@ console.log(selectedBank)
                   // Contoh: Menggunakan window.print() untuk mencetak halaman saat ini
                   window.print();
                 });
-              </script>
+                </script>
 
-        </div>
-        </div>
+</div>
 
-                            @endif
-                            @empty
-                            <tr>
-                                <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
-                            </tr>
-                            @endforelse
-      @include('Client.Template.footer')
-        </div>
-        <!-- Content End -->
+@include('Client.Template.footer')
+</div>
+<!-- Content End -->
 
 
 @include('Client.Template.script')
+@endif
+@empty
+<tr>
+    <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
+</tr>
+@endforelse
+</div>
 </body>
 
 

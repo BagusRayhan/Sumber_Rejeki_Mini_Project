@@ -31,7 +31,9 @@
       <div class="navbar-nav align-items-center ms-auto">
           <div class="nav-item dropdown">
               <a href="#" class="text-dark h4" data-bs-toggle="dropdown">
-                  <i class="far fa-bell"></i>
+                  <i class="far fa-bell">  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+    <span class="visually-hidden"></span>
+  </span></i>
               </a>
               <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                   <a href="#" class="dropdown-item">
