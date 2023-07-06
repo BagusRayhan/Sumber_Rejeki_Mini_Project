@@ -13,11 +13,12 @@ use Illuminate\Support\Facades\DB;
 
 class BayarController extends Controller
 {
-        public function bayarclient()
+        public function bayarclient(Request $request)
         {
             $client = User::where('role', 'client')->first();
             $sosmed = Sosmed::all();
-            $data = Proreq::all();
+            $keyword = $request->input('keyword');
+            $data = Proreq::where('napro', 'like', '%'.$keyword.'%')->paginate(5);
             $bank = Bank::all();
             $ewallet = EWallet::all();
             return view('Client.bayar', compact('sosmed','client','data','bank','ewallet'));
@@ -86,12 +87,16 @@ class BayarController extends Controller
             return redirect()->route('bayarclient')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));
         }
 
-        public function bayar2client()
-        {
-            $client = User::where('role', 'client')->first();
-            $sosmed = Sosmed::all();
-            $data = Proreq::all();
-            $bayar2 = Proreq::whereIn('statusbayar', ['lunas','belum lunas'])->get();
-            return view('Client.bayar2', compact('sosmed','bayar2','client','data'));
-        }
+public function bayar2client(Request $request)
+{
+    $client = User::where('role', 'client')->first();
+    $sosmed = Sosmed::all();
+    $data = Proreq::all();
+    $keyword = $request->input('keyword');
+        $bayar2 = Proreq::whereIn('statusbayar', ['lunas','belum lunas'])
+                    ->where('napro', 'like', '%'.$keyword.'%')
+                    ->paginate(5);
+    return view('Client.bayar2', compact('sosmed', 'bayar2', 'client', 'data'));
+}
+
 }
