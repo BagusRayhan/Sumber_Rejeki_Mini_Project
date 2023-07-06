@@ -104,41 +104,13 @@
                         @method('PUT')
                         <input type="hidden" name="dataid" value="{{ $data->id }}">
                         <label for="" class="form-label">Alasan Ditolak</label>
-                        <textarea rows="4" cols="50" name="alasan" required></textarea>
-                        <button type="submit" onclick="showConfirmation(event)" class="btn btn-primary mt-4">Submit</button>
-                    </form>
-                    {{-- <script>
-                        function showConfirmation(event) {
-                            event.preventDefault(); // Mencegah perilaku default tombol submit
-
-                            Swal.fire({
-                                title: 'Apakah Anda yakin?',
-                                text: 'Ingin Menolak Project?',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Ya',
-                                cancelButtonText: 'Batal'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    // Aksi yang akan dijalankan jika pengguna menekan tombol "Ya"
-
-                                    // Setelah sweet alert ditampilkan, formulir dapat dikirim secara manual
-                                    document.querySelector('form').submit();
-                                } else {
-                                    // Aksi yang akan dijalankan jika pengguna menekan tombol "Batal"
-                                    Swal.fire(
-                                        'Tindakan dibatalkan',
-                                        'Project tidak ditolak',
-                                        'error'
-                                    );
-                                }
-                            });
-                        } --}}
-                    </script>
+                        <textarea class="form-control" rows="6" name="alasan" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" onclick="showConfirmation(event)" class="btn btn-primary">Submit</button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
