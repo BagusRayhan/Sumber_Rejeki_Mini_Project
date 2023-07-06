@@ -20,6 +20,8 @@ class IndexcController extends Controller
         $tolakCounter = Proreq::where('status', 'tolak')->count();
         $kerjaCounter = Proreq::where('status', 'setuju')->count();
         $selesaiCounter = Proreq::where('status', 'selesai')->count();
+        $estimasi = Proreq::all();
+        $notif = Chat::all();
         $pesancht = Chat::all();
         $sosmed = Sosmed::all();
         return view('Client.index',[
@@ -28,6 +30,8 @@ class IndexcController extends Controller
             'tolakCounter' => $tolakCounter,
             'kerjaCounter' => $kerjaCounter,
             'selesaiCounter' => $selesaiCounter,
+            'estimasi' => $estimasi,
+            'notif' => $notif,
             'pesancht' => $pesancht,
             'sosmed' => $sosmed,
             'client' => $client
@@ -164,7 +168,7 @@ public function updateFitur(Request $request, $id)
 public function updateProfile(Request $request)
 {
     $updateProfile = [];
-    $client = User::where('role', 'client')->first();
+    $client = User::find(Auth::user()->id);
 
     if ($request->has('fileInputA')) {
         if (File::exists(public_path('gambar/user-profile/' . $client->profil))) {

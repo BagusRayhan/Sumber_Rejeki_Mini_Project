@@ -13,9 +13,10 @@ class proreq extends Model
 {
     protected $table = "proreq";
     protected $primarykey = "id";
-    protected $fillable = [
-        'id', 'nama', 'napro','dokumen','estimasi','deadline','status','harga','alasan','statusbayar'
-    ];
+    protected $guard = "proreq";
+    // protected $fillable = [
+    //     'id', 'nama', 'napro','dokumen','estimasi','estimasi','deadline','status','harga','alasan','statusbayar'
+    // ];
 
         public function fitur()
     {
@@ -34,5 +35,9 @@ class proreq extends Model
     public function ewallet()
     {
         return $this->hasMany(EWallet::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

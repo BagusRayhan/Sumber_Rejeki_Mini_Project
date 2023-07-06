@@ -75,79 +75,30 @@
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <h6 class="mb-0">Estimasi</h6>
                             </div>
+
+                            @foreach ($estimasi as $estimasisetuju)
+
                             <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;" >
-                               <div class="w-100 ms-3 d-flex align-items-center">
-                                <div>
-                                    <h6 class="mb-0">Aplikasi Toko Online</h6>
-                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;3 jam lagi</span>
-                                </div>
-                                <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
-                                    <div class="bg-light rounded h-100 p-10">
-                                        <div class="pg-bar mb-3">
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $estimasisetuju->user->profil }}" alt="" style="width: 40px; height: 40px;" >
+                                <div class="w-100 ms-3 d-flex align-items-center">
+                                    <div>
+                                        <h6 class="mb-0">{{ $estimasisetuju->user->name }}</h6>
+                                        <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;3 jam lagi</span>
+                                    </div>
+                                    <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
+                                        <div class="bg-light rounded h-100 p-10">
+                                            <div class="pg-bar mb-3">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;" >
-                               <div class="w-100 ms-3 d-flex align-items-center">
-                                <div>
-                                    <h6 class="mb-0">Aplikasi Toko Online</h6>
-                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;3 jam lagi</span>
-                                </div>
-                                <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
-                                    <div class="bg-light rounded h-100 p-10">
-                                        <div class="pg-bar mb-3">
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;" >
-                               <div class="w-100 ms-3 d-flex align-items-center">
-                                <div>
-                                    <h6 class="mb-0">Aplikasi Toko Online</h6>
-                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;3 jam lagi</span>
-                                </div>
-                                <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
-                                    <div class="bg-light rounded h-100 p-10">
-                                        <div class="pg-bar mb-3">
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;" >
-                               <div class="w-100 ms-3 d-flex align-items-center">
-                                <div>
-                                    <h6 class="mb-0">Aplikasi Toko Online</h6>
-                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;3 jam lagi</span>
-                                </div>
-                                <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
-                                    <div class="bg-light rounded h-100 p-10">
-                                        <div class="pg-bar mb-3">
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
+                            @endforeach
                         </div>
+
+                    </div>
                     </div>
 
 
@@ -155,7 +106,7 @@
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <h6 class="mb-0">Pesan</h6>
-                                <a class="link-offset-2 link-underline link-underline-opacity-0" href="#">Tampilkan Semua</a>
+                                {{-- <a class="link-offset-2 link-underline link-underline-opacity-0" href="#">Tampilkan Semua</a> --}}
                             </div>
                             @foreach ($pesancht as $pesan)
                             <div class="d-flex align-items-center border-bottom py-3">

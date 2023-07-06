@@ -35,17 +35,17 @@
               </a>
               <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                   <a href="#" class="dropdown-item">
-                      <h6 class="fw-normal mb-0">Profile updated</h6>
+                      <h6 class="fw-normal mb-0">Admin</h6>
                       <small>15 minutes ago</small>
                   </a>
                   <hr class="dropdown-divider">
                   <a href="#" class="dropdown-item">
-                      <h6 class="fw-normal mb-0">New user added</h6>
+                      <h6 class="fw-normal mb-0">Admin</h6>
                       <small>15 minutes ago</small>
                   </a>
                   <hr class="dropdown-divider">
                   <a href="#" class="dropdown-item">
-                      <h6 class="fw-normal mb-0">Password changed</h6>
+                      <h6 class="fw-normal mb-0">Admin</h6>
                       <small>15 minutes ago</small>
                   </a>
                   <hr class="dropdown-divider">
