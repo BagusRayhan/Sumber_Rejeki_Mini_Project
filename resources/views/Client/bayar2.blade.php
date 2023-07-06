@@ -437,6 +437,7 @@
         inputBank.style.height = '1%';
         inputBank.style.width = '50%';
         inputBank.setAttribute('required', true);
+        inputBank.setAttribute('disabled', true);
 
         additionalSelectContainer.appendChild(bankLabel);
         additionalSelectContainer.appendChild(bankSelect);
