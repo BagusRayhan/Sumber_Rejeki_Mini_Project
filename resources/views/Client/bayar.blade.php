@@ -39,9 +39,9 @@
 
         <!-- Content Start -->
         <div class="content">
-      @include('Client.Template.navbar')
+        @include('Client.Template.navbar')
 
-      <div class="container-fluid pt-4 px-4">
+        <div class="container-fluid pt-4 px-4">
         <div class="search-form w-25">
             <form action="{{ route('bayarclient') }}" method="GET">
                 <div class="input-group rounded-pill" style="background: #E9EEF5">

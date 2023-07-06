@@ -48,7 +48,7 @@
                                     @foreach ($project as $pro)
                                         <tr>
                                             <td>{{ $pro->napro }}</td>
-                                            <td>22-Juli-2023 12:00</td>
+                                            <td>{{ $pro->estimasi }}</td>
                                             <td>
                                                 <div class="col-sm-12 col-xl-5" style="margin-left:2%;">
                                                     <div class="bg-light rounded h-100 p-10">

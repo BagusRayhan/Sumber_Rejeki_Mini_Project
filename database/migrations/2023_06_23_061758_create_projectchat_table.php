@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('project_id');
-            $table->bigInteger('userchat_id')->unique();
             $table->longText('chat');
             $table->dateTime('chat_time');
             $table->timestamps();

@@ -25,7 +25,7 @@ class ProjectDisetujuiController extends Controller
     public function detailDisetujui($id) {
         $admin = User::where('role', 'admin')->first();
         $detail = Proreq::find($id);
-        $fitur = Fitur::all();
+        $fitur = Fitur::where('project_id', $id)->get();
         $chats = Chat::where('project_id', $id)->get();
         $userid = Auth()->user()->id . $id;
         return view('Admin.detail-project-disetujui', [
@@ -54,10 +54,8 @@ class ProjectDisetujuiController extends Controller
 
     public function projectChat(Request $request) {
         $id = $request->input('project_id');
-        $userchat = Auth()->user()->id . $id;
-        $createChat = Chat::create([
+        Chat::create([
             'user_id' => Auth()->user()->id,
-            'userchat_id' => $userchat,
             'project_id' => $request->project_id,
             'chat' => $request->chat,
             'chat_time' => $request->chat_time
@@ -86,7 +84,7 @@ class ProjectDisetujuiController extends Controller
     public function detailDisetujuiClient($id) {
         $client = User::where('role', 'client')->first();
         $detail = Proreq::find($id);
-        $fitur = Fitur::all();
+        $fitur = Fitur::where('project_id', $id)->get();
         $chats = Chat::where('project_id', $id)->get();
         $sosmed = Sosmed::all();
         return view('Client.detailsetujui',
@@ -102,9 +100,8 @@ class ProjectDisetujuiController extends Controller
 
     public function projectChatClient(Request $request) {
         $projectid = $request->input('project_id');
-        $userid = Auth()->user()->id . $projectid;
-        $createChat = Chat::create([
-            'user_id' => $userid,
+        Chat::create([
+            'user_id' => Auth()->user()->id,
             'project_id' => $projectid,
             'chat' => $request->chat,
             'chat_time' => $request->chat_time
