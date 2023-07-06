@@ -20,14 +20,7 @@ class BayarController extends Controller
             $data = Proreq::all();
             $bank = Bank::all();
             $ewallet = EWallet::all();
-            $dana = EWallet::where('nama', 'dana')->first();
-            $ovo = EWallet::where('nama', 'ovo')->first();
-            $gopay = EWallet::where('nama', 'gopay')->first();
-            $linkaja = EWallet::where('nama', 'linkaja')->first();
-            $bri = Bank::where('nama','Bank BRI')->first();
-            $bca = Bank::where('nama','Bank BCA')->first();
-            $mandiri = Bank::where('nama','Bank Mandiri')->first();
-            return view('Client.bayar', compact('sosmed','client','data','bank','ewallet', 'dana', 'ovo', 'gopay', 'linkaja','bri','bca','mandiri'));
+            return view('Client.bayar', compact('sosmed','client','data','bank','ewallet'));
         }
 
         public function ambilrek(Request $request){
