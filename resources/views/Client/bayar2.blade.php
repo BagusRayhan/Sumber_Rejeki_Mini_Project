@@ -292,7 +292,7 @@
         layananSelect.style.height = '40px';
         layananSelect.style.fontSize = '16px';
         layananSelect.innerHTML = `
-          <option selected class="dropdown-menu" name="layanan" disabled>Pilih E-Wallet</option>
+          <option selected class="dropdown-menu" name="metode2" disabled>Pilih E-Wallet</option>
           <option value="dana">Dana</option>
           <option value="ovo">Ovo</option>
           <option value="gopay">Gopay</option>
