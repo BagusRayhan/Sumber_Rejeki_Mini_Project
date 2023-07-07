@@ -61,24 +61,37 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (count($propend))
-                                        @foreach ($propend as $pro)
-                                            <tr>
-                                                <td>{{ $pro->nama }}</td>
-                                                <td>{{ $pro->napro }}</td>
-                                                <td>{{ $pro->harga }}</td>
-                                                <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal" class="btn btn-primary btn-sm"><i class="fa-solid fa-image"></i></a></td>
-                                                <td class="d-flex justify-content-evenly">
-                                                    <form action="{{ route('setujui.pembayaran', ['id' => $id]) }}" method="POST">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <input type="hidden" name="idpropend" value="{{ $pro->id }}">
-                                                        <button class="btn btn-primary btn-sm rounded-circle" type="submit"><i class="fa-solid fa-check"></i></button>
-                                                    </form>
-                                                    <a href="#" class="btn btn-danger btn-sm rounded-circle"><i class="fa-solid fa-times"></i></a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                    @if (count($propend) !== 0)
+                                    @foreach ($propend as $pro)
+                                    <tr>
+                                        <td>{{ $pro->nama }}</td>
+                                        <td>{{ $pro->napro }}</td>
+                                        <td>{{ $pro->harga }}</td>
+                                        <td class="text-center">
+                                            <a href="" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal" class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-image"></i>
+                                            </a>
+                                        </td>
+                                        <td class="d-flex justify-content-evenly">
+                                            <form action="{{ route('setujui-pembayaran', ['id' => $pro->id]) }}" method="POST">
+                                                @csrf
+                                                @method('POST')
+                                                <input type="hidden" name="idpropend" value="{{ $pro->id }}">
+                                                <button class="btn btn-primary btn-sm rounded-circle" type="submit">
+                                                    <i class="fa-solid fa-check"></i>
+                                                </button>
+                                            </form>
+                                            <form action="{{ route('tolak-pembayaran', ['id' => $pro->id]) }}" method="POST">
+                                                @csrf
+                                                @method('POST')
+                                                <input type="hidden" name="idpropend" value="{{ $pro->id }}">
+                                            <button type="submit" class="btn btn-danger btn-sm rounded-circle">
+                                                <i class="fa-solid fa-times"></i>
+                                            </button>
+                                        </form>
+                                        </td>
+                                    </tr>
+                                @endforeach                                                                
                                     @else
                                         <tr>
                                             <td colspan="5" class="text-center">Tidak ada data</td>
