@@ -18,7 +18,7 @@ class BayarController extends Controller
             $client = User::where('role', 'client')->first();
             $sosmed = Sosmed::all();
             $keyword = $request->input('keyword');
-            $data = Proreq::where('napro', 'like', '%'.$keyword.'%')->paginate(1);
+            $data = Proreq::where('napro', 'like', '%'.$keyword.'%')->paginate(2);
             $bank = Bank::all();
             $ewallet = EWallet::all();
             return view('Client.bayar', compact('sosmed','client','data','bank','ewallet'));
@@ -30,7 +30,6 @@ class BayarController extends Controller
         }
 
         public function updatebayar(Request $request, $id){
-        dd($request->all());
         $client = User::where('role', 'client')->first();
         $sosmed = Sosmed::all();
         $data = Proreq::findOrFail($id);
@@ -53,7 +52,6 @@ class BayarController extends Controller
     }
 
         public function updatebayarakhir(Request $request, $id){
-            dd($request->all());
         $client = User::where('role', 'client')->first();
         $sosmed = Sosmed::all();
         $data = Proreq::findOrFail($id);
