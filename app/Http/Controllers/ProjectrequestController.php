@@ -22,14 +22,15 @@ class ProjectrequestController extends Controller
 
     public function detailproreq($id){
         $admin = User::where('role', 'admin')->first();
-        $data = Proreq::all()->find($id);
-        $dataa = Fitur::where('project_id', $id)->get();
+        $data = Proreq::find($id);
+        $dataa = Fitur::where('project_id', $data->id)->orderBy('project_id')->get();
         return view('Admin.detailproreq', [
             'data' => $data,
-            'admin' =>$admin,
-            'dataa' =>$dataa
+            'admin' => $admin,
+            'dataa' => $dataa
         ]);
     }
+    
 
     public function downloadSuppDocs($dokumen = null) {
         $file = public_path('document/' . $dokumen);
@@ -64,15 +65,20 @@ public function alasantolak(Request $request)
 
 public function updateproreqa($id)
 {
-    $setuju = Proreq::findOrFail($id);
+    $proreq = Proreq::findOrFail($id);
+    $fitur = Fitur::where('project_id', $proreq->id)->get();
+    
+    $totalHarga = $fitur->sum('hargafitur');
 
-    $setuju->status = null;
-    $setuju->statusbayar = 'menunggu pembayaran';
+    $proreq->harga = $totalHarga;
+    $proreq->status = null;
+    $proreq->statusbayar = 'menunggu pembayaran';
 
-    $setuju->save();
+    $proreq->save();
 
     return redirect()->route('projectreq')->with('sukses', 'Data berhasil disetujui');
 }
+
 
 
     public function projectselesai(){

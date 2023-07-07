@@ -24,7 +24,7 @@
 
       <div class="container mt-4 d-flex flex-column">
         <div class="wrapper">
-            <form action="{{ route('updateproreqa', $data->id) }}" method="GET">
+            <form action="{{ route('update-proreq', ['id' => $data->id]) }}" method="POST">
             <h5 class="px-3 mb-2">Request Project</h5>
             @csrf
             @method('PUT')
