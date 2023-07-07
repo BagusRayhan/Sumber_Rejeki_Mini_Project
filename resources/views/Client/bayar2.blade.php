@@ -35,7 +35,7 @@
         <div class="search-form w-25">
             <form action="{{ route('bayar2client') }}" method="GET">
                 <div class="input-group rounded-pill" style="background: #E9EEF5">
-                    <input type="text" class="form-control rounded-pill position-relative" name="keyword" style="background: #E9EEF5" placeholder="Search ...">
+                    <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
                     <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                 </div>
             </form>
@@ -49,11 +49,7 @@
                 Pembayaran
             </a>
         </div>
-        {{-- <div id="buttonContainer"></div> --}}
-        <div>
-        <button type="button" onclick="deleteSelected()" class="btn btn-danger">Delete All</button>
-
-        </div>
+        <div id="buttonContainer"></div>
     </div>
         <div class="row mt-4">
             <div class="col-12">
@@ -76,11 +72,9 @@
                             @forelse ($bayar2 as $client2)
                             @if ( $client2->statusbayar === 'belum lunas' || $client2->statusbayar === 'lunas')
                             <tr>
-                                <td>
-                                <div class="form-check">
-                                    <input class="form-check-input child-checkbox" type="checkbox" value="{{ $client2->id }}" data-id="{{ $client2->id }}" id="myCheckbox">
-                                </div>
-                                </td>
+                                <td><div class="form-check">
+                                    <input class="form-check-input child-checkbox" type="checkbox" value="" id="myCheckbox">
+                                </div></td>
                                 <td>{{ $client2->napro }}</td>
                                 <td>{{ $client2->harga }}</td>
                                
@@ -103,41 +97,18 @@
                                     @endif
                                   </td>
                             </tr>
-
-<script>
-    function deleteSelected() {
-        var checkboxes = document.getElementsByClassName('child-checkbox');
-        var selectedIds = [];
-        
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                selectedIds.push(checkboxes[i].getAttribute('data-id'));
-            }
-        }
-        
-        if (selectedIds.length > 0) {
-            // Kirim permintaan hapus menggunakan jQuery Ajax
-            $.ajax({
-                url: '/delete',
-                type: 'POST',
-                data: { ids: selectedIds },
-                success: function(response) {
-                    // Tangani respons setelah penghapusan berhasil
-                    console.log(response);
-                    // Refresh halaman atau lakukan tindakan lain yang sesuai
-                },
-                error: function(error) {
-                    // Tangani kesalahan jika ada
-                    console.error(error);
-                }
-            });
-        } else {
-            alert('No items selected.');
-        }
-    }
-</script>
-
-                    {{--  <script>
+                            
+                        </tbody>
+                    </table>
+                    <script>
+                        function toggleCheckboxes(masterCheckbox) {
+                          var checkboxes = document.getElementsByClassName('child-checkbox');
+                          for (var i = 0; i < checkboxes.length; i++) {
+                            checkboxes[i].checked = masterCheckbox.checked;
+                          }
+                        }
+                      </script>
+                    <script>
                         var checkbox = document.getElementById("myCheckbox");
                         var buttonContainer = document.getElementById("buttonContainer");
 
@@ -150,7 +121,7 @@
                             buttonContainer.style.display = 'none';
                         }
                         });
-                    </script> --}}
+                    </script>
                 </div>
             </div>
         </div>
@@ -176,8 +147,8 @@
                        </div>
                <br>
            </div>
-           <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3{{ $client2->id }}" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center><br>
-           <center><a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#modalawal{{ $client2->id }}" data-bs-toggle="modal">Lihat Pembayaran Awal</a></center>
+           <center><button class="btn btn-primary" data-bs-target="#bayar{{ $client2->id }}" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center><br>
+           <center><a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#modalawal" data-bs-toggle="modal">Lihat Pembayaran Awal</a></center>
            <div class="modal-footer" style="border: none;">
            </div>
            </div>
@@ -186,7 +157,7 @@
        {{-- akhir pembayaran akhir --}}
 
        {{-- Modal pembayaran awal --}}
-    <div class="modal fade" id="modalawal{{ $client2->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel1 " tabindex="-1">
+    <div class="modal fade" id="modalawal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel1 " tabindex="-1">
         <div class="modal-dialog modal-dialog-centered" >
            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
            <div class="modal-header" style="border: none;">
@@ -213,7 +184,7 @@
                        </div>
                <br>
            </div>
-           <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;" disabled>Selesai</button></center><br>
+           <center><button class="btn btn-primary" data-bs-target="#bayar{{ $client2->id }}" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;" disabled>Selesai</button></center><br>
            <center><a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar" data-bs-toggle="modal">Kembali</a></center>
            <div class="modal-footer" style="border: none;">
            </div>
@@ -223,9 +194,9 @@
 {{-- akhir code lihat pembayaran--}}
 
 {{-- modal metode pembayaran --}}
-       <div class="modal fade" id="exampleModalToggle3{{ $client2->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+       <div class="modal fade" id="bayar{{ $client2->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
        <div class="modal-dialog modal-dialog-centered" >
-        <form action="{{ route('update-status-bayarakhir', $data->first()->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('update-status-bayarakhir', $client2->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
@@ -292,7 +263,7 @@
         layananSelect.style.height = '40px';
         layananSelect.style.fontSize = '16px';
         layananSelect.innerHTML = `
-          <option selected class="dropdown-menu" name="metode2" disabled>Pilih E-Wallet</option>
+          <option selected class="dropdown-menu" name="layanan" disabled>Pilih E-Wallet</option>
           <option value="dana">Dana</option>
           <option value="ovo">Ovo</option>
           <option value="gopay">Gopay</option>
@@ -492,6 +463,7 @@ console.log(selectedBank)
        {{-- akhir metode pembayaran --}}
 
 
+
     {{-- Modal Struk Pembayaran --}}
        <style>
         @media print {
@@ -575,18 +547,15 @@ console.log(selectedBank)
         </div>
         </div>
 
-    @endif
-        @empty
-            <tr>
-                <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
-            </tr>
-            @endforelse
-                </tbody>
-                    </table>
-                    <div class="d-flex justify-content-end">
+                            @endif
+                            @empty
+                            <tr>
+                                <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
+                            </tr>
+                            @endforelse
+                                                <div class="d-flex justify-content-end">
     {{ $bayar2->links() }}
 </div>
-
       @include('Client.Template.footer')
         </div>
         <!-- Content End -->

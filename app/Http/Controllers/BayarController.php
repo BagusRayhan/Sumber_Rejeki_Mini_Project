@@ -18,7 +18,7 @@ class BayarController extends Controller
             $client = User::where('role', 'client')->first();
             $sosmed = Sosmed::all();
             $keyword = $request->input('keyword');
-            $data = Proreq::where('napro', 'like', '%'.$keyword.'%')->paginate(5);
+            $data = Proreq::where('napro', 'like', '%'.$keyword.'%')->paginate(1);
             $bank = Bank::all();
             $ewallet = EWallet::all();
             return view('Client.bayar', compact('sosmed','client','data','bank','ewallet'));
@@ -30,6 +30,7 @@ class BayarController extends Controller
         }
 
         public function updatebayar(Request $request, $id){
+        dd($request->all());
         $client = User::where('role', 'client')->first();
         $sosmed = Sosmed::all();
         $data = Proreq::findOrFail($id);
@@ -52,6 +53,7 @@ class BayarController extends Controller
     }
 
         public function updatebayarakhir(Request $request, $id){
+            dd($request->all());
         $client = User::where('role', 'client')->first();
         $sosmed = Sosmed::all();
         $data = Proreq::findOrFail($id);
@@ -69,6 +71,7 @@ class BayarController extends Controller
         $data->statusbayar = 'pending';
         $data->tanggalpembayaran2 = now();
         $data->save();
+      
 
         return redirect()->route('bayar2client')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));
     }
@@ -95,7 +98,7 @@ public function bayar2client(Request $request)
     $keyword = $request->input('keyword');
         $bayar2 = Proreq::whereIn('statusbayar', ['lunas','belum lunas'])
                     ->where('napro', 'like', '%'.$keyword.'%')
-                    ->paginate(5);
+                    ->paginate(1);
     return view('Client.bayar2', compact('sosmed', 'bayar2', 'client', 'data'));
 }
 

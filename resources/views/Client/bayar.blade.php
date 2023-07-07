@@ -45,7 +45,7 @@
         <div class="search-form w-25">
             <form action="{{ route('bayarclient') }}" method="GET">
                 <div class="input-group rounded-pill" style="background: #E9EEF5">
-                    <input type="text" class="form-control rounded-pill position-relative" name="keyword" style="background: #E9EEF5" placeholder="Search ...">
+                    <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
                     <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                 </div>
             </form>
@@ -73,17 +73,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $item)
+                            @forelse ($data as $item)
                                 @if ( $item->statusbayar === 'menunggu pembayaran')
                                     <tr>
                                         <td>{{ $item->napro }}</td>
                                         <td>{{ $item->harga }}</td>
                                         <td><center><span class="badge text-bg-danger">{{ $item->statusbayar }}</span></td></center>
                                         <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar{{ $item->id }}"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
-                                    </tr>
-                        </div>
-                    </div>
-                  </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
+                    </tbody>
+                </table>
                 </div>
 
                         <div class="modal fade" id="Modalbayar{{ $item->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -105,13 +107,53 @@
                                         </div>
                                 <br>
                             </div>
-                            <center><button class="btn btn-primary" data-bs-target="#cash{{ $item->id }}" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center>
+                            <center><button class="btn btn-primary" data-bs-target="#cash{{  $item->id}}" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center>
                             <div class="modal-footer" style="border: none;">
                             </div>
                             </div>
                           </div>
                         </div>
 
+
+                        <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered" >
+                            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
+                                <div class="modal-header" >
+                                    <div style="display: flex; flex-direction: column;">
+                                        <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
+                                          <div style="display: flex; align-items: center;">
+                                             <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="{{ $item->napro }}" disabled>
+                                          </div>
+                                     <div style="display: flex; align-items: center; margin-top:3%;">
+                                            <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
+                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="{{ $item->harga }}" disabled>
+                                        </div>
+                                      </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" style="border: none;">
+                                        <div class="d-grid" style="display: flex; justify-content: space-between;">
+                                            <h6 style="align-self: center;">Metode</h6>
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Pilih Pembayaran
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#" data-bs-target="#cash" data-bs-toggle="modal">Cash</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-bs-target="#wallet" data-bs-toggle="modal">E-Wallet</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-bs-target="#bank" data-bs-toggle="modal">Bank</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                     <br>
+                                   </div>
+                                 <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;" disabled>Bayar Sekarang</button></center>
+                               <div class="modal-footer" style="border: none;">
+                              </div>
+                             </div>
+                           </div>
+                         </div>
 
 <div class="modal fade" id="cash{{ $item->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -159,10 +201,22 @@
     </div>
 </div>
 
-  <script>
-      const modalContainer = document.querySelectorAll('.modal');
 
-  modalContainer.forEach(container => {
+
+
+                        @endif
+                            @empty
+                                <tr>
+                                    <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
+                                </tr>
+                        @endforelse
+                        
+                                                           <div class="d-flex justify-content-end">
+                {{ $data->links() }}
+            </div>
+                    </div>
+                    <!-- Content End -->
+                      <script>
     const selectMetode = document.getElementById('selectMetode');
     const additionalSelectContainer = document.getElementById('additionalSelectContainer');
     const fileInputContainer = document.getElementById('fileInputContainer');
@@ -170,13 +224,16 @@
     selectMetode.addEventListener('change', function () {
       const selectedValue = this.value;
 
+      // Hapus select, input file, dan input text sebelumnya jika ada
       additionalSelectContainer.innerHTML = '';
       fileInputContainer.innerHTML = '';
 
       if (selectedValue === 'ewallet') {
+        // Buat label "Layanan" baru
         const layananLabel = document.createElement('label');
         layananLabel.textContent = 'Layanan';
 
+        // Buat select "Layanan" baru
         const layananSelect = document.createElement('select');
         layananSelect.className = 'form-select form-select-lg mb-3';
         layananSelect.name = 'metode';
@@ -194,9 +251,11 @@
         additionalSelectContainer.appendChild(layananLabel);
         additionalSelectContainer.appendChild(layananSelect);
 
+        // Buat label "Upload Bukti Pembayaran" baru
         const fileInputLabel = document.createElement('label');
         fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
 
+        // Buat input file baru
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
         fileInput.name = 'buktipembayaran';
@@ -210,6 +269,7 @@
         fileInputContainer.appendChild(fileInputLabel);
         fileInputContainer.appendChild(fileInput);
 
+        // Tambahkan kode berikut untuk menampilkan gambar
         const imageContainer = document.createElement('div');
         imageContainer.id = 'imageContainer';
         additionalSelectContainer.appendChild(imageContainer);
@@ -218,64 +278,83 @@
           const selectedLayanan = this.value;
           const imageContainer = document.getElementById('imageContainer');
 
+          // Hapus gambar sebelumnya jika ada
           imageContainer.innerHTML = '';
 
           if (selectedLayanan === 'dana') {
+            // Ambil nama file gambar dari database
             const imageFilename = 'dana.png';
 
+            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
             const imageUrl = 'gambar/qr/' + imageFilename;
 
+            // Buat elemen <img> untuk menampilkan gambar
             const imageElement = document.createElement('img');
             imageElement.style.width = '100px';
             imageElement.style.height = '100px';
             imageElement.src = imageUrl;
 
+            // Tambahkan elemen <img> ke dalam container gambar
             imageContainer.appendChild(imageElement);
           }
 
           if (selectedLayanan === 'ovo') {
+            // Ambil nama file gambar dari database
             const imageFilename = 'ovo.png';
 
+            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
             const imageUrl = 'gambar/qr/' + imageFilename;
 
+            // Buat elemen <img> untuk menampilkan gambar
             const imageElement = document.createElement('img');
             imageElement.style.width = '100px';
             imageElement.style.height = '100px';
             imageElement.src = imageUrl;
 
+            // Tambahkan elemen <img> ke dalam container gambar
             imageContainer.appendChild(imageElement);
           }
 
           if (selectedLayanan === 'gopay') {
+            // Ambil nama file gambar dari database
             const imageFilename = 'gopay.png';
 
+            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
             const imageUrl = 'gambar/qr/' + imageFilename;
 
+            // Buat elemen <img> untuk menampilkan gambar
             const imageElement = document.createElement('img');
             imageElement.style.width = '100px';
             imageElement.style.height = '100px';
             imageElement.src = imageUrl;
 
+            // Tambahkan elemen <img> ke dalam container gambar
             imageContainer.appendChild(imageElement);
           }
 
           if (selectedLayanan === 'linkaja') {
+            // Ambil nama file gambar dari database
             const imageFilename = 'linkaja.png';
 
+            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
             const imageUrl = 'gambar/qr/' + imageFilename;
 
+            // Buat elemen <img> untuk menampilkan gambar
             const imageElement = document.createElement('img');
             imageElement.style.width = '100px';
             imageElement.style.height = '100px';
             imageElement.src = imageUrl;
 
+            // Tambahkan elemen <img> ke dalam container gambar
             imageContainer.appendChild(imageElement);
           }
         });
       } else if (selectedValue === 'bank') {
+        // Buat label "Bank" baru
         const bankLabel = document.createElement('label');
         bankLabel.textContent = 'Bank';
 
+        // Buat select "Bank" baru
         const bankSelect = document.createElement('select');
         bankSelect.className = 'form-select form-select-lg mb-3';
         bankSelect.name = 'metode';
@@ -289,9 +368,11 @@
           <option value="Bank Mandiri">Bank Mandiri</option>
         `;
 
+        // Buat label "Upload Bukti Pembayaran" baru
         const fileInputLabel = document.createElement('label');
         fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
 
+        // Buat input file baru
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
         fileInput.name = 'buktipembayaran';
@@ -302,9 +383,11 @@
         fileInput.style.width = '50%';
         fileInput.setAttribute('required', true);
 
+        // Buat label "Input Bank" baru
         const inputBankLabel = document.createElement('label');
         inputBankLabel.textContent = 'No.Rekening:';
 
+        // Buat input teks baru untuk memasukkan nama bank
         const inputBank = document.createElement('input');
         inputBank.type = 'text';
         inputBank.name = 'rekening';
@@ -323,46 +406,40 @@
         fileInputContainer.appendChild(fileInputLabel);
         fileInputContainer.appendChild(fileInput);
 
-        bankSelect.addEventListener('change', function () {
-        const selectedBank = this.value;
-        console.log(selectedBank)
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: '/ambilrek',
-            method: 'POST',
-            data: { id: selectedBank },
-            success: function(response) {
-                console.log(response)
-            const rekening = response;
+// Menambahkan event listener ke select "Pilih Bank"
+bankSelect.addEventListener('change', function () {
+  const selectedBank = this.value;
+console.log(selectedBank)
+  // Menggunakan jQuery untuk mengambil data rekening dari database
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+  $.ajax({
+    url: '/ambilrek',
+    method: 'POST',
+    data: { id: selectedBank },
+    success: function(response) {
+        console.log(response)
+      const rekening = response;
 
-            inputBank.value = rekening;
-            },
-            error: function(error) {
-            console.error('Error:', error);
-            }
-        });
-        });
+      // Menampilkan data rekening ke dalam input "No.Rekening"
+      inputBank.value = rekening;
+    },
+    error: function(error) {
+      console.error('Error:', error);
+    }
+  });
+});
 
-            }
-            });
-              });
-        </script>
 
-                        @endif
-                        @endforeach
-                        
-                                </tbody>
-                            </table>
-            <div class="d-flex justify-content-end">
-                {{ $data->links() }}
-            </div>
-                    </div>
-                    <!-- Content End -->
-                    
+        
+      }
+    });
+  </script>
+  
+
                     
                     @include('Client.Template.script')
                 </body>
