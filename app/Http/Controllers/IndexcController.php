@@ -20,9 +20,12 @@ class IndexcController extends Controller
         $tolakCounter = Proreq::where('status', 'tolak')->count();
         $kerjaCounter = Proreq::where('status', 'setuju')->count();
         $selesaiCounter = Proreq::where('status', 'selesai')->count();
+        $notifikasi = Proreq::all();
         $estimasi = Proreq::all();
         $notif = Chat::all();
-        $pesancht = Chat::all();
+        $pesancht = Chat::whereHas('user', function($query) {
+        $query->where('role', 'admin');
+        })->limit(4)->latest()->get();
         $sosmed = Sosmed::all();
         return view('Client.index',[
 
@@ -30,6 +33,7 @@ class IndexcController extends Controller
             'tolakCounter' => $tolakCounter,
             'kerjaCounter' => $kerjaCounter,
             'selesaiCounter' => $selesaiCounter,
+            'notifikasi' => $notifikasi,
             'estimasi' => $estimasi,
             'notif' => $notif,
             'pesancht' => $pesancht,

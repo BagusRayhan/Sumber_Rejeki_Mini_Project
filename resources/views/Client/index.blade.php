@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+@php
+    use Carbon\Carbon;
+@endphp
+
 <head>
     @include('Client.Template.head')
 </head>
@@ -106,14 +110,14 @@
                                 {{-- <a class="link-offset-2 link-underline link-underline-opacity-0" href="#">Tampilkan Semua</a> --}}
                             </div>
 
-                            @if (count($pesancht) > 0)
+                            @if (count($pesancht) !== 0)
                                 @foreach ($pesancht as $pesan)
                                     <div class="d-flex align-items-center border-bottom py-3">
                                         <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $pesan->user->profil }}" alt="" style="width: 40px; height: 40px;">
                                         <div class="w-100 ms-3">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <h6 class="mb-0">{{ $pesan->user->name }}</h6>
-                                                <small>{{ $pesan->chat_time->diffForHumans() }}</small>
+                                                <small>{{ Carbon::parse($pesan->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
                                             </div>
                                             <span>{{ $pesan->chat }}</span>
                                         </div>
