@@ -20,8 +20,8 @@ return new class extends Migration
             $table->longText('chat');
             $table->dateTime('chat_time');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('project_id')->references('id')->on('proreq')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('project_id')->references('id')->on('proreq')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

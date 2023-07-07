@@ -26,10 +26,13 @@ class ProjectDisetujuiController extends Controller
         $admin = User::where('role', 'admin')->first();
         $detail = Proreq::find($id);
         $fitur = Fitur::where('project_id', $id)->get();
+        $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
+        $progress = (100 / count($fitur)) * $done;
         $chats = Chat::where('project_id', $id)->get();
         $userid = Auth()->user()->id . $id;
         return view('Admin.detail-project-disetujui', [
             'detail' => $detail,
+            'progress' => $progress,
             'fitur' => $fitur,
             'chats' => $chats,
             'userid' => $userid,

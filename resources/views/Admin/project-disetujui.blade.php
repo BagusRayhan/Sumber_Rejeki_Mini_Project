@@ -51,7 +51,6 @@
                                     <tr>
                                         <th scope="col">Nama Client</th>
                                         <th scope="col">Nama Project</th>
-                                        <th scope="col">Progress Project</th>
                                         <th scope="col">Harga Project</th>
                                         <th scope="col" class="text-center">Aksi</th>
                                     </tr>
@@ -62,13 +61,6 @@
                                             <tr>
                                                 <td>{{ $pro->nama }}</td>
                                                 <td>{{ $pro->napro }}</td>
-                                                <td>
-                                                    <div class="pg-bar">
-                                                        <div class="progress w-75">
-                                                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div>
-                                                </td>
                                                 <td>{{ $pro->harga }}</td>
                                                 <td class="d-flex justify-content-evenly">
                                                     <a href="/detail-project-disetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>

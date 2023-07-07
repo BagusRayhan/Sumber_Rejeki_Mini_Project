@@ -124,16 +124,17 @@
                         <thead>
                             <tr>
                                 <th class="w-25" scope="col">Nama Fitur</th>
-                                <th class="w-75" scope="col">Deskripsi</th>
-                                <th class="w-90" scope="col" colspan="2"><center>Aksi</center></th>
+                                <th class="w-50" scope="col">Deskripsi</th>
+                                <th class="w-25" scope="col">Harga</th>
+                                <th scope="col" colspan="2"><center>Aksi</center></th>
                             </tr>
                         </thead>
-                       <tbody>
+                    <tbody>
                     @foreach($dataa as $fitur)
-
                         <tr>
                             <td>{{ $fitur->namafitur }}</td>
                             <td>{{ $fitur->deskripsi }}</td>
+                            <td>{{ $fitur->hargafitur }}</td>
                             <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#hargaFitur{{ $fitur->id }}"><i class="fa-solid fa-sack-dollar"></i></button></td>
                         </tr>
                         <!-- Edit Fitur -->
