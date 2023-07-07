@@ -49,7 +49,10 @@
                 Pembayaran
             </a>
         </div>
-        <div id="buttonContainer"></div>
+        {{-- <div id="buttonContainer"></div> --}}
+        <div>
+        <a href="" class="btn btn-danger btn-sm" >Delete All</a>
+        </div>
     </div>
         <div class="row mt-4">
             <div class="col-12">
@@ -72,9 +75,11 @@
                             @forelse ($bayar2 as $client2)
                             @if ( $client2->statusbayar === 'belum lunas' || $client2->statusbayar === 'lunas')
                             <tr>
-                                <td><div class="form-check">
-                                    <input class="form-check-input child-checkbox" type="checkbox" value="" id="myCheckbox">
-                                </div></td>
+                                <td>
+                                <div class="form-check">
+                                    <input class="form-check-input child-checkbox" type="checkbox" value="{{ $client2->id }}" id="myCheckbox">
+                                </div>
+                                </td>
                                 <td>{{ $client2->napro }}</td>
                                 <td>{{ $client2->harga }}</td>
                                
@@ -97,7 +102,7 @@
                                     @endif
                                   </td>
                             </tr>
-                    <script>
+                   <script>
                         function toggleCheckboxes(masterCheckbox) {
                           var checkboxes = document.getElementsByClassName('child-checkbox');
                           for (var i = 0; i < checkboxes.length; i++) {
@@ -105,7 +110,7 @@
                           }
                         }
                       </script>
-                    <script>
+                    {{--  <script>
                         var checkbox = document.getElementById("myCheckbox");
                         var buttonContainer = document.getElementById("buttonContainer");
 
@@ -118,7 +123,7 @@
                             buttonContainer.style.display = 'none';
                         }
                         });
-                    </script>
+                    </script> --}}
                 </div>
             </div>
         </div>
