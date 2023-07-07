@@ -78,8 +78,8 @@
                                         <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $estimasisetuju->user->profil }}" alt="" style="width: 40px; height: 40px;">
                                         <div class="w-100 ms-3 d-flex align-items-center">
                                             <div>
-                                                <h6 class="mb-0">{{ $estimasisetuju->user->name }}</h6>
-                                                <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;3 jam lagi</span>
+                                                <h6 class="mb-0">{{ $estimasisetuju->napro }}</h6>
+                                                <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
                                             </div>
                                             <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
                                                 <div class="bg-light rounded h-100 p-10">

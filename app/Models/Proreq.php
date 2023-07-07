@@ -13,7 +13,7 @@ class proreq extends Model
 {
     protected $table = "proreq";
     protected $primarykey = "id";
-    protected $guard = "proreq";
+    protected $dates = ['estimasi'];
     protected $fillable = [
         'id', 'nama', 'napro','dokumen','estimasi','estimasi','deadline','status','harga','alasan','statusbayar'
     ];
