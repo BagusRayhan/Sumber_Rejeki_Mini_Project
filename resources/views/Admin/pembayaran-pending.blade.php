@@ -68,9 +68,21 @@
                                         <td>{{ $pro->napro }}</td>
                                         <td>{{ $pro->harga }}</td>
                                         <td class="text-center">
-                                            <a href="" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal" class="btn btn-primary btn-sm">
+                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal">
                                                 <i class="fa-solid fa-image"></i>
-                                            </a>
+                                            </button>
+                                            <div class="modal fade" id="buktiTransaksiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" style="width: 400px">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
+                                                            <img src="gambar/bukti/{{ $pro->buktipembayaran }}" class="w-75">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                         <td class="d-flex justify-content-evenly">
                                             <form action="{{ route('setujui-pembayaran', ['id' => $pro->id]) }}" method="POST">
@@ -123,21 +135,6 @@
                 </nav>
             </div>
             <!-- Confirm Payment Table End -->
-
-            <!-- Payment Proof Modal Start -->
-            <div class="modal fade" id="buktiTransaksiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" style="width: 400px">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
-                            <img src="{{ asset('ProjectManagement/dashmin/img/bukti-pembayaran.png') }}" class="w-75">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Payment Proof Modal End -->
         <!-- Content End -->
 
     </div>

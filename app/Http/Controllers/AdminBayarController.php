@@ -62,6 +62,12 @@ class AdminBayarController extends Controller
 
     public function updateBank(Request $request) {
         $bank = Bank::findOrFail($request->idrekening);
+        $valid = $request->validate([
+            'rekening' => 'required|numeric'
+        ], [
+            'rekening.required' => 'Rekening tidak boleh kosong',
+            'rekening.numeric' => 'Rekening tidak valid'
+        ]);
         $bank->update([
             'rekening' => $request->rekening
         ]);
@@ -71,12 +77,12 @@ class AdminBayarController extends Controller
     public function updateEWallet(Request $request) {
         $upQR = [];
         $ewallet = EWallet::find($request->idewallet);
+        $request->validate([
+            'qrcode' => 'mimes:jpg,png'
+        ], [
+            'qrcode.mimes' => 'Foto tidak valid',
+        ]);
         if ($request->has('qrcode')) {
-            // $request->validate([
-            //     'qrcode' => 'mimes:jpg,jpeg,png'
-            // ], [
-            //     'qrcode.mimes' => 'QR tidak valid'
-            // ]);
             if (File::exists(public_path('gambar/qr/' . $ewallet->qrcode))) {
                 unlink(public_path('gambar/qr/' . $ewallet->qrcode));
             }

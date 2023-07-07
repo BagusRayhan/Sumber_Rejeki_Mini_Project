@@ -30,7 +30,10 @@ class AdminController extends Controller
         $selesaiCounter = Proreq::where('status', 'selesai')->count();
         $incomePayment = Pembayaran::limit(4)->latest()->get();
         $incomeProject = proreq::limit(4)->latest()->get();
-        $message = Chat::limit(4)->latest()->get();
+        $message = Chat::whereHas('user', function($query) {
+            $query->where('role', 'client');
+        })->limit(4)->latest()->get();
+
 
         return view('Admin.index', [
             'chart' => $chartData,
@@ -39,7 +42,6 @@ class AdminController extends Controller
             'tolakCounter' => $tolakCounter,
             'progressCounter' => $progressCounter,
             'selesaiCounter' => $selesaiCounter,
-            'chart' => $chart->build(),
             'ychart' => $ychart->build(),
             'incomePayment' => $incomePayment,
             'incomeProject' => $incomeProject,

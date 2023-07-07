@@ -34,7 +34,7 @@
                                     <tr>
                                         <th scope="col">Nama Bank</th>
                                         <th scope="col">Nomor Rekening</th>
-                                        <th scope="col">Aksi</th>
+                                        <th scope="col" style="width: 4em">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,6 +60,9 @@
                                                                     <input type="hidden" name="idrekening" value="{{ $bank->id }}">
                                                                     <div class="mb-3">
                                                                         <input type="text" value="{{ $bank->rekening }}" class="form-control" id="nomorRekening" name="rekening">
+                                                                        @error('rekening')
+                                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
