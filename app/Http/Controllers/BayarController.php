@@ -36,8 +36,8 @@ class BayarController extends Controller
 
         if ($request->hasFile('buktipembayaran')) {
             $file = $request->file('buktipembayaran');
-            $filename = $file->store('gambar'); 
-            $file->move(public_path() . '/gambar', $filename);
+            $filename = $file->store('gambar/bukti'); 
+            $file->move(public_path() . '/gambar/bukti', $filename);
             $data->buktipembayaran = $filename;
         }
 
@@ -58,8 +58,8 @@ class BayarController extends Controller
 
         if ($request->hasFile('buktipembayaran2')) {
             $file = $request->file('buktipembayaran2');
-            $filename = $file->store('gambar'); 
-            $file->move(public_path() . '/gambar', $filename);
+            $filename = $file->store('gambar/bukti'); 
+            $file->move(public_path() . '/gambar/bukti', $filename);
             $data->buktipembayaran2 = $filename;
         }
 
@@ -97,6 +97,13 @@ public function bayar2client(Request $request)
                     ->where('napro', 'like', '%'.$keyword.'%')
                     ->paginate(5);
     return view('Client.bayar2', compact('sosmed', 'bayar2', 'client', 'data'));
+}
+
+public function deleteproj($id)
+{
+    $data = Proreq::findOrFail($id);
+    $data->delete();
+    return redirect()->route('bayarclient');
 }
 
 }

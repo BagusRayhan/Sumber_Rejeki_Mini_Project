@@ -39,9 +39,9 @@
 
         <!-- Content Start -->
         <div class="content">
-        @include('Client.Template.navbar')
+      @include('Client.Template.navbar')
 
-        <div class="container-fluid pt-4 px-4">
+      <div class="container-fluid pt-4 px-4">
         <div class="search-form w-25">
             <form action="{{ route('bayarclient') }}" method="GET">
                 <div class="input-group rounded-pill" style="background: #E9EEF5">
@@ -105,7 +105,7 @@
                                         </div>
                                 <br>
                             </div>
-                            <center><button class="btn btn-primary" data-bs-target="#cash" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center>
+                            <center><button class="btn btn-primary" data-bs-target="#cash{{ $item->id }}" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center>
                             <div class="modal-footer" style="border: none;">
                             </div>
                             </div>
@@ -113,47 +113,7 @@
                         </div>
 
 
-                        <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                        <div class="modal-dialog modal-dialog-centered" >
-                            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-                                <div class="modal-header" >
-                                    <div style="display: flex; flex-direction: column;">
-                                        <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
-                                          <div style="display: flex; align-items: center;">
-                                             <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="{{ $item->napro }}" disabled>
-                                          </div>
-                                     <div style="display: flex; align-items: center; margin-top:3%;">
-                                            <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="{{ $item->harga }}" disabled>
-                                        </div>
-                                      </div>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body" style="border: none;">
-                                        <div class="d-grid" style="display: flex; justify-content: space-between;">
-                                            <h6 style="align-self: center;">Metode</h6>
-                                            <div class="dropdown">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Pilih Pembayaran
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#" data-bs-target="#cash" data-bs-toggle="modal">Cash</a></li>
-                                                    <li><a class="dropdown-item" href="#" data-bs-target="#wallet" data-bs-toggle="modal">E-Wallet</a></li>
-                                                    <li><a class="dropdown-item" href="#" data-bs-target="#bank" data-bs-toggle="modal">Bank</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                     <br>
-                                   </div>
-                                 <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;" disabled>Bayar Sekarang</button></center>
-                               <div class="modal-footer" style="border: none;">
-                              </div>
-                             </div>
-                           </div>
-                         </div>
-
-<div class="modal fade" id="cash" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+<div class="modal fade" id="cash{{ $item->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <form action="{{ route('update-status-bayar', $data->first()->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -416,23 +376,22 @@ console.log(selectedBank)
   });
 });
 
-
-        
       }
     });
   </script>
-        @endif
-        @endforeach
-        </tbody>
-            </table>
+
+                        @endif
+                        @endforeach
+                        
+                                </tbody>
+                            </table>
             <div class="d-flex justify-content-end">
                 {{ $data->links() }}
             </div>
-
-        </div>
+                    </div>
                     <!-- Content End -->
                     
-                    @include('Client.Template.footer')
+                    
                     @include('Client.Template.script')
                 </body>
               

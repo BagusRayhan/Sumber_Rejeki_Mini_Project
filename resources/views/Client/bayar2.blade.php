@@ -51,7 +51,8 @@
         </div>
         {{-- <div id="buttonContainer"></div> --}}
         <div>
-        <a href="" class="btn btn-danger btn-sm" >Delete All</a>
+        <button type="button" onclick="deleteSelected()" class="btn btn-danger">Delete All</button>
+
         </div>
     </div>
         <div class="row mt-4">
@@ -77,7 +78,7 @@
                             <tr>
                                 <td>
                                 <div class="form-check">
-                                    <input class="form-check-input child-checkbox" type="checkbox" value="{{ $client2->id }}" id="myCheckbox">
+                                    <input class="form-check-input child-checkbox" type="checkbox" value="{{ $client2->id }}" data-id="{{ $client2->id }}" id="myCheckbox">
                                 </div>
                                 </td>
                                 <td>{{ $client2->napro }}</td>
@@ -102,14 +103,40 @@
                                     @endif
                                   </td>
                             </tr>
-                   <script>
-                        function toggleCheckboxes(masterCheckbox) {
-                          var checkboxes = document.getElementsByClassName('child-checkbox');
-                          for (var i = 0; i < checkboxes.length; i++) {
-                            checkboxes[i].checked = masterCheckbox.checked;
-                          }
-                        }
-                      </script>
+
+<script>
+    function deleteSelected() {
+        var checkboxes = document.getElementsByClassName('child-checkbox');
+        var selectedIds = [];
+        
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                selectedIds.push(checkboxes[i].getAttribute('data-id'));
+            }
+        }
+        
+        if (selectedIds.length > 0) {
+            // Kirim permintaan hapus menggunakan jQuery Ajax
+            $.ajax({
+                url: '/delete',
+                type: 'POST',
+                data: { ids: selectedIds },
+                success: function(response) {
+                    // Tangani respons setelah penghapusan berhasil
+                    console.log(response);
+                    // Refresh halaman atau lakukan tindakan lain yang sesuai
+                },
+                error: function(error) {
+                    // Tangani kesalahan jika ada
+                    console.error(error);
+                }
+            });
+        } else {
+            alert('No items selected.');
+        }
+    }
+</script>
+
                     {{--  <script>
                         var checkbox = document.getElementById("myCheckbox");
                         var buttonContainer = document.getElementById("buttonContainer");
@@ -149,8 +176,8 @@
                        </div>
                <br>
            </div>
-           <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center><br>
-           <center><a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#modalawal" data-bs-toggle="modal">Lihat Pembayaran Awal</a></center>
+           <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3{{ $client2->id }}" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center><br>
+           <center><a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#modalawal{{ $client2->id }}" data-bs-toggle="modal">Lihat Pembayaran Awal</a></center>
            <div class="modal-footer" style="border: none;">
            </div>
            </div>
@@ -159,7 +186,7 @@
        {{-- akhir pembayaran akhir --}}
 
        {{-- Modal pembayaran awal --}}
-    <div class="modal fade" id="modalawal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel1 " tabindex="-1">
+    <div class="modal fade" id="modalawal{{ $client2->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel1 " tabindex="-1">
         <div class="modal-dialog modal-dialog-centered" >
            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
            <div class="modal-header" style="border: none;">
@@ -196,7 +223,7 @@
 {{-- akhir code lihat pembayaran--}}
 
 {{-- modal metode pembayaran --}}
-       <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+       <div class="modal fade" id="exampleModalToggle3{{ $client2->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
        <div class="modal-dialog modal-dialog-centered" >
         <form action="{{ route('update-status-bayarakhir', $data->first()->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
