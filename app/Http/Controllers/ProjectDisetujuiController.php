@@ -88,12 +88,15 @@ class ProjectDisetujuiController extends Controller
         $client = User::where('role', 'client')->first();
         $detail = Proreq::find($id);
         $fitur = Fitur::where('project_id', $id)->get();
+        $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
+        $progress = (100 / count($fitur)) * $done;
         $chats = Chat::where('project_id', $id)->get();
         $sosmed = Sosmed::all();
         return view('Client.detailsetujui',
         [
             'userid' => Auth()->user()->id,
             'detail' => $detail,
+            'progress' => $progress,
             'fitur' => $fitur,
             'chats' => $chats,
             'sosmed' => $sosmed,
