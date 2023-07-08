@@ -96,6 +96,7 @@ Route::middleware('admin')->group(function(){
     Route::get('editproselesai', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
     Route::get('project-disetujui', [ProjectDisetujuiController::class, 'disetujui'])->name('project-disetujui-admin');
     Route::get('detail-project-disetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujui'])->name('detail-disetujui-admin');
+    Route::post('update-project-selesai', [ProjectDisetujuiController::class, 'doneProject'])->name('done-project');
     Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');
     Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
     Route::post('/setujui-pembayaran/{id}', [AdminBayarController::class, 'setujuiPembayaran'])->name('setujui-pembayaran');

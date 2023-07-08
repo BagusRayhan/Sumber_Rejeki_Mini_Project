@@ -38,15 +38,6 @@
                             </button>
                             @if ($detail->dokumen == null)
                                 <a onclick="emptyDocsDown()" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
-                                <script>
-                                    function emptyDocsDown() {
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: 'Gagal',
-                                            text: 'Dokumen tidak tersedia',
-                                        })
-                                    }
-                                </script>
                             @else
                                 <a href="{{ route('download-suppdocs', ['dokumen' => $detail->dokumen]) }}" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
                             @endif
@@ -109,7 +100,7 @@
                                             <tr>
                                                 <td class="text-center">
                                                     <div class="form-check">
-                                                        <input class="form-check-input child-checkbox" onchange="statusFitur({{ $f->id }})" type="checkbox" id="checkFitur">
+                                                        <input class="form-check-input child-checkbox" type="checkbox" id="checkFitur" onchange="statusFitur({{ $f->id }})" {{ ($f->status == 'selesai') ? 'checked' : '' }}>
                                                     </div>
                                                 </td>
                                                 <td>{{ $f->namafitur }}</td>
@@ -165,9 +156,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="my-3 d-flex justify-content-between" style="width: 12em">
-                    <a href="/project-disetujui" class="btn btn-primary p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
-                    <button class="btn btn-warning text-white p-1" data-bs-toggle="modal" data-bs-target="#estimasiModal"><i class="fa-solid fa-clock-rotate-left"></i> Estimasi</button>
+                <div class="my-3 d-flex justify-content-between" style="width: 16em">
+                    <a href="/project-disetujui" class="btn btn-secondary btn-sm p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
+                    <button class="btn btn-warning btn-sm text-white p-1" data-bs-toggle="modal" data-bs-target="#estimasiModal"><i class="fa-solid fa-clock-rotate-left"></i> Estimasi</button>
                     <!-- Modal Box Estimasi Start -->
                     <div class="modal fade" id="estimasiModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -192,8 +183,13 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Modal Box Estimasi End-->
+                    <form action="{{ route('done-project') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="project_id" value="{{ $detail->id }}">
+                        <button class="btn btn-primary btn-sm" id="projectDoneBtn"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                    </form>
                 </div>
-                <!-- Modal Box Estimasi End-->
 
                 <div class="container my-5">
                     <div class="panel" style="height: 90vh;">
