@@ -77,6 +77,7 @@
                             </div>
 
                             @if ($estimasi != null)
+                            @if (count($estimasi) > 0)
                                 @foreach ($estimasi as $estimasisetuju)
                                     @if ($estimasisetuju->estimasi != null)
                                         <div class="d-flex align-items-center border-bottom py-3">
@@ -102,8 +103,12 @@
                             @else
                                 <p>Tidak ada estimasi yang tersedia.</p>
                             @endif
+                        @else
+                            <p>Tidak ada estimasi yang tersedia.</p>
+                        @endif
                         </div>
-                    </div>
+                        </div>
+
 
                     <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
