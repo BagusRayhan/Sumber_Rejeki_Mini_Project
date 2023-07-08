@@ -18,7 +18,7 @@ class ProjectDisetujuiController extends Controller
         $project = proreq::where('status','setuju')->get();
         return view('Admin.project-disetujui', [
             'project' => $project,
-            'admin' =>$admin
+            'admin' => $admin
         ]);
     }
 
@@ -43,7 +43,7 @@ class ProjectDisetujuiController extends Controller
     public function statusFitur(Request $request) {
         $status = Fitur::find($request->fitur_id);
         $status->update([
-            'status' => 'selesai'
+            'status' => $request->status
         ]);
     }
 
@@ -53,6 +53,14 @@ class ProjectDisetujuiController extends Controller
             'estimasi' => $request->estimasi
         ]);
         return back();
+    }
+
+    public function doneProject(Request $request) {
+        $pro = Proreq::find($request->project_id);
+        $pro->update([
+            'status' => 'selesai'
+        ]);
+        return redirect(route('project-disetujui-admin'))->with('success', 'Berhasil menyelesaikan project');
     }
 
     public function projectChat(Request $request) {
@@ -73,16 +81,6 @@ class ProjectDisetujuiController extends Controller
         $data = proreq::where('status','setuju')->get();
         return view('Client.disetujui', compact('project','data', 'sosmed','client'));
     }
-
-//    public function detailDisetujuiClient($id) {
-//     $client = User::where('role', 'client')->first();
-//     $detail = proreq::find($id);
-//     $fitur = Fitur::all();
-//     $chats = Chat::all();
-//     $sosmed = Sosmed::all();
-
-//     return view('Client.detailsetujui', compact('detail', 'fitur', 'chats', 'sosmed', 'client'));
-// }
 
     public function detailDisetujuiClient($id) {
         $client = User::where('role', 'client')->first();

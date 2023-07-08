@@ -16,6 +16,7 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('ProjectManagement/dashmin/js/main.js') }}"></script>
+
     <script>
         $.ajaxSetup({
             headers: {
@@ -23,15 +24,31 @@
             }
         });
         function statusFitur(id) {
-            $.ajax({
-                url: "{{route('status-fitur')}}",
-                type: 'POST',
-                data: {
-                    fitur_id: id,
-                },
-                success: function (response) {
-                    console.log(response);
-                }
-            })
+            let fitur = document.getElementById('checkFitur');
+            if (fitur.checked) {
+                $.ajax({
+                    url: "{{route('status-fitur')}}",
+                    type: 'POST',
+                    data: {
+                        fitur_id: id,
+                        status: 'selesai'
+                    },
+                    success: function(response) {
+                        console.log(response.status);
+                    }
+                })
+            } else {
+                $.ajax({
+                    url: "{{route('status-fitur')}}",
+                    type: 'POST',
+                    data: {
+                        fitur_id: id,
+                        status: 'belum selesai'
+                    },
+                    success: function(response) {
+                        console.log(response.status);
+                    }
+                })
+            }
         }
     </script>
