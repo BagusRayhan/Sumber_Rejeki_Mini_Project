@@ -68,4 +68,12 @@ class SelesaiController extends Controller
             $dataa = Fitur::where('project_id', $id)->get();
             return view('Client.detailrevisi', compact( 'data','sosmed','client','dataa'));
         }
+
+        public function ajukanRevisi(Request $request) {
+            $pro = Proreq::find($request->project_id);
+            $pro->update([
+                'status' => 'revisi'
+            ]);
+            return back()->with('success', 'Berhasil Mengajukan Revisi');
+        }
 }

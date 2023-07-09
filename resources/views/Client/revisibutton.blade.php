@@ -132,8 +132,13 @@
                     </div>
                 </div>
             </div>
-            <div class="my-3 d-flex justify-content-between" style="width: 12em">
-                <a href="/selesaiclient" class="btn btn-primary p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
+            <div class="my-3 d-flex justify-content-between" style="width: 13em">
+                <a href="/selesaiclient" class="btn btn-primary btn-sm p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
+                <form action="{{ route('ajukan-revisi-client') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="project_id" value="{{ $detail->id }}">
+                    <button class="btn btn-warning btn-sm text-white" type="submit"><i class="fa-solid fa-file-circle-plus"></i> Ajukan Revisi</button>
+                </form>
             </div>
 
             <div class="container my-5">
