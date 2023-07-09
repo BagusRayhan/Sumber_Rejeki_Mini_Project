@@ -51,4 +51,40 @@
                 })
             }
         }
+        function doneAllFeatures(id) {
+            let doneBtn = document.getElementById('projectDoneBtn');
+            let fitur = document.getElementById('masterCheckbox');
+            if (fitur.checked) {
+                doneBtn.disabled = false;
+                $.ajax({
+                    url: "{{ route('all-status-fitur') }}",
+                    type: 'POST',
+                    data: {
+                        project_id: id,
+                        status: 'selesai'
+                    },
+                    success: function(response) {
+                        console.log(response.status);
+                    }
+                })
+            } else {
+                doneBtn.disabled = true;
+                $.ajax({
+                    url: "{{ route('all-status-fitur') }}",
+                    type: 'POST',
+                    data: {
+                        project_id: id,
+                        status: 'belum selesai'
+                    },
+                    success: function(response) {
+                        console.log(response.status);
+                    }
+                })
+            }
+            let masterCheckbox = document.getElementById('masterCheckbox');
+            let checkboxes = document.getElementsByClassName('child-checkbox');
+            for (let i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = masterCheckbox.checked;
+            }
+        }
     </script>

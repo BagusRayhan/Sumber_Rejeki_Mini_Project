@@ -56,7 +56,7 @@ class SelesaiController extends Controller
             $client = User::where('role', 'client')->first();
             $detail = Proreq::find($id);
             $sosmed = Sosmed::all();
-            $fitur = Fitur::all();
+            $fitur = Fitur::where('project_id', $id)->get();
             $chats = Chat::where('project_id', $id)->get();
             $userid = Auth()->user()->id . $id;
             return view('Client.revisibutton', compact('sosmed','client','detail','fitur','chats','userid'));

@@ -27,23 +27,23 @@
             <div class="container-fluid pt-4 px-4">
                 <div class="d-flex justify-content-between">
                     <div class="search-form w-25">
-                        <form action="">
+                        <form action="{{ route('project-disetujui-admin') }}">
                             <div class="input-group rounded-pill" style="background: #E9EEF5">
-                                <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
-                                <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
+                                <input type="text" name="searchKeyword" value="{{ request('searchKeyword') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+                                <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                             </div>
                         </form>
                     </div>
-                    <div class="sortir-project">
-                        <select class="form-select bg-primary text-white" aria-label="Default select example">
+                    <div class="wrapper d-flex p-2 rounded" style="background: #E9EEF5; width:10em">
+                        <select class="form-select form-select-sm" name="sortProject" aria-label="Default select example">
                             <option class="bg-white text-dark" selected disabled>Sortir Project</option>
-                            <option class="bg-white text-dark" value="1">Deadline</option>
-                            <option class="bg-white text-dark" value="2">Fitur</option>
-                            <option class="bg-white text-dark" value="3">Harga</option>
+                            <option class="bg-white text-dark" value="Deadline">Deadline</option>
+                            <option class="bg-white text-dark" value="Fitur">Fitur</option>
+                            <option class="bg-white text-dark" value="Harga">Harga</option>
                         </select>
                     </div>
                 </div>
-                <div class="row mt-4">
+                <div class="row mt-1">
                     <div class="col-12">
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -77,27 +77,10 @@
                         </div>
                     </div>
                 </div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-end mt-sm-3">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <!-- Confirm Payment Table End -->
+                <!-- Confirm Payment Table End -->
+                <div class="wrapper w-100 d-flex justify-content-end">
+                    {{$project->links()}}
+                </div>
 
         <!-- Content End -->
 

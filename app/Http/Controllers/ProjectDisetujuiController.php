@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ProjectDisetujuiController extends Controller
 {
-    public function disetujui() {
+    public function disetujui(Request $request) {
         $admin = User::where('role', 'admin')->first();
-        $project = proreq::where('status','setuju')->get();
+        $keyword = $request->searchKeyword;
+        $project = proreq::where('status','setuju')->where('napro', 'LIKE', '%'.$keyword.'%')->paginate(3);
         return view('Admin.project-disetujui', [
             'project' => $project,
             'admin' => $admin
@@ -35,13 +36,20 @@ class ProjectDisetujuiController extends Controller
             'progress' => $progress,
             'fitur' => $fitur,
             'chats' => $chats,
-            'userid' => $userid,
+            'done' => $done,
             'admin' =>$admin
         ]);
     }
 
     public function statusFitur(Request $request) {
         $status = Fitur::find($request->fitur_id);
+        $status->update([
+            'status' => $request->status
+        ]);
+    }
+
+    public function allStatusFitur(Request $request) {
+        $status = Fitur::where('project_id', $request->project_id);
         $status->update([
             'status' => $request->status
         ]);
@@ -76,10 +84,9 @@ class ProjectDisetujuiController extends Controller
 
     public function disetujuiClient() {
         $client = User::where('role', 'client')->first();
-        $project = proreq::all();
         $sosmed = Sosmed::all();
-        $data = proreq::where('status','setuju')->get();
-        return view('Client.disetujui', compact('project','data', 'sosmed','client'));
+        $project = Proreq::where('status','setuju')->get();
+        return view('Client.disetujui', compact('project', 'sosmed','client'));
     }
 
     public function detailDisetujuiClient($id) {

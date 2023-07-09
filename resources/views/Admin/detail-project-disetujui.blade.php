@@ -86,7 +86,7 @@
                                     <tr>
                                         <th scope="col" style="width:5em">
                                             <div class="form-check">
-                                                <input class="form-check-input master-checkbox text-center" onchange="toggleCheckboxes(this)" type="checkbox" value="" id="myCheckbox">
+                                                <input class="form-check-input master-checkbox text-center" onchange="doneAllFeatures({{ $detail->id }})" type="checkbox" value="" id="masterCheckbox" {{ (count($fitur) == $done) ? 'checked' : '' }}>
                                             </div>
                                         </th>
                                         <th scope="col">Nama Fitur</th>
@@ -99,7 +99,7 @@
                                         @foreach ($fitur as $f)
                                             <tr>
                                                 <td class="text-center">
-                                                    <div class="form-check">
+                                                    <div class="form-check"> 
                                                         <input class="form-check-input child-checkbox" type="checkbox" id="checkFitur" onchange="statusFitur({{ $f->id }})" {{ ($f->status == 'selesai') ? 'checked' : '' }}>
                                                     </div>
                                                 </td>
@@ -145,14 +145,6 @@
                                     @endif
                                 </tbody>
                             </table>
-                            <script>
-                                function toggleCheckboxes(masterCheckbox) {
-                                    var checkboxes = document.getElementsByClassName('child-checkbox');
-                                    for (var i = 0; i < checkboxes.length; i++) {
-                                        checkboxes[i].checked = masterCheckbox.checked;
-                                    }
-                                }
-                            </script>
                         </div>
                     </div>
                 </div>
@@ -187,7 +179,7 @@
                     <form action="{{ route('done-project') }}" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button class="btn btn-primary btn-sm" id="projectDoneBtn"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                        <button class="btn btn-primary btn-sm" id="projectDoneBtn" {{ (count($fitur) !== $done) ? 'disabled' : '' }}><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                 </div>
 
