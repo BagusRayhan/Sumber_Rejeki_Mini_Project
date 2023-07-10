@@ -142,8 +142,9 @@
                                 </td>
                                 <td class="text-center">
                                 @if ($client2->statusbayar == 'lunas')
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#strukPembayaranModal" class="btn btn-warning text-white btn-sm" style="background-color: none">
-                                    <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk</button>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#struk" data-bs-id="{{ $client2->id }}" data-bs-nama="{{ $client2->napro }}" data-bs-harga="{{ $client2->harga }}" data-bs-tanggal="{{ $client2->tanggalpembayaran }}" data-bs-tanggal2="{{ $client2->tanggalpembayaran2 }}" data-bs-metode="{{ $client2->metodepembayaran }}" data-bs-metode2="{{ $client2->metodepembayaran2 }}" class="btn btn-warning struk text-white btn-sm" style="background-color: none">
+                                        <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk
+                                    </button>
                                 @elseif ($client2->statusbayar == 'belum lunas')
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" data-id="{{ $client2->id }}" data-napro="{{ $client2->napro }}"  data-harga="{{ $client2->harga }}" data-tanggalpembayaran="{{ $client2->tanggalpembayaran }}" data-metodepembayaran="{{ $client2->metodepembayaran }}" class="btn btn-primary btn-bayar btn-sm" style="background-color: none">
                                     <i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button>
@@ -239,8 +240,8 @@
                            <input type="datetime" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="tgl-bayar"  disabled>
                        </div>
                        <div style="display: flex; justify-content: space-between;">
-                           <h6>Metode Pembayaran:</h6>
-                           <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="metode"  disabled>
+                            <h6>Metode Pembayaran:</h6>
+                            <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="metodepembayaran" disabled>
                        </div>
                <br>
            </div>
@@ -301,49 +302,161 @@
   </div>
 </div>
 
+    
+        <div class="modal fade" id="struk" tabindex="-1" aria-hidden="true">
+            <div class="myModal">
+            <div class="modal-dialog modal-dialog-centered" style="width: 22em">
+            <div class="modal-content">
+                <div class="modal-header p-2">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex mt-0 pt-0 justify-content-center">
+                        <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/success.png') }}" alt="">
+                    </div>
+                    <p class="text-center mt-3">Pembayaran Berhasil!</p>
+                    <h4 class="fw-bold text-center mt-1 border-bottom border-dark pb-2" id="napro-awall"></h4>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-grid">
+                            <p class="text-center">Pembayaran Awal</p>
+                            <p class="fw-bold text-center pembayaran-awal"></p>
+                        </div>
+                        <div class="d-grid">
+                            <p class="text-center">Pembayaran Awal</p>
+                            <p class="fw-bold text-center pembayaran-akhir"></p>
+                        </div>
+                    </div>
+                    <div class="container m-0 p-0">
+                    <div class="d-flex justify-content-between">
+                        <p class="text-secondary fs-10">Tanggal Pembayaran Awal</p>
+                        <p id="tgl-bayarr"></p>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <p class="text-secondary fs-10">Tanggal Pembayaran Akhir</p>
+                        <p id="tgl-bayarr2"></p>
+                    </div>
+                        <div class="d-flex pb-0 justify-content-between">
+                            <p class="text-secondary fs-10">Metode Pembayaran Awal</p>
+                            <p id="metodepembayarann"></p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-secondary fs-10">Metode Pembayaran Akhir</p>
+                            <p id="metodepembayarann2"></p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-secondary fs-10">Biaya Tambahan</p>
+                            <p>-</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-secondary fs-10">Total Bayar</p>
+                            <p id="harga-proo"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button id="printBtn" class="btn btn-primary w-100 fw-bold"><i class="fa-solid fa-print"></i> Cetak PDF</button>
+                </div>
+            </div>
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+            <script>
+                document.getElementById('printBtn').addEventListener('click', function() {
+                  // Logika untuk mencetak PDF modal
+
+                  // Contoh: Menggunakan window.print() untuk mencetak halaman saat ini
+                  window.print();
+                });
+              </script>
+        </div>
+        </div>
+
 <script>
-  $(document).ready(function() {
+        var strukModal = document.getElementById('struk');
+        strukModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var id = button.getAttribute('data-bs-id'); 
+        var nama = button.getAttribute('data-bs-nama'); 
+        var harga = button.getAttribute('data-bs-harga'); 
+        var tanggal = button.getAttribute('data-bs-tanggal');
+        var tanggal2 = button.getAttribute('data-bs-tanggal2');
+        var metode = button.getAttribute('data-bs-metode'); 
+        var metode2 = button.getAttribute('data-bs-metode2'); 
+
+        var formattedTanggal = moment(tanggal).format('YYYY-MM-DD');
+        var formattedTanggal2 = moment(tanggal2).format('YYYY-MM-DD');
+
+        var hargaSetengah = harga / 2;
+
+        var namaElem = strukModal.querySelector('#napro-awall');
+        var tanggalElem = strukModal.querySelector('#tgl-bayarr');
+        var tanggal2Elem = strukModal.querySelector('#tgl-bayarr2');
+        var metodeElem = strukModal.querySelector('#metodepembayarann');
+        var metode2Elem = strukModal.querySelector('#metodepembayarann2');
+        var hargaElem = strukModal.querySelector('#harga-proo');
+        var pembayaranAwalElem = strukModal.querySelector('.pembayaran-awal');
+        var pembayaranAkhirElem = strukModal.querySelector('.pembayaran-akhir');
+
+        namaElem.textContent = nama;
+        tanggalElem.textContent = formattedTanggal;
+        tanggal2Elem.textContent = formattedTanggal2;
+        metodeElem.textContent = metode;
+        metode2Elem.textContent = metode2;
+        hargaElem.textContent = harga;
+        pembayaranAwalElem.textContent = hargaSetengah;
+        pembayaranAkhirElem.textContent = hargaSetengah;
+    });
+</script>
+
+<script>
+$(document).ready(function() {
     $('.btn-bayar').click(function() {
-      var napro = $(this).data('napro');
-      var harga = $(this).data('harga');
-      $('#namaProject').val(napro);
-      $('#hargaProject').val(harga);
-      $('#Modalbayar').modal('show');
+        var napro = $(this).data('napro');
+        var harga = $(this).data('harga');
+        var tglBayar = $(this).data('tanggalpembayaran');
+        var metodepembayaran = $(this).data('metodepembayaran');
+
+        var setengahHarga = harga / 2;
+
+        $('#namaProject').val(napro);
+        $('#hargaProject').val(setengahHarga);
+        $('#tgl-bayar').val(tglBayar);
+        $('#metodepembayaran').val(metodepembayaran);
+        $('#Modalbayar').modal('show');
     });
 
-        $('.bayar-awal').click(function() {
+    $('.bayar-awal').click(function() {
         var napro = $('#namaProject').val();
         var harga = $('#hargaProject').val();
-        var tglBayar = $(this).data('tanggalpembayaran');
-        var metode = $(this).data('metodepembayaran');
-        
-        $('#napro-awal').val(napro);
-        $('#harga-pro').val(harga);
-        $('#tgl-bayar').val(tglBayar);
-        $('#metode').val(metode);
-        $('#modalawal').modal('show');
-        });
 
+        // Menghitung setengah dari total harga
+        var setengahHarga = harga / 2;
+
+        $('#napro-awal').val(napro);
+        $('#harga-pro').val(harga); // Mengisi input harga dengan setengahHarga
+        $('#tgl-bayar').val(tglBayar);
+        $('#metodepembayaran').val(metodepembayaran);
+        $('#modalawal').modal('show');
+    });
 
     $('.pilih-metode').click(function() {
-      var napro = $('#namaProject').val();
-      var harga = $('#hargaProject').val();
-      $('#namaProjectCash').val(napro);
-      $('#hargaProjectCash').val(harga);
+        var napro = $('#namaProject').val();
+        var harga = $('#hargaProject').val();
 
-      // Memperbarui URL action pada form
-      var projectId = '{{ $bayar2->firstWhere("statusbayar", $client2->statusbayar)->id }}';
-      var form = $('#updateForm');
-      var action = form.attr('action');
-      form.attr('action', action + '/' + projectId);
+        $('#namaProjectCash').val(napro);
+        $('#hargaProjectCash').val(harga);
+
+        var projectId = '{{ $bayar2->firstWhere("statusbayar", $client2->statusbayar)->id }}';
+        var form = $('#updateForm');
+        var action = form.attr('action');
+        form.attr('action', action + '/' + projectId);
     });
-  });
+});
+
 </script>
 
 
-
-
-        <script>
+    <script>
     const selectMetode = document.getElementById('selectMetode');
     const additionalSelectContainer = document.getElementById('additionalSelectContainer');
     const fileInputContainer = document.getElementById('fileInputContainer');
@@ -533,35 +646,31 @@
         fileInputContainer.appendChild(fileInputLabel);
         fileInputContainer.appendChild(fileInput);
 
-// Menambahkan event listener ke select "Pilih Bank"
-bankSelect.addEventListener('change', function () {
-  const selectedBank = this.value;
-console.log(selectedBank)
-  // Menggunakan jQuery untuk mengambil data rekening dari database
-  $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-  $.ajax({
-    url: '/ambilrek',
-    method: 'POST',
-    data: { id: selectedBank },
-    success: function(response) {
-        console.log(response)
-      const rekening = response;
 
-      // Menampilkan data rekening ke dalam input "No.Rekening"
-      inputBank.value = rekening;
-    },
-    error: function(error) {
-      console.error('Error:', error);
-    }
-  });
-});
-
-
+        bankSelect.addEventListener('change', function () {
+        const selectedBank = this.value;
+        console.log(selectedBank)
         
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: '/ambilrek',
+            method: 'POST',
+            data: { id: selectedBank },
+            success: function(response) {
+                console.log(response)
+            const rekening = response;
+
+            inputBank.value = rekening;
+            },
+            error: function(error) {
+            console.error('Error:', error);
+            }
+        });
+        });   
       }
     });
   </script>
@@ -583,74 +692,6 @@ console.log(selectedBank)
         }
        </style>
 
-        <div class="modal fade" id="strukPembayaranModal" tabindex="-1" aria-hidden="true">
-            <div class="myModal">
-            <div class="modal-dialog modal-dialog-centered" style="width: 22em">
-            <div class="modal-content">
-                <div class="modal-header p-2">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="d-flex mt-0 pt-0 justify-content-center">
-                        <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/success.png') }}" alt="">
-                    </div>
-                    <p class="text-center mt-3">Pembayaran Berhasil!</p>
-                    <h4 class="fw-bold text-center mt-1 border-bottom border-dark pb-2"></h4>
-                    <div class="d-flex justify-content-between">
-                        <div class="d-grid">
-                            <p class="text-center">Pembayaran Awal</p>
-                            <p class="fw-bold text-center">2.500.000</p>
-                        </div>
-                        <div class="d-grid">
-                            <p class="text-center">Pembayaran Awal</p>
-                            <p class="fw-bold text-center">2.500.000</p>
-                        </div>
-                    </div>
-                    <div class="container m-0 p-0">
-                    <div class="d-flex justify-content-between">
-                        <p class="text-secondary fs-10">Tanggal Pembayaran Awal</p>
-                        <p></p>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <p class="text-secondary fs-10">Tanggal Pembayaran Akhir</p>
-                        <p ></p>
-                    </div>
-                        <div class="d-flex pb-0 justify-content-between">
-                            <p class="text-secondary fs-10">Metode Pembayaran Awal</p>
-                            <p></p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-secondary fs-10">Metode Pembayaran Akhir</p>
-                            <p></p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-secondary fs-10">Biaya Tambahan</p>
-                            <p>-</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-secondary fs-10">Total Bayar</p>
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                <button id="printBtn" class="btn btn-primary w-100 fw-bold"><i class="fa-solid fa-print"></i> Cetak PDF</button>
-                </div>
-            </div>
-            </div>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-            <script>
-                document.getElementById('printBtn').addEventListener('click', function() {
-                  // Logika untuk mencetak PDF modal
-
-                  // Contoh: Menggunakan window.print() untuk mencetak halaman saat ini
-                  window.print();
-                });
-              </script>
-
-        </div>
-        </div>
 <div class="d-flex justify-content-end">
     {{ $bayar2->links() }}
 </div>

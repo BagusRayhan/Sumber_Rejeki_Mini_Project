@@ -179,8 +179,11 @@
     $('.btn-bayar').click(function() {
       var napro = $(this).data('napro');
       var harga = $(this).data('harga');
+
+      var setengahHarga = harga / 2;
+
       $('#namaProject').val(napro);
-      $('#hargaProject').val(harga);
+      $('#hargaProject').val(setengahHarga);
       $('#Modalbayar').modal('show');
     });
 
@@ -190,7 +193,6 @@
       $('#namaProjectCash').val(napro);
       $('#hargaProjectCash').val(harga);
 
-      // Memperbarui URL action pada form
       var projectId = '{{ $data->firstWhere("statusbayar", $item->statusbayar)->id }}';
       var form = $('#updateForm');
       var action = form.attr('action');
@@ -199,7 +201,7 @@
   });
 </script>
 
-                 <script>
+<script>
     const selectMetode = document.getElementById('selectMetode');
     const additionalSelectContainer = document.getElementById('additionalSelectContainer');
     const fileInputContainer = document.getElementById('fileInputContainer');
@@ -207,16 +209,13 @@
     selectMetode.addEventListener('change', function () {
       const selectedValue = this.value;
 
-      // Hapus select, input file, dan input text sebelumnya jika ada
       additionalSelectContainer.innerHTML = '';
       fileInputContainer.innerHTML = '';
 
       if (selectedValue === 'ewallet') {
-        // Buat label "Layanan" baru
         const layananLabel = document.createElement('label');
         layananLabel.textContent = 'Layanan';
 
-        // Buat select "Layanan" baru
         const layananSelect = document.createElement('select');
         layananSelect.className = 'form-select form-select-lg mb-3';
         layananSelect.name = 'metode';
@@ -234,11 +233,9 @@
         additionalSelectContainer.appendChild(layananLabel);
         additionalSelectContainer.appendChild(layananSelect);
 
-        // Buat label "Upload Bukti Pembayaran" baru
         const fileInputLabel = document.createElement('label');
         fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
 
-        // Buat input file baru
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
         fileInput.name = 'buktipembayaran';
@@ -261,83 +258,65 @@
           const selectedLayanan = this.value;
           const imageContainer = document.getElementById('imageContainer');
 
-          // Hapus gambar sebelumnya jika ada
           imageContainer.innerHTML = '';
 
           if (selectedLayanan === 'dana') {
-            // Ambil nama file gambar dari database
             const imageFilename = 'dana.png';
 
-            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
             const imageUrl = 'gambar/qr/' + imageFilename;
 
-            // Buat elemen <img> untuk menampilkan gambar
             const imageElement = document.createElement('img');
             imageElement.style.width = '100px';
             imageElement.style.height = '100px';
             imageElement.src = imageUrl;
 
-            // Tambahkan elemen <img> ke dalam container gambar
             imageContainer.appendChild(imageElement);
           }
 
           if (selectedLayanan === 'ovo') {
-            // Ambil nama file gambar dari database
             const imageFilename = 'ovo.png';
 
-            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
             const imageUrl = 'gambar/qr/' + imageFilename;
 
-            // Buat elemen <img> untuk menampilkan gambar
             const imageElement = document.createElement('img');
             imageElement.style.width = '100px';
             imageElement.style.height = '100px';
             imageElement.src = imageUrl;
 
-            // Tambahkan elemen <img> ke dalam container gambar
             imageContainer.appendChild(imageElement);
           }
 
           if (selectedLayanan === 'gopay') {
-            // Ambil nama file gambar dari database
+
             const imageFilename = 'gopay.png';
 
-            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
             const imageUrl = 'gambar/qr/' + imageFilename;
 
-            // Buat elemen <img> untuk menampilkan gambar
             const imageElement = document.createElement('img');
             imageElement.style.width = '100px';
             imageElement.style.height = '100px';
             imageElement.src = imageUrl;
 
-            // Tambahkan elemen <img> ke dalam container gambar
             imageContainer.appendChild(imageElement);
           }
 
           if (selectedLayanan === 'linkaja') {
-            // Ambil nama file gambar dari database
             const imageFilename = 'linkaja.png';
 
-            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
             const imageUrl = 'gambar/qr/' + imageFilename;
 
-            // Buat elemen <img> untuk menampilkan gambar
             const imageElement = document.createElement('img');
             imageElement.style.width = '100px';
             imageElement.style.height = '100px';
             imageElement.src = imageUrl;
 
-            // Tambahkan elemen <img> ke dalam container gambar
             imageContainer.appendChild(imageElement);
           }
         });
       } else if (selectedValue === 'bank') {
-        // Buat label "Bank" baru
         const bankLabel = document.createElement('label');
         bankLabel.textContent = 'Bank';
 
-        // Buat select "Bank" baru
         const bankSelect = document.createElement('select');
         bankSelect.className = 'form-select form-select-lg mb-3';
         bankSelect.name = 'metode';
@@ -351,11 +330,9 @@
           <option value="Bank Mandiri">Bank Mandiri</option>
         `;
 
-        // Buat label "Upload Bukti Pembayaran" baru
         const fileInputLabel = document.createElement('label');
         fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
 
-        // Buat input file baru
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
         fileInput.name = 'buktipembayaran';
@@ -366,11 +343,9 @@
         fileInput.style.width = '50%';
         fileInput.setAttribute('required', true);
 
-        // Buat label "Input Bank" baru
         const inputBankLabel = document.createElement('label');
         inputBankLabel.textContent = 'No.Rekening:';
 
-        // Buat input teks baru untuk memasukkan nama bank
         const inputBank = document.createElement('input');
         inputBank.type = 'text';
         inputBank.name = 'rekening';
@@ -393,7 +368,6 @@
 bankSelect.addEventListener('change', function () {
   const selectedBank = this.value;
 console.log(selectedBank)
-  // Menggunakan jQuery untuk mengambil data rekening dari database
   $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -407,7 +381,6 @@ console.log(selectedBank)
         console.log(response)
       const rekening = response;
 
-      // Menampilkan data rekening ke dalam input "No.Rekening"
       inputBank.value = rekening;
     },
     error: function(error) {
