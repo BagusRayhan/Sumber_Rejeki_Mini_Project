@@ -96,6 +96,14 @@ class IndexcController extends Controller
         $data = Proreq::findOrFail($id);
         $project_id = $data->id;
 
+        $this->validate($request,[
+            'namafitur' => 'required',
+            'deskripsi' => 'required',
+        ], [
+            'namafitur.required' => 'Nama fitur tidak boleh kosong',
+            'deskripsi.required' => 'Isi deskripsi terlebih dahulu',
+        ]);
+
         Fitur::create([
             'project_id' => $project_id,
             'namafitur' => $request->namafitur,

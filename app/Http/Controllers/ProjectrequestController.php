@@ -88,17 +88,23 @@ public function updateproreqa($id)
         ]);
     }
 
-    public function revisiproselesai(){
+    public function revisiproselesai($id)
+    {
         $admin = User::where('role', 'admin')->first();
+        $data = Proreq::find($id);
         return view('Admin.revisiproselesai', [
-            'admin' =>$admin
+            'admin' => $admin,
+            'data' => $data
         ]);
     }
+    
 
-    public function editproselesai(){
+    public function editproselesai($id){
         $admin = User::where('role', 'admin')->first();
+        $data = Proreq::find($id);
         return view('Admin.editproselesai', [
-            'admin' =>$admin
+            'admin' =>$admin,
+            'data' => $data
         ]);
     }
 

@@ -4,6 +4,7 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
 @include('Client.Template.head')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
     .bank-container {
     display: flex;
@@ -73,150 +74,132 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($data as $item)
-                                @if ( $item->statusbayar === 'menunggu pembayaran')
-                                    <tr>
-                                        <td>{{ $item->napro }}</td>
-                                        <td>{{ $item->harga }}</td>
-                                        <td><center><span class="badge text-bg-danger">{{ $item->statusbayar }}</span></td></center>
-                                        <td><center><button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar{{ $item->id }}"  class="btn btn-primary btn-sm"><i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button></center></td>
-                                    </div>
-                                </div>
-                            </div>
-                        </tr>
-                    </tbody>
-                </table>
-                </div>
+@foreach ($data as $item)
+  @if ($item->statusbayar === 'menunggu pembayaran')
+    <tr>
+      <td>{{ $item->napro }}</td>
+      <td>{{ $item->harga }}</td>
+      <td><center><span class="badge text-bg-danger">{{ $item->statusbayar }}</span></td></center>
+      <td>
+        <center>
+          <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" data-id="{{ $item->id }}" data-napro="{{ $item->napro }}" data-harga="{{ $item->harga }}" class="btn btn-primary btn-bayar btn-sm">
+          <i class="fa-solid fa-wallet"></i>&nbsp;Bayar
+          </button>
+        </center>
+      </td>
+    </tr>
+  @endif
+@endforeach
 
-                        <div class="modal fade" id="Modalbayar{{ $item->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                         <div class="modal-dialog modal-dialog-centered" >
-                            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-                            <div class="modal-header" style="border: none;">
-                                <img id="profile-image" src="{{ asset('ProjectManagement/dashmin/img/ikonm.png') }}" alt="" style="width:15%; height:15%; margin-top:1%;">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom:10%;" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body" style="border: none;">
-                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="font-weight: bold;">Pembayaran Awal</h1><br>
-                                        <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
-                                            <h6 style="align-self: center;">Nama Project :</h6>
-                                            <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="{{ $item->napro }}" disabled>
-                                        </div>
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <h6>Harga Pembayaran :</h6>
-                                            <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="{{ $item->harga }}" disabled>
-                                        </div>
-                                <br>
-                            </div>
-                            <center><button class="btn btn-primary" data-bs-target="#cash{{  $item->id}}" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center>
-                            <div class="modal-footer" style="border: none;">
-                            </div>
-                            </div>
-                          </div>
-                        </div>
+@if ($data->isEmpty())
+  <tr>
+    <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
+  </tr>
+@endif
+</tbody>
+</table>
 
-
-                        <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                        <div class="modal-dialog modal-dialog-centered" >
-                            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-                                <div class="modal-header" >
-                                    <div style="display: flex; flex-direction: column;">
-                                        <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
-                                          <div style="display: flex; align-items: center;">
-                                             <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="{{ $item->napro }}" disabled>
-                                          </div>
-                                     <div style="display: flex; align-items: center; margin-top:3%;">
-                                            <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="{{ $item->harga }}" disabled>
-                                        </div>
-                                      </div>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body" style="border: none;">
-                                        <div class="d-grid" style="display: flex; justify-content: space-between;">
-                                            <h6 style="align-self: center;">Metode</h6>
-                                            <div class="dropdown">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Pilih Pembayaran
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#" data-bs-target="#cash" data-bs-toggle="modal">Cash</a></li>
-                                                    <li><a class="dropdown-item" href="#" data-bs-target="#wallet" data-bs-toggle="modal">E-Wallet</a></li>
-                                                    <li><a class="dropdown-item" href="#" data-bs-target="#bank" data-bs-toggle="modal">Bank</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                     <br>
-                                   </div>
-                                 <center><button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;" disabled>Bayar Sekarang</button></center>
-                               <div class="modal-footer" style="border: none;">
-                              </div>
-                             </div>
-                           </div>
-                         </div>
-
-<div class="modal fade" id="cash{{ $item->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <form action="{{ route('update-status-bayar', $data->first()->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-                <div class="modal-header">
-                    <div style="display: flex; flex-direction: column;">
-                        <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
-                        <div style="display: flex; align-items: center;">
-                            <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="{{ $item->napro }}" disabled>
-                        </div>
-                        <div style="display: flex; align-items: center; margin-top:3%;">
-                            <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="{{ $item->harga }}" disabled>
-                        </div>
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" style="border: none;">
-                    <div class="container m-0 p-0 d-flex justify-content-between">
-                        <div class="d-grid" style="display: flex; justify-content: space-between;">
-                            <h6 style="align-self: center; font-size: 16px;">Metode</h6>
-                            <select class="form-select form-select-lg mb-3" name="metodepembayaran" style="width: 200px; height: 40px; font-size: 16px;" aria-label=".form-select-lg example" id="selectMetode">
-                                <option selected class="dropdown-menu" disabled>Pilih Pembayaran</option>
-                                <option value="cash">Cash</option>
-                                <option value="ewallet">E-Wallet</option>
-                                <option value="bank">Bank</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div id="additionalSelectContainer"></div>
-                    <div id="fileInputContainer"></div>
-                    <div id="imageContainer"></div>
-                    <br>
-                </div>
-                <center>
-                    <button type="submit" class="btn btn-primary" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button>
-                </center>
-                <div class="modal-footer" style="border: none;"></div>
-            </div>
-        </form>
+<div class="modal fade" id="Modalbayar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
+      <div class="modal-header" style="border: none;">
+        <img id="profile-image" src="{{ asset('ProjectManagement/dashmin/img/ikonm.png') }}" alt="" style="width:15%; height:15%; margin-top:1%;">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom:10%;" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="border: none;">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="font-weight: bold;">Pembayaran Awal</h1><br>
+        <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
+          <h6 style="align-self: center;">Nama Project :</h6>
+          <input type="text" name="namaProject" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="namaProject" disabled>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <h6>Harga Pembayaran :</h6>
+          <input type="text" name="hargaProject" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="hargaProject" disabled>
+        </div>
+        <br>
+      </div>
+      <center>
+        <button class="btn btn-primary pilih-metode" data-bs-target="#cash" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button>
+      </center>
+      <div class="modal-footer" style="border: none;"></div>
     </div>
+  </div>
 </div>
 
 
+<div class="modal fade" id="cash" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
+      <div class="modal-header">
+        <div style="display: flex; flex-direction: column;">
+          <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
+          <div style="display: flex; align-items: center;">
+            <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
+            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" id="namaProjectCash" disabled>
+          </div>
+          <div style="display: flex; align-items: center; margin-top:3%;">
+            <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
+            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" id="hargaProjectCash" disabled>
+          </div>
+        </div>
 
-
-                        @endif
-                            @empty
-                                <tr>
-                                    <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
-                                </tr>
-                        @endforelse
-                        
-                                                           <div class="d-flex justify-content-end">
-                {{ $data->links() }}
+        <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
+      </div>
+      <form id="updateForm" action="{{ route('update-status-bayar', '') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <div class="modal-body" style="border: none;">
+          <div class="container m-0 p-0 d-flex justify-content-between">
+            <div class="d-grid" style="display: flex; justify-content: space-between;">
+              <h6 style="align-self: center; font-size: 16px;">Metode</h6>
+              <select class="form-select form-select-lg mb-3" name="metodepembayaran" style="width: 200px; height: 40px; font-size: 16px;" aria-label=".form-select-lg example" id="selectMetode">
+                <option selected class="dropdown-menu" disabled>Pilih Pembayaran</option>
+                <option value="cash">Cash</option>
+                <option value="ewallet">E-Wallet</option>
+                <option value="bank">Bank</option>
+              </select>
             </div>
-                    </div>
-                    <!-- Content End -->
-                      <script>
+          </div>
+          <div id="additionalSelectContainer"></div>
+          <div id="fileInputContainer"></div>
+          <div id="imageContainer"></div>
+          <br>
+        </div>
+        <center>
+          <button type="submit" class="btn btn-primary" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button>
+        </center>
+        <div class="modal-footer" style="border: none;"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('.btn-bayar').click(function() {
+      var napro = $(this).data('napro');
+      var harga = $(this).data('harga');
+      $('#namaProject').val(napro);
+      $('#hargaProject').val(harga);
+      $('#Modalbayar').modal('show');
+    });
+
+    $('.pilih-metode').click(function() {
+      var napro = $('#namaProject').val();
+      var harga = $('#hargaProject').val();
+      $('#namaProjectCash').val(napro);
+      $('#hargaProjectCash').val(harga);
+
+      // Memperbarui URL action pada form
+      var projectId = '{{ $data->firstWhere("statusbayar", $item->statusbayar)->id }}';
+      var form = $('#updateForm');
+      var action = form.attr('action');
+      form.attr('action', action + '/' + projectId);
+    });
+  });
+</script>
+
+                 <script>
     const selectMetode = document.getElementById('selectMetode');
     const additionalSelectContainer = document.getElementById('additionalSelectContainer');
     const fileInputContainer = document.getElementById('fileInputContainer');
@@ -432,16 +415,21 @@ console.log(selectedBank)
     }
   });
 });
-
-
-        
       }
     });
   </script>
-  
+        </form>
+    </div>
+</div>
 
-                    
+            <div class="d-flex justify-content-end">
+                {{ $data->links() }}
+            </div>
+                    </div>
+                    <!-- Content End -->
+                
                     @include('Client.Template.script')
+                    @include('Client.Template.footer')
                 </body>
               
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:45:02 GMT -->

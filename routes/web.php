@@ -50,6 +50,7 @@ Route::middleware(['web', 'auth'])->group(function(){
     // Memperbarui fitur
     Route::put('updatefitur/{id}', [IndexcController::class, 'updateFitur'])->name('updatefitur');
 
+    Route::get('ambildata/{id}', [IndexcController::class, 'ambildata'])->name('ambildata');
     Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
     Route::get('sendrequest/{id}', [IndexcController::class, 'sendRequest'])->name('send-request');
     Route::put('updateproreq', [IndexcController::class, 'update'])->name('updateproreq');
@@ -75,7 +76,9 @@ Route::middleware(['web', 'auth'])->group(function(){
     Route::delete('/destroy/{id}', [TolakController::class, 'destroy'])->name('destroy');
     Route::delete('destroyfitur/{id}', [IndexcController::class, 'destroyfitur'])->name('destroyfitur');
     Route::delete('destroyrequest', [IndexcController::class, 'destroyRequest'])->name('destroy-pending-request');
-    Route::delete('deleteproj/{id}', [BayarControllerController::class, 'deleteproj'])->name('deleteproj');
+    Route::delete('deleteproj/{id}', [BayarController::class, 'deleteproj'])->name('deleteproj');
+    Route::delete('/delete.all', [BayarController::class, 'deleteAll'])->name('delete.all');
+
 });
 
 Route::middleware('admin')->group(function(){
@@ -94,7 +97,7 @@ Route::middleware('admin')->group(function(){
     Route::get('pengaturan', [PengaturanController::class, 'pengaturan'])->name('pengaturan');
     Route::post('updatesosmed', [PengaturanController::class, 'updatesosmed'])->name('updatesosmed');
     Route::post('updatekebijakan', [PengaturanController::class, 'updatekebijakan'])->name('updatekebijakan');
-    Route::get('revisiproselesai', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
+    Route::get('revisiproselesai/{id}', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
     Route::get('editproselesai', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
     Route::get('project-disetujui', [ProjectDisetujuiController::class, 'disetujui'])->name('project-disetujui-admin');
     Route::get('detail-project-disetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujui'])->name('detail-disetujui-admin');
