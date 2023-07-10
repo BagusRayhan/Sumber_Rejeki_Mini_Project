@@ -34,14 +34,17 @@
                             </div>
                         </form>
                     </div>
-                    <div class="wrapper d-flex p-2 rounded" style="background: #E9EEF5; width:10em">
-                        <select class="form-select form-select-sm" name="sortProject" aria-label="Default select example">
-                            <option class="bg-white text-dark" selected disabled>Sortir Project</option>
-                            <option class="bg-white text-dark" value="Deadline">Deadline</option>
-                            <option class="bg-white text-dark" value="Fitur">Fitur</option>
-                            <option class="bg-white text-dark" value="Harga">Harga</option>
-                        </select>
-                    </div>
+                    <form action="{{ route('sort-project') }}" method="get">
+                        <div class="wrapper d-flex justify-content-between p-2 rounded" style="background: #E9EEF5; width:12em">
+                            <select class="form-select form-select-sm" style="width: 10em" name="sort" aria-label="Default select example">
+                                <option class="bg-white text-dark" selected disabled>Sortir Project</option>
+                                <option class="bg-white text-dark" value="deadline">Deadline</option>
+                                <option class="bg-white text-dark" value="fitur">Fitur</option>
+                            <option class="bg-white text-dark" value="harga">Harga</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-sort"></i></button>
+                        </div>
+                    </form>
                 </div>
                 <div class="row mt-1">
                     <div class="col-12">
