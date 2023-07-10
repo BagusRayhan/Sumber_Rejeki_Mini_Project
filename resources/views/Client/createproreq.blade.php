@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
@@ -14,7 +14,7 @@
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-        <!-- Spinner End -->
+        <!-- Spinner End --> 
         @include('Client.Template.sidebar')
 
         <!-- Content Start -->
@@ -36,7 +36,7 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                                 <div class="form-group mb-3">
-                                    
+
                                     <label for="input2">Nama Project</label>
                                     <input type="text" class="form-control" id="input2" name="napro" placeholder="Masukkan nama project anda">
                                 </div>

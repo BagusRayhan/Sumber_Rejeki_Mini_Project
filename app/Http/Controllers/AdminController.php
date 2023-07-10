@@ -28,11 +28,19 @@ class AdminController extends Controller
         $tolakCounter = Proreq::where('status', 'tolak')->count();
         $progressCounter = Proreq::where('status', 'setuju')->count();
         $selesaiCounter = Proreq::where('status', 'selesai')->count();
-        $incomePayment = Pembayaran::limit(4)->latest()->get();
-        $incomeProject = proreq::limit(4)->latest()->get();
+
+        $incomePayment = Proreq::whereHas('user', function($query) {
+            $query->where('role', 'client');
+        })->whereIn('statusbayar', ['pending', 'success'])->limit(4)->latest()->get();
+
+        $incomeProject = Proreq::whereHas('user', function($query) {
+            $query->where('role', 'client');
+        })->whereIn('status', ['pending'])->limit(4)->latest()->get();
+
         $message = Chat::whereHas('user', function($query) {
             $query->where('role', 'client');
         })->limit(4)->latest()->get();
+
 
 
         return view('Admin.index', [

@@ -11,4 +11,9 @@ class Pembayaran extends Model
 
     protected $table = 'pembayaran';
     protected $fillable = ['namaclient', 'namaproject', 'hargaproject', 'bukti', 'status'];
+
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
 }

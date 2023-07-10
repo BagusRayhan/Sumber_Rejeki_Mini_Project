@@ -18,7 +18,7 @@ class BayarController extends Controller
             $client = User::where('role', 'client')->first();
             $sosmed = Sosmed::all();
             $keyword = $request->input('keyword');
-            $data = Proreq::where('napro', 'like', '%'.$keyword.'%')->paginate(2);
+            $data = Proreq::where('napro', 'like', '%'.$keyword.'%')->paginate(5);
             $bank = Bank::all();
             $ewallet = EWallet::all();
             return view('Client.bayar', compact('sosmed','client','data','bank','ewallet'));
@@ -94,9 +94,9 @@ public function bayar2client(Request $request)
     $sosmed = Sosmed::all();
     $data = Proreq::all();
     $keyword = $request->input('keyword');
-        $bayar2 = Proreq::whereIn('statusbayar', ['lunas','belum lunas'])
+    $bayar2 = Proreq::whereIn('statusbayar', ['lunas','belum lunas'])
                     ->where('napro', 'like', '%'.$keyword.'%')
-                    ->paginate(1);
+                    ->paginate(5);
     return view('Client.bayar2', compact('sosmed', 'bayar2', 'client', 'data'));
 }
 
@@ -106,5 +106,35 @@ public function deleteproj($id)
     $data->delete();
     return redirect()->route('bayarclient');
 }
+
+public function deleteAll(Request $request)
+{
+    $ids = $request->input('ids');
+
+    if (!is_array($ids)) {
+        return redirect()->back()->with('error', 'Data yang dipilih tidak valid');
+    }
+
+    Proreq::whereIn('id', $ids)->delete();
+
+    return redirect()->back()->with('success', 'Data berhasil dihapus');
+}
+
+
+    public function ambildata($id){
+    // Ambil data proyek berdasarkan ID
+    $proreq = Proreq::findOrFail($id);
+
+    // Buat array dengan data yang akan dikembalikan sebagai respons JSON
+    $data = [
+        'napro' => $proreq->napro,
+        'harga' => $proreq->harga,
+    ];
+
+    // Kembalikan data dalam format JSON
+    return response()->json($data);
+
+}
+
 
 }
