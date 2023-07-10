@@ -29,23 +29,24 @@
           <i class="fa fa-bars"></i>
       </a>
       <div class="navbar-nav align-items-center ms-auto">
-          <div class="nav-item dropdown">
-              <a href="#" class="text-dark h4" data-bs-toggle="dropdown">
-                  <i class="far fa-bell"></i>
-              </a>
+        <div class="nav-item dropdown">
+        <a href="#" class="text-dark h4" data-bs-toggle="dropdown">
+        <i class="far fa-bell">  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+        <span class="visually-hidden"></span>
+        </span></i></a>
               <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                   <a href="#" class="dropdown-item">
-                      <h6 class="fw-normal mb-0">Profile updated</h6>
+                      <h6 class="fw-normal mb-0">Admin</h6>
                       <small>15 minutes ago</small>
                   </a>
                   <hr class="dropdown-divider">
                   <a href="#" class="dropdown-item">
-                      <h6 class="fw-normal mb-0">New user added</h6>
+                      <h6 class="fw-normal mb-0">Admin</h6>
                       <small>15 minutes ago</small>
                   </a>
                   <hr class="dropdown-divider">
                   <a href="#" class="dropdown-item">
-                      <h6 class="fw-normal mb-0">Password changed</h6>
+                      <h6 class="fw-normal mb-0">Admin</h6>
                       <small>15 minutes ago</small>
                   </a>
                   <hr class="dropdown-divider">
@@ -59,7 +60,37 @@
               <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
 
                 <button type="button" class="dropdown-item" id="profile-btn" data-bs-toggle="modal" data-bs-target="#mymodal">My Profile</button>
-                  <a href="{{ route('logout') }}" class="dropdown-item">Log Out</a>
+                 <a href="{{ route('logout') }}" onclick="konfirmasi(event)" class="dropdown-item">Log Out</a>
+
+                <script>
+                    function konfirmasi(event) {
+                        event.preventDefault(); // Mencegah perilaku default dari tautan
+
+                        Swal.fire({
+                            title: 'Apakah Anda yakin?',
+                            text: 'Ingin Logout',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Aksi yang akan dijalankan jika pengguna menekan tombol "Ya"
+                                window.location.href = event.target.href; // Melakukan pengalihan ke URL logout
+
+                            } else {
+                                // Aksi yang akan dijalankan jika pengguna menekan tombol "Batal"
+                                Swal.fire(
+                                    'Gagal',
+                                    'Logout Gagal',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                </script>
               </div>
           </div>
       </div>

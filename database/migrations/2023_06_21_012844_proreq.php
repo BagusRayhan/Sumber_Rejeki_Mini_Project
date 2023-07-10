@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('nama')->nullable();
             $table->string('napro')->nullable();
             $table->string('progress')->nullable();
-            $table->string('bukti')->nullable();
+            $table->string('dokumen')->nullable();
+            $table->dateTime('estimasi')->nullable();
             $table->dateTime('deadline')->nullable();
             $table->string('status')->nullable();
             $table->integer('harga')->nullable();
@@ -28,7 +29,11 @@ return new class extends Migration
             $table->string('metodepembayaran')->nullable();
             $table->string('metode')->nullable();
             $table->string('buktipembayaran')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
+            $table->dateTime('tanggalpembayaran')->nullable();
+            $table->string('metodepembayaran2')->nullable();
+            $table->string('metode2')->nullable();
+            $table->string('buktipembayaran2')->nullable();
+            $table->dateTime('tanggalpembayaran2')->nullable();
             $table->timestamps();
         });
     }

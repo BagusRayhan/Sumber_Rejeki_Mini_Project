@@ -45,16 +45,14 @@ Route::middleware(['web', 'auth'])->group(function(){
     Route::get('showproj', [IndexcController::class, 'showproj'])->name('showproj');
     Route::post('simpanpro', [IndexcController::class, 'simpann'])->name('simpanpro');
     Route::post('simpanfitur/{id}', [IndexcController::class, 'simpannn'])->name('simpanfitur');
-
     // Menampilkan form modal
-Route::get('fitur/{id}/edit', [IndexcController::class, 'showFormModal'])->name('fituredit');
-
-// Memperbarui fitur
+    Route::get('fitur/{id}/edit', [IndexcController::class, 'showFormModal'])->name('fituredit');
+    // Memperbarui fitur
     Route::put('updatefitur/{id}', [IndexcController::class, 'updateFitur'])->name('updatefitur');
 
-    Route::get('requestclient', [IndexcController::class, 'requestclient'])->name('requestclient');
     Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
-    Route::put('updateproreq/{id}', [IndexcController::class, 'update'])->name('updateproreq');
+    Route::get('sendrequest/{id}', [IndexcController::class, 'sendRequest'])->name('send-request');
+    Route::put('updateproreq', [IndexcController::class, 'update'])->name('updateproreq');
     Route::post('simpandesk', [IndexcController::class, 'simpand'])->name('simpandesk');
     Route::get('setujuclient', [ProjectDisetujuiController::class, 'disetujuiClient'])->name('setujuclient');
     Route::get('selesaiclient', [SelesaiController::class, 'selesaiclient'])->name('selesaiclient');
@@ -62,15 +60,22 @@ Route::get('fitur/{id}/edit', [IndexcController::class, 'showFormModal'])->name(
     Route::get('ditolakclient', [TolakController::class, 'ditolakclient'])->name('ditolakclient');
     Route::get('bayarclient', [BayarController::class, 'bayarclient'])->name('bayarclient');
     Route::get('bayar2client', [BayarController::class, 'bayar2client'])->name('bayar2client');
+    Route::post('ambilrek', [BayarController::class, 'ambilrek'])->name('ambilrek');
+    Route::put('update-status-bayar/{id}', [BayarController::class, 'updatebayar'])->name('update-status-bayar');
+    Route::put('update-status-bayarakhir/{id}', [BayarController::class, 'updatebayarakhir'])->name('update-status-bayarakhir');
     Route::get('detailsetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujuiClient'])->name('detailsetujui');
+    Route::get('downloadsuppdocsclient/{dokumen?}', [ProjectrequestController::class, 'downloadSuppDocs'])->name('download-suppdocs-client');
     Route::post('detailsetujui', [ProjectDisetujuiController::class, 'projectChatClient'])->name('project-chat-client');
     Route::get('revisiselesai', [SelesaiController::class, 'revisiselesai'])->name('revisiselesai');
     Route::get('revisibutton/{id}', [SelesaiController::class, 'revisibutton'])->name('revisibutton');
     Route::get('detail-revisi-client/{id}', [SelesaiController::class, 'detail'])->name('detail-revisi-client');
+    Route::post('ajukan-revisi-client', [SelesaiController::class, 'ajukanRevisi'])->name('ajukan-revisi-client');
     Route::put('update-status/{id}', [SelesaiController::class, 'updatestatus'])->name('update-status');
     Route::put('update-statuss/{id}', [SelesaiController::class, 'updatestatuss'])->name('update-statuss');
     Route::delete('/destroy/{id}', [TolakController::class, 'destroy'])->name('destroy');
     Route::delete('destroyfitur/{id}', [IndexcController::class, 'destroyfitur'])->name('destroyfitur');
+    Route::delete('destroyrequest', [IndexcController::class, 'destroyRequest'])->name('destroy-pending-request');
+    Route::delete('deleteproj/{id}', [BayarControllerController::class, 'deleteproj'])->name('deleteproj');
 });
 
 Route::middleware('admin')->group(function(){
@@ -79,9 +84,10 @@ Route::middleware('admin')->group(function(){
     Route::put('/admin/update-profile', [AdminController::class, 'updateProfile'])->name('admin.updateProfile');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('detailproreq/{id}', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
+    Route::get('downloadsuppdocs/{dokumen?}', [ProjectrequestController::class, 'downloadSuppDocs'])->name('download-suppdocs');
     Route::put('simpanharga/{id}', [ProjectrequestController::class, 'simpanharga'])->name('simpanharga');
     Route::put('alasantolak', [ProjectrequestController::class, 'alasantolak'])->name('alasantolak');
-    Route::get('updateproreqa/{id}', [ProjectrequestController::class, 'updateproreqa'])->name('updateproreqa');
+    Route::put('/update-proreq/{id}', [ProjectrequestController::class, 'updateproreqa'])->name('update-proreq');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('projectselesai', [ProjectrequestController::class, 'projectselesai'])->name('projectselesai');
     Route::resource('projectselesai' , App\Http\Controllers\ProjectselesaiController::class);
@@ -92,13 +98,16 @@ Route::middleware('admin')->group(function(){
     Route::get('editproselesai', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
     Route::get('project-disetujui', [ProjectDisetujuiController::class, 'disetujui'])->name('project-disetujui-admin');
     Route::get('detail-project-disetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujui'])->name('detail-disetujui-admin');
+    Route::post('update-project-selesai', [ProjectDisetujuiController::class, 'doneProject'])->name('done-project');
     Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');
     Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
-    Route::put('pembayaran-pending', [AdminBayarController::class, 'setujuiPembayaran'])->name('setujui-pembayaran');
+    Route::post('/setujui-pembayaran/{id}', [AdminBayarController::class, 'setujuiPembayaran'])->name('setujui-pembayaran');
+    Route::post('/tolak-pembayaran/{id}', [AdminBayarController::class, 'tolakPembayaran'])->name('tolak-pembayaran');
     Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
     Route::post('detail-project-disetujui', [ProjectDisetujuiController::class, 'projectChat'])->name('project-chat');
     Route::put('estimasi-project', [ProjectDisetujuiController::class, 'upEstimasi'])->name('estimasi-project');
     Route::post('pembayaran-digital/update-bank', [AdminBayarController::class, 'updateBank'])->name('update-bank');
     Route::post('pembayaran-digital', [AdminBayarController::class, 'updateEWallet'])->name('update-ewallet');
-
+    Route::post('statusfitur', [ProjectDisetujuiController::class, 'statusFitur'])->name('status-fitur');
+    Route::post('allstatusfitur', [ProjectDisetujuiController::class, 'allStatusFitur'])->name('all-status-fitur');
 });

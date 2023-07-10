@@ -38,7 +38,6 @@
                                 <tr>
                                     <th scope="col">Nama Project</th>
                                     <th scope="col">Estimasi</th>
-                                    <th scope="col">Progress Project</th>
                                     <th scope="col">Harga Project</th>
                                     <th scope="col" class="text-center">Aksi</th>
                                 </tr>
@@ -48,18 +47,7 @@
                                     @foreach ($project as $pro)
                                         <tr>
                                             <td>{{ $pro->napro }}</td>
-                                            <td>22-Juli-2023 12:00</td>
-                                            <td>
-                                                <div class="col-sm-12 col-xl-5" style="margin-left:2%;">
-                                                    <div class="bg-light rounded h-100 p-10">
-                                                        <div class="pg-bar mb-3">
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                            <td>{{ $pro->estimasi }}</td>
                                             <td>{{ $pro->harga }}</td>
                                             <td class="d-flex justify-content-evenly">
                                                 <a href="/detailsetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
@@ -67,7 +55,9 @@
                                         </tr>
                                     @endforeach
                                 @else
-
+                                    <tr>
+                                        <td class="text-center" colspan="4">Tidak ada data</td>
+                                    </tr>
                                 @endif
                             </tbody>
                         </table>

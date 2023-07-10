@@ -13,29 +13,98 @@ use Illuminate\Support\Facades\DB;
 
 class BayarController extends Controller
 {
-        public function bayarclient()
+        public function bayarclient(Request $request)
         {
             $client = User::where('role', 'client')->first();
             $sosmed = Sosmed::all();
-            $data = Proreq::all();
+            $keyword = $request->input('keyword');
+            $data = Proreq::where('napro', 'like', '%'.$keyword.'%')->paginate(2);
             $bank = Bank::all();
             $ewallet = EWallet::all();
-            $dana = EWallet::where('nama', 'dana')->first();
-            $ovo = EWallet::where('nama', 'ovo')->first();
-            $gopay = EWallet::where('nama', 'gopay')->first();
-            $linkaja = EWallet::where('nama', 'linkaja')->first();
-            $bri = Bank::where('nama','Bank BRI')->first();
-            $bca = Bank::where('nama','Bank BCA')->first();
-            $mandiri = Bank::where('nama','Bank Mandiri')->first();
-            return view('Client.bayar', compact('sosmed','client','data','bank','ewallet', 'dana', 'ovo', 'gopay', 'linkaja','bri','bca','mandiri'));
+            return view('Client.bayar', compact('sosmed','client','data','bank','ewallet'));
         }
 
-        public function bayar2client()
-        {
+        public function ambilrek(Request $request){
+            $rek = Bank::where('nama',$request->id)->first();
+            return $rek->rekening;
+        }
+
+        public function updatebayar(Request $request, $id){
+        $client = User::where('role', 'client')->first();
+        $sosmed = Sosmed::all();
+        $data = Proreq::findOrFail($id);
+
+        if ($request->hasFile('buktipembayaran')) {
+            $file = $request->file('buktipembayaran');
+            $filename = $file->store('gambar/bukti'); 
+            $file->move(public_path() . '/gambar/bukti', $filename);
+            $data->buktipembayaran = $filename;
+        }
+
+        $data->status = null;
+        $data->metodepembayaran = $request->input('metodepembayaran');
+        $data->metode = $request->input('metode');
+        $data->statusbayar = 'pending';
+        $data->tanggalpembayaran = now();
+        $data->save();
+
+        return redirect()->route('bayarclient')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));
+    }
+
+        public function updatebayarakhir(Request $request, $id){
+        $client = User::where('role', 'client')->first();
+        $sosmed = Sosmed::all();
+        $data = Proreq::findOrFail($id);
+
+        if ($request->hasFile('buktipembayaran2')) {
+            $file = $request->file('buktipembayaran2');
+            $filename = $file->store('gambar/bukti'); 
+            $file->move(public_path() . '/gambar/bukti', $filename);
+            $data->buktipembayaran2 = $filename;
+        }
+
+        $data->status = null;
+        $data->metodepembayaran2 = $request->input('metodepembayaran2');
+        $data->metode2 = $request->input('metode2');
+        $data->statusbayar = 'pending';
+        $data->tanggalpembayaran2 = now();
+        $data->save();
+      
+
+        return redirect()->route('bayar2client')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));
+    }
+
+
+            public function updatebayarr(Request $request, $id){
             $client = User::where('role', 'client')->first();
             $sosmed = Sosmed::all();
-            $data = Proreq::all();
-            $bayar2 = transaksi::whereIn('status', ['lunas','belum lunas'])->get();
-            return view('Client.bayar2', compact('sosmed','bayar2','client','data'));
+            $data = Proreq::findOrFail($id);
+
+            $data->status = null;
+            $data->metodepembayaran = $request->input('metodepembayaran');
+            $data->statusbayar = 'pending';
+            $data->save();
+
+            return redirect()->route('bayarclient')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));
         }
+
+public function bayar2client(Request $request)
+{
+    $client = User::where('role', 'client')->first();
+    $sosmed = Sosmed::all();
+    $data = Proreq::all();
+    $keyword = $request->input('keyword');
+        $bayar2 = Proreq::whereIn('statusbayar', ['lunas','belum lunas'])
+                    ->where('napro', 'like', '%'.$keyword.'%')
+                    ->paginate(1);
+    return view('Client.bayar2', compact('sosmed', 'bayar2', 'client', 'data'));
+}
+
+public function deleteproj($id)
+{
+    $data = Proreq::findOrFail($id);
+    $data->delete();
+    return redirect()->route('bayarclient');
+}
+
 }

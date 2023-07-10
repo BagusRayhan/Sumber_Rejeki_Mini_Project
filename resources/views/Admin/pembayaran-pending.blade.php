@@ -61,24 +61,49 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (count($propend))
-                                        @foreach ($propend as $pro)
-                                            <tr>
-                                                <td>{{ $pro->namaclient }}</td>
-                                                <td>{{ $pro->namaproject }}</td>
-                                                <td>{{ $pro->hargaproject }}</td>
-                                                <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal" class="btn btn-primary btn-sm"><i class="fa-solid fa-image"></i></a></td>
-                                                <td class="d-flex justify-content-evenly">
-                                                    <form action="{{ route('setujui-pembayaran') }}" method="post">
-                                                        @csrf
-                                                        @method('put')
-                                                        <input type="hidden" name="idpropend" value="{{ $pro->id }}">
-                                                        <button class="btn btn-primary btn-sm rounded-circle" type="submit"><i class="fa-solid fa-check"></i></button>
-                                                    </form>
-                                                    <a href="#" class="btn btn-danger btn-sm rounded-circle"><i class="fa-solid fa-times"></i></a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                    @if (count($propend) !== 0)
+                                    @foreach ($propend as $pro)
+                                    <tr>
+                                        <td>{{ $pro->nama }}</td>
+                                        <td>{{ $pro->napro }}</td>
+                                        <td>{{ $pro->harga }}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal">
+                                                <i class="fa-solid fa-image"></i>
+                                            </button>
+                                            <div class="modal fade" id="buktiTransaksiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" style="width: 400px">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
+                                                            <img src="gambar/bukti/{{ $pro->buktipembayaran }}" class="w-75">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="d-flex justify-content-evenly">
+                                            <form action="{{ route('setujui-pembayaran', ['id' => $pro->id]) }}" method="POST">
+                                                @csrf
+                                                @method('POST')
+                                                <input type="hidden" name="idpropend" value="{{ $pro->id }}">
+                                                <button class="btn btn-primary btn-sm rounded-circle" type="submit">
+                                                    <i class="fa-solid fa-check"></i>
+                                                </button>
+                                            </form>
+                                            <form action="{{ route('tolak-pembayaran', ['id' => $pro->id]) }}" method="POST">
+                                                @csrf
+                                                @method('POST')
+                                                <input type="hidden" name="idpropend" value="{{ $pro->id }}">
+                                            <button type="submit" class="btn btn-danger btn-sm rounded-circle">
+                                                <i class="fa-solid fa-times"></i>
+                                            </button>
+                                        </form>
+                                        </td>
+                                    </tr>
+                                @endforeach                                                                
                                     @else
                                         <tr>
                                             <td colspan="5" class="text-center">Tidak ada data</td>
@@ -110,21 +135,6 @@
                 </nav>
             </div>
             <!-- Confirm Payment Table End -->
-
-            <!-- Payment Proof Modal Start -->
-            <div class="modal fade" id="buktiTransaksiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" style="width: 400px">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
-                            <img src="{{ asset('ProjectManagement/dashmin/img/bukti-pembayaran.png') }}" class="w-75">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Payment Proof Modal End -->
         <!-- Content End -->
 
     </div>

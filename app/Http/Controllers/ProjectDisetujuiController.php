@@ -13,27 +13,45 @@ use Illuminate\Support\Facades\Auth;
 
 class ProjectDisetujuiController extends Controller
 {
-    public function disetujui() {
+    public function disetujui(Request $request) {
         $admin = User::where('role', 'admin')->first();
-        $project = proreq::where('status','setuju')->get();
+        $keyword = $request->searchKeyword;
+        $project = proreq::where('status','setuju')->where('napro', 'LIKE', '%'.$keyword.'%')->paginate(3);
         return view('Admin.project-disetujui', [
             'project' => $project,
-            'admin' =>$admin
+            'admin' => $admin
         ]);
     }
 
     public function detailDisetujui($id) {
         $admin = User::where('role', 'admin')->first();
         $detail = Proreq::find($id);
-        $fitur = Fitur::all();
+        $fitur = Fitur::where('project_id', $id)->get();
+        $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
+        $progress = (100 / count($fitur)) * $done;
         $chats = Chat::where('project_id', $id)->get();
         $userid = Auth()->user()->id . $id;
         return view('Admin.detail-project-disetujui', [
             'detail' => $detail,
+            'progress' => $progress,
             'fitur' => $fitur,
             'chats' => $chats,
-            'userid' => $userid,
+            'done' => $done,
             'admin' =>$admin
+        ]);
+    }
+
+    public function statusFitur(Request $request) {
+        $status = Fitur::find($request->fitur_id);
+        $status->update([
+            'status' => $request->status
+        ]);
+    }
+
+    public function allStatusFitur(Request $request) {
+        $status = Fitur::where('project_id', $request->project_id);
+        $status->update([
+            'status' => $request->status
         ]);
     }
 
@@ -45,11 +63,18 @@ class ProjectDisetujuiController extends Controller
         return back();
     }
 
+    public function doneProject(Request $request) {
+        $pro = Proreq::find($request->project_id);
+        $pro->update([
+            'status' => 'selesai'
+        ]);
+        return redirect(route('project-disetujui-admin'))->with('success', 'Berhasil menyelesaikan project');
+    }
+
     public function projectChat(Request $request) {
         $id = $request->input('project_id');
-        $userid = Auth()->user()->id . $id;
-        $createChat = Chat::create([
-            'user_id' => $userid,
+        Chat::create([
+            'user_id' => Auth()->user()->id,
             'project_id' => $request->project_id,
             'chat' => $request->chat,
             'chat_time' => $request->chat_time
@@ -59,33 +84,24 @@ class ProjectDisetujuiController extends Controller
 
     public function disetujuiClient() {
         $client = User::where('role', 'client')->first();
-        $project = proreq::all();
         $sosmed = Sosmed::all();
-        $data = proreq::where('status','setuju')->get();
-        return view('Client.disetujui', compact('project','data', 'sosmed','client'));
+        $project = Proreq::where('status','setuju')->get();
+        return view('Client.disetujui', compact('project', 'sosmed','client'));
     }
-
-//    public function detailDisetujuiClient($id) {
-//     $client = User::where('role', 'client')->first();
-//     $detail = proreq::find($id);
-//     $fitur = Fitur::all();
-//     $chats = Chat::all();
-//     $sosmed = Sosmed::all();
-
-//     return view('Client.detailsetujui', compact('detail', 'fitur', 'chats', 'sosmed', 'client'));
-// }
 
     public function detailDisetujuiClient($id) {
         $client = User::where('role', 'client')->first();
-        $userid = Auth()->user()->id . $id;
-        $detail = proreq::find($id);
-        $fitur = Fitur::all();
+        $detail = Proreq::find($id);
+        $fitur = Fitur::where('project_id', $id)->get();
+        $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
+        $progress = (100 / count($fitur)) * $done;
         $chats = Chat::where('project_id', $id)->get();
         $sosmed = Sosmed::all();
         return view('Client.detailsetujui',
         [
-            'userid' => $userid,
+            'userid' => Auth()->user()->id,
             'detail' => $detail,
+            'progress' => $progress,
             'fitur' => $fitur,
             'chats' => $chats,
             'sosmed' => $sosmed,
@@ -95,9 +111,8 @@ class ProjectDisetujuiController extends Controller
 
     public function projectChatClient(Request $request) {
         $projectid = $request->input('project_id');
-        $userid = Auth()->user()->id . $projectid;
-        $createChat = Chat::create([
-            'user_id' => $userid,
+        Chat::create([
+            'user_id' => Auth()->user()->id,
             'project_id' => $projectid,
             'chat' => $request->chat,
             'chat_time' => $request->chat_time

@@ -36,8 +36,7 @@ public function login(Request $request)
         }
     }
     return redirect('/')
-        ->withErrors(['email' => 'Email tidak valid!'])
-        ->withErrors(['password' => 'Password tidak valid!'])
+        ->withErrors(['email' => 'Email atau password tidak cocok!'])
         ->withInput()
         ->with('alert-type', 'error');
 }
@@ -85,7 +84,7 @@ public function create(array $data)
         'nama_perusahaan' => $data['nama_perusahaan'],
         'alamat_perusahaan' => $data['alamat_perusahaan'],
         'no_tlp' => $data['no_tlp'],
-        'profil' => $data['profil'], 
+        'profil' => $data['profil'],
     ]);
 }
 

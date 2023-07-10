@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Proreq;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class EWallet extends Model
 {
@@ -12,4 +13,11 @@ class EWallet extends Model
     protected $table = 'ewallet';
     protected $primaryKey = 'id';
     protected $fillable = ['nama', 'qrcode'];
+
+    public function proreq()
+{
+    return $this->belongsTo(Proreq::class, 'id');
 }
+}
+
+

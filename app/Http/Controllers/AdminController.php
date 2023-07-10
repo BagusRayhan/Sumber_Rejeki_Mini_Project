@@ -15,6 +15,14 @@ use Illuminate\Support\Facades\File;
 class AdminController extends Controller
 {
     public function index(MonthlyUsersChart $chart, AnnualyDoneChart $ychart) {
+        $selesaiProjects = Proreq::where('status', 'selesai')
+        ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+        ->groupBy('month')
+        ->orderBy('month')
+        ->pluck('count')
+        ->toArray();
+
+        $chartData = $chart->build()->addData('Project Selesai', $selesaiProjects);
         $admin = User::where('role', 'admin')->first();
         $clientCounter = User::where('role', 'client')->count();
         $tolakCounter = Proreq::where('status', 'tolak')->count();
@@ -22,15 +30,18 @@ class AdminController extends Controller
         $selesaiCounter = Proreq::where('status', 'selesai')->count();
         $incomePayment = Pembayaran::limit(4)->latest()->get();
         $incomeProject = proreq::limit(4)->latest()->get();
-        $message = Chat::limit(4)->latest()->get();
+        $message = Chat::whereHas('user', function($query) {
+            $query->where('role', 'client');
+        })->limit(4)->latest()->get();
+
 
         return view('Admin.index', [
+            'chart' => $chartData,
             'admin' => $admin,
             'clientCounter' => $clientCounter,
             'tolakCounter' => $tolakCounter,
             'progressCounter' => $progressCounter,
             'selesaiCounter' => $selesaiCounter,
-            'chart' => $chart->build(),
             'ychart' => $ychart->build(),
             'incomePayment' => $incomePayment,
             'incomeProject' => $incomeProject,

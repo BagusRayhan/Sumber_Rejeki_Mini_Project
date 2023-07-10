@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Proreq;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Bank extends Model
 {
@@ -12,4 +13,9 @@ class Bank extends Model
     protected $table = 'bank';
     protected $primaryKey = 'id';
     protected $fillable = ['nama', 'rekening'];
+
+    public function proreq()
+{
+    return $this->belongsTo(Proreq::class, 'id');
+}
 }

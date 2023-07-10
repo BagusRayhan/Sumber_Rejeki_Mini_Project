@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+@php
+    use Carbon\Carbon;
+@endphp
+
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
@@ -161,10 +165,10 @@
                                         <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
                                         <div class="w-100 ms-3">
                                             <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-0">{{ $msg->namaclient }}</h6>
-                                                <small>{{ $msg->hargaproject }}</small>
+                                                <h6 class="mb-0">{{ $msg->user->name }}</h6>
+                                                <small>{{ Carbon::parse($msg->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
                                             </div>
-                                            <span>{{ $msg->namaproject }}</span>
+                                            <span>{{ $msg->chat }}</span>
                                         </div>
                                     </div>
                                 @endforeach

@@ -19,8 +19,9 @@ return new class extends Migration
             $table->unsignedBigInteger('project_id');
             $table->longText('chat');
             $table->dateTime('chat_time');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('project_id')->references('id')->on('proreq')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

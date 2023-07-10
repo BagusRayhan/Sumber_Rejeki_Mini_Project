@@ -2,15 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Bank;
+use App\Models\Chat;
+use App\Models\Fitur;
+use App\Models\EWallet;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class proreq extends Model
 {
     protected $table = "proreq";
     protected $primarykey = "id";
+    protected $dates = ['estimasi'];
     protected $fillable = [
-        'id', 'nama', 'napro','bukti','deadline','status','harga','alasan','statusbayar'
+        'id', 'nama', 'napro','dokumen','estimasi','estimasi','deadline','status','harga','alasan','statusbayar','metodepembayaran','metode','buktipembayaran','tanggalpembayaran'
     ];
 
         public function fitur()
@@ -22,4 +27,17 @@ class proreq extends Model
         return $this->hasMany(Chat::class);
     }
 
+    public function bank()
+    {
+        return $this->hasMany(Bank::class);
+    }
+
+    public function ewallet()
+    {
+        return $this->hasMany(EWallet::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chat;
 use App\Models\Proreq;
 use App\Models\Fitur;
 use App\Models\Sosmed;
@@ -15,13 +16,35 @@ class IndexcController extends Controller
     public function indexclient()
         {
         $client = User::find(Auth::user()->id);
+        $setujuCounter = Proreq::where('status', 'setuju')->count();
+        $tolakCounter = Proreq::where('status', 'tolak')->count();
+        $kerjaCounter = Proreq::where('status', 'setuju')->count();
+        $selesaiCounter = Proreq::where('status', 'selesai')->count();
+        $notifikasi = Proreq::all();
+        $estimasi = Proreq::all();
+        $notif = Chat::all();
+        $pesancht = Chat::whereHas('user', function($query) {
+        $query->where('role', 'admin');
+        })->limit(4)->latest()->get();
         $sosmed = Sosmed::all();
-        return view('Client.index', compact('sosmed','client'));
+        return view('Client.index',[
+
+            'setujuCounter' => $setujuCounter,
+            'tolakCounter' => $tolakCounter,
+            'kerjaCounter' => $kerjaCounter,
+            'selesaiCounter' => $selesaiCounter,
+            'notifikasi' => $notifikasi,
+            'estimasi' => $estimasi,
+            'notif' => $notif,
+            'pesancht' => $pesancht,
+            'sosmed' => $sosmed,
+            'client' => $client
+        ]);
         }
 
     public function drequestclient(){
         $client = User::where('role', 'client')->first();
-        $data = Proreq::all();
+        $data = Proreq::where('status', 'draft')->orWhere('status', 'pending')->get();
         $sosmed = Sosmed::all();
         return view('Client.clientproreq',compact('data','sosmed','client'));
     }
@@ -36,32 +59,24 @@ class IndexcController extends Controller
  public function simpann(Request $request)
 {
     $this->validate($request,[
-        'nama' => 'required|min:5|max:30',
         'napro' => 'required',
         'deadline' => 'required',
     ], [
-        'nama.required' => 'Nama tidak boleh kosong',
         'napro.required' => 'Nama project tidak boleh kosong',
-        'deadline.required' => 'deadline harus terisi',
+        'deadline.required' => 'Isi deadline terlebih dahulu',
     ]);
-
-
-    $data = Proreq::all();
-    $namaFile = null; 
-
-    if ($request->hasFile('bukti')) {
-        $nm = $request->bukti;
-        $namaFile = time() . rand(100, 999) . "." . $nm->getClientOriginalExtension();
-        $nm->move(public_path() . '/gambar', $namaFile);
-    }
-
     $dtUpload = new Proreq();
-$dtUpload->user_id = Auth()->user()->id;
-    $dtUpload->nama = $request->nama;
+    if ($request->has('dokumen')) {
+        $file = $request->file('dokumen');
+        $newFile = $file->hashName();
+        $file->move(public_path('document/'), $newFile);
+        $dtUpload->dokumen = $newFile;
+    }
+    $dtUpload->user_id = Auth()->user()->id;
+    $dtUpload->nama = Auth()->user()->name;
     $dtUpload->napro = $request->napro;
-    $dtUpload->bukti = $namaFile;
+    $dtUpload->status = 'draft';
     $dtUpload->deadline = $request->deadline;
-
     $dtUpload->save();
     $id = $dtUpload->id;
     return redirect()->route('editproreq', ['id' => $id]);
@@ -70,7 +85,9 @@ $dtUpload->user_id = Auth()->user()->id;
 
      public function showproj(Request $request){
         $client = User::where('role', 'client')->first();
-        return view('Client.createproreq',compact('client'));
+        $userid = Auth::user()->id;
+        $username = User::where('id', $userid)->value('name');
+        return view('Client.createproreq',compact('client','username'));
     }
 
     public function simpannn(Request $request, $id)
@@ -89,30 +106,25 @@ $dtUpload->user_id = Auth()->user()->id;
     }
 
 
-    public function update(Request $request, $id){
-    $ubah = Proreq::findorfail($id);
-    $awal = $ubah->bukti;
-
-    if ($request->hasFile('bukti')) {
-        if (File::exists(public_path().'/gambar/'.$awal)) {
-            File::delete(public_path().'/gambar/'.$awal);
+    public function update(Request $request){
+        $upProject = [];
+        $id = $request->projectid;
+        $project = Proreq::findorfail($id);
+        if ($request->has('dokumen')) {
+            if (File::exists(public_path().'document/' . $project->dokumen)) {
+                unlink(public_path().'document/' . $project->dokumen);
+            }
+            $newFile = $request->file('dokumen');
+            $newDocs = $newFile->hashName();
+            $newFile->move(public_path('document/'), $newDocs);
+            $upProject['dokumen'] = $newDocs;
         }
-
-        $awal = $request->bukti->hashName();
-        $request->bukti->move(public_path().'/gambar', $awal);
-    }
-
-    $data = [
-        'nama' => $request['nama'],
-        'napro' => $request['napro'],
-        'bukti' => $awal,
-        'deadline' => $request['deadline'],
-        'status' => 'pending',
-    ];
-
-    $ubah->update($data);
-    $project_id = $ubah->id;
-    return redirect('drequestclient')->with('success', 'Project Berhasil dikirim!');
+        $upProject['nama'] = Auth()->user()->name;
+        $upProject['napro'] = $request->napro;
+        $upProject['deadline'] = $request->deadline;
+        $upProject['status'] = $request->status;
+        $project->update($upProject);
+        return redirect('drequestclient')->with('success', 'Project Berhasil dikirim!');
     }
 
 
@@ -123,6 +135,19 @@ $dtUpload->user_id = Auth()->user()->id;
         $dataa = Fitur::where('project_id', $id)->get();
 
         return view('Client.editproreq',compact('data','sosmed','dataa','client'));
+    }
+
+    public function sendRequest($id) {
+        $pro = Proreq::find($id);
+        $pro->update([
+            'status' => 'pending'
+        ]);
+        return redirect(route('drequestclient'))->with('success', 'data berhasil dikirim');
+    }
+
+    public function destroyRequest(Request $request) {
+        Proreq::find($request->project_id)->delete();
+        return back();
     }
 
 public function showFormModal($id)
@@ -147,7 +172,7 @@ public function updateFitur(Request $request, $id)
 public function updateProfile(Request $request)
 {
     $updateProfile = [];
-    $client = User::where('role', 'client')->first();
+    $client = User::find(Auth::user()->id);
 
     if ($request->has('fileInputA')) {
         if (File::exists(public_path('gambar/user-profile/' . $client->profil))) {

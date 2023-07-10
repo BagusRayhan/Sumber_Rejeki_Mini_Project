@@ -30,12 +30,37 @@
                         <label for="exampleFormControlInput1" class="form-label">Nama Project</label>
                         <input type="text" value="{{ $detail->napro }}" class="form-control" placeholder="" disabled>
                     </div>
-                    <div class="form-group" style="width:480px">
-                        <label for="exampleFormControlInput1" class="form-label">Dokumen Pendukung</label>
-                        <input type="text" value="{{ $detail->bukti }}" class="form-control" placeholder="" disabled>
+                    <div class="form-group" style="width:480px;">
+                        <label class="form-label">Dokumen Pendukung</label>
+                        <div class="input-group">
+                            <button type="button" class="form-control text-start" data-bs-toggle="modal" data-bs-target="#suppDocs" aria-describedby="suppdocsBtn">
+                                <i class="fa-solid fa-eye pe-2"></i> lihat dokumen
+                            </button>
+                            @if ($detail->dokumen == null)
+                                <a onclick="emptyDocsDown()" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
+                            @else
+                                <a href="{{ route('download-suppdocs', ['dokumen' => $detail->dokumen]) }}" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
+                            @endif
+                        </div>
+                        <div class="modal fade" id="suppDocs" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Dokumen Pendukung</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <iframe class="w-100" src="{{ asset('document/'.$detail->dokumen) }}" frameborder="0" style="height: 400px"></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="mb-3 d-flex justify-content-between">
+                <div class="mb-5 d-flex justify-content-between">
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Deadline</label>
                         <input type="datetime-local" value="{{ $detail->deadline }}" class="form-control" placeholder="" disabled>
@@ -45,7 +70,15 @@
                         <input type="text" value="{{ $detail->harga }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
-                <div class="row mt-4">
+                <div class="wrapper">
+                    <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($progress) }} %</span></h6>
+                    <div class="pg-bar">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -53,7 +86,7 @@
                                     <tr>
                                         <th scope="col" style="width:5em">
                                             <div class="form-check">
-                                                <input class="form-check-input master-checkbox text-center" onchange="toggleCheckboxes(this)" type="checkbox" value="" id="myCheckbox">
+                                                <input class="form-check-input master-checkbox text-center" onchange="doneAllFeatures({{ $detail->id }})" type="checkbox" value="" id="masterCheckbox" {{ (count($fitur) == $done) ? 'checked' : '' }}>
                                             </div>
                                         </th>
                                         <th scope="col">Nama Fitur</th>
@@ -66,8 +99,8 @@
                                         @foreach ($fitur as $f)
                                             <tr>
                                                 <td class="text-center">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input child-checkbox" type="checkbox" value="" id="myCheckbox">
+                                                    <div class="form-check"> 
+                                                        <input class="form-check-input child-checkbox" type="checkbox" id="checkFitur" onchange="statusFitur({{ $f->id }})" {{ ($f->status == 'selesai') ? 'checked' : '' }}>
                                                     </div>
                                                 </td>
                                                 <td>{{ $f->namafitur }}</td>
@@ -112,20 +145,12 @@
                                     @endif
                                 </tbody>
                             </table>
-                            <script>
-                                function toggleCheckboxes(masterCheckbox) {
-                                    var checkboxes = document.getElementsByClassName('child-checkbox');
-                                    for (var i = 0; i < checkboxes.length; i++) {
-                                        checkboxes[i].checked = masterCheckbox.checked;
-                                    }
-                                }
-                            </script>
                         </div>
                     </div>
                 </div>
-                <div class="my-3 d-flex justify-content-between" style="width: 12em">
-                    <a href="/project-disetujui" class="btn btn-primary p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
-                    <button class="btn btn-warning text-white p-1" data-bs-toggle="modal" data-bs-target="#estimasiModal"><i class="fa-solid fa-clock-rotate-left"></i> Estimasi</button>
+                <div class="my-3 d-flex justify-content-between" style="width: 16em">
+                    <a href="/project-disetujui" class="btn btn-secondary btn-sm p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
+                    <button class="btn btn-warning btn-sm text-white p-1" data-bs-toggle="modal" data-bs-target="#estimasiModal"><i class="fa-solid fa-clock-rotate-left"></i> Estimasi</button>
                     <!-- Modal Box Estimasi Start -->
                     <div class="modal fade" id="estimasiModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -150,8 +175,13 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Modal Box Estimasi End-->
+                    <form action="{{ route('done-project') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="project_id" value="{{ $detail->id }}">
+                        <button class="btn btn-primary btn-sm" id="projectDoneBtn" {{ (count($fitur) !== $done) ? 'disabled' : '' }}><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                    </form>
                 </div>
-                <!-- Modal Box Estimasi End-->
 
                 <div class="container my-5">
                     <div class="panel" style="height: 90vh;">
@@ -178,9 +208,9 @@
                                     @if (count($chats) > 0)
                                         @foreach ($chats as $cht)
                                         <div class="col">
-                                            <div class="{{ ($cht->user_id == $userid ) ? 'bubble-chat-admin float-end bg-primary text-white' : 'bubble-chat-client float-start bg-white'}} d-flex flex-column mb-2 py-2 px-3 rounded-3" style="max-width: 33em; font-size: 14px">
+                                            <div class="{{ ($cht->user_id == Auth()->user()->id ) ? 'bubble-chat-admin float-end bg-primary text-white' : 'bubble-chat-client float-start bg-white'}} d-flex flex-column mb-2 py-2 px-3 rounded-3" style="max-width: 33em; font-size: 14px">
                                                 <p class="messages m-0 p-0">{{ $cht->chat }}</p>
-                                                <label for="" class="{{ ($cht->user_id == $userid) ? 'text-white' : 'text-secondary'}} mt-2" style="font-size: 9px">{{ Carbon::parse($cht->chat_time)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</label>
+                                                <label for="" class="{{ ($cht->user_id == Auth()->user()->id) ? 'text-white' : 'text-secondary'}} mt-2" style="font-size: 9px">{{ Carbon::parse($cht->chat_time)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</label>
                                             </div>
                                         </div>
                                         @endforeach

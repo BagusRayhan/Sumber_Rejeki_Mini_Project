@@ -6,6 +6,7 @@ use App\Models\Bank;
 use App\Models\EWallet;
 use App\Models\User;
 use App\Models\Pembayaran;
+use App\Models\proreq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -13,15 +14,32 @@ class AdminBayarController extends Controller
 {
     public function pending() {
         $admin = User::where('role', 'admin')->first();
-        $propend = Pembayaran::where('status', 'pending')->get();
+        $propend = proreq::where('statusbayar', 'pending')->get();
         return view('Admin.pembayaran-pending', compact('propend', 'admin'));
     }
 
-    public function setujuiPembayaran(Request $request) {
-        $project = Pembayaran::find($request->idpropend);
-        $project->update([
-            'status' => 'disetujui'
-        ]);
+    public function setujuiPembayaran(Request $request, $id) {
+        $project = Proreq::findOrFail($id);
+    
+        $project->status = 'setuju';
+        $project->statusbayar = null;
+    
+        $project->save();
+        
+        return back();
+    }
+
+    public function tolakPembayaran(Request $request, $id) {
+        $projectol = Proreq::findOrFail($id);
+    
+        $projectol->statusbayar = 'menunggu pembayaran';
+        $projectol->metodepembayaran = null;
+        $projectol->metode = null;
+        $projectol->buktipembayaran = null;
+        $projectol->tanggalpembayaran = null;
+    
+        $projectol->save();
+        
         return back();
     }
 
@@ -44,6 +62,12 @@ class AdminBayarController extends Controller
 
     public function updateBank(Request $request) {
         $bank = Bank::findOrFail($request->idrekening);
+        $valid = $request->validate([
+            'rekening' => 'required|numeric'
+        ], [
+            'rekening.required' => 'Rekening tidak boleh kosong',
+            'rekening.numeric' => 'Rekening tidak valid'
+        ]);
         $bank->update([
             'rekening' => $request->rekening
         ]);
@@ -53,12 +77,12 @@ class AdminBayarController extends Controller
     public function updateEWallet(Request $request) {
         $upQR = [];
         $ewallet = EWallet::find($request->idewallet);
+        $request->validate([
+            'qrcode' => 'mimes:jpg,png'
+        ], [
+            'qrcode.mimes' => 'Foto tidak valid',
+        ]);
         if ($request->has('qrcode')) {
-            // $request->validate([
-            //     'qrcode' => 'mimes:jpg,jpeg,png'
-            // ], [
-            //     'qrcode.mimes' => 'QR tidak valid'
-            // ]);
             if (File::exists(public_path('gambar/qr/' . $ewallet->qrcode))) {
                 unlink(public_path('gambar/qr/' . $ewallet->qrcode));
             }

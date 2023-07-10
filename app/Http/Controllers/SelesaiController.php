@@ -56,7 +56,7 @@ class SelesaiController extends Controller
             $client = User::where('role', 'client')->first();
             $detail = Proreq::find($id);
             $sosmed = Sosmed::all();
-            $fitur = Fitur::all();
+            $fitur = Fitur::where('project_id', $id)->get();
             $chats = Chat::where('project_id', $id)->get();
             $userid = Auth()->user()->id . $id;
             return view('Client.revisibutton', compact('sosmed','client','detail','fitur','chats','userid'));
@@ -67,5 +67,13 @@ class SelesaiController extends Controller
             $client = User::where('role', 'client')->first();
             $dataa = Fitur::where('project_id', $id)->get();
             return view('Client.detailrevisi', compact( 'data','sosmed','client','dataa'));
+        }
+
+        public function ajukanRevisi(Request $request) {
+            $pro = Proreq::find($request->project_id);
+            $pro->update([
+                'status' => 'revisi'
+            ]);
+            return back()->with('success', 'Berhasil Mengajukan Revisi');
         }
 }

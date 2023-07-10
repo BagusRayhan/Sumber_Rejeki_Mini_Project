@@ -30,7 +30,32 @@ use \Carbon\Carbon;
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Dokumen Pendukung</label>
-                        <input type="text" value="{{ $detail->bukti }}" class="form-control" placeholder="" disabled>
+                        <div class="input-group">
+                            <button type="button" class="form-control text-start" data-bs-toggle="modal" data-bs-target="#suppDocs" aria-describedby="suppdocsBtn">
+                                <i class="fa-solid fa-eye pe-2"></i> lihat dokumen
+                            </button>
+                            @if ($detail->dokumen == null)
+                                <a onclick="emptyDocsDown()" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
+                            @else
+                                <a href="{{ route('download-suppdocs-client', ['dokumen' => $detail->dokumen]) }}" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
+                            @endif
+                        </div>
+                        <div class="modal fade" id="suppDocs" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Dokumen Pendukung</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <iframe class="w-100" src="{{ asset('document/'.$detail->dokumen) }}" frameborder="0" style="height: 400px"></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="mb-3 d-flex justify-content-between">
@@ -43,7 +68,15 @@ use \Carbon\Carbon;
                         <input type="text" value="{{ $detail->harga }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
-                <div class="row mt-4">
+                <div class="wrapper mt-5">
+                    <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($progress) }} %</span></h6>
+                    <div class="pg-bar">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -134,9 +167,9 @@ use \Carbon\Carbon;
                                     @if (count($chats) > 0)
                                         @foreach ($chats as $cht)
                                             <div class="col">
-                                                <div class="{{ ($cht->user_id == $userid) ? 'bubble-chat-client float-end bg-primary text-white' : 'bubble-chat-admin float-start bg-white'}} d-flex flex-column mb-2 py-2 px-3 rounded-3" style="max-width: 33em; font-size: 14px">
+                                                <div class="{{ ($cht->user_id == Auth()->user()->id) ? 'bubble-chat-client float-end bg-primary text-white' : 'bubble-chat-admin float-start bg-white'}} d-flex flex-column mb-2 py-2 px-3 rounded-3" style="max-width: 33em; font-size: 14px">
                                                     <p class="messages m-0 p-0">{{ $cht->chat }}</p> 
-                                                    <label for="" class="{{ ($cht->user_id == $userid) ? 'text-white' : 'text-secondary'}} mt-2" style="font-size: 9px">{{ Carbon::parse($cht->chat_time)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</label>
+                                                    <label for="" class="{{ ($cht->user_id == Auth()->user()->id) ? 'text-white' : 'text-secondary'}} mt-2" style="font-size: 9px">{{ Carbon::parse($cht->chat_time)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</label>
                                                 </div>
                                             </div>
                                         @endforeach

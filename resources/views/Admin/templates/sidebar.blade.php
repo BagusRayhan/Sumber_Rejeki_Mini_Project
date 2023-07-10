@@ -8,23 +8,23 @@
             </h3>
         </a>
         <div class="navbar-nav w-100">
-            <a href="/admin" class="nav-item nav-link {{ Request::routeIs('admin-dashboard') ? 'active' : ''}}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+            <a href="{{ route('admin-dashboard') }}" class="nav-item nav-link {{ Request::routeIs('admin-dashboard') ? 'active' : ''}}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle {{ Request::routeIs('project-disetujui-admin', 'detail-disetujui-admin', 'projectreq', 'detailproreq', 'projectselesai', 'revisiproselesai', 'editproselesai') ? 'active' : ''}}" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Project</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="projectreq" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('projectreq', 'detailproreq') ? 'text-primary' : ''}}">Project Masuk</a>
-                    <a href="/project-disetujui" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('project-disetujui-admin', 'detail-disetujui-admin') ? 'text-primary' : ''}}">Project Disetujui</a>
-                    <a href="projectselesai" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('projectselesai','revisiproselesai','editproselesai') ? 'text-primary' : ''}}">Project Selesai</a>
+                    <a href="{{ route('projectreq') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('projectreq', 'detailproreq') ? 'text-primary' : ''}}">Project Masuk</a>
+                    <a href="{{ route('project-disetujui-admin') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('project-disetujui-admin', 'detail-disetujui-admin') ? 'text-primary' : ''}}">Project Disetujui</a>
+                    <a href="/projectselesai" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('projectselesai','revisiproselesai','editproselesai') ? 'text-primary' : ''}}">Project Selesai</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle {{ Request::routeIs('pending-bayar-admin', 'setuju-bayar-admin', 'bayar-digital-admin') ? 'active' : ''}}" data-bs-toggle="dropdown"><i class="fa fa-wallet me-2"></i>Pembayaran</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="/pembayaran-pending" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('pending-bayar-admin', 'setuju-bayar-admin') ? 'text-primary' : '' }}">Persetujuan</a>
-                    <a href="/pembayaran-digital" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('bayar-digital-admin') ? 'text-primary' : '' }}">Pembayaran Digital</a>
+                    <a href="{{ route('pending-bayar-admin') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('pending-bayar-admin', 'setuju-bayar-admin') ? 'text-primary' : '' }}">Persetujuan</a>
+                    <a href="{{ route('bayar-digital-admin') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('bayar-digital-admin') ? 'text-primary' : '' }}">Pembayaran Digital</a>
                 </div>
             </div>
-            <a href="/pengaturan" class="nav-item nav-link {{ Request::routeIs('pengaturan') ? 'active' : ''}}"><i class="fa fa-gear me-2"></i>Pengaturan</a>
+            <a href="{{ route('pengaturan') }}" class="nav-item nav-link {{ Request::routeIs('pengaturan') ? 'active' : ''}}"><i class="fa fa-gear me-2"></i>Pengaturan</a>
         </div>
     </nav>
 </div>
