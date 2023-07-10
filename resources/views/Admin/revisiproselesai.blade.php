@@ -27,21 +27,21 @@
                 <div class="mb-3" style="width: 27em">
                     <div class="form-group">
                         <label for="input1">Nama Project</label>
-                        <input type="text" class="form-control" id="input1" value="Aplikasi toko online" disabled>
+                        <input type="text" class="form-control" id="input1" value="{{ $data->napro }}" disabled>
                     </div><br>
                     <div class="form-group">
                         <label for="input2">Deadline</label>
-                        <input type="text" class="form-control" id="input2" value="05/06/2023 13.00" disabled>
+                        <input type="text" class="form-control" id="input2" value="{{ $data->deadline }}" disabled>
                     </div><br>
                 </div>
                 <div class="mb-3" style="width: 27em">
                     <div class="form-group">
                         <label for="input3">Dokument Pendukung</label>
-                        <input type="text" class="form-control" id="input3" value="Website toko online.pdf" disabled>
+                        <input type="text" class="form-control" id="input3" value="{{ $data->dokumen }}" disabled>
                     </div><br>
                     <div class="form-group">
                         <label for="input4">Total Harga</label>
-                        <input type="text" class="form-control" id="input4" value="58.000.000" disabled>
+                        <input type="text" class="form-control" id="input4" value="{{ $data->harga }}" disabled>
                     </div>
                 </div>
         </div>
