@@ -29,7 +29,7 @@
                             <div class="wrapper w-50 px-3 d-flex flex-column">
                                 <div class="form-group mb-3">
                                     <label for="input1">Nama Client</label>
-                                    <input type="text" class="form-control" id="input1" name="nama" placeholder="Masukkan Nama Anda">
+                                    <input type="text" class="form-control" id="input1" name="nama" placeholder="Masukkan Nama Anda" value="">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="input2">Nama Project</label>

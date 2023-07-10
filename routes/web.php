@@ -94,7 +94,7 @@ Route::middleware('admin')->group(function(){
     Route::get('pengaturan', [PengaturanController::class, 'pengaturan'])->name('pengaturan');
     Route::post('updatesosmed', [PengaturanController::class, 'updatesosmed'])->name('updatesosmed');
     Route::post('updatekebijakan', [PengaturanController::class, 'updatekebijakan'])->name('updatekebijakan');
-    Route::get('revisiproselesai', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
+    Route::get('revisiproselesai/{id}', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
     Route::get('editproselesai', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
     Route::get('project-disetujui', [ProjectDisetujuiController::class, 'disetujui'])->name('project-disetujui-admin');
     Route::get('detail-project-disetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujui'])->name('detail-disetujui-admin');
