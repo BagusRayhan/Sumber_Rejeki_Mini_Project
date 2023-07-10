@@ -87,7 +87,7 @@
                 <div class="wrapper d-flex justify-content-between px-3" style="width: 14em;">
                     <a href="{{ route('projectreq') }}" type="button" class="btn btn-secondary btn-sm">Kembali</a>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myyModal{{ $data->id }}">Tolak</button>
-                    <button type="submit" onclick="konfirmasi(event)" class="btn btn-primary btn-sm">Setuju</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Setuju</button>
                 </div>
             </form>
         </div>
