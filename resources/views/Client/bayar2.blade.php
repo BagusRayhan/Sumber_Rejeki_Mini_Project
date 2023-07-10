@@ -4,9 +4,7 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
 @include('Client.Template.head')
-
-
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -35,7 +33,7 @@
         <div class="search-form w-25">
             <form action="{{ route('bayar2client') }}" method="GET">
                 <div class="input-group rounded-pill" style="background: #E9EEF5">
-                    <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+                    <input type="text" name="keyword" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
                     <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                 </div>
             </form>
@@ -49,7 +47,61 @@
                 Pembayaran
             </a>
         </div>
-        <div id="buttonContainer"></div>
+  <form method="POST" action="{{ route('delete.all') }}">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-danger btn-sm">Delete All</button>
+</form>
+
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var deleteAllButton = document.getElementById('deleteAllButton');
+        var childCheckboxes = document.getElementsByClassName('child-checkbox');
+
+        deleteAllButton.addEventListener('click', function() {
+            var checkedIds = [];
+
+            for (var i = 0; i < childCheckboxes.length; i++) {
+                if (childCheckboxes[i].checked) {
+                    checkedIds.push(childCheckboxes[i].dataset.id);
+                }
+            }
+
+            if (checkedIds.length > 0) {
+                if (confirm('Apakah Anda yakin ingin menghapus semua data yang dipilih?')) {
+                    var formData = new FormData();
+
+                    for (var j = 0; j < checkedIds.length; j++) {
+                        formData.append('ids[]', checkedIds[j]);
+                    }
+
+                    fetch('/delete-all', {
+                        method: 'DELETE',
+                        body: formData,
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        }
+                    })
+                    .then(function(response) {
+                        if (response.ok) {
+                            alert('Data berhasil dihapus');
+                            location.reload();
+                        } else {
+                            alert('Terjadi kesalahan saat menghapus data');
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error(error);
+                        alert('Terjadi kesalahan saat menghapus data');
+                    });
+                }
+            } else {
+                alert('Pilih setidaknya satu data untuk dihapus');
+            }
+        });
+    });
+</script>
+
     </div>
         <div class="row mt-4">
             <div class="col-12">
@@ -69,35 +121,43 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($bayar2 as $client2)
+                        @foreach($bayar2 as $client2)
                             @if ( $client2->statusbayar === 'belum lunas' || $client2->statusbayar === 'lunas')
                             <tr>
-                                <td><div class="form-check">
-                                    <input class="form-check-input child-checkbox" type="checkbox" value="" id="myCheckbox">
-                                </div></td>
+                                <td>
+                                <div class="form-check">
+                                    <input class="form-check-input child-checkbox" type="checkbox" name="ids[]" value="{{ $client2->id }}">
+                                </div>
+                                </td>
                                 <td>{{ $client2->napro }}</td>
                                 <td>{{ $client2->harga }}</td>
-                               
                                 <td class="text-center ">
-                                    @if ($client2->statusbayar == 'lunas')
-                                      <span class="badge text-bg-success">{{ $client2->statusbayar }}</span>
-                                    @elseif ($client2->statusbayar == 'belum lunas')
-                                      <span class="badge text-bg-warning text-white">{{ $client2->statusbayar }}</span>
-                                    @else
-                                      <span class="badge">{{ $client2->statusbayar }}</span>
-                                    @endif
-                                  </td>
-                                  <td class="text-center">
-                                    @if ($client2->statusbayar == 'lunas')
-                                      <button type="button" data-bs-toggle="modal" data-bs-target="#strukPembayaranModal" class="btn btn-warning text-white btn-sm" style="background-color: none">
-                                        <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk</button>
-                                    @elseif ($client2->statusbayar == 'belum lunas')
-                                      <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar{{ $client2->id }}" class="btn btn-primary btn-sm" style="background-color: none">
-                                        <i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button>
-                                    @endif
-                                  </td>
+                                @if ($client2->statusbayar == 'lunas')
+                                    <span class="badge text-bg-success">{{ $client2->statusbayar }}</span>
+                                @elseif ($client2->statusbayar == 'belum lunas')
+                                    <span class="badge text-bg-warning text-white">{{ $client2->statusbayar }}</span>
+                                @else
+                                    <span class="badge">{{ $client2->statusbayar }}</span>
+                                @endif
+                                </td>
+                                <td class="text-center">
+                                @if ($client2->statusbayar == 'lunas')
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#strukPembayaranModal" class="btn btn-warning text-white btn-sm" style="background-color: none">
+                                    <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk</button>
+                                @elseif ($client2->statusbayar == 'belum lunas')
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" data-id="{{ $client2->id }}" data-napro="{{ $client2->napro }}"  data-harga="{{ $client2->harga }}" data-tanggalpembayaran="{{ $client2->tanggalpembayaran }}" data-metodepembayaran="{{ $client2->metodepembayaran }}" class="btn btn-primary btn-bayar btn-sm" style="background-color: none">
+                                    <i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button>
+                                @endif
+                                </td>
                             </tr>
-                            
+                            @endif
+                            @endforeach
+
+                            @if ($bayar2->isEmpty())
+                            <tr>
+                                <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
+                            </tr>
+                            @endif
                         </tbody>
                     </table>
                     <script>
@@ -108,7 +168,7 @@
                           }
                         }
                       </script>
-                    <script>
+                    {{-- <script>
                         var checkbox = document.getElementById("myCheckbox");
                         var buttonContainer = document.getElementById("buttonContainer");
 
@@ -121,14 +181,14 @@
                             buttonContainer.style.display = 'none';
                         }
                         });
-                    </script>
+                    </script> --}}
                 </div>
             </div>
         </div>
     </div>
 
 {{-- modal pembayaran akhir --}}
-    <div class="modal fade" id="Modalbayar{{ $client2->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal fade" id="Modalbayar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered" >
            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
            <div class="modal-header" style="border: none;">
@@ -139,16 +199,16 @@
                <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="font-weight: bold;">Pembayaran Akhir</h1><br>
                        <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
                            <h6 style="align-self: center;">Nama Project :</h6>
-                           <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="{{ $client2->napro }}" disabled>
+                           <input type="text"  name="namaProject"  class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;"  id="namaProject" disabled>
                        </div>
                        <div style="display: flex; justify-content: space-between;">
                            <h6>Harga Pembayaran :</h6>
-                           <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="{{ $client2->harga }}" disabled>
+                           <input type="text" name="hargaProject" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="hargaProject" disabled>
                        </div>
                <br>
            </div>
-           <center><button class="btn btn-primary" data-bs-target="#bayar{{ $client2->id }}" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center><br>
-           <center><a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#modalawal" data-bs-toggle="modal">Lihat Pembayaran Awal</a></center>
+           <center><button class="btn btn-primary pilih-metode" data-bs-target="#bayar1" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center><br>
+           <center><a href="#" class="link-offset-2 link-underline bayar-awal link-underline-opacity-0 " data-bs-target="#modalawal" data-bs-toggle="modal">Lihat Pembayaran Awal</a></center>
            <div class="modal-footer" style="border: none;">
            </div>
            </div>
@@ -156,7 +216,7 @@
        </div>
        {{-- akhir pembayaran akhir --}}
 
-       {{-- Modal pembayaran awal --}}
+       {{-- Modal detail pembayaran awal --}}
     <div class="modal fade" id="modalawal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel1 " tabindex="-1">
         <div class="modal-dialog modal-dialog-centered" >
            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
@@ -168,23 +228,23 @@
                <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="font-weight: bold;">Pembayaran Awal</h1><br>
                        <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
                            <h6 style="align-self: center;">Nama Project:</h6>
-                           <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="{{ $client2->napro }}" disabled>
+                           <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="napro-awal" disabled>
                        </div>
                        <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
                            <h6 style="align-self: center;">Harga Pembayaran:</h6>
-                           <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="{{ $client2->harga }}" disabled>
+                           <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="harga-pro"  disabled>
                        </div>
                        <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
                            <h6 style="align-self: center;">Tanggal Pembayaran:</h6>
-                           <input type="datetime" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="{{ $client2->tanggalpembayaran }}" disabled>
+                           <input type="datetime" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="tgl-bayar"  disabled>
                        </div>
                        <div style="display: flex; justify-content: space-between;">
                            <h6>Metode Pembayaran:</h6>
-                           <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" value="{{ $client2->metode }}" disabled>
+                           <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="metode"  disabled>
                        </div>
                <br>
            </div>
-           <center><button class="btn btn-primary" data-bs-target="#bayar{{ $client2->id }}" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;" disabled>Selesai</button></center><br>
+           <center><button class="btn btn-primary" data-bs-target="#bayar1" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;" disabled>Selesai</button></center><br>
            <center><a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar" data-bs-toggle="modal">Kembali</a></center>
            <div class="modal-footer" style="border: none;">
            </div>
@@ -193,51 +253,96 @@
        </div>
 {{-- akhir code lihat pembayaran--}}
 
-{{-- modal metode pembayaran --}}
-       <div class="modal fade" id="bayar{{ $client2->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-       <div class="modal-dialog modal-dialog-centered" >
-        <form action="{{ route('update-status-bayarakhir', $client2->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-           <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-               <div class="modal-header" >
-                   <div style="display: flex; flex-direction: column;">
-                       <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
-                       <div style="display: flex; align-items: center;">
-                           <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-                           <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" value="{{ $client2->napro }}" disabled>
-                       </div>
-                       <div style="display: flex; align-items: center; margin-top:3%;">
-                           <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                           <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" value="{{ $client2->harga }}" disabled>
-                       </div>
-                   </div>
-                   <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
-               </div>
-                <div class="modal-body" style="border: none;">
-                    <div class="container m-0 p-0 d-flex justify-content-between">
-                        <div class="d-grid" style="display: flex; justify-content: space-between;">
-                            <h6 style="align-self: center; font-size: 16px;">Metode</h6>
-                            <select class="form-select form-select-lg mb-3" name="metodepembayaran2" style="width: 200px; height: 40px; font-size: 16px;" aria-label=".form-select-lg example" id="selectMetode">
-                                <option selected class="dropdown-menu" disabled>Pilih Pembayaran</option>
-                                <option value="cash">Cash</option>
-                                <option value="ewallet">E-Wallet</option>
-                                <option value="bank">Bank</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div id="additionalSelectContainer"></div>
-                    <div id="fileInputContainer"></div>
-                    <div id="imageContainer"></div>
-                    <br>
-                </div>
-           <center><button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button></center>
-           <div class="modal-footer" style="border: none;">
-           </div>
-           </div>
-          </form>
-         </div>
-       </div>
+{{-- modal pembayaran --}}
+<div class="modal fade" id="bayar1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
+      <div class="modal-header">
+        <div style="display: flex; flex-direction: column;">
+          <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
+          <div style="display: flex; align-items: center;">
+            <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
+            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" id="namaProjectCash" disabled>
+          </div>
+          <div style="display: flex; align-items: center; margin-top:3%;">
+            <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
+            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" id="hargaProjectCash" disabled>
+          </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
+      </div>
+      <form id="updateForm" action="{{ route('update-status-bayarakhir', '') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <div class="modal-body" style="border: none;">
+          <div class="container m-0 p-0 d-flex justify-content-between">
+            <div class="d-grid" style="display: flex; justify-content: space-between;">
+              <h6 style="align-self: center; font-size: 16px;">Metode</h6>
+              <select class="form-select form-select-lg mb-3" name="metodepembayaran2" style="width: 200px; height: 40px; font-size: 16px;" aria-label=".form-select-lg example" id="selectMetode">
+                <option selected class="dropdown-menu" disabled>Pilih Pembayaran</option>
+                <option value="cash">Cash</option>
+                <option value="ewallet">E-Wallet</option>
+                <option value="bank">Bank</option>
+              </select>
+            </div>
+          </div>
+          <div id="additionalSelectContainer"></div>
+          <div id="fileInputContainer"></div>
+          <div id="imageContainer"></div>
+          <br>
+        </div>
+        <center>
+          <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button>
+        </center>
+        <div class="modal-footer" style="border: none;">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('.btn-bayar').click(function() {
+      var napro = $(this).data('napro');
+      var harga = $(this).data('harga');
+      $('#namaProject').val(napro);
+      $('#hargaProject').val(harga);
+      $('#Modalbayar').modal('show');
+    });
+
+        $('.bayar-awal').click(function() {
+        var napro = $('#namaProject').val();
+        var harga = $('#hargaProject').val();
+        var tglBayar = $(this).data('tanggalpembayaran');
+        var metode = $(this).data('metodepembayaran');
+        
+        $('#napro-awal').val(napro);
+        $('#harga-pro').val(harga);
+        $('#tgl-bayar').val(tglBayar);
+        $('#metode').val(metode);
+        $('#modalawal').modal('show');
+        });
+
+
+    $('.pilih-metode').click(function() {
+      var napro = $('#namaProject').val();
+      var harga = $('#hargaProject').val();
+      $('#namaProjectCash').val(napro);
+      $('#hargaProjectCash').val(harga);
+
+      // Memperbarui URL action pada form
+      var projectId = '{{ $bayar2->firstWhere("statusbayar", $client2->statusbayar)->id }}';
+      var form = $('#updateForm');
+      var action = form.attr('action');
+      form.attr('action', action + '/' + projectId);
+    });
+  });
+</script>
+
+
+
+
         <script>
     const selectMetode = document.getElementById('selectMetode');
     const additionalSelectContainer = document.getElementById('additionalSelectContainer');
@@ -490,7 +595,7 @@ console.log(selectedBank)
                         <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/success.png') }}" alt="">
                     </div>
                     <p class="text-center mt-3">Pembayaran Berhasil!</p>
-                    <h4 class="fw-bold text-center mt-1 border-bottom border-dark pb-2">{{ $client2->harga }}</h4>
+                    <h4 class="fw-bold text-center mt-1 border-bottom border-dark pb-2"></h4>
                     <div class="d-flex justify-content-between">
                         <div class="d-grid">
                             <p class="text-center">Pembayaran Awal</p>
@@ -504,20 +609,20 @@ console.log(selectedBank)
                     <div class="container m-0 p-0">
                     <div class="d-flex justify-content-between">
                         <p class="text-secondary fs-10">Tanggal Pembayaran Awal</p>
-                        <p>{{ \Carbon\Carbon::parse($client2->tanggalpembayaran)->format('Y-m-d') }}</p>
+                        <p></p>
                     </div>
 
                     <div class="d-flex justify-content-between">
                         <p class="text-secondary fs-10">Tanggal Pembayaran Akhir</p>
-                        <p >{{ \Carbon\Carbon::parse($client2->tanggalpembayaran2)->format('Y-m-d') }}</p>
+                        <p ></p>
                     </div>
                         <div class="d-flex pb-0 justify-content-between">
                             <p class="text-secondary fs-10">Metode Pembayaran Awal</p>
-                            <p>{{ $client2->metodepembayaran }}</p>
+                            <p></p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <p class="text-secondary fs-10">Metode Pembayaran Akhir</p>
-                            <p>{{ $client2->metodepembayaran2 }}</p>
+                            <p></p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <p class="text-secondary fs-10">Biaya Tambahan</p>
@@ -525,7 +630,7 @@ console.log(selectedBank)
                         </div>
                         <div class="d-flex justify-content-between">
                             <p class="text-secondary fs-10">Total Bayar</p>
-                            <p>{{ $client2->harga }}</p>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -546,17 +651,9 @@ console.log(selectedBank)
 
         </div>
         </div>
-
-                            @endif
-                            @empty
-                            <tr>
-                                <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
-                            </tr>
-                            @endforelse
-                                                <div class="d-flex justify-content-end">
+<div class="d-flex justify-content-end">
     {{ $bayar2->links() }}
 </div>
-      @include('Client.Template.footer')
         </div>
         <!-- Content End -->
 
