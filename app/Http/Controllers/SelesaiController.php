@@ -76,4 +76,22 @@ class SelesaiController extends Controller
             ]);
             return back()->with('success', 'Berhasil Mengajukan Revisi');
         }
+
+        public function acceptRevision(Request $request) {
+            $pro = Proreq::find($request->project_id);
+            $pro->update([
+                'status' => null,
+                'statusbayar' => 'belum lunas'
+            ]);
+            return redirect()->route('selesaiclient')->with('success', 'Berhasil');
+        }
+
+        public function rejectRevision(Request $request) {
+            $pro = Proreq::find($request->project_id);
+            $pro->update([
+                'status' => 'selesai',
+                'statusbayar' => null
+            ]);
+            return redirect()->route('selesaiclient')->with('success', 'Berhasil');
+        }
 }

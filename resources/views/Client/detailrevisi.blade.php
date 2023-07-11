@@ -19,128 +19,168 @@
 
         <!-- Content Start -->
         <div class="content">
-      @include('Client.Template.navbar')
+        @include('Client.Template.navbar')
 
-      <div class="container-fluid">
-            <h4 class="mb-3 mt-3" style="margin-left: 2%;">Detail Project</h4>
-            <form action="{{ route('update-status',$data->id) }}" method="POST">
-                @csrf
-                @method('PUT')
-            <div class="d-flex justify-content-between mb-3" style="margin-left: 2%;">
-                <div class="wrapper w-50 px-3 d-flex flex-column">
-                    <div class="form-group">
-                        <label for="input1">Nama Project</label>
-                        <input type="text" class="form-control" id="input1" value="{{ $data->napro }}" disabled>
-                    </div><br>
-                    <div class="form-group">
-                        <label for="input2">Deadline</label>
-                        <input type="text" class="form-control" id="input2" value="{{ $data->deadline }}" disabled>
-                    </div><br>
+        
+        <div class="container-fluid pt-3 px-4">
+            <div class="mb-3 d-flex justify-content-between">
+                <div class="form-group" style="width:480px">
+                    <label for="exampleFormControlInput1" class="form-label">Nama Project</label>
+                    <input type="text" value="{{ $data->napro }}" class="form-control" placeholder="" disabled>
                 </div>
-                <div class="wrapper w-50 px-3 d-flex flex-column">
-                <div class="form-group mb-3">
-                    <div class="form-group">
-                        <label for="input3">Dokumen Pendukung</label>
-                        <input type="text" class="form-control" id="input3" value="{{ $data->bukti }}" disabled>
-                    </div><br>
-                    <div class="form-group">
-                        <label for="input4">Total Harga</label>
-                        <input type="text" class="form-control" id="input4" value="{{ $data->harga }}" disabled>
+                <div class="form-group" style="width:480px">
+                    <label for="exampleFormControlInput1" class="form-label">Dokumen Pendukung</label>
+                    <div class="input-group">
+                        <button type="button" class="form-control text-start" data-bs-toggle="modal" data-bs-target="#suppDocs" aria-describedby="suppdocsBtn">
+                            <i class="fa-solid fa-eye pe-2"></i> lihat dokumen
+                        </button>
+                        @if ($data->dokumen == null)
+                            <a onclick="emptyDocsDown()" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
+                        @else
+                            <a href="{{ route('download-suppdocs-client', ['dokumen' => $data->dokumen]) }}" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
+                        @endif
+                    </div>
+                    <div class="modal fade" id="suppDocs" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Dokumen Pendukung</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <iframe class="w-100" src="{{ asset('document/'.$data->dokumen) }}" frameborder="0" style="height: 400px"></iframe>
+                                    </div>
+                                </div>
+                                <div class="modal-footer"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-              </div>
-                <div class="d-flex justify-content-start mb-3" style="margin-left: 2%;">
-                    <td>
-                        <center>
-                            <button type="submit" class="btn btn-primary btn-sm float"><i class="fa-solid fa-circle-check"></i>&nbsp;Setuju</button>&nbsp;
-                        </form>
-                        <form action="{{ route('update-statuss',$data->id) }}" method="POST" style="margin-left: 90%; width:170%;">
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-xmark"></i>&nbsp;Tolak</button>
-                        </form>
-                        </center>
-                    </td>
+            <div class="mb-3 d-flex justify-content-between">
+                <div class="form-group" style="width:480px">
+                    <label for="exampleFormControlInput1" class="form-label">Deadline</label>
+                    <input type="datetime-local" value="{{ $data->deadline }}" class="form-control" placeholder="" disabled>
                 </div>
-        </div>
-
-
-        {{-- table  --}}
-     <div class="col-sm-12 col-xl-11 d-flex justify-content-between" style="margin-left: 2%; margin">
-         <div class="w-25">
-             <form action="#" method="GET">
-             </form>
-         </div>
-     </div>
-       <div class="col-sm-12 col-xl-11" style="margin-left: 2%;">
-                        <div class="col-12">
-                            <div class="table-responsive">
-                            </div>
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Nama fitur</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Harga Fitur</th>
-                                        <th scope="col">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ( $dataa as $item )
-                                    <tr>
-                                        <td>{{ $item->namafitur }}</td>
-                                        <td><span class="badge text-bg-success">{{ $item->status }}</span></td>
-                                        <td>{{ $item->hargafitur }}</td>
-                                        <td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailfitur{{ $item->id }}"><i class="fa fa-eye"></i></a></td>
-                                    </tr>
-                                    <div class="modal fade" id="detailfitur{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="detailfiturLabel{{ $item->id }}">Detail Fitur</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                        <div class="col-sm-12 col-xl-11 d-flex justify-content-between" style="margin-left: 2%; margin">
-                                                            <div class="mb-3" style="width: 13em">
+                <div class="form-group" style="width:480px">
+                    <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
+                    <input type="text" value="{{ $data->harga }}" class="form-control" placeholder="" disabled>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nama Fitur</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Harga Fitur</th>
+                                    <th scope="col" class="text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (count($dataa) !== 0)
+                                    @foreach ($dataa as $f)
+                                        <tr>
+                                            <td>{{ $f->namafitur }}</td>
+                                            <td>{{ $f->status }}</td>
+                                            <td>{{ $f->hargafitur }}</td>
+                                            <td class="d-flex justify-content-evenly">
+                                                <button type="button" data-bs-toggle="modal" data-bs-target="#detailFitur{{ $f->id }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></button>
+                                            </td>
+                                        </tr>
+                                        <!-- Modal Box Detail Fitur Start -->
+                                        <div class="modal fade" id="detailFitur{{ $f->id }}" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Detail Fitur</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="">
+                                                            <div class="mb-2 d-flex justify-content-between">
                                                                 <div class="form-group">
-                                                                    <label for="input1">Nama Fitur</label>
-                                                                    <input type="text" class="form-control" id="input1" value="{{ $item->namafitur }}" disabled>
+                                                                    <label for="" class="form-label">Nama Fitur</label>
+                                                                    <input type="text" class="form-control" value="{{ $f->namafitur }}" disabled>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="" class="form-label">Harga Fitur</label>
+                                                                    <input type="text" class="form-control" value="{{ $f->hargafitur }}" disabled>
                                                                 </div>
                                                             </div>
-                                                            <div class="mb-3" style="width: 13em">
-                                                                <div class="form-group">
-                                                                    <label for="input3">Harga Fitur</label>
-                                                                    <input type="text" class="form-control" id="input3" value="{{ $item->hargafitur }}" disabled>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <div class="mb-3">
+                                                            <div class="mb-2">
                                                                 <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>{{ $item->deskripsi }}</textarea>
+                                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" disabled>{{ $f->deskripsi }}</textarea>
                                                             </div>
-                                                        </div>  
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <!-- Modal Box Detail Fitur End -->
                                     @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                @else
+                                    <td class="text-center" colspan="4">Tidak ada fitur</td>
+                                @endif
+                            </tbody>
+                        </table>
                     </div>
-
-
-                     <!-- Modal Box Edit Bank Start -->
-            
-
-        <!-- Modal Box Edit Bank End-->
-
-
-      @include('Client.Template.footer')
+                </div>
+            </div>
+            <div class="my-3 mx-1 d-flex justify-content-between" style="width: 10em">
+                <form action="{{ route('reject-revision') }}" id="rejectRevision" onsubmit="rejectRevision(event)" method="post">
+                    @csrf
+                    <input type="hidden" name="project_id" value="{{ $data->id }}">
+                    <button class="btn btn-danger btn-sm" name="submit" type="submit"><i class="fa-solid fa-circle-xmark"></i> Tolak</button>
+                </form>
+                <form action="{{ route('accept-revision') }}" id="acceptRevision" onsubmit="acceptRevision(event)" method="post">
+                    @csrf
+                    <input type="hidden" name="project_id" value="{{ $data->id }}">
+                    <button class="btn btn-primary btn-sm" name="submit" type="submit"><i class="fa-solid fa-circle-check"></i> Setuju</button>
+                </form>
+                {{-- <script>
+                    function acceptRevision(event) {
+                        event.preventDefault();
+                        Swal.fire({
+                            title: 'Setuju?',
+                            text: "Perubahan project oleh admin",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#0d6efd',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Setuju',
+                            cancelButtonText: 'Batal',
+                            reverseButtons: true
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById('acceptRevision').submit();
+                            }  
+                        })
+                    }
+                    function rejectRevision(event) {
+                        event.preventDefault();
+                        Swal.fire({
+                            title: 'Tolak?',
+                            text: "Perubahan project oleh admin",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#0d6efd',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Tolak',
+                            cancelButtonText: 'Batal',
+                            reverseButtons: true
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById('rejectRevision').submit();
+                            }
+                        })
+                    }
+                </script> --}}
+            </div>
+            @include('Client.Template.footer')
         </div>
         <!-- Content End -->
 
