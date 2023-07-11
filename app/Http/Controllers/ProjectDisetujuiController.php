@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
+use App\Models\User;
 use App\Models\Fitur;
-use Illuminate\Http\Request;
-use App\Models\ProjectDisetujui;
 use App\Models\Proreq;
 use App\Models\Sosmed;
-use App\Models\User;
+use App\Models\Notification;
+use Illuminate\Http\Request;
+use App\Models\ProjectDisetujui;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectDisetujuiController extends Controller
@@ -16,14 +17,17 @@ class ProjectDisetujuiController extends Controller
     public function disetujui(Request $request) {
         $admin = User::where('role', 'admin')->first();
         $keyword = $request->searchKeyword;
+        $notification = Notification::where('role', 'admin')->latest()->get();
         $project = proreq::where('status','setuju')->where('napro', 'LIKE', '%'.$keyword.'%')->paginate(3);
         return view('Admin.project-disetujui', [
             'project' => $project,
-            'admin' => $admin
+            'admin' => $admin,
+            'notification' => $notification
         ]);
     }
 
     public function detailDisetujui($id) {
+        $notification = Notification::where('role', 'admin')->latest()->get();
         $admin = User::where('role', 'admin')->first();
         $detail = Proreq::find($id);
         $fitur = Fitur::where('project_id', $id)->get();
@@ -36,7 +40,8 @@ class ProjectDisetujuiController extends Controller
             'fitur' => $fitur,
             'chats' => $chats,
             'done' => $done,
-            'admin' =>$admin
+            'admin' =>$admin,
+            'notification' => $notification
         ]);
     }
 

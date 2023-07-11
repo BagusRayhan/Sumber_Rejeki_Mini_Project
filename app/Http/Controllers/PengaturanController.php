@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Sosmed;
 use App\Models\Kebijakan;
-use App\Models\User;
+use App\Models\Notification;
+use Illuminate\Http\Request;
 
 class PengaturanController extends Controller
 {
@@ -23,10 +24,11 @@ class PengaturanController extends Controller
 
     public function pengaturan() {
         $admin = User::where('role', 'admin')->first();
+        $notification = Notification::where('role', 'admin')->latest()->get();
         $data = sosmed::all()->first();
         $data1 = Kebijakan::all()->first();
 
-        return view('Admin.pengaturan', compact('data', 'data1','admin'));
+        return view('Admin.pengaturan', compact('data', 'data1','admin','notification'));
     }
 
     public function updatekebijakan(Request $request) {
