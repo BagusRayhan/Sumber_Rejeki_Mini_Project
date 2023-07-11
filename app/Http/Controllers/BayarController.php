@@ -8,6 +8,7 @@ use App\Models\Proreq;
 use App\Models\Sosmed;
 use App\Models\EWallet;
 use App\Models\transaksi;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -47,6 +48,13 @@ class BayarController extends Controller
         $data->statusbayar = 'pending';
         $data->tanggalpembayaran = now();
         $data->save();
+
+        $msg = 'Pembayaran masuk oleh '.Auth()->user()->name;
+        $notif = Notification::create([
+            'role' => 'admin',
+            'notif' => $msg,
+            'kategori' => 'Pembayaran Masuk'
+        ]);
 
         return redirect()->route('bayarclient')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));
     }

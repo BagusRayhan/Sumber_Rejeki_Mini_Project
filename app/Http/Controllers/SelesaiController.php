@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Fitur;
 use App\Models\Proreq;
 use App\Models\Sosmed;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
 class SelesaiController extends Controller
@@ -73,6 +74,12 @@ class SelesaiController extends Controller
             $pro = Proreq::find($request->project_id);
             $pro->update([
                 'status' => 'revisi'
+            ]);
+            $msg = 'Revisi project dari '.Auth()->user()->name;
+            $notif = Notification::create([
+                'role' => 'admin',
+                'notif' => $msg,
+                'kategori' => 'Revisi Project'
             ]);
             return back()->with('success', 'Berhasil Mengajukan Revisi');
         }

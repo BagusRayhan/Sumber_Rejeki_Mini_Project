@@ -71,6 +71,7 @@ public function alasantolak(Request $request)
 
 public function updateproreqa($id)
 {
+    
     $proreq = Proreq::findOrFail($id);
     $fitur = Fitur::where('project_id', $proreq->id)->get();
     
