@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+@php
+    use \Carbon\Carbon;
+@endphp
 <html lang="en">
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
@@ -19,147 +22,225 @@
 
         <!-- Content Start -->
         <div class="content">
-      @include('Admin.templates.navbar')
+        @include('Admin.templates.navbar')
 
-      <div class="container-fluid">
-            <h4 class="mb-3 mt-3" style="margin-left: 2%;">Detail Project</h4>
-        <div class="col-sm-12 col-xl-11 d-flex justify-content-between" style="margin-left: 2%; margin">
-                <div class="mb-3" style="width: 27em">
-                    <div class="form-group">
-                        <label for="input1">Nama Project</label>
-                        <input type="text" class="form-control" id="input1" value="{{ $data->napro }}" disabled>
-                    </div><br>
-                    <div class="form-group">
-                        <label for="input2">Deadline</label>
-                        <input type="text" class="form-control" id="input2" value="{{ $data->deadline }}" disabled>
-                    </div><br>
-                </div>
-                <div class="mb-3" style="width: 27em">
-                    <div class="form-group">
-                        <label for="input3">Dokument Pendukung</label>
-                        <input type="text" class="form-control" id="input3" value="{{ $data->dokumen }}" disabled>
-                    </div><br>
-                    <div class="form-group">
-                        <label for="input4">Total Harga</label>
-                        <input type="text" class="form-control" id="input4" value="{{ $data->harga }}" disabled>
+        <div class="container-fluid pt-3 px-4">
+            <form action="{{ route('updateproreq-admin') }}" method="post">
+                <input type="hidden" name="project_id" value="{{ $data->id }}">
+                @csrf
+                <div class="mb-3 d-flex justify-content-between">
+                    <div class="form-group" style="width:480px">
+                        <label for="exampleFormControlInput1" class="form-label">Nama Project</label>
+                        <input type="text" value="{{ $data->napro }}" name="napro" class="form-control" placeholder="">
+                    </div>
+                    <div class="form-group" style="width:480px">
+                        <label for="exampleFormControlInput1" class="form-label">Deadline</label>
+                        <input type="datetime-local" value="{{ $data->deadline }}" name="deadline" class="form-control" placeholder="">
                     </div>
                 </div>
-        </div>
-        </div>
-
-
-        {{-- table  --}}
-     <div class="col-sm-12 col-xl-11 d-flex justify-content-between" style="margin-left: 2%; margin">
-         <div class="w-25">
-             <form action="#" method="GET">
-             </form>
-         </div>
-     </div>
-       <div class="col-sm-12 col-xl-11" style="margin-left: 2%;">
-                        <div class="col-12">
-                            <div class="table-responsive">
-                            </div>
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Nama fitur</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Harga Fitur</th>
-                                        <th scope="col">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Halaman Login</td>
-                                        <td>Selesai</td>
-                                        <td>15.000.000</td>
-                                        <td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailfitur"><i class="fa fa-eye"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Halaman Register</td>
-                                        <td>Belum selesai</td>
-                                        <td>11.000.000</td>
-                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Landing Page</td>
-                                        <td>Belum selesai</td>
-                                        <td>5.000.000</td>
-                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Halaman dashboard</td>
-                                        <td>Selesai</td>
-                                        <td>12.000.000</td>
-                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Halaman pembelian</td>
-                                        <td>Selesai</td>
-                                        <td>5.000.000</td>
-                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Halaman penjualan</td>
-                                        <td>Belum selesai</td>
-                                        <td>10.000.000</td>
-                                        <td><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="d-flex justify-content-start mb-3">
-                                <a href="projectselesai" class="btn btn-primary btn-sm" style="margin-right: 15px"><i class="fa fa-reply"></i> Kembali</a>
-                                <a href="editproselesai" class="btn btn-warning btn-sm" style="color: #ffffff"><i class="fa fa-pencil-square"></i> Edit Project</a>
-                            </div>
-
+                <div class="mb-5 d-flex justify-content-between">
+                    <div class="form-group" style="width:480px;">
+                        <label class="form-label">Dokumen Pendukung</label>
+                        <div class="input-group">
+                            <button type="button" class="form-control text-start" data-bs-toggle="modal" data-bs-target="#suppDocs" aria-describedby="suppdocsBtn">
+                                <i class="fa-solid fa-eye pe-2"></i> lihat dokumen
+                            </button>
+                            @if ($data->dokumen == null)
+                                <a onclick="emptyDocsDown()" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
+                            @else
+                                <a href="{{ route('download-suppdocs', ['dokumen' => $data->dokumen]) }}" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
+                            @endif
                         </div>
-
+                        <div class="modal fade" id="suppDocs" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Dokumen Pendukung</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <iframe class="w-100" src="{{ asset('document/'.$data->dokumen) }}" frameborder="0" style="height: 400px"></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                     <!-- Modal Box Edit Bank Start -->
-            <div class="modal fade" id="detailfitur" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="form-group" style="width:480px">
+                        <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
+                        <input type="text" value="{{ $data->harga }}" class="form-control" placeholder="" disabled>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-start mb-3">
+                    <a href="{{ route('projectselesai') }}" class="btn btn-primary btn-sm" style="margin-right: 15px"><i class="fa fa-reply"></i> Kembali</a>
+                    <button class="btn btn-warning btn-sm text-white" type="submit"><i class="fa-solid fa-pencil-square"></i> Ajukan Perubahan</button>
+                </div>
+            </form>
+            <div class="row">
+                <div class="wrapper d-flex justify-content-end">
+                    <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#addFiturModal"><i class="fa-solid fa-circle-plus"></i> Tambah Fitur</button>
+                </div>
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nama Fitur</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Harga Fitur</th>
+                                    <th scope="col" class="text-center" style="width:6em">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (count($fitur) !== 0)
+                                    @foreach ($fitur as $f)
+                                        <tr>
+                                            <td>{{ $f->namafitur }}</td>
+                                            <td>{{ $f->status }}</td>
+                                            <td>{{ $f->hargafitur }}</td>
+                                            <td class="d-flex justify-content-evenly">
+                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editFiturModal{{ $f->id }}"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                <form action="{{ route('destroy-fitur') }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <input type="hidden" name="fitur_id" value="{{ $f->id }}">
+                                                    <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <div class="modal fade" id="editFiturModal{{ $f->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="editModalLabel{{ $f->id }}">Edit Fitur</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ route('update-fitur', $f->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="modal-body">
+                                                                <div class="wrapper d-flex justify-content-between">
+                                                                    <div class="mb-3">
+                                                                        <label for="fitur" >Nama Fitur</label>
+                                                                        <input type="text" name="namafitur" value="{{ $f->namafitur }}" class="form-control" id="fitur" placeholder="Masukkan Fitur">
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="fitur" >Harga Fitur</label>
+                                                                        <input type="text" name="hargafitur" value="{{ $f->hargafitur }}" class="form-control" id="hargafitur" placeholder="Masukkan Fitur">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="deskripsi">Deskripsi</label>
+                                                                    <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6" placeholder="Masukkan Deskripsi">{{ $f->deskripsi }}</textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <td class="text-center" colspan="4">Tidak ada fitur</td>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{-- Modal Tambah Fitur --}}
+            <div class="modal fade" id="addFiturModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Detail Fitur</h1>
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Fitur</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="">
-
-                                <div class="col-sm-11 col-xl-12 d-flex justify-content-between" style="margin-right: 20px">
-                                    <div class="mb-3" style="width: 14em">
-                                        <div class="form-group">
-                                            <label for="input1">Nama Fitur</label>
-                                            <input type="text" class="form-control" id="input1" value="Halaman Login" disabled>
-                                        </div>
+                            <form action="{{ route('savefitur', $data->id) }}" method="POST">
+                                @csrf
+                                <div class="wrapper d-flex justify-content-between">
+                                    <div class="mb-3">
+                                        <label for="">Nama Fitur</label>
+                                        <input type="text" name="namafitur" class="form-control" id="fitur" placeholder="Masukkan Fitur">
                                     </div>
-                                    <div class="mb-3" style="width: 13em">
-                                        <div class="form-group">
-                                            <label for="input3">Harga Fitur</label>
-                                            <input type="text" class="form-control" id="input3" value="150.000" disabled>
-                                        </div><br>
+                                    <div class="mb-3">
+                                        <label for="">Harga Fitur</label>
+                                        <input type="text" name="hargafitur" class="form-control" id="hargafitur" placeholder="Masukkan Harga">
                                     </div>
                                 </div>
-                                <div class="mb-4">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                                        <textarea class="form-control" style="height: 180px" id="exampleFormControlTextarea1" rows="3" disabled>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam totam. Vel nemo amet modi laborum nihil aspernatur quod! Vitae, corporis, earum consequuntur dicta repudiandae facilis voluptatum placeat nisi odio necessitatibus debitis eligendi eveniet enim amet laboriosam ipsum nulla fuga in soluta velit cumque a, esse qui. Suscipit sed odit iste ullam quos! Iusto cum maiores quisquam excepturi cumque, quae nostrum fuga eveniet voluptatibus?</textarea>
-                                    </div>
+                                <div class="mb-3">
+                                    <label for="">Deskripsi</label>
+                                    <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6" placeholder="Masukkan Deskripsi"></textarea>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
                                 </div>
                             </form>
                         </div>
-
+                    </div>
+                </div>
+            </div>
+            <div class="container my-5">
+                <div class="panel" style="height: 90vh;">
+                    <h5 class="fw-bold fs-5">Diskusi</h5>
+                    <p class="text-secondary">{{ $data->namaproject }}</p>
+                    <div class="chatbox d-flex align-items-center justify-content-between align-items-lg-center px-3 border rounded border-1 border-dark">
+                        <div class="d-flex align-items-center">
+                            <i class="fa-solid fa-comments fs-4 me-3"></i>
+                            <p class="fw-medium mt-3">Diskusikan project dengan client</p>
+                        </div>
+                        <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm" onclick="openChat()">Hubungi Client</button>
+                    </div>
+                    <style>
+                        #chatbox {
+                            height: 350px;
+                            overflow-y: scroll;
+                            scroll-behavior: smooth;
+                            background:#f3f6f9;
+                        }
+                    </style>
+                    <div class="collapse" id="chatbox-container">
+                        <div class="py-3" id="chatbox">
+                            <div class="chat-box d-flex flex-column p-2">
+                                @if (count($chats) > 0)
+                                    @foreach ($chats as $cht)
+                                    <div class="col">
+                                        <div class="{{ ($cht->user_id == Auth()->user()->id ) ? 'bubble-chat-admin float-end bg-primary text-white' : 'bubble-chat-client float-start bg-white'}} d-flex flex-column mb-2 py-2 px-3 rounded-3" style="max-width: 33em; font-size: 14px">
+                                            <p class="messages m-0 p-0">{{ $cht->chat }}</p>
+                                            <label for="" class="{{ ($cht->user_id == Auth()->user()->id) ? 'text-white' : 'text-secondary'}} mt-2" style="font-size: 9px">{{ Carbon::parse($cht->chat_time)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</label>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
+                        <form action="{{ route('project-chat') }}" method="post">
+                            @csrf
+                            <div class="form-group p-1 d-flex px-2 rounded-bottom" style="bottom: 0; background: #f3f6f9;">
+                                <input type="hidden" name="project_id" value="{{ $data->id }}">
+                                <input type="hidden" name="chat_time" value="{{ Carbon::now() }}">
+                                <textarea class="form-control" id="chat" name="chat" style="height: 5vh; max-height: 100px" placeholder="Ketik pesan ..."></textarea>
+                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Modal Box Edit Bank End-->
-
         </div>
         <!-- Content End -->
 
 
-@include('Client.Template.script')
+@include('Admin.templates.script')
 </body>
 
 

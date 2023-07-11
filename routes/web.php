@@ -70,6 +70,8 @@ Route::middleware(['web', 'auth'])->group(function(){
     Route::get('revisiselesai', [SelesaiController::class, 'revisiselesai'])->name('revisiselesai');
     Route::get('revisibutton/{id}', [SelesaiController::class, 'revisibutton'])->name('revisibutton');
     Route::get('detail-revisi-client/{id}', [SelesaiController::class, 'detail'])->name('detail-revisi-client');
+    Route::post('accept-revision', [SelesaiController::class, 'acceptRevision'])->name('accept-revision');
+    Route::post('reject-revision', [SelesaiController::class, 'rejectRevision'])->name('reject-revision');
     Route::post('ajukan-revisi-client', [SelesaiController::class, 'ajukanRevisi'])->name('ajukan-revisi-client');
     Route::put('update-status/{id}', [SelesaiController::class, 'updatestatus'])->name('update-status');
     Route::put('update-statuss/{id}', [SelesaiController::class, 'updatestatuss'])->name('update-statuss');
@@ -77,7 +79,7 @@ Route::middleware(['web', 'auth'])->group(function(){
     Route::delete('destroyfitur/{id}', [IndexcController::class, 'destroyfitur'])->name('destroyfitur');
     Route::delete('destroyrequest', [IndexcController::class, 'destroyRequest'])->name('destroy-pending-request');
     Route::delete('deleteproj/{id}', [BayarController::class, 'deleteproj'])->name('deleteproj');
-    Route::delete('/delete.all', [BayarController::class, 'deleteAll'])->name('delete.all');
+    Route::delete('/delete-all', [BayarController::class, 'deleteAll'])->name('delete-all');
 
 });
 
@@ -93,12 +95,15 @@ Route::middleware('admin')->group(function(){
     Route::put('/update-proreq/{id}', [ProjectrequestController::class, 'updateproreqa'])->name('update-proreq');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('projectselesai', [ProjectrequestController::class, 'projectselesai'])->name('projectselesai');
-    Route::resource('projectselesai' , App\Http\Controllers\ProjectselesaiController::class);
     Route::get('pengaturan', [PengaturanController::class, 'pengaturan'])->name('pengaturan');
     Route::post('updatesosmed', [PengaturanController::class, 'updatesosmed'])->name('updatesosmed');
     Route::post('updatekebijakan', [PengaturanController::class, 'updatekebijakan'])->name('updatekebijakan');
     Route::get('revisiproselesai/{id}', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
-    Route::get('editproselesai', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
+    Route::get('editproselesai/{id}', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
+    Route::post('updateproreq-admin', [ProjectrequestController::class, 'updateProreq'])->name('updateproreq-admin');
+    Route::post('savefitur/{id}', [ProjectrequestController::class, 'savefitur'])->name('savefitur');
+    Route::put('update-fitur/{id}', [ProjectrequestController::class, 'updatefitur'])->name('update-fitur');
+    Route::delete('destroy-fitur', [ProjectrequestController::class, 'destroyfitur'])->name('destroy-fitur');
     Route::get('project-disetujui', [ProjectDisetujuiController::class, 'disetujui'])->name('project-disetujui-admin');
     Route::get('detail-project-disetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujui'])->name('detail-disetujui-admin');
     Route::post('update-project-selesai', [ProjectDisetujuiController::class, 'doneProject'])->name('done-project');

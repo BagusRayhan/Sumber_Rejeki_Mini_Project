@@ -30,7 +30,6 @@ class ProjectDisetujuiController extends Controller
         $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
         $progress = (100 / count($fitur)) * $done;
         $chats = Chat::where('project_id', $id)->get();
-        $userid = Auth()->user()->id . $id;
         return view('Admin.detail-project-disetujui', [
             'detail' => $detail,
             'progress' => $progress,

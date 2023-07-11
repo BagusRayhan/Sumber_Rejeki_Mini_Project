@@ -26,28 +26,30 @@
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
               <div class="search-form w-25">
-                <form action="">
+                <form action="{{ route('projectselesai') }}" method="get">
+                  @csrf
                     <div class="input-group rounded-pill" style="background: #E9EEF5">
-                        <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
-                        <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
+                        <input type="text" name="searchKeyword" value="{{ request('searchKeyword') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+                        <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                     </div>
                 </form>
             </div>
-
                 <div class="container-fluid">
                     <div class="row">
                     <table class="table table-striped table-hover mt-4">
                         <thead>
                           <tr>
+                            <th scope="col">Nama Client</th>
                             <th scope="col">Nama Project</th>
                             <th scope="col">Status</th>
                             <th scope="col">Harga Project</th>
-                            <th scope="col">Aksi</th>
+                            <th scope="col" class="text-center" style="width: 6em">Aksi</th>
                           </tr>
                         </thead>
                         <tbody>
                             @forelse ($selesai as $project )
                             <tr>
+                                <td>{{ $project->nama }}</td>
                                 <td>{{ $project->napro }}</td>
                                 <td>
                                     @if ($project->status == 'selesai')
@@ -58,7 +60,6 @@
                                       <span class="badge">{{ $project->status }}</span>
                                     @endif
                                   </td>
-
                                 <td>Rp.{{ $project->harga }}</td>
                                 <td>
                                     @if ($project->status == 'selesai')
@@ -78,29 +79,13 @@
                   </div>
                 </div>
                 </div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination mt-sm-5" style="margin-left: 910px">
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                          <span class="sr-only">Next</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
             </div>
             </div>
         </div>
         <!-- Content End -->
+        <div class="wrapper w-100 d-flex justify-content-end">
+          {{$selesai->links()}}
+        </div>
 
     </div>
 

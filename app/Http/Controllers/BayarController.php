@@ -109,29 +109,21 @@ public function deleteproj($id)
 
 public function deleteAll(Request $request)
 {
-    $ids = $request->input('ids');
-
-    if (!is_array($ids)) {
-        return redirect()->back()->with('error', 'Data yang dipilih tidak valid');
-    }
-
-    Proreq::whereIn('id', $ids)->delete();
-
-    return redirect()->back()->with('success', 'Data berhasil dihapus');
+    $ids = $request->ids;
+    Proreq::whereIn('id',$ids)->delete();
+    return response()->json(["succes"=>"data berhasil dihapus"]);
 }
 
 
+
     public function ambildata($id){
-    // Ambil data proyek berdasarkan ID
     $proreq = Proreq::findOrFail($id);
 
-    // Buat array dengan data yang akan dikembalikan sebagai respons JSON
     $data = [
         'napro' => $proreq->napro,
         'harga' => $proreq->harga,
     ];
 
-    // Kembalikan data dalam format JSON
     return response()->json($data);
 
 }
