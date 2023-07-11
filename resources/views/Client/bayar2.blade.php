@@ -377,7 +377,7 @@ $(document).ready(function() {
         $('#hargaProject').val(setengahHarga);
         $('#tgl-bayar').val(tglBayar);
         $('#metodepembayaran').val(metodepembayaran);
-        $('#projectIdCash').val(projectId); // Menetapkan nilai ID proyek pada input tersembunyi
+        $('#projectIdCash').val(projectId); 
         $('#Modalbayar').modal('show');
     });
 
@@ -397,7 +397,7 @@ $(document).ready(function() {
     $('.pilih-metode').click(function() {
         var napro = $('#namaProject').val();
         var harga = $('#hargaProject').val();
-        var projectId = $('#projectIdCash').val(); // Mengambil nilai ID proyek dari input tersembunyi
+        var projectId = $('#projectIdCash').val();
         alert(projectId);
 
         $('#namaProjectCash').val(napro);
