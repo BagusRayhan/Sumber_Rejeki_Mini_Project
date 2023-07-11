@@ -5,6 +5,8 @@
 <head>
 @include('Client.Template.head')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -47,60 +49,10 @@
                 Pembayaran
             </a>
         </div>
-  <form method="POST" action="{{ route('delete.all') }}">
-    @csrf
-    @method('DELETE')
-    <button type="submit" class="btn btn-danger btn-sm">Delete All</button>
-</form>
+        <div>
+    <a href="#" id="deleteAllSelectedRecord" class="btn btn-danger btn-sm">Delete All</a>
+        </div>
 
-        <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var deleteAllButton = document.getElementById('deleteAllButton');
-        var childCheckboxes = document.getElementsByClassName('child-checkbox');
-
-        deleteAllButton.addEventListener('click', function() {
-            var checkedIds = [];
-
-            for (var i = 0; i < childCheckboxes.length; i++) {
-                if (childCheckboxes[i].checked) {
-                    checkedIds.push(childCheckboxes[i].dataset.id);
-                }
-            }
-
-            if (checkedIds.length > 0) {
-                if (confirm('Apakah Anda yakin ingin menghapus semua data yang dipilih?')) {
-                    var formData = new FormData();
-
-                    for (var j = 0; j < checkedIds.length; j++) {
-                        formData.append('ids[]', checkedIds[j]);
-                    }
-
-                    fetch('/delete-all', {
-                        method: 'DELETE',
-                        body: formData,
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        }
-                    })
-                    .then(function(response) {
-                        if (response.ok) {
-                            alert('Data berhasil dihapus');
-                            location.reload();
-                        } else {
-                            alert('Terjadi kesalahan saat menghapus data');
-                        }
-                    })
-                    .catch(function(error) {
-                        console.error(error);
-                        alert('Terjadi kesalahan saat menghapus data');
-                    });
-                }
-            } else {
-                alert('Pilih setidaknya satu data untuk dihapus');
-            }
-        });
-    });
-</script>
 
     </div>
         <div class="row mt-4">
@@ -111,7 +63,7 @@
                             <tr>
                                 <th>
                                     <div class="form-check">
-                                    <input class="form-check-input master-checkbox" onchange="toggleCheckboxes(this)" type="checkbox" value="" id="myCheckbox">
+                                    <input class="form-check-input master-checkbox"  type="checkbox" value="" id="select_all_ids">
                                     </div>
                                 </th>
                                 <th scope="col">Nama Project</th>
@@ -123,11 +75,13 @@
                         <tbody>
                         @foreach($bayar2 as $client2)
                             @if ( $client2->statusbayar === 'belum lunas' || $client2->statusbayar === 'lunas')
-                            <tr>
+                            <tr id="employee_ids{{ $client2->id }}">
                                 <td>
-                                <div class="form-check">
-                                    <input class="form-check-input child-checkbox" type="checkbox" name="ids[]" value="{{ $client2->id }}">
-                                </div>
+                                    <div class="form-check">
+                                        @if ($client2->statusbayar === 'lunas')
+                                            <input class="form-check-input checkbox_ids" type="checkbox" name="ids" value="{{ $client2->id }}">
+                                        @endif
+                                    </div>
                                 </td>
                                 <td>{{ $client2->napro }}</td>
                                 <td>{{ $client2->harga }}</td>
@@ -161,28 +115,62 @@
                             @endif
                         </tbody>
                     </table>
-                    <script>
-                        function toggleCheckboxes(masterCheckbox) {
-                          var checkboxes = document.getElementsByClassName('child-checkbox');
-                          for (var i = 0; i < checkboxes.length; i++) {
-                            checkboxes[i].checked = masterCheckbox.checked;
-                          }
-                        }
-                      </script>
-                    {{-- <script>
-                        var checkbox = document.getElementById("myCheckbox");
-                        var buttonContainer = document.getElementById("buttonContainer");
+<script>
+$(function(e){
+    $('#select_all_ids').click(function(){
+        $('.checkbox_ids').prop('checked', $(this).prop('checked'));
+    });
 
-                        checkbox.addEventListener('change', function() {
-                        if (this.checked) {
-                            buttonContainer.innerHTML = '<button type="button" class="btn btn-danger btn-sm">Delete All</button>';
-                            buttonContainer.style.display = 'block';
-                        } else {
-                            buttonContainer.innerHTML = '';
-                            buttonContainer.style.display = 'none';
+    $('#deleteAllSelectedRecord').click(function(e){
+        e.preventDefault();
+        var all_ids = [];
+        $('input:checkbox[name=ids]:checked').each(function(){
+            all_ids.push($(this).val());
+        });
+
+        if (all_ids.length > 0) {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dipilih akan dihapus!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('delete-all') }}",
+                        type: "DELETE",
+                        data: {
+                            ids: all_ids,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response){
+                            $.each(all_ids, function(key, val){
+                                $('#employee_ids' + val).remove();
+                            });
+                            Swal.fire(
+                                'Berhasil!',
+                                'Data berhasil dihapus.',
+                                'success'
+                            );
                         }
-                        });
-                    </script> --}}
+                    });
+                }
+            });
+        } else {
+            Swal.fire(
+                'Peringatan!',
+                'Pilih setidaknya satu data untuk dihapus.',
+                'warning'
+            );
+        }
+    });
+});
+
+</script>
                 </div>
             </div>
         </div>
@@ -206,6 +194,7 @@
                            <h6>Harga Pembayaran :</h6>
                            <input type="text" name="hargaProject" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="hargaProject" disabled>
                        </div>
+                       <input type="hidden" id="projectIdCash">
                <br>
            </div>
            <center><button class="btn btn-primary pilih-metode" data-bs-target="#bayar1" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center><br>
@@ -275,6 +264,7 @@
       <form id="updateForm" action="{{ route('update-status-bayarakhir', '') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+        <input type="hidden" id="projectId">
         <div class="modal-body" style="border: none;">
           <div class="container m-0 p-0 d-flex justify-content-between">
             <div class="d-grid" style="display: flex; justify-content: space-between;">
@@ -372,6 +362,56 @@
         </div>
 
 <script>
+$(document).ready(function() {
+    $('.btn-bayar').click(function() {
+        var napro = $(this).data('napro');
+        var harga = $(this).data('harga');
+        var tglBayar = $(this).data('tanggalpembayaran');
+        var metodepembayaran = $(this).data('metodepembayaran');
+        var projectId = $(this).data('id');
+        alert(projectId);
+
+        var setengahHarga = harga / 2;
+
+        $('#namaProject').val(napro);
+        $('#hargaProject').val(setengahHarga);
+        $('#tgl-bayar').val(tglBayar);
+        $('#metodepembayaran').val(metodepembayaran);
+        $('#projectIdCash').val(projectId); // Menetapkan nilai ID proyek pada input tersembunyi
+        $('#Modalbayar').modal('show');
+    });
+
+    $('.bayar-awal').click(function() {
+        var napro = $('#namaProject').val();
+        var harga = $('#hargaProject').val();
+
+        var setengahHarga = harga / 2;
+
+        $('#napro-awal').val(napro);
+        $('#harga-pro').val(harga);
+        $('#tgl-bayar').val(tglBayar);
+        $('#metodepembayaran').val(metodepembayaran);
+        $('#modalawal').modal('show');
+    });
+
+    $('.pilih-metode').click(function() {
+        var napro = $('#namaProject').val();
+        var harga = $('#hargaProject').val();
+        var projectId = $('#projectIdCash').val(); // Mengambil nilai ID proyek dari input tersembunyi
+        alert(projectId);
+
+        $('#namaProjectCash').val(napro);
+        $('#hargaProjectCash').val(harga);
+
+        var form = $('#updateForm');
+        var action = form.attr('action');
+        action = action.replace(/\/$/, "");
+        form.attr('action', action + '/' + projectId);
+    });
+});
+
+</script>
+<script>
         var strukModal = document.getElementById('struk');
         strukModal.addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget;
@@ -408,52 +448,6 @@
     });
 </script>
 
-<script>
-$(document).ready(function() {
-    $('.btn-bayar').click(function() {
-        var napro = $(this).data('napro');
-        var harga = $(this).data('harga');
-        var tglBayar = $(this).data('tanggalpembayaran');
-        var metodepembayaran = $(this).data('metodepembayaran');
-
-        var setengahHarga = harga / 2;
-
-        $('#namaProject').val(napro);
-        $('#hargaProject').val(setengahHarga);
-        $('#tgl-bayar').val(tglBayar);
-        $('#metodepembayaran').val(metodepembayaran);
-        $('#Modalbayar').modal('show');
-    });
-
-    $('.bayar-awal').click(function() {
-        var napro = $('#namaProject').val();
-        var harga = $('#hargaProject').val();
-
-        // Menghitung setengah dari total harga
-        var setengahHarga = harga / 2;
-
-        $('#napro-awal').val(napro);
-        $('#harga-pro').val(harga); // Mengisi input harga dengan setengahHarga
-        $('#tgl-bayar').val(tglBayar);
-        $('#metodepembayaran').val(metodepembayaran);
-        $('#modalawal').modal('show');
-    });
-
-    $('.pilih-metode').click(function() {
-        var napro = $('#namaProject').val();
-        var harga = $('#hargaProject').val();
-
-        $('#namaProjectCash').val(napro);
-        $('#hargaProjectCash').val(harga);
-
-        var projectId = '{{ $bayar2->firstWhere("statusbayar", $client2->statusbayar)->id }}';
-        var form = $('#updateForm');
-        var action = form.attr('action');
-        form.attr('action', action + '/' + projectId);
-    });
-});
-
-</script>
 
 
     <script>
@@ -539,62 +533,48 @@ $(document).ready(function() {
           }
 
           if (selectedLayanan === 'ovo') {
-            // Ambil nama file gambar dari database
             const imageFilename = 'ovo.png';
 
-            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
             const imageUrl = 'gambar/qr/' + imageFilename;
 
-            // Buat elemen <img> untuk menampilkan gambar
             const imageElement = document.createElement('img');
             imageElement.style.width = '100px';
             imageElement.style.height = '100px';
             imageElement.src = imageUrl;
 
-            // Tambahkan elemen <img> ke dalam container gambar
             imageContainer.appendChild(imageElement);
           }
 
           if (selectedLayanan === 'gopay') {
-            // Ambil nama file gambar dari database
             const imageFilename = 'gopay.png';
 
-            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
             const imageUrl = 'gambar/qr/' + imageFilename;
 
-            // Buat elemen <img> untuk menampilkan gambar
             const imageElement = document.createElement('img');
             imageElement.style.width = '100px';
             imageElement.style.height = '100px';
             imageElement.src = imageUrl;
 
-            // Tambahkan elemen <img> ke dalam container gambar
             imageContainer.appendChild(imageElement);
           }
 
           if (selectedLayanan === 'linkaja') {
-            // Ambil nama file gambar dari database
             const imageFilename = 'linkaja.png';
 
-            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
             const imageUrl = 'gambar/qr/' + imageFilename;
 
-            // Buat elemen <img> untuk menampilkan gambar
             const imageElement = document.createElement('img');
             imageElement.style.width = '100px';
             imageElement.style.height = '100px';
             imageElement.src = imageUrl;
 
-            // Tambahkan elemen <img> ke dalam container gambar
             imageContainer.appendChild(imageElement);
           }
         });
       } else if (selectedValue === 'bank') {
-        // Buat label "Bank" baru
         const bankLabel = document.createElement('label');
         bankLabel.textContent = 'Bank';
 
-        // Buat select "Bank" baru
         const bankSelect = document.createElement('select');
         bankSelect.className = 'form-select form-select-lg mb-3';
         bankSelect.name = 'metode2';
@@ -608,11 +588,9 @@ $(document).ready(function() {
           <option value="Bank Mandiri">Bank Mandiri</option>
         `;
 
-        // Buat label "Upload Bukti Pembayaran" baru
         const fileInputLabel = document.createElement('label');
         fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
 
-        // Buat input file baru
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
         fileInput.name = 'buktipembayaran2';
@@ -623,11 +601,9 @@ $(document).ready(function() {
         fileInput.style.width = '50%';
         fileInput.setAttribute('required', true);
 
-        // Buat label "Input Bank" baru
         const inputBankLabel = document.createElement('label');
         inputBankLabel.textContent = 'No.Rekening:';
 
-        // Buat input teks baru untuk memasukkan nama bank
         const inputBank = document.createElement('input');
         inputBank.type = 'text';
         inputBank.name = 'rekening';
@@ -681,7 +657,6 @@ $(document).ready(function() {
     {{-- Modal Struk Pembayaran --}}
        <style>
         @media print {
-        /* Sembunyikan button saat cetakan */
         .modal button {
             display: none;
         }
@@ -695,9 +670,9 @@ $(document).ready(function() {
 <div class="d-flex justify-content-end">
     {{ $bayar2->links() }}
 </div>
+@include('Client.Template.footer')
         </div>
         <!-- Content End -->
-
 
 @include('Client.Template.script')
 </body>

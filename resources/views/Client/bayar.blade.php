@@ -116,6 +116,7 @@
           <h6>Harga Pembayaran :</h6>
           <input type="text" name="hargaProject" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="hargaProject" disabled>
         </div>
+        <input type="hidden" id="projectIdCash">
         <br>
       </div>
       <center>
@@ -175,30 +176,54 @@
 </div>
 
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     $('.btn-bayar').click(function() {
-      var napro = $(this).data('napro');
-      var harga = $(this).data('harga');
+        var napro = $(this).data('napro');
+        var harga = $(this).data('harga');
+        var tglBayar = $(this).data('tanggalpembayaran');
+        var metodepembayaran = $(this).data('metodepembayaran');
+        var projectId = $(this).data('id');
+        alert(projectId);
 
-      var setengahHarga = harga / 2;
+        var setengahHarga = harga / 2;
 
-      $('#namaProject').val(napro);
-      $('#hargaProject').val(setengahHarga);
-      $('#Modalbayar').modal('show');
+        $('#namaProject').val(napro);
+        $('#hargaProject').val(setengahHarga);
+        $('#tgl-bayar').val(tglBayar);
+        $('#metodepembayaran').val(metodepembayaran);
+        $('#projectIdCash').val(projectId); // Menetapkan nilai ID proyek pada input tersembunyi
+        $('#Modalbayar').modal('show');
+    });
+
+    $('.bayar-awal').click(function() {
+        var napro = $('#namaProject').val();
+        var harga = $('#hargaProject').val();
+
+        var setengahHarga = harga / 2;
+
+        $('#napro-awal').val(napro);
+        $('#harga-pro').val(harga);
+        $('#tgl-bayar').val(tglBayar);
+        $('#metodepembayaran').val(metodepembayaran);
+        $('#modalawal').modal('show');
     });
 
     $('.pilih-metode').click(function() {
-      var napro = $('#namaProject').val();
-      var harga = $('#hargaProject').val();
-      $('#namaProjectCash').val(napro);
-      $('#hargaProjectCash').val(harga);
+        var napro = $('#namaProject').val();
+        var harga = $('#hargaProject').val();
+        var projectId = $('#projectIdCash').val(); // Mengambil nilai ID proyek dari input tersembunyi
+        alert(projectId);
 
-      var projectId = '{{ $data->firstWhere("statusbayar", $item->statusbayar)->id }}';
-      var form = $('#updateForm');
-      var action = form.attr('action');
-      form.attr('action', action + '/' + projectId);
+        $('#namaProjectCash').val(napro);
+        $('#hargaProjectCash').val(harga);
+
+        var form = $('#updateForm');
+        var action = form.attr('action');
+        action = action.replace(/\/$/, "");
+        form.attr('action', action + '/' + projectId);
     });
-  });
+});
+
 </script>
 
 <script>
@@ -399,10 +424,12 @@ console.log(selectedBank)
                 {{ $data->links() }}
             </div>
                     </div>
+      </div>
+      @include('Client.Template.footer')
+        </div>
                     <!-- Content End -->
                 
                     @include('Client.Template.script')
-                    @include('Client.Template.footer')
                 </body>
               
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:45:02 GMT -->

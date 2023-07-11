@@ -77,7 +77,7 @@ Route::middleware(['web', 'auth'])->group(function(){
     Route::delete('destroyfitur/{id}', [IndexcController::class, 'destroyfitur'])->name('destroyfitur');
     Route::delete('destroyrequest', [IndexcController::class, 'destroyRequest'])->name('destroy-pending-request');
     Route::delete('deleteproj/{id}', [BayarController::class, 'deleteproj'])->name('deleteproj');
-    Route::delete('/delete.all', [BayarController::class, 'deleteAll'])->name('delete.all');
+    Route::delete('/delete-all', [BayarController::class, 'deleteAll'])->name('delete-all');
 
 });
 
