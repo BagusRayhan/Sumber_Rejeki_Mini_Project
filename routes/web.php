@@ -85,6 +85,7 @@ Route::middleware(['web', 'auth'])->group(function(){
 
 Route::middleware('admin')->group(function(){
     // Halaman Admin
+    Route::get('notif-redirect/{id}', [AdminController::class, 'notifRedirect'])->name('notif-redirect');
     Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
     Route::put('/admin/update-profile', [AdminController::class, 'updateProfile'])->name('admin.updateProfile');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');

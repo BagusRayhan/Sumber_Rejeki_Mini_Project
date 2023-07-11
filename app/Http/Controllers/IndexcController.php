@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chat;
 use App\Models\Proreq;
 use App\Models\Fitur;
+use App\Models\Notification;
 use App\Models\Sosmed;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -139,8 +140,14 @@ class IndexcController extends Controller
 
     public function sendRequest($id) {
         $pro = Proreq::find($id);
+        $msg = 'Project masuk dari '.$pro->nama;
         $pro->update([
             'status' => 'pending'
+        ]);
+        $notif = Notification::create([
+            'role' => 'admin',
+            'notif' => $msg,
+            'kategori' => 'Project Masuk'
         ]);
         return redirect(route('drequestclient'))->with('success', 'data berhasil dikirim');
     }

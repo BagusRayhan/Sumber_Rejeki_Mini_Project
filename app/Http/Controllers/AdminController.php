@@ -10,6 +10,7 @@ use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use App\Charts\AnnualyDoneChart;
 use App\Charts\MonthlyUsersChart;
+use App\Models\Notification;
 use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
@@ -41,7 +42,8 @@ class AdminController extends Controller
             $query->where('role', 'client');
         })->limit(4)->latest()->get();
 
-
+        $notification = Notification::where('role', 'admin')->latest()->get();
+        
 
         return view('Admin.index', [
             'chart' => $chartData,
@@ -53,10 +55,23 @@ class AdminController extends Controller
             'ychart' => $ychart->build(),
             'incomePayment' => $incomePayment,
             'incomeProject' => $incomeProject,
-            'message' => $message
+            'message' => $message,
+            'notification' => $notification
         ]);
     }
 
+    public function notifRedirect($id) {
+        $notif = Notification::findOrFail($id);
+        if ($notif->kategori == 'Project Masuk') {
+            $notif->delete();
+            return redirect()->route('projectreq');
+        } elseif ($notif->kategori == 'Pembayaran Masuk') {
+            
+        } elseif ($notif->kategori == 'Revisi Project') {
+
+        }
+    }
+    
     public function updateProfile(Request $request)
     {
         $upProfile = [];

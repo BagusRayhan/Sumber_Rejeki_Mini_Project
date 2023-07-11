@@ -12,8 +12,7 @@
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
         "nesbot/carbon": "^2.68",
-        "realrashid/sweet-alert": "^7.0",
-        "yajra/laravel-datatables-oracle": "^10.6"
+        "realrashid/sweet-alert": "^7.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -6,6 +6,7 @@ use App\Models\Chat;
 use App\Models\User;
 use App\Models\Fitur;
 use App\Models\Proreq;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,21 +15,25 @@ class ProjectrequestController extends Controller
 {
     public function projectreq(){
         $admin = User::where('role', 'admin')->first();
+        $notification = Notification::where('role', 'admin')->latest()->get();
         $projectreq = Proreq::where('status','pending')->get();
         return view('Admin.projectreq', [
             'projectreq'=>$projectreq,
-            'admin' =>$admin
+            'admin' =>$admin,
+            'notification' => $notification
         ]);
     }
 
     public function detailproreq($id){
+        $notification = Notification::where('role', 'admin')->latest()->get();
         $admin = User::where('role', 'admin')->first();
         $data = Proreq::find($id);
         $dataa = Fitur::where('project_id', $data->id)->orderBy('project_id')->get();
         return view('Admin.detailproreq', [
             'data' => $data,
             'admin' => $admin,
-            'dataa' => $dataa
+            'dataa' => $dataa,
+            'notification' => $notification
         ]);
     }
     
@@ -84,13 +89,15 @@ public function updateproreqa($id)
 
     public function projectselesai(Request $request){
         $keyword = $request->searchKeyword;
+        $notification = Notification::where('role', 'admin')->latest()->get();
         $admin = User::where('role', 'admin')->first();
         $selesai = proreq::whereIn('status', ['selesai', 'revisi'])->where('napro', 'LIKE', '%'.$keyword.'%')->paginate(3);
-        return view('Admin.projectselesai', compact('selesai','admin'));
+        return view('Admin.projectselesai', compact('selesai','admin','notification'));
     }
 
     public function revisiproselesai($id)
     {
+        $notification = Notification::where('role', 'admin')->latest()->get();
         $admin = User::where('role', 'admin')->first();
         $fitur = Fitur::where('project_id', $id)->get();
         $data = Proreq::find($id);
@@ -99,19 +106,22 @@ public function updateproreqa($id)
             'data' => $data,
             'fitur' => $fitur,
             'chats' => $chats,
-            'admin' =>$admin
+            'admin' =>$admin,
+            'notification' => $notification
         ]);
     }
     
 
     public function editproselesai($id){
+        $notification = Notification::where('role', 'admin')->latest()->get();
         $admin = User::where('role', 'admin')->first();
         $data = Proreq::find($id);
         $fitur = Fitur::where('project_id', $id);
         return view('Admin.editproselesai', [
             'admin' =>$admin,
             'data' => $data,
-            'fitur' => $fitur
+            'fitur' => $fitur,
+            'notification' => $notification,
         ]);
     }
 
