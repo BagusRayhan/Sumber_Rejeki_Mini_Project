@@ -71,7 +71,7 @@
             <a href="kebijakan">&nbsp;Kebijakan Privasi</a>
     </div>
     <div class="d-flex justify-content-end">
-            <a href="{{ route('forgot') }}">&nbsp;Forgot Password</a>
+            <a href="{{ url('forgot-password') }}">&nbsp;Forgot Password</a>
     </div>
 </div><br>
 

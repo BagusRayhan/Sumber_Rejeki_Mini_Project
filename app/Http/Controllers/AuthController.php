@@ -92,7 +92,7 @@ public function create(array $data)
 
 
     public function forgot(){
-        return view('forgot');
+        return view('auth.forgot-password');
     }
     public function kebijakan(){
         return view('kebijakanprivasi');
