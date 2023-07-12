@@ -145,6 +145,7 @@ Route::middleware('admin')->group(function(){
     Route::put('simpanharga/{id}', [ProjectrequestController::class, 'simpanharga'])->name('simpanharga');
     Route::put('alasantolak', [ProjectrequestController::class, 'alasantolak'])->name('alasantolak');
     Route::put('/update-proreq/{id}', [ProjectrequestController::class, 'updateproreqa'])->name('update-proreq');
+    Route::get('search', [ProjectrequestController::class, 'search'])->name('search');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('projectselesai', [ProjectrequestController::class, 'projectselesai'])->name('projectselesai');
     Route::get('pengaturan', [PengaturanController::class, 'pengaturan'])->name('pengaturan');

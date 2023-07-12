@@ -13,7 +13,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ProjectrequestController extends Controller
 {
-    public function projectreq(){
+    public function projectreq()
+    {
         $admin = User::where('role', 'admin')->first();
         $notification = Notification::where('role', 'admin')->latest()->get();
         $projectreq = Proreq::where('status','pending')->get();
@@ -23,6 +24,29 @@ class ProjectrequestController extends Controller
             'notification' => $notification
         ]);
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        if (empty($query)) {
+            return redirect('/projectreq');
+        }
+
+        $admin = User::where('role', 'admin')->first();
+        $projectreq = Proreq::where('status', 'pending')
+                            ->where(function (Builder $builder) use ($query) {
+                                $builder->where('napro', 'like', '%' . $query . '%');
+                            })
+                            ->paginate(2);
+
+        return view('Admin.projectreq', [
+            'projectreq' => $projectreq,
+            'admin' => $admin,
+            'query' => $query
+        ]);
+    }
+
+
 
     public function detailproreq($id){
         $notification = Notification::where('role', 'admin')->latest()->get();
@@ -36,7 +60,7 @@ class ProjectrequestController extends Controller
             'notification' => $notification
         ]);
     }
-    
+
 
     public function downloadSuppDocs($dokumen = null) {
         $file = public_path('document/' . $dokumen);
@@ -71,10 +95,10 @@ public function alasantolak(Request $request)
 
 public function updateproreqa($id)
 {
-    
+
     $proreq = Proreq::findOrFail($id);
     $fitur = Fitur::where('project_id', $proreq->id)->get();
-    
+
     $totalHarga = $fitur->sum('hargafitur');
 
     $proreq->harga = $totalHarga;
@@ -111,7 +135,7 @@ public function updateproreqa($id)
             'notification' => $notification
         ]);
     }
-    
+
 
     public function editproselesai($id){
         $notification = Notification::where('role', 'admin')->latest()->get();
