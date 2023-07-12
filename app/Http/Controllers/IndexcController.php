@@ -23,7 +23,7 @@ class IndexcController extends Controller
         $kerjaCounter = Proreq::where('status', 'setuju')->count();
         $selesaiCounter = Proreq::where('status', 'selesai')->count();
         $notifikasi = Proreq::all();
-        $estimasi = Proreq::all();
+        $estimasi = Proreq::where('status','setuju')->where('user_id', Auth::user()->id)->get();
         $notif = Chat::all();
         $pesancht = Chat::whereHas('user', function($query) {
         $query->where('role', 'admin');
@@ -71,7 +71,7 @@ class IndexcController extends Controller
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
         // $client = User::where('role', 'client')->first();
-        $data = Proreq::where('status', 'draft')->orWhere('status', 'pending')->get();
+        $data = Proreq::whereIn('status', ['draft','pending'])->where('user_id', Auth::user()->id)->get();
         $sosmed = Sosmed::all();
         return view('Client.clientproreq',compact('data','sosmed','client','notification'));
     }

@@ -61,71 +61,69 @@
             </a>
         </div>
     </div>
-        <div class="row mt-4">
-            <div class="col-12">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nama Project</th>
-                                <th scope="col">Harga Project</th>
-                                <th scope="col" class="text-center">Status</th>
-                                <th scope="col" class="text-center">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-@foreach ($data as $item)
-  @if ($item->statusbayar === 'menunggu pembayaran')
-    <tr>
-      <td>{{ $item->napro }}</td>
-      <td>{{ $item->harga }}</td>
-      <td><center><span class="badge text-bg-danger">{{ $item->statusbayar }}</span></td></center>
-      <td>
-        <center>
-          <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" data-id="{{ $item->id }}" data-napro="{{ $item->napro }}" data-harga="{{ $item->harga }}" class="btn btn-primary btn-bayar btn-sm">
-          <i class="fa-solid fa-wallet"></i>&nbsp;Bayar
-          </button>
-        </center>
-      </td>
-    </tr>
-  @endif
-@endforeach
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Nama Project</th>
+                  <th scope="col">Harga Project</th>
+                  <th scope="col" class="text-center">Status</th>
+                  <th scope="col" class="text-center">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($data as $item)
+                  @if ($item->statusbayar === 'menunggu pembayaran')
+                    <tr>
+                      <td>{{ $item->napro }}</td>
+                      <td>{{ $item->harga }}</td>
+                      <td><center><span class="badge text-bg-danger">{{ $item->statusbayar }}</span></td></center>
+                      <td>
+                        <center>
+                          <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" data-id="{{ $item->id }}" data-napro="{{ $item->napro }}" data-harga="{{ $item->harga }}" class="btn btn-primary btn-bayar btn-sm">
+                          <i class="fa-solid fa-wallet"></i>&nbsp;Bayar
+                          </button>
+                        </center>
+                      </td>
+                    </tr>
+                  @endif
+                @endforeach
+              </tbody>
+            </table>
+            
+            {{-- Modal Bayar Awal --}}
+            <div class="modal fade" id="Modalbayar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
+                  <div class="modal-header" style="border: none;">
+                    <img id="profile-image" src="{{ asset('ProjectManagement/dashmin/img/ikonm.png') }}" alt="" style="width:15%; height:15%; margin-top:1%;">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom:10%;" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body" style="border: none;">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="font-weight: bold;">Pembayaran Awal</h1><br>
+                    <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
+                      <h6 style="align-self: center;">Nama Project :</h6>
+                      <input type="text" name="namaProject" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="namaProject" disabled>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                      <h6>Harga Pembayaran :</h6>
+                      <input type="text" name="hargaProject" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="hargaProject" disabled>
+                    </div>
+                    <input type="hidden" id="projectIdCash">
+                    <br>
+                  </div>
+                  <center>
+                    <button class="btn btn-primary pilih-metode" data-bs-target="#cash" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button>
+                  </center>
+                  <div class="modal-footer" style="border: none;"></div>
+                </div>
+              </div>
+            </div>
 
-@if ($data->isEmpty())
-  <tr>
-    <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
-  </tr>
-@endif
-</tbody>
-</table>
+            {{-- Modal Bayar Cash --}}
 
-<div class="modal fade" id="Modalbayar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-      <div class="modal-header" style="border: none;">
-        <img id="profile-image" src="{{ asset('ProjectManagement/dashmin/img/ikonm.png') }}" alt="" style="width:15%; height:15%; margin-top:1%;">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom:10%;" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" style="border: none;">
-        <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="font-weight: bold;">Pembayaran Awal</h1><br>
-        <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
-          <h6 style="align-self: center;">Nama Project :</h6>
-          <input type="text" name="namaProject" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="namaProject" disabled>
-        </div>
-        <div style="display: flex; justify-content: space-between;">
-          <h6>Harga Pembayaran :</h6>
-          <input type="text" name="hargaProject" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="hargaProject" disabled>
-        </div>
-        <input type="hidden" id="projectIdCash">
-        <br>
-      </div>
-      <center>
-        <button class="btn btn-primary pilih-metode" data-bs-target="#cash" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button>
-      </center>
-      <div class="modal-footer" style="border: none;"></div>
-    </div>
-  </div>
-</div>
 
 
 <div class="modal fade" id="cash" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
@@ -143,7 +141,6 @@
             <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" id="hargaProjectCash" disabled>
           </div>
         </div>
-
         <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
       </div>
       <form id="updateForm" action="{{ route('update-status-bayar', '') }}" method="POST" enctype="multipart/form-data">

@@ -70,7 +70,8 @@ class ProjectDisetujuiController extends Controller
     public function doneProject(Request $request) {
         $pro = Proreq::find($request->project_id);
         $pro->update([
-            'status' => 'selesai'
+            'status' => null,
+            'statusbayar' => 'belum lunas'
         ]);
 
         $msg = 'Project '.$pro->napro.' Selesai';
@@ -97,7 +98,7 @@ class ProjectDisetujuiController extends Controller
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
         $sosmed = Sosmed::all();;
-        $project = Proreq::where('status', 'setuju')->paginate(5);
+        $project = Proreq::where('status', 'setuju')->where('user_id', Auth::user()->id)->paginate(5);
         return view('Client.disetujui', compact('project', 'sosmed','client','notification'));
     }
 
