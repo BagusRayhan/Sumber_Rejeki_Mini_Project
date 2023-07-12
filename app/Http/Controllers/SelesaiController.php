@@ -18,7 +18,7 @@ class SelesaiController extends Controller
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
             $sosmed = Sosmed::all();
             $keyword = $request->input('keyword');
-            $data = Proreq::where('napro','like','%'.$keyword.'%')->paginate(3);
+            $data = Proreq::where('napro','like','%'.$keyword.'%')->paginate(8);
             return view('Client.selesai', compact('sosmed','data','client','notification'));
         }
         
@@ -26,7 +26,7 @@ class SelesaiController extends Controller
             $client = User::where('role', 'client')->first();
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
             $keyword = $request->input('keyword');
-            $data = Proreq::where('napro','like','%'.$keyword.'%')->paginate(3);
+            $data = Proreq::where('napro','like','%'.$keyword.'%')->paginate(8);
             $sosmed = Sosmed::all();
             return view('Client.revisi', compact('sosmed','client','data','notification'));
         }
