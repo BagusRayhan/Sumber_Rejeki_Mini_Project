@@ -12,12 +12,17 @@ use Illuminate\Support\Facades\Auth;
 
 class TolakController extends Controller
 {
-        public function ditolakclient()
+        public function ditolakclient(Request $request)
         {
             $client = User::find(Auth::user()->id);
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
             $sosmed = Sosmed::all();
-            $data = proreq::where('status','tolak')->get();
+            $keyword = $request->input('keyword');
+             $data = proreq::where('status', 'tolak')
+                  ->when($keyword, function ($query) use ($keyword) {
+                      $query->where('napro', 'LIKE', '%'.$keyword.'%');
+                  })
+                  ->paginate(4);
             return view('Client.ditolak', compact('sosmed','data','client','notification'));
         }
 

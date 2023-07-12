@@ -107,13 +107,12 @@
                         <textarea class="form-control" rows="6" name="alasan" required></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" onclick="showConfirmation(event)" class="btn btn-primary">Submit</button>
+                        <button type="submit"  class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-
 
 
         <div class="wrapper mt-1">
