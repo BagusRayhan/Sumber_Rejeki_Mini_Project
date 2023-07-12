@@ -17,7 +17,9 @@ class SelesaiController extends Controller
             $client = User::where('role', 'client')->first();
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
             $sosmed = Sosmed::all();
-            return view('Client.selesai', compact('sosmed','client','data','notification'));
+            $keyword = $request->input('keyword');
+            $data = Proreq::where('napro','like','%'.$keyword.'%')->paginate(3);
+            return view('Client.selesai', compact('sosmed','data','client','notification'));
         }
         
         public function revisiclient(Request $request){
