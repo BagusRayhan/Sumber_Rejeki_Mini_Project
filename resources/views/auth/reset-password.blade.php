@@ -84,13 +84,7 @@ Forgot Password
 </div>
 </div>
 
-<div class="flex-col-c p-t-50">
- <span class="txt1 p-b-17">
-Sudah punya akun ?
-<a href="{{ route('login') }}" class="txt2">
-Login
-</a></span>
-</div>
+
 </form>
 </div>
 </div>
