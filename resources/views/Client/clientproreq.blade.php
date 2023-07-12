@@ -33,9 +33,8 @@
                         </div>
                     </form>
                 </div>
-                <div class="d-flex justify-content-end">
-                        <a href="{{ route('showproj') }}" class="btn btn-primary btn-sm mx-2">Request Project</a>
-                    
+                <div class="wrapper">
+                    <a href="{{ route('showproj') }}" class="btn btn-primary btn-sm">Request Project</a>
                 </div>
             </div>
             <div class="row mt-4">
