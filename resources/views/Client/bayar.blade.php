@@ -183,7 +183,6 @@ $(document).ready(function() {
         var tglBayar = $(this).data('tanggalpembayaran');
         var metodepembayaran = $(this).data('metodepembayaran');
         var projectId = $(this).data('id');
-        alert(projectId);
 
         var setengahHarga = harga / 2;
 
@@ -212,7 +211,6 @@ $(document).ready(function() {
         var napro = $('#namaProject').val();
         var harga = $('#hargaProject').val();
         var projectId = $('#projectIdCash').val(); 
-        alert(projectId);
 
         $('#namaProjectCash').val(napro);
         $('#hargaProjectCash').val(harga);

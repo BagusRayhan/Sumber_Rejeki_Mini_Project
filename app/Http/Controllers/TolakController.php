@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sosmed;
 use App\Models\User;
-use App\Models\ditolak;
 use App\Models\proreq;
+use App\Models\Sosmed;
+use App\Models\ditolak;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
 class TolakController extends Controller
@@ -13,14 +14,10 @@ class TolakController extends Controller
         public function ditolakclient()
         {
             $client = User::where('role', 'client')->first();
+            $notification = Notification::where('role', 'client')->latest()->get();
             $sosmed = Sosmed::all();
             $data = proreq::where('status','tolak')->get();
-            return view('Client.ditolak', compact('sosmed','data','client'));
-        }
-
-        public function projectreq(){
-            $projectreq = Proreq::where('status','pending')->get();
-            return view('Admin.projectreq', ['projectreq'=>$projectreq]);
+            return view('Client.ditolak', compact('sosmed','data','client','notification'));
         }
 
         public function destroy(int $id)

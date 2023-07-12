@@ -90,17 +90,15 @@ Route::middleware(['web', 'auth'])->group(function(){
 
     //Halaman Client
     Route::get('indexclient', [IndexcController::class, 'indexclient'])->name('indexclient');
+    Route::get('notifclient/{id}', [IndexcController::class, 'notifRedirectClient'])->name('notifclient');
     Route::put('/client/update-profile', [IndexcController::class, 'updateProfile'])->name('client.updateProfile');
     Route::get('drequestclient', [IndexcController::class, 'drequestclient'])->name('drequestclient');
     Route::get('createproreq', [IndexcController::class, 'createproreq'])->name('createproreq');
     Route::get('showproj', [IndexcController::class, 'showproj'])->name('showproj');
     Route::post('simpanpro', [IndexcController::class, 'simpann'])->name('simpanpro');
     Route::post('simpanfitur/{id}', [IndexcController::class, 'simpannn'])->name('simpanfitur');
-    // Menampilkan form modal
     Route::get('fitur/{id}/edit', [IndexcController::class, 'showFormModal'])->name('fituredit');
-    // Memperbarui fitur
     Route::put('updatefitur/{id}', [IndexcController::class, 'updateFitur'])->name('updatefitur');
-
     Route::get('ambildata/{id}', [IndexcController::class, 'ambildata'])->name('ambildata');
     Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
     Route::get('sendrequest/{id}', [IndexcController::class, 'sendRequest'])->name('send-request');
