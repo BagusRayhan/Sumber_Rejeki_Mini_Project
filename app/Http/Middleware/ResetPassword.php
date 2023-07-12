@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class guest
+class ResetPassword
 {
     /**
      * Handle an incoming request.
@@ -18,10 +18,10 @@ class guest
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        if (Auth::guard($guards)->check()) {
+        if (!Auth::check()) {
             return $next($request);
         }
 
-        return redirect('/forgot-password');
+        return redirect()->route('logout');
     }
 }
