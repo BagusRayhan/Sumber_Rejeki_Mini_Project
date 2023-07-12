@@ -80,11 +80,11 @@
                             @foreach ($estimasi as $estimasisetuju)
                                 @if ($estimasisetuju->estimasi != null)
                                     <div class="d-flex align-items-center border-bottom py-3">
-                                        <a href="{{ route('setujuclient', ['id' => $estimasisetuju->id]) }}" style="text-decoration: none; color: inherit;">
-                                            <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $estimasisetuju->user->profil }}" alt="" style="width: 40px; height: 40px;">
+                                        <a href="{{ route('setujuclient', ['id' => $estimasisetuju->id]) }}" class="d-flex w-100" style="text-decoration: none; color: inherit;">
+                                            <img class="rounded-circle flex-shrink-0" style="width: 3em" src="/gambar/user-profile/{{ $estimasisetuju->user->profil }}">
                                             <div class="w-100 ms-3 d-flex align-items-center">
                                                 <div>
-                                                    <h6 class="mb-0">{{ $estimasisetuju->napro }}</h6>
+                                                    <h6 class="mb-2">{{ $estimasisetuju->napro }}</h6>
                                                     <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
                                                 </div>
                                                 <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
@@ -116,7 +116,7 @@
                         @if (count($pesancht) !== 0)
                         @foreach ($pesancht as $pesan)
                             <div class="d-flex align-items-center border-bottom py-3">
-                                <a href="{{ route('detailsetujui', ['id' => $pesan->id]) }}" style="text-decoration: none; color: inherit;">
+                                <a href="{{ route('detailsetujui', ['id' => $pesan->id]) }}" class="d-flex w-100" style="text-decoration: none; color: inherit;">
                                     <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $pesan->user->profil }}" alt="" style="width: 40px; height: 40px;">
                                     <div class="w-100 ms-3">
                                     <div class="d-flex w-100 justify-content-between">

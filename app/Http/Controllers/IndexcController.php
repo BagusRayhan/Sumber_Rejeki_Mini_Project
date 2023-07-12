@@ -23,7 +23,7 @@ class IndexcController extends Controller
         $kerjaCounter = Proreq::where('status', 'setuju')->count();
         $selesaiCounter = Proreq::where('status', 'selesai')->count();
         $notifikasi = Proreq::all();
-        $estimasi = Proreq::all();
+        $estimasi = Proreq::where('status','setuju')->where('user_id', Auth::user()->id)->get();
         $notif = Chat::all();
         $pesancht = Chat::whereHas('user', function($query) {
         $query->where('role', 'admin');
