@@ -105,49 +105,51 @@
         </div>
         <div class="modal-body">
             <form action="{{ route('client.updateProfile') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('put')
+              @csrf
+              @method('put')
               <div class="profile d-flex justify-content-center">
-                  <img src="gambar/user-profile/{{ $client->profil }}" class="rounded-circle profile-image">
-                  <a href="#" type="file" class="change-profile-button d-flex justify-content-center" id="chooseFileButtonA">
-                    <i class="fa-sharp fa-solid fa-image"></i>
-                    <input type="file" id="fileInputA" name="fileInputA" style="display:none" accept=".jpg,.png,.pdf">
-                  </a>
-            </div>
-            <div class="mb-1">
-                <label for="exampleFormControlInput1" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1"  name="name" value="{{ $client->name }}">
+                <img src="gambar/user-profile/{{ $client->profil }}" class="rounded-circle profile-image">
+                <a href="#" type="file" class="change-profile-button d-flex justify-content-center" id="chooseFileButtonA">
+                  <i class="fa-sharp fa-solid fa-image"></i>
+                  <input type="file" id="fileInputA" name="fileInputA" style="display:none" accept=".jpg,.png,.pdf">
+                </a>
               </div>
-            <div class="row">
+              <div class="mb-1">
+                <label for="exampleFormControlInput1" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="name" value="{{ $client->name }}">
+              </div>
+              <div class="row">
                 <div class="col-md-6 mt-2">
-                    <div class="form-group">
-                      <label for="input1">Email</label>
-                      <input type="email" class="form-control mt-1" id="exampleFormControlInput2" name="email" value="{{ $client->email }}">
-                    </div>
-                  </div>
-                <div class="col-md-6 mt-2">
-                    <div class="form-group">
-                      <label for="input2">No.Telpon</label>
-                      <input type="number" class="form-control mt-1" id="exampleFormControlInput3" name="no_tlp" value="{{ $client->no_tlp }}">
-                    </div>
-                  </div>
-                  <div class="mb-1 mt-2">
-                    <label for="exampleFormControlInput1" class="form-label">Nama Perusahaan</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" name="nama_perusahaan" value="{{ $client->nama_perusahaan }}">
-                  </div>
-                  <div class="mb-1 mt-2">
-                    <label for="input1">Alamat Perusahaan</label>
-                    <textarea class="form-control mt-1" id="exampleFormControlInput5" style="height: 100px" name="alamat_perusahaan">{{ $client->alamat_perusahaan }}</textarea>
+                  <div class="form-group">
+                    <label for="input1">Email</label>
+                    <input type="email" class="form-control mt-1" id="exampleFormControlInput2" name="email" value="{{ $client->email }}">
                   </div>
                 </div>
+                <div class="col-md-6 mt-2">
+                  <div class="form-group">
+                    <label for="input2">No.Telpon</label>
+                    <input type="number" class="form-control mt-1" id="exampleFormControlInput3" name="no_tlp" value="{{ $client->no_tlp }}">
+                  </div>
+                </div>
+                <div class="mb-1 mt-2">
+                  <label for="exampleFormControlInput1" class="form-label">Nama Perusahaan</label>
+                  <input type="text" class="form-control" id="exampleFormControlInput1" name="nama_perusahaan" value="{{ $client->nama_perusahaan }}">
+                </div>
+                <div class="mb-1 mt-2">
+                  <label for="input1">Alamat Perusahaan</label>
+                  <textarea class="form-control mt-1" id="exampleFormControlInput5" style="height: 100px" name="alamat_perusahaan">{{ $client->alamat_perusahaan }}</textarea>
+                </div>
               </div>
+              <input type="hidden" name="old_profile" value="{{ $client->profil }}">
+            </div>
 
-          <div class="modal-footer">
-            <button class="btn btn-danger" class="btn-close" data-bs-dismiss="modal" type="button">Batal</button>
-            <button class="btn btn-primary" type="submit" id="saveProfileButton">Simpan</button>
+            <div class="modal-footer">
+              <button class="btn btn-danger" class="btn-close" data-bs-dismiss="modal" type="button">Batal</button>
+              <button class="btn btn-primary" type="submit" id="saveProfileButton">Simpan</button>
+            </div>
+          </form>
           </div>
-        </form>
-        </div>
+
       <script>
         document.getElementById('chooseFileButtonA').addEventListener('click', function() {
         document.getElementById('fileInputA').click();

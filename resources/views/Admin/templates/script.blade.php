@@ -13,6 +13,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    @include('sweetalert::alert')
 
     <!-- Template Javascript -->
     <script src="{{ asset('ProjectManagement/dashmin/js/main.js') }}"></script>

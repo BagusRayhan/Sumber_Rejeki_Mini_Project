@@ -44,7 +44,7 @@ class IndexcController extends Controller
         ]);
     }
 
-    public function notifRedirectClient($id) {  
+    public function notifRedirectClient($id) {
         $notif = Notification::findOrFail($id);
         if ($notif->kategori == 'Project Disetujui') {
             $notif->delete();
@@ -57,6 +57,15 @@ class IndexcController extends Controller
             return redirect()->route('selesaiclient');
         }
     }
+
+    // public function pesanchtRedirect($id) {
+    //     $pesancht = Chat::findOrFail($id);
+    //     if ($pesancht->chat == 'detailproreq') {
+    //         $pesancht->delete();
+    //         return redirect()->route('detailsetujui');
+    //     }
+    // }
+
 
     public function drequestclient(){
         $notification = Notification::where('role', 'client')->latest()->get();
@@ -195,15 +204,17 @@ public function updateFitur(Request $request, $id)
 
     return back();
 }
-
 public function updateProfile(Request $request)
 {
     $updateProfile = [];
     $client = User::find(Auth::user()->id);
 
     if ($request->has('fileInputA')) {
-        if (File::exists(public_path('gambar/user-profile/' . $client->profil))) {
-            File::delete(public_path('gambar/user-profile/' . $client->profil));
+        $oldProfile = $client->profil;
+
+        if ($oldProfile !== 'user.jpg') {
+
+            File::delete(public_path('gambar/user-profile/' . $oldProfile));
         }
 
         $file = $request->file('fileInputA');
@@ -222,6 +233,7 @@ public function updateProfile(Request $request)
 
     return redirect()->back()->with('success', 'Profil berhasil diperbarui');
 }
+
 
 
 

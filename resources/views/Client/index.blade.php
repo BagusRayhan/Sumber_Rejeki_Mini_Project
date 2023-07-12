@@ -106,41 +106,43 @@
                         @endif
                         </div>
                         </div>
-                    <div class="col-sm-12 col-md-6 col-xl-4">
-                        <div class="h-100 bg-light rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                <h6 class="mb-0">Pesan</h6>
-                                {{-- <a class="link-offset-2 link-underline link-underline-opacity-0" href="#">Tampilkan Semua</a> --}}
-                            </div>
 
-                            @if (count($pesancht) !== 0)
-                                @foreach ($pesancht as $pesan)
-                                    <div class="d-flex align-items-center border-bottom py-3">
-                                        <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $pesan->user->profil }}" alt="" style="width: 40px; height: 40px;">
-                                        <div class="w-100 ms-3">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-0">{{ $pesan->user->name }}</h6>
-                                                <small>{{ Carbon::parse($pesan->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
-                                            </div>
-                                            <span>{{ $pesan->chat }}</span>
+                        <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-light rounded p-4">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                        <h6 class="mb-0">Pesan</h6>
+                        {{-- <a class="link-offset-2 link-underline link-underline-opacity-0" href="#">Tampilkan Semua</a> --}}
+                        </div>
+                        @if (count($pesancht) !== 0)
+                        @foreach ($pesancht as $pesan)
+                            <div class="d-flex align-items-center border-bottom py-3">
+                                <a href="{{ route('detailsetujui', ['id' => $pesan->id]) }}" style="text-decoration: none; color: inherit;">
+                                    <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $pesan->user->profil }}" alt="" style="width: 40px; height: 40px;">
+                                    <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-0">{{ $pesan->user->name }}</h6>
+                                        <small>{{ Carbon::parse($pesan->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
                                         </div>
-                                    </div>
-                                @endforeach
-                            @else
-                                <p>Tidak ada pesan yang tersedia.</p>
-                            @endif
+                                        <span>{{ $pesan->chat }}</span>
+                        </div>
+                        </a>
+                </div>
+            @endforeach
+        @else
+            <p>Tidak ada pesan yang tersedia.</p>
+        @endif
+    </div>
+</div>
+
+                    </div>
+                </div>
+
 
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Widgets End -->
-
-            @include('Client.Template.footer')
-        </div>
-        <!-- Content End -->
-
-        @include('Client.Template.script')
+@include('Client.Template.script')
 
 </body>
 
