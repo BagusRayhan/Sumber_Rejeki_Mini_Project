@@ -143,26 +143,24 @@
                                         <h1 class="modal-title fs-5" id="editModalLabel{{ $data->id }}">Edit Fitur</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+                                    <form action="{{ route('updatefitur', $fitur->id) }}" method="POST">
                                     <div class="modal-body">
-                                        <form action="{{ route('updatefitur', $fitur->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
-                                            <div class="modal-body">
-                                                <div class="mb-3">
-                                                    <label for="fitur" >Nama Fitur</label>
-                                                    <input type="text" name="namafitur" value="{{ $fitur->namafitur }}" class="form-control" id="fitur" placeholder="Masukkan Fitur">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="deskripsi">Deskripsi</label>
-                                                    <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6" placeholder="Masukkan Deskripsi">{{ $fitur->deskripsi }}</textarea>
-                                                </div>
+                                            <div class="mb-3">
+                                                <label for="fitur" >Nama Fitur</label>
+                                                <input type="text" name="namafitur" value="{{ $fitur->namafitur }}" class="form-control" id="fitur" placeholder="Masukkan Fitur">
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                            <div class="mb-3">
+                                                <label for="deskripsi">Deskripsi</label>
+                                                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6" placeholder="Masukkan Deskripsi">{{ $fitur->deskripsi }}</textarea>
                                             </div>
-                                        </form>
+                                        </div>
+                                    <div class="modal-footer bg-dark">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -187,34 +185,28 @@
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Fitur</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form action="{{ route('simpanfitur',$data->id) }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="">Nama Fitur</label>
-                            <input type="text" name="namafitur" class="form-control" id="fitur" placeholder="Masukkan Fitur">
+                <form action="{{ route('simpanfitur',$data->id) }}" method="POST">
+                    <div class="modal-body">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="">Nama Fitur</label>
+                                <input type="text" name="namafitur" class="form-control" id="fitur" placeholder="Masukkan Fitur">
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Deskripsi</label>
+                                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6" placeholder="Masukkan Deskripsi"></textarea>
+                                <div class="modal-footer">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="">Deskripsi</label>
-                            <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6" placeholder="Masukkan Deskripsi"></textarea>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
-
-    <!-- Edit Fitur -->
-
-
-
-
-
 
 @include('Client.Template.footer')
 @include('Client.Template.script')

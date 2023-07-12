@@ -17,7 +17,7 @@ class IndexcController extends Controller
     public function indexclient()
         {
         $client = User::find(Auth::user()->id);
-        $notification = Notification::where('role', 'client')->latest()->get();
+        $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
         $setujuCounter = Proreq::where('status', 'setuju')->count();
         $tolakCounter = Proreq::where('status', 'tolak')->count();
         $kerjaCounter = Proreq::where('status', 'setuju')->count();
@@ -68,7 +68,7 @@ class IndexcController extends Controller
 
 
     public function drequestclient(){
-        $notification = Notification::where('role', 'client')->latest()->get();
+        $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
         $client = User::where('role', 'client')->first();
         $data = Proreq::where('status', 'draft')->orWhere('status', 'pending')->get();
         $sosmed = Sosmed::all();
@@ -77,7 +77,7 @@ class IndexcController extends Controller
 
 
     public function createproreq(){
-        $notification = Notification::where('role', 'client')->latest()->get();
+        $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
         $client = User::where('role', 'client')->first();
         $sosmed = Sosmed::all();
         $fitur = Fitur::all();
@@ -113,7 +113,7 @@ class IndexcController extends Controller
 
      public function showproj(Request $request){
         $client = User::where('role', 'client')->first();
-        $notification = Notification::where('role', 'client')->latest()->get();
+        $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
         $userid = Auth::user()->id;
         $username = User::where('id', $userid)->value('name');
         return view('Client.createproreq',compact('client','username','notification'));
@@ -159,7 +159,7 @@ class IndexcController extends Controller
 
     public function editproreq($id){
         $client = User::where('role', 'client')->first();
-        $notification = Notification::where('role', 'client')->latest()->get();
+        $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
         $sosmed = Sosmed::all();
         $data = Proreq::findorfail($id);
         $dataa = Fitur::where('project_id', $id)->get();

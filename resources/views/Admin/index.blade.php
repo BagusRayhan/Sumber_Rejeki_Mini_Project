@@ -109,17 +109,17 @@
                             </div>
                             @if (count($incomeProject) !== 0)
                                 @foreach ($incomeProject as $inc)
-                                    <div class="d-flex align-items-center border-bottom py-3">
-                                        <a href="{{ route('detailproreq', ['id' => $inc->id]) }}" style="text-decoration: none; color: inherit;">
-                                        <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $inc->user->profil }}" alt="" style="width: 40px; height: 40px;">
-                                        {{-- <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;"> --}}
-                                        <div class="w-100 ms-3">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-0">{{ $inc->user->name }}</h6>
-                                                {{-- <small>{{ $inc->harga }}</small> --}}
+                                    <div class="border-bottom py-3">
+                                        <a href="{{ route('detailproreq', ['id' => $inc->id]) }}" class="text-decoration-none d-flex text-dark">
+                                            <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $inc->user->profil }}" alt="" style="width: 40px; height: 40px;">
+                                            {{-- <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;"> --}}
+                                            <div class="w-100 ms-3">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-0">{{ $inc->user->name }}</h6>
+                                                    {{-- <small>{{ $inc->harga }}</small> --}}
+                                                </div>
+                                                <span>{{ $inc->napro }}</span>
                                             </div>
-                                            <span>{{ $inc->napro }}</span>
-                                        </div>
                                         </a>
                                     </div>
                                 @endforeach

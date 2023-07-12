@@ -31,7 +31,7 @@
             <a href="#" class="text-dark h4" data-bs-toggle="dropdown">
                 <i class="far fa-bell position-relative"></i>
                 @if (count($notification) !== 0)
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 10px">{{ (count($notification) > 9) ? '9+' : count($notification) }}</span>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 10px">{{ (count($notification) >= 4) ? '4+' : count($notification) }}</span>
                 @endif
             </a>
             <div class="dropdown-menu mt-3 dropdown-menu-end bg-light border-0 m-0 rounded" style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 6px 0 rgba(0, 0, 0, 0.19);">

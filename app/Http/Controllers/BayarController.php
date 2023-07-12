@@ -17,7 +17,7 @@ class BayarController extends Controller
         public function bayarclient(Request $request)
         {
             $client = User::where('role', 'client')->first();
-            $notification = Notification::where('role', 'client')->latest()->get();
+            $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
             $sosmed = Sosmed::all();
             $keyword = $request->input('keyword');
             $data = Proreq::where('napro', 'like', '%'.$keyword.'%')->paginate(5);
@@ -100,7 +100,7 @@ class BayarController extends Controller
 public function bayar2client(Request $request)
 {
     $client = User::where('role', 'client')->first();
-    $notification = Notification::where('role', 'client')->latest()->get();
+    $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
     $sosmed = Sosmed::all();
     $data = Proreq::all();
     $keyword = $request->input('keyword');

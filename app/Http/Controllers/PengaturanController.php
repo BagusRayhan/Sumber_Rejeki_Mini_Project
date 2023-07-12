@@ -24,7 +24,7 @@ class PengaturanController extends Controller
 
     public function pengaturan() {
         $admin = User::where('role', 'admin')->first();
-        $notification = Notification::where('role', 'admin')->latest()->get();
+        $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $data = sosmed::all()->first();
         $data1 = Kebijakan::all()->first();
 

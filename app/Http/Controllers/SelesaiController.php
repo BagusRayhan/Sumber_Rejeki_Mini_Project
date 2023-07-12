@@ -15,7 +15,7 @@ class SelesaiController extends Controller
         public function selesaiclient()
         {
             $client = User::where('role', 'client')->first();
-            $notification = Notification::where('role', 'client')->latest()->get();
+            $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
             $data = Proreq::all();
             $sosmed = Sosmed::all();
             return view('Client.selesai', compact('sosmed','client','data','notification'));
@@ -23,7 +23,7 @@ class SelesaiController extends Controller
         
         public function revisiclient(){
             $client = User::where('role', 'client')->first();
-            $notification = Notification::where('role', 'client')->latest()->get();
+            $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
             $data = Proreq::all();
             $sosmed = Sosmed::all();
             return view('Client.revisi', compact('sosmed','client','data','notification'));
@@ -52,13 +52,13 @@ class SelesaiController extends Controller
 
         public function revisiselesai(){
             $client = User::where('role', 'client')->first();
-            $notification = Notification::where('role', 'client')->latest()->get();
+            $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
             $sosmed = Sosmed::all();
             return view('Client.selesai', compact('sosmed','client','detail','notification'));
         }
         public function revisibutton($id){
             $client = User::where('role', 'client')->first();
-            $notification = Notification::where('role', 'client')->latest()->get();
+            $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
             $detail = Proreq::find($id);
             $sosmed = Sosmed::all();
             $fitur = Fitur::where('project_id', $id)->get();
@@ -69,7 +69,7 @@ class SelesaiController extends Controller
             $data = Proreq::findOrFail($id);
             $sosmed = Sosmed::all();
             $client = User::where('role', 'client')->first();
-            $notification = Notification::where('role', 'client')->latest()->get();
+            $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
             $dataa = Fitur::where('project_id', $id)->get();
             return view('Client.detailrevisi', compact( 'data','sosmed','client','dataa','notification'));
         }

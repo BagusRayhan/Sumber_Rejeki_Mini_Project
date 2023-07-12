@@ -15,7 +15,7 @@ class AdminBayarController extends Controller
 {
     public function pending() {
         $admin = User::where('role', 'admin')->first();
-        $notification = Notification::where('role', 'admin')->latest()->get();
+        $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $propend = proreq::where('statusbayar', 'pending')->get();
         return view('Admin.pembayaran-pending', compact('propend', 'admin', 'notification'));
     }
@@ -51,14 +51,14 @@ class AdminBayarController extends Controller
 
     public function disetujui() {
         $admin = User::where('role', 'admin')->first();
-        $notification = Notification::where('role', 'admin')->latest()->get();
+        $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $approved = Pembayaran::where('status', 'disetujui')->get();
         return view('Admin.pembayaran-disetujui', compact('approved', 'admin', 'notification'));
     }
 
     public function pembayaranDigital() {
         $admin = User::where('role', 'admin')->first();
-        $notification = Notification::where('role', 'admin')->latest()->get();
+        $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $banks = Bank::all();
         $ewallet = EWallet::all();
         return view('Admin.pembayaran-digital', [

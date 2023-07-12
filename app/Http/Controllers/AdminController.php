@@ -43,7 +43,7 @@ class AdminController extends Controller
             $query->where('role', 'client');
         })->limit(4)->latest()->get();
 
-        $notification = Notification::where('role', 'admin')->latest()->get();
+        $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
 
 
         return view('Admin.index', [

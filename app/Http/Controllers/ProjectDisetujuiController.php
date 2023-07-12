@@ -17,7 +17,7 @@ class ProjectDisetujuiController extends Controller
     public function disetujui(Request $request) {
         $admin = User::where('role', 'admin')->first();
         $keyword = $request->searchKeyword;
-        $notification = Notification::where('role', 'admin')->latest()->get();
+        $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $project = proreq::where('status','setuju')->where('napro', 'LIKE', '%'.$keyword.'%')->paginate(3);
         return view('Admin.project-disetujui', [
             'project' => $project,
@@ -27,7 +27,7 @@ class ProjectDisetujuiController extends Controller
     }
 
     public function detailDisetujui($id) {
-        $notification = Notification::where('role', 'admin')->latest()->get();
+        $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $admin = User::where('role', 'admin')->first();
         $detail = Proreq::find($id);
         $fitur = Fitur::where('project_id', $id)->get();
@@ -95,7 +95,7 @@ class ProjectDisetujuiController extends Controller
 
     public function disetujuiClient() {
         $client = User::where('role', 'client')->first();
-        $notification = Notification::where('role', 'client')->latest()->get();
+        $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
         $sosmed = Sosmed::all();
         $project = Proreq::where('status','setuju')->get();
         return view('Client.disetujui', compact('project', 'sosmed','client','notification'));
@@ -103,7 +103,7 @@ class ProjectDisetujuiController extends Controller
 
     public function detailDisetujuiClient($id) {
         $client = User::where('role', 'client')->first();
-        $notification = Notification::where('role', 'client')->latest()->get();
+        $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
         $detail = Proreq::find($id);
         $fitur = Fitur::where('project_id', $id)->get();
         $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
