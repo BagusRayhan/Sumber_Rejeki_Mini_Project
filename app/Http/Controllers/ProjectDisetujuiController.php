@@ -96,7 +96,7 @@ class ProjectDisetujuiController extends Controller
     public function disetujuiClient() {
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
-        $sosmed = Sosmed::paginate(5);
+        $sosmed = Sosmed::all();;
         $project = Proreq::where('status', 'setuju')->paginate(5);
         return view('Client.disetujui', compact('project', 'sosmed','client','notification'));
     }
