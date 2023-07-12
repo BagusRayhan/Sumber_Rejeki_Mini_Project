@@ -93,11 +93,16 @@ class ProjectDisetujuiController extends Controller
         return back();
     }
 
-    public function disetujuiClient() {
+    public function disetujuiClient(Request $request) {
         $client = User::where('role', 'client')->first();
         $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
         $sosmed = Sosmed::all();
-        $project = Proreq::where('status','setuju')->get();
+        $keyword = $request->input('keyword');
+        $project = Proreq::where('status','setuju')                  
+                      ->when($keyword, function ($query) use ($keyword) {
+                      $query->where('napro', 'LIKE', '%'.$keyword.'%');
+                      })
+                     ->paginate(4);
         return view('Client.disetujui', compact('project', 'sosmed','client','notification'));
     }
 

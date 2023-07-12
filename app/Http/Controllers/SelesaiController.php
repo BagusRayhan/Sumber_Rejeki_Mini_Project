@@ -12,19 +12,19 @@ use Illuminate\Http\Request;
 
 class SelesaiController extends Controller
 {
-        public function selesaiclient()
+        public function selesaiclient(Request $request)
         {
             $client = User::where('role', 'client')->first();
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
-            $data = Proreq::all();
             $sosmed = Sosmed::all();
             return view('Client.selesai', compact('sosmed','client','data','notification'));
         }
         
-        public function revisiclient(){
+        public function revisiclient(Request $request){
             $client = User::where('role', 'client')->first();
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
-            $data = Proreq::all();
+            $keyword = $request->input('keyword');
+            $data = Proreq::where('napro','like','%'.$keyword.'%')->paginate(3);
             $sosmed = Sosmed::all();
             return view('Client.revisi', compact('sosmed','client','data','notification'));
         }
