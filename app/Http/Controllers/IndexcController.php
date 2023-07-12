@@ -51,10 +51,10 @@ class IndexcController extends Controller
             return redirect()->route('bayarclient');
         } elseif ($notif->kategori == 'Pembayaran Disetujui') {
             $notif->delete();
-            return redirect()->route('');
-        } elseif ($notif->kategori == 'Revisi Project') {
+            return redirect()->route('setujuclient');
+        } elseif ($notif->kategori == 'Project Selesai') {
             $notif->delete();
-            return redirect()->route('');
+            return redirect()->route('selesaiclient');
         }
     }
 

@@ -44,7 +44,7 @@
                             <label for="input3">Dokumen Pendukung</label>
                             <div class="wrapper d-flex">
                                 <input type="file" class="form-control" name="dokumen" id="input3">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#suppDocs">View</button>
+                                <button type="button" class="btn btn-block border" data-bs-toggle="modal" data-bs-target="#suppDocs"><i class="fa-solid fa-eye"></i></button>
                             </div>
                             <div class="modal fade" id="suppDocs"tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
@@ -71,6 +71,7 @@
                 <div class="wrapper m-3 d-flex">
                     <a href="{{ route('drequestclient') }}" class="btn btn-danger btn-sm mx-2">Kembali</a>
                     <a href="{{ route('send-request', $data->id) }}" class="btn btn-primary btn-sm">Kirim Request</a>
+                    
 {{-- <script>
     function showConfirmation(event) {
         event.preventDefault(); // Mencegah perilaku default tombol submit

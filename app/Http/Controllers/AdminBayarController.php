@@ -22,12 +22,16 @@ class AdminBayarController extends Controller
 
     public function setujuiPembayaran(Request $request, $id) {
         $project = Proreq::findOrFail($id);
-    
         $project->status = 'setuju';
         $project->statusbayar = null;
-    
         $project->save();
-        
+
+        $msg = 'Pembayaran Disetujui';
+        $notif = Notification::create([
+            'role' => 'client',
+            'notif' => $msg,
+            'kategori' => 'Pembayaran Disetujui'
+        ]);
         return back();
     }
 
