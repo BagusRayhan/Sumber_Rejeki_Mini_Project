@@ -68,20 +68,10 @@
                                         <td>{{ $pro->napro }}</td>
                                         <td>{{ $pro->harga }}</td>
                                         <td class="text-center">
-                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal">
+                                            <button class="btn btn-primary btn-bayar btn-sm" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal" data-id="{{ $pro->id }}" data-bukti="{{ $pro->buktipembayaran }}" >
                                                 <i class="fa-solid fa-image"></i>
                                             </button>
-                                            <div class="modal fade" id="buktiTransaksiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" style="width: 400px">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
-                                                            <img src="gambar/bukti/{{ $pro->buktipembayaran }}" class="w-75">
-                                                        </div>
-                                                    </div>
-                                                </div>
+
                                             </div>
                                         </td>
                                         <td class="d-flex justify-content-evenly">
@@ -103,36 +93,41 @@
                                         </form>
                                         </td>
                                     </tr>
-                                @endforeach                                                                
+                                @endforeach
                                     @else
                                         <tr>
                                             <td colspan="5" class="text-center">Tidak ada data</td>
                                         </tr>
                                     @endif
+                                    <div class="modal fade" id="buktiTransaksiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" style="width: 400px">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
+                                                   <img id="buktipembayaran" src="{{ asset('gambar/bukti/'. $pro->id . '.jpg') }}" class="w-75">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            $(document).ready(function() {
+                                                $('.btn-bayar').click(function() {
+                                                    var buktipembayaran = $(this).data('bukti');
+                                                    var projectId = $(this).data('id');
+
+                                                    $('#buktipembayaran').attr('src', buktipembayaran);
+                                                    $('#projectIdCash').val(projectId);
+                                                    $('#buktiTransaksiModal').modal('show');
+                                                });
+                                            });
+                                        </script>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-end mt-sm-3">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+
             </div>
             <!-- Confirm Payment Table End -->
         <!-- Content End -->

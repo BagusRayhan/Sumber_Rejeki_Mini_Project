@@ -9,18 +9,19 @@ use App\Models\Proreq;
 use App\Models\Sosmed;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SelesaiController extends Controller
 {
         public function selesaiclient()
         {
-            $client = User::where('role', 'client')->first();
+            $client = User::find(Auth::user()->id);
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
             $data = Proreq::all();
             $sosmed = Sosmed::all();
             return view('Client.selesai', compact('sosmed','client','data','notification'));
         }
-        
+
         public function revisiclient(){
             $client = User::where('role', 'client')->first();
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
@@ -37,8 +38,8 @@ class SelesaiController extends Controller
             $data->statusbayar = 'belum lunas';
             $data->save();
              return redirect()->route('revisiclient')->with('success', 'Status pembayaran berhasil diupdate')->with(compact('sosmed', 'client', 'data'));
-        }    
-        
+        }
+
             public function updatestatuss(Request $request, $id){
             $client = User::where('role', 'client')->first();
             $data = Proreq::findOrFail($id);
@@ -47,8 +48,8 @@ class SelesaiController extends Controller
             $data->statusbayar = 'lunas';
             $data->save();
              return redirect()->route('revisiclient')->with('success', 'Status pembayaran berhasil diupdate')->with(compact('sosmed', 'client', 'data'));
-        }  
-        
+        }
+
 
         public function revisiselesai(){
             $client = User::where('role', 'client')->first();

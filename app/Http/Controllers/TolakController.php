@@ -8,12 +8,13 @@ use App\Models\Sosmed;
 use App\Models\ditolak;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TolakController extends Controller
 {
         public function ditolakclient()
         {
-            $client = User::where('role', 'client')->first();
+            $client = User::find(Auth::user()->id);
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
             $sosmed = Sosmed::all();
             $data = proreq::where('status','tolak')->get();

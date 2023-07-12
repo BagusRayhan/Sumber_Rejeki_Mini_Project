@@ -11,12 +11,13 @@ use App\Models\transaksi;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class BayarController extends Controller
 {
         public function bayarclient(Request $request)
         {
-            $client = User::where('role', 'client')->first();
+            $client = User::find(Auth::user()->id);
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
             $sosmed = Sosmed::all();
             $keyword = $request->input('keyword');
@@ -38,7 +39,7 @@ class BayarController extends Controller
 
         if ($request->hasFile('buktipembayaran')) {
             $file = $request->file('buktipembayaran');
-            $filename = $file->store('gambar/bukti'); 
+            $filename = $file->store('gambar/bukti');
             $file->move(public_path() . '/gambar/bukti', $filename);
             $data->buktipembayaran = $filename;
         }
@@ -67,7 +68,7 @@ class BayarController extends Controller
 
         if ($request->hasFile('buktipembayaran2')) {
             $file = $request->file('buktipembayaran2');
-            $filename = $file->store('gambar/bukti'); 
+            $filename = $file->store('gambar/bukti');
             $file->move(public_path() . '/gambar/bukti', $filename);
             $data->buktipembayaran2 = $filename;
         }
@@ -75,10 +76,10 @@ class BayarController extends Controller
         $data->status = null;
         $data->metodepembayaran2 = $request->input('metodepembayaran2');
         $data->metode2 = $request->input('metode2');
-        $data->statusbayar = 'pending';
+        $data->statusbayar = 'pending2';
         $data->tanggalpembayaran2 = now();
         $data->save();
-      
+
 
         return redirect()->route('bayar2client')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));
     }
@@ -99,7 +100,7 @@ class BayarController extends Controller
 
 public function bayar2client(Request $request)
 {
-    $client = User::where('role', 'client')->first();
+    $client = User::find(Auth::user()->id);
     $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
     $sosmed = Sosmed::all();
     $data = Proreq::all();

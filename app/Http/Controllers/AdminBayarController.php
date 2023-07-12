@@ -16,7 +16,7 @@ class AdminBayarController extends Controller
     public function pending() {
         $admin = User::where('role', 'admin')->first();
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-        $propend = proreq::where('statusbayar', 'pending')->get();
+        $propend = proreq::where('statusbayar', 'pending')->orWhere('status','pending2')->get();
         return view('Admin.pembayaran-pending', compact('propend', 'admin', 'notification'));
     }
 
@@ -37,15 +37,15 @@ class AdminBayarController extends Controller
 
     public function tolakPembayaran(Request $request, $id) {
         $projectol = Proreq::findOrFail($id);
-    
+
         $projectol->statusbayar = 'menunggu pembayaran';
         $projectol->metodepembayaran = null;
         $projectol->metode = null;
         $projectol->buktipembayaran = null;
         $projectol->tanggalpembayaran = null;
-    
+
         $projectol->save();
-        
+
         return back();
     }
 
