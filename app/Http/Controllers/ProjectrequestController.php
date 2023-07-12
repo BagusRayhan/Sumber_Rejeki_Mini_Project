@@ -107,6 +107,13 @@ public function updateproreqa($id)
 
     $proreq->save();
 
+    $msg = 'Project '.$proreq->napro.' Disetujui';
+    $notif = Notification::create([
+        'role' => 'client',
+        'notif' => $msg,
+        'kategori' => 'Project Disetujui'
+    ]);
+
     return redirect()->route('projectreq')->with('sukses', 'Data berhasil disetujui');
 }
 

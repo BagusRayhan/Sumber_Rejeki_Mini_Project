@@ -17,12 +17,13 @@ class BayarController extends Controller
         public function bayarclient(Request $request)
         {
             $client = User::where('role', 'client')->first();
+            $notification = Notification::where('role', 'client')->latest()->get();
             $sosmed = Sosmed::all();
             $keyword = $request->input('keyword');
             $data = Proreq::where('napro', 'like', '%'.$keyword.'%')->paginate(5);
             $bank = Bank::all();
             $ewallet = EWallet::all();
-            return view('Client.bayar', compact('sosmed','client','data','bank','ewallet'));
+            return view('Client.bayar', compact('sosmed','client','data','bank','ewallet','notification'));
         }
 
         public function ambilrek(Request $request){
@@ -99,13 +100,14 @@ class BayarController extends Controller
 public function bayar2client(Request $request)
 {
     $client = User::where('role', 'client')->first();
+    $notification = Notification::where('role', 'client')->latest()->get();
     $sosmed = Sosmed::all();
     $data = Proreq::all();
     $keyword = $request->input('keyword');
     $bayar2 = Proreq::whereIn('statusbayar', ['lunas','belum lunas'])
                     ->where('napro', 'like', '%'.$keyword.'%')
                     ->paginate(5);
-    return view('Client.bayar2', compact('sosmed', 'bayar2', 'client', 'data'));
+    return view('Client.bayar2', compact('sosmed', 'bayar2', 'client', 'data','notification'));
 }
 
 public function deleteproj($id)

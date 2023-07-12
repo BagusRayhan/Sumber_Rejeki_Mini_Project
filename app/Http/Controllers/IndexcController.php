@@ -17,6 +17,7 @@ class IndexcController extends Controller
     public function indexclient()
         {
         $client = User::find(Auth::user()->id);
+        $notification = Notification::where('role', 'client')->latest()->get();
         $setujuCounter = Proreq::where('status', 'setuju')->count();
         $tolakCounter = Proreq::where('status', 'tolak')->count();
         $kerjaCounter = Proreq::where('status', 'setuju')->count();
@@ -29,7 +30,7 @@ class IndexcController extends Controller
         })->limit(4)->latest()->get();
         $sosmed = Sosmed::all();
         return view('Client.index',[
-
+            'notification' => $notification,
             'setujuCounter' => $setujuCounter,
             'tolakCounter' => $tolakCounter,
             'kerjaCounter' => $kerjaCounter,
@@ -41,20 +42,37 @@ class IndexcController extends Controller
             'sosmed' => $sosmed,
             'client' => $client
         ]);
+    }
+
+    public function notifRedirectClient($id) {  
+        $notif = Notification::findOrFail($id);
+        if ($notif->kategori == 'Project Disetujui') {
+            $notif->delete();
+            return redirect()->route('bayarclient');
+        } elseif ($notif->kategori == 'Pembayaran Disetujui') {
+            $notif->delete();
+            return redirect()->route('');
+        } elseif ($notif->kategori == 'Revisi Project') {
+            $notif->delete();
+            return redirect()->route('');
         }
+    }
 
     public function drequestclient(){
+        $notification = Notification::where('role', 'client')->latest()->get();
         $client = User::where('role', 'client')->first();
         $data = Proreq::where('status', 'draft')->orWhere('status', 'pending')->get();
         $sosmed = Sosmed::all();
-        return view('Client.clientproreq',compact('data','sosmed','client'));
+        return view('Client.clientproreq',compact('data','sosmed','client','notification'));
     }
 
 
     public function createproreq(){
+        $notification = Notification::where('role', 'client')->latest()->get();
+        $client = User::where('role', 'client')->first();
         $sosmed = Sosmed::all();
         $fitur = Fitur::all();
-        return view ('Client.createproreq', compact('sosmed','fitur'));
+        return view ('Client.createproreq', compact('sosmed','fitur','notification','client'));
     }
 
  public function simpann(Request $request)
@@ -86,9 +104,10 @@ class IndexcController extends Controller
 
      public function showproj(Request $request){
         $client = User::where('role', 'client')->first();
+        $notification = Notification::where('role', 'client')->latest()->get();
         $userid = Auth::user()->id;
         $username = User::where('id', $userid)->value('name');
-        return view('Client.createproreq',compact('client','username'));
+        return view('Client.createproreq',compact('client','username','notification'));
     }
 
     public function simpannn(Request $request, $id)
@@ -131,11 +150,12 @@ class IndexcController extends Controller
 
     public function editproreq($id){
         $client = User::where('role', 'client')->first();
+        $notification = Notification::where('role', 'client')->latest()->get();
         $sosmed = Sosmed::all();
         $data = Proreq::findorfail($id);
         $dataa = Fitur::where('project_id', $id)->get();
 
-        return view('Client.editproreq',compact('data','sosmed','dataa','client'));
+        return view('Client.editproreq',compact('data','sosmed','dataa','client','notification'));
     }
 
     public function sendRequest($id) {
