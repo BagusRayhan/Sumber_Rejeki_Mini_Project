@@ -33,7 +33,7 @@ class BayarController extends Controller
         }
 
         public function updatebayar(Request $request, $id){
-        $client = User::where('role', 'client')->first();
+        $client = User::find(Auth::user()->id);
         $sosmed = Sosmed::all();
         $data = Proreq::findOrFail($id);
 
@@ -62,7 +62,7 @@ class BayarController extends Controller
     }
 
         public function updatebayarakhir(Request $request, $id){
-        $client = User::where('role', 'client')->first();
+        $client = User::find(Auth::user()->id);
         $sosmed = Sosmed::all();
         $data = Proreq::findOrFail($id);
 
@@ -86,7 +86,7 @@ class BayarController extends Controller
 
 
             public function updatebayarr(Request $request, $id){
-            $client = User::where('role', 'client')->first();
+            $client = User::find(Auth::user()->id);
             $sosmed = Sosmed::all();
             $data = Proreq::findOrFail($id);
 

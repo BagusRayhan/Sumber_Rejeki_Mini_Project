@@ -71,7 +71,7 @@ class IndexcController extends Controller
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
         // $client = User::where('role', 'client')->first();
-        $data = Proreq::where('status', 'draft')->orWhere('status', 'pending')->get();
+        $data = Proreq::whereIn('status', ['draft','pending'])->where('user_id', Auth::user()->id)->get();
         $sosmed = Sosmed::all();
         return view('Client.clientproreq',compact('data','sosmed','client','notification'));
     }
@@ -79,7 +79,7 @@ class IndexcController extends Controller
 
     public function createproreq(){
         $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
-        $client = User::where('role', 'client')->first();
+        $client = User::find(Auth::user()->id);
         $sosmed = Sosmed::all();
         $fitur = Fitur::all();
         return view ('Client.createproreq', compact('sosmed','fitur','notification','client'));
@@ -113,7 +113,7 @@ class IndexcController extends Controller
 
 
      public function showproj(Request $request){
-        $client = User::where('role', 'client')->first();
+        $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
         $userid = Auth::user()->id;
         $username = User::where('id', $userid)->value('name');
@@ -159,7 +159,7 @@ class IndexcController extends Controller
 
 
     public function editproreq($id){
-        $client = User::where('role', 'client')->first();
+        $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
         $sosmed = Sosmed::all();
         $data = Proreq::findorfail($id);
@@ -189,7 +189,7 @@ class IndexcController extends Controller
 
 public function showFormModal($id)
 {
-    $client = User::where('role', 'client')->first();
+    $client = User::find(Auth::user()->id);
     $data = Fitur::findOrFail($id);
     return view('Client.editproreq', compact('data','client'));
 }
