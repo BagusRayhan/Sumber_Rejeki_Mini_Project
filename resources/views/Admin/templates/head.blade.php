@@ -32,4 +32,6 @@
     <link rel="stylesheet" href="{{ asset('ProjectManagement/summernote/summernote-bs4.css') }}">
     <script src="{{ asset('ProjectManagement/summernote/summernote-bs4.js') }}"></script>
 
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.5/datatables.min.css" rel="stylesheet"/>
+    
 </head>

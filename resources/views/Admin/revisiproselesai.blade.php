@@ -129,7 +129,7 @@
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="fitur" >Harga Fitur</label>
-                                                                        <input type="text" name="hargafitur" value="{{ $f->hargafitur }}" class="form-control" id="hargafitur" placeholder="Masukkan Fitur">
+                                                                        <input type="text" name="hargafitur" value="{{ $f->hargafitur }}" class="form-control" id="hargafitur" placeholder="Masukkan Harga Fitur">
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-3">

@@ -3,8 +3,9 @@
 
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 @include('Admin.templates.head')
+
 
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
@@ -34,21 +35,11 @@
                             </div>
                         </form>
                     </div>
-                    <form action="" method="get">
-                        <div class="wrapper d-flex justify-content-between p-2 rounded" style="background: #E9EEF5; width:12em">
-                            <select class="form-select form-select-sm" style="width: 15em" name="sort" aria-label="Default select example">
-                                <option class="bg-white text-dark" selected disabled>Sortir Project</option>
-                                <option class="bg-white text-dark" value="deadline">Deadline</option>
-                                <option class="bg-white text-dark" value="fitur">Fitur</option>
-                            <option class="bg-white text-dark" value="harga">Harga</option>
-                            </select>
-                        </div>
-                    </form>
                 </div>
                 <div class="row mt-1">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table class="table" id="data-table">
                                 <thead>
                                     <tr>
                                         <th scope="col">Nama Client</th>
@@ -58,7 +49,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (count($project) !== 0)
                                         @foreach ($project as $pro)
                                             <tr>
                                                 <td>{{ $pro->nama }}</td>
@@ -69,13 +59,8 @@
                                                 </td>
                                             </tr>
                                         @endforeach 
-                                        @else
-                                            <tr>
-                                                <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
-                                            </tr>
-                                        @endif
                                 </tbody>
-                            </table>
+                            </table>                            
                         </div>
                     </div>
                 </div>
