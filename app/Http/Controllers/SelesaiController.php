@@ -13,19 +13,39 @@ use Illuminate\Support\Facades\Auth;
 
 class SelesaiController extends Controller
 {
-        public function selesaiclient()
+        public function selesaiclient(Request $request)
         {
             $client = User::find(Auth::user()->id);
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
-            $data = Proreq::where('status', 'selesai')->where('user_id', Auth::user()->id)->paginate(5);
+            $search = $request->input('search');
+            $data = Proreq::where('status', 'selesai')
+               ->where('user_id', Auth::user()->id)
+               ->when(request()->has('search'), function ($query) {
+                   $search = request('search');
+                   $query->where(function ($subquery) use ($search) {
+                       $subquery->where('napro', 'like', '%' . $search . '%')
+                                ->orWhere('harga', 'like', '%' . $search . '%');
+                   });
+               })
+               ->paginate(5);
             $sosmed = Sosmed::all();
             return view('Client.selesai', compact('sosmed','client','data','notification'));
         }
 
-        public function revisiclient(){
+        public function revisiclient(Request $request){
             $client = User::find(Auth::user()->id);
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
-            $data = Proreq::where('status', 'revisi')->where('user_id', Auth::user()->id)->paginate(6);
+            $search = $request->input('search');
+           $data = Proreq::where('status', 'revisi')
+               ->where('user_id', Auth::user()->id)
+               ->when(request()->has('search'), function ($query) {
+                   $search = request('search');
+                   $query->where(function ($subquery) use ($search) {
+                       $subquery->where('napro', 'like', '%' . $search . '%')
+                                ->orWhere('harga', 'like', '%' . $search . '%');
+                   });
+               })
+               ->paginate(6);
             $sosmed = Sosmed::all();
             return view('Client.revisi', compact('sosmed','client','data','notification'));
         }
