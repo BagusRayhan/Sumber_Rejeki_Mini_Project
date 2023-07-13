@@ -70,7 +70,6 @@ class IndexcController extends Controller
     public function drequestclient(){
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
-        // $client = User::where('role', 'client')->first();
         $data = Proreq::whereIn('status', ['draft','pending'])->where('user_id', Auth::user()->id)->get();
         $sosmed = Sosmed::all();
         return view('Client.clientproreq',compact('data','sosmed','client','notification'));

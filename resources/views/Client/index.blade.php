@@ -91,7 +91,7 @@
                                                     <div class="bg-light rounded h-100 p-10">
                                                         <div class="pg-bar mb-3">
                                                             <div class="progress">
-                                                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">{{ $estimasisetuju->progress }}</div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -101,11 +101,15 @@
                                     </div>
                                 @endif
                             @endforeach
-                        @else
-                            <p>Tidak ada estimasi yang tersedia.</p>
+                            @else
+                            <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+                                <img src="gambar/empty-icon/empty-directory.png" style="width:65px;" >
+                                <p>Tidak ada pesan masuk</p>
+                            </div>
                         @endif
                         </div>
                         </div>
+
 
                         <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
@@ -116,7 +120,7 @@
                         @if (count($pesancht) !== 0)
                         @foreach ($pesancht as $pesan)
                             <div class="d-flex align-items-center border-bottom py-3">
-                                <a href="{{ route('detailsetujui', ['id' => $pesan->id]) }}" class="d-flex w-100" style="text-decoration: none; color: inherit;">
+                                <a href="{{ route('detailsetujui', ['id' => $pesan->id]) }}" style="text-decoration: none; color: inherit;">
                                     <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $pesan->user->profil }}" alt="" style="width: 40px; height: 40px;">
                                     <div class="w-100 ms-3">
                                     <div class="d-flex w-100 justify-content-between">

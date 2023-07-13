@@ -93,12 +93,6 @@
                                         </form>
                                         </td>
                                     </tr>
-                                @endforeach
-                                    @else
-                                        <tr>
-                                            <td colspan="5" class="text-center">Tidak ada data</td>
-                                        </tr>
-                                    @endif
                                     <div class="modal fade" id="buktiTransaksiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" style="width: 400px">
                                             <div class="modal-content">
@@ -121,7 +115,13 @@
                                                     $('#buktiTransaksiModal').modal('show');
                                                 });
                                             });
-                                        </script>
+                                            </script>
+                                            @endforeach
+                                                @else
+                                                    <tr>
+                                                        <td colspan="5" class="text-center">Tidak ada data</td>
+                                                    </tr>
+                                                @endif
                                 </tbody>
                             </table>
                         </div>

@@ -87,8 +87,20 @@
                 <div class="wrapper d-flex justify-content-between px-3" style="width: 14em;">
                     <a href="{{ route('projectreq') }}" type="button" class="btn btn-secondary btn-sm">Kembali</a>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myyModal{{ $data->id }}">Tolak</button>
-                    <button type="submit" class="btn btn-primary btn-sm">Setuju</button>
+                    <button type="submit" class="btn btn-primary btn-sm" onclick="return checkHargaFitur()">Setuju</button>
                 </div>
+                <script>
+                    function checkHargaFitur() {
+                        var hargafiturInputs = document.getElementsByClassName('input-hargafitur');
+                        for (var i = 0; i < hargafiturInputs.length; i++) {
+                            if (hargafiturInputs[i].value === '') {
+                                alert('Mohon isi harga fitur terlebih dahulu.');
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                </script>
             </form>
         </div>
         <div class="modal fade" id="myyModal{{ $data->id }}">
@@ -155,7 +167,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="" class="form-label">Harga Fitur</label>
-                                                    <input type="text" name="hargafitur" class="form-control" value="{{ $fitur->hargafitur }}">
+                                                    <input type="text" name="hargafitur" class="form-control input-hargafitur" value="{{ $fitur->hargafitur }}">
                                                 </div>
                                             </div>
                                             <div class="mb-2">
@@ -165,9 +177,11 @@
                                             <button type="submit" style="border: none;margin-left: 398px" class="btn btn-primary">Submit</button>
                                         </form>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
+
                     @endforeach
                     @if($dataa->isEmpty())
                     <tr>

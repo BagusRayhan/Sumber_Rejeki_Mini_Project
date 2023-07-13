@@ -15,7 +15,7 @@ class proreq extends Model
     protected $primarykey = "id";
     protected $dates = ['estimasi'];
     protected $fillable = [
-        'id', 'nama', 'napro','dokumen','estimasi','estimasi','deadline','status','harga','alasan','statusbayar','metodepembayaran','metode','buktipembayaran','tanggalpembayaran'
+        'id', 'nama', 'napro','progress','dokumen','estimasi','deadline','status','harga','alasan','statusbayar','metodepembayaran','metode','buktipembayaran','tanggalpembayaran'
     ];
 
         public function fitur()
