@@ -70,10 +70,20 @@ class IndexcController extends Controller
     // }
 
 
-    public function drequestclient(){
+    public function drequestclient(Request $request){
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
-        $data = Proreq::whereIn('status', ['draft','pending'])->where('user_id', Auth::user()->id)->get();
+        $search = $request->input('search');
+        $data = Proreq::whereIn('status', ['draft', 'pending'])
+               ->where('user_id', Auth::user()->id)
+               ->when(request()->has('search'), function ($query) {
+                   $search = request('search');
+                   $query->where(function ($subquery) use ($search) {
+                       $subquery->where('napro', 'like', '%' . $search . '%')
+                                ->orWhere('harga', 'like', '%' . $search . '%');
+                   });
+               })
+               ->paginate(6);
         $sosmed = Sosmed::all();
         return view('Client.clientproreq',compact('data','sosmed','client','notification'));
     }

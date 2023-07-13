@@ -26,9 +26,9 @@
         <div class="container-fluid pt-4 px-4">
             <div class="py-4 d-flex justify-content-between">
                 <div class="search-form w-25">
-                    <form action="">
+                    <form action="{{ route('drequestclient') }}" method="GET">
                         <div class="input-group rounded-pill" style="background: #E9EEF5">
-                            <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+                            <input type="text" name="search" value="{{ request('search') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
                             <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                         </div>
                     </form>
@@ -79,25 +79,7 @@
                     </div>
                 </div>
             </div>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end mt-sm-3">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            {{ $data->links() }}
         </div>
     @include('Client.Template.footer')
             </div>
