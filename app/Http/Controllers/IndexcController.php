@@ -55,6 +55,9 @@ class IndexcController extends Controller
         } elseif ($notif->kategori == 'Project Selesai') {
             $notif->delete();
             return redirect()->route('selesaiclient');
+        } elseif($notif->kategori = 'Project Ditolak') {
+            $notif->delete();
+            return redirect()->route('ditolakclient');
         }
     }
 
@@ -169,13 +172,16 @@ class IndexcController extends Controller
 
     public function sendRequest($id) {
         $pro = Proreq::find($id);
-        $msg = 'Project masuk dari '.$pro->nama;
         $pro->update([
             'status' => 'pending'
         ]);
-        $notif = Notification::create([
+        $msg = 'Project Masuk';
+        $notifDesk = $pro->napro.' dari '.$pro->nama;
+        Notification::create([
             'role' => 'admin',
+            'user_id' => $pro->user_id,
             'notif' => $msg,
+            'deskripsi' => $notifDesk,
             'kategori' => 'Project Masuk'
         ]);
         return redirect(route('drequestclient'))->with('success', 'data berhasil dikirim');

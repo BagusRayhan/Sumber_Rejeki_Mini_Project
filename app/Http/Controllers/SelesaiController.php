@@ -17,7 +17,7 @@ class SelesaiController extends Controller
         {
             $client = User::find(Auth::user()->id);
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
-            $data = Proreq::paginate(5);
+            $data = Proreq::where('status', 'selesai')->where('user_id', Auth::user()->id)->paginate(5);
             $sosmed = Sosmed::all();
             return view('Client.selesai', compact('sosmed','client','data','notification'));
         }
@@ -25,7 +25,7 @@ class SelesaiController extends Controller
         public function revisiclient(){
             $client = User::find(Auth::user()->id);
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
-            $data = Proreq::all();
+            $data = Proreq::where('status', 'revisi')->where('user_id', Auth::user()->id);
             $sosmed = Sosmed::all();
             return view('Client.revisi', compact('sosmed','client','data','notification'));
         }
@@ -80,10 +80,13 @@ class SelesaiController extends Controller
             $pro->update([
                 'status' => 'revisi'
             ]);
-            $msg = 'Revisi project dari '.Auth()->user()->name;
-            $notif = Notification::create([
+            $msg = 'Revisi Project';
+            $notifDesk = Auth::user()->name.' mengajukan revisi';
+            Notification::create([
                 'role' => 'admin',
+                'user_id' => $pro->user_id,
                 'notif' => $msg,
+                'deskripsi' => $notifDesk,
                 'kategori' => 'Revisi Project'
             ]);
             return back()->with('success', 'Berhasil Mengajukan Revisi');

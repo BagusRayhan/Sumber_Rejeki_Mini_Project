@@ -51,10 +51,13 @@ class BayarController extends Controller
         $data->tanggalpembayaran = now();
         $data->save();
 
-        $msg = 'Pembayaran masuk oleh '.Auth()->user()->name;
-        $notif = Notification::create([
+        $msg = 'Pembayaran Masuk';
+        $notifDesk = $data->napro.' telah dibayar';
+        Notification::create([
             'role' => 'admin',
+            'user_id' => $data->user_id,
             'notif' => $msg,
+            'deskripsi' => $notifDesk,
             'kategori' => 'Pembayaran Masuk'
         ]);
 

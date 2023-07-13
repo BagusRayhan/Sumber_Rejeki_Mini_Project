@@ -16,9 +16,12 @@ return new class extends Migration
         Schema::create('notification', function (Blueprint $table) {
             $table->id();
             $table->string('role');
+            $table->unsignedBigInteger('user_id');
             $table->string('notif');
+            $table->string('deskripsi');
             $table->string('kategori');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

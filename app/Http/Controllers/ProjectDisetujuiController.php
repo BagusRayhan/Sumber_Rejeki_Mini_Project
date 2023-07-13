@@ -81,10 +81,13 @@ class ProjectDisetujuiController extends Controller
             'statusbayar' => 'belum lunas'
         ]);
 
-        $msg = 'Project '.$pro->napro.' Selesai';
-        $notif = Notification::create([
+        $msg = 'Project Selesai';
+        $notifDesk = $pro->napro.' telah selesai';
+        Notification::create([
             'role' => 'client',
+            'user_id' => $pro->user_id,
             'notif' => $msg,
+            'deskripsi' => $notifDesk,
             'kategori' => 'Project Selesai'
         ]);
         return redirect(route('project-disetujui-admin'))->with('success', 'Berhasil menyelesaikan project');

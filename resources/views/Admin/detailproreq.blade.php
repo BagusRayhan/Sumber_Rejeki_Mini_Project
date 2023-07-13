@@ -185,7 +185,7 @@
                     @endforeach
                     @if($dataa->isEmpty())
                     <tr>
-                        <td class="text-center" colspan="2">Tidak ada data</td>
+                        <td class="text-center" colspan="4">Tidak ada data</td>
                     </tr>
                     @endif
 

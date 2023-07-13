@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sosmed;
 use App\Models\User;
+use App\Models\Sosmed;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SetujuController extends Controller
 {
