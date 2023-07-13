@@ -24,7 +24,7 @@ class proreq extends Model
     }
 
     public function projectchat() {
-        return $this->hasMany(Chat::class);
+        return $this->hasMany(Chat::class, 'project_id');
     }
 
     public function bank()

@@ -104,7 +104,7 @@
                             @else
                             <div class="d-flex flex-column h-100 justify-content-center align-items-center">
                                 <img src="gambar/empty-icon/empty-directory.png" style="width:65px;" >
-                                <p>Tidak ada pesan masuk</p>
+                                <p>Estimasi tidak tersedia</p>
                             </div>
                         @endif
                         </div>
@@ -133,7 +133,10 @@
                 </div>
             @endforeach
         @else
-            <p>Tidak ada pesan yang tersedia.</p>
+        <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+            <img src="gambar/empty-icon/empty-directory.png" style="width:65px;" >
+            <p>Pesan tidak tersedia</p>
+        </div>
         @endif
     </div>
 </div>

@@ -25,7 +25,8 @@ class AdminController extends Controller
         ->toArray();
 
         $chartData = $chart->build()->addData('Project Selesai', $selesaiProjects);
-        $admin = User::where('role', 'admin')->first();
+        // $admin = User::where('role', 'admin')->first();
+        $admin = User::find(Auth::user()->id);
         $clientCounter = User::where('role', 'client')->count();
         $tolakCounter = Proreq::where('status', 'tolak')->count();
         $progressCounter = Proreq::where('status', 'setuju')->count();
@@ -39,9 +40,22 @@ class AdminController extends Controller
             $query->where('role', 'client');
         })->whereIn('status', ['pending'])->limit(4)->latest()->get();
 
-        $message = Chat::whereHas('user', function($query) {
-            $query->where('role', 'client');
-        })->limit(4)->latest()->get();
+
+        // $pesancht = Chat::whereHas('user', function($query) {
+        //     $query->where('role', 'admin');
+        //     })->limit(4)->latest()->get();
+
+        $message = Proreq::query()->whereHas('projectchat')
+        ->with('projectchat')
+        ->limit(4)
+        ->latest()
+        ->get();
+
+        // dd($message);
+
+        // $message = Chat::whereHas('user', function($query) {
+        //     $query->where('role', 'client');
+        // })->limit(4)->latest()->get();
 
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
 
