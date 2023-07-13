@@ -103,7 +103,7 @@ class ProjectDisetujuiController extends Controller
     }
 
     public function detailDisetujuiClient($id) {
-        $client = User::where('role', 'client')->first();
+        $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
         $detail = Proreq::find($id);
         $fitur = Fitur::where('project_id', $id)->get();

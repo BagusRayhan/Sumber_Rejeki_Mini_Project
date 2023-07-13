@@ -10,12 +10,12 @@ class SetujuController extends Controller
 {
         public function setujuclient()
         {
-            $client = User::where('role', 'client')->first();
+            $client = User::find(Auth::user()->id);
             $sosmed = Sosmed::all();
             return view('Client.disetujui', compact('sosmed','client'));
         }
         public function detailsetujui(){
-            $client = User::where('role', 'client')->first();
+            $client = User::find(Auth::user()->id);
             $sosmed = Sosmed::all();
             return view('Client.detailsetujui', compact('sosmed','client'));
         }
