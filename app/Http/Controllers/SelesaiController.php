@@ -25,7 +25,7 @@ class SelesaiController extends Controller
         public function revisiclient(){
             $client = User::find(Auth::user()->id);
             $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
-            $data = Proreq::where('status', 'revisi')->where('user_id', Auth::user()->id);
+            $data = Proreq::where('status', 'revisi')->where('user_id', Auth::user()->id)->paginate(6);
             $sosmed = Sosmed::all();
             return view('Client.revisi', compact('sosmed','client','data','notification'));
         }
