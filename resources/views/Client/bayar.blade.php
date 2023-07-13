@@ -23,6 +23,19 @@
     font-size: 16px;    
     margin-bottom: 10px;
 }
+        #imageContainer img {
+        float: right;
+        margin-top: -140px;
+        margin-left: 240px;
+    }
+    #fileInputContainer {
+        position: relative;
+    }
+    #fileInputContainer{
+        position: absolute;
+        top: 174px;
+        left: 31px;
+    }
 
 </style>
 </head>
@@ -133,8 +146,8 @@
         <div style="display: flex; flex-direction: column;">
           <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
           <div style="display: flex; align-items: center;">
-            <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" id="namaProjectCash" disabled>
+            <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" id="namaProjectCash" disabled>
           </div>
           <div style="display: flex; align-items: center; margin-top:3%;">
             <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
@@ -156,11 +169,15 @@
                 <option value="ewallet">E-Wallet</option>
                 <option value="bank">Bank</option>
               </select>
+              <div id="additionalSelectContainer"></div>
             </div>
+              <div class="w-50" style="flex-direction: row-reverse;">
+                  <div id="imageContainer"></div>
+              </div>
           </div>
-          <div id="additionalSelectContainer"></div>
-          <div id="fileInputContainer"></div>
-          <div id="imageContainer"></div>
+           <div class="mb-3 bg-primary" style="margin-top:3%;">
+                <div id="fileInputContainer"></div>
+          </div>
           <br>
         </div>
         <center>
@@ -263,13 +280,14 @@ $(document).ready(function() {
         fileInput.style.border = 'none';
         fileInput.style.fontFamily = 'ubuntu';
         fileInput.style.height = '1%';
-        fileInput.style.width = '50%';
+        fileInput.style.width = '61%';
+        fileInputLabel.style.marginLeft = '-10px';
+        fileInput.style.marginLeft = '-10px';
         fileInput.setAttribute('required', true);
 
         fileInputContainer.appendChild(fileInputLabel);
         fileInputContainer.appendChild(fileInput);
 
-        // Tambahkan kode berikut untuk menampilkan gambar
         const imageContainer = document.createElement('div');
         imageContainer.id = 'imageContainer';
         additionalSelectContainer.appendChild(imageContainer);
@@ -286,8 +304,8 @@ $(document).ready(function() {
             const imageUrl = 'gambar/qr/' + imageFilename;
 
             const imageElement = document.createElement('img');
-            imageElement.style.width = '100px';
-            imageElement.style.height = '100px';
+            imageElement.style.width = '200px';
+            imageElement.style.height = '200px';
             imageElement.src = imageUrl;
 
             imageContainer.appendChild(imageElement);
@@ -299,8 +317,8 @@ $(document).ready(function() {
             const imageUrl = 'gambar/qr/' + imageFilename;
 
             const imageElement = document.createElement('img');
-            imageElement.style.width = '100px';
-            imageElement.style.height = '100px';
+            imageElement.style.width = '200px';
+            imageElement.style.height = '200px';
             imageElement.src = imageUrl;
 
             imageContainer.appendChild(imageElement);
@@ -313,8 +331,8 @@ $(document).ready(function() {
             const imageUrl = 'gambar/qr/' + imageFilename;
 
             const imageElement = document.createElement('img');
-            imageElement.style.width = '100px';
-            imageElement.style.height = '100px';
+            imageElement.style.width = '200px';
+            imageElement.style.height = '200px';
             imageElement.src = imageUrl;
 
             imageContainer.appendChild(imageElement);
@@ -326,8 +344,8 @@ $(document).ready(function() {
             const imageUrl = 'gambar/qr/' + imageFilename;
 
             const imageElement = document.createElement('img');
-            imageElement.style.width = '100px';
-            imageElement.style.height = '100px';
+            imageElement.style.width = '200px';
+            imageElement.style.height = '200px';
             imageElement.src = imageUrl;
 
             imageContainer.appendChild(imageElement);
@@ -352,6 +370,11 @@ $(document).ready(function() {
 
         const fileInputLabel = document.createElement('label');
         fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
+        fileInputLabel.style.textAlign = 'center';
+        fileInputLabel.style.marginBottom = '5px';
+        fileInputLabel.style.position = 'relative';
+        fileInputLabel.style.top = '-75px';
+        fileInputLabel.style.right = '-250px';
 
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
@@ -359,12 +382,20 @@ $(document).ready(function() {
         fileInput.className = 'form-control';
         fileInput.style.border = 'none';
         fileInput.style.fontFamily = 'ubuntu';
-        fileInput.style.height = '1%';
-        fileInput.style.width = '50%';
+            fileInput.style.height = '1%';
+            fileInput.style.width = 'auto%';
+            fileInput.style.marginTop = '-79px';
+            fileInput.style.marginLeft = 'auto';
+            fileInput.style.marginRight = '-250px';
         fileInput.setAttribute('required', true);
 
         const inputBankLabel = document.createElement('label');
         inputBankLabel.textContent = 'No.Rekening:';
+            inputBankLabel.style.textAlign = 'center';
+            inputBankLabel.style.marginBottom = '5px';
+            inputBankLabel.style.position = 'absolute';
+            inputBankLabel.style.top = '16px';
+            inputBankLabel.style.right = '130px';
 
         const inputBank = document.createElement('input');
         inputBank.type = 'text';
@@ -372,8 +403,11 @@ $(document).ready(function() {
         inputBank.className = 'form-control';
         inputBank.style.border = 'none';
         inputBank.style.fontFamily = 'ubuntu';
-        inputBank.style.height = '1%';
-        inputBank.style.width = '50%';
+            inputBank.style.height = '15%';
+            inputBank.style.width = '40%';
+            inputBank.style.position = 'absolute';
+            inputBank.style.right = '22px';
+            inputBank.style.marginTop = '-137px';
         inputBank.setAttribute('required', true);
         inputBank.setAttribute('disabled', true);
 

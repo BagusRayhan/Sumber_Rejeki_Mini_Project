@@ -16,6 +16,19 @@
         display: none;
         margin-top: 10px;
         }
+        #imageContainer img {
+        float: right;
+        margin-top: -140px;
+        margin-left: 240px;
+    }
+    #fileInputContainer {
+        position: relative;
+    }
+    #fileInputContainer{
+        position: absolute;
+        top: 174px;
+        left: 31px;
+    }
     </style>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
@@ -243,55 +256,6 @@ $(function(e){
        </div>
 {{-- akhir code lihat pembayaran--}}
 
-{{-- modal pembayaran --}}
-<div class="modal fade" id="bayar1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-      <div class="modal-header">
-        <div style="display: flex; flex-direction: column;">
-          <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
-          <div style="display: flex; align-items: center;">
-            <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>
-            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:60%;" id="namaProjectCash" disabled>
-          </div>
-          <div style="display: flex; align-items: center; margin-top:3%;">
-            <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" id="hargaProjectCash" disabled>
-          </div>
-        </div>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
-      </div>
-      <form id="updateForm" action="{{ route('update-status-bayarakhir', '') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
-        <input type="hidden" id="projectId">
-        <div class="modal-body" style="border: none;">
-          <div class="container m-0 p-0 d-flex justify-content-between">
-            <div class="d-grid" style="display: flex; justify-content: space-between;">
-              <h6 style="align-self: center; font-size: 16px;">Metode</h6>
-              <select class="form-select form-select-lg mb-3" name="metodepembayaran2" style="width: 200px; height: 40px; font-size: 16px;" aria-label=".form-select-lg example" id="selectMetode">
-                <option selected class="dropdown-menu" disabled>Pilih Pembayaran</option>
-                <option value="cash">Cash</option>
-                <option value="ewallet">E-Wallet</option>
-                <option value="bank">Bank</option>
-              </select>
-            </div>
-          </div>
-          <div id="additionalSelectContainer"></div>
-          <div id="fileInputContainer"></div>
-          <div id="imageContainer"></div>
-          <br>
-        </div>
-        <center>
-          <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button>
-        </center>
-        <div class="modal-footer" style="border: none;">
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
     
         <div class="modal fade" id="struk" tabindex="-1" aria-hidden="true">
             <div class="myModal">
@@ -361,6 +325,274 @@ $(function(e){
         </div>
         </div>
 
+        
+{{-- modal pembayaran --}}
+<div class="modal fade" id="bayar1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
+            <div class="modal-header">
+                <div style="display: flex; flex-direction: column;">
+                    <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
+                    <div style="display: flex; align-items: center;">
+                        <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" id="namaProjectCash" disabled>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-top:3%;">
+                        <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
+                        <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" id="hargaProjectCash" disabled>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
+            </div>
+            <form id="updateForm" action="{{ route('update-status-bayarakhir', '') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <input type="hidden" id="projectId">
+                <div class="modal-body" style="border: none;">
+                    <div class="containerd-flex justify-content-between" style="display: flex; align-items: center;">
+                        <div class="d-grid">
+                            <h6 style="align-self: center; font-size: 16px;">Metode</h6>
+                            <select class="form-select form-select-lg mb-3" name="metodepembayaran2" style="width: 200px; height: 40px; font-size: 16px;" aria-label=".form-select-lg example" id="selectMetode">
+                                <option selected class="dropdown-menu" disabled>Pilih Pembayaran</option>
+                                <option value="cash">Cash</option>
+                                <option value="ewallet">E-Wallet</option>
+                                <option value="bank">Bank</option>
+                            </select>
+                            <div id="additionalSelectContainer"></div>
+                        </div>
+
+                        <div class="w-50" style="flex-direction: row-reverse;">
+                            <div id="imageContainer"></div>
+                        </div>
+                    </div><br>
+                    <div class="mb-3 bg-primary" style="margin-top:3%;">
+                        <div id="fileInputContainer"></div>
+                    </div>
+                    <br>
+                </div>
+                        <center><br>
+          <button type="submit" class="btn btn-primary" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button>
+        </center>
+        <div class="modal-footer" style="border: none;"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+        <script>
+        const selectMetode = document.getElementById('selectMetode');
+        const additionalSelectContainer = document.getElementById('additionalSelectContainer');
+        const fileInputContainer = document.getElementById('fileInputContainer');
+
+        selectMetode.addEventListener('change', function () {
+        const selectedValue = this.value;
+
+        additionalSelectContainer.innerHTML = '';
+        fileInputContainer.innerHTML = '';
+
+        if (selectedValue === 'ewallet') {
+            const layananLabel = document.createElement('label');
+            layananLabel.textContent = 'Layanan';
+
+            const layananSelect = document.createElement('select');
+            layananSelect.className = 'form-select form-select-lg mb-3';
+            layananSelect.name = 'metode2';
+            layananSelect.style.width = '200px';
+            layananSelect.style.height = '40px';
+            layananSelect.style.fontSize = '16px';
+            layananSelect.innerHTML = `
+            <option selected class="dropdown-menu" name="layanan" disabled>Pilih E-Wallet</option>
+            <option value="dana">Dana</option>
+            <option value="ovo">Ovo</option>
+            <option value="gopay">Gopay</option>
+            <option value="linkaja">Linkaja</option>
+            `;
+
+            additionalSelectContainer.appendChild(layananLabel);
+            additionalSelectContainer.appendChild(layananSelect);
+
+            const fileInputLabel = document.createElement('label');
+            fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
+
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.name = 'buktipembayaran2';
+            fileInput.className = 'form-control';
+            fileInput.style.border = 'none';
+            fileInput.style.fontFamily = 'ubuntu';
+            fileInput.style.height = '1%';
+            fileInput.style.width = '61%';
+            fileInputLabel.style.marginLeft = '-10px';
+            fileInput.style.marginLeft = '-10px';
+            fileInput.setAttribute('required', true);
+
+            fileInputContainer.appendChild(fileInputLabel);
+            fileInputContainer.appendChild(fileInput);
+
+            const imageContainer = document.createElement('div');
+            imageContainer.id = 'imageContainer';
+            additionalSelectContainer.appendChild(imageContainer);
+
+            layananSelect.addEventListener('change', function () {
+            const selectedLayanan = this.value;
+            const imageContainer = document.getElementById('imageContainer');
+
+            imageContainer.innerHTML = '';
+
+            if (selectedLayanan === 'dana') {
+                const imageFilename = 'dana.png';
+
+                const imageUrl = 'gambar/qr/' + imageFilename;
+
+                const imageElement = document.createElement('img');
+                imageElement.style.width = '200px';
+                imageElement.style.height = '200px';
+                imageElement.src = imageUrl;
+
+                imageContainer.appendChild(imageElement);
+            }
+
+            if (selectedLayanan === 'ovo') {
+                const imageFilename = 'ovo.png';
+
+                const imageUrl = 'gambar/qr/' + imageFilename;
+
+                const imageElement = document.createElement('img');
+                imageElement.style.width = '200px';
+                imageElement.style.height = '200px';
+                imageElement.src = imageUrl;
+
+                imageContainer.appendChild(imageElement);
+            }
+
+            if (selectedLayanan === 'gopay') {
+                const imageFilename = 'gopay.png';
+
+                const imageUrl = 'gambar/qr/' + imageFilename;
+
+                const imageElement = document.createElement('img');
+                imageElement.style.width = '200px';
+                imageElement.style.height = '200px';
+                imageElement.src = imageUrl;
+
+                imageContainer.appendChild(imageElement);
+            }
+
+            if (selectedLayanan === 'linkaja') {
+                const imageFilename = 'linkaja.png';
+
+                const imageUrl = 'gambar/qr/' + imageFilename;
+
+                const imageElement = document.createElement('img');
+                imageElement.style.width = '200px';
+                imageElement.style.height = '200px';
+                imageElement.src = imageUrl;
+
+                imageContainer.appendChild(imageElement);
+            }
+            });
+        } else if (selectedValue === 'bank') {
+            const bankLabel = document.createElement('label');
+            bankLabel.textContent = 'Bank';
+
+            const bankSelect = document.createElement('select');
+            bankSelect.className = 'form-select form-select-lg mb-3';
+            bankSelect.name = 'metode2';
+            bankSelect.style.width = '200px';
+            bankSelect.style.height = '40px';
+            bankSelect.style.fontSize = '16px';
+            bankSelect.innerHTML = `
+            <option selected class="dropdown-menu" name="bank" disabled>Pilih Bank</option>
+            <option value="Bank BRI">Bank BRI</option>
+            <option value="Bank BCA">Bank BCA</option>
+            <option value="Bank Mandiri">Bank Mandiri</option>
+            `;
+
+            const fileInputLabel = document.createElement('label');
+            fileInputLabel.textContent = 'Upload Bukti Pembayaran';
+            fileInputLabel.style.textAlign = 'center';
+            fileInputLabel.style.marginBottom = '5px';
+            fileInputLabel.style.position = 'relative';
+            fileInputLabel.style.top = '-75px';
+            fileInputLabel.style.right = '-250px';
+            
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.name = 'buktipembayaran2';
+            fileInput.className = 'form-control';
+            fileInput.style.border = 'none';
+            fileInput.style.fontFamily = 'ubuntu';
+            fileInput.style.height = '1%';
+            fileInput.style.width = 'auto%';
+            fileInput.style.marginTop = '-79px';
+            fileInput.style.marginLeft = 'auto';
+            fileInput.style.marginRight = '-250px';
+            fileInput.setAttribute('required', true);
+            
+
+            const inputBankLabel = document.createElement('label');
+            inputBankLabel.textContent = 'No.Rekening';
+            inputBankLabel.style.textAlign = 'center';
+            inputBankLabel.style.marginBottom = '5px';
+            inputBankLabel.style.position = 'absolute';
+            inputBankLabel.style.top = '16px';
+            inputBankLabel.style.right = '130px';
+
+
+            const inputBank = document.createElement('input');
+            inputBank.type = 'text';
+            inputBank.name = 'rekening';
+            inputBank.className = 'form-control';
+            inputBank.style.border = 'none';
+            inputBank.style.fontFamily = 'ubuntu';
+            inputBank.style.height = '15%';
+            inputBank.style.width = '40%';
+            inputBank.style.position = 'absolute';
+            inputBank.style.right = '22px';
+            inputBank.style.marginTop = '-137px';
+            inputBank.setAttribute('required', true);
+            inputBank.setAttribute('disabled', true);
+
+            additionalSelectContainer.appendChild(bankLabel);
+            additionalSelectContainer.appendChild(bankSelect);
+            additionalSelectContainer.appendChild(inputBankLabel);
+            additionalSelectContainer.appendChild(inputBank);
+            fileInputContainer.appendChild(fileInputLabel);
+            fileInputContainer.appendChild(fileInput);
+
+
+            bankSelect.addEventListener('change', function () {
+            const selectedBank = this.value;
+            console.log(selectedBank)
+            
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: '/ambilrek',
+                method: 'POST',
+                data: { id: selectedBank },
+                success: function(response) {
+                    console.log(response)
+                const rekening = response;
+
+                inputBank.value = rekening;
+                },
+                error: function(error) {
+                console.error('Error:', error);
+                }
+            });
+            });   
+        }
+        });
+    </script>
+        {{-- akhir metode pembayaran --}}
+
+
 <script>
 $(document).ready(function() {
     $('.btn-bayar').click(function() {
@@ -369,7 +601,6 @@ $(document).ready(function() {
         var tglBayar = $(this).data('tanggalpembayaran');
         var metodepembayaran = $(this).data('metodepembayaran');
         var projectId = $(this).data('id');
-        alert(projectId);
 
         var setengahHarga = harga / 2;
 
@@ -398,7 +629,6 @@ $(document).ready(function() {
         var napro = $('#namaProject').val();
         var harga = $('#hargaProject').val();
         var projectId = $('#projectIdCash').val();
-        alert(projectId);
 
         $('#namaProjectCash').val(napro);
         $('#hargaProjectCash').val(harga);
@@ -449,208 +679,6 @@ $(document).ready(function() {
 </script>
 
 
-
-    <script>
-    const selectMetode = document.getElementById('selectMetode');
-    const additionalSelectContainer = document.getElementById('additionalSelectContainer');
-    const fileInputContainer = document.getElementById('fileInputContainer');
-
-    selectMetode.addEventListener('change', function () {
-      const selectedValue = this.value;
-
-      // Hapus select, input file, dan input text sebelumnya jika ada
-      additionalSelectContainer.innerHTML = '';
-      fileInputContainer.innerHTML = '';
-
-      if (selectedValue === 'ewallet') {
-        // Buat label "Layanan" baru
-        const layananLabel = document.createElement('label');
-        layananLabel.textContent = 'Layanan';
-
-        // Buat select "Layanan" baru
-        const layananSelect = document.createElement('select');
-        layananSelect.className = 'form-select form-select-lg mb-3';
-        layananSelect.name = 'metode2';
-        layananSelect.style.width = '200px';
-        layananSelect.style.height = '40px';
-        layananSelect.style.fontSize = '16px';
-        layananSelect.innerHTML = `
-          <option selected class="dropdown-menu" name="layanan" disabled>Pilih E-Wallet</option>
-          <option value="dana">Dana</option>
-          <option value="ovo">Ovo</option>
-          <option value="gopay">Gopay</option>
-          <option value="linkaja">Linkaja</option>
-        `;
-
-        additionalSelectContainer.appendChild(layananLabel);
-        additionalSelectContainer.appendChild(layananSelect);
-
-        // Buat label "Upload Bukti Pembayaran" baru
-        const fileInputLabel = document.createElement('label');
-        fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
-
-        // Buat input file baru
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.name = 'buktipembayaran2';
-        fileInput.className = 'form-control';
-        fileInput.style.border = 'none';
-        fileInput.style.fontFamily = 'ubuntu';
-        fileInput.style.height = '1%';
-        fileInput.style.width = '50%';
-        fileInput.setAttribute('required', true);
-
-        fileInputContainer.appendChild(fileInputLabel);
-        fileInputContainer.appendChild(fileInput);
-
-        // Tambahkan kode berikut untuk menampilkan gambar
-        const imageContainer = document.createElement('div');
-        imageContainer.id = 'imageContainer';
-        additionalSelectContainer.appendChild(imageContainer);
-
-        layananSelect.addEventListener('change', function () {
-          const selectedLayanan = this.value;
-          const imageContainer = document.getElementById('imageContainer');
-
-          // Hapus gambar sebelumnya jika ada
-          imageContainer.innerHTML = '';
-
-          if (selectedLayanan === 'dana') {
-            // Ambil nama file gambar dari database
-            const imageFilename = 'dana.png';
-
-            // Bangun URL gambar berdasarkan direktori gambar dan nama file gambar
-            const imageUrl = 'gambar/qr/' + imageFilename;
-
-            // Buat elemen <img> untuk menampilkan gambar
-            const imageElement = document.createElement('img');
-            imageElement.style.width = '100px';
-            imageElement.style.height = '100px';
-            imageElement.src = imageUrl;
-
-            // Tambahkan elemen <img> ke dalam container gambar
-            imageContainer.appendChild(imageElement);
-          }
-
-          if (selectedLayanan === 'ovo') {
-            const imageFilename = 'ovo.png';
-
-            const imageUrl = 'gambar/qr/' + imageFilename;
-
-            const imageElement = document.createElement('img');
-            imageElement.style.width = '100px';
-            imageElement.style.height = '100px';
-            imageElement.src = imageUrl;
-
-            imageContainer.appendChild(imageElement);
-          }
-
-          if (selectedLayanan === 'gopay') {
-            const imageFilename = 'gopay.png';
-
-            const imageUrl = 'gambar/qr/' + imageFilename;
-
-            const imageElement = document.createElement('img');
-            imageElement.style.width = '100px';
-            imageElement.style.height = '100px';
-            imageElement.src = imageUrl;
-
-            imageContainer.appendChild(imageElement);
-          }
-
-          if (selectedLayanan === 'linkaja') {
-            const imageFilename = 'linkaja.png';
-
-            const imageUrl = 'gambar/qr/' + imageFilename;
-
-            const imageElement = document.createElement('img');
-            imageElement.style.width = '100px';
-            imageElement.style.height = '100px';
-            imageElement.src = imageUrl;
-
-            imageContainer.appendChild(imageElement);
-          }
-        });
-      } else if (selectedValue === 'bank') {
-        const bankLabel = document.createElement('label');
-        bankLabel.textContent = 'Bank';
-
-        const bankSelect = document.createElement('select');
-        bankSelect.className = 'form-select form-select-lg mb-3';
-        bankSelect.name = 'metode2';
-        bankSelect.style.width = '200px';
-        bankSelect.style.height = '40px';
-        bankSelect.style.fontSize = '16px';
-        bankSelect.innerHTML = `
-          <option selected class="dropdown-menu" name="bank" disabled>Pilih Bank</option>
-          <option value="Bank BRI">Bank BRI</option>
-          <option value="Bank BCA">Bank BCA</option>
-          <option value="Bank Mandiri">Bank Mandiri</option>
-        `;
-
-        const fileInputLabel = document.createElement('label');
-        fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
-
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.name = 'buktipembayaran2';
-        fileInput.className = 'form-control';
-        fileInput.style.border = 'none';
-        fileInput.style.fontFamily = 'ubuntu';
-        fileInput.style.height = '1%';
-        fileInput.style.width = '50%';
-        fileInput.setAttribute('required', true);
-
-        const inputBankLabel = document.createElement('label');
-        inputBankLabel.textContent = 'No.Rekening:';
-
-        const inputBank = document.createElement('input');
-        inputBank.type = 'text';
-        inputBank.name = 'rekening';
-        inputBank.className = 'form-control';
-        inputBank.style.border = 'none';
-        inputBank.style.fontFamily = 'ubuntu';
-        inputBank.style.height = '1%';
-        inputBank.style.width = '50%';
-        inputBank.setAttribute('required', true);
-        inputBank.setAttribute('disabled', true);
-
-        additionalSelectContainer.appendChild(bankLabel);
-        additionalSelectContainer.appendChild(bankSelect);
-        additionalSelectContainer.appendChild(inputBankLabel);
-        additionalSelectContainer.appendChild(inputBank);
-        fileInputContainer.appendChild(fileInputLabel);
-        fileInputContainer.appendChild(fileInput);
-
-
-        bankSelect.addEventListener('change', function () {
-        const selectedBank = this.value;
-        console.log(selectedBank)
-        
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: '/ambilrek',
-            method: 'POST',
-            data: { id: selectedBank },
-            success: function(response) {
-                console.log(response)
-            const rekening = response;
-
-            inputBank.value = rekening;
-            },
-            error: function(error) {
-            console.error('Error:', error);
-            }
-        });
-        });   
-      }
-    });
-  </script>
-       {{-- akhir metode pembayaran --}}
 
 
 
