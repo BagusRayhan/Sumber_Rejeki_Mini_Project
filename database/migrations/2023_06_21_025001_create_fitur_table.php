@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('project_id');
             $table->string('namafitur')->nullable();
             $table->string('hargafitur')->nullable();
+            $table->string('biayatambahan')->nullable();
             $table->text('deskripsi')->nullable();
             $table->enum('status',['belum selesai','selesai','revisi']);
             $table->foreign('project_id')->references('id')->on('proreq')->onDelete('cascade')->onUpdate('cascade');

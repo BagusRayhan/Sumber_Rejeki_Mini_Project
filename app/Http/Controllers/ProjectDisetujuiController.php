@@ -11,10 +11,16 @@ use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\ProjectDisetujui;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\DataTables;
 
 class ProjectDisetujuiController extends Controller
 {
     public function disetujui(Request $request) {
+        if ($request->ajax()) {
+            $data = Proreq::latest()->get();
+            return Datatables::of($data)->make(true);
+        }
+    
         $admin = User::where('role', 'admin')->first();
         $keyword = $request->searchKeyword;
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
@@ -25,6 +31,7 @@ class ProjectDisetujuiController extends Controller
             'notification' => $notification
         ]);
     }
+        
 
     public function detailDisetujui($id) {
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();

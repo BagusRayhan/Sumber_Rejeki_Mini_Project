@@ -157,10 +157,11 @@ public function updateproreqa($id)
         ]);
     }
 
-    public function updateProreq(Request $request) {
+    public function updateProreq(Request $request, $id) {
         Proreq::find($request->project_id)->update([
             'napro' => $request->napro,
         ]);
+
         return redirect()->route('projectselesai')->with('success', 'Berhasil mengajukan perubahan');
     }
 
@@ -183,10 +184,15 @@ public function updateproreqa($id)
     $fitur = Fitur::findOrFail($id);
     $fitur->update([
         'namafitur' => $request->namafitur,
-        'hargafitur' => $request->hargafitur,
+        'hargafitur' => $request->biayatambahan,
         'deskripsi' => $request->deskripsi
     ]);
-    return back();
+    $fitur->status = 'belum selesai';
+    $fitur->status = 'belum selesai';
+
+    $fitur->save();
+
+    return redirect()->back();
 }
     public function destroyFitur(Request $request) {
         Fitur::find($request->fitur_id)->delete();
