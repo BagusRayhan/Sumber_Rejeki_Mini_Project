@@ -104,6 +104,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="5" class="text-center">Tidak ada data</td>
+                                        </tr>
+                                    @endif
+
                                         <script>
                                             $(document).ready(function() {
                                                 $('.btn-bayar').click(function() {
