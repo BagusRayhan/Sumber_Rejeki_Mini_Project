@@ -40,8 +40,9 @@
             @if (count($notification) !== 0)
               @foreach ($notification as $notif)
               <a href="{{ route('notifclient', ['id' => $notif->id]) }}" class="dropdown-item border-bottom border-secondary">
-                <h6 class="fw-normal my-1">{{ $notif->notif }}</h6>
-                <small>{{ $notif->created_at->diffForHumans() }}</small>
+                <h6 class="fw-semibold m-0">{{ $notif->notif }}</h6>
+                <small>{{ $notif->deskripsi }}</small>
+                <p style="font-size: 12px" class="m-0">{{ $notif->created_at->diffForHumans() }}</p>
               </a>
               @endforeach
             @else

@@ -84,13 +84,21 @@ public function alasantolak(Request $request)
 {
     $id = $request->dataid;
     $pro = Proreq::findOrFail($id);
-
     $pro->alasan = $request->input('alasan');
     $pro->status = 'tolak';
-
     $pro->save();
 
-    return redirect()->route('projectreq')->with('sukses', 'Data berhasil ditolak');
+    $msg = 'Project Ditolak';
+    $notifDesk = $pro->napro.' Ditolak';
+    Notification::create([
+        'role' => 'client',
+        'user_id' => $pro->user_id,
+        'notif' => $msg,
+        'deskripsi' => $notifDesk,
+        'kategori' => 'Project Ditolak'
+    ]);
+
+    return redirect()->route('projectreq')->with('sukses', 'Project berhasil ditolak');
 }
 
 public function updateproreqa($id)
@@ -98,19 +106,19 @@ public function updateproreqa($id)
 
     $proreq = Proreq::findOrFail($id);
     $fitur = Fitur::where('project_id', $proreq->id)->get();
-
     $totalHarga = $fitur->sum('hargafitur');
-
     $proreq->harga = $totalHarga;
     $proreq->status = null;
     $proreq->statusbayar = 'menunggu pembayaran';
-
     $proreq->save();
 
-    $msg = 'Project '.$proreq->napro.' Disetujui';
-    $notif = Notification::create([
+    $msg = 'Project Disetujui';
+    $notifDesk = $proreq->napro.' disetujui admin';
+    Notification::create([
         'role' => 'client',
+        'user_id' => $proreq->user_id,
         'notif' => $msg,
+        'deskripsi' => $notifDesk,
         'kategori' => 'Project Disetujui'
     ]);
 

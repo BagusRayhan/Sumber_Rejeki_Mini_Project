@@ -55,6 +55,9 @@ class IndexcController extends Controller
         } elseif ($notif->kategori == 'Project Selesai') {
             $notif->delete();
             return redirect()->route('selesaiclient');
+        } elseif($notif->kategori = 'Project Ditolak') {
+            $notif->delete();
+            return redirect()->route('ditolakclient');
         }
     }
 
@@ -67,10 +70,20 @@ class IndexcController extends Controller
     // }
 
 
-    public function drequestclient(){
+    public function drequestclient(Request $request){
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
-        $data = Proreq::whereIn('status', ['draft','pending'])->where('user_id', Auth::user()->id)->get();
+        $search = $request->input('search');
+        $data = Proreq::whereIn('status', ['draft', 'pending'])
+               ->where('user_id', Auth::user()->id)
+               ->when(request()->has('search'), function ($query) {
+                   $search = request('search');
+                   $query->where(function ($subquery) use ($search) {
+                       $subquery->where('napro', 'like', '%' . $search . '%')
+                                ->orWhere('harga', 'like', '%' . $search . '%');
+                   });
+               })
+               ->paginate(6);
         $sosmed = Sosmed::all();
         return view('Client.clientproreq',compact('data','sosmed','client','notification'));
     }
@@ -169,13 +182,16 @@ class IndexcController extends Controller
 
     public function sendRequest($id) {
         $pro = Proreq::find($id);
-        $msg = 'Project masuk dari '.$pro->nama;
         $pro->update([
             'status' => 'pending'
         ]);
-        $notif = Notification::create([
+        $msg = 'Project Masuk';
+        $notifDesk = $pro->napro.' dari '.$pro->nama;
+        Notification::create([
             'role' => 'admin',
+            'user_id' => $pro->user_id,
             'notif' => $msg,
+            'deskripsi' => $notifDesk,
             'kategori' => 'Project Masuk'
         ]);
         return redirect(route('drequestclient'))->with('success', 'data berhasil dikirim');

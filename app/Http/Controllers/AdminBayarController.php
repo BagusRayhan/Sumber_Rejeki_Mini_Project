@@ -27,9 +27,12 @@ class AdminBayarController extends Controller
         $project->save();
 
         $msg = 'Pembayaran Disetujui';
-        $notif = Notification::create([
+        $notifDesk = $project->napro;
+        Notification::create([
             'role' => 'client',
+            'user_id' => $project->user_id,
             'notif' => $msg,
+            'deskripsi' => $notifDesk,
             'kategori' => 'Pembayaran Disetujui'
         ]);
         return back();
