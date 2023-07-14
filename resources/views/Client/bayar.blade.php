@@ -111,18 +111,20 @@
               <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
                   <div class="modal-header" style="border: none;">
-                    <img id="profile-image" src="{{ asset('ProjectManagement/dashmin/img/ikonm.png') }}" alt="" style="width:15%; height:15%; margin-top:1%;">
+                    <div class="wrapper d-flex align-items-center">
+                      <img id="profile-image" style="width:4em" class="me-3" src="{{ asset('ProjectManagement/dashmin/img/ikonm.png') }}">
+                      <h1 class="modal-title fw-bold fs-5" id="exampleModalToggleLabel">Pembayaran Awal</h1><br>
+                    </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom:10%;" aria-label="Close"></button>
                   </div>
                   <div class="modal-body" style="border: none;">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="font-weight: bold;">Pembayaran Awal</h1><br>
-                    <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
-                      <h6 style="align-self: center;">Nama Project :</h6>
-                      <input type="text" name="namaProject" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="namaProject" disabled>
+                    <div class="d-flex justify-content-evenly align-items-center mb-3">
+                      <h6>Nama Project</h6>
+                      <input type="text" name="namaProject" class="form-control w-50" style="border:none; font-style: ubuntu;" id="namaProject" disabled>
                     </div>
-                    <div style="display: flex; justify-content: space-between;">
-                      <h6>Harga Pembayaran :</h6>
-                      <input type="text" name="hargaProject" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="hargaProject" disabled>
+                    <div class="d-flex justify-content-evenly align-items-center mb-3">
+                      <h6>Harga Project</h6>
+                      <input type="text" name="hargaProject" class="form-control w-50" style="border:none; font-style: ubuntu;" id="hargaProject" disabled>
                     </div>
                     <input type="hidden" id="projectIdCash">
                     <br>
@@ -142,19 +144,19 @@
 <div class="modal fade" id="cash" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-      <div class="modal-header">
-        <div style="display: flex; flex-direction: column;">
-          <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
-          <div style="display: flex; align-items: center;">
-            <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" id="namaProjectCash" disabled>
+      <div class="modal-header d-flex flex-column align-items-start">
+        <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian Pembayaran</h6>
+        <div class="wrapper d-flex justify-content-between w-100">
+          <div class="d-flex justify-content-start flex-column mt-2">
+            <h6 class="ms-2" style="font-size: 1em">Nama Project</h6>
+            <input type="text" class="form-control" style="width: 14em; border: none; font-family: ubuntu;" id="namaProjectCash" disabled>
           </div>
-          <div style="display: flex; align-items: center; margin-top:3%;">
-            <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-            <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" id="hargaProjectCash" disabled>
+          <div class="d-flex flex-column mt-2">
+            <h6 class="ms-2" style="font-size: 1em">Harga Project</h6>
+            <input type="text" class="form-control" style="width: 14em; border: none; font-family: ubuntu;" id="hargaProjectCash" disabled>
           </div>
         </div>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
+        {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button> --}}
       </div>
       <form id="updateForm" action="{{ route('update-status-bayar', '') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -175,15 +177,14 @@
                   <div id="imageContainer"></div>
               </div>
           </div>
-           <div class="mb-3 bg-primary" style="margin-top:3%;">
+           <div class="mb-5 bg-primary" style="margin-top:3%;">
                 <div id="fileInputContainer"></div>
           </div>
           <br>
         </div>
-        <center>
-          <button type="submit" class="btn btn-primary" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button>
-        </center>
-        <div class="modal-footer" style="border: none;"></div>
+        <div class="modal-footer" style="border: none;">
+          <button type="submit" class="btn btn-primary w-100" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu';">Bayar Sekarang</button>
+        </div>
       </form>
     </div>
   </div>
@@ -261,17 +262,17 @@ $(document).ready(function() {
         layananSelect.style.fontSize = '16px';
         layananSelect.innerHTML = `
           <option selected class="dropdown-menu" name="layanan" disabled>Pilih E-Wallet</option>
-          <option value="dana">Dana</option>
-          <option value="ovo">Ovo</option>
-          <option value="gopay">Gopay</option>
-          <option value="linkaja">Linkaja</option>
+          <option value="dana">DANA</option>
+          <option value="ovo">OVO</option>
+          <option value="gopay">GoPay</option>
+          <option value="linkaja">LinkAja</option>
         `;
 
         additionalSelectContainer.appendChild(layananLabel);
         additionalSelectContainer.appendChild(layananSelect);
 
         const fileInputLabel = document.createElement('label');
-        fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
+        fileInputLabel.textContent = 'Bukti Pembayaran';
 
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
@@ -279,10 +280,10 @@ $(document).ready(function() {
         fileInput.className = 'form-control';
         fileInput.style.border = 'none';
         fileInput.style.fontFamily = 'ubuntu';
-        fileInput.style.height = '1%';
-        fileInput.style.width = '61%';
-        fileInputLabel.style.marginLeft = '-10px';
-        fileInput.style.marginLeft = '-10px';
+        fileInput.style.height = '40px';
+        fileInput.style.width = '200px';
+        fileInputLabel.style.marginLeft = '-15px';
+        fileInput.style.marginLeft = '-15px';
         fileInput.setAttribute('required', true);
 
         fileInputContainer.appendChild(fileInputLabel);
@@ -369,12 +370,12 @@ $(document).ready(function() {
         `;
 
         const fileInputLabel = document.createElement('label');
-        fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
+        fileInputLabel.textContent = 'Bukti Pembayaran';
         fileInputLabel.style.textAlign = 'center';
         fileInputLabel.style.marginBottom = '5px';
         fileInputLabel.style.position = 'relative';
         fileInputLabel.style.top = '-75px';
-        fileInputLabel.style.right = '-250px';
+        fileInputLabel.style.right = '-224px';
 
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
@@ -382,20 +383,20 @@ $(document).ready(function() {
         fileInput.className = 'form-control';
         fileInput.style.border = 'none';
         fileInput.style.fontFamily = 'ubuntu';
-            fileInput.style.height = '1%';
-            fileInput.style.width = 'auto%';
-            fileInput.style.marginTop = '-79px';
-            fileInput.style.marginLeft = 'auto';
-            fileInput.style.marginRight = '-250px';
+        fileInput.style.height = '1%';
+        fileInput.style.width = '100%';
+        fileInput.style.marginTop = '-79px';
+        fileInput.style.marginLeft = 'auto';
+        fileInput.style.marginRight = '-222px';
         fileInput.setAttribute('required', true);
 
         const inputBankLabel = document.createElement('label');
-        inputBankLabel.textContent = 'No.Rekening:';
+        inputBankLabel.textContent = 'No. Rekening';
             inputBankLabel.style.textAlign = 'center';
             inputBankLabel.style.marginBottom = '5px';
             inputBankLabel.style.position = 'absolute';
             inputBankLabel.style.top = '16px';
-            inputBankLabel.style.right = '130px';
+            inputBankLabel.style.right = '148px';
 
         const inputBank = document.createElement('input');
         inputBank.type = 'text';
@@ -404,7 +405,7 @@ $(document).ready(function() {
         inputBank.style.border = 'none';
         inputBank.style.fontFamily = 'ubuntu';
             inputBank.style.height = '15%';
-            inputBank.style.width = '40%';
+            inputBank.style.width = '45%';
             inputBank.style.position = 'absolute';
             inputBank.style.right = '22px';
             inputBank.style.marginTop = '-137px';

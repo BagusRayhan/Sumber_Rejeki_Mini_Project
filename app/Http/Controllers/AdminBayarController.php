@@ -46,8 +46,17 @@ class AdminBayarController extends Controller
         $projectol->metode = null;
         $projectol->buktipembayaran = null;
         $projectol->tanggalpembayaran = null;
-
         $projectol->save();
+
+        $msg = 'Pembayaran Ditolak';
+        $notifDesk = $projectol->napro;
+        Notification::create([
+            'role' => 'client',
+            'user_id' => $projectol->user_id,
+            'notif' => $msg,
+            'deskripsi' => $notifDesk,
+            'kategori' => 'Pembayaran Ditolak'
+        ]);
 
         return back();
     }
