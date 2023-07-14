@@ -33,5 +33,7 @@
     <script src="{{ asset('ProjectManagement/summernote/summernote-bs4.js') }}"></script>
 
     <link href="https://cdn.datatables.net/v/bs5/dt-1.13.5/datatables.min.css" rel="stylesheet"/>
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>

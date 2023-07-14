@@ -45,9 +45,10 @@ class AdminController extends Controller
         //     $query->where('role', 'admin');
         //     })->limit(4)->latest()->get();
 
-        $message = Proreq::query()->whereHas('projectchat')
+        $message = Proreq::query()
+        ->whereHas('projectchat')
         ->with('projectchat')
-        ->limit(4)
+        ->take(4)
         ->latest()
         ->get();
 

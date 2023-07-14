@@ -55,7 +55,38 @@
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0" style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 6px 0 rgba(0, 0, 0, 0.19);">
 
               <button type="button" class="dropdown-item" id="profile-btn" data-bs-toggle="modal" data-bs-target="#mymodal">My Profile</button>
-                <a href="{{ route('logout') }}" class="dropdown-item">Log Out</a>
+              <a href="{{ route('logout') }}" onclick="return confirmasi(event)" class="dropdown-item">Log Out</a>
+
+              <script>
+                  function confirmasi(event) {
+                      event.preventDefault();
+
+                      Swal.fire({
+                          title: 'Apakah Anda yakin?',
+                          text: 'Ingin Logout',
+                          icon: 'warning',
+                          showCancelButton: true,
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonColor: '#d33',
+                          confirmButtonText: 'Ya',
+                          cancelButtonText: 'Batal'
+                      }).then((result) => {
+                          if (result.isConfirmed) {
+
+                              window.location.href = event.target.href;
+
+                          } else {
+                             
+                              Swal.fire(
+                                  'Logout Dibatalkan',
+                                  '',
+                                  'info'
+                              );
+                          }
+                      });
+                  }
+              </script>
+
             </div>
         </div>
     </div>
@@ -73,16 +104,16 @@
         <h1 class="modal-title fs-5">My Profile</h1>
       </div>
       <div class="modal-body">
-          <form action="{{ route('admin.updateProfile') }}" method="POST" enctype="multipart/form-data">
-          @csrf
-          @method('put')
+        <form action="{{ route('admin.updateProfile') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('put')
             <div class="profile d-flex justify-content-center">
                 <img src="gambar/user-profile/{{ $admin->profil }}" class="rounded-circle profile-image">
-                <a href="#" type="file" class="change-profile-button d-flex justify-content-center" id="chooseFileButtonA">
-                  <i class="fa-sharp fa-solid fa-image"></i>
-                  <input type="file" id="fileInputA" name="fileInputA" style="display:none" accept=".jpg,.png,.pdf">
-                </a>
-          </div>
+                <label for="fileInputA" class="change-profile-button d-flex justify-content-center" id="chooseFileButtonA">
+                    <i class="fa-sharp fa-solid fa-image text-primary"></i>
+                </label>
+                <input type="file" id="fileInputA" name="fileInputA" style="display: none" accept=".jpg,.png,.pdf">
+            </div>
           <div class="mb-1">
               <label for="exampleFormControlInput1" class="form-label">Nama</label>
               <input type="text" class="form-control" id="exampleFormControlInput1"  name="name" value="{{ $admin->name }}">
@@ -103,37 +134,33 @@
       </div>
       <script>
         document.getElementById('chooseFileButtonA').addEventListener('click', function() {
-        document.getElementById('fileInputA').click();
+            document.getElementById('fileInputA').click();
         });
 
         document.getElementById('fileInputA').addEventListener('change', function() {
-        var selectedFile = this.files[0];
-        // Lakukan sesuatu dengan file yang dipilih, misalnya mengunggahnya ke server
-        console.log('Selected file:', selectedFile);
+            var selectedFile = this.files[0];
+            // Lakukan sesuatu dengan file yang dipilih, misalnya mengunggahnya ke server
+            console.log('Selected file:', selectedFile);
         });
 
-    </script>
-    <script>
-    $(document).ready(function() {
-    $('.change-profile-button').on('click', function(e) {
-        e.preventDefault();
-        // Tambahkan kode yang ingin Anda jalankan ketika tombol perubahan profil diklik
-        // Misalnya, tampilkan dialog atau tampilkan form perubahan profil
-    });
-    });
+        $(document).ready(function() {
+            $('.change-profile-button').on('click', function(e) {
+                e.preventDefault();
+                // Tambahkan kode yang ingin Anda jalankan ketika tombol perubahan profil diklik
+                // Misalnya, tampilkan dialog atau tampilkan form perubahan profil
+            });
+        });
 
+        document.getElementById("fileInputA").addEventListener("change", function(event) {
+            var input = event.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("profile-image").setAttribute("src", e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        });
     </script>
-   <script>
-     document.getElementById("file-upload").addEventListener("change", function(event) {
-         var input = event.target;
-         if (input.files && input.files[0]) {
-         var reader = new FileReader();
-         reader.onload = function(e) {
-             document.getElementById("profile-image").setAttribute("src", e.target.result);
-         };
-         reader.readAsDataURL(input.files[0]);
-         }
-     });
-     </script>
     </div>
   </div>

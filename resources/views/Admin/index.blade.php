@@ -165,23 +165,28 @@
                                 <h6 class="mb-0">Pesan</h6>
                             </div>
                             @if (count($message) !== 0)
-                                @foreach ($message as $msg)
-
-                                    <div class="d-flex align-items-center border-bottom py-3">
-
-                                        <a href="{{ route('detail-disetujui-admin', ['id' => $msg->id]) }}" style="text-decoration: none; color: inherit;">
-                                            <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $msg->user->profil }}" alt="" style="width: 40px; height: 40px;">
-                                            <div class="w-100 ms-3">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h6 class="mb-0">{{ $msg->user->name }}</h6>
-                                                    <small>{{ Carbon::parse($msg->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
-                                                </div>
-                                                <p>{{ $msg->chat }}</p>
+                            @foreach ($message as $msg)
+                                <div class="d-flex align-items-center border-bottom py-3">
+                                    <a href="{{ route('detail-disetujui-admin', ['id' => $msg->id]) }}" style="text-decoration: none; color: inherit;">
+                                        <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $msg->user->profil }}" alt="" style="width: 40px; height: 40px;">
+                                        <div class="w-100 ms-3">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-0">{{ $msg->user->name }}</h6>
+                                                <small>{{ Carbon::parse($msg->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
                                             </div>
-                                        </a>
-                                    </div>
+                                            @if (count($msg->projectchat) !== 0)
+                                                @foreach ($msg->projectchat as $chat)
+                                                    <p>{{ $chat->chat }}</p>
+                                                @endforeach
+                                            @else
+                                                <p>Tidak ada pesan</p>
+                                            @endif
+                                        </div>
+                                    </a>
+                                </div>
+                            @endforeach
 
-                                @endforeach
+
                             @else
                                 <div class="d-flex flex-column h-100 justify-content-center align-items-center">
                                     <img src="gambar/empty-icon/empty-directory.png" class="w-50">

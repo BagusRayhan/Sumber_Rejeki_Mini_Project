@@ -59,9 +59,9 @@
                 <button type="button" class="dropdown-item" id="profile-btn" data-bs-toggle="modal" data-bs-target="#mymodal">My Profile</button>
                  <a href="{{ route('logout') }}" onclick="konfirmasi(event)" class="dropdown-item">Log Out</a>
 
-                <script>
+                 <script>
                     function konfirmasi(event) {
-                        event.preventDefault(); // Mencegah perilaku default dari tautan
+                        event.preventDefault();
 
                         Swal.fire({
                             title: 'Apakah Anda yakin?',
@@ -74,15 +74,15 @@
                             cancelButtonText: 'Batal'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                // Aksi yang akan dijalankan jika pengguna menekan tombol "Ya"
-                                window.location.href = event.target.href; // Melakukan pengalihan ke URL logout
+
+                                window.location.href = event.target.href;
 
                             } else {
-                                // Aksi yang akan dijalankan jika pengguna menekan tombol "Batal"
+
                                 Swal.fire(
-                                    'Gagal',
-                                    'Logout Gagal',
-                                    'error'
+                                    'Logout Dibatalkan',
+                                    '',
+                                    'info'
                                 );
                             }
                         });
