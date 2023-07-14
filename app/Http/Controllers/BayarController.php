@@ -52,7 +52,7 @@ class BayarController extends Controller
         $data->save();
 
         $msg = 'Pembayaran Masuk';
-        $notifDesk = $data->napro.' telah dibayar';
+        $notifDesk = 'Biaya awal '.$data->napro;
         Notification::create([
             'role' => 'admin',
             'user_id' => $data->user_id,
@@ -82,6 +82,16 @@ class BayarController extends Controller
         $data->statusbayar = 'pending2';
         $data->tanggalpembayaran2 = now();
         $data->save();
+
+        $msg = 'Pembayaran Masuk';
+        $notifDesk = 'Biaya akhir '.$data->napro;
+        Notification::create([
+            'role' => 'admin',
+            'user_id' => $data->user_id,
+            'notif' => $msg,
+            'deskripsi' => $notifDesk,
+            'kategori' => 'Pembayaran Masuk'
+        ]);
 
 
         return redirect()->route('bayar2client')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));

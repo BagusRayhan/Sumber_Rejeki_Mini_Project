@@ -113,11 +113,11 @@
                   <div class="modal-header" style="border: none;">
                     <div class="wrapper d-flex align-items-center">
                       <img id="profile-image" style="width:4em" class="me-3" src="{{ asset('ProjectManagement/dashmin/img/ikonm.png') }}">
-                      <h1 class="modal-title fw-bold fs-5" id="exampleModalToggleLabel">Pembayaran Awal</h1><br>
+                      <h1 class="modal-title fw-bold fs-5" id="exampleModalToggleLabel">Pembayaran Awal</h1>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom:10%;" aria-label="Close"></button>
                   </div>
-                  <div class="modal-body" style="border: none;">
+                  <div class="modal-body border-0">
                     <div class="d-flex justify-content-evenly align-items-center mb-3">
                       <h6>Nama Project</h6>
                       <input type="text" name="namaProject" class="form-control w-50" style="border:none; font-style: ubuntu;" id="namaProject" disabled>
@@ -127,12 +127,10 @@
                       <input type="text" name="hargaProject" class="form-control w-50" style="border:none; font-style: ubuntu;" id="hargaProject" disabled>
                     </div>
                     <input type="hidden" id="projectIdCash">
-                    <br>
                   </div>
-                  <center>
-                    <button class="btn btn-primary pilih-metode" data-bs-target="#cash" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button>
-                  </center>
-                  <div class="modal-footer" style="border: none;"></div>
+                  <div class="modal-footer d-flex justify-content-center border-0">
+                    <button class="btn btn-primary fw-bold w-75 mb-3 pilih-metode" data-bs-target="#cash" data-bs-toggle="modal" style="border-radius: 33px; font-family: 'Ubuntu';">Pilih Metode Pembayaran</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -182,8 +180,9 @@
           </div>
           <br>
         </div>
-        <div class="modal-footer" style="border: none;">
-          <button type="submit" class="btn btn-primary w-100" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu';">Bayar Sekarang</button>
+        <div class="modal-footer border-0 d-flex flex-column justify-content-center">
+          <button type="submit" class="btn btn-primary fw-bold w-75" style="border-radius: 33px; font-family: 'Ubuntu';">Bayar Sekarang</button>
+          <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar" data-bs-toggle="modal">Kembali</a>
         </div>
       </form>
     </div>

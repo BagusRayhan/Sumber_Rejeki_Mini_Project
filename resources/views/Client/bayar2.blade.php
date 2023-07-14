@@ -192,192 +192,194 @@ $(function(e){
 {{-- modal pembayaran akhir --}}
     <div class="modal fade" id="Modalbayar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered" >
-           <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-           <div class="modal-header" style="border: none;">
-               <img id="profile-image" src="{{ asset('ProjectManagement/dashmin/img/ikonm.png') }}" alt="" style="width:15%; height:15%; margin-top:1%;">
-               <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom:10%;" aria-label="Close"></button>
-           </div>
-           <div class="modal-body" style="border: none;">
-               <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="font-weight: bold;">Pembayaran Akhir</h1><br>
-                       <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
-                           <h6 style="align-self: center;">Nama Project :</h6>
-                           <input type="text"  name="namaProject"  class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;"  id="namaProject" disabled>
-                       </div>
-                       <div style="display: flex; justify-content: space-between;">
-                           <h6>Harga Pembayaran :</h6>
-                           <input type="text" name="hargaProject" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="hargaProject" disabled>
-                       </div>
-                       <input type="hidden" id="projectIdCash">
-               <br>
-           </div>
-           <center><button class="btn btn-primary pilih-metode" data-bs-target="#bayar1" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Pilih Metode Pembayaran</button></center><br>
-           <center><a href="#" class="link-offset-2 link-underline bayar-awal link-underline-opacity-0 " data-bs-target="#modalawal" data-bs-toggle="modal">Lihat Pembayaran Awal</a></center>
-           <div class="modal-footer" style="border: none;">
-           </div>
-           </div>
-         </div>
-       </div>
-       {{-- akhir pembayaran akhir --}}
-
-       {{-- Modal detail pembayaran awal --}}
-    <div class="modal fade" id="modalawal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel1 " tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered" >
-           <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-           <div class="modal-header" style="border: none;">
-               <img id="profile-image" src="{{ asset('ProjectManagement/dashmin/img/ikond.png') }}" alt="" style="width:15%; height:15%; margin-top:1%;">
-               <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom:10%;" aria-label="Close"></button>
-           </div>
-           <div class="modal-body" style="border: none;">
-               <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="font-weight: bold;">Pembayaran Awal</h1><br>
-                       <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
-                           <h6 style="align-self: center;">Nama Project:</h6>
-                           <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="napro-awal" disabled>
-                       </div>
-                       <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
-                           <h6 style="align-self: center;">Harga Pembayaran:</h6>
-                           <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="harga-pro"  disabled>
-                       </div>
-                       <div style="display: flex; justify-content: space-between; margin-bottom:3%;">
-                           <h6 style="align-self: center;">Tanggal Pembayaran:</h6>
-                           <input type="datetime" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="tgl-bayar"  disabled>
-                       </div>
-                       <div style="display: flex; justify-content: space-between;">
-                            <h6>Metode Pembayaran:</h6>
-                            <input type="text" class="form-control" style="border:none; font-style: ubuntu; width:auto; margin-right:22%; height:1%; margin-top: -5px;" id="metodepembayaran" disabled>
-                       </div>
-               <br>
-           </div>
-           <center><button class="btn btn-primary" data-bs-target="#bayar1" data-bs-toggle="modal" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;" disabled>Selesai</button></center><br>
-           <center><a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar" data-bs-toggle="modal">Kembali</a></center>
-           <div class="modal-footer" style="border: none;">
-           </div>
-           </div>
-         </div>
-       </div>
-{{-- akhir code lihat pembayaran--}}
-
-    
-        <div class="modal fade" id="struk" tabindex="-1" aria-hidden="true">
-            <div class="myModal">
-            <div class="modal-dialog modal-dialog-centered" style="width: 22em">
-            <div class="modal-content">
-                <div class="modal-header p-2">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
+                <div class="modal-header" style="border: none;">
+                    <div class="wrapper d-flex align-items-center">
+                        <img id="profile-image" style="width:4em" class="me-3" src="{{ asset('ProjectManagement/dashmin/img/ikonm.png') }}">
+                        <h1 class="modal-title fw-bold fs-5" id="exampleModalToggleLabel">Pembayaran Akhir</h1>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom:10%;" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="d-flex mt-0 pt-0 justify-content-center">
-                        <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/success.png') }}" alt="">
+                <div class="modal-body border-0">
+                    <div class="d-flex justify-content-evenly align-items-center mb-3">
+                        <h6>Nama Project</h6>
+                        <input type="text" name="namaProject" class="form-control w-50 border-0" style="font-style: ubuntu;" id="namaProject" disabled>
                     </div>
-                    <p class="text-center mt-3">Pembayaran Berhasil!</p>
-                    <h4 class="fw-bold text-center mt-1 border-bottom border-dark pb-2" id="napro-awall"></h4>
-                    <div class="d-flex justify-content-between">
-                        <div class="d-grid">
-                            <p class="text-center">Pembayaran Awal</p>
-                            <p class="fw-bold text-center pembayaran-awal"></p>
-                        </div>
-                        <div class="d-grid">
-                            <p class="text-center">Pembayaran Awal</p>
-                            <p class="fw-bold text-center pembayaran-akhir"></p>
-                        </div>
+                    <div class="d-flex justify-content-evenly align-items-center mb-3">
+                        <h6>Harga Project</h6>
+                        <input type="text" name="hargaProject" class="form-control w-50 border-0" style="font-style: ubuntu;" id="hargaProject" disabled>
                     </div>
-                    <div class="container m-0 p-0">
-                    <div class="d-flex justify-content-between">
-                        <p class="text-secondary fs-10">Tanggal Pembayaran Awal</p>
-                        <p id="tgl-bayarr"></p>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <p class="text-secondary fs-10">Tanggal Pembayaran Akhir</p>
-                        <p id="tgl-bayarr2"></p>
-                    </div>
-                        <div class="d-flex pb-0 justify-content-between">
-                            <p class="text-secondary fs-10">Metode Pembayaran Awal</p>
-                            <p id="metodepembayarann"></p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-secondary fs-10">Metode Pembayaran Akhir</p>
-                            <p id="metodepembayarann2"></p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-secondary fs-10">Biaya Tambahan</p>
-                            <p>-</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-secondary fs-10">Total Bayar</p>
-                            <p id="harga-proo"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                <button id="printBtn" class="btn btn-primary w-100 fw-bold"><i class="fa-solid fa-print"></i> Cetak PDF</button>
-                </div>
-            </div>
-            </div>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-            <script>
-                document.getElementById('printBtn').addEventListener('click', function() {
-                  // Logika untuk mencetak PDF modal
-
-                  // Contoh: Menggunakan window.print() untuk mencetak halaman saat ini
-                  window.print();
-                });
-              </script>
-        </div>
-        </div>
-
-        
-{{-- modal pembayaran --}}
-<div class="modal fade" id="bayar1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
-            <div class="modal-header">
-                <div style="display: flex; flex-direction: column;">
-                    <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian <span style="display: inline-block;">Pembayaran</span></h6>
-                    <div style="display: flex; align-items: center;">
-                        <h6 style="align-self: center; margin-right: 10px;">Nama Project :</h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" id="namaProjectCash" disabled>
-                    </div>
-                    <div style="display: flex; align-items: center; margin-top:3%;">
-                        <h6 style="align-self: center; margin-right: 10px;">Harga Pembayaran :</h6>
-                        <input type="text" class="form-control" style="border: none; font-family: ubuntu; height: 1%; width:50%;" id="hargaProjectCash" disabled>
-                    </div>
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button>
-            </div>
-            <form id="updateForm" action="{{ route('update-status-bayarakhir', '') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-                <input type="hidden" id="projectId">
-                <div class="modal-body" style="border: none;">
-                    <div class="containerd-flex justify-content-between" style="display: flex; align-items: center;">
-                        <div class="d-grid">
-                            <h6 style="align-self: center; font-size: 16px;">Metode</h6>
-                            <select class="form-select form-select-lg mb-3" name="metodepembayaran2" style="width: 200px; height: 40px; font-size: 16px;" aria-label=".form-select-lg example" id="selectMetode">
-                                <option selected class="dropdown-menu" disabled>Pilih Pembayaran</option>
-                                <option value="cash">Cash</option>
-                                <option value="ewallet">E-Wallet</option>
-                                <option value="bank">Bank</option>
-                            </select>
-                            <div id="additionalSelectContainer"></div>
-                        </div>
-
-                        <div class="w-50" style="flex-direction: row-reverse;">
-                            <div id="imageContainer"></div>
-                        </div>
-                    </div><br>
-                    <div class="mb-3 bg-primary" style="margin-top:3%;">
-                        <div id="fileInputContainer"></div>
-                    </div>
+                    <input type="hidden" id="projectIdCash">
                     <br>
                 </div>
-                        <center><br>
-          <button type="submit" class="btn btn-primary" style="border-radius: 33px; font-weight: bold; font-family: 'Ubuntu'; width:70%; height:100%;">Bayar Sekarang</button>
-        </center>
-        <div class="modal-footer" style="border: none;"></div>
-            </form>
+                <div class="modal-footer border-0 d-flex flex-colum justify-content-center">
+                    <button class="btn btn-primary w-75 mb-2 fw-bold pilih-metode" data-bs-target="#bayar1" data-bs-toggle="modal" style="border-radius: 33px; font-family: 'Ubuntu';">Pilih Metode Pembayaran</button>
+                    <a href="#" class="link-offset-2 link-underline bayar-awal link-underline-opacity-0 " data-bs-target="#modalawal" data-bs-toggle="modal">Lihat Pembayaran Awal</a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    {{-- akhir pembayaran akhir --}}
+
+    {{-- Modal detail pembayaran awal --}}
+    <div class="modal fade" id="modalawal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel1 " tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" >
+            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
+                <div class="modal-header" style="border: none;">
+                    <div class="wrapper d-flex align-items-center">
+                        <img id="profile-image" style="width:4em" class="me-3" src="{{ asset('ProjectManagement/dashmin/img/ikond.png') }}">
+                        <h1 class="modal-title fw-bold fs-5" id="exampleModalToggleLabel">Pembayaran Awal</h1>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom:10%;" aria-label="Close"></button>
+                </div>
+                <div class="modal-body border-0 p-0 d-flex flex-column justify-content-center">
+                    <div class="d-flex justify-content-between mx-5 align-items-center mb-3">
+                        <h6>Nama Project</h6>
+                        <input type="text" class="form-control w-50 border-0" style="font-style: ubuntu;" id="napro-awal" disabled>
+                    </div>
+                    <div class="d-flex justify-content-between mx-5 align-items-center mb-3">
+                        <h6>Harga Project</h6>
+                        <input type="text" class="form-control w-50 border-0" style="font-style: ubuntu;" id="harga-pro" disabled>
+                    </div>
+                    <div class="d-flex justify-content-between mx-5 align-items-center mb-3">
+                        <h6>Tanggal Bayar</h6>
+                        <input type="text" class="form-control w-50 border-0" style="font-style: ubuntu;" id="tgl-bayar" disabled>
+                    </div>
+                    <div class="d-flex justify-content-between mx-5 align-items-center mb-3">
+                        <h6>Metode Pembayaran</h6>
+                        <input type="text" class="form-control w-50 border-0" style="font-style: ubuntu;" id="metodepembayaran" disabled>
+                    </div>
+                    <div class="modal-footer d-flex flex-column border-0">
+                        <button class="btn btn-primary fw-bold w-75" data-bs-target="#bayar1" data-bs-toggle="modal" style="border-radius: 33px; font-family: 'Ubuntu';" disabled>Selesai</button>
+                        <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar" data-bs-toggle="modal">Kembali</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- akhir code lihat pembayaran--}}
+
+    {{-- struk pembayaran start --}}
+    <div class="modal fade" id="struk" tabindex="-1" aria-hidden="true">
+        <div class="myModal">
+        <div class="modal-dialog modal-dialog-centered" style="width: 22em">
+        <div class="modal-content">
+            <div class="modal-header p-2">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex mt-0 pt-0 justify-content-center">
+                    <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/success.png') }}" alt="">
+                </div>
+                <p class="text-center mt-3">Pembayaran Berhasil!</p>
+                <h4 class="fw-bold text-center mt-1 border-bottom border-dark pb-2" id="napro-awall"></h4>
+                <div class="d-flex justify-content-between">
+                    <div class="d-grid">
+                        <p class="text-center">Pembayaran Awal</p>
+                        <p class="fw-bold text-center pembayaran-awal"></p>
+                    </div>
+                    <div class="d-grid">
+                        <p class="text-center">Pembayaran Awal</p>
+                        <p class="fw-bold text-center pembayaran-akhir"></p>
+                    </div>
+                </div>
+                <div class="container m-0 p-0">
+                <div class="d-flex justify-content-between">
+                    <p class="text-secondary fs-10">Tanggal Pembayaran Awal</p>
+                    <p id="tgl-bayarr"></p>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <p class="text-secondary fs-10">Tanggal Pembayaran Akhir</p>
+                    <p id="tgl-bayarr2"></p>
+                </div>
+                    <div class="d-flex pb-0 justify-content-between">
+                        <p class="text-secondary fs-10">Metode Pembayaran Awal</p>
+                        <p id="metodepembayarann"></p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="text-secondary fs-10">Metode Pembayaran Akhir</p>
+                        <p id="metodepembayarann2"></p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="text-secondary fs-10">Biaya Tambahan</p>
+                        <p>-</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="text-secondary fs-10">Total Bayar</p>
+                        <p id="harga-proo"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button id="printBtn" class="btn btn-primary w-100 fw-bold"><i class="fa-solid fa-print"></i> Cetak PDF</button>
+            </div>
+        </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script>
+            document.getElementById('printBtn').addEventListener('click', function() {
+                // Logika untuk mencetak PDF modal
+
+                // Contoh: Menggunakan window.print() untuk mencetak halaman saat ini
+                window.print();
+            });
+            </script>
+    </div>
+    </div>
+    
+
+        
+    {{-- modal pembayaran --}}
+    <div class="modal fade" id="bayar1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-image: url('ProjectManagement/dashmin/img/bg.png');">
+                <div class="modal-header d-flex flex-column align-items-start">
+                    <h6 style="opacity: 0.5; margin-bottom: 10px;">Rincian Pembayaran</h6>
+                    <div class="wrapper d-flex justify-content-between w-100">
+                        <div class="d-flex justify-content-start flex-column mt-2">
+                            <h6 class="ms-2" style="font-size: 1em">Nama Project</h6>
+                            <input type="text" class="form-control" style="width: 14em; border: none; font-family: ubuntu;" id="namaProjectCash" disabled>
+                        </div>
+                        <div class="d-flex flex-column mt-2">
+                            <h6 class="ms-2" style="font-size: 1em">Harga Project</h6>
+                            <input type="text" class="form-control" style="width: 14em; border: none; font-family: ubuntu;" id="hargaProjectCash" disabled>
+                        </div>
+                    </div>
+                </div>
+                <form id="updateForm" action="{{ route('update-status-bayarakhir', '') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" id="projectId">
+                    <div class="modal-body" style="border: none;">
+                        <div class="containerd-flex justify-content-between" style="display: flex; align-items: center;">
+                            <div class="d-grid">
+                                <h6 style="align-self: center; font-size: 16px;">Metode</h6>
+                                <select class="form-select form-select-lg mb-3" name="metodepembayaran2" style="width: 200px; height: 40px; font-size: 16px;" aria-label=".form-select-lg example" id="selectMetode">
+                                    <option selected class="dropdown-menu" disabled>Pilih Pembayaran</option>
+                                    <option value="cash">Cash</option>
+                                    <option value="ewallet">E-Wallet</option>
+                                    <option value="bank">Bank</option>
+                                </select>
+                                <div id="additionalSelectContainer"></div>
+                            </div>
+                            <div class="w-50" style="flex-direction: row-reverse;">
+                                <div id="imageContainer"></div>
+                            </div>
+                        </div><br>
+                        <div class="mb-3 bg-primary" style="margin-top:3%;">
+                            <div id="fileInputContainer"></div>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="modal-footer d-flex flex-column justify-content-center border-0">
+                        <button type="submit" class="btn btn-primary fw-bold w-75" style="border-radius: 33px; font-family: 'Ubuntu';">Bayar Sekarang</button>
+                        <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar" data-bs-toggle="modal">Kembali</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -404,17 +406,17 @@ $(function(e){
             layananSelect.style.fontSize = '16px';
             layananSelect.innerHTML = `
             <option selected class="dropdown-menu" name="layanan" disabled>Pilih E-Wallet</option>
-            <option value="dana">Dana</option>
-            <option value="ovo">Ovo</option>
-            <option value="gopay">Gopay</option>
-            <option value="linkaja">Linkaja</option>
+            <option value="dana">DANA</option>
+            <option value="ovo">OVO</option>
+            <option value="gopay">GoPay</option>
+            <option value="linkaja">LinkAja</option>
             `;
 
             additionalSelectContainer.appendChild(layananLabel);
             additionalSelectContainer.appendChild(layananSelect);
 
             const fileInputLabel = document.createElement('label');
-            fileInputLabel.textContent = 'Upload Bukti Pembayaran:';
+            fileInputLabel.textContent = 'Bukti Pembayaran';
 
             const fileInput = document.createElement('input');
             fileInput.type = 'file';
@@ -422,10 +424,10 @@ $(function(e){
             fileInput.className = 'form-control';
             fileInput.style.border = 'none';
             fileInput.style.fontFamily = 'ubuntu';
-            fileInput.style.height = '1%';
-            fileInput.style.width = '61%';
-            fileInputLabel.style.marginLeft = '-10px';
-            fileInput.style.marginLeft = '-10px';
+            fileInput.style.height = '40px';
+            fileInput.style.width = '200px';
+            fileInputLabel.style.marginLeft = '-15px';
+            fileInput.style.marginLeft = '-15px';
             fileInput.setAttribute('required', true);
 
             fileInputContainer.appendChild(fileInputLabel);
@@ -511,12 +513,12 @@ $(function(e){
             `;
 
             const fileInputLabel = document.createElement('label');
-            fileInputLabel.textContent = 'Upload Bukti Pembayaran';
+            fileInputLabel.textContent = 'Bukti Pembayaran';
             fileInputLabel.style.textAlign = 'center';
             fileInputLabel.style.marginBottom = '5px';
             fileInputLabel.style.position = 'relative';
             fileInputLabel.style.top = '-75px';
-            fileInputLabel.style.right = '-250px';
+            fileInputLabel.style.right = '-224px';
             
             const fileInput = document.createElement('input');
             fileInput.type = 'file';
@@ -528,7 +530,7 @@ $(function(e){
             fileInput.style.width = 'auto%';
             fileInput.style.marginTop = '-79px';
             fileInput.style.marginLeft = 'auto';
-            fileInput.style.marginRight = '-250px';
+            fileInput.style.marginRight = '-222px';
             fileInput.setAttribute('required', true);
             
 
