@@ -383,10 +383,10 @@ $(document).ready(function() {
         fileInput.style.border = 'none';
         fileInput.style.fontFamily = 'ubuntu';
         fileInput.style.height = '1%';
-        fileInput.style.width = '100%';
+        fileInput.style.width = '170%';
         fileInput.style.marginTop = '-79px';
         fileInput.style.marginLeft = 'auto';
-        fileInput.style.marginRight = '-222px';
+        fileInput.style.marginRight = '-310px';
         fileInput.setAttribute('required', true);
 
         const inputBankLabel = document.createElement('label');
