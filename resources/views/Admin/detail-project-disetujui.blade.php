@@ -70,14 +70,14 @@
                         <input type="text" value="{{ $detail->harga }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
-<div class="wrapper">
-    <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($progress) }} %</span></h6>
-    <div class="pg-bar">
-        <div class="progress">
-            <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
-        </div>
-    </div>
-</div>
+                <div class="wrapper">
+                    <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($progress) }} %</span></h6>
+                    <div class="pg-bar">
+                        <div class="progress">
+                            <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
@@ -167,6 +167,7 @@
 
         localStorage.setItem('progress', progress);
         localStorage.setItem('totalFeatures', totalFeatures);
+        
     }
 
     var checkboxes = document.querySelectorAll('.child-checkbox');
