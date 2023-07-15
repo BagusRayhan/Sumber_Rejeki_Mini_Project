@@ -109,7 +109,7 @@ class ProjectDisetujuiController extends Controller
 
     public function disetujuiClient() {
         $client = User::find(Auth::user()->id);
-        $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
+        $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $sosmed = Sosmed::all();;
         $project = Proreq::where('status', 'setuju')->where('user_id', Auth::user()->id)->paginate(5);
         return view('Client.disetujui', compact('project', 'sosmed','client','notification'));
@@ -117,7 +117,7 @@ class ProjectDisetujuiController extends Controller
 
     public function detailDisetujuiClient($id) {
         $client = User::find(Auth::user()->id);
-        $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
+        $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $detail = Proreq::find($id);
         $fitur = Fitur::where('project_id', $id)->get();
         $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();

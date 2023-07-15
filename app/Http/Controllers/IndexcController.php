@@ -17,11 +17,11 @@ class IndexcController extends Controller
     public function indexclient()
         {
         $client = User::find(Auth::user()->id);
-        $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
-        $setujuCounter = Proreq::where('status', 'setuju')->count();
-        $tolakCounter = Proreq::where('status', 'tolak')->count();
-        $kerjaCounter = Proreq::where('status', 'setuju')->count();
-        $selesaiCounter = Proreq::where('status', 'selesai')->count();
+        $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
+        $setujuCounter = Proreq::where('status', 'setuju')->where('user_id', Auth::user()->id)->count();
+        $tolakCounter = Proreq::where('status', 'tolak')->where('user_id', Auth::user()->id)->count();
+        $kerjaCounter = Proreq::where('status', 'setuju')->where('user_id', Auth::user()->id)->count();
+        $selesaiCounter = Proreq::where('status', 'selesai')->where('user_id', Auth::user()->id)->count();
         $notifikasi = Proreq::all();
         $estimasi = Proreq::where('status','setuju')->where('user_id', Auth::user()->id)->get();
         $notif = Chat::all();
@@ -84,7 +84,7 @@ class IndexcController extends Controller
 
     public function drequestclient(Request $request){
         $client = User::find(Auth::user()->id);
-        $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
+        $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $search = $request->input('search');
         $data = Proreq::whereIn('status', ['draft', 'pending'])
                ->where('user_id', Auth::user()->id)
@@ -102,7 +102,7 @@ class IndexcController extends Controller
 
 
     public function createproreq(){
-        $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
+        $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $client = User::find(Auth::user()->id);
         $sosmed = Sosmed::all();
         $fitur = Fitur::all();
@@ -138,7 +138,7 @@ class IndexcController extends Controller
 
      public function showproj(Request $request){
         $client = User::find(Auth::user()->id);
-        $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
+        $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $userid = Auth::user()->id;
         $username = User::where('id', $userid)->value('name');
         return view('Client.createproreq',compact('client','username','notification'));
@@ -184,7 +184,7 @@ class IndexcController extends Controller
 
     public function editproreq($id){
         $client = User::find(Auth::user()->id);
-        $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
+        $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $sosmed = Sosmed::all();
         $data = Proreq::findorfail($id);
         $dataa = Fitur::where('project_id', $id)->get();

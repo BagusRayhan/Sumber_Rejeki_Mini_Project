@@ -15,7 +15,7 @@ class TolakController extends Controller
         public function ditolakclient(Request $request)
         {
             $client = User::find(Auth::user()->id);
-            $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
+            $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
             $sosmed = Sosmed::all();
             $keyword = $request->input('keyword');
              $data = proreq::where('status', 'tolak')

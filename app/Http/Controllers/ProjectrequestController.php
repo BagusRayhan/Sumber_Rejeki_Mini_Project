@@ -33,6 +33,7 @@ class ProjectrequestController extends Controller
         }
 
         $admin = User::where('role', 'admin')->first();
+        $notification = Notification::where('role', 'admin')->latest()->get();
         $projectreq = Proreq::where('status', 'pending')
                             ->where(function (Builder $builder) use ($query) {
                                 $builder->where('napro', 'like', '%' . $query . '%');
@@ -42,7 +43,8 @@ class ProjectrequestController extends Controller
         return view('Admin.projectreq', [
             'projectreq' => $projectreq,
             'admin' => $admin,
-            'query' => $query
+            'query' => $query,
+            'notification' => $notification,
         ]);
     }
 

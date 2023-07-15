@@ -16,7 +16,7 @@ class SelesaiController extends Controller
         public function selesaiclient(Request $request)
         {
             $client = User::find(Auth::user()->id);
-            $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
+            $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
             $search = $request->input('search');
             $data = Proreq::where('status', 'selesai')
                ->where('user_id', Auth::user()->id)
@@ -34,7 +34,7 @@ class SelesaiController extends Controller
 
         public function revisiclient(Request $request){
             $client = User::find(Auth::user()->id);
-            $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
+            $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
             $search = $request->input('search');
            $data = Proreq::where('status', 'revisi')
                ->where('user_id', Auth::user()->id)
@@ -73,13 +73,13 @@ class SelesaiController extends Controller
 
         public function revisiselesai(){
             $client = User::find(Auth::user()->id);
-            $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
+            $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
             $sosmed = Sosmed::all();
             return view('Client.selesai', compact('sosmed','client','detail','notification'));
         }
         public function revisibutton($id){
             $client = User::find(Auth::user()->id);
-            $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
+            $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
             $detail = Proreq::find($id);
             $sosmed = Sosmed::all();
             $fitur = Fitur::where('project_id', $id)->get();
@@ -90,7 +90,7 @@ class SelesaiController extends Controller
             $data = Proreq::findOrFail($id);
             $sosmed = Sosmed::all();
             $client = User::find(Auth::user()->id);
-            $notification = Notification::where('role', 'client')->limit(4)->latest()->get();
+            $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
             $dataa = Fitur::where('project_id', $id)->get();
             return view('Client.detailrevisi', compact( 'data','sosmed','client','dataa','notification'));
         }

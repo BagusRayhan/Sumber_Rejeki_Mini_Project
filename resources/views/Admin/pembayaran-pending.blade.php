@@ -70,7 +70,7 @@
                                                 <td>{{ $pro->napro }}</td>
                                                 <td>{{ $pro->harga }}</td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-primary btn-bayar btn-sm" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal" data-id="{{ $pro->id }}" data-bukti="{{ $pro->buktipembayaran }}">
+                                                    <button class="btn btn-primary btn-bayar btn-sm" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal{{ $pro->id }}">
                                                         <i class="fa-solid fa-image"></i>
                                                     </button>
                                                 </td>
@@ -93,14 +93,14 @@
                                                     </form>
                                                 </td>
                                             </tr>
-                                            <div class="modal fade" id="buktiTransaksiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="buktiTransaksiModal{{ $pro->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" style="width: 400px">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
-                                                            <img id="buktipembayaran" src="{{ asset('gambar/bukti/'. $pro->id . '.jpg') }}" class="w-75">
+                                                            <img id="buktipembayaran" src="{{ asset($pro->buktipembayaran) }}" class="w-75">
                                                         </div>
                                                     </div>
                                                 </div>
