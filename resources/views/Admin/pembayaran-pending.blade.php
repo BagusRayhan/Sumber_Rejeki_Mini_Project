@@ -116,7 +116,9 @@
                         </div>
                     </div>
                 </div>
-
+                <div style="float: right;">
+{{ $propend->links() }}
+</div>
             </div>
             <!-- Confirm Payment Table End -->
         </div>
