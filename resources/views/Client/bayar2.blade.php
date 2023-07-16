@@ -113,7 +113,7 @@
                                         <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk
                                     </button>
                                 @elseif ($client2->statusbayar == 'belum lunas')
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" data-id="{{ $client2->id }}" data-napro="{{ $client2->napro }}"  data-harga="{{ $client2->harga }}" data-tanggalpembayaran="{{ $client2->tanggalpembayaran }}" data-metodepembayaran="{{ $client2->metodepembayaran }}" class="btn btn-primary btn-bayar btn-sm" style="background-color: none">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" data-id="{{ $client2->id }}" data-napro="{{ $client2->napro }}"  data-harga="{{ $client2->harga }}" data-tanggalpembayaran="{{ $client2->tanggalpembayaran }}" data-metodepembayaran="{{ $client2->metodepembayaran }}" data-biayatambahan="{{ $client2->biayatambahan }}" class="btn btn-primary btn-bayar btn-sm" style="background-color: none">
                                     <i class="fa-solid fa-wallet"></i>&nbsp;Bayar</button>
                                 @endif
                                 </td>
@@ -207,7 +207,7 @@ $(function(e){
                     </div>
                     <div class="d-flex justify-content-evenly align-items-center mb-3">
                         <h6>Harga Project</h6>
-                        <input type="text" name="hargaProject" class="form-control w-50 border-0" style="font-style: ubuntu;" id="hargaProject" disabled>
+                        <input type="text" name="hargaProject" class="form-control w-50 border-0" style="font-style: ubuntu;" id="hargaProject"  disabled>
                     </div>
                     <input type="hidden" id="projectIdCash">
                     <br>
@@ -380,8 +380,6 @@ $(function(e){
             </div>
         </div>
     </div>
-
-
 
         <script>
         const selectMetode = document.getElementById('selectMetode');
@@ -602,12 +600,14 @@ $(document).ready(function() {
         var harga = $(this).data('harga');
         var tglBayar = $(this).data('tanggalpembayaran');
         var metodepembayaran = $(this).data('metodepembayaran');
+        var biayatambahan = $(this).data('biayatambahan');
         var projectId = $(this).data('id');
 
         var setengahHarga = harga / 2;
+        var hargaTambahan = setengahHarga + biayatambahan;
 
         $('#namaProject').val(napro);
-        $('#hargaProject').val(setengahHarga);
+        $('#hargaProject').val(hargaTambahan);
         $('#tgl-bayar').val(tglBayar);
         $('#metodepembayaran').val(metodepembayaran);
         $('#projectIdCash').val(projectId); 
