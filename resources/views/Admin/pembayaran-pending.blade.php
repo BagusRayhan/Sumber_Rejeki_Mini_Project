@@ -69,11 +69,21 @@
                                                 <td>{{ $pro->nama }}</td>
                                                 <td>{{ $pro->napro }}</td>
                                                 <td>{{ $pro->harga }}</td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-primary btn-bayar btn-sm" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal{{ $pro->id }}">
-                                                        <i class="fa-solid fa-image"></i>
-                                                    </button>
-                                                </td>
+  <td class="text-center">
+  @if ($pro->buktipembayaran || $pro->buktipembayaran2)
+    @if ($pro->buktipembayaran)
+      <button class="btn btn-primary btn-bayar btn-sm" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal{{ $pro->id }}">
+        <i class="fa-solid fa-image"></i>
+      </button>
+    @endif
+    @if ($pro->buktipembayaran2)
+      <button class="btn btn-primary btn-bayar btn-sm" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal2{{ $pro->id }}">
+        <i class="fa-solid fa-image"></i>
+      </button>
+    @endif
+  @endif
+</td>
+
                                                 <td class="d-flex justify-content-evenly">
                                                     <form action="{{ route('setujui-pembayaran', ['id' => $pro->id]) }}" method="POST">
                                                         @csrf
@@ -105,6 +115,19 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="modal fade" id="buktiTransaksiModal2{{ $pro->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" style="width: 400px">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
+                                                            <img id="buktipembayaran" src="{{ asset($pro->buktipembayaran2) }}" class="w-75">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
                                     @else
                                         <tr>
@@ -117,8 +140,8 @@
                     </div>
                 </div>
                 <div style="float: right;">
-{{ $propend->links() }}
-</div>
+                {{ $propend->links() }}
+                </div>
             </div>
             <!-- Confirm Payment Table End -->
         </div>
