@@ -48,7 +48,13 @@ class BayarController extends Controller
         $data->metodepembayaran = $request->input('metodepembayaran');
         $data->metode = $request->input('metode');
         $data->statusbayar = 'pending';
-        $data->tanggalpembayaran = now();
+        $tanggalpembayaran = $request->input('tanggalpembayaran');
+        if($tanggalpembayaran){
+            $data->tanggalpembayaran = $tanggalpembayaran;
+        } else {
+            $data->tanggalpembayaran = now();
+        }
+
         $data->save();
 
         $msg = 'Pembayaran Masuk';
@@ -80,7 +86,12 @@ class BayarController extends Controller
         $data->metodepembayaran2 = $request->input('metodepembayaran2');
         $data->metode2 = $request->input('metode2');
         $data->statusbayar = 'pending2';
-        $data->tanggalpembayaran2 = now();
+        $tanggalpembayaran2 = $request->input('tanggalpembayaran2');
+        if($tanggalpembayaran2){
+            $data->tanggalpembayaran2 = $tanggalpembayaran2;
+        } else {
+            $data->tanggalpembayaran2 = now();
+        }
         $data->save();
 
         $msg = 'Pembayaran Masuk';

@@ -447,7 +447,30 @@ console.log(selectedBank)
     }
   });
 });
-      }
+      } else if (selectedValue === 'cash') {
+    const datetimeLabel = document.createElement('label');
+    datetimeLabel.textContent = 'Tanggal Bayar';
+    datetimeLabel.style.textAlign = 'center';
+    datetimeLabel.style.marginBottom = '5px';
+    datetimeLabel.style.position = 'absolute';
+    datetimeLabel.style.top = '16px';
+    datetimeLabel.style.right = '148px';
+
+    const datetimeInput = document.createElement('input');
+    datetimeInput.type = 'datetime-local';
+    datetimeInput.name = 'tanggalpembayaran';
+    datetimeInput.className = 'form-control';
+    datetimeInput.style.width = '200px';
+    datetimeInput.style.height = '40px';
+    datetimeInput.style.position = 'absolute';
+    datetimeInput.style.right = '45px';
+    datetimeInput.style.marginTop = '-56px';
+    datetimeInput.style.fontSize = '16px';
+    datetimeInput.setAttribute('required', true);
+
+    additionalSelectContainer.appendChild(datetimeLabel);
+    additionalSelectContainer.appendChild(datetimeInput);
+  }
     });
   </script>
         </form>
