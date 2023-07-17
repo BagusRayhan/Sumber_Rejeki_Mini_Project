@@ -46,7 +46,7 @@
                             </div>
                             <div class="wrapper w-50 px-3 d-flex flex-column">
                                 <div class="form-group mb-3">
-                                    <label for="input3">Dokumen Pendukung</label>
+                                    <label for="input3">Dokumen Pendukung (Opsional)</label>
                                     <input type="file" class="form-control" id="input3" name="dokumen">
                                 </div>
                                 @error('dokumen')

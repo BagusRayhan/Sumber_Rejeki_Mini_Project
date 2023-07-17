@@ -8,6 +8,7 @@ use App\Models\Fitur;
 use App\Models\Proreq;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -109,10 +110,12 @@ public function alasantolak(Request $request)
 {
     $id = $request->dataid;
     $pro = Proreq::findOrFail($id);
+    if (File::exists(public_path().'document/'.$pro->dokumen)) {
+        unlink(public_path('document/'.$pro->document));
+    }
     $pro->alasan = $request->input('alasan');
     $pro->status = 'tolak';
     $pro->save();
-
     $msg = 'Project Ditolak';
     $notifDesk = $pro->napro.' Ditolak';
     Notification::create([

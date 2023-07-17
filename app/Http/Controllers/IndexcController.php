@@ -57,21 +57,24 @@ class IndexcController extends Controller
         if ($notif->kategori == 'Project Disetujui') {
             $notif->delete();
             return redirect()->route('bayarclient');
-        } elseif ($notif->kategori == 'Pembayaran Disetujui') {
-            $notif->delete();
-            return redirect()->route('setujuclient');
-        } elseif ($notif->kategori == 'Project Selesai') {
-            $notif->delete();
-            return redirect()->route('bayar2client');
         } elseif ($notif->kategori == 'Project Ditolak') {
             $notif->delete();
             return redirect()->route('ditolakclient');
-        } elseif ($notif->kategori == 'Pembayaran Disetujui') {
+        } elseif ($notif->kategori == 'Pembayaran Awal Disetujui') {
             $notif->delete();
             return redirect()->route('setujuclient');
-        } elseif ($notif->kategori == 'Pembayaran Ditolak') {
+        } elseif ($notif->kategori == 'Pembayaran Awal Ditolak') {
             $notif->delete();
             return redirect()->route('bayarclient');
+        } elseif ($notif->kategori == 'Project Selesai') {
+            $notif->delete();
+            return redirect()->route('bayar2client');
+        } elseif ($notif->kategori == 'Pembayaran Akhir Disetujui') {
+            $notif->delete();
+            return redirect()->route('selesaiclient');
+        } elseif ($notif->kategori == 'Pembayaran Akhir Ditolak') {
+            $notif->delete();
+            return redirect()->route('bayar2client');
         }
     }
 
@@ -170,21 +173,33 @@ class IndexcController extends Controller
     public function update(Request $request){
         $upProject = [];
         $id = $request->projectid;
+        $fitur = Fitur::where('project_id', $id)->count();
         $project = Proreq::findorfail($id);
         if ($request->has('dokumen')) {
-            if (File::exists(public_path().'document/' . $project->dokumen)) {
-                unlink(public_path().'document/' . $project->dokumen);
+            if (File::exists(public_path().'document/'.$project->dokumen)) {
+                unlink(public_path('document/'.$project->dokumen));
             }
             $newFile = $request->file('dokumen');
             $newDocs = $newFile->hashName();
             $newFile->move(public_path('document/'), $newDocs);
             $upProject['dokumen'] = $newDocs;
+        } elseif ($fitur == 0 && $project->dokumen == null) {
+            return back()->with('error', 'Tambahkan dokumen atau fitur terlebih dahulu');
         }
         $upProject['nama'] = Auth()->user()->name;
         $upProject['napro'] = $request->napro;
         $upProject['deadline'] = $request->deadline;
-        $upProject['status'] = $request->status;
+        $upProject['status'] = 'pending';
         $project->update($upProject);
+        $msg = 'Project Masuk';
+        $notifDesk = $project->napro.' dari '.$project->nama;
+        Notification::create([
+            'role' => 'admin',
+            'user_id' => $project->user_id,
+            'notif' => $msg,
+            'deskripsi' => $notifDesk,
+            'kategori' => 'Project Masuk'
+        ]);
         return redirect('drequestclient')->with('success', 'Project Berhasil dikirim!');
     }
 
@@ -197,23 +212,6 @@ class IndexcController extends Controller
         $dataa = Fitur::where('project_id', $id)->get();
 
         return view('Client.editproreq',compact('data','sosmed','dataa','client','notification'));
-    }
-
-    public function sendRequest($id) {
-        $pro = Proreq::find($id);
-        $pro->update([
-            'status' => 'pending'
-        ]);
-        $msg = 'Project Masuk';
-        $notifDesk = $pro->napro.' dari '.$pro->nama;
-        Notification::create([
-            'role' => 'admin',
-            'user_id' => $pro->user_id,
-            'notif' => $msg,
-            'deskripsi' => $notifDesk,
-            'kategori' => 'Project Masuk'
-        ]);
-        return redirect(route('drequestclient'))->with('success', 'data berhasil dikirim');
     }
 
     public function destroyRequest(Request $request) {

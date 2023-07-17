@@ -27,26 +27,32 @@ class AdminBayarController extends Controller
         if ($project->statusbayar === 'pembayaran awal') {
             $project->status = 'setuju';
             $project->statusbayar = null;
+            $msg = 'Pembayaran Awal Disetujui';
+            $notifDesk = $project->napro;
+            Notification::create([
+                'role' => 'client',
+                'user_id' => $project->user_id,
+                'notif' => $msg,
+                'deskripsi' => $notifDesk,
+                'kategori' => 'Pembayaran Awal Disetujui'
+            ]);
         } elseif ($project->statusbayar === 'pembayaran akhir') {
             $project->status = 'selesai';
             $project->statusbayar = null;
+            $msg = 'Pembayaran Akhir Disetujui';
+            $notifDesk = $project->napro;
+            Notification::create([
+                'role' => 'client',
+                'user_id' => $project->user_id,
+                'notif' => $msg,
+                'deskripsi' => $notifDesk,
+                'kategori' => 'Pembayaran Akhir Disetujui'
+            ]);
         } elseif ($project->statusbayar === 'pembayaran revisi') {
             $project->status = 'selesai';
             $project->statusbayar = null;
         }
-    
         $project->save();
-    
-        $msg = 'Pembayaran Disetujui';
-        $notifDesk = $project->napro;
-        Notification::create([
-            'role' => 'client',
-            'user_id' => $project->user_id,
-            'notif' => $msg,
-            'deskripsi' => $notifDesk,
-            'kategori' => 'Pembayaran Disetujui'
-        ]);
-    
         return back();
     }    
 
@@ -61,6 +67,15 @@ class AdminBayarController extends Controller
             $projectol->metode = null;
             $projectol->buktipembayaran = null;
             $projectol->tanggalpembayaran = null;
+            $msg = 'Pembayaran Awal Ditolak';
+            $notifDesk = $projectol->napro;
+            Notification::create([
+                'role' => 'client',
+                'user_id' => $projectol->user_id,
+                'notif' => $msg,
+                'deskripsi' => $notifDesk,
+                'kategori' => 'Pembayaran Awal Ditolak'
+            ]);
         } elseif ($projectol->statusbayar == 'pembayaran akhir') {
             if ($projectol->metodepembayaran !== 'cash') {
                 unlink(public_path('gambar/bukti/' . $projectol->buktipembayaran));
@@ -70,19 +85,17 @@ class AdminBayarController extends Controller
             $projectol->metode2 = null;
             $projectol->buktipembayaran2 = null;
             $projectol->tanggalpembayaran2 = null;
+            $msg = 'Pembayaran Akhir Ditolak';
+            $notifDesk = $projectol->napro;
+            Notification::create([
+                'role' => 'client',
+                'user_id' => $projectol->user_id,
+                'notif' => $msg,
+                'deskripsi' => $notifDesk,
+                'kategori' => 'Pembayaran Akhir Ditolak'
+            ]);
         }
         $projectol->save();
-
-        $msg = 'Pembayaran Ditolak';
-        $notifDesk = $projectol->napro;
-        Notification::create([
-            'role' => 'client',
-            'user_id' => $projectol->user_id,
-            'notif' => $msg,
-            'deskripsi' => $notifDesk,
-            'kategori' => 'Pembayaran Ditolak'
-        ]);
-
         return back();
     }
 

@@ -102,7 +102,6 @@ Route::middleware(['web', 'auth'])->group(function(){
     Route::put('updatefitur/{id}', [IndexcController::class, 'updateFitur'])->name('updatefitur');
     Route::get('ambildata/{id}', [IndexcController::class, 'ambildata'])->name('ambildata');
     Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
-    Route::get('sendrequest/{id}', [IndexcController::class, 'sendRequest'])->name('send-request');
     Route::put('updateproreq', [IndexcController::class, 'update'])->name('updateproreq');
     Route::post('simpandesk', [IndexcController::class, 'simpand'])->name('simpandesk');
     Route::get('setujuclient', [ProjectDisetujuiController::class, 'disetujuiClient'])->name('setujuclient');
