@@ -63,6 +63,11 @@
                                 </tr>
                                 @endif
                                 @endforeach
+                                @if ($data->isEmpty())
+                                <tr>
+                                    <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
+                                </tr>
+                                @endif
                         </tbody>
                     </table>
                 </div>

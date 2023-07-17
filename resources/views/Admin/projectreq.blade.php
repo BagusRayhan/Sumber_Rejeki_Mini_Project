@@ -25,17 +25,16 @@
 
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
-                <form method="GET" action="{{ route('search') }}" class="search-form w-25">
-                    <div class="input-group rounded-pill" style="background: #E9EEF5">
-                        <input type="text" name="query" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ..." value="{{ request('query') }}">
-                        <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
-                    </div>
-                </form>
+                @if(!$projectreq->isEmpty() || !empty(request('query')))
+    <form method="GET" action="{{ route('search') }}" class="search-form w-25">
+        <div class="input-group rounded-pill" style="background: #E9EEF5">
+            <input type="text" name="query" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ..." value="{{ request('query') }}">
+            <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
+        </div>
+    </form>
+@endif
+
             </div>
-
-
-
-
                 <div class="row mt-4 px-4">
                     @foreach ($projectreq as $row)
                         <div class="col-sm-4 mb-2 mb-sm-4">
@@ -47,38 +46,16 @@
                             </div>
                         </div>
                     @endforeach
-
                     @if($projectreq->isEmpty())
-                        <div class="d-flex flex-column h-100 justify-content-center align-items-center">
-                            <img src="gambar/empty-icon/empty-directory.png" class="w-35" style="margin-top: 90px">
-                            <p>Tidak ada data</p>
-                        </div>
-                    @endif
+                    <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+                        <img src="gambar/empty-icon/empty-directory.png" class="w-35" style="margin-top: 90px">
+                        <p>Tidak ada data</p>
+                    </div>
+                @else
+                    </div>
+                    <div style="float: right">
+                    {{ $projectreq->links() }}
                 </div>
-
-                @if(!$projectreq->isEmpty())
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination" style="margin-left: 850px">
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $projectreq->previousPageUrl() }}" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-
-                            @for ($i = 1; $i <= $projectreq->lastPage(); $i++)
-                                <li class="page-item {{ $projectreq->currentPage() == $i ? 'active' : '' }}">
-                                    <a class="page-link" href="{{ $projectreq->url($i) }}">{{ $i }}</a>
-                                </li>
-                            @endfor
-
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $projectreq->nextPageUrl() }}" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
                 @endif
-            </div>
 
             @include('Admin.templates.script')

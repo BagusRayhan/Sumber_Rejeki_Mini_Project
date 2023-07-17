@@ -74,7 +74,7 @@
                     <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($progress) }} %</span></h6>
                     <div class="pg-bar">
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
+                            <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
                         </div>
                     </div>
                 </div>
@@ -85,9 +85,9 @@
                                 <thead>
                                     <tr>
                                         <th scope="col" style="width:5em">
-                                            <div class="form-check">
-                                                <input class="form-check-input master-checkbox text-center" onchange="doneAllFeatures({{ $detail->id }})" type="checkbox" value="" id="masterCheckbox" {{ (count($fitur) == $done) ? 'checked' : '' }}>
-                                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input master-checkbox text-center" onchange="doneAllFeatures({{ $detail->id }})" type="checkbox" value="" id="masterCheckbox" {{ (count($fitur) == $done) ? 'checked' : '' }}>
+                            </div>
                                         </th>
                                         <th scope="col">Nama Fitur</th>
                                         <th scope="col">Harga Fitur</th>
@@ -99,9 +99,9 @@
                                         @foreach ($fitur as $f)
                                             <tr>
                                                 <td class="text-center">
-                                                    <div class="form-check"> 
-                                                        <input class="form-check-input child-checkbox" type="checkbox" id="checkFitur" onchange="statusFitur({{ $f->id }})" {{ ($f->status == 'selesai') ? 'checked' : '' }}>
-                                                    </div>
+                                    <div class="form-check"> 
+                                        <input class="form-check-input child-checkbox" type="checkbox" id="checkFitur" onchange="statusFitur({{ $f->id }})" {{ ($f->status == 'selesai') ? 'checked' : '' }}>
+                                    </div>
                                                 </td>
                                                 <td>{{ $f->namafitur }}</td>
                                                 <td>{{ $f->hargafitur }}</td>
@@ -148,6 +148,49 @@
                         </div>
                     </div>
                 </div>
+           <script>
+    function updateProgressBar() {
+        var checkboxes = document.querySelectorAll('.child-checkbox');
+        var progressBar = document.getElementById('progress-bar');
+        var progress = 0;
+        
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                progress++;
+            }
+        });
+        
+        var totalFeatures = checkboxes.length;
+
+        progressBar.style.width = (progress / totalFeatures * 100) + '%';
+        progressBar.setAttribute('aria-valuenow', progress);
+
+        localStorage.setItem('progress', progress);
+        localStorage.setItem('totalFeatures', totalFeatures);
+        
+    }
+
+    var checkboxes = document.querySelectorAll('.child-checkbox');
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            updateProgressBar();
+        });
+    });
+
+    updateProgressBar();
+
+    window.addEventListener('load', function() {
+        var savedProgress = localStorage.getItem('progress');
+        var savedTotalFeatures = localStorage.getItem('totalFeatures');
+
+        if (savedProgress && savedTotalFeatures) {
+            var progressBar = document.getElementById('progress-bar');
+            progressBar.style.width = (savedProgress / savedTotalFeatures * 100) + '%';
+            progressBar.setAttribute('aria-valuenow', savedProgress);
+        }
+    });
+</script>
+
                 <div class="my-3 d-flex justify-content-between" style="width: 16em">
                     <a href="/project-disetujui" class="btn btn-secondary btn-sm p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
                     <button class="btn btn-warning btn-sm text-white p-1" data-bs-toggle="modal" data-bs-target="#estimasiModal"><i class="fa-solid fa-clock-rotate-left"></i> Estimasi</button>

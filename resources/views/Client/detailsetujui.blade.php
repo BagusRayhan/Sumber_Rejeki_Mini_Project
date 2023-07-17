@@ -69,13 +69,26 @@ use \Carbon\Carbon;
                     </div>
                 </div>
                 <div class="wrapper mt-5">
-                    <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($progress) }} %</span></h6>
+                    <h6>Progress Project <span class="badge bg-primary mb-1" >{{ round($progress) }} %</span></h6>
                     <div class="pg-bar">
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
+                            <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
+                <script>
+                    var savedProgress = localStorage.getItem('progress');
+                    var savedTotalFeatures = localStorage.getItem('totalFeatures');
+
+                    if (savedProgress && savedTotalFeatures) {
+                        var progressBar = document.getElementById('progress-bar');
+                        var progressBadge = document.getElementById('progress-badge');
+
+                        progressBar.style.width = (savedProgress / savedTotalFeatures * 100) + '%';
+                        progressBar.setAttribute('aria-valuenow', savedProgress);
+                        progressBadge.innerText = savedProgress + '%';
+                    }
+                </script>
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">

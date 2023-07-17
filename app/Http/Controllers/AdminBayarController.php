@@ -16,7 +16,7 @@ class AdminBayarController extends Controller
     public function pending() {
         $admin = User::where('role', 'admin')->first();
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-        $propend = proreq::where('statusbayar', 'pending')->orWhere('statusbayar','pending2')->paginate(6);
+        $propend = proreq::where('statusbayar', 'pembayaran awal')->orWhere('statusbayar','pembayaran akhir')->paginate(6);
         return view('Admin.pembayaran-pending', compact('propend', 'admin', 'notification'));
     }
  
@@ -49,12 +49,21 @@ class AdminBayarController extends Controller
 
     public function tolakPembayaran(Request $request, $id) {
         $projectol = Proreq::findOrFail($id);
-
-        $projectol->statusbayar = 'menunggu pembayaran';
-        $projectol->metodepembayaran = null;
-        $projectol->metode = null;
-        $projectol->buktipembayaran = null;
-        $projectol->tanggalpembayaran = null;
+        if ($projectol->statusbayar == 'pembayaran awal') {
+            unlink(public_path('gambar/bukti/').$projectol->buktipembayaran);
+            $projectol->statusbayar = 'menunggu pembayaran';
+            $projectol->metodepembayaran = null;
+            $projectol->metode = null;
+            $projectol->buktipembayaran = null;
+            $projectol->tanggalpembayaran = null;
+        } elseif ($projectol->statusbayar == 'pembayaran akhir') {
+            unlink(public_path('gambar/bukti/').$projectol->buktipembayaran2);
+            $projectol->statusbayar = 'belum lunas';
+            $projectol->metodepembayaran2 = null;
+            $projectol->metode2 = null;
+            $projectol->buktipembayaran2 = null;
+            $projectol->tanggalpembayaran2 = null;
+        }
         $projectol->save();
 
         $msg = 'Pembayaran Ditolak';

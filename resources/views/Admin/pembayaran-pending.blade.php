@@ -40,7 +40,7 @@
                         Pending
                     </a>
                     <a href="/pembayaran-disetujui" onclick="redirectToPaymentPage()" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('setuju-bayar-admin') ? 'fw-bold border-dark border-bottom-2' : '' }}" data-url="/pembayaran-disetujui">
-                        Disetujui
+                        History
                     </a>
                     <script>
                         function redirectToPaymentPage() {
@@ -58,8 +58,9 @@
                                         <th scope="col">Nama Client</th>
                                         <th scope="col">Nama Project</th>
                                         <th scope="col">Harga Project</th>
-                                        <th scope="col" class="text-center">Bukti Pembayaran</th>
-                                        <th scope="col" class="text-center">Aksi</th>
+                                        <th scope="col" class="text-center">Status Bayar</th>
+                                        <th scope="col" class="text-center">Detail</th>
+                                        <th scope="col" class="text-center" style="width: 7em">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -70,8 +71,11 @@
                                                 <td>{{ $pro->napro }}</td>
                                                 <td>{{ $pro->harga }}</td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-primary btn-bayar btn-sm" data-bs-toggle="modal" data-bs-target="#buktiTransaksiModal{{ $pro->id }}">
-                                                        <i class="fa-solid fa-image"></i>
+                                                    <span class="badge rounded-pill {{ ($pro->statusbayar == 'pembayaran awal') ? 'text-bg-warning' : (($pro->statusbayar == 'pembayaran akhir') ? 'text-bg-success' : (($pro->statusbayar == 'pembayaran revisi') ? 'text-bg-primary' : '')) }}">{{ $pro->statusbayar }}</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-primary btn-bayar btn-sm" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">
+                                                        <i class="fa-solid fa-eye"></i>
                                                     </button>
                                                 </td>
                                                 <td class="d-flex justify-content-evenly">
@@ -93,14 +97,49 @@
                                                     </form>
                                                 </td>
                                             </tr>
-                                            <div class="modal fade" id="buktiTransaksiModal{{ $pro->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="detailTransaksi{{ $pro->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" style="width: 28em">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5>Detail Transaksi</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="wrapper">
+                                                                @if ($pro->metodepembayaran !== 'cash')
+                                                                    <div class="wrapper d-flex justify-content-between">
+                                                                        <div class="mb-3" style="width: 12em">
+                                                                            <label class="mb-1">Metode Pembayaran</label>
+                                                                            <input type="text"class="form-control" value="{{ ($pro->metodepembayaran == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
+                                                                        </div>
+                                                                        <div class="mb-3" style="width: 12em">
+                                                                            <label class="mb-1">Layanan</label>
+                                                                            <input type="text"class="form-control" value="{{ $pro->metode }}" disabled>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label class="mb-1">Bukti Pembayaran</label>
+                                                                        <img src="{{ asset('gambar/bukti/'.$pro->buktipembayaran) }}" class="w-100" alt="">
+                                                                    </div>
+                                                                @else
+                                                                    <div class="wrapper text-center">
+                                                                        <p>Pembayaran Dilakukan Secara Cash</p>
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal fade" id="buktiTransaksiModal2{{ $pro->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" style="width: 400px">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
-                                                            <img id="buktipembayaran" src="{{ asset($pro->buktipembayaran) }}" class="w-75">
+                                                            <img id="buktipembayaran" src="{{ asset($pro->buktipembayaran2) }}" class="w-75">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -108,7 +147,7 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="5" class="text-center">Tidak ada data</td>
+                                            <td colspan="6" class="text-center">Tidak ada data</td>
                                         </tr>
                                     @endif
                                 </tbody>
@@ -117,8 +156,8 @@
                     </div>
                 </div>
                 <div style="float: right;">
-{{ $propend->links() }}
-</div>
+                {{ $propend->links() }}
+                </div>
             </div>
             <!-- Confirm Payment Table End -->
         </div>
