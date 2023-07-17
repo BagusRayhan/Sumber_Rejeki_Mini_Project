@@ -98,13 +98,11 @@
                                 </td>
                                 <td>{{ $client2->napro }}</td>
                                 <td>
-                                        @if (!empty($client2->metodepembayaran2) && !empty($client2->metodepembayaran3))
+                                    @if ($client2->biayatambahan)
+                                        {{ $client2->harga + $client2->biayatambahan }}
+                                    @else
                                         {{ $client2->harga }}
-                                        @elseif ($client2->biayatambahan || $client2->metodepembayaran)
-                                        {{ $client2->harga }}
-                                        @else
-                                        {{ $client2->biayatambahan }}
-                                        @endif
+                                    @endif
                                 </td>
                                 <td class="text-center ">
                                 @if ($client2->statusbayar == 'lunas')
