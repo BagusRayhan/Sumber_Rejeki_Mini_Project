@@ -71,13 +71,13 @@
                     </div>
                 </div>
                 <div class="wrapper">
-                    <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($progress) }} %</span></h6>
+                    <h6>Progress Project <span class="badge bg-primary mb-1" id="progressBadge">{{ round($progress) }} %</span></h6>
                     <div class="pg-bar">
                         <div class="progress">
                             <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
                         </div>
                     </div>
-                </div>
+                </div>                
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
@@ -145,6 +145,24 @@
                                     @endif
                                 </tbody>
                             </table>
+                            <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+                            <script>
+                                // Fungsi untuk memperbarui nilai progress
+                                function updateProgressBar() {
+                                    fetch('/update-progress/{{ $id }}') // Gunakan sintaksis PHP untuk memasukkan nilai $id ke dalam URL
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            const progress = data.progress;
+                                            const progressBar = document.getElementById('progress-bar');
+                                            progressBar.style.width = progress + '%';
+                                            progressBar.setAttribute('aria-valuenow', progress);
+                                            progressBar.innerText = progress + '%';
+                                        });
+                                }
+                            
+                                // Memperbarui nilai progress setiap 5 detik
+                                setInterval(updateProgressBar, 5000);
+                            </script>                                                                                                                                                      
                         </div>
                     </div>
                 </div>

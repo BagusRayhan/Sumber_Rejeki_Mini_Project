@@ -51,9 +51,17 @@ class ProjectDisetujuiController extends Controller
             'chats' => $chats,
             'done' => $done,
             'admin' =>$admin,
-            'notification' => $notification
+            'notification' => $notification,
+            'id' => $id
         ]);
     }
+
+    public function updateProgress($id) {
+        $fitur = Fitur::where('project_id', $id)->get();
+        $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
+        $progress = (100 / count($fitur)) * $done;
+        return response()->json(['progress' => $progress]);
+    }    
 
     public function statusFitur(Request $request) {
         $status = Fitur::find($request->fitur_id);

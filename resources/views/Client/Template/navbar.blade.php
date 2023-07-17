@@ -46,7 +46,7 @@
               </a>
               @endforeach
             @else
-              <a href="#" class="dropdown-item text-center rounded">Tidak ada notifikasi masuk</a>
+              <a class="dropdown-item text-center rounded">Tidak ada notifikasi masuk</a>
             @endif
           </div>
         </div>
