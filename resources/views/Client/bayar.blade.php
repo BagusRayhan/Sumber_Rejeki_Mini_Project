@@ -20,7 +20,7 @@
 .bank-container input {
     width: 900px;
     height: 40px;
-    font-size: 16px;    
+    font-size: 16px;
     margin-bottom: 10px;
 }
         #imageContainer img {
@@ -81,7 +81,7 @@
               <thead>
                 <tr>
                   <th scope="col">Nama Project</th>
-                  <th scope="col">Harga Project</th>
+                  <th scope="col">Total Project</th>
                   <th scope="col" class="text-center">Status</th>
                   <th scope="col" class="text-center">Aksi</th>
                 </tr>
@@ -105,12 +105,12 @@
                 @endforeach
                 @if ($data->isEmpty())
                   <tr>
-                      <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
+                      <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak Ada Data</td>
                   </tr>
                 @endif
               </tbody>
             </table>
-            
+
             {{-- Modal Bayar Awal --}}
             <div class="modal fade" id="Modalbayar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
               <div class="modal-dialog modal-dialog-centered">
@@ -209,7 +209,7 @@ $(document).ready(function() {
         $('#hargaProject').val(setengahHarga);
         $('#tgl-bayar').val(tglBayar);
         $('#metodepembayaran').val(metodepembayaran);
-        $('#projectIdCash').val(projectId); 
+        $('#projectIdCash').val(projectId);
         $('#Modalbayar').modal('show');
     });
 
@@ -229,7 +229,7 @@ $(document).ready(function() {
     $('.pilih-metode').click(function() {
         var napro = $('#namaProject').val();
         var harga = $('#hargaProject').val();
-        var projectId = $('#projectIdCash').val(); 
+        var projectId = $('#projectIdCash').val();
 
         $('#namaProjectCash').val(napro);
         $('#hargaProjectCash').val(harga);
@@ -485,9 +485,9 @@ console.log(selectedBank)
       @include('Client.Template.footer')
         </div>
                     <!-- Content End -->
-                
+
                     @include('Client.Template.script')
                 </body>
-              
+
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:45:02 GMT -->
 </html>
