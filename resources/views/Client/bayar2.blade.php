@@ -80,7 +80,7 @@
                                     </div>
                                 </th>
                                 <th scope="col">Nama Project</th>
-                                <th scope="col">Harga Project</th>
+                                <th scope="col">Total Harga</th>
                                 <th scope="col" class="text-center">Status</th>
                                 <th scope="col" class="text-center">Aksi</th>
                             </tr>
@@ -328,9 +328,9 @@ $(function(e){
             </script>
     </div>
     </div>
-    
 
-        
+
+
     {{-- modal pembayaran --}}
     <div class="modal fade" id="bayar1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -518,7 +518,7 @@ $(function(e){
             fileInputLabel.style.position = 'relative';
             fileInputLabel.style.top = '-75px';
             fileInputLabel.style.right = '-245px';
-            
+
             const fileInput = document.createElement('input');
             fileInput.type = 'file';
             fileInput.name = 'buktipembayaran2';
@@ -531,7 +531,7 @@ $(function(e){
             fileInput.style.marginLeft = 'auto';
             fileInput.style.marginRight = '-330px';
             fileInput.setAttribute('required', true);
-            
+
 
             const inputBankLabel = document.createElement('label');
             inputBankLabel.textContent = 'No.Rekening';
@@ -567,7 +567,7 @@ $(function(e){
             bankSelect.addEventListener('change', function () {
             const selectedBank = this.value;
             console.log(selectedBank)
-            
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -587,7 +587,7 @@ $(function(e){
                 console.error('Error:', error);
                 }
             });
-            });   
+            });
         }  else if (selectedValue === 'cash') {
     const datetimeLabel = document.createElement('label');
     datetimeLabel.textContent = 'Tanggal Bayar';
@@ -635,7 +635,7 @@ $(document).ready(function() {
         $('#hargas').val(harga);
         $('#tgl-bayar').val(tglBayar);
         $('#metodepembayaran').val(metodepembayaran);
-        $('#projectIdCash').val(projectId); 
+        $('#projectIdCash').val(projectId);
         $('#Modalbayar').modal('show');
     });
 
@@ -671,13 +671,13 @@ $(document).ready(function() {
         var strukModal = document.getElementById('struk');
         strukModal.addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget;
-        var id = button.getAttribute('data-bs-id'); 
-        var nama = button.getAttribute('data-bs-nama'); 
-        var harga = button.getAttribute('data-bs-harga'); 
+        var id = button.getAttribute('data-bs-id');
+        var nama = button.getAttribute('data-bs-nama');
+        var harga = button.getAttribute('data-bs-harga');
         var tanggal = button.getAttribute('data-bs-tanggal');
         var tanggal2 = button.getAttribute('data-bs-tanggal2');
-        var metode = button.getAttribute('data-bs-metode'); 
-        var metode2 = button.getAttribute('data-bs-metode2'); 
+        var metode = button.getAttribute('data-bs-metode');
+        var metode2 = button.getAttribute('data-bs-metode2');
 
         var formattedTanggal = moment(tanggal).format('YYYY-MM-DD');
         var formattedTanggal2 = moment(tanggal2).format('YYYY-MM-DD');

@@ -81,7 +81,7 @@
               <thead>
                 <tr>
                   <th scope="col">Nama Project</th>
-                  <th scope="col">Total Project</th>
+                  <th scope="col">Total Harga </th>
                   <th scope="col" class="text-center">Status</th>
                   <th scope="col" class="text-center">Aksi</th>
                 </tr>
