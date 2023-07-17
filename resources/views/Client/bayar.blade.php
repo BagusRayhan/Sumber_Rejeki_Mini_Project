@@ -158,8 +158,8 @@
             <h6 class="ms-2" style="font-size: 1em">Harga Project</h6>
             <input type="text" class="form-control" style="width: 14em; border: none; font-family: ubuntu;" id="hargaProjectCash" disabled>
           </div>
+          {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-top: -8%;" aria-label="Close"></button> --}}
         </div>
-        {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" style="margin-bottom: 10%;" aria-label="Close"></button> --}}
       </div>
       <form id="updateForm" action="{{ route('update-status-bayar', '') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -187,7 +187,7 @@
         </div>
         <div class="modal-footer border-0 d-flex flex-column justify-content-center">
           <button type="submit" class="btn btn-primary fw-bold w-75" style="border-radius: 33px; font-family: 'Ubuntu';">Bayar Sekarang</button>
-          <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar" data-bs-toggle="modal">Kembali</a>
+          <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-dismiss="modal" aria-label="Close">Kembali</a>
         </div>
       </form>
     </div>

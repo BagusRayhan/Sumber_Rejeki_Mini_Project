@@ -98,10 +98,12 @@
                                 </td>
                                 <td>{{ $client2->napro }}</td>
                                 <td>
-                                        @if ($client2->buktipembayaran)
-                                            {{ $client2->biayatambahan }}
+                                        @if (!empty($client2->metodepembayaran2) && !empty($client2->metodepembayaran3))
+                                        {{ $client2->harga }}
+                                        @elseif ($client2->biayatambahan || $client2->metodepembayaran)
+                                        {{ $client2->harga }}
                                         @else
-                                            {{ $client2->harga }}
+                                        {{ $client2->biayatambahan }}
                                         @endif
                                 </td>
                                 <td class="text-center ">
@@ -114,20 +116,25 @@
                                 @endif
                                     </td>
                                     <td class="text-center">
-                                        @if ($client2->metodepembayaran2)
-                                        
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar2" data-id="{{ $client2->id }}" data-napro="{{ $client2->napro }}" data-harga="{{ $client2->harga }}" data-tanggalpembayaran="{{ $client2->tanggalpembayaran }}" data-metodepembayaran="{{ $client2->metodepembayaran }}" data-biayatambahan="{{ $client2->biayatambahan }}" data-tanggalpembayaran2="{{ $client2->tanggalpembayaran2 }}" data-metodepembayaran2="{{ $client2->metodepembayaran2 }}" class="btn btn-danger btn-revisi btn-sm" style="background-color: none">
-                                            <i class="fa-solid fa-wallet"></i>&nbsp;Bayar
-                                        </button>
-                                        @elseif ($client2->statusbayar == 'lunas')
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#struk" data-bs-id="{{ $client2->id }}" data-bs-nama="{{ $client2->napro }}" data-bs-harga="{{ $client2->harga }}" data-bs-tanggal="{{ $client2->tanggalpembayaran }}" data-bs-tanggal2="{{ $client2->tanggalpembayaran2 }}" data-bs-metode="{{ $client2->metodepembayaran }}" data-bs-metode2="{{ $client2->metodepembayaran2 }}" class="btn btn-warning struk text-white btn-sm" style="background-color: none">
+                                    @if ($client2->biayatambahan)
+                                        @if ($client2->metodepembayaran3)
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#struk" data-bs-id="{{ $client2->id }}" data-bs-nama="{{ $client2->napro }}" data-bs-harga="{{ $client2->harga }}" data-bs-tanggal="{{ $client2->tanggalpembayaran }}" data-bs-biayatambahan="{{ $client2->biayatambahan }}" data-bs-tanggal2="{{ $client2->tanggalpembayaran2 }}" data-bs-metode="{{ $client2->metodepembayaran }}" data-bs-metode2="{{ $client2->metodepembayaran2 }}" class="btn btn-warning struk text-white btn-sm" style="background-color: none">
                                                 <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk
                                             </button>
-                                        @elseif ($client2->statusbayar == 'belum lunas')
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" data-id="{{ $client2->id }}" data-napro="{{ $client2->napro }}" data-harga="{{ $client2->harga }}" data-tanggalpembayaran="{{ $client2->tanggalpembayaran }}" data-metodepembayaran="{{ $client2->metodepembayaran }}" data-biayatambahan="{{ $client2->biayatambahan }}" class="btn btn-primary btn-bayar btn-sm" style="background-color: none">
+                                        @else
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar2" data-id="{{ $client2->id }}" data-napro="{{ $client2->napro }}" data-harga="{{ $client2->harga }}" data-tanggalpembayaran="{{ $client2->tanggalpembayaran }}" data-metodepembayaran="{{ $client2->metodepembayaran }}" data-biayatambahan="{{ $client2->biayatambahan }}" data-tanggalpembayaran2="{{ $client2->tanggalpembayaran2 }}" data-metodepembayaran2="{{ $client2->metodepembayaran2 }}" class="btn btn-danger btn-revisi btn-sm" style="background-color: none">
                                                 <i class="fa-solid fa-wallet"></i>&nbsp;Bayar
                                             </button>
                                         @endif
+                                    @elseif ($client2->statusbayar == 'lunas')
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#struk" data-bs-id="{{ $client2->id }}" data-bs-nama="{{ $client2->napro }}" data-bs-harga="{{ $client2->harga }}" data-bs-tanggal="{{ $client2->tanggalpembayaran }}" data-bs-tanggal2="{{ $client2->tanggalpembayaran2 }}" data-bs-metode="{{ $client2->metodepembayaran }}" data-bs-metode2="{{ $client2->metodepembayaran2 }}" class="btn btn-warning struk text-white btn-sm" style="background-color: none">
+                                            <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk
+                                        </button>
+                                    @elseif ($client2->statusbayar == 'belum lunas')
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" data-id="{{ $client2->id }}" data-napro="{{ $client2->napro }}" data-harga="{{ $client2->harga }}" data-tanggalpembayaran="{{ $client2->tanggalpembayaran }}" data-metodepembayaran="{{ $client2->metodepembayaran }}" data-biayatambahan="{{ $client2->biayatambahan }}" class="btn btn-primary btn-bayar btn-sm" style="background-color: none">
+                                            <i class="fa-solid fa-wallet"></i>&nbsp;Bayar
+                                        </button>
+                                    @endif
                                     </td>
                             </tr>
                             @endif
@@ -374,7 +381,7 @@ $(function(e){
                         <p class="fw-bold text-center pembayaran-awal"></p>
                     </div>
                     <div class="d-grid">
-                        <p class="text-center">Pembayaran Awal</p>
+                        <p class="text-center">Pembayaran Akhir</p>
                         <p class="fw-bold text-center pembayaran-akhir"></p>
                     </div>
                 </div>
@@ -398,11 +405,11 @@ $(function(e){
                     </div>
                     <div class="d-flex justify-content-between">
                         <p class="text-secondary fs-10">Biaya Tambahan</p>
-                        <p>-</p>
+                        <p id="pembayaran-tambahan"></p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p class="text-secondary fs-10">Total Bayar</p>
-                        <p id="harga-proo"></p>
+                        <p id="harga-total"></p>
                     </div>
                 </div>
             </div>
@@ -420,6 +427,49 @@ $(function(e){
                 window.print();
             });
             </script>
+            
+<script>
+$(document).ready(function() {
+  $('#struk').on('show.bs.modal', function(event) {
+    var button = $(event.relatedTarget);
+    var nama = button.data('bs-nama');
+    var harga = button.data('bs-harga');
+    var biayatambahan = button.data('bs-biayatambahan');
+    var tanggal = button.data('bs-tanggal');
+    var tanggal2 = button.data('bs-tanggal2');
+    var metode = button.data('bs-metode');
+    var metode2 = button.data('bs-metode2');
+
+    var formattedTanggal = moment(tanggal).format('YYYY-MM-DD');
+    var formattedTanggal2 = moment(tanggal2).format('YYYY-MM-DD');
+
+    var hargaSetengah = harga / 2;
+    var hargatotal = parseFloat(harga) + parseFloat(biayatambahan);
+
+    var namaElem = $('#napro-awall');
+    var tanggalElem = $('#tgl-bayarr');
+    var tanggal2Elem = $('#tgl-bayarr2');
+    var metodeElem = $('#metodepembayarann');
+    var metode2Elem = $('#metodepembayarann2');
+    var hargaElem = $('#harga-proo');
+    var hargatotalElem = $('#harga-total');
+    var pembayaranAwalElem = $('.pembayaran-awal');
+    var pembayaranAkhirElem = $('.pembayaran-akhir');
+    var biayatambahanElem = $('#pembayaran-tambahan');
+
+    namaElem.text(nama);
+    tanggalElem.text(formattedTanggal);
+    tanggal2Elem.text(formattedTanggal2);
+    metodeElem.text(metode);
+    metode2Elem.text(metode2);
+    hargaElem.text(harga);
+    pembayaranAwalElem.text(hargaSetengah);
+    pembayaranAkhirElem.text(hargaSetengah);
+    biayatambahanElem.text(biayatambahan);
+    hargatotalElem.text(hargatotal);
+  });
+});
+</script>
     </div>
     </div>
 
@@ -469,7 +519,7 @@ $(function(e){
                     </div>
                     <div class="modal-footer d-flex flex-column justify-content-center border-0">
                         <button type="submit" class="btn btn-primary fw-bold w-75" style="border-radius: 33px; font-family: 'Ubuntu';">Bayar Sekarang</button>
-                        <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar" data-bs-toggle="modal">Kembali</a>
+                        <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-dismiss="modal" aria-label="Close">Kembali</a>
                     </div>
                 </form>
             </div>
@@ -522,7 +572,7 @@ $(function(e){
                 </div>
                 <div class="modal-footer d-flex flex-column justify-content-center border-0">
                     <button type="submit" class="btn btn-primary fw-bold w-75" style="border-radius: 33px; font-family: 'Ubuntu';">Bayar Sekarang</button>
-                    <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar2" data-bs-toggle="modal">Kembali</a>
+                    <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-dismiss="modal" aria-label="Close">Kembali</a>
                 </div>
             </form>
         </div>
@@ -1131,42 +1181,6 @@ $('.pilih-revisi').click(function() {
 
 
 
-<script>
-        var strukModal = document.getElementById('struk');
-        strukModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget;
-        var id = button.getAttribute('data-bs-id');
-        var nama = button.getAttribute('data-bs-nama');
-        var harga = button.getAttribute('data-bs-harga');
-        var tanggal = button.getAttribute('data-bs-tanggal');
-        var tanggal2 = button.getAttribute('data-bs-tanggal2');
-        var metode = button.getAttribute('data-bs-metode');
-        var metode2 = button.getAttribute('data-bs-metode2');
-
-        var formattedTanggal = moment(tanggal).format('YYYY-MM-DD');
-        var formattedTanggal2 = moment(tanggal2).format('YYYY-MM-DD');
-
-        var hargaSetengah = harga / 2;
-
-        var namaElem = strukModal.querySelector('#napro-awall');
-        var tanggalElem = strukModal.querySelector('#tgl-bayarr');
-        var tanggal2Elem = strukModal.querySelector('#tgl-bayarr2');
-        var metodeElem = strukModal.querySelector('#metodepembayarann');
-        var metode2Elem = strukModal.querySelector('#metodepembayarann2');
-        var hargaElem = strukModal.querySelector('#harga-proo');
-        var pembayaranAwalElem = strukModal.querySelector('.pembayaran-awal');
-        var pembayaranAkhirElem = strukModal.querySelector('.pembayaran-akhir');
-
-        namaElem.textContent = nama;
-        tanggalElem.textContent = formattedTanggal;
-        tanggal2Elem.textContent = formattedTanggal2;
-        metodeElem.textContent = metode;
-        metode2Elem.textContent = metode2;
-        hargaElem.textContent = harga;
-        pembayaranAwalElem.textContent = hargaSetengah;
-        pembayaranAkhirElem.textContent = hargaSetengah;
-    });
-</script>
 
     {{-- Modal Struk Pembayaran --}}
        <style>
