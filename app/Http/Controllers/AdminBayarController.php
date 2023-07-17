@@ -24,10 +24,13 @@ class AdminBayarController extends Controller
     {
         $project = Proreq::findOrFail($id);
     
-        if ($project->statusbayar === 'pending') {
+        if ($project->statusbayar === 'pembayaran awal') {
             $project->status = 'setuju';
             $project->statusbayar = null;
-        } else {
+        } elseif ($project->statusbayar === 'pembayaran akhir') {
+            $project->status = 'selesai';
+            $project->statusbayar = null;
+        } elseif ($project->statusbayar === 'pembayaran revisi') {
             $project->status = 'selesai';
             $project->statusbayar = null;
         }

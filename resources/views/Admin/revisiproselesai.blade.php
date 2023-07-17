@@ -25,8 +25,9 @@
         @include('Admin.templates.navbar')
 
         <div class="container-fluid pt-3 px-4">
-            <form action="{{ route('updateproreq-admin', ['id' => $data->id]) }}" method="POST">
+            <form action="{{ route('updateproreq-admin') }}" method="POST">
                 @csrf
+                <input type="hidden" name="project_id" value="{{ $data->id }}">
                 <div class="mb-3 d-flex justify-content-between">
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Nama Project</label>

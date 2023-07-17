@@ -52,24 +52,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $item)
-                                @if ($item->status === 'selesai'|| $item->status === 'revisi' )
-                                <tr>
-                                    <td>{{ $item->napro }}</td>
-                                    <td><span class="badge text-bg-success">{{ $item->status }}</span></td>
-                                    <td>{{ $item->harga}}</td>
-                                    <td class="d-flex justify-content-evenly">
-                                        <a href="/revisibutton/{{ $item->id }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</a></center>
-                                    </td>
-                                </tr>
-                                @endif
+                            @if (count($data) !== 0)
+                                @foreach ($data as $item)
+                                    <tr>
+                                        <td>{{ $item->napro }}</td>
+                                        <td><span class="badge {{ ($item->status == 'pengajuan revisi') ? 'text-bg-warning' : 'text-bg-success'}}">{{ ($item->status == 'pengajuan revisi') ? 'menunggu perubahan' : $item->status }}</span></td>
+                                        <td>{{ $item->harga}}</td>
+                                        <td class="d-flex justify-content-evenly">
+                                            <a href="/revisibutton/{{ $item->id }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
+                                            <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</a></center>
+                                        </td>
+                                    </tr>
                                 @endforeach
-                                @if ($data->isEmpty())
+                            @else
                                 <tr>
                                     <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
                                 </tr>
-                                @endif
+                            @endif
                         </tbody>
                     </table>
                 </div>

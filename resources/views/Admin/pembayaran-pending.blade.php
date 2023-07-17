@@ -148,7 +148,7 @@
                                                                         <img src="{{ asset('gambar/bukti/'.$pro->buktipembayaran2) }}" class="w-100" alt="">
                                                                     </div>
                                                                     <div class="mb-1">
-                                                                        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#pembayaranAwal">Pembayaran Awal</button>
+                                                                        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailPembayaranAwal{{ $pro->id }}">Pembayaran Awal</button>
                                                                     </div>
                                                                     @else
                                                                         <div class="mb-3">
@@ -200,7 +200,7 @@
                                                             @if ($pro->metodepembayaran !== 'cash')
                                                             <div class="mb-3">
                                                                 <label for="">Biaya Awal</label>
-                                                                <input type="text" value="{{ $pro->harga }}">
+                                                                <input class="form-control" type="text" value="{{ $pro->harga }}" disabled>
                                                             </div>
                                                             <div class="wrapper d-flex justify-content-between">
                                                                 <div class="mb-3" style="width: 12em">

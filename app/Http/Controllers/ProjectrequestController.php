@@ -154,7 +154,7 @@ public function updateproreqa($id)
         $keyword = $request->searchKeyword;
         $notification = Notification::where('role', 'admin')->latest()->get();
         $admin = User::where('role', 'admin')->first();
-        $selesai = proreq::whereIn('status', ['selesai', 'revisi'])->where('napro', 'LIKE', '%'.$keyword.'%')->paginate(3);
+        $selesai = proreq::whereIn('status', ['selesai', 'pengajuan revisi', 'revisi'])->where('napro', 'LIKE', '%'.$keyword.'%')->paginate(3);
         return view('Admin.projectselesai', compact('selesai','admin','notification'));
     }
 
@@ -188,15 +188,20 @@ public function updateproreqa($id)
         ]);
     }
 
-    public function updateProreq(Request $request, $id)
+    public function updateProreq(Request $request)
     {
+        $id = $request->project_id;
         $proreq = Proreq::findOrFail($id);
+        $proreq->update([
+            'napro' => $request->napro,
+            'deadline' => $request->deadline
+        ]);
         $fitur = Fitur::where('project_id', $proreq->id)->get();
         $totalBiayaTambahan = $fitur->sum('biayatambahan');
     
         $proreq->biayatambahan = $totalBiayaTambahan;
-        $proreq->status = 'selesai';
-        $proreq->statusbayar = 'belum lunas';
+        $proreq->status = 'revisi';
+        $proreq->statusbayar = null;
         $proreq->save();
     
         return redirect()->route('projectselesai')->with('success', 'Berhasil mengajukan perubahan');

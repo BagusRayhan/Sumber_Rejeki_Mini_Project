@@ -152,7 +152,7 @@ Route::middleware('admin')->group(function(){
     Route::post('updatekebijakan', [PengaturanController::class, 'updatekebijakan'])->name('updatekebijakan');
     Route::get('revisiproselesai/{id}', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
     Route::get('editproselesai/{id}', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
-    Route::post('updateproreq-admin/{id}', [ProjectrequestController::class, 'updateProreq'])->name('updateproreq-admin');
+    Route::post('updateproreq-admin', [ProjectrequestController::class, 'updateProreq'])->name('updateproreq-admin');
     Route::post('savefitur/{id}', [ProjectrequestController::class, 'savefitur'])->name('savefitur');
     Route::put('update-fitur/{id}', [ProjectrequestController::class, 'updatefitur'])->name('update-fitur');
     Route::delete('destroy-fitur', [ProjectrequestController::class, 'destroyfitur'])->name('destroy-fitur');

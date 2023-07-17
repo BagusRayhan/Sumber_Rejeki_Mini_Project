@@ -18,7 +18,7 @@ class SelesaiController extends Controller
             $client = User::find(Auth::user()->id);
             $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
             $search = $request->input('search');
-            $data = Proreq::where('status', 'selesai')
+            $data = Proreq::whereIn('status', ['selesai','pengajuan revisi'])
                ->where('user_id', Auth::user()->id)
                ->when(request()->has('search'), function ($query) {
                    $search = request('search');
@@ -98,7 +98,7 @@ class SelesaiController extends Controller
         public function ajukanRevisi(Request $request) {
             $pro = Proreq::find($request->project_id);
             $pro->update([
-                'status' => 'revisi'
+                'status' => 'pengajuan revisi'
             ]);
             $msg = 'Revisi Project';
             $notifDesk = Auth::user()->name.' mengajukan revisi';

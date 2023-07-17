@@ -54,17 +54,17 @@
                                 <td>
                                     @if ($project->status == 'selesai')
                                       <span class="badge text-bg-success">{{ $project->status }}</span>
-                                    @elseif ($project->status == 'revisi')
-                                      <span class="badge text-bg-warning">{{ $project->status }}</span>
+                                    @elseif ($project->status == 'pengajuan revisi' || 'revisi')
+                                      <span class="badge text-bg-warning">{{ ($project->status == 'revisi') ? 'menunggu persetujuan' : $project->status }}</span>
                                     @else
                                       <span class="badge">{{ $project->status }}</span>
                                     @endif
                                   </td>
                                 <td>Rp.{{ $project->harga }}</td>
                                 <td>
-                                    @if ($project->status == 'selesai')
+                                    @if ($project->status == 'selesai' || 'revisi')
                                     <a type="button" href="{{ route('revisiproselesai',$project->id) }}" class="btn btn-primary btn-sm disabled" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
-                                    @elseif ($project->status == 'revisi')
+                                    @elseif ($project->status == 'pengajuan revisi')
                                     <a type="button" href="{{ route('revisiproselesai',$project->id) }}" class="btn btn-primary btn-sm" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
                                     @endif
                                   </td>
