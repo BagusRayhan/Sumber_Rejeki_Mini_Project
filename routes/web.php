@@ -91,6 +91,7 @@ Route::middleware(['web', 'auth'])->group(function(){
     //Halaman Client
     Route::get('indexclient', [IndexcController::class, 'indexclient'])->name('indexclient');
     Route::get('notifclient/{id}', [IndexcController::class, 'notifRedirectClient'])->name('notifclient');
+    Route::delete('client/delete-notif', [IndexcController::class, 'readAllNotifClient'])->name('read-all-notif-client');
     Route::put('/client/update-profile', [IndexcController::class, 'updateProfile'])->name('client.updateProfile');
     Route::get('drequestclient', [IndexcController::class, 'drequestclient'])->name('drequestclient');
     Route::get('createproreq', [IndexcController::class, 'createproreq'])->name('createproreq');
@@ -136,6 +137,7 @@ Route::middleware(['web', 'auth'])->group(function(){
 Route::middleware('admin')->group(function(){
     // Halaman Admin
     Route::get('notif-redirect/{id}', [AdminController::class, 'notifRedirect'])->name('notif-redirect');
+    Route::delete('admin/delete-notif', [AdminController::class, 'readAllNotif'])->name('read-all-notif');
     Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
     Route::put('/admin/update-profile', [AdminController::class, 'updateProfile'])->name('admin.updateProfile');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');

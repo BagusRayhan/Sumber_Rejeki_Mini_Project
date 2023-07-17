@@ -75,6 +75,12 @@ class IndexcController extends Controller
         }
     }
 
+    public function readAllNotifClient() {
+        Notification::where('role','client')->where('user_id', Auth::user()->id)->delete();
+        return back();
+    }
+
+
     // public function pesanchtRedirect($id) {
     //     $pesancht = Chat::findOrFail($id);
     //     if ($pesancht->chat == 'detailproreq') {

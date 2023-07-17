@@ -89,8 +89,10 @@ class AdminController extends Controller
             return redirect()->route('projectselesai');
         }
     }
-
-
+    public function readAllNotif() {
+        Notification::where('role', 'admin')->delete();
+        return back();
+    }
 public function updateProfile(Request $request)
 {
     $updateProfile = [];

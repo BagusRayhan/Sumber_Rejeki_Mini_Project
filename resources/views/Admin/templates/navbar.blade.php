@@ -43,7 +43,31 @@
                   <p style="font-size: 12px" class="m-0">{{ $notif->created_at->diffForHumans() }}</p>
                 </a>
                 @endforeach
-              @else
+                <form action="{{ route('read-all-notif') }}" onsubmit="readAllNotif(event)" id="readAllNotif" method="post">
+                  @method('delete')
+                  @csrf
+                  <button type="submit" class="btn btn-block btn-sm w-100">Tandai semua telah dibaca</button>
+                </form>
+                <script>
+                  function readAllNotif(event) {
+                    event.preventDefault();
+                    Swal.fire({
+                      title: 'Apakah Anda yakin?',
+                      text: 'Menghapus semua notifikasi',
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Ya',
+                      cancelButtonText: 'Batal'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        document.getElementById('readAllNotif').submit();
+                      }
+                    });
+                  }
+                </script>
+                @else
                 <a href="#" class="dropdown-item text-center rounded">Tidak ada notifikasi masuk</a>
               @endif
             </div>
