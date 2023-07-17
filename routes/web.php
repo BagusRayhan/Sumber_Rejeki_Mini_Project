@@ -113,6 +113,7 @@ Route::middleware(['web', 'auth'])->group(function(){
     Route::post('ambilrek', [BayarController::class, 'ambilrek'])->name('ambilrek');
     Route::put('update-status-bayar/{id}', [BayarController::class, 'updatebayar'])->name('update-status-bayar');
     Route::put('update-status-bayarakhir/{id}', [BayarController::class, 'updatebayarakhir'])->name('update-status-bayarakhir');
+    Route::put('update-status-bayarrevisi/{id}', [BayarController::class, 'updatebayarrevisi'])->name('update-status-bayarrevisi');
     Route::get('detailsetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujuiClient'])->name('detailsetujui');
     Route::get('downloadsuppdocsclient/{dokumen?}', [ProjectrequestController::class, 'downloadSuppDocs'])->name('download-suppdocs-client');
     Route::post('detailsetujui', [ProjectDisetujuiController::class, 'projectChatClient'])->name('project-chat-client');

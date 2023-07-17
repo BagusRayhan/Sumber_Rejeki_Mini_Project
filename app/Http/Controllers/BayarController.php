@@ -107,6 +107,43 @@ class BayarController extends Controller
         return redirect()->route('bayar2client')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));
     }
 
+    public function updatebayarrevisi(Request $request, $id){
+        $client = User::find(Auth::user()->id);
+        $sosmed = Sosmed::all();
+        $data = Proreq::findOrFail($id);
+
+        if ($request->hasFile('buktipembayaran3')) {
+            $file = $request->file('buktipembayaran3');
+            $fileName = $file->hashName();
+            $file->move(public_path('gambar/bukti/'), $fileName);
+            $data->buktipembayaran3 = $fileName;
+        }
+
+        $data->status = null;
+        $data->metodepembayaran3 = $request->input('metodepembayaran3');
+        $data->metode3 = $request->input('metode3');
+        $tanggalpembayaran3 = $request->input('tanggalpembayaran3');
+        $data->statusbayar = 'pembayaran tambahan';
+        if($tanggalpembayaran3){
+            $data->tanggalpembayaran3 = $tanggalpembayaran3;
+        } else {
+            $data->tanggalpembayaran3 = now();
+        }
+        $data->save();
+
+        $msg = 'Pembayaran Masuk';
+        $notifDesk = 'Biaya Revisi '.$data->napro;
+        Notification::create([
+            'role' => 'admin',
+            'user_id' => $data->user_id,
+            'notif' => $msg,
+            'deskripsi' => $notifDesk,
+            'kategori' => 'Pembayaran Masuk'
+        ]);
+
+
+        return redirect()->route('bayar2client')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));
+    }
 
             public function updatebayarr(Request $request, $id){
             $client = User::find(Auth::user()->id);

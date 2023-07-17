@@ -35,6 +35,10 @@ return new class extends Migration
             $table->string('metode2')->nullable();
             $table->string('buktipembayaran2')->nullable();
             $table->dateTime('tanggalpembayaran2')->nullable();
+            $table->string('metodepembayaran3')->nullable();
+            $table->string('metode3')->nullable();
+            $table->string('buktipembayaran3')->nullable();
+            $table->dateTime('tanggalpembayaran3')->nullable();
             $table->timestamps();
         });
     }
