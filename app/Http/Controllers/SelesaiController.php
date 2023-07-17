@@ -109,7 +109,7 @@ class SelesaiController extends Controller
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Revisi Project'
             ]);
-            return back()->with('success', 'Berhasil Mengajukan Revisi');
+            return redirect()->route('selesaiclient')->with('success', 'Berhasil Mengajukan Revisi');
         }
 
         public function acceptRevision(Request $request) {

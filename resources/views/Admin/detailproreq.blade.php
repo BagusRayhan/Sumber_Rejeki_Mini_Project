@@ -87,11 +87,12 @@
                 <div class="wrapper d-flex justify-content-between px-3" style="width: 14em;">
                     <a href="{{ route('projectreq') }}" type="button" class="btn btn-secondary btn-sm">Kembali</a>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myyModal{{ $data->id }}">Tolak</button>
-                    {{-- <button type="submit" class="btn btn-primary btn-sm" onclick="return checkHargaFitur()">Setuju</button> --}}
-                    @if($data->dokumen === null)
-                    <button type="submit" class="btn btn-primary btn-sm">Setuju</button>
-                    @else
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#hargaDokument{{ $data->id }}">Setuju</button>
+                    @if ($data->dokumen == null && count($dataa) !== 0)
+                    <button type="submit" class="btn btn-primary btn-sm">Setuju</button> 
+                    @elseif ( count($dataa) == 0 )
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#hargaDocs{{ $data->id }}" class="btn btn-primary btn-sm">Setuju</button>
+                    @elseif (count($dataa) !== 0 && $data->dokumen !== null)
+                    <button type="submit" class="btn btn-info btn-sm">Setuju</button> 
                     @endif
                 </div>
 
@@ -121,31 +122,26 @@
     </div>
 
     {{-- harga fitur dokument  --}}
-    <div class="modal fade" id="hargaDokument{{ $data->id }}" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+    <div class="modal fade" data-bs-backdrop="static" id="hargaDocs{{ $data->id }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="width:24em">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Masukkan Harga Dokument </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5>Harga Project</h5>
                 </div>
-                <div class="modal-body">
-                    <form action="{{ route('simpanharga', $data->id) }}" method="POST">
+                <form action="{{ route('simpanharga', $data->id) }}" method="POST">
+                    <div class="modal-body">
                         @csrf
                         @method('PUT')
-                        <div class="mb-2 d-flex justify-content-between">
-                            <div class="form-group">
-                                <label for="" class="form-label">Harga Dokument </label>
-                                <input type="text" name="harga" class="form-control input-hargafitur" value="{{ $data->harga }}">
-                            </div>
+                        <div class="mb-2">
+                            <input type="text" name="harga" id="hargaProject" class="form-control mb-2 input-hargafitur" value="{{ $data->harga }}" aria-describedby="basic-addon1">
+                            <p style="font-size: 13px; opacity: .8">Masukkan harga project berdasarkan isi dokumen</p>
                         </div>
-                        <div class="modal-footer">
-                            {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                        {{-- <button type="submit" style="border: none;margin-left: 398px" class="btn btn-primary">Submit</button> --}}
-                    </form>
-                </div>
-
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -167,7 +163,7 @@
                     <tbody>
                     @foreach($dataa as $fitur)
                         <tr>
-                            <td>{{ $fitur->namafitur }}</td>
+                            <td>{{ $fitur->namafitur }}</td> n
                             <td>{{ $fitur->deskripsi }}</td>
                             <td>{{ $fitur->hargafitur }}</td>
                             <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#hargaFitur{{ $fitur->id }}"><i class="fa-solid fa-sack-dollar"></i></button></td>

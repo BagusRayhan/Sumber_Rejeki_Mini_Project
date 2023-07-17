@@ -62,10 +62,12 @@
                                   </td>
                                 <td>Rp.{{ $project->harga }}</td>
                                 <td>
-                                    @if ($project->status == 'selesai' || 'revisi')
-                                    <a type="button" href="{{ route('revisiproselesai',$project->id) }}" class="btn btn-primary btn-sm disabled" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
+                                    @if ($project->status == 'selesai')
+                                      <a type="button" href="{{ route('revisiproselesai',$project->id) }}" class="btn btn-primary btn-sm disabled" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i> Revisi</a>
+                                    @elseif ($project->status == 'revisi')
+                                      <a type="button" href="{{ route('revisiproselesai',$project->id) }}" class="btn btn-primary btn-sm disabled" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i> Revisi</a>
                                     @elseif ($project->status == 'pengajuan revisi')
-                                    <a type="button" href="{{ route('revisiproselesai',$project->id) }}" class="btn btn-primary btn-sm" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
+                                      <a type="button" href="{{ route('revisiproselesai',$project->id) }}" class="btn btn-primary btn-sm" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i> Revisi</a>
                                     @endif
                                   </td>
                               </tr>
