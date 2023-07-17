@@ -39,22 +39,21 @@ class BayarController extends Controller
 
         if ($request->hasFile('buktipembayaran')) {
             $file = $request->file('buktipembayaran');
-            $filename = $file->store('gambar/bukti');
-            $file->move(public_path() . '/gambar/bukti', $filename);
-            $data->buktipembayaran = $filename;
+            $fileName = $file->hashName();
+            $file->move(public_path('gambar/bukti/'), $fileName);
+            $data->buktipembayaran = $fileName;
         }
 
         $data->status = null;
         $data->metodepembayaran = $request->input('metodepembayaran');
         $data->metode = $request->input('metode');
-        $data->statusbayar = 'pending';
         $tanggalpembayaran = $request->input('tanggalpembayaran');
+        $data->statusbayar = 'pembayaran awal';
         if($tanggalpembayaran){
             $data->tanggalpembayaran = $tanggalpembayaran;
         } else {
             $data->tanggalpembayaran = now();
         }
-
         $data->save();
 
         $msg = 'Pembayaran Masuk';
@@ -77,16 +76,16 @@ class BayarController extends Controller
 
         if ($request->hasFile('buktipembayaran2')) {
             $file = $request->file('buktipembayaran2');
-            $filename = $file->store('gambar/bukti');
-            $file->move(public_path() . '/gambar/bukti', $filename);
-            $data->buktipembayaran2 = $filename;
+            $fileName = $file->hashName();
+            $file->move(public_path('gambar/bukti/'), $fileName);
+            $data->buktipembayaran2 = $fileName;
         }
 
         $data->status = null;
         $data->metodepembayaran2 = $request->input('metodepembayaran2');
         $data->metode2 = $request->input('metode2');
-        $data->statusbayar = 'pending2';
         $tanggalpembayaran2 = $request->input('tanggalpembayaran2');
+        $data->statusbayar = 'pembayaran akhir';
         if($tanggalpembayaran2){
             $data->tanggalpembayaran2 = $tanggalpembayaran2;
         } else {
@@ -116,7 +115,7 @@ class BayarController extends Controller
 
             $data->status = null;
             $data->metodepembayaran = $request->input('metodepembayaran');
-            $data->statusbayar = 'pending';
+            $data->statusbayar = 'pembayaran awal';
             $data->save();
 
             return redirect()->route('bayarclient')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));
