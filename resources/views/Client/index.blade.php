@@ -120,7 +120,7 @@
                         @if (count($pesancht) !== 0)
                         @foreach ($pesancht as $pesan)
                             <div class="d-flex align-items-center border-bottom py-3">
-                                <a href="{{ route('detailsetujui', ['id' => $pesan->id]) }}" style="text-decoration: none; color: inherit;">
+                                {{-- <a href="{{ route('detailsetujui', ['id' => $pesan->id]) }}" style="text-decoration: none; color: inherit;"> --}}
                                     <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $pesan->user->profil }}" alt="" style="width: 40px; height: 40px;">
                                     <div class="w-100 ms-3">
                                     <div class="d-flex w-100 justify-content-between">

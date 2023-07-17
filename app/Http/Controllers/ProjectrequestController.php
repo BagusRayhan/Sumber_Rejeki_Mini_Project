@@ -73,17 +73,37 @@ class ProjectrequestController extends Controller
             return response()->download($file, $dokumen);
         }
     }
-
     public function simpanharga(Request $request, $id)
+    {
+        $request->validate([
+            'harga' => 'required|numeric|min:1'
+        ], [
+            'harga.required' => 'harga tidak boleh kosong!',
+        ]);
+
+        $proreg = Proreq::findOrFail($id);
+
+        $proreg->harga = $request->input('harga');
+        $proreg->update([
+            'status' => null,
+            'statusbayar' => 'menunggu pembayaran'
+        ]);
+
+
+        $proreg->save();
+
+        return redirect()->route('projectreq');
+    }
+
+public function simpanfitur(Request $request, $id)
 {
     $fitur = Fitur::findOrFail($id);
-
     $fitur->hargafitur = $request->input('hargafitur');
-
     $fitur->save();
 
     return back();
 }
+
 
 public function alasantolak(Request $request)
 {

@@ -87,20 +87,14 @@
                 <div class="wrapper d-flex justify-content-between px-3" style="width: 14em;">
                     <a href="{{ route('projectreq') }}" type="button" class="btn btn-secondary btn-sm">Kembali</a>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myyModal{{ $data->id }}">Tolak</button>
-                    <button type="submit" class="btn btn-primary btn-sm" onclick="return checkHargaFitur()">Setuju</button>
+                    {{-- <button type="submit" class="btn btn-primary btn-sm" onclick="return checkHargaFitur()">Setuju</button> --}}
+                    @if($data->dokumen === null)
+                    <button type="submit" class="btn btn-primary btn-sm">Setuju</button>
+                    @else
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#hargaDokument{{ $data->id }}">Setuju</button>
+                    @endif
                 </div>
-                <script>
-                    function checkHargaFitur() {
-                        var hargafiturInputs = document.getElementsByClassName('input-hargafitur');
-                        for (var i = 0; i < hargafiturInputs.length; i++) {
-                            if (hargafiturInputs[i].value === '') {
-                                alert('Mohon isi harga fitur terlebih dahulu.');
-                                return false;
-                            }
-                        }
-                        return true;
-                    }
-                </script>
+
             </form>
         </div>
         <div class="modal fade" id="myyModal{{ $data->id }}">
@@ -126,6 +120,36 @@
         </div>
     </div>
 
+    {{-- harga fitur dokument  --}}
+    <div class="modal fade" id="hargaDokument{{ $data->id }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Masukkan Harga Dokument </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('simpanharga', $data->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="mb-2 d-flex justify-content-between">
+                            <div class="form-group">
+                                <label for="" class="form-label">Harga Dokument </label>
+                                <input type="text" name="harga" class="form-control input-hargafitur" value="{{ $data->harga }}">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        {{-- <button type="submit" style="border: none;margin-left: 398px" class="btn btn-primary">Submit</button> --}}
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {{-- end harga fitur dokument --}}
 
         <div class="wrapper mt-1">
                 <div class="wrapper d-flex justify-content-between align-items-center mx-3">
@@ -148,7 +172,10 @@
                             <td>{{ $fitur->hargafitur }}</td>
                             <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#hargaFitur{{ $fitur->id }}"><i class="fa-solid fa-sack-dollar"></i></button></td>
                         </tr>
-                        <!-- Edit Fitur -->
+
+
+
+
                         <div class="modal fade" id="hargaFitur{{ $fitur->id }}" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
@@ -157,7 +184,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('simpanharga', $fitur->id) }}" method="POST">
+                                        <form action="{{ route('simpanfitur', $fitur->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <div class="mb-2 d-flex justify-content-between">
