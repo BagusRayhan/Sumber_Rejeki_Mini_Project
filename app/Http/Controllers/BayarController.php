@@ -37,6 +37,31 @@ class BayarController extends Controller
         $sosmed = Sosmed::all();
         $data = Proreq::findOrFail($id);
 
+        $rules = [
+            'metodepembayaran' => 'required',
+        ];
+
+        if ($request->input('metodepembayaran') !== 'cash') {
+            $rules['metode'] = 'required';
+
+            if ($request->input('metodepembayaran') === 'bank') {
+                $rules['buktipembayaran'] = 'required|mimes:jpg,jpeg,png,pdf|max:2048';
+            } elseif ($request->input('metodepembayaran') === 'ewallet') {
+                $rules['buktipembayaran'] = 'required|mimes:jpg,jpeg,png,pdf|max:2048';
+            }
+        }
+
+        $messages = [
+            'metodepembayaran.required' => 'Pilih metode pembayaran.',
+            'metode.required' => 'Isi layanan pembayaran.',
+            'buktipembayaran.required' => 'Unggah bukti pembayaran.',
+            'buktipembayaran.mimes' => 'Format file bukti pembayaran harus JPG,PNG,PDF.',
+            'buktipembayaran.max' => 'Ukuran file bukti pembayaran maksimal 2 MB.',
+        ];
+
+        $request->validate($rules, $messages);
+
+
         if ($request->hasFile('buktipembayaran')) {
             $file = $request->file('buktipembayaran');
             $fileName = $file->hashName();
@@ -73,6 +98,31 @@ class BayarController extends Controller
         $client = User::find(Auth::user()->id);
         $sosmed = Sosmed::all();
         $data = Proreq::findOrFail($id);
+
+        $rules = [
+            'metodepembayaran2' => 'required',
+        ];
+
+        if ($request->input('metodepembayaran2') !== 'cash') {
+            $rules['metode2'] = 'required';
+
+            if ($request->input('metodepembayaran2') === 'bank') {
+                $rules['buktipembayaran2'] = 'required|mimes:jpg,jpeg,png,pdf|max:2048';
+            } elseif ($request->input('metodepembayaran2') === 'ewallet') {
+                $rules['buktipembayaran2'] = 'required|mimes:jpg,jpeg,png,pdf|max:2048';
+            }
+        }
+
+        $messages = [
+            'metodepembayaran2.required' => 'Pilih metode pembayaran.',
+            'metode2.required' => 'Isi layanan pembayaran.',
+            'buktipembayaran2.required' => 'Unggah bukti pembayaran.',
+            'buktipembayaran2.mimes' => 'Format file bukti pembayaran harus JPG,PNG,PDF.',
+            'buktipembayaran2.max' => 'Ukuran file bukti pembayaran maksimal 2 MB.',
+        ];
+
+        $request->validate($rules, $messages);
+
 
         if ($request->hasFile('buktipembayaran2')) {
             $file = $request->file('buktipembayaran2');
@@ -111,6 +161,30 @@ class BayarController extends Controller
         $client = User::find(Auth::user()->id);
         $sosmed = Sosmed::all();
         $data = Proreq::findOrFail($id);
+
+        $rules = [
+            'metodepembayaran3' => 'required',
+        ];
+
+        if ($request->input('metodepembayaran3') !== 'cash') {
+            $rules['metode3'] = 'required';
+
+            if ($request->input('metodepembayaran3') === 'bank') {
+                $rules['buktipembayaran3'] = 'required|mimes:jpg,jpeg,png,pdf|max:2048';
+            } elseif ($request->input('metodepembayaran3') === 'ewallet') {
+                $rules['buktipembayaran3'] = 'required|mimes:jpg,jpeg,png,pdf|max:2048';
+            }
+        }
+
+        $messages = [
+            'metodepembayaran3.required' => 'Pilih metode pembayaran.',
+            'metode3.required' => 'Isi layanan pembayaran.',
+            'buktipembayaran3.required' => 'Unggah bukti pembayaran.',
+            'buktipembayaran3.mimes' => 'Format file bukti pembayaran harus JPG,PNG,PDF.',
+            'buktipembayaran3.max' => 'Ukuran file bukti pembayaran maksimal 2 MB.',
+        ];
+
+        $request->validate($rules, $messages);
 
         if ($request->hasFile('buktipembayaran3')) {
             $file = $request->file('buktipembayaran3');

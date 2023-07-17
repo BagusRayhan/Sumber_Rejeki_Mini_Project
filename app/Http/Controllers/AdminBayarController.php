@@ -16,7 +16,7 @@ class AdminBayarController extends Controller
     public function pending() {
         $admin = User::where('role', 'admin')->first();
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-        $propend = proreq::where('statusbayar', 'pembayaran awal')->orWhere('statusbayar','pembayaran akhir')->paginate(6);
+        $propend = proreq::where('statusbayar', 'pembayaran awal')->orWhere('statusbayar','pembayaran akhir')->orWhere('statusbayar','pembayaran tambahan')->paginate(6);
         return view('Admin.pembayaran-pending', compact('propend', 'admin', 'notification'));
     }
  

@@ -34,7 +34,7 @@
                         Pending
                     </a>
                     <a href="/pembayaran-disetujui" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('setuju-bayar-admin') ? 'fw-bold border-2  border-bottom border-dark' : '' }}">
-                        Disetujui
+                        History
                     </a>
                 </div>
                 <div class="row mt-4">
