@@ -25,7 +25,7 @@
         @include('Admin.templates.navbar')
 
         <div class="container-fluid pt-3 px-4">
-            <form action="{{ route('updateproreq-admin') }}" method="post">
+            <form action="{{ route('updateproreq-admin') }}" method="POST">
                 <input type="hidden" name="project_id" value="{{ $data->id }}">
                 @csrf
                 <div class="mb-3 d-flex justify-content-between">
@@ -99,7 +99,7 @@
                                         <tr>
                                             <td>{{ $f->namafitur }}</td>
                                             <td>{{ $f->status }}</td>
-                                            <td>{{ $f->hargafitur }}</td>
+                                            <td>{{ $f->hargafitur ?? $f->biayatambahan }}</td>
                                             <td class="d-flex justify-content-evenly">
                                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editFiturModal{{ $f->id }}"><i class="fa-solid fa-pen-to-square"></i></button>
                                                 <form action="{{ route('destroy-fitur') }}" method="post">
@@ -129,7 +129,7 @@
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="fitur" >Harga Fitur</label>
-                                                                        <input type="text" name="hargafitur" value="{{ $f->hargafitur }}" class="form-control" id="hargafitur" placeholder="Masukkan Harga Fitur">
+                                                                        <input type="text" name="hargafitur" value="{{ $f->hargafitur ?? $f->biayatambahan }}" class="form-control" id="hargafitur" placeholder="Masukkan Harga Fitur">
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-3">
@@ -173,7 +173,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Harga Fitur</label>
-                                        <input type="text" name="hargafitur" class="form-control" id="hargafitur" placeholder="Masukkan Harga">
+                                        <input type="text" name="biayatambahan" class="form-control" id="hargafitur" placeholder="Masukkan Harga">
                                     </div>
                                 </div>
                                 <div class="mb-3">

@@ -19,13 +19,21 @@ class AdminBayarController extends Controller
         $propend = proreq::where('statusbayar', 'pending')->orWhere('statusbayar','pending2')->paginate(6);
         return view('Admin.pembayaran-pending', compact('propend', 'admin', 'notification'));
     }
-
-    public function setujuiPembayaran(Request $request, $id) {
+ 
+    public function setujuiPembayaran(Request $request, $id)
+    {
         $project = Proreq::findOrFail($id);
-        $project->status = 'setuju';
-        $project->statusbayar = null;
+    
+        if ($project->statusbayar === 'pending') {
+            $project->status = 'setuju';
+            $project->statusbayar = null;
+        } else {
+            $project->status = 'selesai';
+            $project->statusbayar = null;
+        }
+    
         $project->save();
-
+    
         $msg = 'Pembayaran Disetujui';
         $notifDesk = $project->napro;
         Notification::create([
@@ -35,8 +43,9 @@ class AdminBayarController extends Controller
             'deskripsi' => $notifDesk,
             'kategori' => 'Pembayaran Disetujui'
         ]);
+    
         return back();
-    }
+    }    
 
     public function tolakPembayaran(Request $request, $id) {
         $projectol = Proreq::findOrFail($id);

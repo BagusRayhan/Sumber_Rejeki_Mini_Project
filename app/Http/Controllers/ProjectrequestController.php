@@ -127,8 +127,6 @@ public function updateproreqa($id)
     return redirect()->route('projectreq')->with('sukses', 'Data berhasil disetujui');
 }
 
-
-
     public function projectselesai(Request $request){
         $keyword = $request->searchKeyword;
         $notification = Notification::where('role', 'admin')->latest()->get();
@@ -167,11 +165,17 @@ public function updateproreqa($id)
         ]);
     }
 
-    public function updateProreq(Request $request, $id) {
-        Proreq::find($request->project_id)->update([
+    public function updateProreq(Request $request, $id)
+    {
+        $proreq = Proreq::findOrFail($id);
+        $fitur = Fitur::where('project_id', $proreq->id)->get();
+        $totalHarga = $fitur->sum('biayatambahan');
+        
+        $proreq->update([
             'napro' => $request->napro,
+            'biayatambahan' => $totalHarga,
         ]);
-
+    
         return redirect()->route('projectselesai')->with('success', 'Berhasil mengajukan perubahan');
     }
 
@@ -183,7 +187,7 @@ public function updateproreqa($id)
         Fitur::create([
             'project_id' => $project_id,
             'namafitur' => $request->namafitur,
-            'hargafitur' => $request->hargafitur,
+            'biayatambahan' => $request->biayatambahan,
             'deskripsi' => $request->deskripsi
         ]);
 
@@ -191,19 +195,25 @@ public function updateproreqa($id)
     }
 
     public function updateFitur(Request $request, $id) {
-    $fitur = Fitur::findOrFail($id);
-    $fitur->update([
-        'namafitur' => $request->namafitur,
-        'hargafitur' => $request->biayatambahan,
-        'deskripsi' => $request->deskripsi
-    ]);
-    $fitur->status = 'belum selesai';
-    $fitur->status = 'belum selesai';
+        $fitur = Fitur::findOrFail($id);
+        $inputData = [
+            'namafitur' => $request->namafitur,
+            'deskripsi' => $request->deskripsi
+        ];
+    
+        if ($request->has('hargafitur')) {
+            $inputData['biayatambahan'] = $request->hargafitur;
+            $inputData['hargafitur'] = null;
+        }
+    
+        $fitur->update($inputData);
+        $fitur->status = 'belum selesai';
+        $fitur->save();
+    
+        return redirect()->back();
+    }
+    
 
-    $fitur->save();
-
-    return redirect()->back();
-}
     public function destroyFitur(Request $request) {
         Fitur::find($request->fitur_id)->delete();
         return back()->with('success', 'Fitur berhasil dihapus');
