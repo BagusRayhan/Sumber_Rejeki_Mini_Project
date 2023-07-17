@@ -172,15 +172,15 @@ public function updateproreqa($id)
     {
         $proreq = Proreq::findOrFail($id);
         $fitur = Fitur::where('project_id', $proreq->id)->get();
-        $totalHarga = $fitur->sum('biayatambahan');
-        
-        $proreq->update([
-            'napro' => $request->napro,
-            'biayatambahan' => $totalHarga,
-        ]);
+        $totalBiayaTambahan = $fitur->sum('biayatambahan');
+    
+        $proreq->biayatambahan = $totalBiayaTambahan;
+        $proreq->status = 'selesai';
+        $proreq->statusbayar = 'belum lunas';
+        $proreq->save();
     
         return redirect()->route('projectselesai')->with('success', 'Berhasil mengajukan perubahan');
-    }
+    }    
 
     public function savefitur(Request $request, $id)
     {
