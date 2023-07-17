@@ -76,16 +76,19 @@
                                 <h6 class="mb-0">Estimasi</h6>
                             </div>
 
-                            @if ($estimasi != null && count($estimasi) > 0)
-                            @foreach ($estimasi as $estimasisetuju)
-                                @if ($estimasisetuju->estimasi != null)
+                            @if (count($estimasi) > 0)
+                                @foreach ($estimasi as $estimasisetuju)
                                     <div class="d-flex align-items-center border-bottom py-3">
                                         <a href="{{ route('setujuclient', ['id' => $estimasisetuju->id]) }}" class="d-flex w-100" style="text-decoration: none; color: inherit;">
                                             <img class="rounded-circle flex-shrink-0" style="width: 3em" src="/gambar/user-profile/{{ $estimasisetuju->user->profil }}">
                                             <div class="w-100 ms-3 d-flex align-items-center">
                                                 <div>
                                                     <h6 class="mb-2">{{ $estimasisetuju->napro }}</h6>
-                                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
+                                                    @if ($estimasisetuju->estimasi != null)
+                                                        <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
+                                                    @else
+                                                        <span>Estimasi tidak tersedia</span>
+                                                    @endif
                                                 </div>
                                                 <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
                                                     <div class="bg-light rounded h-100 p-10">
@@ -99,16 +102,16 @@
                                             </div>
                                         </a>
                                     </div>
-                                @endif
-                            @endforeach
+                                @endforeach
                             @else
-                            <div class="d-flex flex-column h-100 justify-content-center align-items-center">
-                                <img src="gambar/empty-icon/empty-directory.png" style="width:65px;" >
-                                <p>Estimasi tidak tersedia</p>
-                            </div>
-                        @endif
+                                <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+                                    <img src="gambar/empty-icon/empty-directory.png" style="width:65px;">
+                                    <p>Estimasi tidak tersedia</p>
+                                </div>
+                            @endif
                         </div>
-                        </div>
+                    </div>
+
 
 
                         <div class="col-sm-12 col-md-6 col-xl-4">
@@ -145,11 +148,12 @@
                 </div>
 
 
+                @include('Client.Template.footer')
                         </div>
                     </div>
                 </div>
             </div>
-@include('Client.Template.script')
+            @include('Client.Template.script')
 
 </body>
 
