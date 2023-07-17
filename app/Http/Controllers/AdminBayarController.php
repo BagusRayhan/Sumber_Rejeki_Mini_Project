@@ -50,14 +50,18 @@ class AdminBayarController extends Controller
     public function tolakPembayaran(Request $request, $id) {
         $projectol = Proreq::findOrFail($id);
         if ($projectol->statusbayar == 'pembayaran awal') {
-            unlink(public_path('gambar/bukti/').$projectol->buktipembayaran);
+            if ($projectol->metodepembayaran !== 'cash') {
+                unlink(public_path('gambar/bukti/' . $projectol->buktipembayaran));
+            }
             $projectol->statusbayar = 'menunggu pembayaran';
             $projectol->metodepembayaran = null;
             $projectol->metode = null;
             $projectol->buktipembayaran = null;
             $projectol->tanggalpembayaran = null;
         } elseif ($projectol->statusbayar == 'pembayaran akhir') {
-            unlink(public_path('gambar/bukti/').$projectol->buktipembayaran2);
+            if ($projectol->metodepembayaran !== 'cash') {
+                unlink(public_path('gambar/bukti/' . $projectol->buktipembayaran));
+            }
             $projectol->statusbayar = 'belum lunas';
             $projectol->metodepembayaran2 = null;
             $projectol->metode2 = null;
