@@ -158,7 +158,7 @@
                                                                             <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailPembayaranAwal{{ $pro->id }}">Pembayaran Awal</button>
                                                                         </div>
                                                                     @endif
-                                                                {{-- @elseif ($pro->statusbayar = 'pembayaran revisi')
+                                                                @elseif ($pro->statusbayar = 'pembayaran revisi')
                                                                     @if ($pro->metodepembayaran !== 'cash')
                                                                     <div class="wrapper d-flex justify-content-between">
                                                                         <div class="mb-3" style="width: 12em">
@@ -175,14 +175,14 @@
                                                                         <img src="{{ asset('gambar/bukti/'.$pro->buktipembayaran) }}" class="w-100" alt="">
                                                                     </div>
                                                                     <div class="mb-1 d-flex justify-content-between">
-                                                                        <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAwal">Pembayaran Awal</button>
-                                                                        <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAwal">Pembayaran Akhir</button>
+                                                                        <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $pro->id }}">Pembayaran Awal</button>
+                                                                        <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAkhir{{ $pro->id }}">Pembayaran Akhir</button>
                                                                     </div>
                                                                     @else
                                                                         <div class="wrapper text-center">
                                                                             <p>Pembayaran Dilakukan Secara Cash</p>
                                                                         </div>
-                                                                    @endif --}}
+                                                                    @endif
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -222,6 +222,90 @@
                                                             @else
                                                                 <div class="mb-3">
                                                                     <p>Pembayaran dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                </div>
+                                                                <div class="mb-1">
+                                                                    <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" id="pembayaranAwal{{ $pro->id }}" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" style="width: 28em">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5>Pembayaran Awal</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @if ($pro->metodepembayaran !== 'cash')
+                                                            <div class="mb-3">
+                                                                <label for="">Biaya Awal</label>
+                                                                <input class="form-control" type="text" value="{{ $pro->harga }}" disabled>
+                                                            </div>
+                                                            <div class="wrapper d-flex justify-content-between">
+                                                                <div class="mb-3" style="width: 12em">
+                                                                    <label class="mb-1">Metode Pembayaran</label>
+                                                                    <input type="text"class="form-control" value="{{ ($pro->metodepembayaran == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
+                                                                </div>
+                                                                <div class="mb-3" style="width: 12em">
+                                                                    <label class="mb-1">Layanan</label>
+                                                                    <input type="text"class="form-control" value="{{ $pro->metode }}" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="mb-1">Bukti Pembayaran</label>
+                                                                <img src="{{ asset('gambar/bukti/'.$pro->buktipembayaran) }}" class="w-100" alt="">
+                                                            </div>
+                                                            <div class="mb-1">
+                                                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>
+                                                            </div>
+                                                            @else
+                                                                <div class="mb-3">
+                                                                    <p>Pembayaran dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                </div>
+                                                                <div class="mb-1">
+                                                                    <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" id="pembayaranAkhir{{ $pro->id }}" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" style="width: 28em">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5>Pembayaran Akhir</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @if ($pro->metodepembayaran !== 'cash')
+                                                            <div class="mb-3">
+                                                                <label for="">Biaya Akhir</label>
+                                                                <input class="form-control" type="text" value="{{ $pro->harga }}" disabled>
+                                                            </div>
+                                                            <div class="wrapper d-flex justify-content-between">
+                                                                <div class="mb-3" style="width: 12em">
+                                                                    <label class="mb-1">Metode Pembayaran</label>
+                                                                    <input type="text"class="form-control" value="{{ ($pro->metodepembayaran2 == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
+                                                                </div>
+                                                                <div class="mb-3" style="width: 12em">
+                                                                    <label class="mb-1">Layanan</label>
+                                                                    <input type="text"class="form-control" value="{{ $pro->metode2 }}" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="mb-1">Bukti Pembayaran</label>
+                                                                <img src="{{ asset('gambar/bukti/'.$pro->buktipembayaran2) }}" class="w-100" alt="">
+                                                            </div>
+                                                            <div class="mb-1">
+                                                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>
+                                                            </div>
+                                                            @else
+                                                                <div class="mb-3">
+                                                                    <p>Pembayaran dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                 </div>
                                                                 <div class="mb-1">
                                                                     <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>

@@ -197,7 +197,7 @@ class BayarController extends Controller
         $data->metodepembayaran3 = $request->input('metodepembayaran3');
         $data->metode3 = $request->input('metode3');
         $tanggalpembayaran3 = $request->input('tanggalpembayaran3');
-        $data->statusbayar = 'pembayaran tambahan';
+        $data->statusbayar = 'pembayaran revisi';
         if($tanggalpembayaran3){
             $data->tanggalpembayaran3 = $tanggalpembayaran3;
         } else {

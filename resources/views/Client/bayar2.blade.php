@@ -120,7 +120,7 @@
                                                 <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk
                                             </button>
                                         @else
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar2" data-id="{{ $client2->id }}" data-napro="{{ $client2->napro }}" data-harga="{{ $client2->harga }}" data-tanggalpembayaran="{{ $client2->tanggalpembayaran }}" data-metodepembayaran="{{ $client2->metodepembayaran }}" data-biayatambahan="{{ $client2->biayatambahan }}" data-tanggalpembayaran2="{{ $client2->tanggalpembayaran2 }}" data-metodepembayaran2="{{ $client2->metodepembayaran2 }}" class="btn btn-danger btn-revisi btn-sm" style="background-color: none">
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar2" data-id="{{ $client2->id }}" data-napro="{{ $client2->napro }}" data-harga="{{ $client2->harga }}" data-tanggalpembayaran="{{ $client2->tanggalpembayaran }}" data-metodepembayaran="{{ $client2->metodepembayaran }}" data-biayatambahan="{{ $client2->biayatambahan }}" data-tanggalpembayaran2="{{ $client2->tanggalpembayaran2 }}" data-metodepembayaran2="{{ $client2->metodepembayaran2 }}" class="btn btn-primary btn-revisi btn-sm" style="background-color: none">
                                                 <i class="fa-solid fa-wallet"></i>&nbsp;Bayar
                                             </button>
                                         @endif

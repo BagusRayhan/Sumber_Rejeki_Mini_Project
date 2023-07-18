@@ -61,7 +61,7 @@ class ProjectDisetujuiController extends Controller
         $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
         $progress = (100 / count($fitur)) * $done;
         return response()->json(['progress' => $progress]);
-    }    
+    }
 
     public function statusFitur(Request $request) {
         $status = Fitur::find($request->fitur_id);
@@ -87,20 +87,36 @@ class ProjectDisetujuiController extends Controller
 
     public function doneProject(Request $request) {
         $pro = Proreq::find($request->project_id);
-        $pro->update([
-            'status' => null,
-            'statusbayar' => 'belum lunas'
-        ]);
-
-        $msg = 'Project Selesai';
-        $notifDesk = $pro->napro.' telah selesai';
-        Notification::create([
-            'role' => 'client',
-            'user_id' => $pro->user_id,
-            'notif' => $msg,
-            'deskripsi' => $notifDesk,
-            'kategori' => 'Project Selesai'
-        ]);
+        $rev = Proreq::where('id', $pro)->pluck('tanggalpembayaran3');
+        if ($rev->contains(null)) {
+            $pro->update([
+                'status' => null,
+                'statusbayar' => 'belum lunas'
+            ]);
+            $msg = 'Project Selesai';
+            $notifDesk = $pro->napro.' telah selesai';
+            Notification::create([
+                'role' => 'client',
+                'user_id' => $pro->user_id,
+                'notif' => $msg,
+                'deskripsi' => $notifDesk,
+                'kategori' => 'Project Selesai'
+            ]);
+        } else {
+            $pro->update([
+                'status' => 'selesai',
+                'statusbayar' => 'lunas'
+            ]);
+            $msg = 'Revisi Project Selesai';
+            $notifDesk = $pro->napro.' telah selesai';
+            Notification::create([
+                'role' => 'client',
+                'user_id' => $pro->user_id,
+                'notif' => $msg,
+                'deskripsi' => $notifDesk,
+                'kategori' => 'Revisi Project Selesai'
+            ]);
+        }
         return redirect(route('project-disetujui-admin'))->with('success', 'Berhasil menyelesaikan project');
     }
 

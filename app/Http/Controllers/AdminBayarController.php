@@ -16,7 +16,7 @@ class AdminBayarController extends Controller
     public function pending() {
         $admin = User::where('role', 'admin')->first();
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-        $propend = proreq::where('statusbayar', 'pembayaran awal')->orWhere('statusbayar','pembayaran akhir')->orWhere('statusbayar','pembayaran tambahan')->paginate(6);
+        $propend = proreq::where('statusbayar', 'pembayaran awal')->orWhere('statusbayar','pembayaran akhir')->orWhere('statusbayar','pembayaran revisi')->paginate(6);
         return view('Admin.pembayaran-pending', compact('propend', 'admin', 'notification'));
     }
  
@@ -49,8 +49,17 @@ class AdminBayarController extends Controller
                 'kategori' => 'Pembayaran Akhir Disetujui'
             ]);
         } elseif ($project->statusbayar === 'pembayaran revisi') {
-            $project->status = 'selesai';
+            $project->status = 'setuju';
             $project->statusbayar = null;
+            $msg = 'Pembayaran Revisi Disetujui';
+            $notifDesk = $project->napro;
+            Notification::create([
+                'role' => 'client',
+                'user_id' => $project->user_id,
+                'notif' => $msg,
+                'deskripsi' => $notifDesk,
+                'kategori' => 'Pembayaran Revisi Disetujui'
+            ]);
         }
         $project->save();
         return back();
@@ -93,6 +102,24 @@ class AdminBayarController extends Controller
                 'notif' => $msg,
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Pembayaran Akhir Ditolak'
+            ]);
+        } elseif ($projectol->statusbayar == 'pembayaran revisi') {
+            if ($projectol->metodepembayaran !== 'cash') {
+                unlink(public_path('gambar/bukti/' . $projectol->buktipembayaran));
+            }
+            $projectol->statusbayar = 'belum lunas';
+            $projectol->metodepembayaran3 = null;
+            $projectol->metode3 = null;
+            $projectol->buktipembayaran3 = null;
+            $projectol->tanggalpembayaran3 = null;
+            $msg = 'Pembayaran Revisi Ditolak';
+            $notifDesk = $projectol->napro;
+            Notification::create([
+                'role' => 'client',
+                'user_id' => $projectol->user_id,
+                'notif' => $msg,
+                'deskripsi' => $notifDesk,
+                'kategori' => 'Pembayaran Revisi Ditolak'
             ]);
         }
         $projectol->save();

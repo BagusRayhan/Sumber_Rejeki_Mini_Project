@@ -59,10 +59,12 @@ class ProjectrequestController extends Controller
         $admin = User::where('role', 'admin')->first();
         $data = Proreq::find($id);
         $dataa = Fitur::where('project_id', $data->id)->orderBy('project_id')->get();
+        $hargaFitur = Fitur::where('project_id', $data->id)->pluck('hargafitur');
         return view('Admin.detailproreq', [
             'data' => $data,
             'admin' => $admin,
             'dataa' => $dataa,
+            'hargaFitur' => $hargaFitur,
             'notification' => $notification
         ]);
     }
