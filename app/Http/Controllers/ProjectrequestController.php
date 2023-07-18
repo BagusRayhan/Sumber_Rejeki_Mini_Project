@@ -66,6 +66,7 @@ class ProjectrequestController extends Controller
             'notification' => $notification
         ]);
     }
+    
 
 
     public function downloadSuppDocs($dokumen = null) {
@@ -74,37 +75,17 @@ class ProjectrequestController extends Controller
             return response()->download($file, $dokumen);
         }
     }
+
     public function simpanharga(Request $request, $id)
-    {
-        $request->validate([
-            'harga' => 'required|numeric|min:1'
-        ], [
-            'harga.required' => 'harga tidak boleh kosong!',
-        ]);
-
-        $proreg = Proreq::findOrFail($id);
-
-        $proreg->harga = $request->input('harga');
-        $proreg->update([
-            'status' => null,
-            'statusbayar' => 'menunggu pembayaran'
-        ]);
-
-
-        $proreg->save();
-
-        return redirect()->route('projectreq');
-    }
-
-public function simpanfitur(Request $request, $id)
 {
     $fitur = Fitur::findOrFail($id);
+
     $fitur->hargafitur = $request->input('hargafitur');
+
     $fitur->save();
 
     return back();
 }
-
 
 public function alasantolak(Request $request)
 {
@@ -157,7 +138,7 @@ public function updateproreqa($id)
         $keyword = $request->searchKeyword;
         $notification = Notification::where('role', 'admin')->latest()->get();
         $admin = User::where('role', 'admin')->first();
-        $selesai = proreq::whereIn('status', ['selesai', 'pengajuan revisi', 'revisi'])->where('napro', 'LIKE', '%'.$keyword.'%')->paginate(3);
+        $selesai = proreq::whereIn('status', ['selesai', 'revisi'])->where('napro', 'LIKE', '%'.$keyword.'%')->paginate(3);
         return view('Admin.projectselesai', compact('selesai','admin','notification'));
     }
 
@@ -191,20 +172,15 @@ public function updateproreqa($id)
         ]);
     }
 
-    public function updateProreq(Request $request)
+    public function updateProreq(Request $request, $id)
     {
-        $id = $request->project_id;
         $proreq = Proreq::findOrFail($id);
-        $proreq->update([
-            'napro' => $request->napro,
-            'deadline' => $request->deadline
-        ]);
         $fitur = Fitur::where('project_id', $proreq->id)->get();
         $totalBiayaTambahan = $fitur->sum('biayatambahan');
     
         $proreq->biayatambahan = $totalBiayaTambahan;
-        $proreq->status = 'revisi';
-        $proreq->statusbayar = null;
+        $proreq->status = 'selesai';
+        $proreq->statusbayar = 'belum lunas';
         $proreq->save();
     
         return redirect()->route('projectselesai')->with('success', 'Berhasil mengajukan perubahan');
