@@ -83,61 +83,64 @@
                                                     </button>
                                                 </td>
                                                 <td class="d-flex justify-content-evenly">
-                                                    <form action="{{ route('setujui-pembayaran', ['id' => $pro->id]) }}" id="setujuiPembayaran" onsubmit="setujuiPembayaran(event)" method="POST">
-                                                        @csrf
-                                                        @method('POST')
-                                                        <input type="hidden" name="idpropend" value="{{ $pro->id }}">
-                                                        <button class="btn btn-primary btn-sm rounded-circle" type="submit">
-                                                            <i class="fa-solid fa-check"></i>
-                                                        </button>
-                                                    </form>
-                                                    <script>
-                                                        function setujuiPembayaran(event) {
-                                                            event.preventDefault();
-                                                            Swal.fire({
-                                                                title: 'Apakah Anda yakin?',
-                                                                text: 'Ingin menyetujui pembayaran ini',
-                                                                icon: 'warning',
-                                                                showCancelButton: true,
-                                                                confirmButtonColor: '#3085d6',
-                                                                cancelButtonColor: '#d33',
-                                                                confirmButtonText: 'Ya',
-                                                                cancelButtonText: 'Batal'
-                                                            }).then((result) => {
-                                                                (result.isConfirmed) {
-                                                                    document.getElementById('setujuiPembayaran').submit();
-                                                                }
-                                                            });
-                                                        }
-                                                    </script>
-                                                    <form action="{{ route('tolak-pembayaran', ['id' => $pro->id]) }}" id="tolakPembayaran" onclick="tolakPembayaran(event)" method="POST">
-                                                        @csrf
-                                                        @method('POST')
-                                                        <input type="hidden" name="idpropend" value="{{ $pro->id }}">
-                                                        <button type="submit" class="btn btn-danger btn-sm rounded-circle">
-                                                            <i class="fa-solid fa-times"></i>
-                                                        </button>
-                                                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
-                                                        <script>
-                                                            function tolakPembayaran(event) {
-                                                                event.preventDefault();
-                                                                Swal.fire({
-                                                                    title: 'Apakah Anda yakin?',
-                                                                    text: 'Ingin menolak pembayaran ini',
-                                                                    icon: 'warning',
-                                                                    showCancelButton: true,
-                                                                    confirmButtonColor: '#3085d6',
-                                                                    cancelButtonColor: '#d33',
-                                                                    confirmButtonText: 'Ya',
-                                                                    cancelButtonText: 'Batal'
-                                                                }).then((result) => {
-                                                                    (result.isConfirmed) {
-                                                                        document.getElementById('tolakPembayaran').submit();
-                                                                    }
-                                                                });
+                                                <form action="{{ route('setujui-pembayaran', ['id' => $pro->id]) }}" id="setujuiPembayaran" onsubmit="setujuiPembayaran(event)" method="POST">
+                                                    @csrf
+                                                    @method('POST')
+                                                    <input type="hidden" name="idpropend" value="{{ $pro->id }}">
+                                                    <button class="btn btn-primary btn-sm rounded-circle" type="submit">
+                                                        <i class="fa-solid fa-check"></i>
+                                                    </button>
+                                                </form>
+                                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
+                                                <script>
+                                                    function setujuiPembayaran(event) {
+                                                        event.preventDefault();
+                                                        Swal.fire({
+                                                            title: 'Apakah Anda yakin?',
+                                                            text: 'Ingin menyetujui pembayaran ini',
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'Ya',
+                                                            cancelButtonText: 'Batal'
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) { // Corrected the syntax here, added "if" before the condition.
+                                                                document.getElementById('setujuiPembayaran').submit();
                                                             }
-                                                        </script>
-                                                    </form>
+                                                        });
+                                                    }
+                                                </script>
+
+                                                        <form action="{{ route('tolak-pembayaran', ['id' => $pro->id]) }}" id="tolakPembayaran" method="POST">
+                                                            @csrf
+                                                            @method('POST')
+                                                            <input type="hidden" name="idpropend" value="{{ $pro->id }}">
+                                                            <button type="button" class="btn btn-danger btn-sm rounded-circle" onclick="tolakPembayaran(event)">
+                                                                <i class="fa-solid fa-times"></i>
+                                                            </button>
+                                                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
+                                                            <script>
+                                                                function tolakPembayaran(event) {
+                                                                    event.preventDefault();
+                                                                    Swal.fire({
+                                                                        title: 'Apakah Anda yakin?',
+                                                                        text: 'Ingin menolak pembayaran ini',
+                                                                        icon: 'warning',
+                                                                        showCancelButton: true,
+                                                                        confirmButtonColor: '#3085d6',
+                                                                        cancelButtonColor: '#d33',
+                                                                        confirmButtonText: 'Ya',
+                                                                        cancelButtonText: 'Batal'
+                                                                    }).then((result) => {
+                                                                        if (result.isConfirmed) { // Corrected the syntax here, added "if" before the condition.
+                                                                            document.getElementById('tolakPembayaran').submit();
+                                                                        }
+                                                                    });
+                                                                }
+                                                            </script>
+                                                        </form>
+
                                     
                                                 </td>
                                             </tr>
@@ -374,7 +377,7 @@
         </div>
         <!-- Content End -->
     </div>
-
+       @include('sweetalert::alert')
     @include('Admin.templates.script')
 </body>
 

@@ -143,7 +143,7 @@ Route::middleware('admin')->group(function(){
     Route::get('detailproreq/{id}', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
     Route::get('downloadsuppdocs/{dokumen?}', [ProjectrequestController::class, 'downloadSuppDocs'])->name('download-suppdocs');
     Route::put('simpanharga/{id}', [ProjectrequestController::class, 'simpanharga'])->name('simpanharga');
-    Route::put('simpanfitur/{id}', [ProjectrequestController::class, 'simpanfitur'])->name('simpanfitur');
+    Route::put('simpanfiturr/{id}', [ProjectrequestController::class, 'simpanfiturr'])->name('simpanfiturr');
     Route::put('alasantolak', [ProjectrequestController::class, 'alasantolak'])->name('alasantolak');
     Route::put('/update-proreq/{id}', [ProjectrequestController::class, 'updateproreqa'])->name('update-proreq');
     Route::get('search', [ProjectrequestController::class, 'search'])->name('search');
@@ -167,7 +167,8 @@ Route::middleware('admin')->group(function(){
     Route::post('/tolak-pembayaran/{id}', [AdminBayarController::class, 'tolakPembayaran'])->name('tolak-pembayaran');
     Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
     Route::post('detail-project-disetujui', [ProjectDisetujuiController::class, 'projectChat'])->name('project-chat');
-    Route::get('/update-progress/{id}', [ProjectDisetujuiController::class, 'update-progress'])->name('update-progress');
+    Route::get('/update-progress/{id}', [ProjectDisetujuiController::class, 'updateprogresnya'])->name('update-progress');
+    Route::post('/update-status-fitur/{id}', [ProjectDisetujuiController::class, 'updateStatusFitur'])->name('update-status-fitur');
     Route::put('estimasi-project', [ProjectDisetujuiController::class, 'upEstimasi'])->name('estimasi-project');
     Route::post('pembayaran-digital/update-bank', [AdminBayarController::class, 'updateBank'])->name('update-bank');
     Route::post('pembayaran-digital', [AdminBayarController::class, 'updateEWallet'])->name('update-ewallet');
