@@ -7,6 +7,12 @@ use \Carbon\Carbon;
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
 @include('Client.Template.head')
+<style>
+    .progress-bar {
+        transition: width 0.5s ease; /* Atur durasi dan jenis animasi sesuai keinginan */
+    }
+</style>
+
 </head>
 
 <body>
@@ -68,7 +74,7 @@ use \Carbon\Carbon;
                         <input type="text" value="{{ $detail->harga }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
-                <div class="wrapper mt-5">
+                 <div class="wrapper mt-5">
                     <h6>Progress Project <span class="badge bg-primary mb-1" >{{ round($progress) }} %</span></h6>
                     <div class="pg-bar">
                         <div class="progress">
@@ -77,17 +83,27 @@ use \Carbon\Carbon;
                     </div>
                 </div>
                 <script>
-                    var savedProgress = localStorage.getItem('progress');
-                    var savedTotalFeatures = localStorage.getItem('totalFeatures');
+                    var progressBar = document.getElementById('progress-bar');
+                    var totalFeatures = {{ count($fitur) }};
+                    var completedFeatures = 0;
+                    var progress = 0;
 
-                    if (savedProgress && savedTotalFeatures) {
-                        var progressBar = document.getElementById('progress-bar');
-                        var progressBadge = document.getElementById('progress-badge');
+                    @foreach ($fitur as $f)
+                        @if ($f->status == 'selesai')
+                            completedFeatures++;
+                        @endif
+                    @endforeach
 
-                        progressBar.style.width = (savedProgress / savedTotalFeatures * 100) + '%';
-                        progressBar.setAttribute('aria-valuenow', savedProgress);
-                        progressBadge.innerText = savedProgress + '%';
+                    function animateProgressBar() {
+                        if (progress < (completedFeatures / totalFeatures) * 100) {
+                            progress += 1; 
+                            progressBar.style.width = progress + '%';
+                            progressBar.setAttribute('aria-valuenow', progress);
+                            requestAnimationFrame(animateProgressBar);
+                        }
                     }
+
+                    animateProgressBar();
                 </script>
                 <div class="row">
                     <div class="col-12">

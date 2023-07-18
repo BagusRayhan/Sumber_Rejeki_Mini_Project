@@ -153,6 +153,7 @@ class ProjectDisetujuiController extends Controller
         $project = Proreq::where('status', 'setuju')->where('user_id', Auth::user()->id)->paginate(5);
         return view('Client.disetujui', compact('project', 'sosmed','client','notification'));
     }
+    
 
     public function detailDisetujuiClient($id) {
         $client = User::find(Auth::user()->id);

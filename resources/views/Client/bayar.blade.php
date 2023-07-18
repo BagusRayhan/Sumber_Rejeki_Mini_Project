@@ -226,7 +226,9 @@ $(document).ready(function() {
         $('#modalawal').modal('show');
     });
 
-    $('.pilih-metode').click(function() {
+     $('#cash').on('shown.bs.modal', function (event){
+        var button = $(event.relatedTarget);
+        var projectId = button.data('id');
         var napro = $('#namaProject').val();
         var harga = $('#hargaProject').val();
         var projectId = $('#projectIdCash').val();
@@ -236,7 +238,7 @@ $(document).ready(function() {
 
         var form = $('#updateForm');
         var action = form.attr('action');
-        action = action.replace(/\/$/, "");
+        action = action.replace(/\/\d+$/, "");
         form.attr('action', action + '/' + projectId);
     });
 });
