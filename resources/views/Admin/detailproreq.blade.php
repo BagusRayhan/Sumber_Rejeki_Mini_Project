@@ -88,7 +88,7 @@
                     <a href="{{ route('projectreq') }}" type="button" class="btn btn-secondary btn-sm">Kembali</a>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myyModal{{ $data->id }}">Tolak</button>
                     @if ($data->dokumen == null && count($dataa) !== 0)
-                        <button type="submit" class="btn btn-primary btn-sm">Setuju</button> 
+                        <button type="submit" class="btn btn-primary btn-sm">Setuju</button>
                     @elseif ( count($dataa) == 0 )
                         <button type="button" data-bs-toggle="modal" data-bs-target="#hargaDocs{{ $data->id }}" class="btn btn-primary btn-sm">Setuju</button>
                     @elseif (count($dataa) !== 0 && $data->dokumen !== null)
@@ -111,7 +111,7 @@
                         @method('PUT')
                         <input type="hidden" name="dataid" value="{{ $data->id }}">
                         <label for="" class="form-label">Alasan Ditolak</label>
-                        <textarea class="form-control" rows="6" name="alasan" required></textarea>
+                        <textarea class="form-control" placeholder="Masukkan Alasan Anda...." rows="6" name="alasan" required></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="submit"  class="btn btn-primary">Submit</button>

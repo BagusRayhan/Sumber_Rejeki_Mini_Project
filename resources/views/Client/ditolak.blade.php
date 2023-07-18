@@ -49,12 +49,34 @@
                                 <td>{{ $row->napro }}</td>
                                 <td>{{ $row->alasan }}</td>
                                 <td class="text-center">
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                    action="{{ route('destroy', $row->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger"> <i class="fa-solid fa-trash"></i></button>
-                                </form>
+                                    <form id="deleteForm" onsubmit="sendRequest(event);" action="{{ route('destroy', $row->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger"> <i class="fa-solid fa-trash"></i></button>
+                                    </form>
+
+                                    <!-- Script SweetAlert -->
+                                    <script>
+                                        function sendRequest(event) {
+                                            event.preventDefault();
+                                            Swal.fire({
+                                                title: 'Apakah Anda yakin ?',
+                                                text: 'Ingin Tolak Project Ini ?',
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#3085d6',
+                                                cancelButtonColor: '#d33',
+                                                confirmButtonText: 'Ya',
+                                                cancelButtonText: 'Batal'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    // Jika pengguna menekan "Ya", kirimkan request untuk menghapus data
+                                                    document.getElementById('deleteForm').submit();
+                                                }
+                                            });
+                                        }
+                                    </script>
+
 
                             </td>
                         </tr>
