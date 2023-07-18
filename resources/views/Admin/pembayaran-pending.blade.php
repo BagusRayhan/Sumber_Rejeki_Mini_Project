@@ -83,22 +83,65 @@
                                                     </button>
                                                 </td>
                                                 <td class="d-flex justify-content-evenly">
-                                                    <form action="{{ route('setujui-pembayaran', ['id' => $pro->id]) }}" method="POST">
-                                                        @csrf
-                                                        @method('POST')
-                                                        <input type="hidden" name="idpropend" value="{{ $pro->id }}">
-                                                        <button class="btn btn-primary btn-sm rounded-circle" type="submit">
-                                                            <i class="fa-solid fa-check"></i>
-                                                        </button>
-                                                    </form>
-                                                    <form action="{{ route('tolak-pembayaran', ['id' => $pro->id]) }}" method="POST">
-                                                        @csrf
-                                                        @method('POST')
-                                                        <input type="hidden" name="idpropend" value="{{ $pro->id }}">
-                                                        <button type="submit" class="btn btn-danger btn-sm rounded-circle">
-                                                            <i class="fa-solid fa-times"></i>
-                                                        </button>
-                                                    </form>
+                                                <form action="{{ route('setujui-pembayaran', ['id' => $pro->id]) }}" id="setujuiPembayaran" onsubmit="setujuiPembayaran(event)" method="POST">
+                                                    @csrf
+                                                    @method('POST')
+                                                    <input type="hidden" name="idpropend" value="{{ $pro->id }}">
+                                                    <button class="btn btn-primary btn-sm rounded-circle" type="submit">
+                                                        <i class="fa-solid fa-check"></i>
+                                                    </button>
+                                                </form>
+                                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
+                                                <script>
+                                                    function setujuiPembayaran(event) {
+                                                        event.preventDefault();
+                                                        Swal.fire({
+                                                            title: 'Apakah Anda yakin?',
+                                                            text: 'Ingin menyetujui pembayaran ini',
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'Ya',
+                                                            cancelButtonText: 'Batal'
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) { // Corrected the syntax here, added "if" before the condition.
+                                                                document.getElementById('setujuiPembayaran').submit();
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
+
+                                                        <form action="{{ route('tolak-pembayaran', ['id' => $pro->id]) }}" id="tolakPembayaran" method="POST">
+                                                            @csrf
+                                                            @method('POST')
+                                                            <input type="hidden" name="idpropend" value="{{ $pro->id }}">
+                                                            <button type="button" class="btn btn-danger btn-sm rounded-circle" onclick="tolakPembayaran(event)">
+                                                                <i class="fa-solid fa-times"></i>
+                                                            </button>
+                                                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
+                                                            <script>
+                                                                function tolakPembayaran(event) {
+                                                                    event.preventDefault();
+                                                                    Swal.fire({
+                                                                        title: 'Apakah Anda yakin?',
+                                                                        text: 'Ingin menolak pembayaran ini',
+                                                                        icon: 'warning',
+                                                                        showCancelButton: true,
+                                                                        confirmButtonColor: '#3085d6',
+                                                                        cancelButtonColor: '#d33',
+                                                                        confirmButtonText: 'Ya',
+                                                                        cancelButtonText: 'Batal'
+                                                                    }).then((result) => {
+                                                                        if (result.isConfirmed) { // Corrected the syntax here, added "if" before the condition.
+                                                                            document.getElementById('tolakPembayaran').submit();
+                                                                        }
+                                                                    });
+                                                                }
+                                                            </script>
+                                                        </form>
+
+                                    
                                                 </td>
                                             </tr>
                                             <div class="modal fade" id="detailTransaksi{{ $pro->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -158,7 +201,7 @@
                                                                             <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailPembayaranAwal{{ $pro->id }}">Pembayaran Awal</button>
                                                                         </div>
                                                                     @endif
-                                                                {{-- @elseif ($pro->statusbayar = 'pembayaran revisi')
+                                                                @elseif ($pro->statusbayar = 'pembayaran revisi')
                                                                     @if ($pro->metodepembayaran !== 'cash')
                                                                     <div class="wrapper d-flex justify-content-between">
                                                                         <div class="mb-3" style="width: 12em">
@@ -175,14 +218,14 @@
                                                                         <img src="{{ asset('gambar/bukti/'.$pro->buktipembayaran) }}" class="w-100" alt="">
                                                                     </div>
                                                                     <div class="mb-1 d-flex justify-content-between">
-                                                                        <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAwal">Pembayaran Awal</button>
-                                                                        <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAwal">Pembayaran Akhir</button>
+                                                                        <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $pro->id }}">Pembayaran Awal</button>
+                                                                        <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAkhir{{ $pro->id }}">Pembayaran Akhir</button>
                                                                     </div>
                                                                     @else
                                                                         <div class="wrapper text-center">
                                                                             <p>Pembayaran Dilakukan Secara Cash</p>
                                                                         </div>
-                                                                    @endif --}}
+                                                                    @endif
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -231,6 +274,90 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="modal fade" id="pembayaranAwal{{ $pro->id }}" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" style="width: 28em">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5>Pembayaran Awal</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @if ($pro->metodepembayaran !== 'cash')
+                                                            <div class="mb-3">
+                                                                <label for="">Biaya Awal</label>
+                                                                <input class="form-control" type="text" value="{{ $pro->harga }}" disabled>
+                                                            </div>
+                                                            <div class="wrapper d-flex justify-content-between">
+                                                                <div class="mb-3" style="width: 12em">
+                                                                    <label class="mb-1">Metode Pembayaran</label>
+                                                                    <input type="text"class="form-control" value="{{ ($pro->metodepembayaran == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
+                                                                </div>
+                                                                <div class="mb-3" style="width: 12em">
+                                                                    <label class="mb-1">Layanan</label>
+                                                                    <input type="text"class="form-control" value="{{ $pro->metode }}" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="mb-1">Bukti Pembayaran</label>
+                                                                <img src="{{ asset('gambar/bukti/'.$pro->buktipembayaran) }}" class="w-100" alt="">
+                                                            </div>
+                                                            <div class="mb-1">
+                                                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>
+                                                            </div>
+                                                            @else
+                                                                <div class="mb-3">
+                                                                    <p>Pembayaran dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                </div>
+                                                                <div class="mb-1">
+                                                                    <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" id="pembayaranAkhir{{ $pro->id }}" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" style="width: 28em">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5>Pembayaran Akhir</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @if ($pro->metodepembayaran !== 'cash')
+                                                            <div class="mb-3">
+                                                                <label for="">Biaya Akhir</label>
+                                                                <input class="form-control" type="text" value="{{ $pro->harga }}" disabled>
+                                                            </div>
+                                                            <div class="wrapper d-flex justify-content-between">
+                                                                <div class="mb-3" style="width: 12em">
+                                                                    <label class="mb-1">Metode Pembayaran</label>
+                                                                    <input type="text"class="form-control" value="{{ ($pro->metodepembayaran2 == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
+                                                                </div>
+                                                                <div class="mb-3" style="width: 12em">
+                                                                    <label class="mb-1">Layanan</label>
+                                                                    <input type="text"class="form-control" value="{{ $pro->metode2 }}" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="mb-1">Bukti Pembayaran</label>
+                                                                <img src="{{ asset('gambar/bukti/'.$pro->buktipembayaran2) }}" class="w-100" alt="">
+                                                            </div>
+                                                            <div class="mb-1">
+                                                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>
+                                                            </div>
+                                                            @else
+                                                                <div class="mb-3">
+                                                                    <p>Pembayaran dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                </div>
+                                                                <div class="mb-1">
+                                                                    <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
                                     @else
                                         <tr>
@@ -250,7 +377,7 @@
         </div>
         <!-- Content End -->
     </div>
-
+       @include('sweetalert::alert')
     @include('Admin.templates.script')
 </body>
 

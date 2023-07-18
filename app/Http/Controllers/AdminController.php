@@ -95,7 +95,7 @@ class AdminController extends Controller
     }
 public function updateProfile(Request $request)
 {
-    $updateProfile = [];
+    $upProfile = [];
     $admin = User::find(Auth::user()->id);
 
     if ($request->has('fileInputA')) {

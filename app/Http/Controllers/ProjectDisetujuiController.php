@@ -56,12 +56,56 @@ class ProjectDisetujuiController extends Controller
         ]);
     }
 
+        public function updateprogresnya($id) {
+    $proyek = Proreq::find($id);
+
+    // Jika proyek tidak ditemukan, kembalikan respon error
+    if (!$proyek) {
+        return response()->json(['error' => 'Proyek tidak ditemukan'], 404);
+    }
+
+    // Hitung total fitur yang sudah selesai
+    $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
+
+    // Hitung total fitur dalam proyek
+    $totalFitur = Fitur::where('project_id', $id)->count();
+
+    // Hitung persentase progres berdasarkan fitur yang sudah selesai
+    $progress = ($totalFitur > 0) ? (100 / $totalFitur) * $done : 0;
+
+    // Kembalikan respon JSON dengan data progres
+    return response()->json(['progress' => round($progress)], 200);
+    }
+
+    public function updateStatusFitur($id, Request $request)
+{
+    // Cari fitur berdasarkan ID
+    $fitur = Fitur::find($id);
+
+    // Jika fitur tidak ditemukan, kembalikan respon error
+    if (!$fitur) {
+        return response()->json(['error' => 'Fitur tidak ditemukan'], 404);
+    }
+
+           $status = request()->input('status');
+        if (!in_array($status, ['selesai', 'belum selesai'])) {
+            return response()->json(['error' => 'Status tidak valid'], 400);
+        }
+
+    // Perbarui status fitur berdasarkan data yang dikirimkan dari permintaan POST
+    $fitur->status = $request->input('status');
+    $fitur->save();
+
+    // Kembalikan respon JSON untuk memberitahu bahwa fitur berhasil diperbarui
+    return response()->json(['message' => 'Fitur berhasil diperbarui'], 200);
+}
+
     public function updateProgress($id) {
         $fitur = Fitur::where('project_id', $id)->get();
         $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
         $progress = (100 / count($fitur)) * $done;
         return response()->json(['progress' => $progress]);
-    }    
+    }
 
     public function statusFitur(Request $request) {
         $status = Fitur::find($request->fitur_id);
@@ -87,20 +131,36 @@ class ProjectDisetujuiController extends Controller
 
     public function doneProject(Request $request) {
         $pro = Proreq::find($request->project_id);
-        $pro->update([
-            'status' => null,
-            'statusbayar' => 'belum lunas'
-        ]);
-
-        $msg = 'Project Selesai';
-        $notifDesk = $pro->napro.' telah selesai';
-        Notification::create([
-            'role' => 'client',
-            'user_id' => $pro->user_id,
-            'notif' => $msg,
-            'deskripsi' => $notifDesk,
-            'kategori' => 'Project Selesai'
-        ]);
+        $rev = Proreq::where('id', $pro)->pluck('tanggalpembayaran3');
+        if ($rev->contains(null)) {
+            $pro->update([
+                'status' => null,
+                'statusbayar' => 'belum lunas'
+            ]);
+            $msg = 'Project Selesai';
+            $notifDesk = $pro->napro.' telah selesai';
+            Notification::create([
+                'role' => 'client',
+                'user_id' => $pro->user_id,
+                'notif' => $msg,
+                'deskripsi' => $notifDesk,
+                'kategori' => 'Project Selesai'
+            ]);
+        } else {
+            $pro->update([
+                'status' => 'selesai',
+                'statusbayar' => 'lunas'
+            ]);
+            $msg = 'Revisi Project Selesai';
+            $notifDesk = $pro->napro.' telah selesai';
+            Notification::create([
+                'role' => 'client',
+                'user_id' => $pro->user_id,
+                'notif' => $msg,
+                'deskripsi' => $notifDesk,
+                'kategori' => 'Revisi Project Selesai'
+            ]);
+        }
         return redirect(route('project-disetujui-admin'))->with('success', 'Berhasil menyelesaikan project');
     }
 

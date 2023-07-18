@@ -133,12 +133,13 @@
               @csrf
               @method('put')
               <div class="profile d-flex justify-content-center">
-                <img src="gambar/user-profile/{{ $client->profil }}" class="rounded-circle profile-image">
+                <img src="/gambar/user-profile/{{ $client->profil }}" class="rounded-circle profile-image">
                 <a href="#" type="file" class="change-profile-button d-flex justify-content-center" id="chooseFileButtonA">
                   <i class="fa-sharp fa-solid fa-image"></i>
                   <input type="file" id="fileInputA" name="fileInputA" style="display:none" accept=".jpg,.png,.pdf">
                 </a>
               </div>
+
               <div class="mb-1">
                 <label for="exampleFormControlInput1" class="form-label">Nama</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1" name="name" value="{{ $client->name }}">
