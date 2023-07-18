@@ -256,7 +256,7 @@ $(function(e){
                         <input type="text" name="namaProject" class="form-control w-50 border-0" style="font-style: ubuntu;" id="name" disabled>
                     </div>
                     <div class="d-flex justify-content-evenly align-items-center mb-3">
-                        <h6>Harga Project</h6>
+                        <h6>Harga Tambahan</h6>
                         <input type="text" name="hargaProject" class="form-control w-50 border-0" style="font-style: ubuntu;" id="hargarevisi"  disabled>
                     </div>
                     <input type="hidden" id="projectIdrevisi">
@@ -517,7 +517,7 @@ $(document).ready(function() {
                     </div>
                     <div class="modal-footer d-flex flex-column justify-content-center border-0">
                         <button type="submit" class="btn btn-primary fw-bold w-75" style="border-radius: 33px; font-family: 'Ubuntu';">Bayar Sekarang</button>
-                        <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-dismiss="modal" aria-label="Close">Kembali</a>
+                        <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" <Kembali href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar" data-bs-toggle="modal">Kembali</a>
                     </div>
                 </form>
             </div>
@@ -570,7 +570,7 @@ $(document).ready(function() {
                 </div>
                 <div class="modal-footer d-flex flex-column justify-content-center border-0">
                     <button type="submit" class="btn btn-primary fw-bold w-75" style="border-radius: 33px; font-family: 'Ubuntu';">Bayar Sekarang</button>
-                    <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-dismiss="modal" aria-label="Close">Kembali</a>
+                    <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar2" data-bs-toggle="modal">Kembali</a>
                 </div>
             </form>
         </div>
@@ -881,7 +881,9 @@ $('.bayar-belumnya').click(function() {
     $('#modalawal2').modal('show');
 });
 
-$('.pilih-revisi').click(function() {
+$('#bayar3').on('shown.bs.modal', function (event){
+    var button = $(event.relatedTarget);
+    var projectId = button.data('id');
     var napro = $('#name').val();
     var harga = $('#hargarevisi').val();
     var projectId = $('#projectIdrevisi').val();
@@ -891,7 +893,7 @@ $('.pilih-revisi').click(function() {
 
     var form = $('#updateForm2');
     var action = form.attr('action');
-    action = action.replace(/\/$/, "");
+    action = action.replace(/\/\d+$/, "");
     form.attr('action', action + '/' + projectId);
 });
 
@@ -926,7 +928,9 @@ $('.pilih-revisi').click(function() {
         $('#modalawal').modal('show');
     });
 
-    $('.pilih-metode').click(function() {
+    $('#bayar1').on('shown.bs.modal', function (event){
+        var button = $(event.relatedTarget);
+        var projectId = button.data('id');
         var napro = $('#namaProject').val();
         var harga = $('#hargaProject').val();
         var projectId = $('#projectIdCash').val();
@@ -936,7 +940,7 @@ $('.pilih-revisi').click(function() {
 
         var form = $('#updateForm');
         var action = form.attr('action');
-        action = action.replace(/\/$/, "");
+        action = action.replace(/\/\d+$/, "");
         form.attr('action', action + '/' + projectId);
     });
 });

@@ -7,6 +7,12 @@ use \Carbon\Carbon;
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
 @include('Client.Template.head')
+<style>
+    .progress-bar {
+        transition: width 0.5s ease; /* Atur durasi dan jenis animasi sesuai keinginan */
+    }
+</style>
+
 </head>
 
 <body>
@@ -68,7 +74,7 @@ use \Carbon\Carbon;
                         <input type="text" value="{{ $detail->harga }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
-                <div class="wrapper mt-5">
+                 <div class="wrapper mt-5">
                     <h6>Progress Project <span class="badge bg-primary mb-1" >{{ round($progress) }} %</span></h6>
                     <div class="pg-bar">
                         <div class="progress">
@@ -77,17 +83,27 @@ use \Carbon\Carbon;
                     </div>
                 </div>
                 <script>
-                    var savedProgress = localStorage.getItem('progress');
-                    var savedTotalFeatures = localStorage.getItem('totalFeatures');
+                    var progressBar = document.getElementById('progress-bar');
+                    var totalFeatures = {{ count($fitur) }};
+                    var completedFeatures = 0;
+                    var progress = 0;
 
-                    if (savedProgress && savedTotalFeatures) {
-                        var progressBar = document.getElementById('progress-bar');
-                        var progressBadge = document.getElementById('progress-badge');
+                    @foreach ($fitur as $f)
+                        @if ($f->status == 'selesai')
+                            completedFeatures++;
+                        @endif
+                    @endforeach
 
-                        progressBar.style.width = (savedProgress / savedTotalFeatures * 100) + '%';
-                        progressBar.setAttribute('aria-valuenow', savedProgress);
-                        progressBadge.innerText = savedProgress + '%';
+                    function animateProgressBar() {
+                        if (progress < (completedFeatures / totalFeatures) * 100) {
+                            progress += 1; 
+                            progressBar.style.width = progress + '%';
+                            progressBar.setAttribute('aria-valuenow', progress);
+                            requestAnimationFrame(animateProgressBar);
+                        }
                     }
+
+                    animateProgressBar();
                 </script>
                 <div class="row">
                     <div class="col-12">
@@ -181,7 +197,7 @@ use \Carbon\Carbon;
                                         @foreach ($chats as $cht)
                                             <div class="col">
                                                 <div class="{{ ($cht->user_id == Auth()->user()->id) ? 'bubble-chat-client float-end bg-primary text-white' : 'bubble-chat-admin float-start bg-white'}} d-flex flex-column mb-2 py-2 px-3 rounded-3" style="max-width: 33em; font-size: 14px">
-                                                    <p class="messages m-0 p-0">{{ $cht->chat }}</p> 
+                                                    <p class="messages m-0 p-0">{{ $cht->chat }}</p>
                                                     <label for="" class="{{ ($cht->user_id == Auth()->user()->id) ? 'text-white' : 'text-secondary'}} mt-2" style="font-size: 9px">{{ Carbon::parse($cht->chat_time)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</label>
                                                 </div>
                                             </div>
@@ -202,10 +218,10 @@ use \Carbon\Carbon;
                     </div>
                 </div>
             </div>
+            @include('Client.Template.footer')
         </div>
     </div>
     <!-- Modal Box Edit Bank End-->
-    @include('Client.Template.footer')
     </div>
         <!-- Content End -->
 @include('Client.Template.script')

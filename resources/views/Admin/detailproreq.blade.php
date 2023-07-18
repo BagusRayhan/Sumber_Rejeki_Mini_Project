@@ -165,7 +165,7 @@
                         <tr>
                             <td>{{ $fitur->namafitur }}</td>
                             <td>{{ $fitur->deskripsi }}</td>
-                            <td>{{ $fitur->hargafitur }}</td>
+                            <td>Rp.{{ $fitur->hargafitur }}</td>
                             <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#hargaFitur{{ $fitur->id }}"><i class="fa-solid fa-sack-dollar"></i></button></td>
                         </tr>
 
@@ -180,7 +180,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('simpanfitur', $fitur->id) }}" method="POST">
+                                        <form action="{{ route('simpanfiturr', $fitur->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <div class="mb-2 d-flex justify-content-between">
