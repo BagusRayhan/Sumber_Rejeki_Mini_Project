@@ -66,7 +66,7 @@ class ProjectrequestController extends Controller
             'notification' => $notification
         ]);
     }
-    
+
 
 
     public function downloadSuppDocs($dokumen = null) {
@@ -76,7 +76,30 @@ class ProjectrequestController extends Controller
         }
     }
 
+
     public function simpanharga(Request $request, $id)
+    {
+        $request->validate([
+            'harga' => 'required|numeric|min:1'
+        ], [
+            'harga.required' => 'harga tidak boleh kosong!',
+        ]);
+
+        $proreg = Proreq::findOrFail($id);
+
+        $proreg->harga = $request->input('harga');
+        $proreg->update([
+            'status' => null,
+            'statusbayar' => 'menunggu pembayaran'
+        ]);
+
+
+        $proreg->save();
+
+        return redirect()->route('projectreq');
+    }
+    
+    public function simpanfiturr(Request $request, $id)
 {
     $fitur = Fitur::findOrFail($id);
 
@@ -177,14 +200,14 @@ public function updateproreqa($id)
         $proreq = Proreq::findOrFail($id);
         $fitur = Fitur::where('project_id', $proreq->id)->get();
         $totalBiayaTambahan = $fitur->sum('biayatambahan');
-    
+
         $proreq->biayatambahan = $totalBiayaTambahan;
         $proreq->status = 'selesai';
         $proreq->statusbayar = 'belum lunas';
         $proreq->save();
-    
+
         return redirect()->route('projectselesai')->with('success', 'Berhasil mengajukan perubahan');
-    }    
+    }
 
     public function savefitur(Request $request, $id)
     {
@@ -207,19 +230,19 @@ public function updateproreqa($id)
             'namafitur' => $request->namafitur,
             'deskripsi' => $request->deskripsi
         ];
-    
+
         if ($request->has('hargafitur')) {
             $inputData['biayatambahan'] = $request->hargafitur;
             $inputData['hargafitur'] = null;
         }
-    
+
         $fitur->update($inputData);
         $fitur->status = 'belum selesai';
         $fitur->save();
-    
+
         return redirect()->back();
     }
-    
+
 
     public function destroyFitur(Request $request) {
         Fitur::find($request->fitur_id)->delete();
