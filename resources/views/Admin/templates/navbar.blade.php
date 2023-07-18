@@ -100,7 +100,7 @@
                               window.location.href = event.target.href;
 
                           } else {
-                             
+
                               Swal.fire(
                                   'Logout Dibatalkan',
                                   '',
@@ -132,12 +132,13 @@
             @csrf
             @method('put')
             <div class="profile d-flex justify-content-center">
-                <img src="gambar/user-profile/{{ $admin->profil }}" class="rounded-circle profile-image">
+                <img src="/gambar/user-profile/{{ $admin->profil }}" class="rounded-circle profile-image">
                 <label for="fileInputA" class="change-profile-button d-flex justify-content-center" id="chooseFileButtonA">
-                    <i class="fa-sharp fa-solid fa-image text-primary"></i>
+                  <i class="fa-sharp fa-solid fa-image text-primary"></i>
                 </label>
-                <input type="file" id="fileInputA" name="fileInputA" style="display: none" accept=".jpg,.png,.pdf">
-            </div>
+                <input type="file" id="fileInputA" name="fileInputA" style="display:none" accept=".jpg,.png,.pdf">
+              </div>
+
           <div class="mb-1">
               <label for="exampleFormControlInput1" class="form-label">Nama</label>
               <input type="text" class="form-control" id="exampleFormControlInput1"  name="name" value="{{ $admin->name }}">
