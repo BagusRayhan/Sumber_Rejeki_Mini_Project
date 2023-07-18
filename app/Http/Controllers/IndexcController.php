@@ -24,17 +24,21 @@ class IndexcController extends Controller
         $selesaiCounter = Proreq::where('status', 'selesai')->where('user_id', Auth::user()->id)->count();
         $notifikasi = Proreq::all();
         $estimasi = Proreq::where('status','setuju')->where('user_id', Auth::user()->id)->get();
-        $notif = Chat::all();
-        $pesancht = Chat::whereHas('user', function($query) {
-        $query->where('role', 'admin');
-        })->limit(4)->latest()->get();
 
-        // $pesancht = Proreq::query()
-        // ->whereHas('projectchat')
-        // ->with('projectchat')
-        // ->take(4)
-        // ->latest()
-        // ->get();
+
+        $notif = Chat::all();
+
+        // $pesancht = Chat::whereHas('user', function($query) {
+        // $query->where('role', 'admin');
+        // })->limit(4)->latest()->get();
+
+        $pesancht = Proreq::query()
+        ->whereHas('projectchat')
+        ->where('user_id', Auth::user()->id)
+        ->with('projectchat')
+        ->take(4)
+        ->latest()
+        ->get();
 
         $sosmed = Sosmed::all();
         return view('Client.index',[

@@ -17,7 +17,7 @@ class SosmedSeeder extends Seeder
     {
         DB::table('sosmed')->insert([
             'wa' => '085745140746',
-            'ig' => 'https//instagram.com/@_dikcyy',
+            'ig' => 'miniproreq_',
             'email' => 'miniproreq@gmail.com'
         ]);
     }

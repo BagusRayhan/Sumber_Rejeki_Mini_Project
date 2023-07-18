@@ -80,21 +80,24 @@
                                 @foreach ($estimasi as $estimasisetuju)
                                     <div class="d-flex align-items-center border-bottom py-3">
                                         <a href="{{ route('setujuclient', ['id' => $estimasisetuju->id]) }}" class="d-flex w-100" style="text-decoration: none; color: inherit;">
-                                            <img class="rounded-circle flex-shrink-0" style="width: 3em" src="/gambar/user-profile/{{ $estimasisetuju->user->profil }}">
-                                            <div class="w-100 ms-3 d-flex align-items-center">
-                                                <div>
-                                                    <h6 class="mb-2">{{ $estimasisetuju->napro }}</h6>
-                                                    @if ($estimasisetuju->estimasi != null)
-                                                        <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
-                                                    @else
-                                                        <span>Estimasi tidak tersedia</span>
-                                                    @endif
-                                                </div>
-                                                <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
-                                                    <div class="bg-light rounded h-100 p-10">
-                                                        <div class="pg-bar mb-3">
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">{{ $estimasisetuju->progress }}</div>
+                                            <img class="rounded-circle flex-shrink-0" style="width: 3em; height: 3em; object-fit: cover;" src="/gambar/user-profile/{{ $estimasisetuju->user->profil }}">
+                                            <div class="ms-3 flex-grow-1">
+                                                <h6 class="mb-2">{{ $estimasisetuju->napro }}</h6>
+                                                @if ($estimasisetuju->estimasi != null)
+                                                    <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
+                                                @else
+                                                    <span>Estimasi tidak tersedia</span>
+                                                @endif
+                                            </div>
+                                            <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
+                                                <div class="bg-light rounded h-100 p-10">
+                                                    <div class="pg-bar mb-3">
+                                                        <div class="wrapper">
+                                                            <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($estimasisetuju->progress) }}%</span></h6>
+                                                            <div class="pg-bar">
+                                                                <div class="progress">
+                                                                    <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ $estimasisetuju->progress }}%"></div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
