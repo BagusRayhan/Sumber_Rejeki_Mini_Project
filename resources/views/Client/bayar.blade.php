@@ -187,7 +187,7 @@
         </div>
         <div class="modal-footer border-0 d-flex flex-column justify-content-center">
           <button type="submit" class="btn btn-primary fw-bold w-75" style="border-radius: 33px; font-family: 'Ubuntu';">Bayar Sekarang</button>
-          <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-dismiss="modal" aria-label="Close">Kembali</a>
+          <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar" data-bs-toggle="modal">Kembali</a>
         </div>
       </form>
     </div>
