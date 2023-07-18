@@ -163,7 +163,7 @@
                     <tbody>
                     @foreach($dataa as $fitur)
                         <tr>
-                            <td>{{ $fitur->namafitur }}</td> n
+                            <td>{{ $fitur->namafitur }}</td>
                             <td>{{ $fitur->deskripsi }}</td>
                             <td>{{ $fitur->hargafitur }}</td>
                             <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#hargaFitur{{ $fitur->id }}"><i class="fa-solid fa-sack-dollar"></i></button></td>

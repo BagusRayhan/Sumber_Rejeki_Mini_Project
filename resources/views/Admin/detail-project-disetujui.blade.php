@@ -6,6 +6,109 @@
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
+<style>
+    body {
+    background: #fafafa ;
+    font-family: Helvetica, Arial;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.range {
+  display: flex;
+  width: 600px;
+}
+
+.range__slider {
+  width: 45%;
+}
+
+.range__value {
+  width: 35%;
+  margin-left: 45px;    
+  text-align: center;
+  border-left: #e6e4e4 1px solid;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+}
+
+.form-group label {
+  text-transform: uppercase;
+  font-size: .7rem;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+.form-group span {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #3c3b3b;
+}
+
+.range__slider label {
+  margin-bottom: 10px;
+}
+
+.range__slider [type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 13px;
+  border-radius: 6px;
+  background: #f1f1f1;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* custom thumb */
+.range__slider [type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #7a00ff;
+  border: #f9ca24 5px solid;
+  cursor: pointer;
+  -webkit-transition: background .15s ease-in-out;
+  transition: background .15s ease-in-out;
+}
+
+.range__slider [type="range"]::-webkit-slider-thumb:hover {
+  background: #f0932b;
+}
+
+.range__slider [type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 0;
+  border-radius: 50%;
+  background: #f0932b;
+  border: #f9ca24 5px solid; cursor: pointer;
+  -webkit-transition: background .15s ease-in-out;
+  transition: background .15s ease-in-out;
+}
+
+.range__slider [type="range"]::-moz-range-thumb:hover {
+  background: #f9ca24;
+}
+
+/* remove border */
+input::-moz-focus-inner, input::-moz-focus-outer {
+  border: 0;
+}
+</style>
+
 @include('Admin.templates.head')
 
 <body>
@@ -81,7 +184,8 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            @if (count($fitur) !== 0)
+                              <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th scope="col" style="width:5em">
@@ -145,6 +249,72 @@
                                     @endif
                                 </tbody>
                             </table>
+                            @else
+                            <form class="range">
+                                <div class="form-group range__slider">
+                                  <input type="range" step="500">
+                                </div><!--/form-group-->
+                                <div class="form-group range__value">
+                                  <span></span>            
+                                </div><!--/form-group-->
+                              </form>
+                            @endif
+                            <script>
+                                class Slider {
+                            constructor (rangeElement, valueElement, options) {
+                                this.rangeElement = rangeElement
+                                this.valueElement = valueElement
+                                this.options = options
+
+                                // Attach a listener to "change" event
+                                this.rangeElement.addEventListener('input', this.updateSlider.bind(this))
+                            }
+
+                            // Initialize the slider
+                            init() {
+                                this.rangeElement.setAttribute('min', options.min)
+                                this.rangeElement.setAttribute('max', options.max)
+                                this.rangeElement.value = options.cur
+
+                                this.updateSlider()
+                            }
+
+                            // Format the money
+                            asMoney(value) {
+                                return '$' + parseFloat(value)
+                                .toLocaleString('en-US', { maximumFractionDigits: 2 })
+                            }
+
+                            generateBackground(rangeElement) {   
+                                if (this.rangeElement.value === this.options.min) {
+                                return
+                                }
+
+                                let percentage =  (this.rangeElement.value - this.options.min) / (this.options.max - this.options.min) * 100
+                                return 'background: linear-gradient(to right, #50299c, #7a00ff ' + percentage + '%, #d3edff ' + percentage + '%, #dee1e2 100%)'
+                            }
+
+                            updateSlider (newValue) {
+                                this.valueElement.innerHTML = this.asMoney(this.rangeElement.value)
+                                this.rangeElement.style = this.generateBackground(this.rangeElement.value)
+                            }
+                            }
+
+                            let rangeElement = document.querySelector('.range [type="range"]')
+                            let valueElement = document.querySelector('.range .range__value span') 
+
+                            let options = {
+                            min: 2000,
+                            max: 75000,
+                            cur: 37500
+                            }
+
+                            if (rangeElement) {
+                            let slider = new Slider(rangeElement, valueElement, options)
+
+                            slider.init()
+                            }
+                            </script>
                             <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
                             <script>
                                 // Fungsi untuk memperbarui nilai progress
@@ -163,51 +333,51 @@
                                 // Memperbarui nilai progress setiap 5 detik
                                 setInterval(updateProgressBar, 5000);
                             </script>                                                                                                                                                      
+                        <script>
+                 function updateProgressBar() {
+                     var checkboxes = document.querySelectorAll('.child-checkbox');
+                     var progressBar = document.getElementById('progress-bar');
+                     var progress = 0;
+                     
+                     checkboxes.forEach(function(checkbox) {
+                         if (checkbox.checked) {
+                             progress++;
+                         }
+                     });
+                     
+                     var totalFeatures = checkboxes.length;
+             
+                     progressBar.style.width = (progress / totalFeatures * 100) + '%';
+                     progressBar.setAttribute('aria-valuenow', progress);
+             
+                     localStorage.setItem('progress', progress);
+                     localStorage.setItem('totalFeatures', totalFeatures);
+                     
+                 }
+             
+                 var checkboxes = document.querySelectorAll('.child-checkbox');
+                 checkboxes.forEach(function(checkbox) {
+                     checkbox.addEventListener('change', function() {
+                         updateProgressBar();
+                     });
+                 });
+             
+                 updateProgressBar();
+             
+                 window.addEventListener('load', function() {
+                     var savedProgress = localStorage.getItem('progress');
+                     var savedTotalFeatures = localStorage.getItem('totalFeatures');
+             
+                     if (savedProgress && savedTotalFeatures) {
+                         var progressBar = document.getElementById('progress-bar');
+                         progressBar.style.width = (savedProgress / savedTotalFeatures * 100) + '%';
+                         progressBar.setAttribute('aria-valuenow', savedProgress);
+                     }
+                 });
+             </script>
                         </div>
                     </div>
                 </div>
-           <script>
-    function updateProgressBar() {
-        var checkboxes = document.querySelectorAll('.child-checkbox');
-        var progressBar = document.getElementById('progress-bar');
-        var progress = 0;
-        
-        checkboxes.forEach(function(checkbox) {
-            if (checkbox.checked) {
-                progress++;
-            }
-        });
-        
-        var totalFeatures = checkboxes.length;
-
-        progressBar.style.width = (progress / totalFeatures * 100) + '%';
-        progressBar.setAttribute('aria-valuenow', progress);
-
-        localStorage.setItem('progress', progress);
-        localStorage.setItem('totalFeatures', totalFeatures);
-        
-    }
-
-    var checkboxes = document.querySelectorAll('.child-checkbox');
-    checkboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            updateProgressBar();
-        });
-    });
-
-    updateProgressBar();
-
-    window.addEventListener('load', function() {
-        var savedProgress = localStorage.getItem('progress');
-        var savedTotalFeatures = localStorage.getItem('totalFeatures');
-
-        if (savedProgress && savedTotalFeatures) {
-            var progressBar = document.getElementById('progress-bar');
-            progressBar.style.width = (savedProgress / savedTotalFeatures * 100) + '%';
-            progressBar.setAttribute('aria-valuenow', savedProgress);
-        }
-    });
-</script>
 
                 <div class="my-3 d-flex justify-content-between" style="width: 16em">
                     <a href="/project-disetujui" class="btn btn-secondary btn-sm p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
