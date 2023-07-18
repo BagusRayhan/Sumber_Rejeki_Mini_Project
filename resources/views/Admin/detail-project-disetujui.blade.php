@@ -70,14 +70,20 @@
                         <input type="text" value="{{ $detail->harga }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
-<div class="wrapper">
-    <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($progress) }} %</span></h6>
-    <div class="pg-bar">
-        <div class="progress">
-            <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
-        </div>
-    </div>
-</div>
+                <div class="wrapper">
+                    <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($progress) }} %</span></h6>
+                    <div class="pg-bar">
+                        <div class="progress">
+                            <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
+                        </div>
+                    </div>
+                </div><br>
+               @if (count($fitur) === 0)
+                    <form action="">
+                        <label for="customRange1" class="form-label">Masukkan progres</label>
+                        <input type="range" class="form-range" id="customRange1">
+                    </form>
+                @endif    
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
@@ -85,9 +91,13 @@
                                 <thead>
                                     <tr>
                                         <th scope="col" style="width:5em">
-                            <div class="form-check">
-                                <input class="form-check-input master-checkbox text-center" onchange="doneAllFeatures({{ $detail->id }})" type="checkbox" value="" id="masterCheckbox" {{ (count($fitur) == $done) ? 'checked' : '' }}>
-                            </div>
+                                        {{-- <div class="form-check">
+                                                <input class="form-check-input master-checkbox text-center" 
+                                                    onchange="doneAllFeatures({{ $detail->id }}); saveCheckboxStatus('masterCheckbox')" 
+                                                    type="checkbox" value="" 
+                                                    id="masterCheckbox" 
+                                                    {{ (count($fitur) == $done) ? 'checked' : '' }}>
+                                        </div> --}}
                                         </th>
                                         <th scope="col">Nama Fitur</th>
                                         <th scope="col">Harga Fitur</th>
@@ -99,9 +109,13 @@
                                         @foreach ($fitur as $f)
                                             <tr>
                                                 <td class="text-center">
-                                    <div class="form-check"> 
-                                        <input class="form-check-input child-checkbox" type="checkbox" id="checkFitur" onchange="statusFitur({{ $f->id }})" {{ ($f->status == 'selesai') ? 'checked' : '' }}>
-                                    </div>
+                                                 <div class="form-check"> 
+                                                         <input class="form-check-input child-checkbox"
+                                                            type="checkbox"
+                                                            id="checkFitur{{ $f->id }}"
+                                                            onchange="updateStatus({{ $f->id }}); saveCheckboxStatus('checkFitur{{ $f->id }}')"
+                                                            {{ ($f->status == 'selesai') ? 'checked' : '' }}>
+                                                 </div>
                                                 </td>
                                                 <td>{{ $f->namafitur }}</td>
                                                 <td>{{ $f->hargafitur }}</td>
@@ -138,6 +152,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            
                                             <!-- Modal Box Detail Fitur End -->
                                         @endforeach
                                     @else
@@ -145,20 +160,34 @@
                                     @endif
                                 </tbody>
                             </table>
+                            <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>                                                                                                                                                    
                         </div>
                     </div>
                 </div>
-           <script>
-    function updateProgressBar() {
-        var checkboxes = document.querySelectorAll('.child-checkbox');
-        var progressBar = document.getElementById('progress-bar');
-        var progress = 0;
-        
-        checkboxes.forEach(function(checkbox) {
-            if (checkbox.checked) {
-                progress++;
-            }
-        });
+                    <script>
+    // Memperbarui nilai progress setiap 5 detik
+    setInterval(updateProgressBar, 5);
+
+    window.addEventListener('load', function() {
+        var savedProgress = localStorage.getItem('progress');
+        if (savedProgress) {
+            var progressBar = document.getElementById('progress-bar');
+            progressBar.style.width = savedProgress + '%';
+            progressBar.setAttribute('aria-valuenow', savedProgress);
+            progressBar.innerText = savedProgress + '%';
+        }
+    }); 
+
+            function updateProgressBar() {
+                var checkboxes = document.querySelectorAll('.child-checkbox');
+                var progressBar = document.getElementById('progress-bar');
+                var progress = 0;
+                
+                checkboxes.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        progress++;
+                    }
+                });
         
         var totalFeatures = checkboxes.length;
 
@@ -176,18 +205,49 @@
         });
     });
 
-    updateProgressBar();
+        function saveCheckboxStatus(checkboxId) {
+        const checkbox = document.getElementById(checkboxId);
+        localStorage.setItem(checkboxId, checkbox.checked);
+    }
 
-    window.addEventListener('load', function() {
-        var savedProgress = localStorage.getItem('progress');
-        var savedTotalFeatures = localStorage.getItem('totalFeatures');
+    function loadCheckboxStatus(checkboxId) {
+        const checkbox = document.getElementById(checkboxId);
+        const status = localStorage.getItem(checkboxId);
 
-        if (savedProgress && savedTotalFeatures) {
-            var progressBar = document.getElementById('progress-bar');
-            progressBar.style.width = (savedProgress / savedTotalFeatures * 100) + '%';
-            progressBar.setAttribute('aria-valuenow', savedProgress);
+        if (status === "true") {
+            checkbox.checked = true;
         }
+    }
+        window.addEventListener('load', function() {
+        loadCheckboxStatus('masterCheckbox');
+
+        @foreach ($fitur as $f)
+            loadCheckboxStatus('checkFitur{{ $f->id }}');
+        @endforeach
     });
+
+    function updateStatus(featureId) {
+        const checkbox = document.getElementById(`checkFitur${featureId}`);
+        const status = checkbox.checked ? 'selesai' : 'belum selesai';
+
+        fetch(`/update-status-fitur/${featureId}`, {
+            method: 'PUT',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}', 
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                status: status,
+            }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data.message);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
 </script>
 
                 <div class="my-3 d-flex justify-content-between" style="width: 16em">

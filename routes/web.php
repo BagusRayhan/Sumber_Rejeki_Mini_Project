@@ -167,8 +167,7 @@ Route::middleware('admin')->group(function(){
     Route::post('/tolak-pembayaran/{id}', [AdminBayarController::class, 'tolakPembayaran'])->name('tolak-pembayaran');
     Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
     Route::post('detail-project-disetujui', [ProjectDisetujuiController::class, 'projectChat'])->name('project-chat');
-    Route::get('/update-progress/{id}', [ProjectDisetujuiController::class, 'updateprogresnya'])->name('update-progress');
-    Route::post('/update-status-fitur/{id}', [ProjectDisetujuiController::class, 'updateStatusFitur'])->name('update-status-fitur');
+    Route::put('/update-status-fitur/{id}', [ProjectDisetujuiController::class, 'updateStatusFitur'])->name('update-status-fitur');
     Route::put('estimasi-project', [ProjectDisetujuiController::class, 'upEstimasi'])->name('estimasi-project');
     Route::post('pembayaran-digital/update-bank', [AdminBayarController::class, 'updateBank'])->name('update-bank');
     Route::post('pembayaran-digital', [AdminBayarController::class, 'updateEWallet'])->name('update-ewallet');
