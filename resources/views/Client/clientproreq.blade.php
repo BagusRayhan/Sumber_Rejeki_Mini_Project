@@ -60,12 +60,36 @@
                                     <td>{{ $item->deadline }}</td>
                                     <td class="d-flex justify-content-evenly">
                                         <a href="{{ route('editproreq', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <form action="{{ route('destroy-pending-request') }}" method="post">
+                                        <form action="{{ route('destroy-pending-request') }}" method="post" onsubmit="return confirmDelete(event)">
                                             @csrf
                                             @method('delete')
                                             <input type="hidden" name="project_id" value="{{ $item->id }}">
                                             <button class="btn btn-danger btn-sm" type="submit"><i class="fa-solid fa-trash"></i></button>
                                         </form>
+
+                                        <!-- Sweet Alert JS -->
+                                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+                                        <script>
+                                            function confirmDelete(event) {
+                                                event.preventDefault();
+
+                                                Swal.fire({
+                                                    title: 'Apakah Anda yakin?',
+                                                    text: 'Ingin membatakan project ini!',
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#d33',
+                                                    cancelButtonColor: '#3085d6',
+                                                    confirmButtonText: 'Ya, hapus!',
+                                                    cancelButtonText: 'Batal'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        event.target.submit();
+                                                    }
+                                                });
+                                            }
+                                        </script>
                                     </td>
                                 </tr>
                                 @endforeach

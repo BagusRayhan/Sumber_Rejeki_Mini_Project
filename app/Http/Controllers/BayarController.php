@@ -21,7 +21,7 @@ class BayarController extends Controller
             $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
             $sosmed = Sosmed::all();
             $keyword = $request->input('keyword');
-            $data = Proreq::where('napro', 'like', '%'.$keyword.'%')->where('user_id', Auth::user()->id)->paginate(5);
+            $data = Proreq::where('napro', 'like', '%'.$keyword.'%')->where('user_id', Auth::user()->id)->paginate(6);
             $bank = Bank::all();
             $ewallet = EWallet::all();
             return view('Client.bayar', compact('sosmed','client','data','bank','ewallet','notification'));
