@@ -119,8 +119,10 @@
                                     @foreach ($faqs as $faq)
                                         <li class="list-group-item mb-1 d-flex justify-content-between">
                                             <p class="my-auto">{{ $faq->question }}</p>
-                                            <div class="d-flex">
-                                                <button class="btn btn-block p-0 mx-2" type="button" data-bs-toggle="modal" data-bs-target="#editFAQModal{{ $faq->id }}"><i class="fa-solid fa-pen-to-square fs-6"></i></button>
+                                            <div class="d-flex align-items-center">
+                                                <div class="wrapper">
+                                                    <button class="btn btn-block p-0 mx-2" type="button" data-bs-toggle="modal" data-bs-target="#editFAQModal{{ $faq->id }}"><i class="fa-solid fa-pen-to-square fs-6"></i></button>
+                                                </div>
                                                 <form action="{{ route('delete-faq') }}" id="deleteFAQ" onsubmit="deleteFAQ(event)" method="post">
                                                     @csrf
                                                     @method('delete')
