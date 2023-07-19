@@ -206,8 +206,8 @@ public function updateproreqa($id)
         $totalBiayaTambahan = $fitur->sum('biayatambahan');
 
         $proreq->biayatambahan = $totalBiayaTambahan;
-        $proreq->status = 'selesai';
-        $proreq->statusbayar = 'belum lunas';
+        $proreq->status = 'revisi';
+        $proreq->statusbayar = null;
         $proreq->save();
 
         return redirect()->route('projectselesai')->with('success', 'Berhasil mengajukan perubahan');
