@@ -102,8 +102,8 @@ class ProjectDisetujuiController extends Controller
 
     public function doneProject(Request $request) {
         $pro = Proreq::find($request->project_id);
-        $rev = Proreq::where('id', $pro)->pluck('metodepembayaran3');
-        if ($rev->contains(null)) {
+        $rev = $pro->pluck('tanggalpembayaran3')->first();
+        if ($rev == null) {
             $pro->update([
                 'status' => null,
                 'statusbayar' => 'belum lunas'

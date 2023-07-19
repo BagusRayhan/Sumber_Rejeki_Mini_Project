@@ -87,12 +87,10 @@
                 <div class="wrapper d-flex justify-content-between px-3" style="width: 14em;">
                     <a href="{{ route('projectreq') }}" type="button" class="btn btn-secondary btn-sm">Kembali</a>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myyModal{{ $data->id }}">Tolak</button>
-                    @if ($data->dokumen == null && count($dataa) !== 0)
-                        <button type="submit" class="btn btn-primary btn-sm">Setuju</button>
-                    @elseif ( count($dataa) == 0 )
+                    @if ( count($dataa) == 0 )
                         <button type="button" data-bs-toggle="modal" data-bs-target="#hargaDocs{{ $data->id }}" class="btn btn-primary btn-sm">Setuju</button>
-                    @elseif (count($dataa) !== 0 && $data->dokumen !== null)
-                        <button type="submit" class="btn btn-info btn-sm">Setuju</button>
+                    @else 
+                        <button type="submit" class="btn btn-primary btn-sm">Setuju</button>
                     @endif
                 </div>
 

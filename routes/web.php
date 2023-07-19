@@ -1,23 +1,26 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Sosmed;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProjectrequestController;
-use App\Http\Controllers\BayarController;
-use App\Http\Controllers\IndexcController;
-use App\Http\Controllers\SelesaiController;
-use App\Http\Controllers\SetujuController;
-use App\Http\Controllers\TolakController;
-use App\Http\Controllers\AdminBayarController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProjectDisetujuiController;
-use App\Http\Controllers\PengaturanController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BayarController;
+use App\Http\Controllers\TolakController;
+use Illuminate\Auth\Events\PasswordReset;
+use App\Http\Controllers\IndexcController;
+use App\Http\Controllers\SetujuController;
+use App\Http\Controllers\SelesaiController;
+use App\Http\Controllers\AdminBayarController;
+use App\Http\Controllers\PengaturanController;
+use App\Http\Controllers\ProjectrequestController;
+use App\Http\Controllers\ProjectDisetujuiController;
+use App\Models\aboutproreq;
+use App\Models\FAQ;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +35,12 @@ use Illuminate\Support\Facades\Password;
 
 // Login Register
 
+Route::get('/welcome', function() {
+    $sosmed = Sosmed::all();
+    $about = aboutproreq::find(1);
+    $faqs = FAQ::all();
+    return view('welcome', compact('sosmed','faqs','about'));
+})->name('welcome');
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('postlogin', [AuthController::class, 'login'])->name('postlogin');
 Route::get('register', [AuthController::class, 'register'])->name('register');
@@ -152,6 +161,10 @@ Route::middleware('admin')->group(function(){
     Route::get('pengaturan', [PengaturanController::class, 'pengaturan'])->name('pengaturan');
     Route::post('updatesosmed', [PengaturanController::class, 'updatesosmed'])->name('updatesosmed');
     Route::post('updatekebijakan', [PengaturanController::class, 'updatekebijakan'])->name('updatekebijakan');
+    Route::post('updateaboutus', [PengaturanController::class, 'updateAboutUs'])->name('update-aboutus');
+    Route::post('add-faq', [PengaturanController::class, 'addFAQ'])->name('add-faq');
+    Route::post('edit-faq', [PengaturanController::class, 'editFAQ'])->name('edit-faq');
+    Route::delete('delete-faq', [PengaturanController::class, 'deleteFAQ'])->name('delete-faq');
     Route::get('revisiproselesai/{id}', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
     Route::get('editproselesai/{id}', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
     Route::post('updateproreq-admin/{id}', [ProjectrequestController::class, 'updateProreq'])->name('updateproreq-admin');

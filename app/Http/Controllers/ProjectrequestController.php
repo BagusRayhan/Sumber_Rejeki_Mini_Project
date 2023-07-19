@@ -138,7 +138,11 @@ public function updateproreqa($id)
 
     $proreq = Proreq::findOrFail($id);
     $fitur = Fitur::where('project_id', $proreq->id)->get();
+    $hrgFitur = Fitur::where('project_id', $proreq->id)->pluck('hargafitur');
     $totalHarga = $fitur->sum('hargafitur');
+    if ($hrgFitur->contains(null)) {
+        return back()->with('error', 'Masukkan harga terlebih dahulu');
+    }
     $proreq->harga = $totalHarga;
     $proreq->status = null;
     $proreq->statusbayar = 'menunggu pembayaran';

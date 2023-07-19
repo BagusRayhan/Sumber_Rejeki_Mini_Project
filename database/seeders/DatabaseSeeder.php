@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             BankSeeder::class,
             EWalletSeeder::class,
             KebijakanSeeder::class,
-            SosmedSeeder::class
+            SosmedSeeder::class,
+            AboutUsSeeder::class
         ]);
     }
 }

@@ -9,9 +9,9 @@
 
         <a
           class="btn btn-link btn-floating btn-lg text-dark m-1"
-          href="https://wa.me/+62{{ $medsos->wa }}"
+          href="https://wa.me/62{{ $medsos->wa }}"
           role="button"
-          data-mdb-ripple-color="dark">
+          data-mdb-ripple-color="dark" target="_blank">
           <i class="fa-brands fa-whatsapp"></i>
         </a>
 
@@ -24,7 +24,7 @@
         class="btn btn-link btn-floating btn-lg text-dark m-1"
         href="https://instagram.com/{{ $medsos->ig }}"
         role="button"
-        data-mdb-ripple-color="dark">
+        data-mdb-ripple-color="dark" target="_blank">
         <i class="fa-brands fa-instagram"></i>
       </a>
       
@@ -37,7 +37,7 @@
           class="btn btn-link btn-floating btn-lg text-dark m-1"
           href="mailto:{{ $medsos->email }}"
           role="button"
-          data-mdb-ripple-color="dark">
+          data-mdb-ripple-color="dark" target="_blank">
           <i class="fa-regular fa-envelope"></i>
         </a>
 
