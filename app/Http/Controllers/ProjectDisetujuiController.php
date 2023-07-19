@@ -102,7 +102,7 @@ class ProjectDisetujuiController extends Controller
 
     public function doneProject(Request $request) {
         $pro = Proreq::find($request->project_id);
-        $rev = Proreq::where('id', $pro)->pluck('tanggalpembayaran3');
+        $rev = Proreq::where('id', $pro)->pluck('metodepembayaran3');
         if ($rev->contains(null)) {
             $pro->update([
                 'status' => null,
@@ -119,8 +119,8 @@ class ProjectDisetujuiController extends Controller
             ]);
         } else {
             $pro->update([
-                'status' => 'selesai',
-                'statusbayar' => 'lunas'
+                'status' => null,
+                'statusbayar' => 'belum lunas'
             ]);
             $msg = 'Revisi Project Selesai';
             $notifDesk = $pro->napro.' telah selesai';
