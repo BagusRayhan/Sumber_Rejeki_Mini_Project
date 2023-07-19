@@ -46,6 +46,7 @@
                                         <th scope="col">Nama Client</th>
                                         <th scope="col">Nama Project</th>
                                         <th scope="col">Harga Project</th>
+                                        <th scope="col" class="text-center">Status Bayar</th>
                                         <th scope="col" class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -53,9 +54,12 @@
                                     @if (count($approved) !== 0)
                                         @foreach ($approved as $apv)
                                             <tr>
-                                                <td>{{ $apv->namaclient }}</td>
-                                                <td>{{ $apv->namaproject }}</td>
-                                                <td>{{ $apv->hargaproject }}</td>
+                                                <td>{{ $apv->nama }}</td>
+                                                <td>{{ $apv->napro }}</td>
+                                                <td>{{ $apv->harga }}</td>
+                                                <td class="text-center">
+                                                    <span class="badge rounded-pill {{ (($apv->statusbayar == 'lunas') ? 'text-bg-success' : (($apv->statusbayar == 'lunas') ? 'text-bg-primary' : '')) }}">{{ $apv->statusbayar }}</span>
+                                                </td>
                                                 <td class="d-flex justify-content-evenly">
                                                     <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#paymentDetailModal{{ $apv->id }}"><i class="fa-solid fa-eye"></i></a>
                                                     <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
@@ -107,25 +111,6 @@
                         </div>
                     </div>
                 </div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-end mt-sm-3">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
             <!-- Confirm Payment Table End -->
             

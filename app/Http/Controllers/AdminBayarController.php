@@ -129,7 +129,7 @@ class AdminBayarController extends Controller
     public function disetujui() {
         $admin = User::where('role', 'admin')->first();
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-        $approved = Pembayaran::where('status', 'disetujui')->get();
+        $approved = Proreq::where('statusbayar', 'lunas')->get();
         return view('Admin.pembayaran-disetujui', compact('approved', 'admin', 'notification'));
     }
 
