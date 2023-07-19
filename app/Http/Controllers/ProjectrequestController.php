@@ -161,7 +161,7 @@ public function updateproreqa($id)
         $keyword = $request->searchKeyword;
         $notification = Notification::where('role', 'admin')->latest()->get();
         $admin = User::where('role', 'admin')->first();
-        $selesai = proreq::whereIn('status', ['selesai', 'revisi'])->where('napro', 'LIKE', '%'.$keyword.'%')->paginate(3);
+        $selesai = proreq::whereIn('status', ['selesai', 'pengajuan revisi'])->where('napro', 'LIKE', '%'.$keyword.'%')->paginate(3);
         return view('Admin.projectselesai', compact('selesai','admin','notification'));
     }
 
@@ -211,6 +211,15 @@ public function updateproreqa($id)
 
     public function savefitur(Request $request, $id)
     {
+        $this->validate($request,[
+            'namafitur' => 'required',
+            'biayatambahan' => 'required',
+            'deskripsi' => 'required',
+        ],[
+            'namafitur.required' => 'Fitur tidak boleh kosong',
+            'biayatambahan' => 'Biaya tidak boleh kosong',
+            'deskripsi' => 'Deskripsi tidak boleh kosong',
+        ]);
         $data = Proreq::findOrFail($id);
         $project_id = $data->id;
 

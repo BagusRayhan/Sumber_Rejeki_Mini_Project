@@ -25,7 +25,7 @@
         @include('Admin.templates.navbar')
 
         <div class="container-fluid pt-3 px-4">
-            <form action="{{ route('updateproreq-admin') }}" method="POST">
+            <form action="{{ route('updateproreq-admin', ['id' => $data->id]) }}" method="POST">
                 @csrf
                 <input type="hidden" name="project_id" value="{{ $data->id }}">
                 <div class="mb-3 d-flex justify-content-between">
@@ -129,7 +129,7 @@
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="fitur" >Harga Fitur</label>
-                                                                        <input type="text" name="hargafitur" value="{{ $f->hargafitur ?? $f->biayatambahan }}" class="form-control" id="hargafitur" placeholder="Masukkan Harga Fitur">
+                                                                        <input type="number" name="hargafitur" value="{{ $f->hargafitur ?? $f->biayatambahan }}" class="form-control" id="hargafitur" placeholder="Masukkan Harga Fitur">
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-3">
@@ -173,7 +173,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Harga Fitur</label>
-                                        <input type="text" name="biayatambahan" class="form-control" id="hargafitur" placeholder="Masukkan Harga">
+                                        <input type="number" name="biayatambahan" class="form-control" id="hargafitur" placeholder="Masukkan Harga">
                                     </div>
                                 </div>
                                 <div class="mb-3">
