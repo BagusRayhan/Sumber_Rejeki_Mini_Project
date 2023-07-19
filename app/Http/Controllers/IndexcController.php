@@ -161,6 +161,14 @@ class IndexcController extends Controller
 
     public function simpannn(Request $request, $id)
     {
+        $this->validate($request,[
+            'namafitur' => 'required',
+            'deskripsi' => 'required',
+        ],[
+            'namafitur.required' => 'Fitur tidak boleh kosong',
+            'deskripsi.required' => 'Deskripsi tidak boleh kosong',
+        ]);
+
         $sosmed = Sosmed::all();
         $data = Proreq::findOrFail($id);
         $project_id = $data->id;
