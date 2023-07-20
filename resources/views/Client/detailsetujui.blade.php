@@ -106,7 +106,7 @@ use \Carbon\Carbon;
                         } else {
                              progress = projectProgress;
                         }
-                                if (progress < 100) {
+                          if (progress < 100) {
                             progressBar.style.width = progress + '%';
                             progressBar.setAttribute('aria-valuenow', progress);
                             requestAnimationFrame(animateProgressBar);
