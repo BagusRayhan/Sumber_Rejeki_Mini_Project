@@ -24,7 +24,7 @@
 
       <div class="container mt-4 d-flex flex-column">
         <div class="wrapper">
-            <form action="{{ route('update-proreq', ['id' => $data->id]) }}" method="POST">
+            <form action="{{ route('update-proreq', ['id' => $data->id]) }}" id="setujuiProject" onsubmit="setujuiProject(event)" method="POST">
             <h5 class="px-3 mb-2">Request Project</h5>
             @csrf
             @method('PUT')
@@ -93,8 +93,26 @@
                         <button type="submit" class="btn btn-primary btn-sm">Setuju</button>
                     @endif
                 </div>
-
             </form>
+            <script>
+                function setujuiProject(event) {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: 'Ingin menyetujui project ini',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('setujuiProject').submit();
+                        }
+                    });
+                }
+            </script>
         </div>
         <div class="modal fade" id="myyModal{{ $data->id }}">
             <div class="modal-dialog modal-dialog-centered align-items-center">

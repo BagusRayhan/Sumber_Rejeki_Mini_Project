@@ -84,18 +84,22 @@ class ProjectrequestController extends Controller
         ], [
             'harga.required' => 'harga tidak boleh kosong!',
         ]);
-
         $proreg = Proreq::findOrFail($id);
-
         $proreg->harga = $request->input('harga');
         $proreg->update([
             'status' => null,
             'statusbayar' => 'menunggu pembayaran'
         ]);
-
-
         $proreg->save();
-
+        $msg = 'Project Disetujui';
+        $notifDesk = $proreg->napro.' disetujui admin';
+        Notification::create([
+            'role' => 'client',
+            'user_id' => $proreg->user_id,
+            'notif' => $msg,
+            'deskripsi' => $notifDesk,
+            'kategori' => 'Project Disetujui'
+        ]);
         return redirect()->route('projectreq');
     }
     

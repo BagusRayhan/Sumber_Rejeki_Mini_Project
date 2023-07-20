@@ -41,7 +41,7 @@
                     </div>
                     <div class="wrapper w-50 px-3 d-flex flex-column">
                         <div class="form-group mb-3">
-                            <label for="input3">Dokumen Pendukung</label>
+                            <label for="input3">Dokumen Pendukung (Opsional)</label>
                             <div class="wrapper d-flex">
                                 <input type="file" class="form-control" name="dokumen" id="input3">
                                 <button type="button" class="btn btn-block border" data-bs-toggle="modal" data-bs-target="#suppDocs"><i class="fa-solid fa-eye"></i></button>

@@ -126,7 +126,7 @@ class IndexcController extends Controller
 
  public function simpann(Request $request)
 {
-    $this->validate($request,[
+    $request->validate([
         'napro' => 'required',
         'deadline' => 'required',
     ], [

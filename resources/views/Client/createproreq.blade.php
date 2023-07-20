@@ -37,8 +37,8 @@
                                 @enderror
                                 <div class="form-group mb-3">
 
-                                    <label for="input2">Nama Project</label>
-                                    <input type="text" class="form-control" id="input2" name="napro" placeholder="Masukkan nama project anda">
+                                    <label for="napro">Nama Project</label>
+                                    <input type="text" value="{{ old('napro') }}" class="form-control" id="napro" name="napro" placeholder="Masukkan nama project anda">
                                 </div>
                                 @error('napro')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -53,8 +53,8 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                                 <div class="form-group mb-3">
-                                    <label for="input4">Deadline</label>
-                                    <input type="datetime-local" class="form-control" id="input4" name="deadline" placeholder="Input 4">
+                                    <label for="deadline">Deadline</label>
+                                    <input type="datetime-local" value="{{ old('deadline') }}" class="form-control" id="deadline" name="deadline" placeholder="Input 4">
                                 </div>
                                 @error('deadline')
                                 <div class="alert alert-danger">{{ $message }}</div>

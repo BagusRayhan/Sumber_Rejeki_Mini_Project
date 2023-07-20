@@ -71,10 +71,10 @@
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>Peta Situs</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Beranda</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Tentang Kami</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('kebijakan') }}">Kebijakan & Privasi</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('welcome') }}#hero">Beranda</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('welcome') }}#about">Tentang Kami</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('welcome') }}#services">Services</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Kebijakan & Privasi</a></li>
                         </ul>
                     </div>
 

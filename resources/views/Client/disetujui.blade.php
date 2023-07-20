@@ -50,7 +50,7 @@
                                     @foreach ($project as $pro)
                                         <tr>
                                             <td>{{ $pro->napro }}</td>
-                                            <td>{{ Carbon::parse($pro->estimasi)->diffForHumans() }}</td>
+                                            <td>{{ ($pro->estimasi == null) ? 'belum diatur' : Carbon::parse($pro->estimasi)->diffForHumans()}}</td>
                                             <td>{{ $pro->harga }}</td>
                                             <td class="d-flex justify-content-evenly">
                                                 <a href="/detailsetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
