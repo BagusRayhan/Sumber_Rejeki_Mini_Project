@@ -159,8 +159,8 @@
                                                                             <input type="text"class="form-control" value="{{ ($pro->metodepembayaran == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
                                                                         </div>
                                                                         <div class="mb-3" style="width: 12em">
-                                                                            <label class="mb-1">Layanan</label>
-                                                                            <input type="text"class="form-control" value="{{ $pro->metode }}" disabled>
+                                                                            <label class="mb-1">Biaya Awal</label>
+                                                                            <input type="text"class="form-control" value="{{ $pro->harga/2 }}" disabled>
                                                                         </div>
                                                                     </div>
                                                                     <div class="mb-3">
@@ -169,7 +169,7 @@
                                                                     </div>
                                                                     @else
                                                                         <div class="mb-3">
-                                                                            <p>Pembayaran dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                            <p>Pembayaran sebesar <b>{{ $pro->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                         </div>
                                                                     @endif
                                                                 @elseif ($pro->statusbayar == 'pembayaran akhir')
@@ -180,8 +180,8 @@
                                                                             <input type="text"class="form-control" value="{{ ($pro->metodepembayaran2 == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran2 == 'bank') ? 'Bank' : '') }}" disabled>
                                                                         </div>
                                                                         <div class="mb-3" style="width: 12em">
-                                                                            <label class="mb-1">Layanan</label>
-                                                                            <input type="text"class="form-control" value="{{ $pro->metode2 }}" disabled>
+                                                                            <label class="mb-1">Biaya Akhir</label>
+                                                                            <input type="text"class="form-control" value="{{ $pro->harga/2 }}" disabled>
                                                                         </div>
                                                                     </div>
                                                                     <div class="mb-3">
@@ -193,7 +193,7 @@
                                                                     </div>
                                                                     @else
                                                                         <div class="mb-3">
-                                                                            <p>Pembayaran dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                            <p>Pembayaran sebesar <b>{{ $pro->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                         </div>
                                                                         <div class="mb-1">
                                                                             <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailPembayaranAwal{{ $pro->id }}">Pembayaran Awal</button>
@@ -204,16 +204,16 @@
                                                                     <div class="wrapper d-flex justify-content-between">
                                                                         <div class="mb-3" style="width: 12em">
                                                                             <label class="mb-1">Metode Pembayaran</label>
-                                                                            <input type="text"class="form-control" value="{{ ($pro->metodepembayaran == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
+                                                                            <input type="text"class="form-control" value="{{ ($pro->metodepembayaran3 == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran3 == 'bank') ? 'Bank' : '') }}" disabled>
                                                                         </div>
                                                                         <div class="mb-3" style="width: 12em">
-                                                                            <label class="mb-1">Layanan</label>
-                                                                            <input type="text"class="form-control" value="{{ $pro->metode }}" disabled>
+                                                                            <label class="mb-1">Biaya Revisi</label>
+                                                                            <input type="text"class="form-control" value="{{ $pro->biayatambahan }}" disabled>
                                                                         </div>
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label class="mb-1">Bukti Pembayaran</label>
-                                                                        <img src="{{ asset('gambar/bukti/'.$pro->buktipembayaran) }}" class="w-100" alt="">
+                                                                        <img src="{{ asset('gambar/bukti/'.$pro->buktipembayaran3) }}" class="w-100" alt="">
                                                                     </div>
                                                                     <div class="mb-1 d-flex justify-content-between">
                                                                         <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $pro->id }}">Pembayaran Awal</button>
@@ -221,7 +221,7 @@
                                                                     </div>
                                                                     @else
                                                                         <div class="wrapper text-center">
-                                                                            <p>Pembayaran Dilakukan Secara Cash</p>
+                                                                            <p>Pembayaran sebesar <b>{{ $pro->harga/2 }}</b> dilakukan secara Cash</p>
                                                                         </div>
                                                                     @endif
                                                                 @endif
@@ -239,18 +239,14 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             @if ($pro->metodepembayaran !== 'cash')
-                                                            <div class="mb-3">
-                                                                <label for="">Biaya Awal</label>
-                                                                <input class="form-control" type="text" value="{{ $pro->harga }}" disabled>
-                                                            </div>
                                                             <div class="wrapper d-flex justify-content-between">
                                                                 <div class="mb-3" style="width: 12em">
                                                                     <label class="mb-1">Metode Pembayaran</label>
                                                                     <input type="text"class="form-control" value="{{ ($pro->metodepembayaran == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
                                                                 </div>
                                                                 <div class="mb-3" style="width: 12em">
-                                                                    <label class="mb-1">Layanan</label>
-                                                                    <input type="text"class="form-control" value="{{ $pro->metode }}" disabled>
+                                                                    <label class="mb-1">Biaya Awal</label>
+                                                                    <input type="text"class="form-control" value="{{ $pro->harga/2 }}" disabled>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3">
@@ -262,7 +258,7 @@
                                                             </div>
                                                             @else
                                                                 <div class="mb-3">
-                                                                    <p>Pembayaran dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                    <p>Pembayaran sebesar <b>{{ $pro->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                 </div>
                                                                 <div class="mb-1">
                                                                     <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>
@@ -281,18 +277,14 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             @if ($pro->metodepembayaran !== 'cash')
-                                                            <div class="mb-3">
-                                                                <label for="">Biaya Awal</label>
-                                                                <input class="form-control" type="text" value="{{ $pro->harga }}" disabled>
-                                                            </div>
                                                             <div class="wrapper d-flex justify-content-between">
                                                                 <div class="mb-3" style="width: 12em">
                                                                     <label class="mb-1">Metode Pembayaran</label>
                                                                     <input type="text"class="form-control" value="{{ ($pro->metodepembayaran == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
                                                                 </div>
                                                                 <div class="mb-3" style="width: 12em">
-                                                                    <label class="mb-1">Layanan</label>
-                                                                    <input type="text"class="form-control" value="{{ $pro->metode }}" disabled>
+                                                                    <label class="mb-1">Biaya Awal</label>
+                                                                    <input type="text"class="form-control" value="{{ $pro->harga/2 }}" disabled>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3">
@@ -304,7 +296,7 @@
                                                             </div>
                                                             @else
                                                                 <div class="mb-3">
-                                                                    <p>Pembayaran dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                    <p>Pembayaran sebesar <b>{{ $pro->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                 </div>
                                                                 <div class="mb-1">
                                                                     <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>
@@ -322,19 +314,15 @@
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            @if ($pro->metodepembayaran !== 'cash')
-                                                            <div class="mb-3">
-                                                                <label for="">Biaya Akhir</label>
-                                                                <input class="form-control" type="text" value="{{ $pro->harga }}" disabled>
-                                                            </div>
+                                                            @if ($pro->metodepembayaran2 !== 'cash')
                                                             <div class="wrapper d-flex justify-content-between">
                                                                 <div class="mb-3" style="width: 12em">
                                                                     <label class="mb-1">Metode Pembayaran</label>
                                                                     <input type="text"class="form-control" value="{{ ($pro->metodepembayaran2 == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
                                                                 </div>
                                                                 <div class="mb-3" style="width: 12em">
-                                                                    <label class="mb-1">Layanan</label>
-                                                                    <input type="text"class="form-control" value="{{ $pro->metode2 }}" disabled>
+                                                                    <label class="mb-1">Biaya Akhir</label>
+                                                                    <input type="text"class="form-control" value="{{ $pro->harga/2 }}" disabled>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3">
@@ -346,7 +334,7 @@
                                                             </div>
                                                             @else
                                                                 <div class="mb-3">
-                                                                    <p>Pembayaran dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                    <p>Pembayaran sebesar <b>{{ $pro->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                 </div>
                                                                 <div class="mb-1">
                                                                     <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>

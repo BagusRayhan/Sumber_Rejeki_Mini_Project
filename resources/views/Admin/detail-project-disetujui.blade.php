@@ -161,98 +161,133 @@
                                         </tbody>
                                     </table>
                                     @else
-                                    <label for="customRange1" class="form-label">Masukkan progres</label>
-                                    <input type="range" class="form-range" id="customRange1" name="progress" data-feature-id="{{ $detail->id }}" min="1" max="100">                             
-                            @endif
-                            <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>                                                                                                                                                 
-                        </div>
-                    </div>
-                </div>
-                    <script>
-    // Memperbarui nilai progress setiap 5 detik
-    setInterval(updateProgressBar, 5);
+                                    <form action="{{ route('save.progress') }}" method="post">
+                                        @csrf <!-- Add CSRF token here -->
+                                        <label for="customRange1" class="form-label">Masukkan progres</label>
+                                        <input type="range" class="form-range" id="customRange1" name="progress" value="{{ $detail->progress }}" data-feature-id="{{ $detail->id }}" min="1" max="100">
+                                        <button type="submit" class="btn btn-primary" id="projectDoneBtn" style="float: right;">Simpan Progres</button>
+                                    </form>
+                                    <script>
+                                    var projectDoneBtn = document.getElementById('projectDoneBtn');
+                                    var inputRange = document.getElementById('customRange1');
 
-    window.addEventListener('load', function() {
-        var savedProgress = localStorage.getItem('progress');
-        if (savedProgress) {
-            var progressBar = document.getElementById('progress-bar');
-            progressBar.style.width = savedProgress + '%';
-            progressBar.setAttribute('aria-valuenow', savedProgress);
-            progressBar.innerText = savedProgress + '%';
-        }
-    }); 
+                                    projectDoneBtn.addEventListener('click', function() {
+                                        var featureId = inputRange.getAttribute('data-feature-id');
+                                        var progress = inputRange.value;
 
-            function updateProgressBar() {
-                var checkboxes = document.querySelectorAll('.child-checkbox');
-                var progressBar = document.getElementById('progress-bar');
-                var progress = 0;
-                
-                checkboxes.forEach(function(checkbox) {
-                    if (checkbox.checked) {
-                        progress++;
-                    }
-                });
-        
-        var totalFeatures = checkboxes.length;
+                                        fetch('{{ route("save.progress") }}', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                            },
+                                            body: JSON.stringify({
+                                                featureId: featureId,
+                                                progress: progress
+                                            })
+                                        })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            // Tanggapan dari server
+                                            console.log(data);
+                                        })
+                                        .catch(error => {
+                                            // Tangani kesalahan
+                                            console.error(error);
+                                        });
+                                    });
+                                </script>
 
-        progressBar.style.width = (progress / totalFeatures * 100) + '%';
-        progressBar.setAttribute('aria-valuenow', progress);
+                                                            
+                                                            @endif
+                                                            <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>                                                                                                                                                 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                    <script>
+                                    setInterval(updateProgressBar, 5);
 
-        localStorage.setItem('progress', progress);
-        localStorage.setItem('totalFeatures', totalFeatures);
-    }
+                                    window.addEventListener('load', function() {
+                                        var savedProgress = localStorage.getItem('progress');
+                                        if (savedProgress) {
+                                            var progressBar = document.getElementById('progress-bar');
+                                            progressBar.style.width = savedProgress + '%';
+                                            progressBar.setAttribute('aria-valuenow', savedProgress);
+                                            progressBar.innerText = savedProgress + '%';
+                                        }
+                                    }); 
 
-    var checkboxes = document.querySelectorAll('.child-checkbox');
-    checkboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            updateProgressBar();
-        });
-    });
+                                            function updateProgressBar() {
+                                                var checkboxes = document.querySelectorAll('.child-checkbox');
+                                                var progressBar = document.getElementById('progress-bar');
+                                                var progress = 0;
+                                                
+                                                checkboxes.forEach(function(checkbox) {
+                                                    if (checkbox.checked) {
+                                                        progress++;
+                                                    }
+                                                });
+                                        
+                                        var totalFeatures = checkboxes.length;
 
-        function saveCheckboxStatus(checkboxId) {
-        const checkbox = document.getElementById(checkboxId);
-        localStorage.setItem(checkboxId, checkbox.checked);
-    }
+                                        progressBar.style.width = (progress / totalFeatures * 100) + '%';
+                                        progressBar.setAttribute('aria-valuenow', progress);
 
-    function loadCheckboxStatus(checkboxId) {
-        const checkbox = document.getElementById(checkboxId);
-        const status = localStorage.getItem(checkboxId);
+                                        localStorage.setItem('progress', progress);
+                                        localStorage.setItem('totalFeatures', totalFeatures);
+                                    }
 
-        if (status === "true") {
-            checkbox.checked = true;
-        }
-    }
-        window.addEventListener('load', function() {
-        loadCheckboxStatus('masterCheckbox');
+                                    var checkboxes = document.querySelectorAll('.child-checkbox');
+                                    checkboxes.forEach(function(checkbox) {
+                                        checkbox.addEventListener('change', function() {
+                                            updateProgressBar();
+                                        });
+                                    });
 
-        @foreach ($fitur as $f)
-            loadCheckboxStatus('checkFitur{{ $f->id }}');
-        @endforeach
-    });
+                                        function saveCheckboxStatus(checkboxId) {
+                                        const checkbox = document.getElementById(checkboxId);
+                                        localStorage.setItem(checkboxId, checkbox.checked);
+                                    }
 
-    function updateStatus(featureId) {
-        const checkbox = document.getElementById(`checkFitur${featureId}`);
-        const status = checkbox.checked ? 'selesai' : 'belum selesai';
+                                    function loadCheckboxStatus(checkboxId) {
+                                        const checkbox = document.getElementById(checkboxId);
+                                        const status = localStorage.getItem(checkboxId);
 
-        fetch(`/update-status-fitur/${featureId}`, {
-            method: 'PUT',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}', 
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                status: status,
-            }),
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data.message);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    }
-</script>
+                                        if (status === "true") {
+                                            checkbox.checked = true;
+                                        }
+                                    }
+                                        window.addEventListener('load', function() {
+                                        loadCheckboxStatus('masterCheckbox');
+
+                                        @foreach ($fitur as $f)
+                                            loadCheckboxStatus('checkFitur{{ $f->id }}');
+                                        @endforeach
+                                    });
+
+                                    function updateStatus(featureId) {
+                                        const checkbox = document.getElementById(`checkFitur${featureId}`);
+                                        const status = checkbox.checked ? 'selesai' : 'belum selesai';
+
+                                        fetch(`/update-status-fitur/${featureId}`, {
+                                            method: 'PUT',
+                                            headers: {
+                                                'X-CSRF-TOKEN': '{{ csrf_token() }}', 
+                                                'Content-Type': 'application/json',
+                                            },
+                                            body: JSON.stringify({
+                                                status: status,
+                                            }),
+                                        })
+                                        .then((response) => response.json())
+                                        .then((data) => {
+                                            console.log(data.message);
+                                        })
+                                        .catch((error) => {
+                                            console.error('Error:', error);
+                                        });
+                                    }
+                                </script>
 
                 <div class="my-3 d-flex justify-content-between" style="width: 16em">
                     <a href="/project-disetujui" class="btn btn-secondary btn-sm p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>

@@ -33,6 +33,7 @@
                     <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
                     <li><a class="nav-link scrollto" href="#about">Tentang Kami</a></li>
                     <li><a class="nav-link scrollto" href="#services">Services</a></li>
+                    <li><a class="nav-link scrollto" href="{{ route('login') }}">Login</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -160,9 +161,9 @@
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>Peta Situs</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Beranda</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Tentang Kami</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#hero">Beranda</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#about">Tentang Kami</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#services">Services</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="{{ route('kebijakan') }}">Kebijakan & Privasi</a></li>
                         </ul>
                     </div>

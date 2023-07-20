@@ -93,7 +93,7 @@
                                                 <div class="bg-light rounded h-100 p-10">
                                                     <div class="pg-bar mb-3">
                                                         <div class="wrapper">
-                                                            <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($estimasisetuju->progress) }}%</span></h6>
+                                                            <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($progress) }}%</span></h6>
                                                             <div class="pg-bar">
                                                                 <div class="progress">
                                                                     <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ $estimasisetuju->progress }}%"></div>
@@ -133,7 +133,7 @@
                                         <h6 class="mb-0">{{ $pesan->user->name }}</h6>
                                         <small>{{ Carbon::parse($pesan->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
                                         </div>
-                                        <span>{{ $pesan->chat }}</span>
+                             <span>{{ $pesan->chat }}</span>
                         </div>
                         </a>
                 </div>

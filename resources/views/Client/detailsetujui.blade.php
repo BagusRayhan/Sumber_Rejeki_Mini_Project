@@ -74,8 +74,8 @@ use \Carbon\Carbon;
                          <input type="text" value="{{ isset($detail->biayatambahan) ? (float)$detail->harga + (float)$detail->biayatambahan : $detail->harga }}"  class="form-control" placeholder="" disabled>
                     </div>
                 </div>
-                 <div class="wrapper mt-5">
-                    <h6>Progress Project <span class="badge bg-primary mb-1" >{{ round($progress) }} %</span></h6>
+                <div class="wrapper mt-5">
+                    <h6>Progress Project <span class="badge bg-primary mb-1">{{ $detail->progress ? $detail->progress : round($progress) }} %</span></h6>
                     <div class="pg-bar">
                         <div class="progress">
                             <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
@@ -87,6 +87,7 @@ use \Carbon\Carbon;
                     var totalFeatures = {{ count($fitur) }};
                     var completedFeatures = 0;
                     var progress = 0;
+                    var projectProgress = {{ $detail->progress ?? 0 }}; 
 
                     @foreach ($fitur as $f)
                         @if ($f->status == 'selesai')
@@ -95,13 +96,22 @@ use \Carbon\Carbon;
                     @endforeach
 
                     function animateProgressBar() {
+                        if (completedFeatures > 0) {
                         if (progress < (completedFeatures / totalFeatures) * 100) {
                             progress += 1; 
                             progressBar.style.width = progress + '%';
                             progressBar.setAttribute('aria-valuenow', progress);
                             requestAnimationFrame(animateProgressBar);
                         }
-                    }
+                        } else {
+                             progress = projectProgress;
+                        }
+                                if (progress < 100) {
+                            progressBar.style.width = progress + '%';
+                            progressBar.setAttribute('aria-valuenow', progress);
+                            requestAnimationFrame(animateProgressBar);
+                        }
+                                    }
 
                     animateProgressBar();
                 </script>
