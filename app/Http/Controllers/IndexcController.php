@@ -58,7 +58,7 @@ class IndexcController extends Controller
 
     public function notifRedirectClient($id) {
         $notif = Notification::findOrFail($id);
-        if ($notif->kategori == 'Project Disetujui') {
+        if ($notif->kategori == 'Project Disetujui' || 'Pembayaran Awal Ditolak' || 'Pembayaran Revisi Disetujui') {
             $notif->delete();
             return redirect()->route('bayarclient');
         } elseif ($notif->kategori == 'Project Ditolak') {
@@ -67,18 +67,12 @@ class IndexcController extends Controller
         } elseif ($notif->kategori == 'Pembayaran Awal Disetujui') {
             $notif->delete();
             return redirect()->route('setujuclient');
-        } elseif ($notif->kategori == 'Pembayaran Awal Ditolak') {
-            $notif->delete();
-            return redirect()->route('bayarclient');
-        } elseif ($notif->kategori == 'Project Selesai') {
+        } elseif ($notif->kategori == 'Project Selesai' || 'Pembayaran Akhir Ditolak' || 'Pembayaran Revisi Disetujui') {
             $notif->delete();
             return redirect()->route('bayar2client');
         } elseif ($notif->kategori == 'Pembayaran Akhir Disetujui') {
             $notif->delete();
             return redirect()->route('selesaiclient');
-        } elseif ($notif->kategori == 'Pembayaran Akhir Ditolak') {
-            $notif->delete();
-            return redirect()->route('bayar2client');
         } elseif ($notif->kategori == 'Project Direvisi') {
             $notif->delete();
             return redirect()->route('revisiclient');

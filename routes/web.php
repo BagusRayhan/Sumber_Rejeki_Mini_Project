@@ -35,13 +35,13 @@ use App\Models\FAQ;
 
 // Login Register
 
-Route::get('/welcome', function() {
+Route::get('/', function() {
     $sosmed = Sosmed::all();
     $about = aboutproreq::find(1);
     $faqs = FAQ::all();
     return view('welcome', compact('sosmed','faqs','about'));
 })->name('welcome');
-Route::get('/', [AuthController::class, 'index'])->name('login');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('postlogin', [AuthController::class, 'login'])->name('postlogin');
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('postsignup', [AuthController::class, 'signupsave'])->name('postsignup');
