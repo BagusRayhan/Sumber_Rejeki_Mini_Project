@@ -214,6 +214,16 @@ public function updateproreqa($id)
         $proreq->statusbayar = null;
         $proreq->save();
 
+        $msg = 'Project Direvisi';
+        $notifDesk = $proreq->napro.' diubah oleh admin';
+        Notification::create([
+            'role' => 'client',
+            'user_id' => $proreq->user_id,
+            'notif' => $msg,
+            'deskripsi' => $notifDesk,
+            'kategori' => 'Project Direvisi'
+        ]);
+
         return redirect()->route('projectselesai')->with('success', 'Berhasil mengajukan perubahan');
     }
 
