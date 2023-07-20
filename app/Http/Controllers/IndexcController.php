@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 
 class IndexcController extends Controller
 {
@@ -24,13 +25,21 @@ class IndexcController extends Controller
         $selesaiCounter = Proreq::where('status', 'selesai')->where('user_id', Auth::user()->id)->count();
         $notifikasi = Proreq::all();
         $estimasi = Proreq::where('status','setuju')->where('user_id', Auth::user()->id)->get();
-
-
         $notif = Chat::all();
+        $fitur = Fitur::where('project_id', )->get();
+        $done = Fitur::where('project_id',)->where('status', 'selesai')->count();
+            $progress = 0;
+    if (count($fitur) > 0) {
+        $progress = (100 / count($fitur)) * $done;
+    }
+
+        // $pesancht = Chat::whereHas('user', function($query) {
+        // $query->where('role', 'admin');
+        // })->limit(4)->latest()->get();
 
         $pesancht = Chat::whereHas('user', function($query) {
-        $query->where('role', 'admin')->where('user_id', Auth::user()->id);
-        })->limit(4)->latest()->get();
+            $query->where('role', 'admin');
+            })->limit(4)->latest()->get();
 
         // $pesancht = Proreq::query()
         // ->whereHas('projectchat')
@@ -52,7 +61,9 @@ class IndexcController extends Controller
             'notif' => $notif,
             'pesancht' => $pesancht,
             'sosmed' => $sosmed,
-            'client' => $client
+            'client' => $client,
+            'progress' => $progress,
+            'fitur' => $fitur
         ]);
     }
 
@@ -252,16 +263,44 @@ public function updateFitur(Request $request, $id)
 
     return back();
 }
+
+
+
 public function updateProfile(Request $request)
 {
-    $updateProfile = [];
     $client = User::find(Auth::user()->id);
 
-    if ($request->has('fileInputA')) {
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255|unique:users,email,' . $client->id,
+        'fileInputA' => 'image|mimes:jpeg,jpg,png|max:2048',
+    ], [
+        'name.required' => 'Nama harus diisi.',
+        'email.required' => 'Email harus diisi.',
+        'email.email' => 'Email harus berupa alamat email yang valid.',
+        'email.unique' => 'Email sudah digunakan oleh pengguna lain.',
+        'fileInputA.image' => 'Profil harus berupa format jpg jpeg png',
+        'fileInputA.mimes' => '',
+        'fileInputA.max' => 'Ukuran gambar profil tidak boleh melebihi 2 MB.',
+    ]);
+
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+    $updateProfile = [
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'no_tlp' => $request->input('no_tlp'),
+        'nama_perusahaan' => $request->input('nama_perusahaan'),
+        'alamat_perusahaan' => $request->input('alamat_perusahaan'),
+    ];
+
+    if ($request->hasFile('fileInputA')) {
         $oldProfile = $client->profil;
 
         if ($oldProfile !== 'user.jpg') {
-
             File::delete(public_path('gambar/user-profile/' . $oldProfile));
         }
 
@@ -270,12 +309,6 @@ public function updateProfile(Request $request)
         $file->move(public_path('gambar/user-profile/'), $newFile);
         $updateProfile['profil'] = $newFile;
     }
-
-    $updateProfile['name'] = $request->input('name');
-    $updateProfile['email'] = $request->input('email');
-    $updateProfile['no_tlp'] = $request->input('no_tlp');
-    $updateProfile['nama_perusahaan'] = $request->input('nama_perusahaan');
-    $updateProfile['alamat_perusahaan'] = $request->input('alamat_perusahaan');
 
     $client->update($updateProfile);
 
