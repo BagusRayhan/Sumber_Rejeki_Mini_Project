@@ -114,7 +114,7 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="" class="form-label">Harga Fitur</label>
-                                                                    <input type="text" class="form-control" value="{{ isset($data->biayatambahan) ? $data->harga + $data->biayatambahan : $data->harga }}" disabled>
+                                                                    <input type="text" class="form-control" value="{{ isset($f->biayatambahan) ? $f->harga + $f->biayatambahan : $f->harga }}" disabled>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-2">
