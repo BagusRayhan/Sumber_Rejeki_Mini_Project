@@ -22,7 +22,10 @@
             lengthChange: false,
             processing: false,
             serverSide: false,
-            info: false
+            info: false,
+            language: {
+                emptyTable: "Tidak ada data"
+            }
         });
     });
     </script>

@@ -39,7 +39,7 @@
                 <div class="row mt-1">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table class="table" id="data-table">
+                            <table class="table table-striped" id="data-table">
                                 <thead>
                                     <tr>
                                         <th scope="col">Nama Client</th>
