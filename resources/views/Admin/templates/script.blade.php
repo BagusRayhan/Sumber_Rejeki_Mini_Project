@@ -13,7 +13,7 @@
     <script src="{{ asset('js/main.js') }}"></script>
     @include('sweetalert::alert')
 
-    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.5/datatables.min.js"></script>                        
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.5/datatables.min.js"></script>
     <script>
     $(function () {
         $('#data-table').DataTable({
@@ -36,11 +36,11 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-    
+
         function statusFitur(checkbox) {
             var fiturId = $(checkbox).data('fiturid');
             var status = checkbox.checked ? 'selesai' : 'belum selesai';
-    
+
             $.ajax({
                 url: "{{ route('status-fitur') }}",
                 type: 'POST',
@@ -53,7 +53,7 @@
                 }
             });
         }
-    
+
         function doneAllFeatures(id) {
             var doneBtn = document.getElementById('projectDoneBtn');
             var fitur = document.getElementById('masterCheckbox');
@@ -62,12 +62,12 @@
             } else {
                 doneBtn.disabled = true;
             }
-            
+
             var checkboxes = document.getElementsByClassName('child-checkbox');
             for (var i = 0; i < checkboxes.length; i++) {
                 checkboxes[i].checked = fitur.checked;
             }
-    
+
             var status = fitur.checked ? 'selesai' : 'belum selesai';
             $.ajax({
                 url: "{{ route('all-status-fitur') }}",
@@ -82,4 +82,4 @@
             });
         }
     </script>
-    
+

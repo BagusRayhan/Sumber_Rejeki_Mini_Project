@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-<head>
+{{--  Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT  --}}
+{{--  <!-- Added by HTTrack -->  --}}
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+{{--  <!-- /Added by HTTrack -->  --}}
 @include('Client.Template.head')
 </head>
 
@@ -21,7 +22,7 @@
         <div class="content">
         @include('Client.Template.navbar')
 
-        
+
         <div class="container-fluid pt-3 px-4">
             <div class="mb-3 d-flex justify-content-between">
                 <div class="form-group" style="width:480px">
@@ -131,17 +132,56 @@
                 </div>
             </div>
             <div class="my-3 mx-1 d-flex justify-content-between" style="width: 10em">
-                <form action="{{ route('reject-revision') }}" id="rejectRevision" onsubmit="rejectRevision(event)" method="post">
-                    @csrf
-                    <input type="hidden" name="project_id" value="{{ $data->id }}">
-                    <button class="btn btn-danger btn-sm" name="submit" type="submit"><i class="fa-solid fa-circle-xmark"></i> Tolak</button>
-                </form>
-                <form action="{{ route('accept-revision') }}" id="acceptRevision" onsubmit="acceptRevision(event)" method="post">
-                    @csrf
-                    <input type="hidden" name="project_id" value="{{ $data->id }}">
-                    <button class="btn btn-primary btn-sm" name="submit" type="submit"><i class="fa-solid fa-circle-check"></i> Setuju</button>
-                </form>
-                {{-- <script>
+                <div class="my-3 mx-1 d-flex justify-content-between" style="width: 10em">
+                    <form action="{{ route('reject-revision') }}" id="rejectRevisionForm" method="post">
+                        @csrf
+                        <input type="hidden" name="project_id" value="{{ $data->id }}">
+                        <button class="btn btn-danger btn-sm" name="submit()" type="button" onclick="confirmRejectRevision()"><i class="fa-solid fa-circle-xmark"></i> Tolak</button>
+                    </form>
+                    <form action="{{ route('accept-revision') }}" id="acceptRevisionForm" method="post">
+                        @csrf
+                        <input type="hidden" name="project_id" value="{{ $data->id }}">
+                        <button class="btn btn-primary btn-sm" name="submit()" type="button" onclick="confirmAcceptRevision()"><i class="fa-solid fa-circle-check"></i> Setuju</button>
+                    </form>
+                </div>
+
+                <script>
+                    function confirmRejectRevision() {
+                        Swal.fire({
+                            title: 'Apakah Anda yakin',
+                            text: 'Ingin Menolak Revisi?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById('rejectRevisionForm').submit();
+                            }
+                        });
+                    }
+
+                    function confirmAcceptRevision() {
+                        Swal.fire({
+                            title: 'Apakah Anda yakin',
+                            text: 'Ingin Menyutujui Revisi?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById('acceptRevisionForm').submit();
+                            }
+                        });
+                    }
+                </script>
+
+               {{-- <script>
                     function acceptRevision(event) {
                         event.preventDefault();
                         Swal.fire({
@@ -157,7 +197,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 document.getElementById('acceptRevision').submit();
-                            }  
+                            }
                         })
                     }
                     function rejectRevision(event) {
@@ -178,7 +218,7 @@
                             }
                         })
                     }
-                </script> --}}
+                </script>--}}
             </div>
             @include('Client.Template.footer')
         </div>

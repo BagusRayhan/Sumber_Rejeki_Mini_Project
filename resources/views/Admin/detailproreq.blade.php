@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+     {{--  Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT  --}}
+{{--  <!-- Added by HTTrack -->  --}}
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+{{--  <!-- /Added by HTTrack -->  --}}
 <head>
     @include('Admin.templates.head')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 </head>
 
 <body>
@@ -87,14 +89,42 @@
                 <div class="wrapper d-flex justify-content-between px-3" style="width: 14em;">
                     <a href="{{ route('projectreq') }}" type="button" class="btn btn-secondary btn-sm">Kembali</a>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myyModal{{ $data->id }}">Tolak</button>
-                    @if ( count($dataa) == 0 )
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#hargaDocs{{ $data->id }}" class="btn btn-primary btn-sm">Setuju</button>
-                    @else 
-                        <button type="submit" class="btn btn-primary btn-sm">Setuju</button>
-                    @endif
+                    @if ($data->dokumen == null && count($dataa) !== 0)
+                    <button type="button" onclick="sendRequest(event)" class="btn btn-primary btn-sm">Setuju</button>
+                @elseif (count($dataa) == 0)
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#hargaDocs{{ $data->id }}" class="btn btn-primary btn-sm">Setuju</button>
+                @elseif (count($dataa) !== 0 && $data->dokumen !== null)
+                    <button type="submit" onclick="sendRequest(event)" class="btn btn-info btn-sm">Setuju</button>
+                @endif
+
+
                 </div>
 
-            </form>
+                </form>
+                <script>
+                    function sendRequest(event) {
+                        event.preventDefault();
+                        Swal.fire({
+                            title: 'Apakah Anda yakin',
+                            text: 'Ingin Menyutujui?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                var form = event.target.form;
+                                if (form) {
+                                    form.submit();
+                                } else {
+                                    console.error('Form tidak ditemukan.');
+                                }
+                            }
+                        });
+                    }
+                </script>
         </div>
         <div class="modal fade" id="myyModal{{ $data->id }}">
             <div class="modal-dialog modal-dialog-centered align-items-center">
