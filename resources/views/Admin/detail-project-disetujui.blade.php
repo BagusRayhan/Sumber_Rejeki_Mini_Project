@@ -67,7 +67,7 @@
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                        <input type="text" value="{{ $detail->harga }}" class="form-control" placeholder="" disabled>
+                        <input type="text"  <input type="text" value="{{ isset($detail->biayatambahan) ? (float)$detail->harga + (float)$detail->biayatambahan : $detail->harga }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
                 <div class="wrapper">
@@ -118,7 +118,13 @@
                                                  </div>
                                                 </td>
                                                 <td>{{ $f->namafitur }}</td>
-                                                <td>{{ $f->hargafitur }}</td>
+                                                <td>
+                                                    @if(@isset($f->biayatambahan))
+                                                    {{ $f->biayatambahan }}
+                                                    @else
+                                                    {{ $f->hargafitur }}
+                                                    @endif
+                                                </td>
                                                 <td class="d-flex justify-content-evenly">
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#detailFitur{{ $f->id }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></button>
                                                 </td>

@@ -115,8 +115,8 @@ class SelesaiController extends Controller
         public function acceptRevision(Request $request) {
             $pro = Proreq::find($request->project_id);
             $pro->update([
-                'status' => null,
-                'statusbayar' => 'belum lunas'
+                'status' => 'setuju',
+                'statusbayar' => null
             ]);
             return redirect()->route('selesaiclient')->with('success', 'Berhasil');
         }

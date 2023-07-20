@@ -56,7 +56,13 @@
                                 <tr>
                                     <td>{{ $item->napro }}</td>
                                     <td><span class="badge text-bg-warning">{{ $item->status }}</span></td>
-                                    <td><center>{{ $item->harga }}</center></td>
+                                    <td><center>
+                                        @if(isset($item->biayatambahan))
+                                            {{ $item->harga + $item->biayatambahan }}
+                                        @else
+                                            {{ $item->harga }}
+                                        @endif
+                                    </center></td>
                                     <td class="d-flex justify-content-evenly">
                                      <a href="{{ url('detail-revisi-client', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a></center>
                                     </td>

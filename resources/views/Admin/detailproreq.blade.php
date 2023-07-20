@@ -131,7 +131,7 @@
                         @csrf
                         @method('PUT')
                         <div class="mb-2">
-                            <input type="text" name="harga" id="hargaProject" class="form-control mb-2 input-hargafitur" value="{{ $data->harga }}" aria-describedby="basic-addon1">
+                            <input type="number" name="harga" id="hargaProject" class="form-control mb-2 input-hargafitur" value="{{ $data->harga }}" aria-describedby="basic-addon1">
                             <p style="font-size: 13px; opacity: .8">Masukkan harga project berdasarkan isi dokumen</p>
                         </div>
                     </div>
@@ -188,7 +188,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="" class="form-label">Harga Fitur</label>
-                                                    <input type="text" name="hargafitur" class="form-control input-hargafitur" value="{{ $fitur->hargafitur }}">
+                                                    <input type="number" name="hargafitur" class="form-control input-hargafitur" value="{{ $fitur->hargafitur }}">
                                                 </div>
                                             </div>
                                             <div class="mb-2">
