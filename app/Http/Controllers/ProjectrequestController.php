@@ -132,7 +132,7 @@ public function alasantolak(Request $request)
         'kategori' => 'Project Ditolak'
     ]);
 
-    return redirect()->route('projectreq')->with('sukses', 'Project berhasil ditolak');
+    return redirect()->route('projectreq')->with('success', 'Project berhasil ditolak');
 }
 
 public function updateproreqa($id)
