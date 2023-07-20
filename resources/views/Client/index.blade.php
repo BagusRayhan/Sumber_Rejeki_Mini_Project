@@ -7,6 +7,7 @@
 
 <head>
     @include('Client.Template.head')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -110,7 +111,6 @@
                                                            </div>
                                                        </div>
                                                    </div>
-
                                                     @endif
                                                         <script>
                                                                 var progressBar = document.getElementById('progress-bar');

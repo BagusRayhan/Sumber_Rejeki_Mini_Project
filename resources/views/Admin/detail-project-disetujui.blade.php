@@ -175,7 +175,6 @@
                                         var featureId = inputRange.getAttribute('data-feature-id');
                                         var progress = inputRange.value;
 
-                                        // Kirim nilai progres ke server (misalnya menggunakan fetch)
                                         fetch('{{ route("save.progress") }}', {
                                             method: 'POST',
                                             headers: {
@@ -205,7 +204,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                        <script>
+                                                    <script>
                                     setInterval(updateProgressBar, 5);
 
                                     window.addEventListener('load', function() {
