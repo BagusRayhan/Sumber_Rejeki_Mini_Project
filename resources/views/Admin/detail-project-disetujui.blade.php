@@ -93,14 +93,14 @@
                                                     type="checkbox" value=""
                                                     id="masterCheckbox"
                                                     {{ (count($fitur) == $done) ? 'checked' : '' }}>
-                                        </div>
-                                        </th>
-                                        <th scope="col">Nama Fitur</th>
-                                        <th scope="col">Harga Fitur</th>
-                                        <th scope="col" class="text-center">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                                    </div>
+                                                    </th>
+                                                    <th scope="col">Nama Fitur</th>
+                                                    <th scope="col">Harga Fitur</th>
+                                                    <th scope="col" class="text-center">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                         @foreach ($fitur as $f)
                                             <tr>
                                                 <td class="text-center">
@@ -184,11 +184,9 @@
                                         })
                                         .then(response => response.json())
                                         .then(data => {
-                                            // Tanggapan dari server
                                             console.log(data);
                                         })
                                         .catch(error => {
-                                            // Tangani kesalahan
                                             console.error(error);
                                         });
                                     });
@@ -200,7 +198,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                    <script>
+                                                        <script>
                                     setInterval(updateProgressBar, 5);
 
                                     window.addEventListener('load', function() {

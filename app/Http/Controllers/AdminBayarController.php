@@ -51,6 +51,7 @@ class AdminBayarController extends Controller
         } elseif ($project->statusbayar === 'pembayaran revisi') {
             $project->status = 'selesai';
             $project->statusbayar = 'lunas';
+            $project->metode3 = null;
             $msg = 'Pembayaran Revisi Disetujui';
             $notifDesk = $project->napro;
             Notification::create([

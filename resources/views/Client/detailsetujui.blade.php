@@ -80,6 +80,7 @@ use \Carbon\Carbon;
                         </div>
                     </div>
                 </div>
+                
                 <script>
                     var progressBar = document.getElementById('progress-bar');
                     var totalFeatures = {{ count($fitur) }};

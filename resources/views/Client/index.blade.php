@@ -92,14 +92,13 @@
                                             <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
                                                 <div class="bg-light rounded h-100 p-10">
                                                     <div class="pg-bar mb-3">
-                                                       @if($estimasisetuju->progress == null)
-                                                       <div class="wrapper">
-                                                                <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($progress) }} %</span></h6>
-                                                                <div class="pg-bar">
-                                                                    <div class="progress">
-                                                                        <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                                                                    </div>
-                                                                </div>
+                                                @if ($estimasisetuju->progress == null)
+                                                    <div class="wrapper">
+                                                        <h6>Progress Project</h6>
+                                                        <div class="pg-bar">
+                                                            <div class="progress">
+                                                                <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ $progress }}%"></div>
+                                                            </div>
                                                         </div>
                                                        @else
                                                        <div class="wrapper mt-3">
@@ -118,12 +117,11 @@
                                                                 var completedFeatures = 0;
                                                                 var progress = 0;
                                                                 var projectProgress = {{ $detail->progress ?? 0 }};
-
-                                                                @foreach ($fitur as $f)
-                                                                    @if ($f->status == 'selesai')
-                                                                        completedFeatures++;
-                                                                    @endif
-                                                                @endforeach
+                                                        @foreach ($fitur as $f)
+                                                        @if ($f->proreq && $f->proreq->status == 'selesai' && $f->project_id == $client->id)
+                                                            completedFeatures++;
+                                                        @endif
+                                                        @endforeach
 
                                                                 function animateProgressBar() {
                                                                     if (completedFeatures > 0) {
@@ -145,6 +143,7 @@
 
                                                                 animateProgressBar();
                                                             </script>
+
 
                                                     </div>
                                                 </div>
@@ -179,7 +178,7 @@
                                         <h6 class="mb-0">{{ $pesan->user->name }}</h6>
                                         <small>{{ Carbon::parse($pesan->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
                                         </div>
-                             <span>{{ $pesan->chat }}</span>
+                                        <span>{{ $pesan->chat }}</span>
                         </div>
                         </a>
                 </div>
