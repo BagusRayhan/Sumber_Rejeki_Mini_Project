@@ -65,9 +65,7 @@ class ProjectrequestController extends Controller
             'dataa' => $dataa,
             'notification' => $notification
         ]);
-    }
-
-
+    }     
 
     public function downloadSuppDocs($dokumen = null) {
         $file = public_path('document/' . $dokumen);

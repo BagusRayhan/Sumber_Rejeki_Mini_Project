@@ -70,6 +70,7 @@
                         <input type="text"  <input type="text" value="{{ isset($detail->biayatambahan) ? (float)$detail->harga + (float)$detail->biayatambahan : $detail->harga }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
+                @if (count($fitur) !== 0)                    
                 <div class="wrapper">
                     <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($progress) }} %</span></h6>
                     <div class="pg-bar">
@@ -77,16 +78,14 @@
                             <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
                         </div>
                     </div>
-                </div><br>
-               @if (count($fitur) === 0)
-                    <form action="">
-                        <label for="customRange1" class="form-label">Masukkan progres</label>
-                        <input type="range" class="form-range" id="customRange1">
-                    </form>
-                @endif    
-                <div class="row">
+                </div><br> 
+                @else
+                    {{-- tidak menampilkan progress bar --}}
+                @endif
+               <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
+                            @if (count($fitur) !== 0)
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -105,7 +104,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (count($fitur) !== 0)
                                         @foreach ($fitur as $f)
                                             <tr>
                                                 <td class="text-center">
@@ -158,15 +156,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
                                             <!-- Modal Box Detail Fitur End -->
-                                        @endforeach
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                     @else
-                                        <td class="text-center" colspan="4">Tidak ada fitur</td>
-                                    @endif
-                                </tbody>
-                            </table>
-                            <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>                                                                                                                                                    
+                                    <label for="customRange1" class="form-label">Masukkan progres</label>
+                                    <input type="range" class="form-range" id="customRange1" name="progress" data-feature-id="{{ $detail->id }}" min="1" max="100">                             
+                            @endif
+                            <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>                                                                                                                                                 
                         </div>
                     </div>
                 </div>
@@ -284,11 +282,77 @@
                         </div>
                     </div>
                     <!-- Modal Box Estimasi End-->
+                    @if (count($fitur) !== 0)
                     <form action="{{ route('done-project') }}" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
                         <button class="btn btn-primary btn-sm" id="projectDoneBtn" {{ (count($fitur) !== $done) ? 'disabled' : '' }}><i class="fa-solid fa-circle-check"></i> Selesai</button>
-                    </form>
+                    </form>     
+                    @else
+                    <button class="btn btn-primary btn-sm" id="projectAcceptBtn" {{ ($fitur->count() !== $done) ? 'disabled' : '' }}><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                    <script>
+                        var projectDoneBtn = document.getElementById('projectAcceptBtn');
+                        var inputRange = document.getElementById('customRange1');
+                    
+                        projectDoneBtn.addEventListener('click', function() {
+                            var featureId = inputRange.getAttribute('data-feature-id');
+                            var progress = inputRange.getAttribute('value');
+                    
+                            // Kirim nilai progress ke server (misalnya menggunakan fetch)
+                            fetch('/update-progress', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify({
+                                    featureId: featureId,
+                                    progress: progress
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                // Tanggapan dari server
+                                console.log(data);
+                            })
+                            .catch(error => {
+                                // Tangani kesalahan
+                                console.error(error);
+                            });
+                        });
+                    </script>                    
+                    @endif
+                    <script>
+                        var projectDoneBtn = document.getElementById('projectDoneBtn');
+                        var inputRange = document.getElementById('customRange1');
+                    
+                        projectDoneBtn.addEventListener('click', function() {
+                            var featureId = inputRange.getAttribute('data-feature-id');
+                            var progress = inputRange.value;
+                    
+                            // Kirim nilai progres ke server (misalnya menggunakan fetch)
+                            fetch('/update-progress', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify({
+                                    featureId: featureId,
+                                    progress: progress
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                // Tanggapan dari server
+                                console.log(data);
+                            })
+                            .catch(error => {
+                                // Tangani kesalahan
+                                console.error(error);
+                            });
+                        });
+                    </script>
                 </div>
 
                 <div class="container my-5">
