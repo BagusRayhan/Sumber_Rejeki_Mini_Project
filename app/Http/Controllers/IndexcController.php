@@ -25,6 +25,15 @@ class IndexcController extends Controller
         $selesaiCounter = Proreq::where('status', 'selesai')->where('user_id', Auth::user()->id)->count();
         $notifikasi = Proreq::all();
         $estimasi = Proreq::where('status','setuju')->where('user_id', Auth::user()->id)->get();
+
+        $fitur = Fitur::all();
+        $done = Fitur::where('project_id')->where('status', 'selesai')->count();
+        $progress = 0;
+        if (count($fitur) > 0) {
+        $progress = (100 / count($fitur)) * $done;
+    }  
+
+
         $notif = Chat::all();
         $fitur = Fitur::where('project_id', )->get();
         $done = Fitur::where('project_id',)->where('status', 'selesai')->count();
@@ -62,8 +71,9 @@ class IndexcController extends Controller
             'pesancht' => $pesancht,
             'sosmed' => $sosmed,
             'client' => $client,
-            'progress' => $progress,
-            'fitur' => $fitur
+            'fitur' => $fitur,
+            'done' => $done,
+            'progress' => $progress
         ]);
     }
 

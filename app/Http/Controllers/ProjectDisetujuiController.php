@@ -182,8 +182,8 @@ class ProjectDisetujuiController extends Controller
         $detail = Proreq::find($id);
         $fitur = Fitur::where('project_id', $id)->get();
         $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
-            $progress = 0;
-    if (count($fitur) > 0) {
+        $progress = 0;
+        if (count($fitur) > 0) {
         $progress = (100 / count($fitur)) * $done;
     }          
         $chats = Chat::where('project_id', $id)->get();
@@ -218,7 +218,6 @@ class ProjectDisetujuiController extends Controller
         $progress = $request->input('progress');
 
         Proreq::where('id', $featureId)->update(['progress' => $progress]);
-
         return redirect()->back()->with('success', 'Progres berhasil disimpan!');
     }
 
