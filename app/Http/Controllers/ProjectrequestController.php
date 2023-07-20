@@ -65,9 +65,7 @@ class ProjectrequestController extends Controller
             'dataa' => $dataa,
             'notification' => $notification
         ]);
-    }
-
-
+    }     
 
     public function downloadSuppDocs($dokumen = null) {
         $file = public_path('document/' . $dokumen);
@@ -84,18 +82,22 @@ class ProjectrequestController extends Controller
         ], [
             'harga.required' => 'harga tidak boleh kosong!',
         ]);
-
         $proreg = Proreq::findOrFail($id);
-
         $proreg->harga = $request->input('harga');
         $proreg->update([
             'status' => null,
             'statusbayar' => 'menunggu pembayaran'
         ]);
-
-
         $proreg->save();
-
+        $msg = 'Project Disetujui';
+        $notifDesk = $proreg->napro.' disetujui admin';
+        Notification::create([
+            'role' => 'client',
+            'user_id' => $proreg->user_id,
+            'notif' => $msg,
+            'deskripsi' => $notifDesk,
+            'kategori' => 'Project Disetujui'
+        ]);
         return redirect()->route('projectreq');
     }
     
@@ -209,6 +211,16 @@ public function updateproreqa($id)
         $proreq->status = 'revisi';
         $proreq->statusbayar = null;
         $proreq->save();
+
+        $msg = 'Project Direvisi';
+        $notifDesk = $proreq->napro.' diubah oleh admin';
+        Notification::create([
+            'role' => 'client',
+            'user_id' => $proreq->user_id,
+            'notif' => $msg,
+            'deskripsi' => $notifDesk,
+            'kategori' => 'Project Direvisi'
+        ]);
 
         return redirect()->route('projectselesai')->with('success', 'Berhasil mengajukan perubahan');
     }

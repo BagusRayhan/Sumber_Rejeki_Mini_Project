@@ -25,7 +25,7 @@
         @include('Admin.templates.navbar')
 
         <div class="container-fluid pt-3 px-4">
-            <form action="{{ route('updateproreq-admin', ['id' => $data->id]) }}" method="POST">
+            <form action="{{ route('updateproreq-admin', ['id' => $data->id]) }}" id="ajukanPerubahan" onsubmit="ajukanPerubahan(event)" method="POST">
                 @csrf
                 <input type="hidden" name="project_id" value="{{ $data->id }}">
                 <div class="mb-3 d-flex justify-content-between">
@@ -78,6 +78,25 @@
                     <button class="btn btn-warning btn-sm text-white" type="submit"><i class="fa-solid fa-pencil-square"></i> Ajukan Perubahan</button>
                 </div>
             </form>
+            <script>
+                  function ajukanPerubahan(event) {
+                    event.preventDefault();
+                    Swal.fire({
+                      title: 'Apakah Anda yakin?',
+                      text: 'Mengubah project ini',
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Ya',
+                      cancelButtonText: 'Batal'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        document.getElementById('ajukanPerubahan').submit();
+                      }
+                    });
+                  }
+            </script>
             <div class="row">
                 <div class="wrapper d-flex justify-content-end">
                     <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#addFiturModal"><i class="fa-solid fa-circle-plus"></i> Tambah Fitur</button>

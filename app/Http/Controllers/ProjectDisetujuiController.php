@@ -33,28 +33,49 @@ class ProjectDisetujuiController extends Controller
     }
         
 
-    public function detailDisetujui($id) {
+    public function detailDisetujui($id)
+    {
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $admin = User::where('role', 'admin')->first();
         $detail = Proreq::find($id);
         $fitur = Fitur::where('project_id', $id)->get();
         $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
-            $progress = 0;
-    if (count($fitur) > 0) {
-        $progress = (100 / count($fitur)) * $done;
-    }
+        $progress = 0;
+    
+        if ($fitur->count() > 0) {
+            $progress = (100 / $fitur->count()) * $done;
+        }
+    
         $chats = Chat::where('project_id', $id)->get();
+    
         return view('Admin.detail-project-disetujui', [
             'detail' => $detail,
             'progress' => $progress,
             'fitur' => $fitur,
             'chats' => $chats,
             'done' => $done,
-            'admin' =>$admin,
+            'admin' => $admin,
             'notification' => $notification,
             'id' => $id
         ]);
-    }
+    }    
+
+    public function updateProgressrange(Request $request)
+    {
+        $id = $request->input('featureId');
+        $progress = $request->input('progress');
+        $proreq = Proreq::where('id', $id)->first();
+    
+        if (!$proreq) {
+            return response()->json(['message' => 'Proreq tidak ditemukan'], 404);
+        }
+    
+        // Update progress pada proreq
+        $proreq->progress = $progress;
+        $proreq->save();
+    
+        return response()->json(['message' => 'Progress berhasil diperbarui'], 200);
+    }  
 
        
 

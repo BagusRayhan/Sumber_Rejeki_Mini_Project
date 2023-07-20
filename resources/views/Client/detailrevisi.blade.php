@@ -64,9 +64,9 @@
                     <label for="exampleFormControlInput1" class="form-label">Deadline</label>
                     <input type="datetime-local" value="{{ $data->deadline }}" class="form-control" placeholder="" disabled>
                 </div>
-                <div class="form-group" style="width:480px">
+                <div class="form-group" style="width: 480px">
                     <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                    <input type="text" value="{{ $data->harga }}" class="form-control" placeholder="" disabled>
+                    <input type="text" value="{{ isset($data->biayatambahan) ? $data->harga + $data->biayatambahan : $data->harga }}" class="form-control" placeholder="" disabled>
                 </div>
             </div>
             <div class="row">
@@ -87,7 +87,13 @@
                                         <tr>
                                             <td>{{ $f->namafitur }}</td>
                                             <td>{{ $f->status }}</td>
-                                            <td>{{ $f->hargafitur }}</td>
+                                            <td>    
+                                                @if(@isset($f->biayatambahan))
+                                                {{ $f->biayatambahan }}
+                                                @else
+                                                {{ $f->hargafitur }}
+                                                @endif
+                                            </td>
                                             <td class="d-flex justify-content-evenly">
                                                 <button type="button" data-bs-toggle="modal" data-bs-target="#detailFitur{{ $f->id }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></button>
                                             </td>
@@ -109,7 +115,7 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="" class="form-label">Harga Fitur</label>
-                                                                    <input type="text" class="form-control" value="{{ $f->hargafitur }}" disabled>
+                                                                    <input type="text" class="form-control" value="{{ isset($f->biayatambahan) ? $f->harga + $f->biayatambahan : $f->harga }}" disabled>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-2">

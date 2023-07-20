@@ -26,7 +26,7 @@
 
       <div class="container mt-4 d-flex flex-column">
         <div class="wrapper">
-            <form action="{{ route('update-proreq', ['id' => $data->id]) }}" method="POST">
+            <form action="{{ route('update-proreq', ['id' => $data->id]) }}" id="setujuiProject" onsubmit="setujuiProject(event)" method="POST">
             <h5 class="px-3 mb-2">Request Project</h5>
             @csrf
             @method('PUT')
@@ -100,6 +100,7 @@
 
                 </div>
 
+
                 </form>
                 <script>
                     function sendRequest(event) {
@@ -125,6 +126,7 @@
                         });
                     }
                 </script>
+
         </div>
         <div class="modal fade" id="myyModal{{ $data->id }}">
             <div class="modal-dialog modal-dialog-centered align-items-center">
@@ -161,7 +163,7 @@
                         @csrf
                         @method('PUT')
                         <div class="mb-2">
-                            <input type="text" name="harga" id="hargaProject" class="form-control mb-2 input-hargafitur" value="{{ $data->harga }}" aria-describedby="basic-addon1">
+                            <input type="number" name="harga" id="hargaProject" class="form-control mb-2 input-hargafitur" value="{{ $data->harga }}" aria-describedby="basic-addon1">
                             <p style="font-size: 13px; opacity: .8">Masukkan harga project berdasarkan isi dokumen</p>
                         </div>
                     </div>
@@ -218,7 +220,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="" class="form-label">Harga Fitur</label>
-                                                    <input type="text" name="hargafitur" class="form-control input-hargafitur" value="{{ $fitur->hargafitur }}">
+                                                    <input type="number" name="hargafitur" class="form-control input-hargafitur" value="{{ $fitur->hargafitur }}">
                                                 </div>
                                             </div>
                                             <div class="mb-2">

@@ -49,8 +49,8 @@ class AdminBayarController extends Controller
                 'kategori' => 'Pembayaran Akhir Disetujui'
             ]);
         } elseif ($project->statusbayar === 'pembayaran revisi') {
-            $project->status = 'setuju';
-            $project->statusbayar = null;
+            $project->status = 'selesai';
+            $project->statusbayar = 'lunas';
             $msg = 'Pembayaran Revisi Disetujui';
             $notifDesk = $project->napro;
             Notification::create([

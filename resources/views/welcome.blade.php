@@ -124,8 +124,8 @@
                             @if (count($faqs) !== 0)
                             @foreach ($faqs as $faq)   
                                 <li>
-                                    <div data-bs-toggle="collapse" class="collapsed question" href="#faq1">{{ $faq->question }} <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-                                    <div id="faq1" class="collapse" data-bs-parent=".faq-list">
+                                    <div data-bs-toggle="collapse" class="collapsed question" href="#faq{{ $faq->id }}">{{ $faq->question }} <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+                                    <div id="faq{{ $faq->id }}" class="collapse" data-bs-parent=".faq-list">
                                         <p>{{ $faq->answer }}</p>
                                     </div>
                                 </li>
