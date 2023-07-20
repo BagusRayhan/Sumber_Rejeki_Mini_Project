@@ -117,7 +117,7 @@
                                                                 var totalFeatures = {{ count($fitur) }};
                                                                 var completedFeatures = 0;
                                                                 var progress = 0;
-                                                                var projectProgress = {{ $detail->progress ?? 0 }}; 
+                                                                var projectProgress = {{ $detail->progress ?? 0 }};
 
                                                                 @foreach ($fitur as $f)
                                                                     @if ($f->status == 'selesai')
@@ -128,7 +128,7 @@
                                                                 function animateProgressBar() {
                                                                     if (completedFeatures > 0) {
                                                                     if (progress < (completedFeatures / totalFeatures) * 100) {
-                                                                        progress += 1; 
+                                                                        progress += 1;
                                                                         progressBar.style.width = progress + '%';
                                                                         progressBar.setAttribute('aria-valuenow', progress);
                                                                         requestAnimationFrame(animateProgressBar);
@@ -145,7 +145,7 @@
 
                                                                 animateProgressBar();
                                                             </script>
-                                                    
+
                                                     </div>
                                                 </div>
                                             </div>

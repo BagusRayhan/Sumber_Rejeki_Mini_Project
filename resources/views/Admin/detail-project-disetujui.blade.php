@@ -3,9 +3,6 @@
 @php
     use Carbon\Carbon;
 @endphp
-<!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-
 @include('Admin.templates.head')
 
 <body>
@@ -70,7 +67,7 @@
                         <input type="text"  <input type="text" value="{{ isset($detail->biayatambahan) ? (float)$detail->harga + (float)$detail->biayatambahan : $detail->harga }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
-                @if (count($fitur) !== 0)                    
+                @if (count($fitur) !== 0)
                 <div class="wrapper">
                     <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($progress) }} %</span></h6>
                     <div class="pg-bar">
@@ -78,7 +75,7 @@
                             <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
                         </div>
                     </div>
-                </div><br> 
+                </div><br>
                 @else
                     {{-- tidak menampilkan progress bar --}}
                 @endif
@@ -91,10 +88,10 @@
                                     <tr>
                                         <th scope="col" style="width:5em">
                                         <div class="form-check">
-                                                <input class="form-check-input master-checkbox text-center" 
-                                                    onchange="doneAllFeatures({{ $detail->id }}); saveCheckboxStatus('masterCheckbox')" 
-                                                    type="checkbox" value="" 
-                                                    id="masterCheckbox" 
+                                                <input class="form-check-input master-checkbox text-center"
+                                                    onchange="doneAllFeatures({{ $detail->id }}); saveCheckboxStatus('masterCheckbox')"
+                                                    type="checkbox" value=""
+                                                    id="masterCheckbox"
                                                     {{ (count($fitur) == $done) ? 'checked' : '' }}>
                                         </div>
                                         </th>
@@ -107,7 +104,7 @@
                                         @foreach ($fitur as $f)
                                             <tr>
                                                 <td class="text-center">
-                                                 <div class="form-check"> 
+                                                 <div class="form-check">
                                                          <input class="form-check-input child-checkbox"
                                                             type="checkbox"
                                                             id="checkFitur{{ $f->id }}"
@@ -174,8 +171,6 @@
                                     projectDoneBtn.addEventListener('click', function() {
                                         var featureId = inputRange.getAttribute('data-feature-id');
                                         var progress = inputRange.value;
-
-                                        // Kirim nilai progres ke server (misalnya menggunakan fetch)
                                         fetch('{{ route("save.progress") }}', {
                                             method: 'POST',
                                             headers: {
@@ -199,13 +194,13 @@
                                     });
                                 </script>
 
-                                                            
+
                                                             @endif
-                                                            <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>                                                                                                                                                 
+                                                            <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                        <script>
+                                                    <script>
                                     setInterval(updateProgressBar, 5);
 
                                     window.addEventListener('load', function() {
@@ -216,19 +211,19 @@
                                             progressBar.setAttribute('aria-valuenow', savedProgress);
                                             progressBar.innerText = savedProgress + '%';
                                         }
-                                    }); 
+                                    });
 
                                             function updateProgressBar() {
                                                 var checkboxes = document.querySelectorAll('.child-checkbox');
                                                 var progressBar = document.getElementById('progress-bar');
                                                 var progress = 0;
-                                                
+
                                                 checkboxes.forEach(function(checkbox) {
                                                     if (checkbox.checked) {
                                                         progress++;
                                                     }
                                                 });
-                                        
+
                                         var totalFeatures = checkboxes.length;
 
                                         progressBar.style.width = (progress / totalFeatures * 100) + '%';
@@ -273,7 +268,7 @@
                                         fetch(`/update-status-fitur/${featureId}`, {
                                             method: 'PUT',
                                             headers: {
-                                                'X-CSRF-TOKEN': '{{ csrf_token() }}', 
+                                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
                                                 'Content-Type': 'application/json',
                                             },
                                             body: JSON.stringify({
@@ -323,17 +318,17 @@
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
                         <button class="btn btn-primary btn-sm" id="projectDoneBtn" {{ (count($fitur) !== $done) ? 'disabled' : '' }}><i class="fa-solid fa-circle-check"></i> Selesai</button>
-                    </form>     
+                    </form>
                     @else
                     <button class="btn btn-primary btn-sm" id="projectAcceptBtn" {{ ($fitur->count() !== $done) ? 'disabled' : '' }}><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     <script>
                         var projectDoneBtn = document.getElementById('projectAcceptBtn');
                         var inputRange = document.getElementById('customRange1');
-                    
+
                         projectDoneBtn.addEventListener('click', function() {
                             var featureId = inputRange.getAttribute('data-feature-id');
                             var progress = inputRange.getAttribute('value');
-                    
+
                             // Kirim nilai progress ke server (misalnya menggunakan fetch)
                             fetch('/update-progress', {
                                 method: 'POST',
@@ -356,16 +351,16 @@
                                 console.error(error);
                             });
                         });
-                    </script>                    
+                    </script>
                     @endif
                     <script>
                         var projectDoneBtn = document.getElementById('projectDoneBtn');
                         var inputRange = document.getElementById('customRange1');
-                    
+
                         projectDoneBtn.addEventListener('click', function() {
                             var featureId = inputRange.getAttribute('data-feature-id');
                             var progress = inputRange.value;
-                    
+
                             // Kirim nilai progres ke server (misalnya menggunakan fetch)
                             fetch('/update-progress', {
                                 method: 'POST',

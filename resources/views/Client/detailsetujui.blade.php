@@ -3,8 +3,6 @@
 @php
 use \Carbon\Carbon;
 @endphp
-<!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
 @include('Client.Template.head')
 <style>
@@ -87,7 +85,7 @@ use \Carbon\Carbon;
                     var totalFeatures = {{ count($fitur) }};
                     var completedFeatures = 0;
                     var progress = 0;
-                    var projectProgress = {{ $detail->progress ?? 0 }}; 
+                    var projectProgress = {{ $detail->progress ?? 0 }};
 
                     @foreach ($fitur as $f)
                         @if ($f->status == 'selesai')
@@ -98,7 +96,7 @@ use \Carbon\Carbon;
                     function animateProgressBar() {
                         if (completedFeatures > 0) {
                         if (progress < (completedFeatures / totalFeatures) * 100) {
-                            progress += 1; 
+                            progress += 1;
                             progressBar.style.width = progress + '%';
                             progressBar.setAttribute('aria-valuenow', progress);
                             requestAnimationFrame(animateProgressBar);
@@ -106,7 +104,7 @@ use \Carbon\Carbon;
                         } else {
                              progress = projectProgress;
                         }
-                          if (progress < 100) {
+                                if (progress < 100) {
                             progressBar.style.width = progress + '%';
                             progressBar.setAttribute('aria-valuenow', progress);
                             requestAnimationFrame(animateProgressBar);
