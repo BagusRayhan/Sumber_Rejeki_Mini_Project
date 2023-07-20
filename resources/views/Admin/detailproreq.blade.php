@@ -94,7 +94,7 @@
                 @elseif (count($dataa) == 0)
                     <button type="button" data-bs-toggle="modal" data-bs-target="#hargaDocs{{ $data->id }}" class="btn btn-primary btn-sm">Setuju</button>
                 @elseif (count($dataa) !== 0 && $data->dokumen !== null)
-                    <button type="submit" onclick="sendRequest(event)" class="btn btn-info btn-sm">Setuju</button>
+                    <button type="submit" onclick="sendRequest(event)" class="btn btn-primary btn-sm">Setuju</button>
                 @endif
 
 

@@ -69,7 +69,7 @@ public function signupsave(Request $request)
 
     $user = $this->create($data);
 
-    return redirect("/")
+    return redirect()->route('login')
         ->with('success', 'Anda berhasil melakukan registrasi!')
         ->with('alert-type', 'success');
 }
