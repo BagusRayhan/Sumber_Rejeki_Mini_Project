@@ -187,4 +187,6 @@ Route::middleware('admin')->group(function(){
     Route::post('pembayaran-digital', [AdminBayarController::class, 'updateEWallet'])->name('update-ewallet');
     Route::post('statusfitur', [ProjectDisetujuiController::class, 'statusFitur'])->name('status-fitur');
     Route::post('allstatusfitur', [ProjectDisetujuiController::class, 'allStatusFitur'])->name('all-status-fitur');
+    Route::post('/save-progress', [ProjectDisetujuiController::class, 'saveProgress'])->name('save.progress');
+
 });

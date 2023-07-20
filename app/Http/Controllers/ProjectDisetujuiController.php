@@ -211,4 +211,16 @@ class ProjectDisetujuiController extends Controller
         ]);
         return back();
     }
+
+    public function saveProgress(Request $request)
+    {
+        $featureId = $request->input('featureId');
+        $progress = $request->input('progress');
+
+        Proreq::where('id', $featureId)->update(['progress' => $progress]);
+
+        return redirect()->back()->with('success', 'Progres berhasil disimpan!');
+    }
+
+
 }
