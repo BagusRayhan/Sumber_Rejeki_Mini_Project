@@ -57,7 +57,7 @@
                                     <tr>
                                         <td>{{ $item->napro }}</td>
                                         <td><span class="badge {{ ($item->status == 'pengajuan revisi') ? 'text-bg-warning' : 'text-bg-success'}}">{{ ($item->status == 'pengajuan revisi') ? 'menunggu perubahan' : $item->status }}</span></td>
-                                        <td>{{ $item->harga}}</td>
+                                        <td>{{ $item->harga + $item->biayatambahan}}</td>
                                         <td class="d-flex justify-content-evenly">
                                             <a href="/revisibutton/{{ $item->id }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>
                                             <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>&nbsp;Hapus</a></center>

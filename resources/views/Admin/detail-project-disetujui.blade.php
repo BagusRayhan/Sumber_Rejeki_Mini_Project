@@ -160,9 +160,9 @@
                                     @else
                                     <form action="{{ route('save.progress') }}" method="post">
                                         @csrf <!-- Add CSRF token here -->
-                                        <label for="customRange1" class="form-label">Masukkan progres</label>
+                                        <label for="customRange1" class="form-label">Persentase Progress <span class="badge text-bg-primary">{{ $detail->progress }}%</span></label>
                                         <input type="range" class="form-range" id="customRange1" name="progress" value="{{ $detail->progress }}" data-feature-id="{{ $detail->id }}" min="1" max="100">
-                                        <button type="submit" class="btn btn-primary" id="projectDoneBtn" style="float: right;">Simpan Progres</button>
+                                        <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBtn" style="float: right;">Simpan Progress</button>
                                     </form>
                                     <script>
                                     var projectDoneBtn = document.getElementById('projectDoneBtn');
@@ -364,8 +364,14 @@
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
                         <button class="btn btn-primary btn-sm" id="projectDoneBtn" {{ (count($fitur) !== $done) ? 'disabled' : '' }}><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
+                    @elseif ($detail->progress == 100)
+                    <form action="{{ route('done-project') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="project_id" value="{{ $detail->id }}">
+                        <button class="btn btn-primary btn-sm" id="projectDoneBtn" {{ (count($fitur) !== $done) ? 'disabled' : '' }}><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                    </form>
                     @else
-                    <button class="btn btn-primary btn-sm" id="projectAcceptBtn" {{ ($fitur->count() !== $done) ? 'disabled' : '' }}><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                    <button class="btn btn-primary btn-sm" id="projectAcceptBtn" disabled><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     <script>
                         var projectDoneBtn = document.getElementById('projectAcceptBtn');
                         var inputRange = document.getElementById('customRange1');

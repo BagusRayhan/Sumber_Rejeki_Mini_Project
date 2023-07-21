@@ -92,7 +92,7 @@
                                         @if ($estimasisetuju->progress == null)
                                             <h6 class="mb-2"></h6>
                                             @if ($estimasisetuju->estimasi != null)
-                                                <span style="margin-left:46%;"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
+                                                <span style="margin-left:42%;"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
                                             @else
                                                 <span style="margin-left:36%;">Estimasi tidak tersedia</span>
                                             @endif

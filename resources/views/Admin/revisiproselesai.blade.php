@@ -70,7 +70,7 @@
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                        <input type="text" value="{{ $data->harga }}" class="form-control" placeholder="" disabled>
+                        <input type="text" value="{{ $data->harga + $data->biayatambahan }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
                 <div class="d-flex justify-content-start mb-3">
