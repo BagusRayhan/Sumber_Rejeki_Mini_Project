@@ -67,7 +67,7 @@
                 </div>
                 <div class="form-group" style="width:480px">
                     <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                    <input type="text" value="{{ $detail->harga + $detail->biayatambahan }}" class="form-control" placeholder="" disabled>
+                    <input type="text" value="{{ number_format($detail->harga+$detail->biayatambahan, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
                 </div>
             </div>
             <div class="row mt-4">
@@ -88,7 +88,7 @@
                                         <tr>
                                             <td>{{ $f->namafitur }}</td>
                                             <td>{{ $f->status }}</td>
-                                            <td>{{ $f->hargafitur ?? $f->biayatambahan }}</td>
+                                            <td>{{ number_format($f->hargafitur, 0, ',', '.') ?? number_format($f->biayatambahan, 0, ',', '.') }}</td>
                                             <td class="d-flex justify-content-evenly">
                                                 <button type="button" data-bs-toggle="modal" data-bs-target="#detailFitur{{ $f->id }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></button>
                                             </td>
@@ -110,7 +110,7 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="" class="form-label">Harga Fitur</label>
-                                                                    <input type="text" class="form-control" value="{{ $f->hargafitur ?? $f->biayatambahan }}" disabled>
+                                                                    <input type="text" class="form-control" value="{{ number_format($f->hargafitur, 0, ',', '.') ?? number_format($f->biayatambahan, 0, ',', '.') }}" disabled>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-2">

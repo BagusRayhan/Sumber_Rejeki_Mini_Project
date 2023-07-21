@@ -135,9 +135,9 @@ use \Carbon\Carbon;
                                                 <td>{{ $f->status }}</td>
                                                 <td>
                                                     @if(@isset($f->biayatambahan))
-                                                    {{ $f->biayatambahan }}
+                                                    {{ number_format($f->biayatambahan, 0, ',', '.') }}
                                                     @else
-                                                    {{ $f->hargafitur }}
+                                                    {{ number_format($f->hargafitur, 0, ',', '.') }}
                                                     @endif
                                                 </td>
                                                 <td class="d-flex justify-content-evenly">
@@ -161,7 +161,7 @@ use \Carbon\Carbon;
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="" class="form-label">Harga Fitur</label>
-                                                                        <input type="text" class="form-control" value="{{ $f->hargafitur }}" disabled>
+                                                                        <input type="text" class="form-control" value="{{ number_format($f->hargafitur, 0, ',', '.') }}" disabled>
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-2">

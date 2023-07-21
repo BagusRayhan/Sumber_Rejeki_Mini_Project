@@ -249,11 +249,12 @@ public function updateproreqa($id)
     {
         $this->validate($request,[
             'namafitur' => 'required',
-            'biayatambahan' => 'required',
+            'biayatambahan' => 'required!numeric',
             'deskripsi' => 'required',
         ],[
             'namafitur.required' => 'Fitur tidak boleh kosong',
-            'biayatambahan' => 'Biaya tidak boleh kosong',
+            'biayatambahan.required' => 'Biaya tidak boleh kosong',
+            'biayatambahan.numeric' => 'Harga tidak valid',
             'deskripsi' => 'Deskripsi tidak boleh kosong',
         ]);
         $data = Proreq::findOrFail($id);

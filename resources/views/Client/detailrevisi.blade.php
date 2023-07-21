@@ -69,7 +69,7 @@
                 </div>
                 <div class="form-group" style="width: 480px">
                     <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                    <input type="text" value="{{ isset($data->biayatambahan) ? $data->harga + $data->biayatambahan : $data->harga }}" class="form-control" placeholder="" disabled>
+                    <input type="text" value="{{ isset($data->biayatambahan) ? 'Rp ' . number_format((float)$data->harga + (float)$data->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$data->harga, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
                 </div>
             </div>
             <div class="row">
@@ -92,9 +92,9 @@
                                             <td>{{ $f->status }}</td>
                                             <td>    
                                                 @if(@isset($f->biayatambahan))
-                                                {{ $f->biayatambahan }}
+                                                {{ number_format($f->biayatambahan, 0, ',', '.') }}
                                                 @else
-                                                {{ $f->hargafitur }}
+                                                {{ number_format($f->hargafitur, 0, ',', '.') }}
                                                 @endif
                                             </td>
                                             <td class="d-flex justify-content-evenly">
@@ -118,7 +118,7 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="" class="form-label">Harga Fitur</label>
-                                                                    <input type="text" class="form-control" value="{{ isset($f->biayatambahan) ? $f->harga + $f->biayatambahan : $f->harga }}" disabled>
+                                                                    <input type="text" class="form-control" value="{{ isset($f->biayatambahan) ? 'Rp ' . number_format((float)$f->hargafitur + (float)$f->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$f->hargafitur, 0, ',', '.') }}" disabled>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-2">
