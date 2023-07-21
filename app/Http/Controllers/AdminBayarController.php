@@ -181,4 +181,10 @@ class AdminBayarController extends Controller
         }
         return back();
     }
+
+    public function deleteProjectHistory(Request $request) {
+        $pro = Proreq::findOrFail($request->project_id);
+        $pro->delete();
+        return back()->with('success', 'Berhasil menghapus project');
+    }
 }

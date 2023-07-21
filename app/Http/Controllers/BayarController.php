@@ -241,11 +241,12 @@ public function bayar2client(Request $request)
     $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
     $sosmed = Sosmed::all();
     $keyword = $request->input('keyword');
+    $data = Proreq::all();
     $bayar2 = Proreq::whereIn('statusbayar', ['lunas','belum lunas'])
                     ->where('napro', 'like', '%'.$keyword.'%')
                     ->where('user_id', Auth::user()->id)
                     ->paginate(5);
-    return view('Client.bayar2', compact('sosmed', 'bayar2', 'client','notification'));
+    return view('Client.bayar2', compact('sosmed', 'bayar2', 'client','notification','data'));
 }
 
 public function deleteproj($id)

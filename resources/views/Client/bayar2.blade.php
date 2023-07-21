@@ -115,8 +115,8 @@
                                     </td>
                                     <td class="text-center">
                                     @if ($client2->biayatambahan)
-                                        @if ($client2->metode3)
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#struk" data-bs-id="{{ $client2->id }}" data-bs-nama="{{ $client2->napro }}" data-bs-harga="{{ $client2->harga }}" data-bs-tanggal="{{ $client2->tanggalpembayaran }}" data-bs-biayatambahan="{{ $client2->biayatambahan }}" data-bs-tanggal2="{{ $client2->tanggalpembayaran2 }}" data-bs-metode="{{ $client2->metodepembayaran }}" data-bs-metode2="{{ $client2->metodepembayaran2 }}" class="btn btn-warning struk text-white btn-sm" style="background-color: none">
+                                        @if ($client2->metodepembayaran3)
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#struk2" data-bs-id="{{ $client2->id }}" data-bs-nama="{{ $client2->napro }}" data-bs-harga="{{ $client2->harga }}" data-bs-tanggal="{{ $client2->tanggalpembayaran }}" data-bs-biayatambahan="{{ $client2->biayatambahan }}" data-bs-tanggal2="{{ $client2->tanggalpembayaran2 }}" data-bs-metode="{{ $client2->metodepembayaran }}" data-bs-metode2="{{ $client2->metodepembayaran2 }}" class="btn btn-warning struk text-white btn-sm" style="background-color: none">
                                                 <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk
                                             </button>
                                         @else
@@ -405,10 +405,10 @@ $(function(e){
                         <p class="text-secondary fs-10">Biaya Tambahan</p>
                         <p id="pembayaran-tambahan"></p>
                     </div>
-                    <div class="d-flex justify-content-between">
-                        <p class="text-secondary fs-10">Total Bayar</p>
-                        <p id="harga-total"></p>
-                    </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="text-secondary fs-10">Total Bayar</p>
+                                <p id="harga-proo"></p>
+                            </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -419,9 +419,6 @@ $(function(e){
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
         <script>
             document.getElementById('printBtn').addEventListener('click', function() {
-                // Logika untuk mencetak PDF modal
-
-                // Contoh: Menggunakan window.print() untuk mencetak halaman saat ini
                 window.print();
             });
             </script>
@@ -454,6 +451,115 @@ $(document).ready(function() {
     var pembayaranAwalElem = $('.pembayaran-awal');
     var pembayaranAkhirElem = $('.pembayaran-akhir');
     var biayatambahanElem = $('#pembayaran-tambahan');
+
+    namaElem.text(nama);
+    tanggalElem.text(formattedTanggal);
+    tanggal2Elem.text(formattedTanggal2);
+    metodeElem.text(metode);
+    metode2Elem.text(metode2);
+    hargaElem.text(harga);
+    pembayaranAwalElem.text(hargaSetengah);
+    pembayaranAkhirElem.text(hargaSetengah);
+    biayatambahanElem.text(biayatambahan);
+    hargatotalElem.text(hargatotal);
+  });
+});
+</script>
+    </div>
+    </div>
+
+
+     <div class="modal fade" id="struk2" tabindex="-1" aria-hidden="true">
+        <div class="myModal">
+        <div class="modal-dialog modal-dialog-centered" style="width: 22em">
+        <div class="modal-content">
+            <div class="modal-header p-2">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex mt-0 pt-0 justify-content-center">
+                    <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/success.png') }}" alt="">
+                </div>
+                <p class="text-center mt-3">Pembayaran Berhasil!</p>
+                <h4 class="fw-bold text-center mt-1 border-bottom border-dark pb-2" id="napro-awall"></h4>
+                <div class="d-flex justify-content-between">
+                    <div class="d-grid">
+                        <p class="text-center">Pembayaran Awal</p>
+                        <p class="fw-bold text-center pembayaran-awal"></p>
+                    </div>
+                    <div class="d-grid">
+                        <p class="text-center">Pembayaran Akhir</p>
+                        <p class="fw-bold text-center pembayaran-akhir"></p>
+                    </div>
+                </div>
+                <div class="container m-0 p-0">
+                <div class="d-flex justify-content-between">
+                    <p class="text-secondary fs-10">Tanggal Pembayaran Awal</p>
+                    <p id="tgl-bayarr1"></p>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <p class="text-secondary fs-10">Tanggal Pembayaran Akhir</p>
+                    <p id="tgl-bayarr21"></p>
+                </div>
+                    <div class="d-flex pb-0 justify-content-between">
+                        <p class="text-secondary fs-10">Metode Pembayaran Awal</p>
+                        <p id="metodepembayarann1"></p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="text-secondary fs-10">Metode Pembayaran Akhir</p>
+                        <p id="metodepembayarann21"></p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="text-secondary fs-10">Biaya Tambahan</p>
+                        <p id="pembayaran-tambahan1"></p>
+                    </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="text-secondary fs-10">Total Bayar</p>
+                                <p id="harga-total1"></p>
+                            </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button id="printBtn" class="btn btn-primary w-100 fw-bold"><i class="fa-solid fa-print"></i> Cetak PDF</button>
+            </div>
+        </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script>
+            document.getElementById('printBtn').addEventListener('click', function() {
+                window.print();
+            });
+            </script>
+            
+<script>
+$(document).ready(function() {
+  $('#struk2').on('show.bs.modal', function(event) {
+    var button = $(event.relatedTarget);
+    var nama = button.data('bs-nama');
+    var harga = button.data('bs-harga');
+    var biayatambahan = button.data('bs-biayatambahan');
+    var tanggal = button.data('bs-tanggal');
+    var tanggal2 = button.data('bs-tanggal2');
+    var metode = button.data('bs-metode');
+    var metode2 = button.data('bs-metode2');
+
+    var formattedTanggal = moment(tanggal).format('YYYY-MM-DD');
+    var formattedTanggal2 = moment(tanggal2).format('YYYY-MM-DD');
+
+    var hargaSetengah = harga / 2;
+    var hargatotal = parseFloat(harga) + parseFloat(biayatambahan);
+
+    var namaElem = $('#napro-awall1');
+    var tanggalElem = $('#tgl-bayarr1');
+    var tanggal2Elem = $('#tgl-bayarr21');
+    var metodeElem = $('#metodepembayarann1');
+    var metode2Elem = $('#metodepembayarann21');
+    var hargaElem = $('#harga-proo1');
+    var hargatotalElem = $('#harga-total1');
+    var pembayaranAwalElem = $('.pembayaran-awal1');
+    var pembayaranAkhirElem = $('.pembayaran-akhir1');
+    var biayatambahanElem = $('#pembayaran-tambahan1');
 
     namaElem.text(nama);
     tanggalElem.text(formattedTanggal);
