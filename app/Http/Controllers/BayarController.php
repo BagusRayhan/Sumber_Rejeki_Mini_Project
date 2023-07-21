@@ -94,7 +94,7 @@ class BayarController extends Controller
             'kategori' => 'Pembayaran Masuk'
         ]);
 
-        return redirect()->route('bayarclient')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));
+        return redirect()->route('bayarclient')->with('success', 'Berhasil di bayar!','')->with(compact('sosmed', 'client', 'data'));
     }
 
         public function updatebayarakhir(Request $request, $id){

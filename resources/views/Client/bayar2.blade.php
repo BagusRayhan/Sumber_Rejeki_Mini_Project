@@ -483,14 +483,14 @@ $(document).ready(function() {
                 <p class="text-center mt-3">Pembayaran Berhasil!</p>
                 <h4 class="fw-bold text-center mt-1 border-bottom border-dark pb-2" id="napro-awall"></h4>
                 <div class="d-flex justify-content-between">
-                    <div class="d-grid">
-                        <p class="text-center">Pembayaran Awal</p>
-                        <p class="fw-bold text-center pembayaran-awal"></p>
-                    </div>
-                    <div class="d-grid">
-                        <p class="text-center">Pembayaran Akhir</p>
-                        <p class="fw-bold text-center pembayaran-akhir"></p>
-                    </div>
+        <div class="d-grid">
+            <p class="text-center">Pembayaran Awal</p>
+            <p class="fw-bold text-center pembayaran-awal1"></p>
+        </div>
+        <div class="d-grid">
+            <p class="text-center">Pembayaran Akhir</p>
+            <p class="fw-bold text-center pembayaran-akhir1"></p>
+        </div>
                 </div>
                 <div class="container m-0 p-0">
                 <div class="d-flex justify-content-between">
@@ -532,46 +532,48 @@ $(document).ready(function() {
             });
             </script>
             
+
 <script>
 $(document).ready(function() {
-  $('#struk2').on('show.bs.modal', function(event) {
-    var button = $(event.relatedTarget);
-    var nama = button.data('bs-nama');
-    var harga = button.data('bs-harga');
-    var biayatambahan = button.data('bs-biayatambahan');
-    var tanggal = button.data('bs-tanggal');
-    var tanggal2 = button.data('bs-tanggal2');
-    var metode = button.data('bs-metode');
-    var metode2 = button.data('bs-metode2');
+    $('#struk2').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget);
+        var nama = button.data('bs-nama');
+        var harga = button.data('bs-harga');
+        var biayatambahan = button.data('bs-biayatambahan');
+        var tanggal = button.data('bs-tanggal');
+        var tanggal2 = button.data('bs-tanggal2');
+        var metode = button.data('bs-metode');
+        var metode2 = button.data('bs-metode2');
 
-    var formattedTanggal = moment(tanggal).format('YYYY-MM-DD');
-    var formattedTanggal2 = moment(tanggal2).format('YYYY-MM-DD');
+        var formattedTanggal = moment(tanggal).format('YYYY-MM-DD');
+        var formattedTanggal2 = moment(tanggal2).format('YYYY-MM-DD');
 
-    var hargaSetengah = harga / 2;
-    var hargatotal = parseFloat(harga) + parseFloat(biayatambahan);
+        var hargaSetengah = harga / 2;
+        var hargatotal = parseFloat(harga) + parseFloat(biayatambahan);
 
-    var namaElem = $('#napro-awall1');
-    var tanggalElem = $('#tgl-bayarr1');
-    var tanggal2Elem = $('#tgl-bayarr21');
-    var metodeElem = $('#metodepembayarann1');
-    var metode2Elem = $('#metodepembayarann21');
-    var hargaElem = $('#harga-proo1');
-    var hargatotalElem = $('#harga-total1');
-    var pembayaranAwalElem = $('.pembayaran-awal1');
-    var pembayaranAkhirElem = $('.pembayaran-akhir1');
-    var biayatambahanElem = $('#pembayaran-tambahan1');
+        // Correct the IDs of the elements to match the ones in the modal
+        var namaElem = $('#napro-awall1');
+        var tanggalElem = $('#tgl-bayarr1');
+        var tanggal2Elem = $('#tgl-bayarr21');
+        var metodeElem = $('#metodepembayarann1');
+        var metode2Elem = $('#metodepembayarann21');
+        var hargaElem = $('#harga-proo1');
+        var hargatotalElem = $('#harga-total1');
+        var pembayaranAwalElem = $('.pembayaran-awal1');
+        var pembayaranAkhirElem = $('.pembayaran-akhir1');
+        var biayatambahanElem = $('#pembayaran-tambahan1');
 
-    namaElem.text(nama);
-    tanggalElem.text(formattedTanggal);
-    tanggal2Elem.text(formattedTanggal2);
-    metodeElem.text(metode);
-    metode2Elem.text(metode2);
-    hargaElem.text(harga);
-    pembayaranAwalElem.text(hargaSetengah);
-    pembayaranAkhirElem.text(hargaSetengah);
-    biayatambahanElem.text(biayatambahan);
-    hargatotalElem.text(hargatotal);
-  });
+        namaElem.text(nama);
+        tanggalElem.text(formattedTanggal);
+        tanggal2Elem.text(formattedTanggal2);
+        metodeElem.text(metode);
+        metode2Elem.text(metode2);
+        hargaElem.text(harga);
+        pembayaranAwalElem.text(hargaSetengah);
+        pembayaranAkhirElem.text(hargaSetengah);
+        biayatambahanElem.text(biayatambahan);
+        hargatotalElem.text(hargatotal);
+    });
 });
 </script>
     </div>

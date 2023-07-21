@@ -86,15 +86,15 @@
                                 <h6 class="mb-2">{{ $estimasisetuju->napro }}</h6>
                                 <span class="mb-5">Rp.&nbsp;&nbsp;{{ $estimasisetuju->harga }}</span>
                             </div>
-                            <div class="col-sm-12 col-xl-5" style="margin-left:26%;">
+                            <div class="col-sm-12 col-xl-5" >
                                 <div class="bg-light rounded h-100 p-10">
-                                    <div class="pg-bar mb-3 mr-9">
+                                    <div class="pg-bar mb-3">
                                         @if ($estimasisetuju->progress == null)
                                             <h6 class="mb-2"></h6>
                                             @if ($estimasisetuju->estimasi != null)
-                                                <span><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
+                                                <span style="margin-left:46%;"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
                                             @else
-                                                <span>Estimasi tidak tersedia</span>
+                                                <span style="margin-left:36%;">Estimasi tidak tersedia</span>
                                             @endif
                                         @endif
                                     </div>
