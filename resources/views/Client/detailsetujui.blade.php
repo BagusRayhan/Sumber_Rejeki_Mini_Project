@@ -69,7 +69,8 @@ use \Carbon\Carbon;
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                         <input type="text" value="{{ isset($detail->biayatambahan) ? (float)$detail->harga + (float)$detail->biayatambahan : $detail->harga }}"  class="form-control" placeholder="" disabled>
+                        <input type="text" value="{{ isset($detail->biayatambahan) ? 'Rp ' . number_format((float)$detail->harga + (float)$detail->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$detail->harga, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
+
                     </div>
                 </div>
                 <div class="wrapper mt-5">
@@ -80,7 +81,7 @@ use \Carbon\Carbon;
                         </div>
                     </div>
                 </div>
-                
+
                 <script>
                     var progressBar = document.getElementById('progress-bar');
                     var totalFeatures = {{ count($fitur) }};
@@ -105,7 +106,7 @@ use \Carbon\Carbon;
                         } else {
                              progress = projectProgress;
                         }
-                                if (progress < 100) {
+                                if (progress <= 100) {
                             progressBar.style.width = progress + '%';
                             progressBar.setAttribute('aria-valuenow', progress);
                             requestAnimationFrame(animateProgressBar);

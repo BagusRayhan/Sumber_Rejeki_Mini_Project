@@ -64,7 +64,7 @@
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                        <input type="text"  <input type="text" value="{{ isset($detail->biayatambahan) ? (float)$detail->harga + (float)$detail->biayatambahan : $detail->harga }}" class="form-control" placeholder="" disabled>
+                        <input type="text" value="{{ isset($detail->biayatambahan) ? 'Rp ' . number_format((float)$detail->harga + (float)$detail->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$detail->harga, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
                 @if (count($fitur) !== 0)
@@ -160,7 +160,8 @@
                                     @else
                                     <form action="{{ route('save.progress') }}" method="post">
                                         @csrf <!-- Add CSRF token here -->
-                                        <label for="customRange1" class="form-label">Persentase Progress <span class="badge text-bg-primary" id="progressLabel">50%</span></label>
+                                        <label for="customRange1" class="form-label">Persentase Progress <span class="badge text-bg-primary" id="progressLabel">{{ ($detail->progress == null) ? "0" : $detail->progress }}%</span></label>
+                                        <input type="hidden" name="featureId" value="{{ $detail->id }}">
                                         <input type="range" class="form-range" id="customRange1" name="progress" value="{{ $detail->progress }}" data-feature-id="{{ $detail->id }}" min="1" max="100">
                                         <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBtn" style="float: right;">Simpan Progress</button>
                                     </form>
