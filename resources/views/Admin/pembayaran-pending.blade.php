@@ -221,7 +221,11 @@
                                                                     </div>
                                                                     @else
                                                                         <div class="wrapper text-center">
-                                                                            <p>Pembayaran sebesar <b>{{ $pro->harga/2 }}</b> dilakukan secara Cash</p>
+                                                                            <p>Pembayaran sebesar <b>{{ $pro->harga/2 }}</b> dilakukan secara Cash pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran3)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                        </div>
+                                                                        <div class="mb-1 d-flex justify-content-between">
+                                                                            <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $pro->id }}">Pembayaran Awal</button>
+                                                                            <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAkhir{{ $pro->id }}">Pembayaran Akhir</button>
                                                                         </div>
                                                                     @endif
                                                                 @endif
