@@ -14,12 +14,18 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ProjectrequestController extends Controller
 {
-    public function projectreq()
+    public function projectreq(Request $request)
     {
         $admin = User::where('role', 'admin')->first();
 
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-        $projectreq = Proreq::where('status','pending')->paginate(1);
+         $query = $request->input('query');
+
+        $projectreq = Proreq::where('status', 'pending')
+            ->where(function (Builder $builder) use ($query) {
+                $builder->where('napro', 'like', '%' . $query . '%');
+            })
+            ->paginate(2);
         return view('Admin.projectreq', [
             'projectreq'=>$projectreq,
             'admin' =>$admin,
