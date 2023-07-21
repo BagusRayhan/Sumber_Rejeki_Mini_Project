@@ -60,7 +60,7 @@
                                       <span class="badge">{{ $project->status }}</span>
                                     @endif
                                   </td>
-                                <td>Rp.{{ $project->harga }}</td>
+                                <td>Rp.{{ $project->harga + $project->biayatambahan }}</td>
                                 <td>
                                     @if ($project->status == 'selesai')
                                       <a type="button" href="{{ route('revisiproselesai',$project->id) }}" class="btn btn-primary btn-sm disabled" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i> Revisi</a>
