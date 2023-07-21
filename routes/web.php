@@ -126,6 +126,7 @@ Route::middleware(['web', 'auth'])->group(function(){
     Route::get('detailsetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujuiClient'])->name('detailsetujui');
     Route::post('/update-progresss', [ProjectrequestController::class, 'updateProgressrange'])->name('update-progress');
     Route::get('downloadsuppdocsclient/{dokumen?}', [ProjectrequestController::class, 'downloadSuppDocs'])->name('download-suppdocs-client');
+    Route::get('get-progress', [ProjectDisetujuiController::class, 'getProgress'])->name('get-progress');
     Route::post('detailsetujui', [ProjectDisetujuiController::class, 'projectChatClient'])->name('project-chat-client');
     Route::get('revisiselesai', [SelesaiController::class, 'revisiselesai'])->name('revisiselesai');
     Route::get('revisibutton/{id}', [SelesaiController::class, 'revisibutton'])->name('revisibutton');

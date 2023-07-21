@@ -73,9 +73,6 @@ Forgot Password
           <span class="focus-input100" data-symbol="&#xf191;"></span>
         </div><br>
 
-<div class="text-left p-t-8 p-b-31">
-    <input type="checkbox"> <a href="kebijakan">Kebijakan Privasi</a>
-</div>
 
 <div class="container-login100-form-btn">
 <div class="wrap-login100-form-btn">
