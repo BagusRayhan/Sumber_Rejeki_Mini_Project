@@ -65,11 +65,12 @@ use \Carbon\Carbon;
                 <div class="mb-3 d-flex justify-content-between">
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Deadline</label>
-                        <input type="datetime-local" value="{{ $detail->deadline }}" class="form-control" placeholder="" disabled>
+                        <input type="text" value="{{ Carbon::parse($detail->deadline)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}" class="form-control" placeholder="" disabled>
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                         <input type="text" value="{{ isset($detail->biayatambahan) ? (float)$detail->harga + (float)$detail->biayatambahan : $detail->harga }}"  class="form-control" placeholder="" disabled>
+                        <input type="text" value="{{ isset($detail->biayatambahan) ? 'Rp ' . number_format((float)$detail->harga + (float)$detail->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$detail->harga, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
+
                     </div>
                 </div>
                 <div class="wrapper mt-5">
@@ -80,7 +81,7 @@ use \Carbon\Carbon;
                         </div>
                     </div>
                 </div>
-                
+
                 <script>
                     var progressBar = document.getElementById('progress-bar');
                     var totalFeatures = {{ count($fitur) }};
@@ -105,7 +106,7 @@ use \Carbon\Carbon;
                         } else {
                              progress = projectProgress;
                         }
-                                if (progress < 100) {
+                                if (progress <= 100) {
                             progressBar.style.width = progress + '%';
                             progressBar.setAttribute('aria-valuenow', progress);
                             requestAnimationFrame(animateProgressBar);
@@ -134,9 +135,9 @@ use \Carbon\Carbon;
                                                 <td>{{ $f->status }}</td>
                                                 <td>
                                                     @if(@isset($f->biayatambahan))
-                                                    {{ $f->biayatambahan }}
+                                                    {{ number_format($f->biayatambahan, 0, ',', '.') }}
                                                     @else
-                                                    {{ $f->hargafitur }}
+                                                    {{ number_format($f->hargafitur, 0, ',', '.') }}
                                                     @endif
                                                 </td>
                                                 <td class="d-flex justify-content-evenly">
@@ -160,7 +161,7 @@ use \Carbon\Carbon;
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="" class="form-label">Harga Fitur</label>
-                                                                        <input type="text" class="form-control" value="{{ $f->hargafitur }}" disabled>
+                                                                        <input type="text" class="form-control" value="{{ number_format($f->hargafitur, 0, ',', '.') }}" disabled>
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-2">

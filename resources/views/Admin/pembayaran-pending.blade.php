@@ -32,10 +32,10 @@
             <!-- Confirm Payment Table Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="search-form w-25">
-                    <form action="">
+                    <form action="{{ route('pending-bayar-admin') }}" method="GET">
                         <div class="input-group rounded-pill" style="background: #E9EEF5">
-                            <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
-                            <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
+                            <input type="text" name="query" value="{{ request('query') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+                            <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                         </div>
                     </form>
                 </div>
@@ -73,7 +73,7 @@
                                             <tr>
                                                 <td>{{ $pro->nama }}</td>
                                                 <td>{{ $pro->napro }}</td>
-                                                <td>{{ $pro->harga }}</td>
+                                                <td>{{ number_format($pro->harga, 0, ',', '.') }}</td>
                                                 <td class="text-center">
                                                     <span class="badge rounded-pill {{ ($pro->statusbayar == 'pembayaran awal') ? 'text-bg-warning' : (($pro->statusbayar == 'pembayaran akhir') ? 'text-bg-success' : (($pro->statusbayar == 'pembayaran revisi') ? 'text-bg-primary' : '')) }}">{{ $pro->statusbayar }}</span>
                                                 </td>
@@ -160,7 +160,7 @@
                                                                         </div>
                                                                         <div class="mb-3" style="width: 12em">
                                                                             <label class="mb-1">Biaya Awal</label>
-                                                                            <input type="text"class="form-control" value="{{ $pro->harga/2 }}" disabled>
+                                                                            <input type="text"class="form-control" value="{{ isset($pro->biayatambahan) ? 'Rp ' . number_format((float)$pro->harga + (float)$pro->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$pro->harga/2, 0, ',', '.') }}" disabled>
                                                                         </div>
                                                                     </div>
                                                                     <div class="mb-3">
@@ -169,7 +169,7 @@
                                                                     </div>
                                                                     @else
                                                                         <div class="mb-3">
-                                                                            <p>Pembayaran sebesar <b>{{ $pro->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                            <p>Pembayaran sebesar <b>{{ number_format($pro->harga/2, 0, ',', '.') }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                         </div>
                                                                     @endif
                                                                 @elseif ($pro->statusbayar == 'pembayaran akhir')
@@ -181,7 +181,7 @@
                                                                         </div>
                                                                         <div class="mb-3" style="width: 12em">
                                                                             <label class="mb-1">Biaya Akhir</label>
-                                                                            <input type="text"class="form-control" value="{{ $pro->harga/2 }}" disabled>
+                                                                            <input type="text"class="form-control" value="{{ number_format($pro->harga/2, 0, ',', '.') }}" disabled>
                                                                         </div>
                                                                     </div>
                                                                     <div class="mb-3">
@@ -193,7 +193,7 @@
                                                                     </div>
                                                                     @else
                                                                         <div class="mb-3">
-                                                                            <p>Pembayaran sebesar <b>{{ $pro->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                            <p>Pembayaran sebesar <b>{{ number_format($pro->harga/2, 0, ',', '.') }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                         </div>
                                                                         <div class="mb-1">
                                                                             <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $pro->id }}">Pembayaran Awal</button>
@@ -208,7 +208,7 @@
                                                                         </div>
                                                                         <div class="mb-3" style="width: 12em">
                                                                             <label class="mb-1">Biaya Revisi</label>
-                                                                            <input type="text"class="form-control" value="{{ $pro->biayatambahan }}" disabled>
+                                                                            <input type="text"class="form-control" value="{{number_format($pro->biayatambahan, 0, ',', '.') }}" disabled>
                                                                         </div>
                                                                     </div>
                                                                     <div class="mb-3">
@@ -221,7 +221,7 @@
                                                                     </div>
                                                                     @else
                                                                         <div class="wrapper text-center">
-                                                                            <p>Pembayaran sebesar <b>{{ $pro->biayatambahan }}</b> dilakukan secara Cash pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran3)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                            <p>Pembayaran sebesar <b>{{ number_format($pro->biayatambahan, 0, ',', '.') }}</b> dilakukan secara Cash pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran3)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                         </div>
                                                                         <div class="mb-1 d-flex justify-content-between">
                                                                             <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $pro->id }}">Pembayaran Awal</button>
@@ -250,7 +250,7 @@
                                                                 </div>
                                                                 <div class="mb-3" style="width: 12em">
                                                                     <label class="mb-1">Biaya Awal</label>
-                                                                    <input type="text"class="form-control" value="{{ $pro->harga/2 }}" disabled>
+                                                                    <input type="text"class="form-control" value="{{ number_format($pro->harga/2, 0, ',', '.') }}" disabled>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3">
@@ -262,7 +262,7 @@
                                                             </div>
                                                             @else
                                                                 <div class="mb-3">
-                                                                    <p>Pembayaran sebesar <b>{{ $pro->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                    <p>Pembayaran sebesar <b>{{ number_format($pro->harga/2, 0, ',', '.') }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                 </div>
                                                                 <div class="mb-1">
                                                                     <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>
@@ -288,7 +288,7 @@
                                                                 </div>
                                                                 <div class="mb-3" style="width: 12em">
                                                                     <label class="mb-1">Biaya Akhir</label>
-                                                                    <input type="text"class="form-control" value="{{ $pro->harga/2 }}" disabled>
+                                                                    <input type="text"class="form-control" value="{{ number_format($pro->harga/2, 0, ',', '.') }}" disabled>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3">
@@ -300,7 +300,7 @@
                                                             </div>
                                                             @else
                                                                 <div class="mb-3">
-                                                                    <p>Pembayaran sebesar <b>{{ $pro->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                    <p>Pembayaran sebesar <b>{{ number_format($pro->harga/2, 0, ',', '.') }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                 </div>
                                                                 <div class="mb-1">
                                                                     <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>

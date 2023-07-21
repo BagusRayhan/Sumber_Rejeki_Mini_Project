@@ -70,14 +70,28 @@
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                        <input type="text" value="{{ $data->harga + $data->biayatambahan }}" class="form-control" placeholder="" disabled>
+                        <input type="text" value="{{ number_format($data->harga/2, 0, ',', '.') ?? number_format($data->biayatambahan, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
                 <div class="d-flex justify-content-start mb-3">
-                    <a href="{{ route('projectselesai') }}" class="btn btn-primary btn-sm" style="margin-right: 15px"><i class="fa fa-reply"></i> Kembali</a>
-                    <button class="btn btn-warning btn-sm text-white" type="submit"><i class="fa-solid fa-pencil-square"></i> Ajukan Perubahan</button>
+                    <a href="{{ route('projectselesai') }}" class="btn btn-primary btn-sm">Kembali</a>
+                    <button class="btn btn-warning btn-sm text-white mx-2" type="submit"><i class="fa-solid fa-pencil-square"></i> Ajukan Perubahan</button>
                 </div>
-            </form>
+            </form> 
+            <div class="modal fade" id="pesanRevisi" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5>Revisi dari Client</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p>{!! nl2br($data->listrevisi) !!}</p>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
             <script>
                   function ajukanPerubahan(event) {
                     event.preventDefault();
@@ -99,7 +113,8 @@
             </script>
             <div class="row">
                 <div class="wrapper d-flex justify-content-end">
-                    <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#addFiturModal"><i class="fa-solid fa-circle-plus"></i> Tambah Fitur</button>
+                    <button type="button" class="btn btn-warning text-white btn-sm mx-2" data-bs-toggle="modal" data-bs-target="#pesanRevisi">Detail Revisi</button>
+                    <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#addFiturModal"><i class="fa-solid fa-circle-plus"></i> Fitur</button>
                 </div>
                 <div class="col-12">
                     <div class="table-responsive">
@@ -118,7 +133,7 @@
                                         <tr>
                                             <td>{{ $f->namafitur }}</td>
                                             <td>{{ $f->status }}</td>
-                                            <td>{{ $f->hargafitur ?? $f->biayatambahan }}</td>
+                                            <td>{{ number_format($f->hargafitur, 0, ',', '.') ?? number_format($f->biayatambahan, 0, ',', '.') }}</td>
                                             <td class="d-flex justify-content-evenly">
                                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editFiturModal{{ $f->id }}"><i class="fa-solid fa-pen-to-square"></i></button>
                                                 <form action="{{ route('destroy-fitur') }}" method="post">
@@ -148,7 +163,7 @@
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="fitur" >Harga Fitur</label>
-                                                                        <input type="number" name="hargafitur" value="{{ $f->hargafitur ?? $f->biayatambahan }}" class="form-control" id="hargafitur" placeholder="Masukkan Harga Fitur">
+                                                                        <input type="text" name="hargafitur" value="{{ $f->hargafitur ?? $f->biayatambahan }}" class="form-control" id="hargafitur" placeholder="Masukkan Harga Fitur">
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-3">
@@ -192,7 +207,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Harga Fitur</label>
-                                        <input type="number" name="biayatambahan" class="form-control" id="hargafitur" placeholder="Masukkan Harga">
+                                        <input type="text" name="biayatambahan" class="form-control" id="hargafitur" placeholder="Masukkan Harga">
                                     </div>
                                 </div>
                                 <div class="mb-3">

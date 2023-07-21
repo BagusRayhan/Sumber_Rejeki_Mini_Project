@@ -29,7 +29,7 @@
                 <form action="{{ route('projectselesai') }}" method="get">
                   @csrf
                     <div class="input-group rounded-pill" style="background: #E9EEF5">
-                        <input type="text" name="searchKeyword" value="{{ request('searchKeyword') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+                        <input type="text" name="query" value="{{ request('query') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
                         <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                     </div>
                 </form>
@@ -60,7 +60,7 @@
                                       <span class="badge">{{ $project->status }}</span>
                                     @endif
                                   </td>
-                                <td>Rp.{{ $project->harga + $project->biayatambahan }}</td>
+                                <td>Rp.{{ number_format($project->harga, 0, ',', '.') ?? number_format($project->biayatambahan, 0, ',', '.') }}</td>
                                 <td>
                                     @if ($project->status == 'selesai')
                                       <a type="button" href="{{ route('revisiproselesai',$project->id) }}" class="btn btn-primary btn-sm disabled" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i> Revisi</a>
@@ -80,13 +80,15 @@
                       </table>
                   </div>
                 </div>
+                <div style="float: right;">
+                {{$selesai->links()}}
+                </div>
                 </div>
             </div>
-            </div>
+          </div>
         </div>
         <!-- Content End -->
         <div class="wrapper w-100 d-flex justify-content-end">
-          {{$selesai->links()}}
         </div>
 
     </div>

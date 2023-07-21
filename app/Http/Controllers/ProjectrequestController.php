@@ -14,18 +14,29 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ProjectrequestController extends Controller
 {
-    public function projectreq()
-    {
-        $admin = User::where('role', 'admin')->first();
+public function projectreq(Request $request)
+{
+    $admin = User::where('role', 'admin')->first();
 
-        $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-        $projectreq = Proreq::where('status','pending')->paginate(1);
-        return view('Admin.projectreq', [
-            'projectreq'=>$projectreq,
-            'admin' =>$admin,
-            'notification' => $notification
-        ]);
-    }
+    $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
+    $query = $request->input('query');
+
+    $projectreq = Proreq::where('status', 'pending')
+        ->where(function (Builder $builder) use ($query) {
+            $builder->where('napro', 'like', '%' . $query . '%');
+        })
+        ->paginate(6);
+
+    $projectreq->appends(['query' => $query]);
+
+    return view('Admin.projectreq', [
+        'projectreq' => $projectreq,
+        'admin' => $admin,
+        'notification' => $notification
+    ]);
+}
+
+
     public function search(Request $request)
     {
         $query = $request->input('query');
@@ -78,17 +89,16 @@ class ProjectrequestController extends Controller
     public function simpanharga(Request $request, $id)
     {
         $request->validate([
-            'harga' => 'required|numeric|min:1'
+            'harga' => 'required|min:1'
         ], [
             'harga.required' => 'harga tidak boleh kosong!',
         ]);
         $proreg = Proreq::findOrFail($id);
-        $proreg->harga = $request->input('harga');
         $proreg->update([
             'status' => null,
-            'statusbayar' => 'menunggu pembayaran'
+            'statusbayar' => 'menunggu pembayaran',
+            'harga' => $request->harga
         ]);
-        $proreg->save();
         $msg = 'Project Disetujui';
         $notifDesk = $proreg->napro.' disetujui admin';
         Notification::create([
@@ -98,15 +108,19 @@ class ProjectrequestController extends Controller
             'deskripsi' => $notifDesk,
             'kategori' => 'Project Disetujui'
         ]);
-        return redirect()->route('projectreq');
+        return redirect()->route('projectreq')->with('success', 'Berhasil menyetujui project');
     }
     
     public function simpanfiturr(Request $request, $id)
 {
     $fitur = Fitur::findOrFail($id);
-
-    $fitur->hargafitur = $request->input('hargafitur');
-
+    $request->validate([
+        'hargafitur' => 'required|numeric'
+    ],[
+        'hargafitur.required' => 'Harga tidak boleh kosong',
+        'hargafitur.numeric' => 'Harga tidak valid'
+    ]);
+    $fitur->hargafitur = $request->hargafitur;
     $fitur->save();
 
     return back();
@@ -114,6 +128,11 @@ class ProjectrequestController extends Controller
 
 public function alasantolak(Request $request)
 {
+    $request->validate([
+        'alasan' => 'required'
+    ],[
+        'alasan.required' => 'Alasan tidak boleh kosong'
+    ]);
     $id = $request->dataid;
     $pro = Proreq::findOrFail($id);
     if (File::exists(public_path().'document/'.$pro->dokumen)) {
@@ -132,7 +151,7 @@ public function alasantolak(Request $request)
         'kategori' => 'Project Ditolak'
     ]);
 
-    return redirect()->route('projectreq')->with('sukses', 'Project berhasil ditolak');
+    return redirect()->route('projectreq')->with('success', 'Project berhasil ditolak');
 }
 
 public function updateproreqa($id)
@@ -164,10 +183,11 @@ public function updateproreqa($id)
 }
 
     public function projectselesai(Request $request){
-        $keyword = $request->searchKeyword;
         $notification = Notification::where('role', 'admin')->latest()->get();
         $admin = User::where('role', 'admin')->first();
-        $selesai = proreq::whereIn('status', ['selesai', 'pengajuan revisi'])->where('napro', 'LIKE', '%'.$keyword.'%')->paginate(3);
+         $query = $request->input('query');
+        $selesai = proreq::whereIn('status', ['selesai', 'pengajuan revisi'])->where('napro', 'LIKE', '%'.$query.'%')->paginate(2);
+        $selesai->appends(['query' => $query]);
         return view('Admin.projectselesai', compact('selesai','admin','notification'));
     }
 
@@ -229,11 +249,12 @@ public function updateproreqa($id)
     {
         $this->validate($request,[
             'namafitur' => 'required',
-            'biayatambahan' => 'required',
+            'biayatambahan' => 'required!numeric',
             'deskripsi' => 'required',
         ],[
             'namafitur.required' => 'Fitur tidak boleh kosong',
-            'biayatambahan' => 'Biaya tidak boleh kosong',
+            'biayatambahan.required' => 'Biaya tidak boleh kosong',
+            'biayatambahan.numeric' => 'Harga tidak valid',
             'deskripsi' => 'Deskripsi tidak boleh kosong',
         ]);
         $data = Proreq::findOrFail($id);

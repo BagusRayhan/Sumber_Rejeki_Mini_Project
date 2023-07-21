@@ -60,11 +60,11 @@
                 <div class="mb-5 d-flex justify-content-between">
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Deadline</label>
-                        <input type="datetime-local" value="{{ $detail->deadline }}" class="form-control" placeholder="" disabled>
+                        <input type="text" value="{{ Carbon::parse($detail->deadline)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}" class="form-control" placeholder="" disabled>
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                        <input type="text"  <input type="text" value="{{ isset($detail->biayatambahan) ? (float)$detail->harga + (float)$detail->biayatambahan : $detail->harga }}" class="form-control" placeholder="" disabled>
+                        <input type="text" value="{{ isset($detail->biayatambahan) ? 'Rp ' . number_format((float)$detail->harga + (float)$detail->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$detail->harga, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
                 @if (count($fitur) !== 0)
@@ -115,9 +115,9 @@
                                                 <td>{{ $f->namafitur }}</td>
                                                 <td>
                                                     @if(@isset($f->biayatambahan))
-                                                    {{ $f->biayatambahan }}
+                                                    {{ number_format($f->biayatambahan, 0, ',', '.') }}
                                                     @else
-                                                    {{ $f->hargafitur }}
+                                                    {{ number_format($f->hargafitur, 0, ',', '.') }}
                                                     @endif
                                                 </td>
                                                 <td class="d-flex justify-content-evenly">
@@ -141,7 +141,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="" class="form-label">Harga Fitur</label>
-                                                                        <input type="text" class="form-control" value="{{ $f->hargafitur }}" disabled>
+                                                                        <input type="text" class="form-control" value="{{ number_format($f->hargafitur, 0, ',', '.') }}" disabled>
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-2">
@@ -160,10 +160,21 @@
                                     @else
                                     <form action="{{ route('save.progress') }}" method="post">
                                         @csrf <!-- Add CSRF token here -->
-                                        <label for="customRange1" class="form-label">Persentase Progress <span class="badge text-bg-primary">{{ $detail->progress }}%</span></label>
+                                        <label for="customRange1" class="form-label">Persentase Progress <span class="badge text-bg-primary" id="progressLabel">{{ ($detail->progress == null) ? "0" : $detail->progress }}%</span></label>
+                                        <input type="hidden" name="featureId" value="{{ $detail->id }}">
                                         <input type="range" class="form-range" id="customRange1" name="progress" value="{{ $detail->progress }}" data-feature-id="{{ $detail->id }}" min="1" max="100">
                                         <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBtn" style="float: right;">Simpan Progress</button>
                                     </form>
+                                    <script>
+
+                                        const rangeInput = document.getElementById('customRange1');
+                                        const progressLabel = document.getElementById('progressLabel');
+                                        rangeInput.addEventListener('input', () => {
+                                            const progressValue = rangeInput.value;
+                                            progressLabel.textContent = progressValue + '%';
+                                        });
+                                    </script>
+
                                     <script>
                                     var projectDoneBtn = document.getElementById('projectDoneBtn');
                                     var inputRange = document.getElementById('customRange1');

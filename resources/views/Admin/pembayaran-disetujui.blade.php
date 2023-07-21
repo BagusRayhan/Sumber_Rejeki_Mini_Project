@@ -24,10 +24,10 @@
             <!-- Confirm Payment Table Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="search-form w-25">
-                    <form action="">
+                    <form action="{{ route('setuju-bayar-admin') }}" method="GET">
                         <div class="input-group rounded-pill" style="background: #E9EEF5">
-                            <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
-                            <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
+                            <input type="text" name="query" value="{{ request('query') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+                            <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                         </div>
                     </form>
                 </div>
@@ -58,7 +58,7 @@
                                             <tr>
                                                 <td>{{ $apv->nama }}</td>
                                                 <td>{{ $apv->napro }}</td>
-                                                <td>{{ $apv->harga }}</td>
+                                                <td>Rp.{{ number_format($apv->harga, 0, ',', '.') }}</td>
                                                 <td class="text-center">
                                                     <span class="badge rounded-pill {{ (($apv->statusbayar == 'lunas') ? 'text-bg-success' : (($apv->statusbayar == 'lunas') ? 'text-bg-primary' : '')) }}">{{ $apv->statusbayar }}</span>
                                                 </td>
@@ -260,7 +260,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <!-- Payment Detail Modal Start -->
                                             {{-- <div class="modal fade" id="paymentDetailModal{{$apv->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
@@ -269,7 +269,7 @@
                                                             <h1 class="modal-title fs-5">Detail Pembayaran Terbaru</h1>
                                                         </div>
                                                         @if ($apv->metodePembayaran == '')
-                                                            
+
                                                         @endif
                                                         <div class="modal-body mt-0 d-flex justify-content-evenly">
                                                             <img src="{{ asset('gambar/bukti/') }}" class="w-50">
@@ -303,7 +303,7 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="4" class="text-center">Tidak ada data</td>
+                                            <td colspan="5" class="text-center">Tidak ada data</td>
                                         </tr>
                                     @endif
                                 </tbody>
@@ -313,7 +313,7 @@
                 </div>
             </div>
             <!-- Confirm Payment Table End -->
-            
+
         <!-- Content End -->
 
     </div>

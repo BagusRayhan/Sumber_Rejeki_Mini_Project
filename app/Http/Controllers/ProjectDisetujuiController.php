@@ -22,9 +22,10 @@ class ProjectDisetujuiController extends Controller
         }
 
         $admin = User::where('role', 'admin')->first();
-        $keyword = $request->searchKeyword;
+        $query = $request->input('query');
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-        $project = proreq::where('status','setuju')->where('napro', 'LIKE', '%'.$keyword.'%')->paginate(3);
+        $project = proreq::where('status','setuju')->where('napro', 'LIKE', '%'.$query.'%')->paginate(3);
+        $project->appends(['query' => $query]);
         return view('Admin.project-disetujui', [
             'project' => $project,
             'admin' => $admin,
@@ -70,7 +71,6 @@ class ProjectDisetujuiController extends Controller
             return response()->json(['message' => 'Proreq tidak ditemukan'], 404);
         }
 
-        // Update progress pada proreq
         $proreq->progress = $progress;
         $proreq->save();
 
@@ -114,6 +114,14 @@ class ProjectDisetujuiController extends Controller
     }
 
     public function upEstimasi(Request $request) {
+        $request->validate([
+            'estimasi' => 'required|date|after_or_equal:today',
+        ], [
+            'estimasi.required' => 'Isi estimasi terlebih dahulu',
+            'estimasi.date' => 'Format estimasi tidak valid',
+            'estimasi.after_or_equal' => 'Estimasi tidak boleh hari kemarin',
+        ]);
+
         $pro = Proreq::find($request->project_id);
         $pro->update([
             'estimasi' => $request->estimasi
@@ -200,7 +208,7 @@ class ProjectDisetujuiController extends Controller
             'notification' => $notification
         ]);
     }
-    
+
 
     public function projectChatClient(Request $request) {
         $projectid = $request->input('project_id');

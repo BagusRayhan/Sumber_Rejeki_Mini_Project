@@ -30,7 +30,7 @@ class IndexcController extends Controller
         $progress = 0;
         if (count($fitur) > 0) {
         $progress = (100 / count($fitur)) * $done;
-    }  
+    }
 
         $notif = Chat::all();
 
@@ -123,6 +123,7 @@ class IndexcController extends Controller
                    });
                })
                ->paginate(6);
+         $data->appends(['search' => $search]);
         $sosmed = Sosmed::all();
         return view('Client.clientproreq',compact('data','sosmed','client','notification'));
     }
@@ -140,11 +141,14 @@ class IndexcController extends Controller
 {
     $request->validate([
         'napro' => 'required',
-        'deadline' => 'required',
+        'deadline' => 'required|date|after_or_equal:today',
     ], [
         'napro.required' => 'Nama project tidak boleh kosong',
         'deadline.required' => 'Isi deadline terlebih dahulu',
+        'deadline.date' => 'Format deadline tidak valid',
+        'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',
     ]);
+
     $dtUpload = new Proreq();
     if ($request->has('dokumen')) {
         $file = $request->file('dokumen');
@@ -163,7 +167,8 @@ class IndexcController extends Controller
 }
 
 
-     public function showproj(Request $request){
+     public function showproj(Request $request)
+     {
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $userid = Auth::user()->id;
@@ -195,6 +200,15 @@ class IndexcController extends Controller
     }
 
     public function update(Request $request){
+
+        $request->validate([
+            'deadline' => 'required|date|after_or_equal:today',
+        ], [
+            'deadline.required' => 'Isi deadline terlebih dahulu',
+            'deadline.date' => 'Format deadline tidak valid',
+            'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',
+        ]);
+
         $upProject = [];
         $id = $request->projectid;
         $fitur = Fitur::where('project_id', $id)->count();

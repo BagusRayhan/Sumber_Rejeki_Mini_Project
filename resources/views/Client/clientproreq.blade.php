@@ -5,7 +5,9 @@
     <head>
     @include('Client.Template.head')
     </head>
-
+@php
+    use \Carbon\Carbon;
+@endphp
     <body>
         <div class="container-xxl position-relative bg-white d-flex p-0">
             <!-- Spinner Start -->
@@ -57,7 +59,7 @@
                                     <td>{{ $item->nama }}</td>
                                     <td>{{ $item->napro }}</td>
                                     <td><span class="badge {{ ($item->status == 'draft') ? 'text-bg-danger' : '' }} text-bg-warning">{{ $item->status }}</span></td>
-                                    <td>{{ $item->deadline }}</td>
+                                    <td>{{ Carbon::parse($item->deadline)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</td>
                                     <td class="d-flex justify-content-evenly">
                                         <a href="{{ route('editproreq', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <form action="{{ route('destroy-pending-request') }}" method="post" onsubmit="return confirmDelete(event)">
@@ -71,25 +73,33 @@
                                         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
 
                                         <script>
-                                            function confirmDelete(event) {
-                                                event.preventDefault();
+                                        function confirmDelete(event) {
+                                            event.preventDefault();
 
-                                                Swal.fire({
-                                                    title: 'Apakah Anda yakin?',
-                                                    text: 'Ingin membatakan project ini!',
-                                                    icon: 'warning',
-                                                    showCancelButton: true,
-                                                    confirmButtonColor: '#d33',
-                                                    cancelButtonColor: '#3085d6',
-                                                    confirmButtonText: 'Ya, hapus!',
-                                                    cancelButtonText: 'Batal'
-                                                }).then((result) => {
-                                                    if (result.isConfirmed) {
+                                            Swal.fire({
+                                                title: 'Apakah Anda yakin?',
+                                                text: 'Ingin membatalkan project ini!',
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#d33',
+                                                cancelButtonColor: '#3085d6',
+                                                confirmButtonText: 'Ya, batalkan!',
+                                                cancelButtonText: 'Batal'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    Swal.fire({
+                                                        title: 'Project dibatalkan!',
+                                                        text: 'Project telah berhasil dibatalkan.',
+                                                        icon: 'success',
+                                                        timer: 2000,
+                                                        showConfirmButton: false
+                                                    }).then(() => {
                                                         event.target.submit();
-                                                    }
-                                                });
-                                            }
-                                        </script>
+                                                    });
+                                                }
+                                            });
+                                        }
+                                    </script>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -103,7 +113,9 @@
                     </div>
                 </div>
             </div>
+            <div style="float: right;">
             {{ $data->links() }}
+            </div>
         </div>
     @include('Client.Template.footer')
             </div>

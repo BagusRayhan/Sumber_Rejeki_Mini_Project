@@ -83,19 +83,19 @@
 
             <div class="wrap-input100 validate-input m-b-23" data-validate="Name is required">
               <span class="label-input100">Name</span>
-              <input class="input100" type="text" id="name" name="name" placeholder="Masukkan Nama anda">
+              <input class="input100" type="text" id="name" name="name" placeholder="Masukkan Nama anda" value="{{ old('name') }}">
               <span class="focus-input100" data-symbol="&#xf207;"></span>
             </div>
 
             <div class="wrap-input100 validate-input m-b-23" data-validate="Email is required">
               <span class="label-input100">Email</span>
-              <input class="input100" type="email" id="email" name="email" placeholder="Masukkan email anda">
+              <input class="input100" type="email" id="email" name="email" placeholder="Masukkan email anda" value="{{ old('email') }}">
               <span class="focus-input100" data-symbol="&#xf15a;"></span>
             </div>
 
             <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
               <span class="label-input100">Password</span>
-              <input class="input100" type="password" id="password" name="password" placeholder="Masukkan password anda">
+              <input class="input100" type="password" id="password" name="password" placeholder="Masukkan password anda" value="{{ old('password') }}">
               <span class="focus-input100" data-symbol="&#xf191;"></span>
             </div>
 
@@ -109,44 +109,47 @@
             <span class="label-input100">Input Opsional &nbsp;<i class="fa fa-sort-desc"></i></span> <br><br>
             <div class="wrap-input100 validate-input m-b-23">
               <span class="label-input100">Nama Perusahaan</span>
-              <input class="input100" type="text" id="nama_perusahaan" name="nama_perusahaan" placeholder="Masukkan nama perusahaan anda">
+              <input class="input100" type="text" id="nama_perusahaan" name="nama_perusahaan" placeholder="Masukkan nama perusahaan anda" value="{{ old('nama_perusahaan') }}">
               <span class="focus-input100" data-symbol="&#xf132;"></span>
             </div>
 
             <div class="wrap-input100 validate-input m-b-23">
               <span class="label-input100">Alamat Perusahaan</span>
-              <input class="input100" type="text" id="alamat_perusahaan" name="alamat_perusahaan" placeholder="Masukkan alamat perusahaan anda">
+              <input class="input100" type="text" id="alamat_perusahaan" name="alamat_perusahaan" placeholder="Masukkan alamat perusahaan anda" value="{{ old('alamat_perusahaan') }}">
               <span class="focus-input100" data-symbol="&#xf112;"></span>
             </div>
 
             <div class="wrap-input100 validate-input m-b-23">
               <span class="label-input100">No Telephone</span>
-              <input class="input100" type="number" id="no_tlp" name="no_tlp" placeholder="Masukkan no telephone anda">
+              <input class="input100" type="number" id="no_tlp" name="no_tlp" placeholder="Masukkan no telephone anda" value="{{ old('no_tlp') }}">
               <span class="focus-input100" data-symbol="&#xf2b6;"></span>
             </div>
 
+
+
             <div class="d-flex justify-content-start">
-                <input type="checkbox" id="privacyCheckbox">
+                <input type="checkbox" id="remember-checkbox">
                 <a href="kebijakan">&nbsp;Kebijakan Privasi</a>
               </div>
               <br>
 
-              <button type="submit" class="btn btn-primary btn-user btn-block" style="border-radius: 20px;" id="registerButton" disabled>Register</button>
+              <button id="login-button" type="submit" class="btn mt-10 h-10 w-full bg-primary font-medium text-white" style="border-radius: 20px;">Register</button>
 
-              <script>
-                const privacyCheckbox = document.getElementById("privacyCheckbox");
-                const registerButton = document.getElementById("registerButton");
+        <script>
+            const rememberCheckbox = document.getElementById('remember-checkbox');
+            const loginButton = document.getElementById('login-button');
+            const privacyWarning = document.getElementById('privacy-warning');
 
-                privacyCheckbox.addEventListener("change", function() {
-                  if (privacyCheckbox.checked) {
-                    registerButton.disabled = false;
-                  } else {
-                    registerButton.disabled = true;
-                  }
-                });
-              </script>
+            loginButton.addEventListener('click', function(event) {
+              if (!rememberCheckbox.checked) {
+                event.preventDefault();
+                privacyWarning.classList.remove('hidden');
+              } else {
+                privacyWarning.classList.add('hidden');
+              }
+            });
 
-
+    </script>
 
                     <div class="flex-col-c p-t-50">
                       <span class="txt1 p-b-17">
