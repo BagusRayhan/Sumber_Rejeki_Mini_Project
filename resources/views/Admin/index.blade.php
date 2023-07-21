@@ -77,7 +77,8 @@
                     <div class="bg-light text-center rounded p-4" style="height: 550px">
                         <div class="d-flex align-items-center justify-content-start mb-4">
                             <div class="" style="width: 1100px">
-                                {!! $chart->container() !!}
+                                <canvas id="myChart"></canvas>
+                                {{-- {!! $chart->container() !!} --}}
                             </div>
                         </div>
                     </div>
@@ -91,7 +92,8 @@
                     <div class="bg-light text-center rounded p-4" style="height: 550px">
                         <div class="d-flex align-items-center justify-content-start mb-4">
                             <div class="" style="width: 1100px">
-                                {!! $ychart->container() !!}
+                                <canvas id="grafilline"></canvas>
+                                {{-- {!! $ychart->container() !!} --}}
                             </div>
                         </div>
                     </div>
@@ -219,9 +221,118 @@
 
     </div>
 
-    <script src="{{ $chart->cdn() }}"></script>
-    {{ $chart->script() }}
+    {{-- <script src="{{ $chart->cdn() }}"></script> --}}
+    {{-- {{ $chart->script() }} --}}
+
+
     {{ $ychart->script() }}
 
     @include('Admin.templates.script')
+    <script>
+        // Assuming you have the PHP variable $selesaiProjects available in JavaScript
+        const selesaiProjects = <?php echo json_encode($selesaiProjects) ?>;
+
+        // Function to get month name from month number
+        function getMonthName(monthNumber) {
+          const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+          return monthNames[monthNumber - 1];
+        };
+
+        // Prepare an array with count data for each month (initialize with zeros)
+        const countData = Array(12).fill(0);
+
+        // Update count data with actual counts from the $selesaiProjects variable
+        selesaiProjects.forEach(project => {
+          const monthIndex = project.month - 1;
+          countData[monthIndex] = project.count;
+        });
+
+        // Get month names for the labels
+        const labels = countData.map((_, index) => getMonthName(index + 1));
+
+        const ctx = document.getElementById('myChart');
+        console.log(ctx)
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Projek selesai',
+              data: countData,
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.7)',   // January
+                'rgba(54, 162, 235, 0.7)',   // February
+                'rgba(255, 206, 86, 0.7)',   // March
+                'rgba(75, 192, 192, 0.7)',   // April
+                'rgba(153, 102, 255, 0.7)',  // May
+                'rgba(255, 159, 64, 0.7)',   // June
+                'rgba(255, 99, 132, 0.7)',   // July
+                'rgba(54, 162, 235, 0.7)',   // August
+                'rgba(255, 206, 86, 0.7)',   // September
+                'rgba(75, 192, 192, 0.7)',   // October
+                'rgba(153, 102, 255, 0.7)',  // November
+                'rgba(255, 159, 64, 0.7)',   // December
+            ],
+
+              borderWidth: 1
+            }],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+    </script>
+    <script>
+    // Assuming you have the PHP variable $selesaiProjects available in JavaScript
+    const selesaiProjects = <?php echo json_encode($selesaiProjects); ?>;
+
+    // Function to get the current year
+    function getCurrentYear() {
+      const currentDate = new Date();
+      return currentDate.getFullYear();
+    }
+
+    // Prepare an array with count data for each year (initialize with zeros)
+    const currentYear = getCurrentYear();
+    const yearData = Array(currentYear).fill(0);
+
+    // Update year data with actual counts from the $selesaiProjects variable
+    selesaiProjects.forEach(project => {
+      const projectYear = parseInt(project.year);
+      if (projectYear >= 1 && projectYear <= currentYear) {
+        yearData[projectYear - 1] = project.count;
+      }
+    });
+
+    // Create an array for the labels (years)
+    const labels = Array.from({ length: currentYear }, (_, index) => index + 1);
+
+    const ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Projek selesai',
+          data: yearData,
+          borderColor: 'rgba(75, 192, 192, 1)', // Line color
+          borderWidth: 2,
+          fill: false, // Set to false to remove area fill below the line
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+
+
 </body>

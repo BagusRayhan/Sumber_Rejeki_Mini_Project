@@ -18,14 +18,20 @@ use Illuminate\Support\Facades\Validator;
 class AdminController extends Controller
 {
     public function index(MonthlyUsersChart $chart, AnnualyDoneChart $ychart) {
-        $selesaiProjects = Proreq::where('status', 'selesai')
-        ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+        $selesaiProjects = Proreq::selectRaw('MONTH(tanggalpembayaran2) as month, COUNT(*) as count')
+        ->where('status', 'selesai')
         ->groupBy('month')
         ->orderBy('month')
-        ->pluck('count')
-        ->toArray();
+        ->get();
+        $selesaiProjectsyear = Proreq::selectRaw('YEAR(tanggalpembayaran2) as year, COUNT(*) as count')
+        ->where('status', 'selesai')
+        ->groupBy('year')
+        ->orderBy('year')
+        ->get();
 
-        $chartData = $chart->build()->addData('Project Selesai', $selesaiProjects);
+        // dd($selesaiProjects);
+
+        // $chartData = $chart->build()->addData('Project Selesai', $selesaiProjects->pluck('count')->toArray());
         // $admin = User::where('role', 'admin')->first();
         $admin = User::find(Auth::user()->id);
         $clientCounter = User::where('role', 'client')->count();
@@ -63,7 +69,7 @@ class AdminController extends Controller
 
 
         return view('Admin.index', [
-            'chart' => $chartData,
+            // 'chart' => $chartData,
             'admin' => $admin,
             'clientCounter' => $clientCounter,
             'tolakCounter' => $tolakCounter,
@@ -73,7 +79,9 @@ class AdminController extends Controller
             'incomePayment' => $incomePayment,
             'incomeProject' => $incomeProject,
             'message' => $message,
-            'notification' => $notification
+            'notification' => $notification,
+            'selesaiProjects' => $selesaiProjects,
+            'selesaiProjectsyear' => $selesaiProjectsyear
         ]);
     }
 

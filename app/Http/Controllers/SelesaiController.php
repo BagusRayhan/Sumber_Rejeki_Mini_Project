@@ -10,7 +10,7 @@ use App\Models\Sosmed;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-seleesao
+
 class SelesaiController extends Controller
 {
         public function selesaiclient(Request $request)
