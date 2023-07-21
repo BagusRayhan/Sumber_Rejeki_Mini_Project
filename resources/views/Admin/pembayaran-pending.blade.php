@@ -200,7 +200,7 @@
                                                                         </div>
                                                                     @endif
                                                                 @elseif ($pro->statusbayar = 'pembayaran revisi')
-                                                                    @if ($pro->metodepembayaran !== 'cash')
+                                                                    @if ($pro->metodepembayaran3 !== 'cash')
                                                                     <div class="wrapper d-flex justify-content-between">
                                                                         <div class="mb-3" style="width: 12em">
                                                                             <label class="mb-1">Metode Pembayaran</label>
