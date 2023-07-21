@@ -60,7 +60,7 @@
                 <div class="mb-5 d-flex justify-content-between">
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Deadline</label>
-                        <input type="datetime-local" value="{{ $detail->deadline }}" class="form-control" placeholder="" disabled>
+                        <input type="text" value="{{ Carbon::parse($detail->deadline)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}" class="form-control" placeholder="" disabled>
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Total Harga</label>

@@ -5,7 +5,9 @@
     <head>
     @include('Client.Template.head')
     </head>
-
+@php
+    use \Carbon\Carbon;
+@endphp
     <body>
         <div class="container-xxl position-relative bg-white d-flex p-0">
             <!-- Spinner Start -->
@@ -57,7 +59,7 @@
                                     <td>{{ $item->nama }}</td>
                                     <td>{{ $item->napro }}</td>
                                     <td><span class="badge {{ ($item->status == 'draft') ? 'text-bg-danger' : '' }} text-bg-warning">{{ $item->status }}</span></td>
-                                    <td>{{ $item->deadline }}</td>
+                                    <td>{{ Carbon::parse($item->deadline)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</td>
                                     <td class="d-flex justify-content-evenly">
                                         <a href="{{ route('editproreq', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <form action="{{ route('destroy-pending-request') }}" method="post" onsubmit="return confirmDelete(event)">

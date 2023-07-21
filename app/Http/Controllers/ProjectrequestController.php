@@ -108,7 +108,7 @@ public function projectreq(Request $request)
             'deskripsi' => $notifDesk,
             'kategori' => 'Project Disetujui'
         ]);
-        return redirect()->route('projectreq');
+        return redirect()->route('projectreq')->with('success', 'Berhasil menyetujui project');
     }
     
     public function simpanfiturr(Request $request, $id)

@@ -53,7 +53,7 @@
                                             <tr>
                                                 <td>{{ $pro->nama }}</td>
                                                 <td>{{ $pro->napro }}</td>
-                                                <td>{{ $pro->harga + $pro->biayatambahan }}</td>
+                                                <td>{{ isset($pro->biayatambahan) ? 'Rp ' . number_format((float)$pro->harga + (float)$pro->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$pro->harga, 0, ',', '.') }}</td>
                                                 <td class="d-flex justify-content-evenly">
                                                     <a href="/detail-project-disetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                                 </td>

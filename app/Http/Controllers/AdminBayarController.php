@@ -65,7 +65,7 @@ class AdminBayarController extends Controller
             ]);
         }
         $project->save();
-        return back();
+        return back()->with('success', 'Berhasil menyetujui project');
     }    
 
     public function tolakPembayaran(Request $request, $id) {
@@ -126,7 +126,7 @@ class AdminBayarController extends Controller
             ]);
         }
         $projectol->save();
-        return back();
+        return back()->with('success','Berhasil menolak project');
     }
 
  public function disetujui(Request $request) {
@@ -155,10 +155,11 @@ class AdminBayarController extends Controller
     public function updateBank(Request $request) {
         $bank = Bank::findOrFail($request->idrekening);
         $valid = $request->validate([
-            'rekening' => 'required|numeric'
+            'rekening' => 'required|numeric|min:10'
         ], [
             'rekening.required' => 'Rekening tidak boleh kosong',
-            'rekening.numeric' => 'Rekening tidak valid'
+            'rekening.numeric' => 'Rekening tidak valid',
+            'rekening.min' => 'Rekening tidak valid'
         ]);
         $bank->update([
             'rekening' => $request->rekening
@@ -184,7 +185,7 @@ class AdminBayarController extends Controller
             $upQR['qrcode'] = $newQRCode;
             $ewallet->update($upQR);
         }
-        return back();
+        return back()->with('success', 'Berhasil mengubah E-Wallet');
     }
 
     public function deleteProjectHistory(Request $request) {
