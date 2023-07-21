@@ -18,7 +18,7 @@ class TolakController extends Controller
             $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
             $sosmed = Sosmed::all();
             $keyword = $request->input('keyword');
-             $data = proreq::where('status', 'tolak')
+             $data = proreq::where('status', 'tolak')->where('user_id', Auth::user()->id)
                   ->when($keyword, function ($query) use ($keyword) {
                       $query->where('napro', 'LIKE', '%'.$keyword.'%');
                   })

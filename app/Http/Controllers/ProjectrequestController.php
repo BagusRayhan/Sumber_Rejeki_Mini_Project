@@ -160,7 +160,7 @@ public function updateproreqa($id)
         'kategori' => 'Project Disetujui'
     ]);
 
-    return redirect()->route('projectreq')->with('sukses', 'Data berhasil disetujui');
+    return redirect()->route('projectreq')->with('success', 'Project berhasil disetujui');
 }
 
     public function projectselesai(Request $request){
