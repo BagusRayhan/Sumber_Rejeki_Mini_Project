@@ -246,241 +246,241 @@ $(document).ready(function() {
 </script>
 
 <script>
-    const selectMetode = document.getElementById('selectMetode');
-    const additionalSelectContainer = document.getElementById('additionalSelectContainer');
-    const fileInputContainer = document.getElementById('fileInputContainer');
+        const selectMetode = document.getElementById('selectMetode');
+        const additionalSelectContainer = document.getElementById('additionalSelectContainer');
+        const fileInputContainer = document.getElementById('fileInputContainer');
 
-    selectMetode.addEventListener('change', function () {
-      const selectedValue = this.value;
+        selectMetode.addEventListener('change', function () {
+          const selectedValue = this.value;
 
-      additionalSelectContainer.innerHTML = '';
-      fileInputContainer.innerHTML = '';
+          additionalSelectContainer.innerHTML = '';
+          fileInputContainer.innerHTML = '';
 
-      if (selectedValue === 'ewallet') {
-        const layananLabel = document.createElement('label');
-        layananLabel.textContent = 'Layanan';
+          if (selectedValue === 'ewallet') {
+            const layananLabel = document.createElement('label');
+            layananLabel.textContent = 'Layanan';
 
-        const layananSelect = document.createElement('select');
-        layananSelect.className = 'form-select form-select-lg mb-3';
-        layananSelect.name = 'metode';
-        layananSelect.style.width = '200px';
-        layananSelect.style.height = '40px';
-        layananSelect.style.fontSize = '16px';
-        layananSelect.innerHTML = `
-          <option selected class="dropdown-menu" name="layanan" disabled>Pilih E-Wallet</option>
-          <option value="dana">DANA</option>
-          <option value="ovo">OVO</option>
-          <option value="gopay">GoPay</option>
-          <option value="linkaja">LinkAja</option>
-        `;
+            const layananSelect = document.createElement('select');
+            layananSelect.className = 'form-select form-select-lg mb-3';
+            layananSelect.name = 'metode';
+            layananSelect.style.width = '200px';
+            layananSelect.style.height = '40px';
+            layananSelect.style.fontSize = '16px';
+            layananSelect.innerHTML = `
+              <option selected class="dropdown-menu" name="layanan" disabled>Pilih E-Wallet</option>
+              <option value="dana">DANA</option>
+              <option value="ovo">OVO</option>
+              <option value="gopay">GoPay</option>
+              <option value="linkaja">LinkAja</option>
+            `;
 
-        additionalSelectContainer.appendChild(layananLabel);
-        additionalSelectContainer.appendChild(layananSelect);
+            additionalSelectContainer.appendChild(layananLabel);
+            additionalSelectContainer.appendChild(layananSelect);
 
-        const fileInputLabel = document.createElement('label');
-        fileInputLabel.textContent = 'Bukti Pembayaran';
-        fileInputLabel.setAttribute('for', 'buktiPembayaran');
+            const fileInputLabel = document.createElement('label');
+            fileInputLabel.textContent = 'Bukti Pembayaran';
+            fileInputLabel.setAttribute('for', 'buktiPembayaran');
 
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.name = 'buktipembayaran';
-        fileInput.className = 'form-control';
-        fileInput.style.border = 'none';
-        fileInput.style.fontFamily = 'ubuntu';
-        fileInput.style.height = '40px';
-        fileInput.style.width = '200px';
-        fileInputLabel.style.marginLeft = '-15px';
-        fileInput.style.marginLeft = '-15px';
-        fileInput.setAttribute('required', true);
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.name = 'buktipembayaran';
+            fileInput.className = 'form-control';
+            fileInput.style.border = 'none';
+            fileInput.style.fontFamily = 'ubuntu';
+            fileInput.style.height = '40px';
+            fileInput.style.width = '200px';
+            fileInputLabel.style.marginLeft = '-15px';
+            fileInput.style.marginLeft = '-15px';
+            fileInput.setAttribute('required', true);
 
-        fileInputContainer.appendChild(fileInputLabel);
-        fileInputContainer.appendChild(fileInput);
+            fileInputContainer.appendChild(fileInputLabel);
+            fileInputContainer.appendChild(fileInput);
 
-        const imageContainer = document.createElement('div');
-        imageContainer.id = 'imageContainer';
-        additionalSelectContainer.appendChild(imageContainer);
+            const imageContainer = document.createElement('div');
+            imageContainer.id = 'imageContainer';
+            additionalSelectContainer.appendChild(imageContainer);
 
-        layananSelect.addEventListener('change', function () {
-          const selectedLayanan = this.value;
-          const imageContainer = document.getElementById('imageContainer');
+            layananSelect.addEventListener('change', function () {
+              const selectedLayanan = this.value;
+              const imageContainer = document.getElementById('imageContainer');
 
-          imageContainer.innerHTML = '';
+              imageContainer.innerHTML = '';
 
-          if (selectedLayanan === 'dana') {
-            const imageFilename = 'dana.png';
+              if (selectedLayanan === 'dana') {
+                const imageFilename = 'dana.png';
 
-            const imageUrl = 'gambar/qr/' + imageFilename;
+                const imageUrl = 'gambar/qr/' + imageFilename;
 
-            const imageElement = document.createElement('img');
-            imageElement.style.width = '200px';
-            imageElement.style.height = '200px';
-            imageElement.src = imageUrl;
+                const imageElement = document.createElement('img');
+                imageElement.style.width = '200px';
+                imageElement.style.height = '200px';
+                imageElement.src = imageUrl;
 
-            imageContainer.appendChild(imageElement);
-          }
+                imageContainer.appendChild(imageElement);
+              }
 
-          if (selectedLayanan === 'ovo') {
-            const imageFilename = 'ovo.png';
+              if (selectedLayanan === 'ovo') {
+                const imageFilename = 'ovo.png';
 
-            const imageUrl = 'gambar/qr/' + imageFilename;
+                const imageUrl = 'gambar/qr/' + imageFilename;
 
-            const imageElement = document.createElement('img');
-            imageElement.style.width = '200px';
-            imageElement.style.height = '200px';
-            imageElement.src = imageUrl;
+                const imageElement = document.createElement('img');
+                imageElement.style.width = '200px';
+                imageElement.style.height = '200px';
+                imageElement.src = imageUrl;
 
-            imageContainer.appendChild(imageElement);
-          }
+                imageContainer.appendChild(imageElement);
+              }
 
-          if (selectedLayanan === 'gopay') {
+              if (selectedLayanan === 'gopay') {
 
-            const imageFilename = 'gopay.png';
+                const imageFilename = 'gopay.png';
 
-            const imageUrl = 'gambar/qr/' + imageFilename;
+                const imageUrl = 'gambar/qr/' + imageFilename;
 
-            const imageElement = document.createElement('img');
-            imageElement.style.width = '200px';
-            imageElement.style.height = '200px';
-            imageElement.src = imageUrl;
+                const imageElement = document.createElement('img');
+                imageElement.style.width = '200px';
+                imageElement.style.height = '200px';
+                imageElement.src = imageUrl;
 
-            imageContainer.appendChild(imageElement);
-          }
+                imageContainer.appendChild(imageElement);
+              }
 
-          if (selectedLayanan === 'linkaja') {
-            const imageFilename = 'linkaja.png';
+              if (selectedLayanan === 'linkaja') {
+                const imageFilename = 'linkaja.png';
 
-            const imageUrl = 'gambar/qr/' + imageFilename;
+                const imageUrl = 'gambar/qr/' + imageFilename;
 
-            const imageElement = document.createElement('img');
-            imageElement.style.width = '200px';
-            imageElement.style.height = '200px';
-            imageElement.src = imageUrl;
+                const imageElement = document.createElement('img');
+                imageElement.style.width = '200px';
+                imageElement.style.height = '200px';
+                imageElement.src = imageUrl;
 
-            imageContainer.appendChild(imageElement);
-          }
-        });
-      } else if (selectedValue === 'bank') {
-        const bankLabel = document.createElement('label');
-        bankLabel.textContent = 'Bank';
+                imageContainer.appendChild(imageElement);
+              }
+            });
+          } else if (selectedValue === 'bank') {
+            const bankLabel = document.createElement('label');
+            bankLabel.textContent = 'Bank';
 
-        const bankSelect = document.createElement('select');
-        bankSelect.className = 'form-select form-select-lg mb-3';
-        bankSelect.name = 'metode';
-        bankSelect.style.width = '200px';
-        bankSelect.style.height = '40px';
-        bankSelect.style.fontSize = '16px';
-        bankSelect.innerHTML = `
-          <option selected class="dropdown-menu" name="bank" disabled>Pilih Bank</option>
-          <option value="Bank BRI">Bank BRI</option>
-          <option value="Bank BCA">Bank BCA</option>
-          <option value="Bank Mandiri">Bank Mandiri</option>
-        `;
+            const bankSelect = document.createElement('select');
+            bankSelect.className = 'form-select form-select-lg mb-3';
+            bankSelect.name = 'metode';
+            bankSelect.style.width = '200px';
+            bankSelect.style.height = '40px';
+            bankSelect.style.fontSize = '16px';
+            bankSelect.innerHTML = `
+              <option selected class="dropdown-menu" name="bank" disabled>Pilih Bank</option>
+              <option value="Bank BRI">Bank BRI</option>
+              <option value="Bank BCA">Bank BCA</option>
+              <option value="Bank Mandiri">Bank Mandiri</option>
+            `;
 
-        const fileInputLabel = document.createElement('label');
-        fileInputLabel.textContent = 'Bukti Pembayaran';
-        fileInputLabel.style.textAlign = 'center';
-        fileInputLabel.style.marginBottom = '5px';
-        fileInputLabel.style.position = 'relative';
-        fileInputLabel.style.top = '-75px';
-        fileInputLabel.style.right = '-224px';
+            const fileInputLabel = document.createElement('label');
+            fileInputLabel.textContent = 'Bukti Pembayaran';
+            fileInputLabel.style.textAlign = 'center';
+            fileInputLabel.style.marginBottom = '5px';
+            fileInputLabel.style.position = 'relative';
+            fileInputLabel.style.top = '-75px';
+            fileInputLabel.style.right = '-224px';
 
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.name = 'buktipembayaran';
-        fileInput.className = 'form-control';
-        fileInput.style.border = 'none';
-        fileInput.style.fontFamily = 'ubuntu';
-        fileInput.style.height = '1%';
-        fileInput.style.width = '170%';
-        fileInput.style.marginTop = '-79px';
-        fileInput.style.marginLeft = 'auto';
-        fileInput.style.marginRight = '-310px';
-        fileInput.setAttribute('required', true);
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.name = 'buktipembayaran';
+            fileInput.className = 'form-control';
+            fileInput.style.border = 'none';
+            fileInput.style.fontFamily = 'ubuntu';
+            fileInput.style.height = '1%';
+            fileInput.style.width = '170%';
+            fileInput.style.marginTop = '-79px';
+            fileInput.style.marginLeft = 'auto';
+            fileInput.style.marginRight = '-310px';
+            fileInput.setAttribute('required', true);
 
-        const inputBankLabel = document.createElement('label');
-        inputBankLabel.textContent = 'No. Rekening';
+            const inputBankLabel = document.createElement('label');
+            inputBankLabel.textContent = 'No. Rekening';
             inputBankLabel.style.textAlign = 'center';
             inputBankLabel.style.marginBottom = '5px';
             inputBankLabel.style.position = 'absolute';
             inputBankLabel.style.top = '16px';
             inputBankLabel.style.right = '148px';
 
-        const inputBank = document.createElement('input');
-        inputBank.type = 'text';
-        inputBank.name = 'rekening';
-        inputBank.className = 'form-control';
-        inputBank.style.border = 'none';
-        inputBank.style.fontFamily = 'ubuntu';
+            const inputBank = document.createElement('input');
+            inputBank.type = 'text';
+            inputBank.name = 'rekening';
+            inputBank.className = 'form-control';
+            inputBank.style.border = 'none';
+            inputBank.style.fontFamily = 'ubuntu';
             inputBank.style.height = '15%';
             inputBank.style.width = '45%';
             inputBank.style.position = 'absolute';
             inputBank.style.right = '22px';
             inputBank.style.marginTop = '-137px';
-        inputBank.setAttribute('required', true);
-        inputBank.setAttribute('disabled', true);
+            inputBank.setAttribute('required', true);
+            inputBank.setAttribute('disabled', true);
 
-        additionalSelectContainer.appendChild(bankLabel);
-        additionalSelectContainer.appendChild(bankSelect);
-        additionalSelectContainer.appendChild(inputBankLabel);
-        additionalSelectContainer.appendChild(inputBank);
-        fileInputContainer.appendChild(fileInputLabel);
-        fileInputContainer.appendChild(fileInput);
+            additionalSelectContainer.appendChild(bankLabel);
+            additionalSelectContainer.appendChild(bankSelect);
+            additionalSelectContainer.appendChild(inputBankLabel);
+            additionalSelectContainer.appendChild(inputBank);
+            fileInputContainer.appendChild(fileInputLabel);
+            fileInputContainer.appendChild(fileInput);
 
-bankSelect.addEventListener('change', function () {
-  const selectedBank = this.value;
-console.log(selectedBank)
-  $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-  $.ajax({
-    url: '/ambilrek',
-    method: 'POST',
-    data: { id: selectedBank },
-    success: function(response) {
-        console.log(response)
-      const rekening = response;
-
-      inputBank.value = rekening;
-    },
-    error: function(error) {
-      console.error('Error:', error);
-    }
-  });
-});
-      } else if (selectedValue === 'cash') {
-    const datetimeLabel = document.createElement('label');
-    datetimeLabel.textContent = 'Tanggal Bayar';
-    datetimeLabel.style.textAlign = 'center';
-    datetimeLabel.style.marginBottom = '5px';
-    datetimeLabel.style.position = 'absolute';
-    datetimeLabel.style.top = '16px';
-    datetimeLabel.style.right = '148px';
-
-    const datetimeInput = document.createElement('input');
-    datetimeInput.type = 'datetime-local';
-    datetimeInput.name = 'tanggalpembayaran';
-    datetimeInput.className = 'form-control';
-    datetimeInput.style.width = '200px';
-    datetimeInput.style.height = '40px';
-    datetimeInput.style.position = 'absolute';
-    datetimeInput.style.right = '45px';
-    datetimeInput.style.marginTop = '-56px';
-    datetimeInput.style.fontSize = '16px';
-    datetimeInput.setAttribute('required', true);
-
-    additionalSelectContainer.appendChild(datetimeLabel);
-    additionalSelectContainer.appendChild(datetimeInput);
-  }
+    bankSelect.addEventListener('change', function () {
+      const selectedBank = this.value;
+    console.log(selectedBank)
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
-  </script>
-        </form>
+      $.ajax({
+        url: '/ambilrek',
+        method: 'POST',
+        data: { id: selectedBank },
+        success: function(response) {
+            console.log(response)
+          const rekening = response;
+
+          inputBank.value = rekening;
+        },
+        error: function(error) {
+          console.error('Error:', error);
+        }
+      });
+    });
+          } else if (selectedValue === 'cash') {
+        const datetimeLabel = document.createElement('label');
+        datetimeLabel.textContent = 'Tanggal Bayar';
+        datetimeLabel.style.textAlign = 'center';
+        datetimeLabel.style.marginBottom = '5px';
+        datetimeLabel.style.position = 'absolute';
+        datetimeLabel.style.top = '16px';
+        datetimeLabel.style.right = '148px';
+
+        const datetimeInput = document.createElement('input');
+        datetimeInput.type = 'datetime-local';
+        datetimeInput.name = 'tanggalpembayaran';
+        datetimeInput.className = 'form-control';
+        datetimeInput.style.width = '200px';
+        datetimeInput.style.height = '40px';
+        datetimeInput.style.position = 'absolute';
+        datetimeInput.style.right = '45px';
+        datetimeInput.style.marginTop = '-56px';
+        datetimeInput.style.fontSize = '16px';
+        datetimeInput.setAttribute('required', true);
+
+        additionalSelectContainer.appendChild(datetimeLabel);
+        additionalSelectContainer.appendChild(datetimeInput);
+      }
+        });
+      </script>
+            </form>
+        </div>
+        <div class="d-flex justify-content-end">
+            {{ $data->links() }}
+        </div>
     </div>
-    <div class="d-flex justify-content-end">
-        {{ $data->links() }}
-    </div>
-</div>
 
                     </div>
       </div>

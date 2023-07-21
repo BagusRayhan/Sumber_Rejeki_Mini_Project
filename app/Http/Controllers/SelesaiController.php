@@ -28,7 +28,7 @@ class SelesaiController extends Controller
                    });
                })
                ->paginate(5);
-                $data->appends(['search' => $search]);
+            $data->appends(['search' => $search]);
             $sosmed = Sosmed::all();
             return view('Client.selesai', compact('sosmed','client','data','notification'));
         }
@@ -121,7 +121,7 @@ class SelesaiController extends Controller
                 'status' => 'setuju',
                 'statusbayar' => null
             ]);
-            return redirect()->route('selesaiclient')->with('success', 'Berhasil');
+            return redirect()->route('setujuclient')->with('success', 'Berhasil');
         }
 
         public function rejectRevision(Request $request) {
@@ -130,7 +130,7 @@ class SelesaiController extends Controller
                 'status' => 'selesai',
                 'statusbayar' => null
             ]);
-            return redirect()->route('selesaiclient')->with('success', 'Berhasil');
+            return redirect()->route('revisiclient')->with('success', 'Berhasil');
         }
 
         public function destroy1(int $id)

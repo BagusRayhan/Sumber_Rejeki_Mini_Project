@@ -71,7 +71,6 @@ class ProjectDisetujuiController extends Controller
             return response()->json(['message' => 'Proreq tidak ditemukan'], 404);
         }
 
-        // Update progress pada proreq
         $proreq->progress = $progress;
         $proreq->save();
 

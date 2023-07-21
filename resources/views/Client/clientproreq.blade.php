@@ -73,25 +73,33 @@
                                         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
 
                                         <script>
-                                            function confirmDelete(event) {
-                                                event.preventDefault();
+                                        function confirmDelete(event) {
+                                            event.preventDefault();
 
-                                                Swal.fire({
-                                                    title: 'Apakah Anda yakin?',
-                                                    text: 'Ingin membatakan project ini!',
-                                                    icon: 'warning',
-                                                    showCancelButton: true,
-                                                    confirmButtonColor: '#d33',
-                                                    cancelButtonColor: '#3085d6',
-                                                    confirmButtonText: 'Ya, hapus!',
-                                                    cancelButtonText: 'Batal'
-                                                }).then((result) => {
-                                                    if (result.isConfirmed) {
+                                            Swal.fire({
+                                                title: 'Apakah Anda yakin?',
+                                                text: 'Ingin membatalkan project ini!',
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#d33',
+                                                cancelButtonColor: '#3085d6',
+                                                confirmButtonText: 'Ya, batalkan!',
+                                                cancelButtonText: 'Batal'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    Swal.fire({
+                                                        title: 'Project dibatalkan!',
+                                                        text: 'Project telah berhasil dibatalkan.',
+                                                        icon: 'success',
+                                                        timer: 2000,
+                                                        showConfirmButton: false
+                                                    }).then(() => {
                                                         event.target.submit();
-                                                    }
-                                                });
-                                            }
-                                        </script>
+                                                    });
+                                                }
+                                            });
+                                        }
+                                    </script>
                                     </td>
                                 </tr>
                                 @endforeach

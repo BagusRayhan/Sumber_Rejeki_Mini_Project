@@ -32,33 +32,21 @@
                                     <label for="input1">Nama Client</label>
                                     <input type="text" class="form-control" id="input1" name="nama" value="{{ $username }}" disabled>
                                 </div>
-                                @error('nama')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                                 <div class="form-group mb-3">
 
                                     <label for="napro">Nama Project</label>
                                     <input type="text" value="{{ old('napro') }}" class="form-control" id="napro" name="napro" placeholder="Masukkan nama project anda">
                                 </div>
-                                @error('napro')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                             </div>
                             <div class="wrapper w-50 px-3 d-flex flex-column">
                                 <div class="form-group mb-3">
                                     <label for="input3">Dokumen Pendukung (Opsional)</label>
                                     <input type="file" class="form-control" id="input3" name="dokumen">
                                 </div>
-                                @error('dokumen')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                                 <div class="form-group mb-3">
                                     <label for="deadline">Deadline</label>
                                     <input type="datetime-local" value="{{ old('deadline') }}" class="form-control" id="deadline" name="deadline" placeholder="Input 4">
                                 </div>
-                                @error('deadline')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                             </div>
                         </div>
                         <div class="wrapper m-3 d-flex">
