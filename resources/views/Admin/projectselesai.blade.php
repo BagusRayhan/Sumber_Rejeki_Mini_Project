@@ -29,7 +29,7 @@
                 <form action="{{ route('projectselesai') }}" method="get">
                   @csrf
                     <div class="input-group rounded-pill" style="background: #E9EEF5">
-                        <input type="text" name="searchKeyword" value="{{ request('searchKeyword') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+                        <input type="text" name="query" value="{{ request('query') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
                         <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                     </div>
                 </form>
@@ -80,13 +80,15 @@
                       </table>
                   </div>
                 </div>
+                <div style="float: right;">
+                {{$selesai->links()}}
+                </div>
                 </div>
             </div>
-            </div>
+          </div>
         </div>
         <!-- Content End -->
         <div class="wrapper w-100 d-flex justify-content-end">
-          {{$selesai->links()}}
         </div>
 
     </div>

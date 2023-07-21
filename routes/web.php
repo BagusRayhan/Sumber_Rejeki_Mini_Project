@@ -137,6 +137,7 @@ Route::middleware(['web', 'auth'])->group(function(){
     Route::put('update-status/{id}', [SelesaiController::class, 'updatestatus'])->name('update-status');
     Route::put('update-statuss/{id}', [SelesaiController::class, 'updatestatuss'])->name('update-statuss');
     Route::delete('/destroy/{id}', [TolakController::class, 'destroy'])->name('destroy');
+    Route::delete('/destroy1/{id}', [TolakController::class, 'destroy1'])->name('destroy1');
     Route::delete('destroyfitur/{id}', [IndexcController::class, 'destroyfitur'])->name('destroyfitur');
     Route::delete('destroyrequest', [IndexcController::class, 'destroyRequest'])->name('destroy-pending-request');
     Route::delete('deleteproj/{id}', [BayarController::class, 'deleteproj'])->name('deleteproj');

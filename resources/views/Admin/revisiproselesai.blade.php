@@ -74,10 +74,24 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-start mb-3">
-                    <a href="{{ route('projectselesai') }}" class="btn btn-primary btn-sm" style="margin-right: 15px"><i class="fa fa-reply"></i> Kembali</a>
-                    <button class="btn btn-warning btn-sm text-white" type="submit"><i class="fa-solid fa-pencil-square"></i> Ajukan Perubahan</button>
+                    <a href="{{ route('projectselesai') }}" class="btn btn-primary btn-sm">Kembali</a>
+                    <button class="btn btn-warning btn-sm text-white mx-2" type="submit"><i class="fa-solid fa-pencil-square"></i> Ajukan Perubahan</button>
                 </div>
             </form>
+            <div class="modal fade" id="pesanRevisi" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5>Revisi dari Client</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ $data->listrevisi }}</p>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
             <script>
                   function ajukanPerubahan(event) {
                     event.preventDefault();
@@ -99,6 +113,7 @@
             </script>
             <div class="row">
                 <div class="wrapper d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary btn-sm mx-2" data-bs-toggle="modal" data-bs-target="#pesanRevisi">Pesan</button>
                     <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#addFiturModal"><i class="fa-solid fa-circle-plus"></i> Tambah Fitur</button>
                 </div>
                 <div class="col-12">

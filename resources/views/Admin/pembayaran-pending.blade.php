@@ -32,10 +32,10 @@
             <!-- Confirm Payment Table Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="search-form w-25">
-                    <form action="">
+                    <form action="{{ route('pending-bayar-admin') }}" method="GET">
                         <div class="input-group rounded-pill" style="background: #E9EEF5">
-                            <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
-                            <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
+                            <input type="text" name="query" value="{{ request('query') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+                            <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                         </div>
                     </form>
                 </div>

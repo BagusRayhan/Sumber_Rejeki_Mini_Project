@@ -98,7 +98,8 @@ class SelesaiController extends Controller
         public function ajukanRevisi(Request $request) {
             $pro = Proreq::find($request->project_id);
             $pro->update([
-                'status' => 'pengajuan revisi'
+                'status' => 'pengajuan revisi',
+                'listrevisi' => $request->revisi
             ]);
             $msg = 'Revisi Project';
             $notifDesk = Auth::user()->name.' mengajukan revisi';
@@ -128,5 +129,20 @@ class SelesaiController extends Controller
                 'statusbayar' => null
             ]);
             return redirect()->route('selesaiclient')->with('success', 'Berhasil');
+        }
+
+        public function destroy1(int $id)
+        {
+            $data = proreq::findOrFail($id);
+            unlink(public_path('document/' . $data->dokumen));
+            $data->delete();
+            return redirect()->route('ditolakclient')->with('success', 'Berhasil menghapus data!');
+        }
+
+        public function destroypro(int $id)
+        {
+            $data = proreq::findOrFail($id);
+            $data->delete();
+            return redirect()->route('selesaiclient')->with('success', 'Berhasil menghapus data!');
         }
 }

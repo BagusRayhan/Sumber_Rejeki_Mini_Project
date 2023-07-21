@@ -426,7 +426,6 @@ $(document).ready(function() {
         fileInputContainer.appendChild(fileInputLabel);
         fileInputContainer.appendChild(fileInput);
 
-// Menambahkan event listener ke select "Pilih Bank"
 bankSelect.addEventListener('change', function () {
   const selectedBank = this.value;
 console.log(selectedBank)

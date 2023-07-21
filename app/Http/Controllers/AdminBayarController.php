@@ -13,10 +13,12 @@ use Illuminate\Support\Facades\File;
 
 class AdminBayarController extends Controller
 {
-    public function pending() {
+    public function pending(Request $request) {
         $admin = User::where('role', 'admin')->first();
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-        $propend = proreq::where('statusbayar', 'pembayaran awal')->orWhere('statusbayar','pembayaran akhir')->orWhere('statusbayar','pembayaran revisi')->paginate(6);
+        $query = $request->input('query');
+        $propend = proreq::where('statusbayar', 'pembayaran awal')->where('napro', 'LIKE', '%'.$query.'%')->orWhere('statusbayar','pembayaran akhir')->orWhere('statusbayar','pembayaran revisi')->paginate(5);
+         $propend->appends(['query' => $query]);
         return view('Admin.pembayaran-pending', compact('propend', 'admin', 'notification'));
     }
  
@@ -127,12 +129,15 @@ class AdminBayarController extends Controller
         return back();
     }
 
-    public function disetujui() {
-        $admin = User::where('role', 'admin')->first();
-        $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-        $approved = Proreq::where('statusbayar', 'lunas')->get();
-        return view('Admin.pembayaran-disetujui', compact('approved', 'admin', 'notification'));
-    }
+ public function disetujui(Request $request) {
+    $admin = User::where('role', 'admin')->first();
+    $query = $request->input('query');
+    $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
+    $approved = Proreq::where('statusbayar', 'lunas')->where('napro', 'LIKE', '%'.$query.'%')->paginate(10); 
+    $approved->appends(['query' => $query]);
+    return view('Admin.pembayaran-disetujui', compact('approved', 'admin', 'notification', 'query'));
+}
+
 
     public function pembayaranDigital() {
         $admin = User::where('role', 'admin')->first();
