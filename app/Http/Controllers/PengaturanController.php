@@ -48,6 +48,13 @@ class PengaturanController extends Controller
     }
 
     public function updatesosmed(Request $request){
+        $this->validate($request,[
+            'wa' => 'min:11|max:16'
+        ],[
+            'wa.min' => 'Minimal nomor 11 angka',
+            'wa.max' => 'Maksimal Harga 16 angka'
+        ]);
+
         $data = Sosmed::find(1);
         $data->wa = $request->input('wa');
         $data->ig = $request->input('ig');
