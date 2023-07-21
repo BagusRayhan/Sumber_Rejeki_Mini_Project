@@ -160,10 +160,20 @@
                                     @else
                                     <form action="{{ route('save.progress') }}" method="post">
                                         @csrf <!-- Add CSRF token here -->
-                                        <label for="customRange1" class="form-label">Persentase Progress <span class="badge text-bg-primary">{{ $detail->progress }}%</span></label>
+                                        <label for="customRange1" class="form-label">Persentase Progress <span class="badge text-bg-primary" id="progressLabel">50%</span></label>
                                         <input type="range" class="form-range" id="customRange1" name="progress" value="{{ $detail->progress }}" data-feature-id="{{ $detail->id }}" min="1" max="100">
                                         <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBtn" style="float: right;">Simpan Progress</button>
                                     </form>
+                                    <script>
+
+                                        const rangeInput = document.getElementById('customRange1');
+                                        const progressLabel = document.getElementById('progressLabel');
+                                        rangeInput.addEventListener('input', () => {
+                                            const progressValue = rangeInput.value;
+                                            progressLabel.textContent = progressValue + '%';
+                                        });
+                                    </script>
+
                                     <script>
                                     var projectDoneBtn = document.getElementById('projectDoneBtn');
                                     var inputRange = document.getElementById('customRange1');
