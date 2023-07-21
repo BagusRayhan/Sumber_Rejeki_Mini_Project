@@ -84,7 +84,7 @@
                             <img class="rounded-circle flex-shrink-0" style="width: 3em; height: 3em; object-fit: cover;" src="/gambar/user-profile/{{ $estimasisetuju->user->profil }}">
                             <div class="ms-3 flex-grow-1">
                                 <h6 class="mb-2">{{ $estimasisetuju->napro }}</h6>
-                                <span class="mb-5">Rp.&nbsp;&nbsp;{{ $estimasisetuju->harga }}</span>
+                                <span class="mb-5">Rp. {{ number_format($estimasisetujui->harga, 0, ',', '.') }}</span>
                             </div>
                             <div class="col-sm-12 col-xl-5" >
                                 <div class="bg-light rounded h-100 p-10">

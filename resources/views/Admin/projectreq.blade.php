@@ -19,7 +19,7 @@
         @include('Admin.templates.sidebar')
 
         <!-- Content Start -->
-        <div class="content">
+        <div class="content" style="overflow: hidden">
 
             @include('Admin.templates.navbar')
 
