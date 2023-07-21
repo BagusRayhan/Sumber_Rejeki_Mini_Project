@@ -38,7 +38,7 @@ class AdminBayarController extends Controller
             ]);
         } elseif ($project->statusbayar === 'pembayaran akhir') {
             $project->status = 'selesai';
-            $project->statusbayar = null;
+            $project->statusbayar = 'lunas';
             $msg = 'Pembayaran Akhir Disetujui';
             $notifDesk = $project->napro;
             Notification::create([
