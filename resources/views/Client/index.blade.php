@@ -7,6 +7,7 @@
 
 <head>
     @include('Client.Template.head')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -100,51 +101,74 @@
                                                                 <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ $progress }}%"></div>
                                                             </div>
                                                         </div>
-                                                       @else
-                                                       <div class="wrapper mt-3">
-                                                       <h6>Progress Project <span class="badge bg-primary mb-1">{{ round($estimasisetuju->progress) }}%</span></h6>
-                                                       <div class="pg-bar">
-                                                           <div class="progress">
-                                                               <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ $estimasisetuju->progress }}%"></div>
-                                                           </div>
-                                                       </div>
-                                                   </div>
+                                                    </div>
+                                                    <script>
+                                                        var progressBar = document.getElementById('progress-bar');
+                                                        var totalFeatures = {{ count($fitur) }};
+                                                        var completedFeatures = 0;
+                                                        var progress = 0;
 
-                                                    @endif
-                                                        <script>
-                                                                var progressBar = document.getElementById('progress-bar');
-                                                                var totalFeatures = {{ count($fitur) }};
-                                                                var completedFeatures = 0;
-                                                                var progress = 0;
-                                                                var projectProgress = {{ $detail->progress ?? 0 }};
                                                         @foreach ($fitur as $f)
-                                                        @if ($f->proreq && $f->proreq->status == 'selesai' && $f->project_id == $client->id)
+                                                        @if ($f->status == 'selesai' && $f->project_id == $client->id)
                                                             completedFeatures++;
                                                         @endif
                                                         @endforeach
 
-                                                                function animateProgressBar() {
-                                                                    if (completedFeatures > 0) {
-                                                                    if (progress < (completedFeatures / totalFeatures) * 100) {
-                                                                        progress += 1;
-                                                                        progressBar.style.width = progress + '%';
-                                                                        progressBar.setAttribute('aria-valuenow', progress);
-                                                                        requestAnimationFrame(animateProgressBar);
-                                                                    }
-                                                                    } else {
-                                                                        progress = projectProgress;
-                                                                    }
-                                                                            if (progress < 100) {
-                                                                        progressBar.style.width = progress + '%';
-                                                                        progressBar.setAttribute('aria-valuenow', progress);
-                                                                        requestAnimationFrame(animateProgressBar);
-                                                                    }
-                                                                                }
+                                                        function animateProgressBar() {
+                                                            if (progress < (completedFeatures / totalFeatures) * 100) {
+                                                                progress += 1; 
+                                                                progressBar.style.width = progress + '%';
+                                                                progressBar.setAttribute('aria-valuenow', progress);
+                                                                requestAnimationFrame(animateProgressBar);
+                                                            }
+                                                        }
 
-                                                                animateProgressBar();
-                                                            </script>
+                                                        animateProgressBar();
+                                                    </script>
+                                                @else
+                                                <div class="wrapper mt-3">
+                                                    <h6>Progress Project</h6>
+                                                    <div class="pg-bar">
+                                                        <div class="progress">
+                                                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{ $estimasisetuju->progress }}%"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    var progressBar = document.getElementById('progress-bar');
+                                                    var totalFeatures = {{ count($fitur) }};
+                                                    var completedFeatures = 0;
+                                                    var progress = 0;
+                                                    var projectProgress = {{ $estimasisetuju->progress }};
 
+                                                    @foreach ($fitur as $f)
+                                                        @if ($f->status == 'selesai' && $f->project_id == $client->id)
+                                                            completedFeatures++;
+                                                        @endif
+                                                    @endforeach
 
+                                                    function animateProgressBar() {
+                                                        if (completedFeatures > 0) {
+                                                            if (progress < (completedFeatures / totalFeatures) * 100) {
+                                                                progress += 1; 
+                                                                progressBar.style.width = progress + '%';
+                                                                progressBar.setAttribute('aria-valuenow', progress);
+                                                                requestAnimationFrame(animateProgressBar);
+                                                            }
+                                                        } else {
+                                                            progress = projectProgress;
+                                                        }
+
+                                                        if (progress < 100) {
+                                                            progressBar.style.width = progress + '%';
+                                                            progressBar.setAttribute('aria-valuenow', progress);
+                                                            requestAnimationFrame(animateProgressBar);
+                                                        }
+                                                    }
+
+                                                    animateProgressBar();
+                                                </script>
+                                                @endif
                                                     </div>
                                                 </div>
                                             </div>
