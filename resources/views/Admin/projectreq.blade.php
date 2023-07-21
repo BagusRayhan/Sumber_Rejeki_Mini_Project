@@ -33,7 +33,6 @@
         </div>
     </form>
 @endif
-
             </div>
                 <div class="row mt-4 px-4">
                     @foreach ($projectreq as $row)
