@@ -35,7 +35,7 @@ public function login(Request $request)
             return redirect()->route('indexclient');
         }
     }
-    return redirect('/')
+    return redirect('/login')
         ->withErrors(['email' => 'Email atau password tidak cocok!'])
         ->withInput()
         ->with('alert-type', 'error');
