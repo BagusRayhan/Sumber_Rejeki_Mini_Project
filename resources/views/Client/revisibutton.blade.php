@@ -134,11 +134,27 @@
             </div>
             <div class="my-3 d-flex justify-content-between" style="width: 13em">
                 <a href="/selesaiclient" class="btn btn-primary btn-sm p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
-                <form action="{{ route('ajukan-revisi-client') }}" method="post">
-                    @csrf
-                    <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                    <button class="btn btn-warning btn-sm text-white" type="submit"><i class="fa-solid fa-file-circle-plus"></i> Ajukan Revisi</button>
-                </form>
+                <button class="btn btn-warning btn-sm text-white" type="button" data-bs-target="#revisiModal" data-bs-toggle="modal"><i class="fa-solid fa-pen-to-square"></i> Ajukan Revisi</button>
+                <div class="modal fade" id="revisiModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Revisi Project</h1>
+                            </div>
+                            <form action="{{ route('ajukan-revisi-client') }}" id="ajukanRevisiClient" method="post">
+                                <div class="modal-body">
+                                    @csrf
+                                    <input type="hidden" name="project_id" value="{{ $detail->id }}">
+                                    <textarea name="revisi" id="pesanRevisi" rows="8" class="form-control w-100" placeholder="Masukkan list revisi..."></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" data-bs-dismiss="modal" class="btn btn-danger">Batal</button>
+                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="container my-5">

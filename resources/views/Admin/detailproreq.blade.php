@@ -132,19 +132,18 @@
             <div class="modal-dialog modal-dialog-centered align-items-center">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Ditolak</h5>
-                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title">Alasan Ditolak</h5>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('alasantolak') }}" method="POST">
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="dataid" value="{{ $data->id }}">
-                        <label for="" class="form-label">Alasan Ditolak</label>
-                        <textarea class="form-control" placeholder="Masukkan Alasan Anda...." rows="6" name="alasan" required></textarea>
+                        <textarea class="form-control" placeholder="Masukkan Alasan Anda...." rows="6" name="alasan"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit"  class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Tolak</button>
                     </div>
                 </div>
             </form>
@@ -163,7 +162,7 @@
                         @csrf
                         @method('PUT')
                         <div class="mb-2">
-                            <input type="number" name="harga" id="hargaProject" class="form-control mb-2 input-hargafitur" value="{{ $data->harga }}" aria-describedby="basic-addon1">
+                            <input type="text" name="harga" id="hargaProject" class="form-control mb-2 input-hargafitur" value="{{ $data->harga }}" aria-describedby="basic-addon1">
                             <p style="font-size: 13px; opacity: .8">Masukkan harga project berdasarkan isi dokumen</p>
                         </div>
                     </div>
@@ -217,7 +216,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="" class="form-label">Harga Fitur</label>
-                                                    <input type="number" name="hargafitur" class="form-control input-hargafitur" value="{{ $fitur->hargafitur }}">
+                                                    <input type="text" name="hargafitur" class="form-control input-hargafitur" value="{{ $fitur->hargafitur }}">
                                                 </div>
                                             </div>
                                             <div class="mb-2">

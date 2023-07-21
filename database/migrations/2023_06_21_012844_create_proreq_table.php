@@ -24,7 +24,8 @@ return new class extends Migration
             $table->dateTime('deadline')->nullable();
             $table->string('status')->nullable();
             $table->integer('harga')->nullable();
-            $table->string('alasan')->nullable();
+            $table->longText('alasan')->nullable();
+            $table->longText('listrevisi')->nullable();
             $table->string('statusbayar')->nullable();
             $table->string('biayatambahan')->nullable();
             $table->string('metodepembayaran')->nullable();
