@@ -49,7 +49,7 @@
                                 <td>{{ $row->napro }}</td>
                                 <td>{{ $row->alasan }}</td>
                                 <td class="text-center">
-                                    <form id="deleteForm" onsubmit="sendRequest(event);" action="{{ route('destroy', $row->id) }}" method="POST">
+                                    <form id="deleteForm-{{ $row->id }}" onsubmit="sendRequest(event, {{ $row->id }});" action="{{ route('destroy', $row->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger"> <i class="fa-solid fa-trash"></i></button>
@@ -57,7 +57,7 @@
 
                                     <!-- Script SweetAlert -->
                                     <script>
-                                        function sendRequest(event) {
+                                        function sendRequest(event, id) {
                                             event.preventDefault();
                                             Swal.fire({
                                                 title: 'Apakah Anda yakin ?',
@@ -70,8 +70,8 @@
                                                 cancelButtonText: 'Batal'
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
-                                                    // Jika pengguna menekan "Ya", kirimkan request untuk menghapus data
-                                                    document.getElementById('deleteForm').submit();
+                                                    
+                                                    document.getElementById('deleteForm-' + id).submit();
                                                 }
                                             });
                                         }

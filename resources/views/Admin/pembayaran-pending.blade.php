@@ -83,7 +83,7 @@
                                                     </button>
                                                 </td>
                                                 <td class="d-flex justify-content-evenly">
-                                                <form action="{{ route('setujui-pembayaran', ['id' => $pro->id]) }}" id="setujuiPembayaran" onsubmit="setujuiPembayaran(event)" method="POST">
+                                                <form action="{{ route('setujui-pembayaran', ['id' => $pro->id]) }}" id="setujuiPembayaran-{{ $pro->id }}" onsubmit="setujuiPembayaran(event, {{ $pro->id }});" method="POST">
                                                     @csrf
                                                     @method('POST')
                                                     <input type="hidden" name="idpropend" value="{{ $pro->id }}">
@@ -92,7 +92,7 @@
                                                     </button>
                                                 </form>
                                                 <script>
-                                                    function setujuiPembayaran(event) {
+                                                    function setujuiPembayaran(event, id) {
                                                         event.preventDefault();
                                                         Swal.fire({
                                                             title: 'Apakah Anda yakin?',
@@ -105,12 +105,12 @@
                                                             cancelButtonText: 'Batal'
                                                         }).then((result) => {
                                                             if (result.isConfirmed) { // Corrected the syntax here, added "if" before the condition.
-                                                                document.getElementById('setujuiPembayaran').submit();
+                                                                document.getElementById('setujuiPembayaran-' + id).submit();
                                                             }
                                                         });
                                                     }
                                                 </script>
-                                                <form action="{{ route('tolak-pembayaran', ['id' => $pro->id]) }}" onsubmit="tolakPembayaran(event)" id="tolakPembayaran" method="POST">
+                                                <form action="{{ route('tolak-pembayaran', ['id' => $pro->id]) }}" onsubmit="tolakPembayaran(event, {{ $pro->id }});" id="tolakPembayaran-{{ $pro->id }}" method="POST">
                                                     @csrf
                                                     @method('POST')
                                                     <input type="hidden" name="idpropend" value="{{ $pro->id }}">
@@ -119,7 +119,7 @@
                                                     </button>
                                                 </form>
                                                 <script>
-                                                    function tolakPembayaran(event) {
+                                                    function tolakPembayaran(event, id) {
                                                         event.preventDefault();
                                                         Swal.fire({
                                                             title: 'Apakah Anda yakin?',
@@ -132,14 +132,14 @@
                                                             cancelButtonText: 'Batal'
                                                         }).then((result) => {
                                                             if (result.isConfirmed) {
-                                                                document.getElementById('tolakPembayaran').submit();
+                                                                document.getElementById('tolakPembayaran-' + id).submit();
                                                             }
                                                         });
                                                     }
                                                 </script>
 
 
-                                    
+
                                                 </td>
                                             </tr>
                                             <div class="modal fade" id="detailTransaksi{{ $pro->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
