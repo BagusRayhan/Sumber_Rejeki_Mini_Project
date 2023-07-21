@@ -1,6 +1,6 @@
  <!DOCTYPE html>
 <html lang="en">
-<!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
+{{--  <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->  --}}
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
 @include('Client.Template.head')
@@ -98,12 +98,12 @@
                                 </td>
                                 <td>{{ $client2->napro }}</td>
                                 <td>
-                                    @if ($client2->biayatambahan)
-                                        {{ $client2->harga + $client2->biayatambahan }}
-                                    @else
-                                        {{ $client2->harga }}
-                                    @endif
+                                    @php
+                                        $totalHarga = $client2->biayatambahan ? $client2->harga + $client2->biayatambahan : $client2->harga;
+                                    @endphp
+                                    Rp {{ number_format($totalHarga, 0, ',', '.') }}
                                 </td>
+
                                 <td class="text-center ">
                                 @if ($client2->statusbayar == 'lunas')
                                     <span class="badge text-bg-success">{{ $client2->statusbayar }}</span>
@@ -238,7 +238,7 @@ $(function(e){
     </div>
     {{-- akhir pembayaran akhir --}}
 
-    
+
 {{-- modal pembayaran akhir --}}
     <div class="modal fade" id="Modalbayar2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered" >
@@ -422,7 +422,7 @@ $(function(e){
                 window.print();
             });
             </script>
-            
+
 <script>
 $(document).ready(function() {
   $('#struk').on('show.bs.modal', function(event) {
@@ -531,7 +531,7 @@ $(document).ready(function() {
                 window.print();
             });
             </script>
-            
+
 
 <script>
 $(document).ready(function() {
@@ -717,14 +717,14 @@ $(document).ready(function() {
             additionalSelectContainer2.appendChild(layananLabel);
             additionalSelectContainer2.appendChild(layananSelect);
 
-            
+
             const fileInputLabel = document.createElement('label');
             fileInputLabel.textContent = 'Bukti Pembayaran';
             fileInputLabel.style.position = 'absolute';
             fileInputLabel.style.marginTop = '-40px';
             fileInputLabel.style.marginLeft = '3px';
 
-          
+
 
             const fileInput = document.createElement('input');
             fileInput.type = 'file';
@@ -744,7 +744,7 @@ $(document).ready(function() {
 
             const imageContainer = document.createElement('div');
             imageContainer.id = 'imageContainer2';
-            
+
             additionalSelectContainer2.appendChild(imageContainer);
 
             layananSelect.addEventListener('change', function () {
@@ -815,7 +815,7 @@ $(document).ready(function() {
                     imageElement.style.width = '200px';
                     imageElement.style.height = '200px';
                     imageElement.src = imageUrl;
-                    
+
                     imageElement.style.position = 'absolute';
                     imageElement.style.top = '35px';
                     imageElement.style.right = '35px';
