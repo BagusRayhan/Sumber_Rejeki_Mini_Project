@@ -948,6 +948,10 @@ $(document).ready(function() {
 {{-- akhir --}}
 
     <script>
+function formatHarga(harga) {
+  return 'Rp ' + harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
 $(document).ready(function() {
 $('.btn-revisi').click(function() {
     var napro = $(this).data('napro');
@@ -960,10 +964,12 @@ $('.btn-revisi').click(function() {
     var projectId = $(this).data('id');
 
     var setengahHarga = harga / 2;
+    var hargaFormatted = formatHarga(harga);
+    var hargaFormatted2 = formatHarga(biayatambahan);
 
     $('#name').val(napro);
-    $('#harga-revisi').val(harga);
-    $('#hargarevisi').val(biayatambahan);
+    $('#harga-revisi').val(hargaFormatted);
+    $('#hargarevisi').val(hargaFormatted2);
     $('#tgl-bayar').val(tglBayar);
     $('#metodepembayaran').val(metodepembayaran);
     $('#tgl-bayarrevisi2').val(tglBayar2);
@@ -1014,9 +1020,10 @@ $('#bayar3').on('shown.bs.modal', function (event){
         var projectId = $(this).data('id');
 
         var setengahHarga = harga / 2;
+        var hargaFormatted3 = formatHarga(setengahHarga);
 
         $('#namaProject').val(napro);
-        $('#hargaProject').val(setengahHarga);
+        $('#hargaProject').val(hargaFormatted3);
         $('#tgl-bayar').val(tglBayar);
         $('#metodepembayaran').val(metodepembayaran);
         $('#projectIdCash').val(projectId);

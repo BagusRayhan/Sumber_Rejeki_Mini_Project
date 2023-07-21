@@ -139,7 +139,6 @@
                 </div>
               </div>
             </div>
-
             {{-- Modal Bayar Cash --}}
 
 
@@ -195,6 +194,10 @@
 </div>
 
 <script>
+function formatHarga(harga) {
+  return 'Rp ' + harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
 $(document).ready(function() {
     $('.btn-bayar').click(function() {
         var napro = $(this).data('napro');
@@ -204,9 +207,10 @@ $(document).ready(function() {
         var projectId = $(this).data('id');
 
         var setengahHarga = harga / 2;
+      var hargaFormatted4 = formatHarga(setengahHarga);
 
         $('#namaProject').val(napro);
-        $('#hargaProject').val(setengahHarga);
+        $('#hargaProject').val(hargaFormatted4);
         $('#tgl-bayar').val(tglBayar);
         $('#metodepembayaran').val(metodepembayaran);
         $('#projectIdCash').val(projectId);
