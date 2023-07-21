@@ -195,12 +195,9 @@
                         <tr>
                             <td>{{ $fitur->namafitur }}</td>
                             <td>{{ $fitur->deskripsi }}</td>
-                            <td>Rp.{{ $fitur->hargafitur }}</td>
+                            <td>Rp.{{ number_format($fitur->hargafitur, 0, ',', '.') }}</td>
                             <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#hargaFitur{{ $fitur->id }}"><i class="fa-solid fa-sack-dollar"></i></button></td>
                         </tr>
-
-
-
 
                         <div class="modal fade" id="hargaFitur{{ $fitur->id }}" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
@@ -230,7 +227,6 @@
                                             <button type="submit" style="border: none;margin-left: 398px" class="btn btn-primary">Submit</button>
                                         </form>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

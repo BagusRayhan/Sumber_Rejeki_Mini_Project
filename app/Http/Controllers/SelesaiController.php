@@ -129,4 +129,19 @@ class SelesaiController extends Controller
             ]);
             return redirect()->route('selesaiclient')->with('success', 'Berhasil');
         }
+
+        public function destroy1(int $id)
+        {
+            $data = proreq::findOrFail($id);
+            unlink(public_path('document/' . $data->dokumen));
+            $data->delete();
+            return redirect()->route('ditolakclient')->with('success', 'Berhasil menghapus data!');
+        }
+
+        public function destroypro(int $id)
+        {
+            $data = proreq::findOrFail($id);
+            $data->delete();
+            return redirect()->route('selesaiclient')->with('success', 'Berhasil menghapus data!');
+        }
 }

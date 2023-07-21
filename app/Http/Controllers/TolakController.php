@@ -32,6 +32,13 @@ class TolakController extends Controller
             $data->delete();
             return redirect()->route('ditolakclient')->with('success', 'Berhasil menghapus data!');
         }
+        public function destroy1(int $id)
+        {
+            $data = proreq::findOrFail($id);
+            unlink(public_path('document/' . $data->dokumen));
+            $data->delete();
+            return redirect()->route('ditolakclient')->with('success', 'Berhasil menghapus data!');
+        }
 
 
 }

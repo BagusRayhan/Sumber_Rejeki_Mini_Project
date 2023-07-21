@@ -55,36 +55,47 @@
 
         <div class="wrap-input100 validate-input m-b-23" data-validate="Email is required">
           <span class="label-input100">Email</span>
-          <input class="input100" type="text" id="email" name="email" placeholder="Masukkan email anda">
+          <input class="input100" type="text" id="email" name="email" placeholder="Masukkan email anda" value="{{ old('email') }}">
           <span class="focus-input100" data-symbol="&#xf15a;"></span>
         </div>
 
         <div class="wrap-input100 validate-input" data-validate="Password is required">
           <span class="label-input100">Password</span>
-          <input class="input100" type="password" id="password" name="password" placeholder="Masukkan password anda">
+          <input class="input100" type="password" id="password" name="password" placeholder="Masukkan password anda" value="{{ old('password') }}">
           <span class="focus-input100" data-symbol="&#xf191;"></span>
         </div><br>
 
     <div class="d-flex justify-content-between">
         <div class="d-flex justify-content-start">
-            <input type="checkbox" id="acceptCheckbox" onchange="toggleLoginButton()">
+            <input type="checkbox" id="remember-checkbox">
             <a href="kebijakan">&nbsp;Kebijakan Privasi</a>
     </div>
+
     <div class="d-flex justify-content-end">
             <a href="{{ url('forgot-password') }}">&nbsp;Forgot Password</a>
     </div>
 </div><br>
+<button id="login-button" type="submit" class="btn mt-10 h-10 w-full bg-primary font-medium text-white" style="border-radius: 20px;">Login</button>
 
-    <button type="submit" class="btn btn-primary btn-user btn-block" style="border-radius: 20px;" id="loginButton" disabled>Login</button>
+<script>
+    const rememberCheckbox = document.getElementById('remember-checkbox');
+const loginButton = document.getElementById('login-button');
+const privacyWarning = document.getElementById('privacy-warning');
 
-    <script>
-    function toggleLoginButton() {
-    const checkbox = document.getElementById('acceptCheckbox');
-    const loginButton = document.getElementById('loginButton');
+loginButton.addEventListener('click', function(event) {
+  if (!rememberCheckbox.checked) {
+    event.preventDefault();
+    privacyWarning.classList.remove('hidden');
+  } else {
+    privacyWarning.classList.add('hidden');
+  }
+});
 
-    loginButton.disabled = !checkbox.checked;
-    }
-    </script>
+
+</script>
+
+
+
 
         <div class="flex-col-c p-t-50">
           <span class="txt1 p-b-17">

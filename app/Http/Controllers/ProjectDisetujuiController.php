@@ -114,6 +114,14 @@ class ProjectDisetujuiController extends Controller
     }
 
     public function upEstimasi(Request $request) {
+        $request->validate([
+            'estimasi' => 'required|date|after_or_equal:today',
+        ], [
+            'estimasi.required' => 'Isi estimasi terlebih dahulu',
+            'estimasi.date' => 'Format estimasi tidak valid',
+            'estimasi.after_or_equal' => 'Estimasi tidak boleh hari kemarin',
+        ]);
+
         $pro = Proreq::find($request->project_id);
         $pro->update([
             'estimasi' => $request->estimasi
@@ -200,7 +208,7 @@ class ProjectDisetujuiController extends Controller
             'notification' => $notification
         ]);
     }
-    
+
 
     public function projectChatClient(Request $request) {
         $projectid = $request->input('project_id');
