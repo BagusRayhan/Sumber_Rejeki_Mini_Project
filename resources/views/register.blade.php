@@ -125,28 +125,31 @@
               <span class="focus-input100" data-symbol="&#xf2b6;"></span>
             </div>
 
+
+
             <div class="d-flex justify-content-start">
-                <input type="checkbox" id="privacyCheckbox">
+                <input type="checkbox" id="remember-checkbox">
                 <a href="kebijakan">&nbsp;Kebijakan Privasi</a>
               </div>
               <br>
 
-              <button type="submit" class="btn btn-primary btn-user btn-block" style="border-radius: 20px;" id="registerButton" disabled>Register</button>
+              <button id="login-button" type="submit" class="btn mt-10 h-10 w-full bg-primary font-medium text-white" style="border-radius: 20px;">Register</button>
 
-              <script>
-                const privacyCheckbox = document.getElementById("privacyCheckbox");
-                const registerButton = document.getElementById("registerButton");
+        <script>
+            const rememberCheckbox = document.getElementById('remember-checkbox');
+            const loginButton = document.getElementById('login-button');
+            const privacyWarning = document.getElementById('privacy-warning');
 
-                privacyCheckbox.addEventListener("change", function() {
-                  if (privacyCheckbox.checked) {
-                    registerButton.disabled = false;
-                  } else {
-                    registerButton.disabled = true;
-                  }
-                });
-              </script>
+            loginButton.addEventListener('click', function(event) {
+              if (!rememberCheckbox.checked) {
+                event.preventDefault();
+                privacyWarning.classList.remove('hidden');
+              } else {
+                privacyWarning.classList.add('hidden');
+              }
+            });
 
-
+    </script>
 
                     <div class="flex-col-c p-t-50">
                       <span class="txt1 p-b-17">

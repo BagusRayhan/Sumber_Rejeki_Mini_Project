@@ -144,7 +144,8 @@
                                             <div class="w-100 ms-3">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h6 class="mb-0">{{ $inc->user->name }}</h6>
-                                                    <small>{{ $inc->harga }}</small>
+                                                    {{-- <small>{{ $inc->harga }}</small> --}}
+                                                    <small>Rp.{{ number_format($inc->harga, 0, ',', '.') }}</small>
                                                 </div>
                                                 <span>{{ $inc->napro }}</span>
                                             </div>

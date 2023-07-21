@@ -48,19 +48,22 @@ class BayarController extends Controller
         if ($request->input('metodepembayaran') !== 'cash') {
             $rules['metode'] = 'required';
 
-            if ($request->input('metodepembayaran') === 'bank') {
-                $rules['buktipembayaran'] = 'required|mimes:jpg,jpeg,png|max:2048';
-            } elseif ($request->input('metodepembayaran') === 'ewallet') {
+            if ($request->input('metodepembayaran') === 'bank' || $request->input('metodepembayaran') === 'ewallet') {
                 $rules['buktipembayaran'] = 'required|mimes:jpg,jpeg,png|max:2048';
             }
         }
+
+        $rules['tanggalpembayaran'] = 'date|after_or_equal:today';
 
         $messages = [
             'metodepembayaran.required' => 'Pilih metode pembayaran.',
             'metode.required' => 'Isi layanan pembayaran.',
             'buktipembayaran.required' => 'Unggah bukti pembayaran.',
-            'buktipembayaran.mimes' => 'Format file bukti pembayaran harus JPG,PNG,JPEG.',
+            'buktipembayaran.mimes' => 'Format file bukti pembayaran harus JPG, PNG, atau JPEG.',
             'buktipembayaran.max' => 'Ukuran file bukti pembayaran maksimal 2 MB.',
+            'tanggalpembayaran.required' => 'Isi tanggal pembayaran.',
+            'tanggalpembayaran.date' => 'Format tanggal pembayaran tidak valid.',
+            'tanggalpembayaran.after_or_equal' => 'Tanggal pembayaran tidak boleh hari kemarin.',
         ];
 
         $request->validate($rules, $messages);
@@ -110,19 +113,22 @@ class BayarController extends Controller
         if ($request->input('metodepembayaran2') !== 'cash') {
             $rules['metode2'] = 'required';
 
-            if ($request->input('metodepembayaran2') === 'bank') {
-                $rules['buktipembayaran2'] = 'required|mimes:jpg,jpeg,png|max:2048';
-            } elseif ($request->input('metodepembayaran2') === 'ewallet') {
+            if ($request->input('metodepembayaran2') === 'bank' || $request->input('metodepembayaran2') === 'ewallet') {
                 $rules['buktipembayaran2'] = 'required|mimes:jpg,jpeg,png|max:2048';
             }
         }
+
+        $rules['tanggalpembayaran2'] = 'date|after_or_equal:today';
 
         $messages = [
             'metodepembayaran2.required' => 'Pilih metode pembayaran.',
             'metode2.required' => 'Isi layanan pembayaran.',
             'buktipembayaran2.required' => 'Unggah bukti pembayaran.',
-            'buktipembayaran2.mimes' => 'Format file bukti pembayaran harus JPG,PNG,JPEG.',
+            'buktipembayaran2.mimes' => 'Format file bukti pembayaran harus JPG, PNG, atau JPEG.',
             'buktipembayaran2.max' => 'Ukuran file bukti pembayaran maksimal 2 MB.',
+            'tanggalpembayaran2.required' => 'Isi tanggal pembayaran.',
+            'tanggalpembayaran2.date' => 'Format tanggal pembayaran tidak valid.',
+            'tanggalpembayaran2.after_or_equal' => 'Tanggal pembayaran tidak boleh hari kemarin.',
         ];
 
         $request->validate($rules, $messages);
@@ -173,19 +179,22 @@ class BayarController extends Controller
         if ($request->input('metodepembayaran3') !== 'cash') {
             $rules['metode3'] = 'required';
 
-            if ($request->input('metodepembayaran3') === 'bank') {
-                $rules['buktipembayaran3'] = 'required|mimes:jpg,jpeg,png|max:2048';
-            } elseif ($request->input('metodepembayaran3') === 'ewallet') {
+            if ($request->input('metodepembayaran3') === 'bank' || $request->input('metodepembayaran3') === 'ewallet') {
                 $rules['buktipembayaran3'] = 'required|mimes:jpg,jpeg,png|max:2048';
             }
         }
+
+        $rules['tanggalpembayaran3'] = 'date|after_or_equal:today';
 
         $messages = [
             'metodepembayaran3.required' => 'Pilih metode pembayaran.',
             'metode3.required' => 'Isi layanan pembayaran.',
             'buktipembayaran3.required' => 'Unggah bukti pembayaran.',
-            'buktipembayaran3.mimes' => 'Format file bukti pembayaran harus JPG,PNG.',
+            'buktipembayaran3.mimes' => 'Format file bukti pembayaran harus JPG, PNG, atau JPEG.',
             'buktipembayaran3.max' => 'Ukuran file bukti pembayaran maksimal 2 MB.',
+            'tanggalpembayaran3.required' => 'Isi tanggal pembayaran.',
+            'tanggalpembayaran3.date' => 'Format tanggal pembayaran tidak valid.',
+            'tanggalpembayaran3.after_or_equal' => 'Tanggal pembayaran tidak boleh hari kemarin.',
         ];
 
         $request->validate($rules, $messages);

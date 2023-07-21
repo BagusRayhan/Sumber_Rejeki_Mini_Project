@@ -148,7 +148,7 @@ class IndexcController extends Controller
         'deadline.date' => 'Format deadline tidak valid',
         'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',
     ]);
-    
+
     $dtUpload = new Proreq();
     if ($request->has('dokumen')) {
         $file = $request->file('dokumen');
@@ -200,6 +200,15 @@ class IndexcController extends Controller
     }
 
     public function update(Request $request){
+
+        $request->validate([
+            'deadline' => 'required|date|after_or_equal:today',
+        ], [
+            'deadline.required' => 'Isi deadline terlebih dahulu',
+            'deadline.date' => 'Format deadline tidak valid',
+            'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',
+        ]);
+
         $upProject = [];
         $id = $request->projectid;
         $fitur = Fitur::where('project_id', $id)->count();
