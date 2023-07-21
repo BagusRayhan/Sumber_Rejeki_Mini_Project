@@ -14,24 +14,29 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ProjectrequestController extends Controller
 {
-    public function projectreq(Request $request)
-    {
-        $admin = User::where('role', 'admin')->first();
+public function projectreq(Request $request)
+{
+    $admin = User::where('role', 'admin')->first();
 
-        $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-         $query = $request->input('query');
+    $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
+    $query = $request->input('query');
 
-        $projectreq = Proreq::where('status', 'pending')
-            ->where(function (Builder $builder) use ($query) {
-                $builder->where('napro', 'like', '%' . $query . '%');
-            })
-            ->paginate(2);
-        return view('Admin.projectreq', [
-            'projectreq'=>$projectreq,
-            'admin' =>$admin,
-            'notification' => $notification
-        ]);
-    }
+    $projectreq = Proreq::where('status', 'pending')
+        ->where(function (Builder $builder) use ($query) {
+            $builder->where('napro', 'like', '%' . $query . '%');
+        })
+        ->paginate(6);
+
+    $projectreq->appends(['query' => $query]);
+
+    return view('Admin.projectreq', [
+        'projectreq' => $projectreq,
+        'admin' => $admin,
+        'notification' => $notification
+    ]);
+}
+
+
     public function search(Request $request)
     {
         $query = $request->input('query');
@@ -178,10 +183,11 @@ public function updateproreqa($id)
 }
 
     public function projectselesai(Request $request){
-        $keyword = $request->searchKeyword;
         $notification = Notification::where('role', 'admin')->latest()->get();
         $admin = User::where('role', 'admin')->first();
-        $selesai = proreq::whereIn('status', ['selesai', 'pengajuan revisi'])->where('napro', 'LIKE', '%'.$keyword.'%')->paginate(3);
+         $query = $request->input('query');
+        $selesai = proreq::whereIn('status', ['selesai', 'pengajuan revisi'])->where('napro', 'LIKE', '%'.$query.'%')->paginate(2);
+        $selesai->appends(['query' => $query]);
         return view('Admin.projectselesai', compact('selesai','admin','notification'));
     }
 
