@@ -483,14 +483,14 @@ $(document).ready(function() {
                 <p class="text-center mt-3">Pembayaran Berhasil!</p>
                 <h4 class="fw-bold text-center mt-1 border-bottom border-dark pb-2" id="napro-awall"></h4>
                 <div class="d-flex justify-content-between">
-        <div class="d-grid">
-            <p class="text-center">Pembayaran Awal</p>
-            <p class="fw-bold text-center pembayaran-awal1"></p>
-        </div>
-        <div class="d-grid">
-            <p class="text-center">Pembayaran Akhir</p>
-            <p class="fw-bold text-center pembayaran-akhir1"></p>
-        </div>
+                <div class="d-grid">
+                    <p class="text-center">Pembayaran Awal</p>
+                    <p class="fw-bold text-center pembayaran-awal1"></p>
+                </div>
+                <div class="d-grid">
+                    <p class="text-center">Pembayaran Akhir</p>
+                    <p class="fw-bold text-center pembayaran-akhir1"></p>
+                </div>
                 </div>
                 <div class="container m-0 p-0">
                 <div class="d-flex justify-content-between">
