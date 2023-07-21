@@ -36,13 +36,12 @@ class PengaturanController extends Controller
     }
 
     public function updatekebijakan(Request $request) {
-        $data1 = Kebijakan::first(); // Mengambil objek pertama dari tabel Kebijakan
+        $data1 = Kebijakan::first(); 
         if ($data1) {
             $data1->kebijakan = $request->input('content');
             $data1->save();
         } else {
-            // Tangani ketika tidak ada record Kebijakan
-            // Misalnya, bisa menambahkan record baru dengan nilai 'kebijakan'
+            
         }
 
         return back()->with('success','Data berhasil diperbarui!');

@@ -279,6 +279,7 @@ $(document).ready(function() {
 
         const fileInputLabel = document.createElement('label');
         fileInputLabel.textContent = 'Bukti Pembayaran';
+        fileInputLabel.setAttribute('for', 'buktiPembayaran');
 
         const fileInput = document.createElement('input');
         fileInput.type = 'file';

@@ -19,7 +19,7 @@ class ProjectrequestController extends Controller
         $admin = User::where('role', 'admin')->first();
 
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-        $projectreq = Proreq::where('status','pending')->paginate(6);
+        $projectreq = Proreq::where('status','pending')->paginate(1);
         return view('Admin.projectreq', [
             'projectreq'=>$projectreq,
             'admin' =>$admin,
@@ -262,7 +262,7 @@ public function updateproreqa($id)
         }
 
         $fitur->update($inputData);
-        $fitur->status = 'belum selesai';
+        $fitur->status = 'Revisi';
         $fitur->save();
 
         return redirect()->back();

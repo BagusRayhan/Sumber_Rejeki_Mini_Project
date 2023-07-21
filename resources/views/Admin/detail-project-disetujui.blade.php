@@ -216,8 +216,8 @@
                                         if (savedProgress) {
                                             var progressBar = document.getElementById('progress-bar');
                                             progressBar.style.width = savedProgress + '%';
-                                            progressBar.setAttribute('aria-valuenow', savedProgress);
-                                            progressBar.innerText = savedProgress + '%';
+                                            progressBar.setAttribute('', savedProgress);
+                                            progressBar.innerText = savedProgress + '';
                                         }
                                     });
 
