@@ -84,17 +84,16 @@ class ProjectrequestController extends Controller
     public function simpanharga(Request $request, $id)
     {
         $request->validate([
-            'harga' => 'required|numeric|min:1'
+            'harga' => 'required|min:1'
         ], [
             'harga.required' => 'harga tidak boleh kosong!',
         ]);
         $proreg = Proreq::findOrFail($id);
-        $proreg->harga = $request->input('harga');
         $proreg->update([
             'status' => null,
-            'statusbayar' => 'menunggu pembayaran'
+            'statusbayar' => 'menunggu pembayaran',
+            'harga' => $request->harga
         ]);
-        $proreg->save();
         $msg = 'Project Disetujui';
         $notifDesk = $proreg->napro.' disetujui admin';
         Notification::create([
@@ -110,9 +109,13 @@ class ProjectrequestController extends Controller
     public function simpanfiturr(Request $request, $id)
 {
     $fitur = Fitur::findOrFail($id);
-
-    $fitur->hargafitur = $request->input('hargafitur');
-
+    $request->validate([
+        'hargafitur' => 'required|numeric'
+    ],[
+        'hargafitur.required' => 'Harga tidak boleh kosong',
+        'hargafitur.numeric' => 'Harga tidak valid'
+    ]);
+    $fitur->hargafitur = $request->hargafitur;
     $fitur->save();
 
     return back();
@@ -120,6 +123,11 @@ class ProjectrequestController extends Controller
 
 public function alasantolak(Request $request)
 {
+    $request->validate([
+        'alasan' => 'required'
+    ],[
+        'alasan.required' => 'Alasan tidak boleh kosong'
+    ]);
     $id = $request->dataid;
     $pro = Proreq::findOrFail($id);
     if (File::exists(public_path().'document/'.$pro->dokumen)) {
@@ -138,7 +146,7 @@ public function alasantolak(Request $request)
         'kategori' => 'Project Ditolak'
     ]);
 
-    return redirect()->route('projectreq')->with('sukses', 'Project berhasil ditolak');
+    return redirect()->route('projectreq')->with('success', 'Project berhasil ditolak');
 }
 
 public function updateproreqa($id)
