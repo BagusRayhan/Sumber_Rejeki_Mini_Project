@@ -23,6 +23,7 @@ class TolakController extends Controller
                       $query->where('napro', 'LIKE', '%'.$keyword.'%');
                   })
                   ->paginate(4);
+                   $data->appends(['data' => $data]);
             return view('Client.ditolak', compact('sosmed','data','client','notification'));
         }
 

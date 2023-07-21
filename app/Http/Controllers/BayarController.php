@@ -25,6 +25,7 @@ class BayarController extends Controller
             ->where('statusbayar','menunggu pembayaran')
             ->where('user_id', Auth::user()->id)
             ->paginate(6);
+             $data->appends(['keyword' => $keyword]);
             $bank = Bank::all();
             $ewallet = EWallet::all();
             return view('Client.bayar', compact('sosmed','client','data','bank','ewallet','notification'));
@@ -246,6 +247,7 @@ public function bayar2client(Request $request)
                     ->where('napro', 'like', '%'.$keyword.'%')
                     ->where('user_id', Auth::user()->id)
                     ->paginate(5);
+     $bayar2->appends(['keyword' => $keyword]);
     return view('Client.bayar2', compact('sosmed', 'bayar2', 'client','notification','data'));
 }
 

@@ -123,6 +123,7 @@ class IndexcController extends Controller
                    });
                })
                ->paginate(6);
+         $data->appends(['search' => $search]);
         $sosmed = Sosmed::all();
         return view('Client.clientproreq',compact('data','sosmed','client','notification'));
     }

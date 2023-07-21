@@ -59,7 +59,7 @@
         <div class="search-form w-25">
             <form action="{{ route('bayarclient') }}" method="GET">
                 <div class="input-group rounded-pill" style="background: #E9EEF5">
-                    <input type="text" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+                    <input type="text" name="keyword" value="{{ request('keyword') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
                     <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                 </div>
             </form>
@@ -477,11 +477,11 @@ console.log(selectedBank)
   </script>
         </form>
     </div>
+    <div class="d-flex justify-content-end">
+        {{ $data->links() }}
+    </div>
 </div>
 
-            <div class="d-flex justify-content-end">
-                {{ $data->links() }}
-            </div>
                     </div>
       </div>
       @include('Client.Template.footer')

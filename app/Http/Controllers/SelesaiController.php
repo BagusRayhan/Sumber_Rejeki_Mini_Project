@@ -28,6 +28,7 @@ class SelesaiController extends Controller
                    });
                })
                ->paginate(5);
+                $data->appends(['search' => $search]);
             $sosmed = Sosmed::all();
             return view('Client.selesai', compact('sosmed','client','data','notification'));
         }
@@ -46,6 +47,7 @@ class SelesaiController extends Controller
                    });
                })
                ->paginate(6);
+                $data->appends(['search' => $search]);
             $sosmed = Sosmed::all();
             return view('Client.revisi', compact('sosmed','client','data','notification'));
         }

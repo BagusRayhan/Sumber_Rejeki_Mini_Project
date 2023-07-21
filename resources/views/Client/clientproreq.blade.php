@@ -103,7 +103,9 @@
                     </div>
                 </div>
             </div>
+            <div style="float: right;">
             {{ $data->links() }}
+            </div>
         </div>
     @include('Client.Template.footer')
             </div>
