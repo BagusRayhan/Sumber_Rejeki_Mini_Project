@@ -188,5 +188,5 @@ Route::middleware('admin')->group(function(){
     Route::post('statusfitur', [ProjectDisetujuiController::class, 'statusFitur'])->name('status-fitur');
     Route::post('allstatusfitur', [ProjectDisetujuiController::class, 'allStatusFitur'])->name('all-status-fitur');
     Route::post('/save-progress', [ProjectDisetujuiController::class, 'saveProgress'])->name('save.progress');
-
+    Route::delete('delete-history-project', [AdminBayarController::class, 'deleteProjectHistory'])->name('delete-history-project');
 });
