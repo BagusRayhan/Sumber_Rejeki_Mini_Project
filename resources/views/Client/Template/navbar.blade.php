@@ -134,11 +134,18 @@
               @method('put')
               <div class="profile d-flex justify-content-center">
                 <img src="/gambar/user-profile/{{ $client->profil }}" class="rounded-circle profile-image">
+                <label for="fileInputA" class="change-profile-button d-flex justify-content-center" id="chooseFileButtonA">
+                  <i class="fa-sharp fa-solid fa-image text-primary"></i>
+                </label>
+                <input type="file" id="fileInputA" name="fileInputA" style="display:none" accept=".jpg,.png,.pdf">
+              </div>
+              {{-- <div class="profile d-flex justify-content-center">
+                <img src="/gambar/user-profile/{{ $client->profil }}" class="rounded-circle profile-image">
                 <a href="#" type="file" class="change-profile-button d-flex justify-content-center" id="chooseFileButtonA">
                   <i class="fa-sharp fa-solid fa-image"></i>
                   <input type="file" id="fileInputA" name="fileInputA" style="display:none" accept=".jpg,.png,.pdf">
                 </a>
-              </div>
+              </div> --}}
 
               <div class="mb-1">
                 <label for="exampleFormControlInput1" class="form-label">Nama</label>
@@ -176,29 +183,37 @@
           </form>
           </div>
 
-      <script>
-        document.getElementById('chooseFileButtonA').addEventListener('click', function() {
-        document.getElementById('fileInputA').click();
-        });
+          <script>
+            document.getElementById('chooseFileButtonA').addEventListener('click', function() {
+                document.getElementById('fileInputA').click();
+            });
 
-        document.getElementById('fileInputA').addEventListener('change', function() {
-        var selectedFile = this.files[0];
-        // Lakukan sesuatu dengan file yang dipilih, misalnya mengunggahnya ke server
-        console.log('Selected file:', selectedFile);
-        });
+            document.getElementById('fileInputA').addEventListener('change', function() {
+                var selectedFile = this.files[0];
+                // Lakukan sesuatu dengan file yang dipilih, misalnya mengunggahnya ke server
+                console.log('Selected file:', selectedFile);
+            });
 
-    </script>
-    <script>
-    $(document).ready(function() {
-    $('.change-profile-button').on('click', function(e) {
-        e.preventDefault();
-        // Tambahkan kode yang ingin Anda jalankan ketika tombol perubahan profil diklik
-        // Misalnya, tampilkan dialog atau tampilkan form perubahan profil
-    });
-    });
+            $(document).ready(function() {
+                $('.change-profile-button').on('click', function(e) {
+                    e.preventDefault();
+                    // Tambahkan kode yang ingin Anda jalankan ketika tombol perubahan profil diklik
+                    // Misalnya, tampilkan dialog atau tampilkan form perubahan profil
+                });
+            });
 
-    </script>
-   <script>
+            document.getElementById("fileInputA").addEventListener("change", function(event) {
+                var input = event.target;
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById("profile-image").setAttribute("src", e.target.result);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            });
+        </script>
+        <script>
      document.getElementById("file-upload").addEventListener("change", function(event) {
          var input = event.target;
          if (input.files && input.files[0]) {
