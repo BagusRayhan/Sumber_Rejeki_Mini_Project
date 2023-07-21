@@ -136,19 +136,19 @@
                             <div class="d-flex align-items-center justify-content-start mb-2">
                                 <h6 class="mb-0">Pembayaran Masuk</h6>
                             </div>
-                            @if (count($incomePayment) !== 0)
+                            @if (isset($incomePayment) && count($incomePayment) !== 0)
                                 @foreach ($incomePayment as $inc)
                                     <div class="d-flex align-items-center border-bottom py-3">
                                         <a href="{{ route('pending-bayar-admin', ['id' => $inc->id]) }}" style="text-decoration: none; color: inherit;">
-                                        <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $inc->user->profil }}" alt="" style="width: 40px; height: 40px;">
-                                        <div class="w-100 ms-3">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-0">{{ $inc->user->name }}</h6>
-                                                <small>{{ $inc->harga }}</small>
+                                            <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $inc->user->profil }}" alt="" style="width: 40px; height: 40px;">
+                                            <div class="w-100 ms-3">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-0">{{ $inc->user->name }}</h6>
+                                                    <small>{{ $inc->harga }}</small>
+                                                </div>
+                                                <span>{{ $inc->napro }}</span>
                                             </div>
-                                            <span>{{ $inc->napro }}</span>
-                                        </div>
-                                    </a>
+                                        </a>
                                     </div>
                                 @endforeach
                             @else
@@ -159,34 +159,39 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-start mb-2">
                                 <h6 class="mb-0">Pesan</h6>
                             </div>
                             @if (count($message) !== 0)
-                            @foreach ($message as $msg)
-                                <div class="d-flex align-items-center border-bottom py-3">
-                                    <a href="{{ route('detail-disetujui-admin', ['id' => $msg->id]) }}" style="text-decoration: none; color: inherit;">
-                                        <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $msg->user->profil }}" alt="" style="width: 40px; height: 40px;">
-                                        <div class="w-100 ms-3">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-0">{{ $msg->user->name }}</h6>
-                                                <small>{{ Carbon::parse($msg->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
+                                @foreach ($message as $msg)
+                                    <div class="d-flex align-items-center border-bottom py-3">
+                                            <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $msg->user->profil }}" alt="" style="width: 40px; height: 40px;">
+                                            <div class="w-100 ms-3">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-0">{{ $msg->user->name }}</h6>
+                                                    <small>{{ Carbon::parse($msg->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
+                                                    <button class="btn btn-link ms-auto mt-10" id="toggleMessages">
+                                                        <i class="fas fa-sort-desc"></i>
+                                                    </button>
+
+                                                </div>
                                             </div>
-                                            @if (count($msg->projectchat) !== 0)
-                                                @foreach ($msg->projectchat as $chat)
-                                                    <p>{{ $chat->chat }}</p>
-                                                @endforeach
-                                            @else
-                                                <p>Tidak ada pesan</p>
-                                            @endif
-                                        </div>
-                                    </a>
-                                </div>
-                            @endforeach
-
-
+                                    </div>
+                                    <a href="{{ route('detail-disetujui-admin', ['id' => $msg->id]) }}" style="text-decoration: none; color: inherit;">
+                                    <div class="collapse message-content">
+                                        @if (count($msg->projectchat) !== 0)
+                                            @foreach ($msg->projectchat as $chat)
+                                                <p>{{ $chat->chat }}</p>
+                                            @endforeach
+                                        @else
+                                            <p>Tidak ada pesan</p>
+                                        @endif
+                                    </div>
+                                </a>
+                                @endforeach
                             @else
                                 <div class="d-flex flex-column h-100 justify-content-center align-items-center">
                                     <img src="gambar/empty-icon/empty-directory.png" class="w-50">
@@ -195,8 +200,18 @@
                             @endif
                         </div>
                     </div>
-                </div>
-            </div>
+                    </div>
+                    </div>
+
+                    <script>
+                        $(document).ready(function () {
+                            $('#toggleMessages').on('click', function () {
+                                $('.message-content').collapse('toggle');
+                                $(this).find('i').toggleClass('fa-sort-desc fa-sort-up');
+                            });
+                        });
+                    </script>
+
             <!-- Widgets End -->
         </div>
         <!-- Content End -->

@@ -6,6 +6,12 @@
     <meta content="" name="description">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Add these script tags before the closing body tag -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+
 
     <!-- Favicon -->
     <link href="{{ asset('ProjectManagement/dashmin/img/favicon.html') }}" rel="icon">

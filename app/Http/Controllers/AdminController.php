@@ -98,22 +98,7 @@ public function updateProfile(Request $request)
 {
     $upProfile = [];
     $admin = User::find(Auth::user()->id);
-
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255|unique:users,email,' . $admin->id,
-        'fileInputA' => 'image|mimes:jpeg,jpg,png|max:2048',
-    ], [
-        'name.required' => 'Nama harus diisi.',
-        'email.required' => 'Email harus diisi.',
-        'email.email' => 'Email harus berupa alamat email yang valid.',
-        'email.unique' => 'Email sudah digunakan oleh pengguna lain.',
-        'fileInputA.image' => 'Profil harus berupa format jpg jpeg png',
-        'fileInputA.mimes' => '',
-        'fileInputA.max' => 'Ukuran gambar profil tidak boleh melebihi 2 MB.',
-    ]);
-
-
+    
     if ($request->has('fileInputA')) {
         $oldProfile = $admin->profil;
 
