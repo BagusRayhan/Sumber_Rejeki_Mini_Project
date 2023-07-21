@@ -282,6 +282,53 @@
                                         });
                                     }
                                 </script>
+                                <script>
+                    window.addEventListener('load', function() {
+                        loadCheckboxStatus('masterCheckbox');
+                        updateMasterCheckbox();
+
+                        @foreach ($fitur as $f)
+                            loadCheckboxStatus('checkFitur{{ $f->id }}');
+                        @endforeach
+                    });
+
+                    function updateMasterCheckbox() {
+                        const masterCheckbox = document.getElementById('masterCheckbox');
+                        const childCheckboxes = document.querySelectorAll('.child-checkbox');
+
+                        let allChecked = true;
+                        childCheckboxes.forEach((checkbox) => {
+                            if (!checkbox.checked) {
+                                allChecked = false;
+                            }
+                        });
+
+                        masterCheckbox.checked = allChecked;
+                    }
+
+                    const childCheckboxes = document.querySelectorAll('.child-checkbox');
+                    childCheckboxes.forEach((checkbox) => {
+                        checkbox.addEventListener('change', function() {
+                            saveCheckboxStatus(this.id);
+                            updateProgressBar();
+                            updateMasterCheckbox();
+                        });
+                    });
+
+                    const masterCheckbox = document.getElementById('masterCheckbox');
+                    masterCheckbox.addEventListener('change', function() {
+                        const checked = this.checked;
+                        const childCheckboxes = document.querySelectorAll('.child-checkbox');
+
+                        childCheckboxes.forEach((checkbox) => {
+                            checkbox.checked = checked;
+                            saveCheckboxStatus(checkbox.id);
+                        });
+
+                        updateProgressBar();
+                    });
+                </script>
+
 
                 <div class="my-3 d-flex justify-content-between" style="width: 16em">
                     <a href="/project-disetujui" class="btn btn-secondary btn-sm p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
@@ -327,7 +374,6 @@
                             var featureId = inputRange.getAttribute('data-feature-id');
                             var progress = inputRange.getAttribute('value');
 
-                            // Kirim nilai progress ke server (misalnya menggunakan fetch)
                             fetch('/update-progress', {
                                 method: 'POST',
                                 headers: {
@@ -341,11 +387,9 @@
                             })
                             .then(response => response.json())
                             .then(data => {
-                                // Tanggapan dari server
                                 console.log(data);
                             })
                             .catch(error => {
-                                // Tangani kesalahan
                                 console.error(error);
                             });
                         });
@@ -359,7 +403,6 @@
                             var featureId = inputRange.getAttribute('data-feature-id');
                             var progress = inputRange.value;
 
-                            // Kirim nilai progres ke server (misalnya menggunakan fetch)
                             fetch('/update-progress', {
                                 method: 'POST',
                                 headers: {
@@ -373,11 +416,9 @@
                             })
                             .then(response => response.json())
                             .then(data => {
-                                // Tanggapan dari server
                                 console.log(data);
                             })
                             .catch(error => {
-                                // Tangani kesalahan
                                 console.error(error);
                             });
                         });
