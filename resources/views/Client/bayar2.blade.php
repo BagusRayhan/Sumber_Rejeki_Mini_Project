@@ -115,7 +115,7 @@
                                     </td>
                                     <td class="text-center">
                                     @if ($client2->biayatambahan)
-                                        @if ($client2->metodepembayaran3)
+                                        @if ($client2->tanggalpembayaran3  && $client2->statusbayar === 'lunas')
                                             <button type="button" data-bs-toggle="modal" data-bs-target="#struk2" data-bs-id="{{ $client2->id }}" data-bs-nama="{{ $client2->napro }}" data-bs-harga="{{ $client2->harga }}" data-bs-tanggal="{{ $client2->tanggalpembayaran }}" data-bs-biayatambahan="{{ $client2->biayatambahan }}" data-bs-tanggal2="{{ $client2->tanggalpembayaran2 }}" data-bs-metode="{{ $client2->metodepembayaran }}" data-bs-metode2="{{ $client2->metodepembayaran2 }}" class="btn btn-warning struk text-white btn-sm" style="background-color: none">
                                                 <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk
                                             </button>
