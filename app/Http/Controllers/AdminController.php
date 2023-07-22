@@ -23,11 +23,16 @@ class AdminController extends Controller
         ->groupBy('month')
         ->orderBy('month')
         ->get();
-        $selesaiProjectsyear = Proreq::selectRaw('YEAR(tanggalpembayaran2) as year, COUNT(*) as count')
-        ->where('status', 'selesai')
-        ->groupBy('year')
-        ->orderBy('year')
-        ->get();
+        $tahun2022 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2022' )->count();
+        $tahun2023 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2023' )->count();
+        $tahun2024 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2024' )->count();
+        $tahun2025 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2025' )->count();
+        // dd($tahun2022);
+        // $selesaiProjectsyear = Proreq::selectRaw('YEAR(tanggalpembayaran2) as year, COUNT(*) as count')
+        // ->where('status', 'selesai')
+        // // ->groupBy('year')
+        // // ->orderBy('year')
+        // ->get();
 
         // dd($selesaiProjects);
 
@@ -81,7 +86,10 @@ class AdminController extends Controller
             'message' => $message,
             'notification' => $notification,
             'selesaiProjects' => $selesaiProjects,
-            'selesaiProjectsyear' => $selesaiProjectsyear
+            'tahun22' => $tahun2022,
+            'tahun23' => $tahun2023,
+            'tahun24' => $tahun2024,
+            'tahun25' => $tahun2025
         ]);
     }
 
