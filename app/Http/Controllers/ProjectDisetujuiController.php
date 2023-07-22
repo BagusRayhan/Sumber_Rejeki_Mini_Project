@@ -18,7 +18,7 @@ class ProjectDisetujuiController extends Controller
     public function disetujui(Request $request ) {
 
              $today = date('Y-m-d');
-            Proreq::whereDate('deadline', '<=', $today)->update(['status2' => 'telat']);
+            Proreq::whereDate('deadline', '<', $today)->update(['status2' => 'telat']);
 
         if ($request->ajax()) {
             $data = Proreq::latest()->get();
