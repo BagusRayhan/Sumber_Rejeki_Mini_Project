@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->
+{{--  <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT -->  --}}
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 @include('Admin.templates.head')
@@ -45,6 +45,7 @@
                                         <th scope="col">Nama Client</th>
                                         <th scope="col">Nama Project</th>
                                         <th scope="col">Harga Project</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col" class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -54,13 +55,19 @@
                                                 <td>{{ $pro->nama }}</td>
                                                 <td>{{ $pro->napro }}</td>
                                                 <td>{{ isset($pro->biayatambahan) ? 'Rp ' . number_format((float)$pro->harga + (float)$pro->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$pro->harga, 0, ',', '.') }}</td>
+                                                @if($pro->status2 === 'telat')
+                                                <td class="text-danger">{{ $pro->status2 }}</td>
+                                                @else
+                                                <td class="text-primary">Proses</td>
+
+                                                @endif
                                                 <td class="d-flex justify-content-evenly">
                                                     <a href="/detail-project-disetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                                 </td>
                                             </tr>
-                                        @endforeach 
+                                        @endforeach
                                 </tbody>
-                            </table>                            
+                            </table>
                         </div>
                     </div>
                 </div>
