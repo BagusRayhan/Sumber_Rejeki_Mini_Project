@@ -84,7 +84,7 @@
                             <img class="rounded-circle flex-shrink-0" style="width: 3em; height: 3em; object-fit: cover;" src="/gambar/user-profile/{{ $estimasisetuju->user->profil }}">
                             <div class="ms-3 flex-grow-1">
                                 <h6 class="mb-2">{{ $estimasisetuju->napro }}</h6>
-                                <span class="mb-5">Rp. {{ number_format($estimasisetujui->harga, 0, ',', '.') }}</span>
+                                <span class="mb-5">Rp. {{ number_format($estimasisetuju->harga, 0, ',', '.') }}</span>
                             </div>
                             <div class="col-sm-12 col-xl-5" >
                                 <div class="bg-light rounded h-100 p-10">
@@ -92,7 +92,7 @@
                                         @if ($estimasisetuju->progress == null)
                                             <h6 class="mb-2"></h6>
                                             @if ($estimasisetuju->estimasi != null)
-                                                <span style="margin-left:42%;"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
+                                                <span style="margin-left:40%;"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
                                             @else
                                                 <span style="margin-left:36%;">Estimasi tidak tersedia</span>
                                             @endif

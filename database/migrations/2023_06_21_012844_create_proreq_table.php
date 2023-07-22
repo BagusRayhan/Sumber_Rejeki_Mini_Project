@@ -29,6 +29,7 @@ return new class extends Migration
             $table->longText('listrevisi')->nullable();
             $table->string('statusbayar')->nullable();
             $table->string('biayatambahan')->nullable();
+            $table->string('biayatambahan2')->nullable();
             $table->string('metodepembayaran')->nullable();
             $table->string('metode')->nullable();
             $table->string('buktipembayaran')->nullable();
