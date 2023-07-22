@@ -15,19 +15,24 @@ use Yajra\DataTables\DataTables;
 
 class ProjectDisetujuiController extends Controller
 {
-    public function disetujui(Request $request) {
+    public function disetujui(Request $request ) {
+
+        $today = date('Y-m-d');
+        Proreq::whereDate('deadline', '=>', $today)->update(['status2' => 'telat']);
         if ($request->ajax()) {
             $data = Proreq::latest()->get();
             return Datatables::of($data)->make(true);
         }
 
+
         $admin = User::where('role', 'admin')->first();
         $query = $request->input('query');
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-        $project = proreq::where('status','setuju')->where('napro', 'LIKE', '%'.$query.'%')->paginate(3);
-        $project->appends(['query' => $query]);
+        $projects = Proreq::where('status', 'setuju')->where('napro', 'LIKE', '%'.$query.'%')->paginate(3);
+        $projects->appends(['query' => $query]);
+
         return view('Admin.project-disetujui', [
-            'project' => $project,
+            'project' => $projects,
             'admin' => $admin,
             'notification' => $notification
         ]);
