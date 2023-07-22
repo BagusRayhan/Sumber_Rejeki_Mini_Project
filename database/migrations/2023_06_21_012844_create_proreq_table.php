@@ -23,6 +23,7 @@ return new class extends Migration
             $table->dateTime('estimasi')->nullable();
             $table->dateTime('deadline')->nullable();
             $table->string('status')->nullable();
+            $table->string('status2')->nullable();
             $table->integer('harga')->nullable();
             $table->longText('alasan')->nullable();
             $table->longText('listrevisi')->nullable();

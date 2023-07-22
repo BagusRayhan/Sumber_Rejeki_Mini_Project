@@ -110,126 +110,7 @@
         }
 
             </style>
-       <script>
-        // Assuming you have the PHP variable $selesaiProjects available in JavaScript
-        const selesaiProjects = @json($selesaiProjectsyear);
 
-        // Function to get the current year
-        function getCurrentYear() {
-          const currentDate = new Date();
-          return currentDate.getFullYear();
-        }
-
-        // Prepare an array with count data for each year (initialize with zeros)
-        const currentYear = getCurrentYear();
-        const yearData = Array(currentYear).fill(null);
-
-        // Update year data with actual counts from the $selesaiProjects variable
-        selesaiProjects.forEach(project => {
-          const projectYear = parseInt(project.year);
-          if (projectYear >= 1 && projectYear <= currentYear) {
-            yearData[projectYear - 1] = project.count;
-          }
-        });
-
-         // Fill years without data with zeros
-        for (let i = 0; i < yearData.length; i++) {
-            if (yearData[i] === null) {
-            yearData[i] = 0;
-            }
-        }
-
-         // Create an array for the labels (years limited to the current year and the next three years)
-        const labels = Array.from({ length: 4 }, (_, index) => currentYear + index);
-
-        var options = {
-          chart: {
-            height: 350,
-            type: "line",
-            stacked: false
-          },
-          dataLabels: {
-            enabled: false
-          },
-          colors: ["#FF1654", "#247BA0"],
-          series: [
-            {
-              name: "Series A",
-              data: yearData // Replace the sample data with the yearData array
-            },
-
-          ],
-          stroke: {
-            width: [8, 8]
-          },
-          plotOptions: {
-            bar: {
-              columnWidth: "20%"
-            }
-          },
-          xaxis: {
-            categories: labels // Replace the sample categories with the labels array
-          },
-          yaxis: [
-            {
-              axisTicks: {
-                show: true
-              },
-              axisBorder: {
-                show: true,
-                color: "#FF1654"
-              },
-              labels: {
-                style: {
-                  colors: "#FF1654"
-                }
-              },
-              title: {
-                text: "Series A",
-                style: {
-                  color: "#FF1654"
-                }
-              }
-            },
-            {
-              opposite: true,
-              axisTicks: {
-                show: true
-              },
-              axisBorder: {
-                show: true,
-                color: "#247BA0"
-              },
-              labels: {
-                style: {
-                  colors: "#247BA0"
-                }
-              },
-              title: {
-                text: "Series B",
-                style: {
-                  color: "#247BA0"
-                }
-              }
-            }
-          ],
-          tooltip: {
-            shared: false,
-            intersect: true,
-            x: {
-              show: false
-            }
-          },
-          legend: {
-            horizontalAlign: "left",
-            offsetX: 40
-          }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-
-        chart.render();
-      </script>
 
             <!-- Widgets Start -->
             <div class="container-fluid pt-4 px-4">
@@ -360,9 +241,129 @@
     @include('Admin.templates.script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.0/apexcharts.min.js" integrity="sha512-bp/xZXR0Wn5q5TgPtz7EbgZlRrIU3tsqoROPe9sLwdY6Z+0p6XRzr7/JzqQUfTSD3rWanL6WUVW7peD4zSY/vQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js" integrity="sha512-mlz/Fs1VtBou2TrUkGzX4VoGvybkD9nkeXWJm3rle0DPHssYYx4j+8kIS15T78ttGfmOjH0lLaBXGcShaVkdkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    {{-- <script>
+        // Assuming you have the PHP variable $selesaiProjects available in JavaScript
+        const selesaiProjectsyear = @json($selesaiProjectsyear);
+
+        // Function to get the current year
+        function getCurrentYear() {
+          const currentDate = new Date();
+          return currentDate.getFullYear();
+        }
+
+        // Prepare an array with count data for each year (initialize with zeros)
+        const currentYear = getCurrentYear();
+        const yearData = Array(currentYear).fill(null);
+
+        // Update year data with actual counts from the $selesaiProjectsyear variable
+        selesaiProjectsyear.forEach(project => {
+          const projectYear = parseInt(project.year);
+          if (projectYear >= 1 && projectYear <= currentYear) {
+            yearData[projectYear - 1] = project.count;
+          }
+        });
+
+         // Fill years without data with zeros
+        for (let i = 0; i < yearData.length; i++) {
+            if (yearData[i] === null) {
+            yearData[i] = 0;
+            }
+        }
+
+         // Create an array for the labels (years limited to the current year and the next three years)
+        const labels = Array.from({ length: 4 }, (_, index) => currentYear + index);
+
+        var options = {
+          chart: {
+            height: 350,
+            type: "line",
+            stacked: false
+          },
+          dataLabels: {
+            enabled: false
+          },
+          colors: ["#FF1654", "#247BA0"],
+          series: [
+            {
+              name: "Series A",
+              data: yearData // Replace the sample data with the yearData array
+            },
+
+          ],
+          stroke: {
+            width: [8, 8]
+          },
+          plotOptions: {
+            bar: {
+              columnWidth: "20%"
+            }
+          },
+          xaxis: {
+            categories: labels // Replace the sample categories with the labels array
+          },
+          yaxis: [
+            {
+              axisTicks: {
+                show: true
+              },
+              axisBorder: {
+                show: true,
+                color: "#FF1654"
+              },
+              labels: {
+                style: {
+                  colors: "#FF1654"
+                }
+              },
+              title: {
+                text: "Series A",
+                style: {
+                  color: "#FF1654"
+                }
+              }
+            },
+            {
+              opposite: true,
+              axisTicks: {
+                show: true
+              },
+              axisBorder: {
+                show: true,
+                color: "#247BA0"
+              },
+              labels: {
+                style: {
+                  colors: "#247BA0"
+                }
+              },
+              title: {
+                text: "Series B",
+                style: {
+                  color: "#247BA0"
+                }
+              }
+            }
+          ],
+          tooltip: {
+            shared: false,
+            intersect: true,
+            x: {
+              show: false
+            }
+          },
+          legend: {
+            horizontalAlign: "left",
+            offsetX: 40
+          }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+        chart.render();
+    </script> --}}
 
     <script>
-        // Assuming you have the PHP variable $selesaiProjects available in JavaScript
+        // Assuming you have the PHP variable $selesaiProjectsyear available in JavaScript
         const selesaiProjects = @JSON($selesaiProjects);
 
         // Function to get month name from month number
@@ -447,48 +448,7 @@
         apexChart.render();
     </script>
 
-        <script>
-            // Assuming you have the PHP variable $selesaiProjects available in JavaScript
-            const selesaiProjects = @json($selesaiProjectsyear);
 
-            // Function to get the current year
-            function getCurrentYear() {
-              const currentDate = new Date();
-              return currentDate.getFullYear();
-            }
-
-            // Prepare an array with count data for each year (initialize with zeros)
-            const currentYear = getCurrentYear();
-            const yearData = Array(currentYear).fill(0);
-
-            // Update year data with actual counts from the $selesaiProjects variable
-            selesaiProjects.forEach(project => {
-              const projectYear = parseInt(project.year);
-              if (projectYear >= 1 && projectYear <= currentYear) {
-                yearData[projectYear - 1] = project.count;
-              }
-            });
-
-            // Create an array for the labels (years)
-            const labels = Array.from({ length: currentYear }, (_, index) => index + 1);
-
-            // Create ApexCharts instance and render the chart
-            const options = {
-              chart: {
-                type: 'line',
-              },
-              series: [{
-                name: 'Projek selesai',
-                data: yearData,
-              }],
-              xaxis: {
-                categories: labels,
-              },
-            };
-
-            const chart = new ApexCharts(document.querySelector('#grafik-line'), options);
-            chart.render();
-          </script>
 
 
 
