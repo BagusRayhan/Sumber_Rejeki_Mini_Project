@@ -76,7 +76,7 @@ public function projectreq(Request $request)
             'dataa' => $dataa,
             'notification' => $notification
         ]);
-    }     
+    }
 
     public function downloadSuppDocs($dokumen = null) {
         $file = public_path('document/' . $dokumen);
@@ -89,9 +89,11 @@ public function projectreq(Request $request)
     public function simpanharga(Request $request, $id)
     {
         $request->validate([
-            'harga' => 'required|min:1'
+            'harga' => 'required|numeric|gt:0'
         ], [
-            'harga.required' => 'harga tidak boleh kosong!',
+            'harga.required' => 'Harga tidak boleh kosong',
+            'harga.numeric' => 'Harga tidak valid',
+            'harga.gt' => 'Harga tidak valid',
         ]);
         $proreg = Proreq::findOrFail($id);
         $proreg->update([
@@ -110,15 +112,16 @@ public function projectreq(Request $request)
         ]);
         return redirect()->route('projectreq')->with('success', 'Berhasil menyetujui project');
     }
-    
+
     public function simpanfiturr(Request $request, $id)
 {
     $fitur = Fitur::findOrFail($id);
     $request->validate([
-        'hargafitur' => 'required|numeric'
+        'hargafitur' => 'required|numeric|gt:0'
     ],[
         'hargafitur.required' => 'Harga tidak boleh kosong',
-        'hargafitur.numeric' => 'Harga tidak valid'
+        'hargafitur.numeric' => 'Harga tidak valid',
+        'hargafitur.gt' => 'Harga tidak valid',
     ]);
     $fitur->hargafitur = $request->hargafitur;
     $fitur->save();
@@ -191,8 +194,31 @@ public function updateproreqa($id)
         return view('Admin.projectselesai', compact('selesai','admin','notification'));
     }
 
+
+    // public function updateproselesai(Request $request, $id)
+    // {
+    //     $proreq = Proreq::findOrFail($id);
+
+    //     $request->validate([
+    //         'napro' => 'required',
+    //         'deadline' => 'required|date|after_or_equal:today',
+    //     ], [
+    //         'napro.required' => 'Nama project tidak boleh kosong',
+    //         'deadline.required' => 'Isi deadline terlebih dahulu',
+    //         'deadline.date' => 'Format deadline tidak valid',
+    //         'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',
+    //     ]);
+
+    //     $proreq->napro = $request->napro;
+    //     $proreq->deadline = $request->deadline;
+    //     $proreq->save();
+
+    //     return redirect()->route('revisiproselesai')->with('success', 'Data berhasil diperbarui.');
+    // }
+
     public function revisiproselesai($id)
     {
+
         $notification = Notification::where('role', 'admin')->latest()->get();
         $admin = User::where('role', 'admin')->first();
         $fitur = Fitur::where('project_id', $id)->get();
@@ -223,10 +249,22 @@ public function updateproreqa($id)
 
     public function updateProreq(Request $request, $id)
     {
+
         $proreq = Proreq::findOrFail($id);
+        $request->validate([
+            'napro' => 'required',
+            'deadline' => 'required|date|after_or_equal:today',
+        ], [
+            'napro.required' => 'Nama project tidak boleh kosong',
+            'deadline.required' => 'Isi deadline terlebih dahulu',
+            'deadline.date' => 'Format deadline tidak valid',
+            'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',
+        ]);
+
         $fitur = Fitur::where('project_id', $proreq->id)->get();
         $totalBiayaTambahan = $fitur->sum('biayatambahan');
-
+        $proreq->napro = $request->napro;
+        $proreq->deadline = $request->deadline;
         $proreq->biayatambahan = $totalBiayaTambahan;
         $proreq->status = 'revisi';
         $proreq->statusbayar = null;
