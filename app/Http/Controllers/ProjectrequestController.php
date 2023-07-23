@@ -287,7 +287,7 @@ public function updateproreqa($id)
     {
         $this->validate($request,[
             'namafitur' => 'required',
-            'biayatambahan' => 'required!numeric',
+            'biayatambahan' => 'required|numeric',
             'deskripsi' => 'required',
         ],[
             'namafitur.required' => 'Fitur tidak boleh kosong',

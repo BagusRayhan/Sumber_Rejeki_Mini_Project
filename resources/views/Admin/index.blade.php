@@ -76,40 +76,34 @@
             </div>
             <!-- Counter End -->
 
-
             <!-- Monthly Chart Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="w-100">
-                    <div class="bg-light text-center rounded p-4" style="height: 550px">
+                    <div class="bg-light text-center rounded p-4">
                         <div class="d-flex align-items-center justify-content-start mb-4">
                             <div class="" style="width: 1100px">
                                 <div id="myChart"></div>
-                                {{-- {!! $chart->container() !!} --}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <!-- Monthly Chart End -->
 
             <!-- Annualy Chart Start -->
-
-            <div id="chart">
+            <div class="container-fluid pt-4 px-4">
+                <div class="w-100">
+                    <div class="bg-light text-center rounded p-4">
+                        <div class="d-flex align-items-center justify-content-start mb-4">
+                            <div class="" style="width: 1100px">
+                                <div id="chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- Annualy Chart End -->
-            <style>
-         @import url(https://fonts.googleapis.com/css?family=Roboto);
-
-        body {
-        font-family: Roboto, sans-serif;
-        }
-
-        #chart {
-        max-width: 650px;
-        margin: 35px auto;
-        }
-
-            </style>
 
 
             <!-- Widgets Start -->
@@ -287,7 +281,7 @@
                 }
               },
               title: {
-                text: "Series A",
+                text: "Project Selesai",
                 style: {
                   color: "#FF1654"
                 }

@@ -61,7 +61,7 @@
 
         <div class="wrap-input100 validate-input" data-validate="Password is required">
           <span class="label-input100">Password</span>
-          <input class="input100" type="password" id="password" name="password" placeholder="Masukkan password anda" value="{{ old('password') }}">
+          <input class="input100" type="password" id="password" name="password" placeholder="Masukkan password anda">
           <span class="focus-input100" data-symbol="&#xf191;"></span>
         </div><br>
 
