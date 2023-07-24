@@ -25,7 +25,7 @@ public function projectreq(Request $request)
         ->where(function (Builder $builder) use ($query) {
             $builder->where('napro', 'like', '%' . $query . '%');
         })
-        ->paginate(6);
+        ->paginate(1);
 
     $projectreq->appends(['query' => $query]);
 

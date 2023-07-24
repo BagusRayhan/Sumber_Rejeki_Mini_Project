@@ -77,7 +77,7 @@
                     <a href="{{ route('projectselesai') }}" class="btn btn-primary btn-sm">Kembali</a>
                     <button class="btn btn-warning btn-sm text-white mx-2" type="submit"><i class="fa-solid fa-pencil-square"></i> Ajukan Perubahan</button>
                 </div>
-            </form> 
+            </form>
             <div class="modal fade" id="pesanRevisi" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -133,7 +133,14 @@
                                         <tr>
                                             <td>{{ $f->namafitur }}</td>
                                             <td>{{ $f->status }}</td>
-                                            <td>{{ number_format($f->hargafitur, 0, ',', '.') ?? number_format($f->biayatambahan, 0, ',', '.') }}</td>
+                                            <td>
+                                                @if ($f->hargafitur !== null)
+                                                    {{ number_format($f->hargafitur, 0, ',', '.') }}
+                                                @else
+                                                    {{ number_format($f->biayatambahan, 0, ',', '.') }}
+                                                @endif
+                                            </td>
+
                                             <td class="d-flex justify-content-evenly">
                                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editFiturModal{{ $f->id }}"><i class="fa-solid fa-pen-to-square"></i></button>
                                                 <form action="{{ route('destroy-fitur') }}" method="post">
