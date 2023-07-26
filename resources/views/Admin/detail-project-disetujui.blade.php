@@ -271,7 +271,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="" class="form-label">Harga Fitur</label>
-                                                                        <input type="text" class="form-control" value="{{ number_format($f->hargafitur, 0, ',', '.') }}" disabled>
+                                                                        <input type="text" class="form-control" value="{{ number_format($f->hargafitur + $f->biayatambahan, 0, ',', '.') }}" disabled>
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-2">
