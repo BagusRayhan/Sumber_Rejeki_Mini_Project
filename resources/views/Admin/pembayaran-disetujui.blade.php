@@ -58,7 +58,10 @@
                                             <tr>
                                                 <td>{{ $apv->nama }}</td>
                                                 <td>{{ $apv->napro }}</td>
-                                                <td>Rp.{{ number_format($apv->harga, 0, ',', '.') }}</td>
+                                                <td>
+                                                        Rp.{{ number_format($apv->harga + $apv->biayatambahan, 0, ',', '.') }}
+                                                
+                                                </td>
                                                 <td class="text-center">
                                                     <span class="badge rounded-pill {{ (($apv->statusbayar == 'lunas') ? 'text-bg-success' : (($apv->statusbayar == 'lunas') ? 'text-bg-primary' : '')) }}">{{ $apv->statusbayar }}</span>
                                                 </td>

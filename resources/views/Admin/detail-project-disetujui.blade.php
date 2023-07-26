@@ -122,14 +122,7 @@
                                         localStorage.setItem(checkboxId, checkbox.checked);
                                     }
 
-                                    function loadCheckboxStatus(checkboxId) {
-                                        const checkbox = document.getElementById(checkboxId);
-                                        const status = localStorage.getItem(checkboxId);
 
-                                        if (status === "true") {
-                                            checkbox.checked = true;
-                                        }
-                                    }
                                         window.addEventListener('load', function() {
                                         loadCheckboxStatus('masterCheckbox');
 
