@@ -22,12 +22,12 @@ return new class extends Migration
             $table->string('dokumen')->nullable();
             $table->dateTime('estimasi')->nullable();
             $table->dateTime('deadline')->nullable();
-            $table->string('status')->nullable();
-            $table->string('status2')->nullable();
+            $table->enum('status', ['draft','pending','tolak','setuju','pengajuan revisi','revisi'])->nullable();
+            $table->enum('status2', ['Proses','telat'])->nullable();
             $table->integer('harga')->nullable();
             $table->longText('alasan')->nullable();
             $table->longText('listrevisi')->nullable();
-            $table->string('statusbayar')->nullable();
+            $table->enum('statusbayar', ['menunggu pembayaran','pembayaran awal','pembayaran akhir','pembayaran revisi'])->nullable();
             $table->string('biayatambahan')->nullable();
             $table->string('biayatambahan2')->nullable();
             $table->string('metodepembayaran')->nullable();

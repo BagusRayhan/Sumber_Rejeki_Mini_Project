@@ -381,17 +381,33 @@
                     <form action="{{ route('done-project') }}" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button class="btn btn-primary btn-sm" id="projectDoneBtn" {{ (count($fitur) !== $done) ? 'disabled' : '' }}><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                        <button class="btn btn-primary btn-sm" id="projectDoneBtn"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                     @elseif ($detail->progress == 100)
                     <form action="{{ route('done-project') }}" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button class="btn btn-primary btn-sm" id="projectDoneBtn" {{ (count($fitur) !== $done) ? 'disabled' : '' }}><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                        <button class="btn btn-primary btn-sm" id="projectDoneBtn"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                     @else
-                    <button class="btn btn-primary btn-sm" id="projectAcceptBtn" disabled><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                    <button class="btn btn-primary btn-sm" id="projectDoneBtn"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     <script>
+                        const projectDoneBtn = document.getElementById('projectDoneBtn');
+                        projectDoneBtn.addEventListener('click', function(event) {
+                            if ({{count($fitur) == $done}}) {
+                                event.preventDefault();
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Fitur belum selesai',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            } else {
+                                event.preventDefault();
+                            }
+                        }); 
+                    </script>
+                    {{-- <script>
                         var projectDoneBtn = document.getElementById('projectAcceptBtn');
                         var inputRange = document.getElementById('customRange1');
 
@@ -418,9 +434,9 @@
                                 console.error(error);
                             });
                         });
-                    </script>
+                    </script> --}}
                     @endif
-                    <script>
+                    {{-- <script>
                         var projectDoneBtn = document.getElementById('projectDoneBtn');
                         var inputRange = document.getElementById('customRange1');
 
@@ -447,7 +463,7 @@
                                 console.error(error);
                             });
                         });
-                    </script>
+                    </script> --}}
                 </div>
 
                 <div class="container my-5">

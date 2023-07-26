@@ -140,7 +140,6 @@
                                                     {{ number_format($f->biayatambahan, 0, ',', '.') }}
                                                 @endif
                                             </td>
-
                                             <td class="d-flex justify-content-evenly">
                                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editFiturModal{{ $f->id }}"><i class="fa-solid fa-pen-to-square"></i></button>
                                                 <form action="{{ route('destroy-fitur') }}" method="post">
