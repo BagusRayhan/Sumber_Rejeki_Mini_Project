@@ -109,43 +109,65 @@
                     <p>Estimasi tidak tersedia</p>
                 </div>
             @endif
-                        </div>
-                    </div>
-
-
-
-                        <div class="col-sm-12 col-md-6 col-xl-4">
-                        <div class="h-100 bg-light rounded p-4">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
+             </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-4">
+                <div class="h-100 bg-light rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
                         <h6 class="mb-0">Pesan</h6>
-                        {{-- <a class="link-offset-2 link-underline link-underline-opacity-0" href="#">Tampilkan Semua</a> --}}
-                        </div>
-                        @if (count($pesancht) !== 0)
+                    </div>
+                    @if (count($pesancht) !== 0)
                         @foreach ($pesancht as $pesan)
                             <div class="d-flex align-items-center border-bottom py-3">
-                                {{-- <a href="{{ route('detailsetujui', ['id' => $pesan->id]) }}" style="text-decoration: none; color: inherit;"> --}}
-                                    <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $pesan->user->profil }}" alt="" style="width: 40px; height: 40px;">
-                                    <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
+                                <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $pesan->user->profil }}" alt="" style="width: 40px; height: 40px;">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 justify-content-between align-items-center">
                                         <h6 class="mb-0">{{ $pesan->user->name }}</h6>
-                                        <small>{{ Carbon::parse($pesan->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
-                                        </div>
-                                        <span>{{ $pesan->chat }}</span>
+                                        <small>{{ Carbon::parse($pesan->chat_time)->locale('id')->isoFormat('HH:mm') }}</small>
+                                        <button class="btn btn-link ms-auto mt-10 toggleMessages" data-target="#messageContent{{ $pesan->id }}">
+                                            <i class="fas fa-sort-desc"></i>
+                                        </button>
+                                    </div>
+                                    <div class="message-content collapse" id="messageContent{{ $pesan->id }}"> <!-- Use 'collapse' class here -->
+                                        @if (count($pesan->projectchat) !== 0)
+                                            @foreach ($pesan->projectchat as $chatt)
+                                                <p>{{ $chatt->chat }}</p>
+                                            @endforeach
+                                        @else
+                                            <p>Tidak ada pesan</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+                            <img src="gambar/empty-icon/empty-directory.png" style="width: 65px;">
+                            <p>Pesan tidak tersedia</p>
                         </div>
-                        </a>
+                    @endif
                 </div>
-            @endforeach
-        @else
-        <div class="d-flex flex-column h-100 justify-content-center align-items-center">
-            <img src="gambar/empty-icon/empty-directory.png" style="width:65px;" >
-            <p>Pesan tidak tersedia</p>
-        </div>
-        @endif
-    </div>
-</div>
+            </div>
 
-                    </div>
-                </div>
+            <!-- Moved the script below the HTML content to ensure the elements are loaded before applying the script -->
+            <script>
+                $(document).ready(function () {
+                    $('.toggleMessages').on('click', function () {
+                        const target = $(this).data('target');
+                        $(target).collapse('toggle');
+                        $(this).find('i').toggleClass('fa-sort-desc fa-sort-up');
+                    });
+                });
+            </script>
+
+
+                         {{-- <span>{{ $pesan->chat }}</span>
+                            </div>
+                        </div>
+                        <div id="messageContent{{ $pesan->id }}" class="collapse message-content">
+                        </div> --}}
+
+
 
 
                 @include('Client.Template.footer')

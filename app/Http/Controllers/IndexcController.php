@@ -41,9 +41,17 @@ class IndexcController extends Controller
         // $query->where('role', 'admin');
         // })->limit(4)->latest()->get();
 
-        $pesancht = Chat::whereHas('user', function($query) {
-            $query->where('role', 'admin');
-            })->limit(4)->latest()->get();
+        // $pesancht = Chat::whereHas('user', function($query) {
+        //     $query->where('role', 'admin');
+        //     })->limit(4)->latest()->get();
+
+            $pesancht = Proreq::query()
+            ->whereHas('projectchat')
+            ->with('projectchat')
+            ->limit(4)
+            ->latest()
+            ->get();
+
 
         // $pesancht = Proreq::query()
         // ->whereHas('projectchat')
