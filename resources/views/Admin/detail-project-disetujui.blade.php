@@ -403,63 +403,7 @@
                             }
                         }
                     </script>
-                    {{-- <script>
-                        var projectDoneBtn = document.getElementById('projectAcceptBtn');
-                        var inputRange = document.getElementById('customRange1');
-
-                        projectDoneBtn.addEventListener('click', function() {
-                            var featureId = inputRange.getAttribute('data-feature-id');
-                            var progress = inputRange.getAttribute('value');
-
-                            fetch('/update-progress', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                                },
-                                body: JSON.stringify({
-                                    featureId: featureId,
-                                    progress: progress
-                                })
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                console.log(data);
-                            })
-                            .catch(error => {
-                                console.error(error);
-                            });
-                        });
-                    </script> --}}
                     @endif
-                    {{-- <script>
-                        var projectDoneBtn = document.getElementById('projectDoneBtn');
-                        var inputRange = document.getElementById('customRange1');
-
-                        projectDoneBtn.addEventListener('click', function() {
-                            var featureId = inputRange.getAttribute('data-feature-id');
-                            var progress = inputRange.value;
-
-                            fetch('/update-progress', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                                },
-                                body: JSON.stringify({
-                                    featureId: featureId,
-                                    progress: progress
-                                })
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                console.log(data);
-                            })
-                            .catch(error => {
-                                console.error(error);
-                            });
-                        });
-                    </script> --}}
                 </div>
 
                 <div class="container my-5">

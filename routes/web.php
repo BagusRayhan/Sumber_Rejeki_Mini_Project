@@ -175,6 +175,7 @@ Route::middleware('admin')->group(function(){
     Route::put('update-fitur/{id}', [ProjectrequestController::class, 'updatefitur'])->name('update-fitur');
     Route::delete('destroy-fitur', [ProjectrequestController::class, 'destroyfitur'])->name('destroy-fitur');
     Route::get('project-disetujui', [ProjectDisetujuiController::class, 'disetujui'])->name('project-disetujui-admin');
+    // Route::delete('project-disetujui', [ProjectDisetujuiController::class, 'deleteLateProject'])->name('delete-late-project');
     Route::get('detail-project-disetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujui'])->name('detail-disetujui-admin');
     Route::post('update-project-selesai', [ProjectDisetujuiController::class, 'doneProject'])->name('done-project');
     Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');

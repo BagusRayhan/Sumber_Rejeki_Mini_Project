@@ -16,21 +16,18 @@ use Yajra\DataTables\DataTables;
 class ProjectDisetujuiController extends Controller
 {
     public function disetujui(Request $request ) {
-
-             $today = date('Y-m-d');
-            Proreq::whereDate('deadline', '<', $today)->update(['status2' => 'telat']);
-
+        $admin = User::where('role', 'admin')->first();
+        $today = date('Y-m-d');
+        Proreq::whereDate('deadline', '<', $today)->update(['status2' => 'telat']);
+        Proreq::whereDate('deadline', '>', $today)->update(['status2' => 'proses']);
         if ($request->ajax()) {
             $data = Proreq::latest()->get();
             return Datatables::of($data)->make(true);
         }
-
-        $admin = User::where('role', 'admin')->first();
         $query = $request->input('query');
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $projects = Proreq::where('status', 'setuju')->where('napro', 'LIKE', '%'.$query.'%')->paginate(3);
         $projects->appends(['query' => $query]);
-
         return view('Admin.project-disetujui', [
             'project' => $projects,
             'admin' => $admin,
@@ -46,14 +43,14 @@ class ProjectDisetujuiController extends Controller
         $detail = Proreq::find($id);
         $fitur = Fitur::where('project_id', $id)->get();
         $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
-        $progress = 0;
-
+        $chats = Chat::where('project_id', $id)->get();
+        $progress = 0; 
+        if ($detail->status2 == 'telat') {
+            return back()->with('error','Project sudah melebihi deadline');
+        }
         if ($fitur->count() > 0) {
             $progress = (100 / $fitur->count()) * $done;
         }
-
-        $chats = Chat::where('project_id', $id)->get();
-
         return view('Admin.detail-project-disetujui', [
             'detail' => $detail,
             'progress' => $progress,

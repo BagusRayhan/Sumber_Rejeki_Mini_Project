@@ -55,14 +55,17 @@
                                                 <td>{{ $pro->nama }}</td>
                                                 <td>{{ $pro->napro }}</td>
                                                 <td>{{ isset($pro->biayatambahan) ? 'Rp ' . number_format((float)$pro->harga + (float)$pro->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$pro->harga, 0, ',', '.') }}</td>
-                                                @if($pro->status2 === 'telat')
-                                                <td class="text-danger">{{ $pro->status2 }}</td>
-                                                @else
-                                                <td class="text-primary">Proses</td>
-
-                                                @endif
+                                                <td><span class="badge {{ $pro->status2 == 'telat' ? 'text-bg-danger' : 'text-bg-warning' }}">{{ $pro->status2 == 'telat' ? $pro->status2 : 'proses' }}</span></td>
                                                 <td class="d-flex justify-content-evenly">
                                                     <a href="/detail-project-disetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
+                                                    {{-- @if ($pro->status2 == 'telat')
+                                                        <form action="{{ route('delete-late-project') }}" method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <input type="hidden" name="project_id" value="{{ $pro->id }}">
+                                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                                        </form>
+                                                    @endif --}}
                                                 </td>
                                             </tr>
                                         @endforeach
