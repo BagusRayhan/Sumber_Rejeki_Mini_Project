@@ -370,35 +370,38 @@
                         </div>
                     </div>
                     <!-- Modal Box Estimasi End-->
-                    @if (count($fitur) !== 0)
-                    <form action="{{ route('done-project') }}" method="post">
+                    @if (count($fitur) !== 0 || $detail->progress == 100)
+                    <form action="{{ route('done-project') }}" id="projectDone" onsubmit="doneeeProject(event)" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button class="btn btn-primary btn-sm" id="projectDoneBtn"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                        <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBtn"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
-                    @elseif ($detail->progress == 100)
-                    <form action="{{ route('done-project') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button class="btn btn-primary btn-sm" id="projectDoneBtn"><i class="fa-solid fa-circle-check"></i> Selesai</button>
-                    </form>
-                    @else
-                    <button class="btn btn-primary btn-sm" id="projectDoneBtn"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     <script>
-                        const projectDoneBtn = document.getElementById('projectDoneBtn');
-                        projectDoneBtn.addEventListener('click', function(event) {
-                            if ({{count($fitur) == $done}}) {
+                        function doneeeProject(event) {
+                            event.preventDefault();
+                            if ({{count($fitur) !== $done}}) {
                                 event.preventDefault();
                                 Swal.fire({
-                                    icon: 'error',
-                                    title: 'Fitur belum selesai',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                })
-                            } else {
-                                event.preventDefault();
+                                    title: 'Apakah Anda yakin',
+                                    text: 'Ingin Menyutujui?',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Ya',
+                                    cancelButtonText: 'Batal'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Fitur belum selesai',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                    }
+                                });
                             }
-                        }); 
+                        }
                     </script>
                     {{-- <script>
                         var projectDoneBtn = document.getElementById('projectAcceptBtn');
