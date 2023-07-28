@@ -61,11 +61,11 @@
                                     @endif
                                   </td>
                                 <td>Rp.{{ number_format($project->harga, 0, ',', '.') ?? number_format($project->biayatambahan, 0, ',', '.') }}</td>
-                                <td>
+                                <td class="text-center">
                                     @if ($project->status == 'selesai')
-                                      <a type="button" href="{{ route('revisiproselesai',$project->id) }}" class="btn btn-primary btn-sm disabled" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i> Revisi</a>
+                                      <i class="fa-solid fa-check text-success fs-5 fw-bold"></i>
                                     @elseif ($project->status == 'revisi')
-                                      <a type="button" href="{{ route('revisiproselesai',$project->id) }}" class="btn btn-primary btn-sm disabled" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i> Revisi</a>
+                                      <i class="fa-solid fa-hourglass-start text-warning fw-bold fs-5"></i>
                                     @elseif ($project->status == 'pengajuan revisi')
                                       <a type="button" href="{{ route('revisiproselesai',$project->id) }}" class="btn btn-primary btn-sm" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i> Revisi</a>
                                     @endif

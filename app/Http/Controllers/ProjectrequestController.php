@@ -189,7 +189,7 @@ public function updateproreqa($id)
         $notification = Notification::where('role', 'admin')->latest()->get();
         $admin = User::where('role', 'admin')->first();
          $query = $request->input('query');
-        $selesai = proreq::whereIn('status', ['selesai', 'pengajuan revisi'])->where('napro', 'LIKE', '%'.$query.'%')->paginate(2);
+        $selesai = proreq::whereIn('status', ['selesai','pengajuan revisi','revisi'])->where('napro', 'LIKE', '%'.$query.'%')->paginate(2);
         $selesai->appends(['query' => $query]);
         return view('Admin.projectselesai', compact('selesai','admin','notification'));
     }
