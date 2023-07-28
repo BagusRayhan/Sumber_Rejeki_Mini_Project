@@ -84,8 +84,8 @@
                                         if (savedProgress) {
                                             var progressBar = document.getElementById('progress-bar');
                                             progressBar.style.width = savedProgress + '%';
-                                            progressBar.setAttribute('', savedProgress);
-                                            progressBar.innerText = savedProgress + '';
+                                             progressBar.setAttribute('aria-valuenow', savedProgress); 
+                                             document.getElementById('aa').innerText = parseInt(savedProgress) + " %"; 
                                         }
                                     });
 
@@ -104,7 +104,8 @@
 
                                         progressBar.style.width = (progress / totalFeatures * 100) + '%';
                                         progressBar.setAttribute('aria-valuenow', progress);
-                                        document.getElementById('aa').innerText = (progress / totalFeatures * 100) + " %"
+                                        document.getElementById('aa').innerText = parseInt(progress / totalFeatures * 100) + " %";
+
 
                                         localStorage.setItem('progress', progress);
                                         localStorage.setItem('totalFeatures', totalFeatures);
