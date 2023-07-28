@@ -4,6 +4,8 @@
     use Carbon\Carbon;
 @endphp
 @include('Admin.templates.head')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+
 
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
@@ -109,6 +111,8 @@
 
                                         localStorage.setItem('progress', progress);
                                         localStorage.setItem('totalFeatures', totalFeatures);
+                                        localStorage.setItem('completedFeatures', progress);
+
                                     }
 
                                     var checkboxes = document.querySelectorAll('.child-checkbox');
@@ -371,40 +375,44 @@
                         </div>
                     </div>
                     <!-- Modal Box Estimasi End-->
-                    @if (count($fitur) !== 0 || $detail->progress == 100)
-                    <form action="{{ route('done-project') }}" id="projectDone" onsubmit="doneeeProject(event)" method="post">
-                        @csrf
-                        <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBtn"><i class="fa-solid fa-circle-check"></i> Selesai</button>
-                    </form>
-                    <script>
-                        function doneeeProject(event) {
-                            event.preventDefault();
-                            if ({{count($fitur) !== $done}}) {
-                                event.preventDefault();
-                                Swal.fire({
-                                    title: 'Apakah Anda yakin',
-                                    text: 'Ingin Menyutujui?',
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#3085d6',
-                                    cancelButtonColor: '#d33',
-                                    confirmButtonText: 'Ya',
-                                    cancelButtonText: 'Batal'
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: 'Fitur belum selesai',
-                                            showConfirmButton: false,
-                                            timer: 1500
-                                        })
-                                    }
-                                });
-                            }
+            @if (count($fitur) !== 0 || $detail->progress == 100)
+                <form action="{{ route('done-project') }}" id="projectDone" method="post">
+                    @csrf
+                    <input type="hidden" name="project_id" value="{{ $detail->id }}">
+                    <button type="submit" class="btn btn-primary btn-sm" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                </form>
+            @endif
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+                <script>
+                    function submitForm(event) {
+                        event.preventDefault();
+                        var totalFeatures = parseInt(localStorage.getItem('totalFeatures'));
+                        var completedFeatures = parseInt(localStorage.getItem('completedFeatures'));
+
+                        if (totalFeatures !== completedFeatures) {
+                            Swal.fire({
+                                title: 'Apakah Anda yakin?',
+                                text: 'Fitur belum selesai',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Apakah Anda yakin',
+                                text: 'Ingin menyelesaikan proyek?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Ya, selesai!',
+                                cancelButtonText: 'Tidak, batal'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    document.getElementById('projectDone').submit();
+                                }
+                            });
                         }
-                    </script>
-                    @endif
+                    }
+                </script>
+
                 </div>
 
                 <div class="container my-5">
