@@ -101,13 +101,6 @@
 
                                 window.location.href = event.target.href;
 
-                            } else {
-
-                                Swal.fire(
-                                    'Logout Dibatalkan',
-                                    '',
-                                    'info'
-                                );
                             }
                         });
                     }

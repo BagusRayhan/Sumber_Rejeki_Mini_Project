@@ -92,9 +92,9 @@
                                         @if ($estimasisetuju->progress == null)
                                             <h6 class="mb-2"></h6>
                                             @if ($estimasisetuju->estimasi != null)
-                                                <span style="margin-left:40%;"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
+                                                <span class="float-end"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
                                             @else
-                                                <span style="margin-left:36%;">Estimasi tidak tersedia</span>
+                                                <span class="float-end">Estimasi belum diatur</span>
                                             @endif
                                         @endif
                                     </div>
@@ -106,7 +106,7 @@
             @else
                 <div class="d-flex flex-column h-100 justify-content-center align-items-center">
                     <img src="gambar/empty-icon/empty-directory.png" style="width:65px;">
-                    <p>Estimasi tidak tersedia</p>
+                    <p>Belum Ada Project</p>
                 </div>
             @endif
              </div>
