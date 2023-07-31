@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Monthly Chart End -->
 
             <!-- Annualy Chart Start -->
@@ -168,6 +168,7 @@
                         </div>
                     </div>
 
+
                     <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-start mb-2">
@@ -176,29 +177,28 @@
                             @if (count($message) !== 0)
                                 @foreach ($message as $msg)
                                     <div class="d-flex align-items-center border-bottom py-3">
-                                            <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $msg->user->profil }}" alt="" style="width: 40px; height: 40px;">
-                                            <div class="w-100 ms-3">
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h6 class="mb-0">{{ $msg->user->name }}</h6>
-                                                    <small>{{ Carbon::parse($msg->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
-                                                    <button class="btn btn-link ms-auto mt-10" id="toggleMessages">
-                                                        <i class="fas fa-sort-desc"></i>
-                                                    </button>
-
-                                                </div>
+                                        <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $msg->user->profil }}" alt="" style="width: 40px; height: 40px;">
+                                        <div class="w-100 ms-3">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-0">{{ $msg->user->name }}</h6>
+                                                <small>{{ Carbon::parse($msg->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
+                                                <button class="btn btn-link ms-auto mt-10 toggle-messages-btn" data-target="#messageContent{{ $loop->index }}">
+                                                    <i class="fas fa-sort-desc"></i>
+                                                </button>
                                             </div>
+                                        </div>
                                     </div>
                                     <a href="{{ route('detail-disetujui-admin', ['id' => $msg->id]) }}" style="text-decoration: none; color: inherit;">
-                                    <div class="collapse message-content">
-                                        @if (count($msg->projectchat) !== 0)
-                                            @foreach ($msg->projectchat as $chat)
-                                                <p>{{ $chat->chat }}</p>
-                                            @endforeach
-                                        @else
-                                            <p>Tidak ada pesan</p>
-                                        @endif
-                                    </div>
-                                </a>
+                                        <div class="collapse message-content" id="messageContent{{ $loop->index }}">
+                                            @if (count($msg->projectchat) !== 0)
+                                                @foreach ($msg->projectchat as $chat)
+                                                    <p>{{ $chat->chat }}</p>
+                                                @endforeach
+                                            @else
+                                                <p>Tidak ada pesan</p>
+                                            @endif
+                                        </div>
+                                    </a>
                                 @endforeach
                             @else
                                 <div class="d-flex flex-column h-100 justify-content-center align-items-center">
@@ -213,12 +213,14 @@
 
                     <script>
                         $(document).ready(function () {
-                            $('#toggleMessages').on('click', function () {
-                                $('.message-content').collapse('toggle');
+                            $('.toggle-messages-btn').on('click', function () {
+                                var target = $(this).data('target');
+                                $(target).collapse('toggle');
                                 $(this).find('i').toggleClass('fa-sort-desc fa-sort-up');
                             });
                         });
                     </script>
+
 
             <!-- Widgets End -->
         </div>
@@ -287,7 +289,7 @@
                 }
               }
             },
-            
+
           ],
           tooltip: {
             shared: false,

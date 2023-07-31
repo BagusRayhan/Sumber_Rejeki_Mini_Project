@@ -69,29 +69,27 @@
         <div class="d-flex justify-content-start">
             <input type="checkbox" id="remember-checkbox">
             <a href="kebijakan">&nbsp;Kebijakan Privasi</a>
-    </div>
+            </div>
 
-    <div class="d-flex justify-content-end">
-            <a href="{{ url('forgot-password') }}">&nbsp;Forgot Password</a>
-    </div>
-</div><br>
-<button id="login-button" type="submit" class="btn mt-10 h-10 w-full bg-primary font-medium text-white" style="border-radius: 20px;">Login</button>
-
+            <div class="d-flex justify-content-end">
+                <a href="{{ url('forgot-password') }}">&nbsp;Forgot Password</a>
+                </div>
+                </div><br>
+                <button id="login-button" type="submit" class="btn mt-10 h-10 w-full bg-primary font-medium text-white" style="border-radius: 20px;">Login</button>
+                <div id="privacy-alert" class="alert alert-danger mt-2 mb-0 d-none">Mohon centang kotak kebijakan privasi terlebih dahulu.</div>
 <script>
-    const rememberCheckbox = document.getElementById('remember-checkbox');
-const loginButton = document.getElementById('login-button');
-const privacyWarning = document.getElementById('privacy-warning');
+  const rememberCheckbox = document.getElementById('remember-checkbox');
+  const loginButton = document.getElementById('login-button');
+  const privacyAlert = document.getElementById('privacy-alert');
 
-loginButton.addEventListener('click', function(event) {
-  if (!rememberCheckbox.checked) {
-    event.preventDefault();
-    privacyWarning.classList.remove('hidden');
-  } else {
-    privacyWarning.classList.add('hidden');
-  }
-});
-
-
+  loginButton.addEventListener('click', function(event) {
+    if (!rememberCheckbox.checked) {
+      event.preventDefault();
+      privacyAlert.classList.remove('d-none');
+    } else {
+      privacyAlert.classList.add('d-none');
+    }
+  });
 </script>
 
 

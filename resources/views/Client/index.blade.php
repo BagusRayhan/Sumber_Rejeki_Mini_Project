@@ -111,9 +111,12 @@
             @endif
              </div>
             </div>
+
+
+
             <div class="col-sm-12 col-md-6 col-xl-4">
                 <div class="h-100 bg-light rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-2">
+                    <div class="d-flex align-items-center justify-content-start mb-2">
                         <h6 class="mb-0">Pesan</h6>
                     </div>
                     @if (count($pesancht) !== 0)
@@ -124,21 +127,23 @@
                                     <div class="d-flex w-100 justify-content-between align-items-center">
                                         <h6 class="mb-0">{{ $pesan->user->name }}</h6>
                                         <small>{{ Carbon::parse($pesan->chat_time)->locale('id')->isoFormat('HH:mm') }}</small>
-                                        <button class="btn btn-link ms-auto mt-10 toggleMessages" data-target="#messageContent{{ $pesan->id }}">
+                                        <button class="btn btn-link ms-auto mt-10 toggle-messages-btn" data-target="#messageContent{{ $loop->index }}">
                                             <i class="fas fa-sort-desc"></i>
                                         </button>
                                     </div>
-                                    <div class="message-content collapse" id="messageContent{{ $pesan->id }}"> <!-- Use 'collapse' class here -->
-                                        @if (count($pesan->projectchat) !== 0)
-                                            @foreach ($pesan->projectchat as $chatt)
-                                                <p>{{ $chatt->chat }}</p>
-                                            @endforeach
-                                        @else
-                                            <p>Tidak ada pesan</p>
-                                        @endif
-                                    </div>
                                 </div>
                             </div>
+                            <a href="{{ route('detailsetujui', ['id' => $pesan->id]) }}" style="text-decoration: none; color: inherit;">
+                                <div class="collapse message-content" id="messageContent{{ $loop->index }}">
+                                    @if (count($pesan->projectchat) !== 0)
+                                        @foreach ($pesan->projectchat as $chatt)
+                                            <p>{{ $chatt->chat }}</p>
+                                        @endforeach
+                                    @else
+                                        <p>Tidak ada pesan</p>
+                                    @endif
+                                </div>
+                            </a>
                         @endforeach
                     @else
                         <div class="d-flex flex-column h-100 justify-content-center align-items-center">
@@ -149,16 +154,19 @@
                 </div>
             </div>
 
+
             <!-- Moved the script below the HTML content to ensure the elements are loaded before applying the script -->
             <script>
                 $(document).ready(function () {
-                    $('.toggleMessages').on('click', function () {
-                        const target = $(this).data('target');
+                    $('.toggle-messages-btn').on('click', function () {
+                        var target = $(this).data('target');
                         $(target).collapse('toggle');
                         $(this).find('i').toggleClass('fa-sort-desc fa-sort-up');
                     });
                 });
             </script>
+
+
 
 
                          {{-- <span>{{ $pesan->chat }}</span>
