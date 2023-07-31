@@ -68,6 +68,9 @@ public function projectreq(Request $request)
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $admin = User::where('role', 'admin')->first();
         $data = Proreq::find($id);
+        if ($data->status !== 'pending') {
+            return back();
+        }
         $dataa = Fitur::where('project_id', $data->id)->orderBy('project_id')->get();
         return view('Admin.detailproreq', [
             'data' => $data,
@@ -222,6 +225,9 @@ public function updateproreqa($id)
         $admin = User::where('role', 'admin')->first();
         $fitur = Fitur::where('project_id', $id)->get();
         $data = Proreq::find($id);
+        if ($data->status !== 'pengajuan revisi' ) {
+            return back();
+        }
         $chats = Chat::where('project_id', $id)->get();
         return view('Admin.revisiproselesai', [
             'data' => $data,

@@ -256,7 +256,9 @@ class IndexcController extends Controller
         $sosmed = Sosmed::all();
         $data = Proreq::findorfail($id);
         $dataa = Fitur::where('project_id', $id)->get();
-
+        if (Auth::user()->id !== $data->user_id || $data->status !== 'pending' && $data->status !== 'draft' ) {
+            return back();
+        }
         return view('Client.editproreq',compact('data','sosmed','dataa','client','notification'));
     }
 

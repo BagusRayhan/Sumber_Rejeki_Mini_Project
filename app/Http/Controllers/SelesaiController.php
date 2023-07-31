@@ -86,10 +86,16 @@ class SelesaiController extends Controller
             $sosmed = Sosmed::all();
             $fitur = Fitur::where('project_id', $id)->get();
             $chats = Chat::where('project_id', $id)->get();
+            if (Auth::user()->id !== $detail->user_id || $detail->status !== 'selesai' && $detail->status !== 'pengajuan revisi' ) {
+                return back();
+            }
             return view('Client.revisibutton', compact('sosmed','client','detail','fitur','chats','notification'));
         }
         public function detail($id){
             $data = Proreq::findOrFail($id);
+            if (Auth::user()->id !== $data->user_id || $data->status !== 'revisi' ) {
+                return back();
+            }
             $sosmed = Sosmed::all();
             $client = User::find(Auth::user()->id);
             $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();

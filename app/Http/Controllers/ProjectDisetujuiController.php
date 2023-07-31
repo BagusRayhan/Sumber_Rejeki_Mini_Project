@@ -49,6 +49,9 @@ class ProjectDisetujuiController extends Controller
         $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
         $chats = Chat::where('project_id', $id)->get();
         $progress = 0; 
+        if ($detail->status !== 'setuju') {
+            return back();
+        }
         if ($detail->status2 == 'telat') {
             return back()->with('error','Project sudah melebihi deadline');
         }
@@ -198,13 +201,15 @@ class ProjectDisetujuiController extends Controller
         $fitur = Fitur::where('project_id', $id)->get();
         $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
         $progress = 0;
-        if (count($fitur) > 0) {
-        $progress = (100 / count($fitur)) * $done;
-    }
         $chats = Chat::where('project_id', $id)->get();
         $sosmed = Sosmed::all();
-        return view('Client.detailsetujui',
-        [
+        if (Auth::user()->id !== $detail->user_id || $detail->status !== 'setuju') {
+            return back();
+        }
+        if (count($fitur) > 0) {
+            $progress = (100 / count($fitur)) * $done;
+        }
+        return view('Client.detailsetujui', [
             'userid' => Auth()->user()->id,
             'detail' => $detail,
             'progress' => $progress,
