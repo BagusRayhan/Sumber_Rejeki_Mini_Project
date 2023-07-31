@@ -49,7 +49,7 @@
 
     <div class="text-center text-dark p-3" style="background-color: #E1ECF8;">
       © Copyright 2023
-      <a class="text-dark" href="#">PROREQ</a>
+      <a class="text-dark" href="/">PROREQ</a>
     </div>
   </footer>
 </div>

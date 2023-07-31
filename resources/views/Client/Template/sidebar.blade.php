@@ -3,7 +3,7 @@
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar  navbar-light" >
-                <a href="#" class="navbar-brand mx-4 mb-3 justify-content-center">
+                <a href="/" class="navbar-brand mx-4 mb-3 justify-content-center">
                     <h3 class="text-dark" style="font-family: 'Fugaz One">
                         <img src="{{ asset('ProjectManagement/dashmin/img/logo.png') }}" class="w-25">
                         PROREQ
