@@ -159,7 +159,6 @@
                                         });
                                     }
                                 </script>
-
                 @else
                     {{-- tidak menampilkan progress bar --}}
                 @endif
@@ -375,13 +374,22 @@
                         </div>
                     </div>
                     <!-- Modal Box Estimasi End-->
-            @if (count($fitur) !== 0 || $detail->progress == 100)
-                <form action="{{ route('done-project') }}" id="projectDone" method="post">
-                    @csrf
-                    <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                    <button type="submit" class="btn btn-primary btn-sm" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
-                </form>
-            @endif
+                @if (count($fitur) !== 0 && empty($detail->dokumen))
+                    <form action="{{ route('done-project') }}" id="projectDone" method="post">
+                        @csrf
+                        <input type="hidden" name="project_id" value="{{ $detail->id }}">
+                        <button type="submit" class="btn btn-primary btn-sm" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                    </form>
+                @endif
+
+                @if (!empty($detail->dokumen) && $detail->progress == 100)
+                    <form action="{{ route('done-project') }}" id="projectDone" method="post">
+                        @csrf
+                        <input type="hidden" name="project_id" value="{{ $detail->id }}">
+                        <button type="submit" class="btn btn-primary btn-sm" onclick="submitForm2(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                    </form>
+                @endif
+
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
                 <script>
                     function submitForm(event) {
@@ -397,6 +405,29 @@
                                 confirmButtonText: 'OK'
                             });
                         } else {
+                            Swal.fire({
+                                title: 'Apakah Anda yakin',
+                                text: 'Ingin menyelesaikan proyek?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Ya, selesai!',
+                                cancelButtonText: 'Tidak, batal'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    document.getElementById('projectDone').submit();
+                                }
+                            });
+                        }
+                    }
+                </script>
+                 <script>
+                    function submitForm2(event) {
+                        event.preventDefault();
+                        var totalFeatures = parseInt(localStorage.getItem('totalFeatures'));
+                        var completedFeatures = parseInt(localStorage.getItem('completedFeatures'));
+
+                        if (totalFeatures !== completedFeatures)
+                        {
                             Swal.fire({
                                 title: 'Apakah Anda yakin',
                                 text: 'Ingin menyelesaikan proyek?',
