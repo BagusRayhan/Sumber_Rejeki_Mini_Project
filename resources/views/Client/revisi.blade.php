@@ -55,7 +55,7 @@
                                 @if ($item->status === 'revisi')
                                 <tr>
                                     <td>{{ $item->napro }}</td>
-                                    <td><span class="badge text-bg-warning">{{ $item->status }}</span></td>
+                                    <td><span class="badge bg-warning">{{ $item->status }}</span></td>
                                     <td><center>
                                         @if(isset($item->biayatambahan))
                                             {{ $item->harga + $item->biayatambahan }}

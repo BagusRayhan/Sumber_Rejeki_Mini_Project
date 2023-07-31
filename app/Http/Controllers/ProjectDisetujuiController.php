@@ -42,6 +42,10 @@ class ProjectDisetujuiController extends Controller
         $admin = User::where('role', 'admin')->first();
         $detail = Proreq::find($id);
         $fitur = Fitur::where('project_id', $id)->get();
+        $statFeatures = Fitur::where('project_id', $id)->pluck('status');
+        $doneFitur = $statFeatures->every(function($status) {
+            return $status == 'selesai';
+        });
         $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
         $chats = Chat::where('project_id', $id)->get();
         $progress = 0; 
@@ -59,7 +63,8 @@ class ProjectDisetujuiController extends Controller
             'done' => $done,
             'admin' => $admin,
             'notification' => $notification,
-            'id' => $id
+            'id' => $id,
+            'doneFeatures' => $doneFitur
         ]);
     }
 

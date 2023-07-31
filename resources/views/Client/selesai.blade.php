@@ -56,7 +56,7 @@
                                 @foreach ($data as $item)
                                     <tr>
                                         <td>{{ $item->napro }}</td>
-                                        <td><span class="badge {{ ($item->status == 'pengajuan revisi') ? 'text-bg-warning' : 'text-bg-success'}}">{{ ($item->status == 'pengajuan revisi') ? 'menunggu perubahan' : $item->status }}</span></td>
+                                        <td><span class="badge {{ ($item->status == 'pengajuan revisi') ? 'bg-warning' : 'text-bg-success'}}">{{ ($item->status == 'pengajuan revisi') ? 'menunggu perubahan' : $item->status }}</span></td>
                                         <td>{{ number_format($item->harga+$item->biayatambahan, 0, ',', '.') }}</td>
                                         <td class="d-flex justify-content-evenly">
                                             <a href="/revisibutton/{{ $item->id }}" class="btn btn-primary btn-sm"><i class="fa-sharp fa-solid fa-file-pen"></i>&nbsp;Revisi</a>

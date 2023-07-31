@@ -21,8 +21,8 @@ class BayarController extends Controller
             $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
             $sosmed = Sosmed::all();
             $keyword = $request->input('keyword');
-            $data = Proreq::where('napro', 'like', '%'.$keyword.'%')
-            ->where('statusbayar','menunggu pembayaran')
+            $data = Proreq::whereIn('statusbayar', ['menunggu pembayaran','pembayaran awal'])
+            ->where('napro', 'like', '%'.$keyword.'%')
             ->where('user_id', Auth::user()->id)
             ->paginate(6);
              $data->appends(['keyword' => $keyword]);
@@ -98,7 +98,7 @@ class BayarController extends Controller
             'kategori' => 'Pembayaran Masuk'
         ]);
 
-        return redirect()->route('bayarclient')->with('success', 'Berhasil di bayar!','')->with(compact('sosmed', 'client', 'data'));
+        return redirect()->route('bayarclient')->with('success', 'Berhasil di bayar!')->with(compact('sosmed', 'client', 'data'));
     }
 
         public function updatebayarakhir(Request $request, $id){

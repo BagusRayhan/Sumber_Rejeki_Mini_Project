@@ -66,10 +66,10 @@
         </div>
         <div class="d-flex justify-content-between">
         <div class="nav w-25 mt-4 d-flex">
-            <a href="/bayarclient" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayarclient') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
+            <a href="{{ route('bayarclient') }}" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayarclient') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
                 Pending
             </a>
-            <a href="/bayar2client" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayar2client') ? 'fw-bold border-2  border-bottom border-dark' : '' }}">
+            <a href="{{ route('bayar2client') }}" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayar2client') ? 'fw-bold border-2  border-bottom border-dark' : '' }}">
                 Pembayaran
             </a>
         </div>
@@ -87,23 +87,22 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($data as $item)
-                  @if ($item->statusbayar === 'menunggu pembayaran')
+                @if (count($data) !== 0)
+                  @foreach ($data as $item)
                     <tr>
                       <td>{{ $item->napro }}</td>
                       <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
-                      <td><center><span class="badge text-bg-danger">{{ $item->statusbayar }}</span></td></center>
-                      <td>
-                        <center>
-                          <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" data-id="{{ $item->id }}" data-napro="{{ $item->napro }}" data-harga="{{ $item->harga }}" class="btn btn-primary btn-bayar btn-sm">
-                          <i class="fa-solid fa-wallet"></i>&nbsp;Bayar
-                          </button>
-                        </center>
+                      <td><center><span class="badge {{ ($item->statusbayar == 'pembayaran awal') ? 'bg-warning' : 'text-bg-danger' }}">{{ ($item->statusbayar == 'menunggu pembayaran') ? $item->statusbayar : 'menunggu persetujuan' }}</span></td></center>
+                      <td class="text-center">
+                        @if ($item->statusbayar == 'menunggu pembayaran')    
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" data-id="{{ $item->id }}" data-napro="{{ $item->napro }}" data-harga="{{ $item->harga }}" class="btn btn-primary btn-bayar btn-sm"><i class="fa-solid fa-wallet"></i> Bayar</button>
+                        @else
+                        <i class="fa-solid fa-hourglass-start fs-5 fw-bold text-warning-emphasis"></i>  
+                        @endif
                       </td>
                     </tr>
-                  @endif
-                @endforeach
-                @if ($data->isEmpty())
+                  @endforeach
+                @else
                   <tr>
                       <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak Ada Data</td>
                   </tr>

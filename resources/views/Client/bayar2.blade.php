@@ -108,7 +108,7 @@
                                 @if ($client2->statusbayar == 'lunas')
                                     <span class="badge text-bg-success">{{ $client2->statusbayar }}</span>
                                 @elseif ($client2->statusbayar == 'belum lunas')
-                                    <span class="badge text-bg-warning text-white">{{ $client2->statusbayar }}</span>
+                                    <span class="badge bg-warning text-white">{{ $client2->statusbayar }}</span>
                                 @else
                                     <span class="badge">{{ $client2->statusbayar }}</span>
                                 @endif

@@ -70,99 +70,84 @@
                     </div>
                 </div>
                 @if (count($fitur) !== 0)
-                <div class="wrapper">
+                <div class="wrapper mb-2">
                     <h6>Progress Project <span class="badge bg-primary mb-1" id="aa">0 %</span></h6>
                     <div class="pg-bar">
                         <div class="progress">
-                            <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
+                            <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
                         </div>
                     </div>
-                </div><br>
-                 <script>
-                                    setInterval(updateProgressBar, 5);
-
-                                    window.addEventListener('load', function() {
-                                        var savedProgress = localStorage.getItem('progress');
-                                        if (savedProgress) {
-                                            var progressBar = document.getElementById('progress-bar');
-                                            progressBar.style.width = savedProgress + '%';
-                                             progressBar.setAttribute('aria-valuenow', savedProgress); 
-                                             document.getElementById('aa').innerText = parseInt(savedProgress) + " %"; 
-                                        }
-                                    });
-
-                                            function updateProgressBar() {
-                                                var checkboxes = document.querySelectorAll('.child-checkbox');
-                                                var progressBar = document.getElementById('progress-bar');
-                                                var progress = 0;
-
-                                                checkboxes.forEach(function(checkbox) {
-                                                    if (checkbox.checked) {
-                                                        progress++;
-                                                    }
-                                                });
-
-                                        var totalFeatures = checkboxes.length;
-
-                                        progressBar.style.width = (progress / totalFeatures * 100) + '%';
-                                        progressBar.setAttribute('aria-valuenow', progress);
-                                        document.getElementById('aa').innerText = parseInt(progress / totalFeatures * 100) + " %";
-
-
-                                        localStorage.setItem('progress', progress);
-                                        localStorage.setItem('totalFeatures', totalFeatures);
-                                        localStorage.setItem('completedFeatures', progress);
-
-                                    }
-
-                                    var checkboxes = document.querySelectorAll('.child-checkbox');
-                                    checkboxes.forEach(function(checkbox) {
-                                        checkbox.addEventListener('change', function() {
-                                            updateProgressBar();
-                                        });
-                                    });
-
-                                        function saveCheckboxStatus(checkboxId) {
-                                        const checkbox = document.getElementById(checkboxId);
-                                        localStorage.setItem(checkboxId, checkbox.checked);
-                                    }
-
-
-                                        window.addEventListener('load', function() {
-                                        loadCheckboxStatus('masterCheckbox');
-
-                                        @foreach ($fitur as $f)
-                                            loadCheckboxStatus('checkFitur{{ $f->id }}');
-                                        @endforeach
-                                    });
-
-                                    function updateStatus(featureId) {
-                                        const checkbox = document.getElementById(`checkFitur${featureId}`);
-                                        const status = checkbox.checked ? 'selesai' : 'belum selesai';
-
-                                        fetch(`/update-status-fitur/${featureId}`, {
-                                            method: 'PUT',
-                                            headers: {
-                                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                                'Content-Type': 'application/json',
-                                            },
-                                            body: JSON.stringify({
-                                                status: status,
-                                            }),
-                                        })
-                                        .then((response) => response.json())
-                                        .then((data) => {
-                                            console.log(data.message);
-                                        })
-                                        .catch((error) => {
-                                            console.error('Error:', error);
-                                        });
-                                    }
-                                </script>
+                </div>
+                <script>
+                    setInterval(updateProgressBar, 5);
+                    window.addEventListener('load', function() {
+                        var savedProgress = localStorage.getItem('progress');
+                        if (savedProgress) {
+                            var progressBar = document.getElementById('progress-bar');
+                            progressBar.style.width = savedProgress + '%';
+                            progressBar.setAttribute('aria-valuenow', savedProgress); 
+                            document.getElementById('aa').innerText = parseInt(savedProgress) + " %"; 
+                        }
+                    });
+                    function updateProgressBar() {
+                        var checkboxes = document.querySelectorAll('.child-checkbox');
+                        var progressBar = document.getElementById('progress-bar');
+                        var progress = 0;
+                        checkboxes.forEach(function(checkbox) {
+                            if (checkbox.checked) {
+                                progress++;
+                            }
+                        });
+                        var totalFeatures = checkboxes.length;
+                        progressBar.style.width = (progress / totalFeatures * 100) + '%';
+                        progressBar.setAttribute('aria-valuenow', progress);
+                        document.getElementById('aa').innerText = parseInt(progress / totalFeatures * 100) + " %";
+                        localStorage.setItem('progress', progress);
+                        localStorage.setItem('totalFeatures', totalFeatures);
+                        localStorage.setItem('completedFeatures', progress);
+                    }
+                    var checkboxes = document.querySelectorAll('.child-checkbox');
+                    checkboxes.forEach(function(checkbox) {
+                        checkbox.addEventListener('change', function() {
+                            updateProgressBar();
+                        });
+                    });
+                        function saveCheckboxStatus(checkboxId) {
+                        const checkbox = document.getElementById(checkboxId);
+                        localStorage.setItem(checkboxId, checkbox.checked);
+                    }
+                        window.addEventListener('load', function() {
+                        loadCheckboxStatus('masterCheckbox');
+                        @foreach ($fitur as $f)
+                            loadCheckboxStatus('checkFitur{{ $f->id }}');
+                        @endforeach
+                    });
+                    function updateStatus(featureId) {
+                        const checkbox = document.getElementById(`checkFitur${featureId}`);
+                        const status = checkbox.checked ? 'selesai' : 'belum selesai';
+                        fetch(`/update-status-fitur/${featureId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                status: status,
+                            }),
+                        })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            console.log(data.message);
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                    }
+                </script>
                 @else
                     {{-- tidak menampilkan progress bar --}}
                 @endif
-               <div class="row">
+                <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
                             @if (count($fitur) !== 0)
@@ -292,12 +277,16 @@
                                         </tbody>
                                     </table>
                                     @else
-                                    <form action="{{ route('save.progress') }}" method="post">
-                                        @csrf <!-- Add CSRF token here -->
-                                        <label for="customRange1" class="form-label">Persentase Progress <span class="badge text-bg-primary" id="progressLabel">{{ ($detail->progress == null) ? "0" : $detail->progress }}%</span></label>
-                                        <input type="hidden" name="featureId" value="{{ $detail->id }}">
-                                        <input type="range" class="form-range" id="customRange1" name="progress" value="{{ $detail->progress }}" data-feature-id="{{ $detail->id }}" min="1" max="100">
-                                        <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBtn" style="float: right;">Simpan Progress</button>
+                                    <form action="{{ route('save.progress') }}" class="d-flex" method="post">
+                                        <div class="wrapper" style="width: 95%">
+                                            @csrf <!-- Add CSRF token here -->
+                                            <label for="customRange1" class="form-label">Persentase Progress <span class="badge text-bg-primary" id="progressLabel">{{ ($detail->progress == null) ? "0" : $detail->progress }}%</span></label>
+                                            <input type="hidden" name="featureId" value="{{ $detail->id }}">
+                                            <input type="range" class="form-range" id="customRange1" name="progress" value="{{ $detail->progress }}" data-feature-id="{{ $detail->id }}" min="0" max="100">
+                                        </div>
+                                        <div class="wrapper" style="padding-top: 1.8em; width: 5%">
+                                            <button type="submit" class="btn btn-primary btn-sm rounded-circle" id="projectDoneBtn" style="float: right;"><i class="fa-solid fa-floppy-disk"></i></button>
+                                        </div>
                                     </form>
                                     <script>
 
@@ -346,7 +335,7 @@
                                                        
 
 
-                <div class="my-3 d-flex justify-content-between" style="width: 16em">
+                <div class="my-3 d-flex justify-content-between" style="width: {{ ($detail->progress == 100 || $doneFeatures) ? '16em' : '' }}">
                     <a href="/project-disetujui" class="btn btn-secondary btn-sm p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
                     <button class="btn btn-warning btn-sm text-white p-1" data-bs-toggle="modal" data-bs-target="#estimasiModal"><i class="fa-solid fa-clock-rotate-left"></i> Estimasi</button>
                     <!-- Modal Box Estimasi Start -->
@@ -381,7 +370,13 @@
                         <button type="submit" class="btn btn-primary btn-sm" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                 @endif
-
+                @if ($doneFeatures)
+                    <form action="{{ route('done-project') }}" id="projectDone" method="post">
+                        @csrf
+                        <input type="hidden" name="project_id" value="{{ $detail->id }}">
+                        <button type="submit" class="btn btn-primary btn-sm" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                    </form>
+                @endif
                 @if (!empty($detail->dokumen) && $detail->progress == 100)
                     <form action="{{ route('done-project') }}" id="projectDone" method="post">
                         @csrf

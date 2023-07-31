@@ -24,8 +24,7 @@ public function projectreq(Request $request)
     $projectreq = Proreq::where('status', 'pending')
         ->where(function (Builder $builder) use ($query) {
             $builder->where('napro', 'like', '%' . $query . '%');
-        })
-        ->paginate(1);
+        })->paginate(6);
 
     $projectreq->appends(['query' => $query]);
 
@@ -66,7 +65,7 @@ public function projectreq(Request $request)
 
 
     public function detailproreq($id){
-        $notification = Notification::where('role', 'admin')->latest()->get();
+        $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $admin = User::where('role', 'admin')->first();
         $data = Proreq::find($id);
         $dataa = Fitur::where('project_id', $data->id)->orderBy('project_id')->get();

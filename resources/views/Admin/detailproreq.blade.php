@@ -1,3 +1,6 @@
+@php
+    use \Carbon\Carbon;
+@endphp
 <!DOCTYPE html>
 <html lang="en">
      {{--  Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:44:46 GMT  --}}
@@ -82,13 +85,13 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="input4">Deadline</label>
-                            <input type="datetime-local" class="form-control"  name="deadline" value="{{ $data->deadline }}" id="input4" disabled>
+                            <input type="text" class="form-control"  name="deadline" value="{{ Carbon::parse($data->deadline)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}" id="input4" disabled>
                         </div>
                     </div>
                 </div>
                 <div class="wrapper d-flex justify-content-between px-3" style="width: 14em;">
                     <a href="{{ route('projectreq') }}" type="button" class="btn btn-secondary btn-sm">Kembali</a>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myyModal{{ $data->id }}">Tolak</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#alasanDitolak{{ $data->id }}">Tolak</button>
                     @if ($data->dokumen == null && count($dataa) !== 0)
                     <button type="button" onclick="sendRequest(event)" class="btn btn-primary btn-sm">Setuju</button>
                 @elseif (count($dataa) == 0)
@@ -96,60 +99,54 @@
                 @elseif (count($dataa) !== 0 && $data->dokumen !== null)
                     <button type="submit" onclick="sendRequest(event)" class="btn btn-primary btn-sm">Setuju</button>
                 @endif
-
-
                 </div>
-
-
-                </form>
-                <script>
-                    function sendRequest(event) {
-                        event.preventDefault();
-                        Swal.fire({
-                            title: 'Apakah Anda yakin',
-                            text: 'Ingin Menyutujui?',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ya',
-                            cancelButtonText: 'Batal'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                var form = event.target.form;
-                                if (form) {
-                                    form.submit();
-                                } else {
-                                    console.error('Form tidak ditemukan.');
-                                }
+            </form>
+            <script>
+                function sendRequest(event) {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Apakah Anda yakin',
+                        text: 'Ingin Menyutujui?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            var form = event.target.form;
+                            if (form) {
+                                form.submit();
+                            } else {
+                                console.error('Form tidak ditemukan.');
                             }
-                        });
-                    }
-                </script>
-
+                        }
+                    });
+                }
+            </script>
         </div>
-        <div class="modal fade" id="myyModal{{ $data->id }}">
+        <div class="modal fade" id="alasanDitolak{{ $data->id }}">
             <div class="modal-dialog modal-dialog-centered align-items-center">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Alasan Ditolak</h5>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('alasantolak') }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <input type="hidden" name="dataid" value="{{ $data->id }}">
-                        <textarea class="form-control" placeholder="Masukkan Alasan Anda...." rows="6" name="alasan"></textarea>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Tolak</button>
+                <form action="{{ route('alasantolak') }}" method="POST">
+                    <div class="modal-body">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="dataid" value="{{ $data->id }}">
+                            <textarea class="form-control" placeholder="Masukkan Alasan Anda...." rows="6" name="alasan"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Tolak</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
-
     {{-- harga fitur dokument  --}}
     <div class="modal fade" data-bs-backdrop="static" id="hargaDocs{{ $data->id }}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" style="width:24em">
@@ -216,7 +213,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="" class="form-label">Harga Fitur</label>
-                                                    <input type="text" name="hargafitur" class="form-control input-hargafitur" value="{{ $fitur->hargafitur }}">
+                                                    <input type="text" name="hargafitur" class="form-control input-hargafitur" placeholder="Tentukan harga ..." value="{{ $fitur->hargafitur }}">
                                                 </div>
                                             </div>
                                             <div class="mb-2">
@@ -251,8 +248,8 @@
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Fitur</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form action="{{ route('simpanfitur',$data->id) }}" method="POST">
+                <form action="{{ route('simpanfitur',$data->id) }}" method="POST">
+                    <div class="modal-body">
                         @csrf
                         <div class="mb-3">
                             <label for="">Nama Fitur</label>
@@ -261,17 +258,16 @@
                         <div class="mb-3">
                             <label for="">Deskripsi</label>
                             <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Masukkan Deskripsi"></textarea>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
-                        </div>
-                    </form>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
+            </div>
         </div>
     </div>
-</div>
-
 
     <!-- Edit Fitur -->
 

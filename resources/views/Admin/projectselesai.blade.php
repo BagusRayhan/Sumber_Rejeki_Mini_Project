@@ -55,7 +55,7 @@
                                     @if ($project->status == 'selesai')
                                       <span class="badge text-bg-success">{{ $project->status }}</span>
                                     @elseif ($project->status == 'pengajuan revisi' || 'revisi')
-                                      <span class="badge text-bg-warning">{{ ($project->status == 'revisi') ? 'menunggu persetujuan' : $project->status }}</span>
+                                      <span class="badge bg-warning">{{ ($project->status == 'revisi') ? 'menunggu persetujuan' : $project->status }}</span>
                                     @else
                                       <span class="badge">{{ $project->status }}</span>
                                     @endif

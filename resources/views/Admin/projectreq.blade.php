@@ -40,6 +40,7 @@
                             <div class="card" style="background-color: #F3F6F9;border: none">
                                 <div class="card-body">
                                     <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">{{ $row->napro }}</h5>
+                                    <span>{{ $row->nama }}</span>
                                     <a href="/detailproreq/{{ $row->id }}" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
                                 </div>
                             </div>
