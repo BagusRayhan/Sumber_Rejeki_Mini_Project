@@ -77,73 +77,101 @@
                             <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
                         </div>
                     </div>
-                </div>
-                <script>
-                    setInterval(updateProgressBar, 5);
-                    window.addEventListener('load', function() {
-                        var savedProgress = localStorage.getItem('progress');
-                        if (savedProgress) {
-                            var progressBar = document.getElementById('progress-bar');
-                            progressBar.style.width = savedProgress + '%';
-                            progressBar.setAttribute('aria-valuenow', savedProgress); 
-                            document.getElementById('aa').innerText = parseInt(savedProgress) + " %"; 
-                        }
-                    });
-                    function updateProgressBar() {
-                        var checkboxes = document.querySelectorAll('.child-checkbox');
-                        var progressBar = document.getElementById('progress-bar');
-                        var progress = 0;
-                        checkboxes.forEach(function(checkbox) {
-                            if (checkbox.checked) {
-                                progress++;
-                            }
-                        });
-                        var totalFeatures = checkboxes.length;
-                        progressBar.style.width = (progress / totalFeatures * 100) + '%';
-                        progressBar.setAttribute('aria-valuenow', progress);
-                        document.getElementById('aa').innerText = parseInt(progress / totalFeatures * 100) + " %";
-                        localStorage.setItem('progress', progress);
-                        localStorage.setItem('totalFeatures', totalFeatures);
-                        localStorage.setItem('completedFeatures', progress);
-                    }
-                    var checkboxes = document.querySelectorAll('.child-checkbox');
-                    checkboxes.forEach(function(checkbox) {
-                        checkbox.addEventListener('change', function() {
-                            updateProgressBar();
-                        });
-                    });
-                        function saveCheckboxStatus(checkboxId) {
-                        const checkbox = document.getElementById(checkboxId);
-                        localStorage.setItem(checkboxId, checkbox.checked);
-                    }
-                        window.addEventListener('load', function() {
-                        loadCheckboxStatus('masterCheckbox');
-                        @foreach ($fitur as $f)
-                            loadCheckboxStatus('checkFitur{{ $f->id }}');
-                        @endforeach
-                    });
-                    function updateStatus(featureId) {
-                        const checkbox = document.getElementById(`checkFitur${featureId}`);
-                        const status = checkbox.checked ? 'selesai' : 'belum selesai';
-                        fetch(`/update-status-fitur/${featureId}`, {
-                            method: 'PUT',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                status: status,
-                            }),
-                        })
-                        .then((response) => response.json())
-                        .then((data) => {
-                            console.log(data.message);
-                        })
-                        .catch((error) => {
-                            console.error('Error:', error);
-                        });
-                    }
-                </script>
+
+                </div><br>
+                 <script>
+                    
+                                    function loadCheckboxStatus(checkboxId) {
+                                        const checkbox = document.getElementById(checkboxId);
+                                        const status = localStorage.getItem(checkboxId);
+
+                                        if (status !== null) {
+                                            checkbox.checked = (status === 'true');
+                                        }
+                                    }
+                                    setInterval(updateProgressBar, 5);
+
+                                    window.addEventListener('load', function() {
+                                        var savedProgress = localStorage.getItem('progress');
+                                        if (savedProgress) {
+                                            var progressBar = document.getElementById('progress-bar');
+                                            progressBar.style.width = savedProgress + '%';
+                                             progressBar.setAttribute('aria-valuenow', savedProgress); 
+                                             document.getElementById('aa').innerText = parseInt(savedProgress) + " %"; 
+                                        }
+                                    });
+
+                                            function updateProgressBar() {
+                                                var checkboxes = document.querySelectorAll('.child-checkbox');
+                                                var progressBar = document.getElementById('progress-bar');
+                                                var progress = 0;
+
+                                                checkboxes.forEach(function(checkbox) {
+                                                    if (checkbox.checked) {
+                                                        progress++;
+                                                    }
+                                                });
+
+                                        var totalFeatures = checkboxes.length;
+
+                                        progressBar.style.width = (progress / totalFeatures * 100) + '%';
+                                        progressBar.setAttribute('aria-valuenow', progress);
+                                        document.getElementById('aa').innerText = parseInt(progress / totalFeatures * 100) + " %";
+
+
+                                        localStorage.setItem('progress', progress);
+                                        localStorage.setItem('totalFeatures', totalFeatures);
+                                        localStorage.setItem('completedFeatures', progress);
+
+                                    }
+
+                                    var checkboxes = document.querySelectorAll('.child-checkbox');
+                                    checkboxes.forEach(function(checkbox) {
+                                        checkbox.addEventListener('change', function() {
+                                            updateProgressBar();
+                                        });
+                                    });
+
+
+
+                                        function saveCheckboxStatus(checkboxId) {
+                                        const checkbox = document.getElementById(checkboxId);
+                                        localStorage.setItem(checkboxId, checkbox.checked);
+                                        loadCheckboxStatus(checkboxId);
+                                    }
+
+
+                                        window.addEventListener('load', function() {
+                                        loadCheckboxStatus('masterCheckbox');
+
+                                        @foreach ($fitur as $f)
+                                            loadCheckboxStatus('checkFitur{{ $f->id }}');
+                                        @endforeach
+                                    });
+
+                                    function updateStatus(featureId) {
+                                        const checkbox = document.getElementById(`checkFitur${featureId}`);
+                                        const status = checkbox.checked ? 'selesai' : 'belum selesai';
+
+                                        fetch(`/update-status-fitur/${featureId}`, {
+                                            method: 'PUT',
+                                            headers: {
+                                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                                'Content-Type': 'application/json',
+                                            },
+                                            body: JSON.stringify({
+                                                status: status,
+                                            }),
+                                        })
+                                        .then((response) => response.json())
+                                        .then((data) => {
+                                            console.log(data.message);
+                                        })
+                                        .catch((error) => {
+                                            console.error('Error:', error);
+                                        });
+                                    }
+                                </script>
                 @else
                     {{-- tidak menampilkan progress bar --}}
                 @endif
@@ -156,8 +184,7 @@
                                     <tr>
                                         <th scope="col" style="width:5em">
                                         <div class="form-check">
-                                                <input class="form-check-input master-checkbox text-center"
-                                                    onchange="doneAllFeatures({{ $detail->id }}); saveCheckboxStatus('masterCheckbox')"
+                                                <input class="form-check-input master-checkbox text-center" saveCheckboxStatus('masterCheckbox')"
                                                     type="checkbox" value=""
                                                     id="masterCheckbox"
                                                     {{ (count($fitur) == $done) ? 'checked' : '' }}>
@@ -171,20 +198,19 @@
                                                         @endforeach
                                                     });
 
-                                                    function updateMasterCheckbox() {
+                                                    
+                                                 function updateMasterCheckbox() {
                                                         const masterCheckbox = document.getElementById('masterCheckbox');
                                                         const childCheckboxes = document.querySelectorAll('.child-checkbox');
 
                                                         let allChecked = true;
                                                         childCheckboxes.forEach((checkbox) => {
-                                                            console.log(checkbox.checked)
                                                             if (!checkbox.checked) {
                                                                 allChecked = false;
                                                             }
-                                                            else {
-                                                                allChecked = true;
-                                                            }
                                                         });
+
+                                                        masterCheckbox.checked = allChecked;
                                                     }
 
                                                     const childCheckboxes = document.querySelectorAll('.child-checkbox');
@@ -325,13 +351,11 @@
                                         });
                                     });
                                 </script>
-
-
-                                                            @endif
-                                                            <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        @endif
+                                        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+                                    </div>
+                                </div>
+                            </div>
                                                        
 
 
