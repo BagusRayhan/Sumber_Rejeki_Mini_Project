@@ -165,7 +165,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Setuju</button>
                     </div>
                 </form>
             </div>
@@ -220,7 +220,7 @@
                                                 <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
                                                 <textarea class="form-control" name="deskripsi" id="exampleFormControlTextarea1" rows="6" disabled>{{ $fitur->deskripsi }}</textarea>
                                             </div>
-                                            <button type="submit" style="border: none;margin-left: 398px" class="btn btn-primary">Submit</button>
+                                            <button type="submit" class="btn btn-primary float-end">Simpan</button>
                                         </form>
                                     </div>
                                 </div>
