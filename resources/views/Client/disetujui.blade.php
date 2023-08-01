@@ -51,7 +51,8 @@
                                         <tr>
                                             <td>{{ $pro->napro }}</td>
                                             <td>{{ ($pro->estimasi == null) ? 'belum diatur' : Carbon::parse($pro->estimasi)->diffForHumans()}}</td>
-                                            <td>{{ number_format($pro->harga, 0, ',', '.') }}</td>
+                                            {{-- <td>{{ number_format($pro->harga, 0, ',', '.') }}</td> --}}
+                                            <td>{{ isset($pro->biayatambahan) ? 'Rp ' . number_format((float)$pro->harga + (float)$pro->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$pro->harga, 0, ',', '.') }}</td>
                                             <td class="d-flex justify-content-evenly">
                                                 <a href="/detailsetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                             </td>

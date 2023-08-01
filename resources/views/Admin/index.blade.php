@@ -180,7 +180,7 @@
                                         <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $msg->user->profil }}" alt="" style="width: 40px; height: 40px;">
                                         <div class="w-100 ms-3">
                                             <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-0">{{ $msg->user->name }}</h6>
+                                                <h6 class="mb-0">{{ $msg->user->name }}</h6>&nbsp; &nbsp;
                                                 <small>{{ Carbon::parse($msg->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
                                                 <button class="btn btn-link ms-auto mt-10 toggle-messages-btn" data-target="#messageContent{{ $loop->index }}">
                                                     <i class="fas fa-sort-desc"></i>
