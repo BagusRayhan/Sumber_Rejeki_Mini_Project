@@ -74,13 +74,11 @@
                     <h6>Progress Project <span class="badge bg-primary mb-1" id="aa">0 %</span></h6>
                     <div class="pg-bar">
                         <div class="progress">
-                            <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
+                            <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="{{ count($fitur) }}"></div>
                         </div>
                     </div>
-
                 </div><br>
                  <script>
-                    
                                     function loadCheckboxStatus(checkboxId) {
                                         const checkbox = document.getElementById(checkboxId);
                                         const status = localStorage.getItem(checkboxId);
@@ -132,12 +130,9 @@
                                         });
                                     });
 
-
-
                                         function saveCheckboxStatus(checkboxId) {
                                         const checkbox = document.getElementById(checkboxId);
                                         localStorage.setItem(checkboxId, checkbox.checked);
-                                        loadCheckboxStatus(checkboxId);
                                     }
 
 
@@ -175,7 +170,7 @@
                 @else
                     {{-- tidak menampilkan progress bar --}}
                 @endif
-                <div class="row">
+               <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
                             @if (count($fitur) !== 0)
@@ -184,7 +179,8 @@
                                     <tr>
                                         <th scope="col" style="width:5em">
                                         <div class="form-check">
-                                                <input class="form-check-input master-checkbox text-center" saveCheckboxStatus('masterCheckbox')"
+                                                <input class="form-check-input master-checkbox text-center"
+                                                    onchange="doneAllFeatures({{ $detail->id }}); saveCheckboxStatus('masterCheckbox')"
                                                     type="checkbox" value=""
                                                     id="masterCheckbox"
                                                     {{ (count($fitur) == $done) ? 'checked' : '' }}>
@@ -198,18 +194,20 @@
                                                         @endforeach
                                                     });
 
-                                                    
-                                                 function updateMasterCheckbox() {
+                                                    function updateMasterCheckbox() {
                                                         const masterCheckbox = document.getElementById('masterCheckbox');
                                                         const childCheckboxes = document.querySelectorAll('.child-checkbox');
 
                                                         let allChecked = true;
                                                         childCheckboxes.forEach((checkbox) => {
+                                                            console.log(checkbox.checked)
                                                             if (!checkbox.checked) {
                                                                 allChecked = false;
                                                             }
+                                                            else {
+                                                                allChecked = true;
+                                                            }
                                                         });
-
                                                         masterCheckbox.checked = allChecked;
                                                     }
 
@@ -351,15 +349,17 @@
                                         });
                                     });
                                 </script>
-                                        @endif
-                                        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-                                    </div>
-                                </div>
-                            </div>
+
+
+                                                            @endif
+                                                            <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                        
 
 
-                <div class="my-3 d-flex justify-content-between" style="width: {{ ($detail->progress == 100 || $doneFeatures) ? '16em' : '' }}">
+                <div class="my-3 d-flex justify-content-between" style="width: 16em">
                     <a href="/project-disetujui" class="btn btn-secondary btn-sm p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
                     <button class="btn btn-warning btn-sm text-white p-1" data-bs-toggle="modal" data-bs-target="#estimasiModal"><i class="fa-solid fa-clock-rotate-left"></i> Estimasi</button>
                     <!-- Modal Box Estimasi Start -->
@@ -394,18 +394,20 @@
                         <button type="submit" class="btn btn-primary btn-sm" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                 @endif
-                @if ($doneFeatures)
+
+                @if (count($fitur) !== 0 && !empty($detail->dokumen))
                     <form action="{{ route('done-project') }}" id="projectDone" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
                         <button type="submit" class="btn btn-primary btn-sm" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                 @endif
+
                 @if (!empty($detail->dokumen) && $detail->progress == 100)
                     <form action="{{ route('done-project') }}" id="projectDone" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button type="submit" class="btn btn-primary btn-sm" onclick="submitForm2(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="submitForm2(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                 @endif
 

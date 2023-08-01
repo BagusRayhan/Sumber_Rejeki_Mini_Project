@@ -273,6 +273,7 @@ public function updateproreqa($id)
         $proreq->biayatambahan = $totalBiayaTambahan;
         $proreq->status = 'revisi';
         $proreq->statusbayar = null;
+        $proreq->progress = null;
         $proreq->save();
 
         $msg = 'Project Direvisi';
