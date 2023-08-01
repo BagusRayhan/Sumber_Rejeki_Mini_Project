@@ -179,7 +179,7 @@
                     <div class="col-12">
                         <div class="table-responsive">
                             @if (count($fitur) !== 0)
-                            <table class="table table-striped">
+                            <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col" style="width:5em">
