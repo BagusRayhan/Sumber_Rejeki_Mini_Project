@@ -24,7 +24,7 @@ public function projectreq(Request $request)
     $projectreq = Proreq::where('status', 'pending')
         ->where(function (Builder $builder) use ($query) {
             $builder->where('napro', 'like', '%' . $query . '%');
-        })->paginate(6);
+        })->latest()->paginate(6);
 
     $projectreq->appends(['query' => $query]);
 
@@ -191,7 +191,7 @@ public function updateproreqa($id)
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $admin = User::where('role', 'admin')->first();
          $query = $request->input('query');
-        $selesai = proreq::whereIn('status', ['selesai','pengajuan revisi','revisi'])->where('napro', 'LIKE', '%'.$query.'%')->paginate(2);
+        $selesai = proreq::whereIn('status', ['selesai','pengajuan revisi','revisi'])->where('napro', 'LIKE', '%'.$query.'%')->paginate(6);
         $selesai->appends(['query' => $query]);
         return view('Admin.projectselesai', compact('selesai','admin','notification'));
     }

@@ -104,28 +104,34 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="wrapper">
-                                                                @if ($apv->statusbayar == 'pembayaran awal')
-                                                                    @if ($apv->metodepembayaran !== 'cash')
+                                                                @if ($apv->biayatambahan == null)
+                                                                    @if ($apv->metodepembayaran2 !== 'cash')
                                                                     <div class="wrapper d-flex justify-content-between">
                                                                         <div class="mb-3" style="width: 12em">
                                                                             <label class="mb-1">Metode Pembayaran</label>
-                                                                            <input type="text"class="form-control" value="{{ ($apv->metodepembayaran == 'ewallet') ? 'E-Wallet' : (($apv->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
+                                                                            <input type="text"class="form-control" value="{{ ($apv->metodepembayaran2 == 'ewallet') ? 'E-Wallet' : (($apv->metodepembayaran2 == 'bank') ? 'Bank' : '') }}" disabled>
                                                                         </div>
                                                                         <div class="mb-3" style="width: 12em">
-                                                                            <label class="mb-1">Biaya Awal</label>
+                                                                            <label class="mb-1">Biaya Akhir</label>
                                                                             <input type="text"class="form-control" value="{{ $apv->harga/2 }}" disabled>
                                                                         </div>
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label class="mb-1">Bukti Pembayaran</label>
-                                                                        <img src="{{ asset('gambar/bukti/'.$apv->buktipembayaran) }}" class="w-100" alt="">
+                                                                        <img src="{{ asset('gambar/bukti/'.$apv->buktipembayaran2) }}" class="w-100" alt="">
+                                                                    </div>
+                                                                    <div class="mb-1">
+                                                                        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
                                                                     </div>
                                                                     @else
                                                                         <div class="mb-3">
                                                                             <p>Pembayaran sebesar <b>{{ $apv->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                         </div>
+                                                                        <div class="mb-1">
+                                                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
+                                                                        </div>
                                                                     @endif
-                                                                @elseif ($apv->statusbayar == 'pembayaran akhir')
+                                                                @else
                                                                     @if ($apv->metodepembayaran2 !== 'cash')
                                                                     <div class="wrapper d-flex justify-content-between">
                                                                         <div class="mb-3" style="width: 12em">
@@ -150,35 +156,6 @@
                                                                         </div>
                                                                         <div class="mb-1">
                                                                             <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
-                                                                        </div>
-                                                                    @endif
-                                                                @elseif ($apv->statusbayar = 'pembayaran revisi')
-                                                                    @if ($apv->metodepembayaran !== 'cash')
-                                                                    <div class="wrapper d-flex justify-content-between">
-                                                                        <div class="mb-3" style="width: 12em">
-                                                                            <label class="mb-1">Metode Pembayaran</label>
-                                                                            <input type="text"class="form-control" value="{{ ($apv->metodepembayaran3 == 'ewallet') ? 'E-Wallet' : (($apv->metodepembayaran3 == 'bank') ? 'Bank' : '') }}" disabled>
-                                                                        </div>
-                                                                        <div class="mb-3" style="width: 12em">
-                                                                            <label class="mb-1">Biaya Revisi</label>
-                                                                            <input type="text"class="form-control" value="{{ $apv->biayatambahan }}" disabled>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label class="mb-1">Bukti Pembayaran</label>
-                                                                        <img src="{{ asset('gambar/bukti/'.$apv->buktipembayaran3) }}" class="w-100" alt="">
-                                                                    </div>
-                                                                    <div class="mb-1 d-flex justify-content-between">
-                                                                        <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
-                                                                        <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAkhir{{ $apv->id }}">Pembayaran Akhir</button>
-                                                                    </div>
-                                                                    @else
-                                                                        <div class="wrapper text-center">
-                                                                            <p>Pembayaran sebesar <b>{{ $apv->biayatambahan }}</b> dilakukan secara Cash pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran3)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
-                                                                        </div>
-                                                                        <div class="mb-1 d-flex justify-content-between">
-                                                                            <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
-                                                                            <button class="btn btn-primary" style="width: 48%" data-bs-toggle="modal" data-bs-target="#pembayaranAkhir{{ $apv->id }}">Pembayaran Akhir</button>
                                                                         </div>
                                                                     @endif
                                                                 @endif
@@ -263,46 +240,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <!-- Payment Detail Modal Start -->
-                                            {{-- <div class="modal fade" id="paymentDetailModal{{$apv->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h1 class="modal-title fs-5">Detail Pembayaran Terbaru</h1>
-                                                        </div>
-                                                        @if ($apv->metodePembayaran == '')
-
-                                                        @endif
-                                                        <div class="modal-body mt-0 d-flex justify-content-evenly">
-                                                            <img src="{{ asset('gambar/bukti/') }}" class="w-50">
-                                                            <div class="container">
-                                                                <div class="mb-2">
-                                                                    <label for="namaClient">Nama Client</label>
-                                                                    <input type="text" id="namaClient" class="form-control" value="{{ $apv->nama }}" disabled>
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label for="namaProject">Nama Project</label>
-                                                                    <input type="text" id="namaProject" class="form-control" value="{{ $apv->napro }}" disabled>
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label for="hargaProject">Harga Project</label>
-                                                                    <input type="text" id="hargaProject" class="form-control" value="{{ $apv->harga }}" disabled>
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label for="metodePembayaran">Metode Pembayaran</label>
-                                                                    <input type="text" id="metodePembayaran" class="form-control" value="{{ $apv->metodepembayaran }}" disabled>
-                                                                </div>
-                                                                <div class="mt-5 text-center">
-                                                                    <button type="button" class="btn btn-primary fw-medium rounded-pill w-100 p-2" data-bs-dismiss="modal" aria-label="Close">Pembayaran Sebelumnya</button>
-                                                                    <button class="btn btn-block text-primary mt-2" data-bs-dismiss="modal">Kembali</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
-                                            <!-- Payment Detail Modal End -->
                                         @endforeach
                                     @else
                                         <tr>
