@@ -10,6 +10,7 @@ use App\Models\Sosmed;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class SelesaiController extends Controller
 {
@@ -104,6 +105,12 @@ class SelesaiController extends Controller
         }
 
         public function ajukanRevisi(Request $request) {
+            $request->validate([
+                'revisi' => 'required|min:30'
+            ],[
+                'revisi.required' => 'deskripsi revisi tidak boleh kosong',
+                'revisi.min' => 'deskripsi tidak boleh kurang dari 30 karakter'
+            ]);
             $pro = Proreq::find($request->project_id);
             $pro->update([
                 'status' => 'pengajuan revisi',
@@ -118,7 +125,7 @@ class SelesaiController extends Controller
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Revisi Project'
             ]);
-            return redirect()->route('selesaiclient')->with('success', 'Berhasil Mengajukan Revisi');
+            return Redirect::route('selesaiclient')->with('success', 'Berhasil Mengajukan Revisi');
         }
 
         public function acceptRevision(Request $request) {
@@ -132,9 +139,11 @@ class SelesaiController extends Controller
 
         public function rejectRevision(Request $request) {
             $pro = Proreq::find($request->project_id);
+            Fitur::where('project_id', $request->project_id)->delete();
             $pro->update([
                 'status' => 'selesai',
-                'statusbayar' => null
+                'statusbayar' => null,
+                'biayatambahan' => null
             ]);
             return redirect()->route('revisiclient')->with('success', 'Berhasil');
         }
