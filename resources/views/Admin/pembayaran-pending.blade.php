@@ -73,7 +73,7 @@
                                             <tr>
                                                 <td>{{ $pro->nama }}</td>
                                                 <td>{{ $pro->napro }}</td>
-                                                <td>{{ number_format($pro->harga, 0, ',', '.') }}</td>
+                                                <td>Rp. {{ number_format($pro->harga, 0, ',', '.') }}</td>
                                                 <td class="text-center">
                                                     <span class="badge rounded-pill {{ ($pro->statusbayar == 'pembayaran awal') ? 'bg-warning' : (($pro->statusbayar == 'pembayaran akhir') ? 'text-bg-success' : (($pro->statusbayar == 'pembayaran revisi') ? 'text-bg-primary' : '')) }}">{{ $pro->statusbayar }}</span>
                                                 </td>

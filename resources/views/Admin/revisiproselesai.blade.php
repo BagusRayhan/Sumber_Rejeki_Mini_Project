@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Deadline</label>
-                        <input type="datetime-local" value="{{ $data->deadline }}" name="deadline" class="form-control" placeholder="">
+                        <input type="datetime-local" value="{{$data->deadline}}" name="deadline" class="form-control" placeholder="">
                     </div>
                 </div>
                 <div class="mb-5 d-flex justify-content-between">
@@ -70,7 +70,7 @@
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                        <input type="text" value="{{ number_format($data->harga/2, 0, ',', '.') ?? number_format($data->biayatambahan, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
+                        <input type="text" value="{{ number_format($data->harga, 0, ',', '.') ?? number_format($data->biayatambahan, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
                 <div class="d-flex justify-content-start mb-3">
