@@ -114,7 +114,7 @@
                             <td>{{ $fitur->namafitur }}</td>
                             <td>{{ $fitur->deskripsi }}</td>
                             <td class="d-flex justify-content-evenly">
-                                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ $fitur->id }}"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ $fitur->id }}"><i class="fa-solid fa-pen-to-square"></i></button>&nbsp;
                                 <form action="{{ route('destroyfitur', ['id' => $fitur->id]) }}" method="POST">
                                     @csrf
                                     @method('delete')
