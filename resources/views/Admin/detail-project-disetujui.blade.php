@@ -197,14 +197,18 @@
                                                     function updateMasterCheckbox() {
                                                         const masterCheckbox = document.getElementById('masterCheckbox');
                                                         const childCheckboxes = document.querySelectorAll('.child-checkbox');
-let allChecked = true; // Assume all are checked initially
-childCheckboxes.forEach((checkbox) => {
-    if (!checkbox.checked) {
-        allChecked = false; // If any checkbox is not checked, update allChecked to false
-    }
-});
-masterCheckbox.checked = allChecked;
 
+                                                        let allChecked = true;
+                                                        childCheckboxes.forEach((checkbox) => {
+                                                            console.log(checkbox.checked)
+                                                            if (!checkbox.checked) {
+                                                                allChecked = false;
+                                                            }
+                                                            else {
+                                                                allChecked = true;
+                                                            }
+                                                        });
+                                                        masterCheckbox.checked = allChecked;
                                                     }
 
                                                     const childCheckboxes = document.querySelectorAll('.child-checkbox');
