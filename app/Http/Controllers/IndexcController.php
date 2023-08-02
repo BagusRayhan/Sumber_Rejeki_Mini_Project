@@ -29,11 +29,15 @@ class IndexcController extends Controller
         $done = Fitur::where('project_id')->where('status', 'selesai')->count();
         $progress = 0;
         if (count($fitur) > 0) {
-        $progress = (100 / count($fitur)) * $done;
-    }
-        $message = Chat::whereHas('user', function($query) {
-            $query->where('role', 'admin');
-            })->limit(4)->latest()->get();
+            $progress = (100 / count($fitur)) * $done;
+        }
+        $admin = User::find(1);
+        $message = Proreq::whereHas('projectchat')->with('projectchat')->limit(4)->latest()->get();
+        // $message = Chat::whereHas('user', function($query) {
+        //     $query->where('role', 'admin');
+        //     })->limit(4)->latest()->get();
+
+            // dd($message);
 
 
             // $message = Proreq::query()
@@ -52,6 +56,8 @@ class IndexcController extends Controller
             'selesaiCounter' => $selesaiCounter,
             'notifikasi' => $notifikasi,
             'estimasi' => $estimasi,
+            'admin' => $admin,
+            'admin_id' => $admin->pluck('id'),
             'message' => $message,
             'sosmed' => $sosmed,
             'client' => $client,
