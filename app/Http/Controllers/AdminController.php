@@ -58,7 +58,7 @@ class AdminController extends Controller
 
         $incomeProject = Proreq::whereHas('user', function($query) {
             $query->where('role', 'client');
-        })->whereIn('status', ['pending'])->get();
+        })->whereIn('status', ['pending'])->latest()->limit(4)->get();
 
 
         // $pesancht = Chat::whereHas('user', function($query) {

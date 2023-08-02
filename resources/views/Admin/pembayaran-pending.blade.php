@@ -284,7 +284,7 @@
                                                             <div class="wrapper d-flex justify-content-between">
                                                                 <div class="mb-3" style="width: 12em">
                                                                     <label class="mb-1">Metode Pembayaran</label>
-                                                                    <input type="text"class="form-control" value="{{ ($pro->metodepembayaran2 == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
+                                                                    <input type="text"class="form-control" value="{{ ($pro->metodepembayaran2 == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran2 == 'bank') ? 'Bank' : '') }}" disabled>
                                                                 </div>
                                                                 <div class="mb-3" style="width: 12em">
                                                                     <label class="mb-1">Biaya Akhir</label>

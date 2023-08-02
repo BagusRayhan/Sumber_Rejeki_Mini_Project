@@ -95,6 +95,7 @@
                                                 </td>
                                             </tr>
 
+                                            {{-- Pembayaran Akhir & Pembayaran Revisi --}}
                                             <div class="modal fade" id="detailTransaksi{{ $apv->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" style="width: 28em">
                                                     <div class="modal-content">
@@ -104,6 +105,7 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="wrapper">
+                                                                {{-- Pembayaran Akhir --}}
                                                                 @if ($apv->biayatambahan == null)
                                                                     @if ($apv->metodepembayaran2 !== 'cash')
                                                                     <div class="wrapper d-flex justify-content-between">
@@ -124,6 +126,7 @@
                                                                         <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
                                                                     </div>
                                                                     @else
+                                                                        {{-- Pembayaran Akhir Cash --}}
                                                                         <div class="mb-3">
                                                                             <p>Pembayaran sebesar <b>{{ $apv->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                         </div>
@@ -132,6 +135,7 @@
                                                                         </div>
                                                                     @endif
                                                                 @else
+                                                                    {{-- Pembayaran Revisi --}}
                                                                     @if ($apv->metodepembayaran3 !== 'cash')
                                                                     <div class="wrapper d-flex justify-content-between">
                                                                         <div class="mb-3" style="width: 12em">
@@ -147,26 +151,17 @@
                                                                         <label class="mb-1">Bukti Pembayaran</label>
                                                                         <img src="{{ asset('gambar/bukti/'.$apv->buktipembayaran3) }}" class="w-100" alt="">
                                                                     </div>
-                                                                    <div class="mb-1">
-                                                                        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
-                                                                    </div>
-                                                                    <div class="mb-1">
-                                                                        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#pembayaranAkhir{{ $apv->id }}">Pembayaran Akhir</button>
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <button class="btn btn-primary w-100 mx-2" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
+                                                                        <button class="btn btn-primary w-100 mx-2" data-bs-toggle="modal" data-bs-target="#pembayaranAkhir{{ $apv->id }}">Pembayaran Akhir</button>
                                                                     </div>
                                                                     @else
-                                                                        {{-- <div class="mb-3">
-                                                                            <p>Pembayaran sebesar <b>{{ $apv->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran3)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
-                                                                        </div> --}}
                                                                         <div class="mb-3">
                                                                             <p>Pembayaran sebesar <b>{{ $apv->biayatambahan }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran3)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                         </div>
                                                                         <div class="d-flex justify-content-between">
-                                                                            <div class="mb-1">
-                                                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
-                                                                            </div>
-                                                                            <div class="mb-1">
-                                                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pembayaranAkhir{{ $apv->id }}">Pembayaran Akhir</button>
-                                                                            </div>
+                                                                            <button class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
+                                                                            <button class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#pembayaranAkhir{{ $apv->id }}">Pembayaran Akhir</button>
                                                                         </div>
                                                                     @endif
                                                                 @endif
@@ -225,7 +220,7 @@
                                                             <div class="wrapper d-flex justify-content-between">
                                                                 <div class="mb-3" style="width: 12em">
                                                                     <label class="mb-1">Metode Pembayaran</label>
-                                                                    <input type="text"class="form-control" value="{{ ($apv->metodepembayaran2 == 'ewallet') ? 'E-Wallet' : (($apv->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
+                                                                    <input type="text"class="form-control" value="{{ ($apv->metodepembayaran2 == 'ewallet') ? 'E-Wallet' : (($apv->metodepembayaran2 == 'bank') ? 'Bank' : '') }}" disabled>
                                                                 </div>
                                                                 <div class="mb-3" style="width: 12em">
                                                                     <label class="mb-1">Biaya Akhir</label>
