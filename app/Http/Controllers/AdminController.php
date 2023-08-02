@@ -51,7 +51,7 @@ class AdminController extends Controller
         $incomePayment = Proreq::whereHas('user', function($query) {
         $query->where('role', 'client');
         })
-        ->whereIn('statusbayar', ['pembayaran awal', 'pembayaran akhir', 'success'])
+        ->whereIn('statusbayar', ['pembayaran awal', 'pembayaran akhir','pembayaran revisi', 'success'])
         ->limit(4)
         ->latest()
         ->get();
