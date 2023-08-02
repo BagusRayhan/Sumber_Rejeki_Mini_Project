@@ -31,33 +31,17 @@ class IndexcController extends Controller
         if (count($fitur) > 0) {
         $progress = (100 / count($fitur)) * $done;
     }
-
-        $notif = Chat::all();
-
-        // $pesancht = Chat::whereHas('user', function($query) {
-        //     $query->where('role', 'admin');
-        //     })->limit(4)->latest()->get();
-        
-        $pesancht = Chat::whereHas('user', function($query) {
+        $message = Chat::whereHas('user', function($query) {
             $query->where('role', 'admin');
             })->limit(4)->latest()->get();
 
 
-            // $pesancht = Proreq::query()
+            // $message = Proreq::query()
             // ->whereHas('projectchat')
             // ->with('projectchat')
             // ->limit(4)
             // ->latest()
             // ->get();
-
-
-        // $pesancht = Proreq::query()
-        // ->whereHas('projectchat')
-        // ->where('user_id', Auth::user()->id)
-        // ->with('projectchat')
-        // ->take(4)
-        // ->latest()
-        // ->get();
 
         $sosmed = Sosmed::all();
         return view('Client.index',[
@@ -68,8 +52,7 @@ class IndexcController extends Controller
             'selesaiCounter' => $selesaiCounter,
             'notifikasi' => $notifikasi,
             'estimasi' => $estimasi,
-            'notif' => $notif,
-            'pesancht' => $pesancht,
+            'message' => $message,
             'sosmed' => $sosmed,
             'client' => $client,
             'fitur' => $fitur,

@@ -65,14 +65,8 @@ class AdminController extends Controller
         //     $query->where('role', 'admin');
         //     })->limit(4)->latest()->get();
 
-        $message = Proreq::query()
-        ->whereHas('projectchat')
-        ->with('projectchat')
-        ->limit(4)
-        ->latest()
-        ->get();
-
-        // dd($message);
+        $client_id = User::where('role','client')->pluck('id');
+        $message = Proreq::whereHas('projectchat')->with('projectchat')->limit(4)->latest()->get();
 
         // $message = Chat::whereHas('user', function($query) {
         //     $query->where('role', 'client');
@@ -92,6 +86,7 @@ class AdminController extends Controller
             'incomePayment' => $incomePayment,
             'incomeProject' => $incomeProject,
             'message' => $message,
+            'client_id' => $client_id,
             'notification' => $notification,
             'selesaiProjects' => $selesaiProjects,
             'tahun22' => $tahun2022,

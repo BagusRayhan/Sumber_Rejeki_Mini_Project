@@ -160,7 +160,7 @@
                             <p>Tidak ada pesan masuk</p>
                         </div>
                     @endif
-                    @if (count($pesancht) !== 0)
+                    {{-- @if (count($pesancht) !== 0)
                         @foreach ($pesancht as $pesan)
                             <div class="d-flex align-items-center border-bottom py-3">
                                 <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $pesan->user->profil }}" alt="" style="width: 40px; height: 40px;">
@@ -185,7 +185,7 @@
                             <img src="gambar/empty-icon/empty-directory.png" style="width: 65px;">
                             <p>Pesan tidak tersedia</p>
                         </div>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
 

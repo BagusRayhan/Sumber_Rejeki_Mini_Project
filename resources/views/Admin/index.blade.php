@@ -171,7 +171,7 @@
 
                     <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
-                            <div class="d-flex align-items-center justify-content-start mb-2">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
                                 <h6 class="mb-0">Pesan</h6>
                             </div>
                             <div class="chat-list">
@@ -191,13 +191,13 @@
                                     <div class="collapse" id="clientChat{{ $msg->id }}" data-bs-parent=".chat-list">
                                         <div class="list-group d-flex flex-column-reverse">
                                             @if (count($msg->projectchat) !== 0)
-                                                @foreach ($msg->projectchat->sortByDesc('created_at')->take(3) as $cht)
+                                                @foreach ($msg->projectchat->whereIn('user_id', $client_id)->sortByDesc('created_at') as $cht)
                                                     <a href="{{ ($msg->status == 'setuju') ? route('detail-disetujui-admin', ['id' => $msg->id]) : (($msg->status == 'pengajuan revisi') ?  : '') }}" class="list-group-item list-group-item-action" style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap">{{ $cht->chat }}</a>
                                                 @endforeach
                                             @endif
                                         </div>
                                     </div>
-                                    <a href="{{ route('detail-disetujui-admin', ['id' => $msg->id]) }}" style="text-decoration: none; color: inherit;">
+                                    {{-- <a href="{{ route('detail-disetujui-admin', ['id' => $msg->id]) }}" style="text-decoration: none; color: inherit;">
                                         <div class="collapse message-content" id="messageContent{{ $loop->index }}">
                                             @if (count($msg->projectchat) !== 0)
                                                 @foreach ($msg->projectchat as $chat)
@@ -207,7 +207,7 @@
                                                 <p>Tidak ada pesan</p>
                                             @endif
                                         </div>
-                                    </a>
+                                    </a> --}}
                                     @endif
                                     @endforeach
                                 @else
