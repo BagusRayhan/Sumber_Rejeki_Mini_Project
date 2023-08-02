@@ -116,8 +116,21 @@
                     <button type="button" class="btn btn-warning text-white btn-sm mx-2" data-bs-toggle="modal" data-bs-target="#pesanRevisi">Detail Revisi</button>
                     <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#addFiturModal"><i class="fa-solid fa-circle-plus"></i> Fitur</button>
                 </div>
+                <style>
+                    .scrollable-table {
+                        max-height: 400px; /* Set the desired max height */
+                        overflow-y: scroll;
+                    }
+                
+                    .scrollable-table thead th {
+                        position: sticky;
+                        top: 0;
+                        background-color: #f1f1f1; /* You can adjust the background color as needed */
+                    }
+                </style>
                 <div class="col-12">
                     <div class="table-responsive">
+                        <div class="scrollable-table mt-3">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -192,6 +205,7 @@
                                 @endif
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>

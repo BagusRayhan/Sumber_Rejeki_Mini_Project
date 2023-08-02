@@ -159,9 +159,22 @@
                 @else
                     {{-- tidak menampilkan progress bar --}}
                 @endif
+                <style>
+                    .scrollable-table {
+                        max-height: 400px; /* Set the desired max height */
+                        overflow-y: scroll;
+                    }
+                
+                    .scrollable-table thead th {
+                        position: sticky;
+                        top: 0;
+                        background-color: #f1f1f1; /* You can adjust the background color as needed */
+                    }
+                </style>
                <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
+                            <div class="scrollable-table mt-3">
                             @if (count($fitur) !== 0)
                             <table class="table table-striped">
                                 <thead>
@@ -288,6 +301,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                </div>
                                     @else
                                      <form action="{{ route('save.progress') }}" class="d-flex" method="post">
                                         <div class="wrapper" style="width: 95%">

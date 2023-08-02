@@ -115,9 +115,22 @@ use \Carbon\Carbon;
 
                     animateProgressBar();
                 </script>
+                <style>
+                    .scrollable-table {
+                        max-height: 400px; /* Set the desired max height */
+                        overflow-y: scroll;
+                    }
+                
+                    .scrollable-table thead th {
+                        position: sticky;
+                        top: 0;
+                        background-color: #f1f1f1; /* You can adjust the background color as needed */
+                    }
+                </style>
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
+                            <div class="scrollable-table mt-3">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -180,6 +193,7 @@ use \Carbon\Carbon;
                                     @endif
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                     </div>
                 </div>
