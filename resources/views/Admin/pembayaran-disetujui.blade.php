@@ -125,7 +125,7 @@
                                                                     </div>
                                                                     @else
                                                                         <div class="mb-3">
-                                                                            <p>Pembayaran sebesar <b>{{ $apv->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                            <p>Pembayaran sebesar <b>{{ $apv->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                         </div>
                                                                         <div class="mb-1">
                                                                             <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
