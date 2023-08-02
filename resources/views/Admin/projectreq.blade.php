@@ -39,9 +39,11 @@
                         <div class="col-sm-4 mb-2 mb-sm-4">
                             <div class="card" style="background-color: #F3F6F9;border: none">
                                 <div class="card-body">
-                                    <h5 class="card-title mb-3" style="color: #191C24;opacity: 0.8">{{ $row->napro }}</h5>
-                                    <h6 class="card-title" style="color: #555658;opacity: 0.9">{{ $row->nama }}</h6>
-                                    <a href="/detailproreq/{{ $row->id }}" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
+                                    <h5 class="card-title mb-5" style="color: #191C24;opacity: 0.8">{{ $row->napro }}</h5>
+                                    <div class="wrapper d-flex justify-content-between">
+                                        <h6 class="card-title" style="color: #555658;opacity: 0.8">{{ $row->nama }}</h6>
+                                        <a href="/detailproreq/{{ $row->id }}" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-eye"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
