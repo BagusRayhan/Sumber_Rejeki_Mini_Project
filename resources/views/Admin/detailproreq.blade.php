@@ -173,10 +173,24 @@
     </div>
     {{-- end harga fitur dokument --}}
 
+    <style>
+        .scrollable-table {
+            max-height: 400px; /* Set the desired max height */
+            overflow-y: scroll;
+        }
+    
+        .scrollable-table thead th {
+            position: sticky;
+            top: 0;
+            background-color: #f1f1f1; /* You can adjust the background color as needed */
+        }
+    </style>
+
         <div class="wrapper mt-1">
                 <div class="wrapper d-flex justify-content-between align-items-center mx-3">
                 </div>
                 <div class="table-responsive px-3">
+                    <div class="scrollable-table mt-3">
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
@@ -236,6 +250,7 @@
 
                 </tbody>
             </table>
+                    </div>
                 </div>
             </div>
     </div>

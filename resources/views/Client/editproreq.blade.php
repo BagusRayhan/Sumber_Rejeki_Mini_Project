@@ -7,6 +7,8 @@
 </head>
 
 <body>
+
+
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -99,67 +101,80 @@
                     <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#addFiturModal">Tambah Fitur</button>
 
                 </div>
+                    <style>
+                        .scrollable-table {
+                            max-height: 400px; /* Set the desired max height */
+                            overflow-y: scroll;
+                        }
+                    
+                        .scrollable-table thead th {
+                            position: sticky;
+                            top: 0;
+                            background-color: #f1f1f1; /* You can adjust the background color as needed */
+                        }
+                    </style>
                 <div class="table-responsive px-3">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nama Fitur</th>
-                                <th class="w-75" scope="col">Deskripsi</th>
-                                <th scope="col"><center>Aksi</center></th>
-                            </tr>
-                        </thead>
-                       <tbody>
-                    @foreach($dataa as $fitur)
-                        <tr>
-                            <td>{{ $fitur->namafitur }}</td>
-                            <td>{{ $fitur->deskripsi }}</td>
-                            <td class="d-flex justify-content-evenly">
-                                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ $fitur->id }}"><i class="fa-solid fa-pen-to-square"></i></button>&nbsp;
-                                <form action="{{ route('destroyfitur', ['id' => $fitur->id]) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
-                                </form>
-                            </td>
-                        </tr>
-                        <!-- Edit Fitur -->
-                        <div class="modal fade" id="editModal{{ $fitur->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="editModalLabel{{ $data->id }}">Edit Fitur</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <form action="{{ route('updatefitur', $fitur->id) }}" method="POST">
-                                    <div class="modal-body">
+                    <div class="scrollable-table mt-3">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nama Fitur</th>
+                                    <th class="w-75" scope="col">Deskripsi</th>
+                                    <th scope="col"><center>Aksi</center></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($dataa as $fitur)
+                                <tr>
+                                    <td>{{ $fitur->namafitur }}</td>
+                                    <td>{{ $fitur->deskripsi }}</td>
+                                    <td class="d-flex justify-content-evenly">
+                                        <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ $fitur->id }}"><i class="fa-solid fa-pen-to-square"></i></button>&nbsp;
+                                        <form action="{{ route('destroyfitur', ['id' => $fitur->id]) }}" method="POST">
                                             @csrf
-                                            @method('PUT')
-                                            <div class="mb-3">
-                                                <label for="fitur" >Nama Fitur</label>
-                                                <input type="text" name="namafitur" value="{{ $fitur->namafitur }}" class="form-control" id="fitur" placeholder="Masukkan Fitur">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="deskripsi">Deskripsi</label>
-                                                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6" placeholder="Masukkan Deskripsi">{{ $fitur->deskripsi }}</textarea>
-                                            </div>
-                                        </div>
-                                    <div class="modal-footer bg-dark">
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                    @if($dataa->isEmpty())
-                        <tr>
-                            <td class="text-center" colspan="3">Tidak ada data</td>
-                        </tr>
-                    @endif
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
 
-                </tbody>
-                    </table>
+                                <div class="modal fade" id="editModal{{ $fitur->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="editModalLabel{{ $data->id }}">Edit Fitur</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="{{ route('updatefitur', $fitur->id) }}" method="POST">
+                                            <div class="modal-body">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="mb-3">
+                                                        <label for="fitur" >Nama Fitur</label>
+                                                        <input type="text" name="namafitur" value="{{ $fitur->namafitur }}" class="form-control" id="fitur" placeholder="Masukkan Fitur">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="deskripsi">Deskripsi</label>
+                                                        <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6" placeholder="Masukkan Deskripsi">{{ $fitur->deskripsi }}</textarea>
+                                                    </div>
+                                                </div>
+                                            <div class="modal-footer bg-dark">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                                @if($dataa->isEmpty())
+                                    <tr>
+                                        <td class="text-center" colspan="3">Tidak ada data</td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>                    
+                    </div>
                 </div>
             </div>
     </div>

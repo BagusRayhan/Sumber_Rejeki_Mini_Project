@@ -72,9 +72,22 @@
                     <input type="text" value="{{ isset($data->biayatambahan) ? 'Rp ' . number_format((float)$data->harga + (float)$data->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$data->harga, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
                 </div>
             </div>
+            <style>
+                .scrollable-table {
+                    max-height: 400px; /* Set the desired max height */
+                    overflow-y: scroll;
+                }
+            
+                .scrollable-table thead th {
+                    position: sticky;
+                    top: 0;
+                    background-color: #f1f1f1; /* You can adjust the background color as needed */
+                }
+            </style>
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
+                        <div class="scrollable-table mt-3">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -137,6 +150,7 @@
                                 @endif
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>
