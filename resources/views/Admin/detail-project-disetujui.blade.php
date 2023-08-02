@@ -4,8 +4,6 @@
     use Carbon\Carbon;
 @endphp
 @include('Admin.templates.head')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
-
 
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
@@ -70,7 +68,7 @@
                     </div>
                 </div>
                 @if (count($fitur) !== 0)
-                <div class="wrapper mb-2">
+                <div class="wrapper">
                     <h6>Progress Project <span class="badge bg-primary mb-1" id="aa">0 %</span></h6>
                     <div class="pg-bar">
                         <div class="progress">
@@ -79,14 +77,6 @@
                     </div>
                 </div><br>
                  <script>
-                                    function loadCheckboxStatus(checkboxId) {
-                                        const checkbox = document.getElementById(checkboxId);
-                                        const status = localStorage.getItem(checkboxId);
-
-                                        if (status !== null) {
-                                            checkbox.checked = (status === 'true');
-                                        }
-                                    }
                                     setInterval(updateProgressBar, 5);
 
                                     window.addEventListener('load', function() {
@@ -114,13 +104,11 @@
 
                                         progressBar.style.width = (progress / totalFeatures * 100) + '%';
                                         progressBar.setAttribute('aria-valuenow', progress);
-                                        document.getElementById('aa').innerText = parseInt(progress / totalFeatures * 100) + " %";
-
+                                         document.getElementById('aa').innerText = parseInt(progress / totalFeatures * 100) + " %";
 
                                         localStorage.setItem('progress', progress);
                                         localStorage.setItem('totalFeatures', totalFeatures);
                                         localStorage.setItem('completedFeatures', progress);
-
                                     }
 
                                     var checkboxes = document.querySelectorAll('.child-checkbox');
@@ -167,6 +155,7 @@
                                         });
                                     }
                                 </script>
+
                 @else
                     {{-- tidak menampilkan progress bar --}}
                 @endif
@@ -174,7 +163,7 @@
                     <div class="col-12">
                         <div class="table-responsive">
                             @if (count($fitur) !== 0)
-                            <table class="table table-striped table-hover">
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th scope="col" style="width:5em">
@@ -208,7 +197,6 @@
                                                                 allChecked = true;
                                                             }
                                                         });
-                                                        masterCheckbox.checked = allChecked;
                                                     }
 
                                                     const childCheckboxes = document.querySelectorAll('.child-checkbox');
@@ -301,7 +289,7 @@
                                         </tbody>
                                     </table>
                                     @else
-                                    <form action="{{ route('save.progress') }}" class="d-flex" method="post">
+                                     <form action="{{ route('save.progress') }}" class="d-flex" method="post">
                                         <div class="wrapper" style="width: 95%">
                                             @csrf <!-- Add CSRF token here -->
                                             <label for="customRange1" class="form-label">Persentase Progress <span class="badge text-bg-primary" id="progressLabel">{{ ($detail->progress == null) ? "0" : $detail->progress }}%</span></label>
@@ -387,11 +375,12 @@
                         </div>
                     </div>
                     <!-- Modal Box Estimasi End-->
+           
                 @if (count($fitur) !== 0 && empty($detail->dokumen))
                     <form action="{{ route('done-project') }}" id="projectDone" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button type="submit" class="btn btn-primary btn-sm" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                        <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBtn" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                 @endif
 
@@ -399,7 +388,7 @@
                     <form action="{{ route('done-project') }}" id="projectDone" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button type="submit" class="btn btn-primary btn-sm" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                        <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBtn" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                 @endif
 
@@ -407,7 +396,7 @@
                     <form action="{{ route('done-project') }}" id="projectDone" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="submitForm2(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                        <button type="submit" class="btn btn-danger btn-sm" id="projectDoneBtn" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                 @endif
 
@@ -465,6 +454,63 @@
                     }
                 </script>
 
+
+                    {{-- <script>
+                        var projectDoneBtn = document.getElementById('projectAcceptBtn');
+                        var inputRange = document.getElementById('customRange1');
+
+                        projectDoneBtn.addEventListener('click', function() {
+                            var featureId = inputRange.getAttribute('data-feature-id');
+                            var progress = inputRange.getAttribute('value');
+
+                            fetch('/update-progress', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify({
+                                    featureId: featureId,
+                                    progress: progress
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log(data);
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                        });
+                    </script> --}}
+                    {{-- <script>
+                        var projectDoneBtn = document.getElementById('projectDoneBtn');
+                        var inputRange = document.getElementById('customRange1');
+
+                        projectDoneBtn.addEventListener('click', function() {
+                            var featureId = inputRange.getAttribute('data-feature-id');
+                            var progress = inputRange.value;
+
+                            fetch('/update-progress', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify({
+                                    featureId: featureId,
+                                    progress: progress
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log(data);
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                        });
+                    </script> --}}
                 </div>
 
                 <div class="container my-5">
