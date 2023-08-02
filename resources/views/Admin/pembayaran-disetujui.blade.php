@@ -60,7 +60,7 @@
                                                 <td>{{ $apv->napro }}</td>
                                                 <td>
                                                         Rp.{{ number_format($apv->harga + $apv->biayatambahan, 0, ',', '.') }}
-                                                
+
                                                 </td>
                                                 <td class="text-center">
                                                     <span class="badge rounded-pill {{ (($apv->statusbayar == 'lunas') ? 'text-bg-success' : (($apv->statusbayar == 'lunas') ? 'text-bg-primary' : '')) }}">{{ $apv->statusbayar }}</span>
@@ -132,30 +132,41 @@
                                                                         </div>
                                                                     @endif
                                                                 @else
-                                                                    @if ($apv->metodepembayaran2 !== 'cash')
+                                                                    @if ($apv->metodepembayaran3 !== 'cash')
                                                                     <div class="wrapper d-flex justify-content-between">
                                                                         <div class="mb-3" style="width: 12em">
                                                                             <label class="mb-1">Metode Pembayaran</label>
-                                                                            <input type="text"class="form-control" value="{{ ($apv->metodepembayaran2 == 'ewallet') ? 'E-Wallet' : (($apv->metodepembayaran2 == 'bank') ? 'Bank' : '') }}" disabled>
+                                                                            <input type="text"class="form-control" value="{{ ($apv->metodepembayaran3 == 'ewallet') ? 'E-Wallet' : (($apv->metodepembayaran3 == 'bank') ? 'Bank' : '') }}" disabled>
                                                                         </div>
                                                                         <div class="mb-3" style="width: 12em">
-                                                                            <label class="mb-1">Biaya Akhir</label>
-                                                                            <input type="text"class="form-control" value="{{ $apv->harga/2 }}" disabled>
+                                                                            <label class="mb-1">Biaya tambahan</label>
+                                                                            <input type="text"class="form-control" value="{{ $apv->biayatambahan }}" disabled>
                                                                         </div>
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label class="mb-1">Bukti Pembayaran</label>
-                                                                        <img src="{{ asset('gambar/bukti/'.$apv->buktipembayaran2) }}" class="w-100" alt="">
+                                                                        <img src="{{ asset('gambar/bukti/'.$apv->buktipembayaran3) }}" class="w-100" alt="">
                                                                     </div>
                                                                     <div class="mb-1">
                                                                         <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
                                                                     </div>
+                                                                    <div class="mb-1">
+                                                                        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#pembayaranAkhir{{ $apv->id }}">Pembayaran Akhir</button>
+                                                                    </div>
                                                                     @else
+                                                                        {{-- <div class="mb-3">
+                                                                            <p>Pembayaran sebesar <b>{{ $apv->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran3)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                        </div> --}}
                                                                         <div class="mb-3">
-                                                                            <p>Pembayaran sebesar <b>{{ $apv->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                            <p>Pembayaran sebesar <b>{{ $apv->biayatambahan }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran3)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                         </div>
-                                                                        <div class="mb-1">
-                                                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
+                                                                        <div class="d-flex justify-content-between">
+                                                                            <div class="mb-1">
+                                                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
+                                                                            </div>
+                                                                            <div class="mb-1">
+                                                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pembayaranAkhir{{ $apv->id }}">Pembayaran Akhir</button>
+                                                                            </div>
                                                                         </div>
                                                                     @endif
                                                                 @endif
