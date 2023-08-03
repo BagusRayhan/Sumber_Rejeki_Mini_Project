@@ -55,9 +55,9 @@
                     </div>
                 @else
                     </div>
-                    <div style="float: right">
-                    {{ $projectreq->links() }}
-                </div>
+                    <div class="float-end mx-4">
+                        {{ $projectreq->links() }}
+                    </div>
                 @endif
 
             @include('Admin.templates.script')

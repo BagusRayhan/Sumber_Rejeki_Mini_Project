@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <!-- Confirm Payment Table End -->
-                <div class="wrapper w-100 d-flex justify-content-end">
+                <div class="wrapper mt-3 w-100 d-flex justify-content-end">
                     {{$project->links()}}
                 </div>
 

@@ -57,7 +57,7 @@ class IndexcController extends Controller
             'notifikasi' => $notifikasi,
             'estimasi' => $estimasi,
             'admin' => $admin,
-            'admin_id' => $admin->pluck('id'),
+            'admin_id' => $admin->id,
             'message' => $message,
             'sosmed' => $sosmed,
             'client' => $client,

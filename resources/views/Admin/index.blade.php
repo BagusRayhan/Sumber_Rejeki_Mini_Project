@@ -193,7 +193,7 @@
                                         <div class="list-group d-flex flex-column-reverse">
                                             @if (count($msg->projectchat) !== 0)
                                                 @foreach ($msg->projectchat->whereIn('user_id', $client_id)->sortByDesc('created_at')->take(3) as $cht)
-                                                    <a href="{{ ($msg->status == 'setuju') ? route('detail-disetujui-admin', ['id' => $msg->id]) : (($msg->status == 'pengajuan revisi') ?  : '') }}" class="list-group-item list-group-item-action" style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap">{{ $cht->chat }}</a>
+                                                    <a href="{{ ($msg->status == 'setuju') ? route('detail-disetujui-admin', ['id' => $msg->id]) : (($msg->status == 'pengajuan revisi') ? route('revisiproselesai', ['id' => $msg->id]) : '') }}" class="list-group-item list-group-item-action" style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap">{{ $cht->chat }}</a>
                                                 @endforeach
                                             @endif
                                         </div>

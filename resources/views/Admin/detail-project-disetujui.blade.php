@@ -84,8 +84,8 @@
                                         if (savedProgress) {
                                             var progressBar = document.getElementById('progress-bar');
                                             progressBar.style.width = savedProgress + '%';
-                                             progressBar.setAttribute('aria-valuenow', savedProgress); 
-                                             document.getElementById('aa').innerText = parseInt(savedProgress) + " %"; 
+                                             progressBar.setAttribute('aria-valuenow', savedProgress);
+                                             document.getElementById('aa').innerText = parseInt(savedProgress) + " %";
                                         }
                                     });
 
@@ -164,7 +164,7 @@
                         max-height: 400px; /* Set the desired max height */
                         overflow-y: scroll;
                     }
-                
+
                     .scrollable-table thead th {
                         position: sticky;
                         top: 0;
@@ -256,9 +256,9 @@
                                                 <td>{{ $f->namafitur }}</td>
                                                 <td>
                                                     @if(@isset($f->biayatambahan))
-                                                    {{ number_format($f->biayatambahan, 0, ',', '.') }}
+                                                    Rp.{{ number_format($f->biayatambahan, 0, ',', '.') }}
                                                     @else
-                                                    {{ number_format($f->hargafitur, 0, ',', '.') }}
+                                                    Rp.{{ number_format($f->hargafitur, 0, ',', '.') }}
                                                     @endif
                                                 </td>
                                                 <td class="d-flex justify-content-evenly">
@@ -267,7 +267,7 @@
                                             </tr>
 
 
-                                            
+
                                             <!-- Modal Box Detail Fitur Start -->
                                             <div class="modal fade" id="detailFitur{{ $f->id }}" tabindex="-1" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
@@ -285,7 +285,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="" class="form-label">Harga Fitur</label>
-                                                                        <input type="text" class="form-control" value="{{ number_format($f->hargafitur + $f->biayatambahan, 0, ',', '.') }}" disabled>
+                                                                        <input type="text" class="form-control" value="Rp.{{ number_format($f->hargafitur + $f->biayatambahan, 0, ',', '.') }}" disabled>
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-2">
@@ -358,10 +358,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                       
 
-
-                <div class="my-3 d-flex justify-content-between" style="width: 16em">
+                {{-- <div class="my-3 d-flex justify-content-between" style="width:{{ ($doneFeatures && $detail->dokumen == null || $doneFeatures && count($fitur) !== 0 && $detail->dokumen !== null) ? '17em' : (($detail->progress == 100) ? '17em' : '10em') }}"> --}}
+                <div class="mt-5 mb-3 d-flex justify-content-between" style="width:{{ ($detail->progress != 100 && $detail->dokumen !== null) ? '11em' : '15em' }}">
                     <a href="/project-disetujui" class="btn btn-secondary btn-sm p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
                     <button class="btn btn-warning btn-sm text-white p-1" data-bs-toggle="modal" data-bs-target="#estimasiModal"><i class="fa-solid fa-clock-rotate-left"></i> Estimasi</button>
                     <!-- Modal Box Estimasi Start -->
@@ -389,7 +388,7 @@
                         </div>
                     </div>
                     <!-- Modal Box Estimasi End-->
-           
+
                 @if (count($fitur) !== 0 && empty($detail->dokumen))
                     <form action="{{ route('done-project') }}" id="projectDone" method="post">
                         @csrf
@@ -406,7 +405,7 @@
                     </form>
                 @endif
 
-                @if (!empty($detail->dokumen) && $detail->progress == 100)
+                @if ($detail->progress == 100 && $detail->dokumen !== null)
                     <form action="{{ route('done-project') }}" id="projectDone" method="post" style="margin-right: -10%;">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
@@ -421,27 +420,28 @@
                         var totalFeatures = parseInt(localStorage.getItem('totalFeatures'));
                         var completedFeatures = parseInt(localStorage.getItem('completedFeatures'));
 
-                        if (totalFeatures !== completedFeatures) {
-                            Swal.fire({
-                                title: 'Apakah Anda yakin?',
-                                text: 'Fitur belum selesai',
-                                icon: 'error',
-                                confirmButtonText: 'OK'
-                            });
-                        } else {
-                            Swal.fire({
-                                title: 'Apakah Anda yakin',
-                                text: 'Ingin menyelesaikan proyek?',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonText: 'Ya, selesai!',
-                                cancelButtonText: 'Tidak, batal'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Apakah Anda yakin',
+                            text: 'Ingin menyelesaikan proyek?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Ya, selesai!',
+                            cancelButtonText: 'Tidak, batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                if (totalFeatures !== completedFeatures) {
+                                    Swal.fire({
+                                        title: 'Gagal',
+                                        text: 'Selesaikan fitur terlebih dahulu',
+                                        icon: 'error',
+                                        width: '400px',
+                                        confirmButtonText: 'OK'
+                                    });
+                                } else {
                                     document.getElementById('projectDone').submit();
                                 }
-                            });
-                        }
+                            }
+                        });
                     }
                 </script>
                  <script>
