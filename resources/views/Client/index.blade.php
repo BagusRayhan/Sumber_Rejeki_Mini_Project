@@ -80,7 +80,7 @@
             @if (count($estimasi) > 0)
                 @foreach ($estimasi as $estimasisetuju)
                     <div class="d-flex align-items-center border-bottom py-3">
-                        <a href="{{ route('setujuclient', ['id' => $estimasisetuju->id]) }}" class="d-flex w-100" style="text-decoration: none; color: inherit;">
+                        <a href="{{ route('detailsetujui', ['id' => $estimasisetuju->id]) }}" class="d-flex w-100" style="text-decoration: none; color: inherit;">
                             <img class="rounded-circle flex-shrink-0" style="width: 3em; height: 3em; object-fit: cover;" src="/gambar/user-profile/{{ $estimasisetuju->user->profil }}">
                             <div class="ms-3 flex-grow-1">
                                 <h6 class="mb-2">{{ $estimasisetuju->napro }}</h6>
@@ -113,7 +113,6 @@
             </div>
 
 
-
             <div class="col-sm-12 col-md-6 col-xl-4">
                 <div class="h-100 bg-light rounded p-4">
                     <div class="d-flex align-items-center justify-content-start mb-2">
@@ -137,13 +136,13 @@
                                         <div class="list-group d-flex flex-column-reverse">
                                             @if (count($msg->projectchat) !== 0)
                                                 @foreach ($msg->projectchat->whereIn('user_id', $admin_id)->sortByDesc('created_at')->take(3) as $cht)
-                                                    <a href="{{ ($msg->status == 'setuju') ? route('detailsetujui', ['id' => $msg->id]) : (($msg->status == 'pengajuan revisi') ?  : '') }}" class="list-group-item list-group-item-action" style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap">{{ $cht->chat }}</a>
+                                                    <a href="{{ ($msg->status == 'setuju') ? route('detailsetujui', ['id' => $msg->id]) : (($msg->status == 'pengajuan revisi') ? route('revisibutton', ['id'=>$msg->id]) : '') }}" class="list-group-item list-group-item-action" style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap">{{ $cht->chat }}</a>
                                                 @endforeach
                                             @endif
                                         </div>
                                     </div>
                                     <a href="{{ route('detail-disetujui-admin', ['id' => $msg->id]) }}" style="text-decoration: none; color: inherit;">
-                                        <div class="collapse message-content" id="messageContent{{ $loop->index }}">
+                                        <div class="collapse message-content">
                                             @if (count($msg->projectchat) !== 0)
                                                 @foreach ($msg->projectchat as $chat)
                                                     <p>{{ $chat->chat }}</p>
