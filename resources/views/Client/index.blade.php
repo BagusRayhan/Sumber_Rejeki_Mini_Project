@@ -152,6 +152,11 @@
                                             @endif
                                         </div>
                                     </a>
+                                @else
+                                <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+                                    <img src="gambar/empty-icon/empty-directory.png" class="w-50">
+                                    <p>Tidak ada pesan masuk</p>
+                                </div>
                                 @endif
                             @endforeach
                         @else
