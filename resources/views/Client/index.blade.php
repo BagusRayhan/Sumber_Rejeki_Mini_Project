@@ -219,9 +219,9 @@
 
 
 
-                @include('Client.Template.footer')
-                        </div>
                     </div>
+                </div>
+                @include('Client.Template.footer')
                 </div>
             </div>
             @include('Client.Template.script')
