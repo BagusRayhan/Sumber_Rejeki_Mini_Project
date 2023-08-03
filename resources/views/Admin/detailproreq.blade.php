@@ -140,9 +140,17 @@
                             <textarea class="form-control" placeholder="Masukkan Alasan Anda...." rows="6" name="alasan"></textarea>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-danger" id="btnDismiss">Batal</button>
                             <button type="submit" class="btn btn-primary">Tolak</button>
                         </div>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+                        <script>
+                        document.getElementById('btnDismiss').addEventListener('click', function() {
+                            var modal = document.getElementById('alasanDitolak{{ $data->id }}');
+                            var bootstrapModal = bootstrap.Modal.getInstance(modal);
+                            bootstrapModal.hide();
+                        });
+                        </script>
                     </div>
                 </form>
             </div>
