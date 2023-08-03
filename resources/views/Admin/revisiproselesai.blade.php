@@ -85,7 +85,7 @@
                             <h5>Revisi dari Client</h5>
                         </div>
                         <div class="modal-body">
-                            <p>{!! nl2br($data->listrevisi) !!}</p>
+                            <p class="w-100">{!! nl2br($data->listrevisi) !!}</p>
                         </div>
                         <div class="modal-footer">
                         </div>
