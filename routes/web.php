@@ -145,7 +145,7 @@ Route::middleware(['web', 'auth'])->group(function(){
 
 });
 
-Route::middleware('admin')->group(function(){
+Route::middleware(['admin'])->group(function(){
     // Halaman Admin
     Route::get('notif-redirect/{id}', [AdminController::class, 'notifRedirect'])->name('notif-redirect');
     Route::delete('admin/delete-notif', [AdminController::class, 'readAllNotif'])->name('read-all-notif');

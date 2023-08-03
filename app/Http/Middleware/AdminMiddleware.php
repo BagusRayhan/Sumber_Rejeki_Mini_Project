@@ -14,12 +14,13 @@ class AdminMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle($request, Closure $next)
-    {
-        if (auth()->check() && auth()->user()->role === 'admin') {
-            return $next($request);
-        }
-    
-        abort(403, 'Authorized');
+public function handle($request, Closure $next)
+{
+    if (auth()->check() && auth()->user()->role === 'admin') {
+        return $next($request);
     }
+
+    return redirect()->route('login'); 
+}
+
 }
