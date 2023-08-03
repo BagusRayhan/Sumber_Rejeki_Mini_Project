@@ -174,8 +174,8 @@
                <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <div class="scrollable-table mt-3">
                             @if (count($fitur) !== 0)
+                            <div class="scrollable-table mt-3">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>

@@ -521,16 +521,16 @@ $(document).ready(function() {
                 </div>
             </div>
             <div class="modal-footer">
-            <button id="printBtn" class="btn btn-primary w-100 fw-bold"><i class="fa-solid fa-print"></i> Cetak PDF</button>
+            <button id="printButton" class="btn btn-primary w-100 fw-bold"><i class="fa-solid fa-print"></i> Cetak PDF</button>
+        <script>
+            document.getElementById('printButton').addEventListener('click', function() {
+                window.print();
+            });
+            </script>
             </div>
         </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-        <script>
-            document.getElementById('printBtn').addEventListener('click', function() {
-                window.print();
-            });
-            </script>
 
 
 <script>
