@@ -265,7 +265,7 @@
           series: [
             {
               name: "Series A",
-              data: [{{ $tahun22 }}, {{ $tahun23 }}, {{ $tahun24 }}, {{ $tahun25 }}] // Replace the sample data with the yearData array
+              data: [{{ $tahun20 }}, {{ $tahun21 }}, {{ $tahun22 }}, {{ $tahun23 }}, {{ $tahun24 }}, {{ $tahun25 }}, {{ $tahun26 }}, {{ $tahun27 }}, {{ $tahun28 }}, {{ $tahun29 }}, {{ $tahun30 }}] // Replace the sample data with the yearData array
             },
 
           ],
@@ -278,7 +278,7 @@
             }
           },
           xaxis: {
-            categories: ['2022', '2023', '2024', '2025'] // Replace the sample categories with the labels array
+            categories: ['2020','2021','2022', '2023', '2024', '2025', '2026','2027', '2028', '2029', '2030'] // Replace the sample categories with the labels array
           },
           yaxis: [
             {

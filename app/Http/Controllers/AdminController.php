@@ -23,10 +23,17 @@ class AdminController extends Controller
         ->groupBy('month')
         ->orderBy('month')
         ->get();
+        $tahun2020 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2020' )->count();
+        $tahun2021 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2021' )->count();
         $tahun2022 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2022' )->count();
         $tahun2023 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2023' )->count();
         $tahun2024 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2024' )->count();
         $tahun2025 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2025' )->count();
+        $tahun2026 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2026' )->count();
+        $tahun2027 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2027' )->count();
+        $tahun2028 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2028' )->count();
+        $tahun2029 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2029' )->count();
+        $tahun2030 = Proreq::where('status', 'selesai')->WhereYear('tanggalpembayaran2', '=' , '2030' )->count();
         // dd($tahun2022);
         // $selesaiProjectsyear = Proreq::selectRaw('YEAR(tanggalpembayaran2) as year, COUNT(*) as count')
         // ->where('status', 'selesai')
@@ -89,10 +96,17 @@ class AdminController extends Controller
             'client_id' => $client_id,
             'notification' => $notification,
             'selesaiProjects' => $selesaiProjects,
+            'tahun20' => $tahun2020,
+            'tahun21' => $tahun2021,
             'tahun22' => $tahun2022,
             'tahun23' => $tahun2023,
             'tahun24' => $tahun2024,
-            'tahun25' => $tahun2025
+            'tahun25' => $tahun2025,
+            'tahun26' => $tahun2026,
+            'tahun27' => $tahun2027,
+            'tahun28' => $tahun2028,
+            'tahun29' => $tahun2029,
+            'tahun30' => $tahun2030,
         ]);
     }
 
