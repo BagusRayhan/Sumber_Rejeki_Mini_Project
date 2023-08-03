@@ -111,8 +111,6 @@
                     });
                   }
             </script>
-        </div>
-    </div>
     <div class="row">
         <div class="wrapper d-flex justify-content-end">
             <button type="button" class="btn btn-warning text-white btn-sm mx-2" data-bs-toggle="modal" data-bs-target="#pesanRevisi">Detail Revisi</button>
@@ -292,6 +290,8 @@
             </div>
         </div>
     </div>
+    </div>
+</div>
         <!-- Content End -->
 
 
