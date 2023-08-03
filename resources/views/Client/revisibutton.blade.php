@@ -171,52 +171,54 @@
                 </div>
             </div>
 
-            <div class="container my-5">
-                <div class="panel" style="height: 90vh;">
-                    <h5 class="fw-bold fs-5">Diskusi</h5>
-                    <p class="text-secondary">{{ $detail->namaproject }}</p>
-                    <div class="chatbox d-flex align-items-center justify-content-between align-items-lg-center px-3 border rounded border-1 border-dark">
-                        <div class="d-flex align-items-center">
-                            <i class="fa-solid fa-comments fs-4 me-3"></i>
-                            <p class="fw-medium mt-3">Ajukan revisi ke admin</p>
+            @if ($detail->status == 'pengajuan revisi')    
+                <div class="container my-5">
+                    <div class="panel" style="height: 90vh;">
+                        <h5 class="fw-bold fs-5">Diskusi</h5>
+                        <p class="text-secondary">{{ $detail->namaproject }}</p>
+                        <div class="chatbox d-flex align-items-center justify-content-between align-items-lg-center px-3 border rounded border-1 border-dark">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-comments fs-4 me-3"></i>
+                                <p class="fw-medium mt-3">Ajukan revisi ke admin</p>
+                            </div>
+                            <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm" onclick="openChat()">Hubungi Admin</button>
                         </div>
-                        <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm" onclick="openChat()">Hubungi Admin</button>
-                    </div>
-                    <style>
-                        #chatbox {
-                            height: 350px;
-                            overflow-y: scroll;
-                            scroll-behavior: smooth;
-                            background:#f3f6f9;
-                        }
-                    </style>
-                    <div class="collapse" id="chatbox-container">
-                        <div class="py-3" id="chatbox">
-                            <div class="chat-box d-flex flex-column p-2">
-                                @if (count($chats) > 0)
-                                    @foreach ($chats as $cht)
-                                        <div class="col">
-                                            <div class="{{ ($cht->user_id == Auth()->user()->id) ? 'bubble-chat-client float-end bg-primary text-white' : 'bubble-chat-admin float-start bg-white'}} d-flex flex-column mb-2 py-2 px-3 rounded-3" style="max-width: 33em; font-size: 14px">
-                                                <p class="messages m-0 p-0">{{ $cht->chat }}</p> 
-                                                <label for="" class="{{ ($cht->user_id == Auth()->user()->id) ? 'text-white' : 'text-secondary'}} mt-2" style="font-size: 9px">{{ Carbon::parse($cht->chat_time)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</label>
+                        <style>
+                            #chatbox {
+                                height: 350px;
+                                overflow-y: scroll;
+                                scroll-behavior: smooth;
+                                background:#f3f6f9;
+                            }
+                        </style>
+                        <div class="collapse" id="chatbox-container">
+                            <div class="py-3" id="chatbox">
+                                <div class="chat-box d-flex flex-column p-2">
+                                    @if (count($chats) > 0)
+                                        @foreach ($chats as $cht)
+                                            <div class="col">
+                                                <div class="{{ ($cht->user_id == Auth()->user()->id) ? 'bubble-chat-client float-end bg-primary text-white' : 'bubble-chat-admin float-start bg-white'}} d-flex flex-column mb-2 py-2 px-3 rounded-3" style="max-width: 33em; font-size: 14px">
+                                                    <p class="messages m-0 p-0">{{ $cht->chat }}</p> 
+                                                    <label for="" class="{{ ($cht->user_id == Auth()->user()->id) ? 'text-white' : 'text-secondary'}} mt-2" style="font-size: 9px">{{ Carbon::parse($cht->chat_time)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</label>
+                                                </div>
                                             </div>
-                                        </div>
-                                    @endforeach
-                                @endif
+                                        @endforeach
+                                    @endif
+                                </div>
                             </div>
+                            <form action="{{ route('project-chat-client') }}" method="post">
+                                @csrf
+                                <div class="form-group p-1 d-flex px-2 rounded-bottom" style="bottom: 0; background: #f3f6f9;">
+                                    <input type="hidden" name="project_id" value="{{ $detail->id }}">
+                                    <input type="hidden" name="chat_time" value="{{ Carbon::now() }}">
+                                    <textarea class="form-control" id="chat" name="chat" style="height: 5vh; max-height: 100px" placeholder="Ketik pesan ..."></textarea>
+                                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
+                                </div>
+                            </form>
                         </div>
-                        <form action="{{ route('project-chat-client') }}" method="post">
-                            @csrf
-                            <div class="form-group p-1 d-flex px-2 rounded-bottom" style="bottom: 0; background: #f3f6f9;">
-                                <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                                <input type="hidden" name="chat_time" value="{{ Carbon::now() }}">
-                                <textarea class="form-control" id="chat" name="chat" style="height: 5vh; max-height: 100px" placeholder="Ketik pesan ..."></textarea>
-                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
-                            </div>
-                        </form>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
     @include('Client.Template.footer')
     </div>

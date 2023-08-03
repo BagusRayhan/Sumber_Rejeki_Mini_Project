@@ -358,10 +358,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                       
 
-
-                <div class="my-3 d-flex justify-content-between" style="width: 16em">
+                {{-- <div class="my-3 d-flex justify-content-between" style="width:{{ ($doneFeatures && $detail->dokumen == null || $doneFeatures && count($fitur) !== 0 && $detail->dokumen !== null) ? '17em' : (($detail->progress == 100) ? '17em' : '10em') }}"> --}}
+                <div class="mt-5 mb-3 d-flex justify-content-between" style="width:{{ ($detail->progress != 100 && $detail->dokumen !== null) ? '11em' : '15em' }}">
                     <a href="/project-disetujui" class="btn btn-secondary btn-sm p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
                     <button class="btn btn-warning btn-sm text-white p-1" data-bs-toggle="modal" data-bs-target="#estimasiModal"><i class="fa-solid fa-clock-rotate-left"></i> Estimasi</button>
                     <!-- Modal Box Estimasi Start -->
@@ -406,7 +405,7 @@
                     </form>
                 @endif
 
-                @if (!empty($detail->dokumen) && $detail->progress == 100)
+                @if ($detail->progress == 100 && $detail->dokumen !== null)
                     <form action="{{ route('done-project') }}" id="projectDone" method="post" style="margin-right: -10%;">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
@@ -420,28 +419,29 @@
                         event.preventDefault();
                         var totalFeatures = parseInt(localStorage.getItem('totalFeatures'));
                         var completedFeatures = parseInt(localStorage.getItem('completedFeatures'));
-
-                        if (totalFeatures !== completedFeatures) {
-                            Swal.fire({
-                                title: 'Apakah Anda yakin?',
-                                text: 'Fitur belum selesai',
-                                icon: 'error',
-                                confirmButtonText: 'OK'
-                            });
-                        } else {
-                            Swal.fire({
-                                title: 'Apakah Anda yakin',
-                                text: 'Ingin menyelesaikan proyek?',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonText: 'Ya, selesai!',
-                                cancelButtonText: 'Tidak, batal'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
+                        
+                        Swal.fire({
+                            title: 'Apakah Anda yakin',
+                            text: 'Ingin menyelesaikan proyek?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Ya, selesai!',
+                            cancelButtonText: 'Tidak, batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                if (totalFeatures !== completedFeatures) {
+                                    Swal.fire({
+                                        title: 'Gagal',
+                                        text: 'Selesaikan fitur terlebih dahulu',
+                                        icon: 'error',
+                                        width: '400px',
+                                        confirmButtonText: 'OK'
+                                    });
+                                } else {
                                     document.getElementById('projectDone').submit();
                                 }
-                            });
-                        }
+                            }
+                        });
                     }
                 </script>
                  <script>
