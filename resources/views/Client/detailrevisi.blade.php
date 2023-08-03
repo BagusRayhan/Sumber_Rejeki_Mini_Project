@@ -77,7 +77,7 @@
                     max-height: 400px; /* Set the desired max height */
                     overflow-y: scroll;
                 }
-            
+
                 .scrollable-table thead th {
                     position: sticky;
                     top: 0;
@@ -103,11 +103,11 @@
                                         <tr>
                                             <td>{{ $f->namafitur }}</td>
                                             <td>{{ $f->status }}</td>
-                                            <td>    
+                                            <td>
                                                 @if(@isset($f->biayatambahan))
-                                                {{ number_format($f->biayatambahan, 0, ',', '.') }}
+                                                Rp.{{ number_format($f->biayatambahan, 0, ',', '.') }}
                                                 @else
-                                                {{ number_format($f->hargafitur, 0, ',', '.') }}
+                                                Rp.{{ number_format($f->hargafitur, 0, ',', '.') }}
                                                 @endif
                                             </td>
                                             <td class="d-flex justify-content-evenly">
@@ -131,7 +131,7 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="" class="form-label">Harga Fitur</label>
-                                                                    <input type="text" class="form-control" value="{{ isset($f->biayatambahan) ? 'Rp ' . number_format((float)$f->hargafitur + (float)$f->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$f->hargafitur, 0, ',', '.') }}" disabled>
+                                                                    <input type="text" class="form-control" value="{{ isset($f->biayatambahan) ? 'Rp.' . number_format((float)$f->hargafitur + (float)$f->biayatambahan, 0, ',', '.') : 'Rp.' . number_format((float)$f->hargafitur, 0, ',', '.') }}" disabled>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-2">

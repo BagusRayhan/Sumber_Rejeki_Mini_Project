@@ -58,9 +58,9 @@
                                     <td><span class="badge bg-warning">{{ $item->status }}</span></td>
                                     <td><center>
                                         @if(isset($item->biayatambahan))
-                                            {{ number_format($item->harga+$item->biayatambahan, 0, ',', '.') }}
+                                            Rp. {{ number_format($item->harga+$item->biayatambahan, 0, ',', '.') }}
                                         @else
-                                            {{ number_format($item->harga, 0, ',', '.') }}
+                                           Rp. {{ number_format($item->harga, 0, ',', '.') }}
                                         @endif
                                     </center></td>
                                     <td class="d-flex justify-content-evenly">
