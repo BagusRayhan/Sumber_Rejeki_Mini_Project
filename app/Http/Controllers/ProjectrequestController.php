@@ -24,7 +24,7 @@ public function projectreq(Request $request)
     $projectreq = Proreq::where('status', 'pending')
         ->where(function (Builder $builder) use ($query) {
             $builder->where('napro', 'like', '%' . $query . '%');
-        })->latest()->paginate(6);
+        })->paginate(6);
 
     $projectreq->appends(['query' => $query]);
 
