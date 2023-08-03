@@ -67,7 +67,7 @@
                 </div>
                 <div class="form-group" style="width:480px">
                     <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                    <input type="text" value="{{ number_format($detail->harga+$detail->biayatambahan, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
+                    <input type="text" value="Rp.{{ number_format($detail->harga+$detail->biayatambahan, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
                 </div>
             </div>
             <style>
@@ -75,7 +75,7 @@
                     max-height: 400px; /* Set the desired max height */
                     overflow-y: scroll;
                 }
-            
+
                 .scrollable-table thead th {
                     position: sticky;
                     top: 0;
@@ -101,7 +101,7 @@
                                         <tr>
                                             <td>{{ $f->namafitur }}</td>
                                             <td>{{ $f->status }}</td>
-                                            <td>{{ number_format($f->hargafitur + $f->biayatambahan, 0, ',', '.') ?? number_format($f->biayatambahan, 0, ',', '.') }}</td>
+                                            <td>Rp.{{ number_format($f->hargafitur + $f->biayatambahan, 0, ',', '.') ?? number_format($f->biayatambahan, 0, ',', '.') }}</td>
                                             <td class="d-flex justify-content-evenly">
                                                 <button type="button" data-bs-toggle="modal" data-bs-target="#detailFitur{{ $f->id }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></button>
                                             </td>
@@ -123,7 +123,7 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="" class="form-label">Harga Fitur</label>
-                                                                    <input type="text" class="form-control" value="{{ number_format($f->hargafitur + $f->biayatambahan, 0, ',', '.') ?? number_format($f->biayatambahan, 0, ',', '.') }}" disabled>
+                                                                    <input type="text" class="form-control" value="Rp.{{ number_format($f->hargafitur + $f->biayatambahan, 0, ',', '.') ?? number_format($f->biayatambahan, 0, ',', '.') }}" disabled>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-2">
@@ -171,7 +171,7 @@
                 </div>
             </div>
 
-            @if ($detail->status == 'pengajuan revisi')    
+            @if ($detail->status == 'pengajuan revisi')
                 <div class="container my-5">
                     <div class="panel" style="height: 90vh;">
                         <h5 class="fw-bold fs-5">Diskusi</h5>
@@ -183,24 +183,25 @@
                             </div>
                             <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm" onclick="openChat()">Hubungi Admin</button>
                         </div>
-                        <style>
-                            #chatbox {
-                                height: 350px;
-                                overflow-y: scroll;
-                                scroll-behavior: smooth;
-                                background:#f3f6f9;
-                            }
-                        </style>
-                        <div class="collapse" id="chatbox-container">
-                            <div class="py-3" id="chatbox">
-                                <div class="chat-box d-flex flex-column p-2">
-                                    @if (count($chats) > 0)
-                                        @foreach ($chats as $cht)
-                                            <div class="col">
-                                                <div class="{{ ($cht->user_id == Auth()->user()->id) ? 'bubble-chat-client float-end bg-primary text-white' : 'bubble-chat-admin float-start bg-white'}} d-flex flex-column mb-2 py-2 px-3 rounded-3" style="max-width: 33em; font-size: 14px">
-                                                    <p class="messages m-0 p-0">{{ $cht->chat }}</p> 
-                                                    <label for="" class="{{ ($cht->user_id == Auth()->user()->id) ? 'text-white' : 'text-secondary'}} mt-2" style="font-size: 9px">{{ Carbon::parse($cht->chat_time)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</label>
-                                                </div>
+                        <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm" onclick="openChat()">Hubungi Admin</button>
+                    </div>
+                    <style>
+                        #chatbox {
+                            height: 350px;
+                            overflow-y: scroll;
+                            scroll-behavior: smooth;
+                            background:#f3f6f9;
+                        }
+                    </style>
+                    <div class="collapse" id="chatbox-container">
+                        <div class="py-3" id="chatbox">
+                            <div class="chat-box d-flex flex-column p-2">
+                                @if (count($chats) > 0)
+                                    @foreach ($chats as $cht)
+                                        <div class="col">
+                                            <div class="{{ ($cht->user_id == Auth()->user()->id) ? 'bubble-chat-client float-end bg-primary text-white' : 'bubble-chat-admin float-start bg-white'}} d-flex flex-column mb-2 py-2 px-3 rounded-3" style="max-width: 33em; font-size: 14px">
+                                                <p class="messages m-0 p-0">{{ $cht->chat }}</p>
+                                                <label for="" class="{{ ($cht->user_id == Auth()->user()->id) ? 'text-white' : 'text-secondary'}} mt-2" style="font-size: 9px">{{ Carbon::parse($cht->chat_time)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</label>
                                             </div>
                                         @endforeach
                                     @endif

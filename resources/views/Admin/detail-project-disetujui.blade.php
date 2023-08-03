@@ -84,8 +84,8 @@
                                         if (savedProgress) {
                                             var progressBar = document.getElementById('progress-bar');
                                             progressBar.style.width = savedProgress + '%';
-                                             progressBar.setAttribute('aria-valuenow', savedProgress); 
-                                             document.getElementById('aa').innerText = parseInt(savedProgress) + " %"; 
+                                             progressBar.setAttribute('aria-valuenow', savedProgress);
+                                             document.getElementById('aa').innerText = parseInt(savedProgress) + " %";
                                         }
                                     });
 
@@ -164,7 +164,7 @@
                         max-height: 400px; /* Set the desired max height */
                         overflow-y: scroll;
                     }
-                
+
                     .scrollable-table thead th {
                         position: sticky;
                         top: 0;
@@ -256,9 +256,9 @@
                                                 <td>{{ $f->namafitur }}</td>
                                                 <td>
                                                     @if(@isset($f->biayatambahan))
-                                                    {{ number_format($f->biayatambahan, 0, ',', '.') }}
+                                                    Rp.{{ number_format($f->biayatambahan, 0, ',', '.') }}
                                                     @else
-                                                    {{ number_format($f->hargafitur, 0, ',', '.') }}
+                                                    Rp.{{ number_format($f->hargafitur, 0, ',', '.') }}
                                                     @endif
                                                 </td>
                                                 <td class="d-flex justify-content-evenly">
@@ -267,7 +267,7 @@
                                             </tr>
 
 
-                                            
+
                                             <!-- Modal Box Detail Fitur Start -->
                                             <div class="modal fade" id="detailFitur{{ $f->id }}" tabindex="-1" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
@@ -285,7 +285,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="" class="form-label">Harga Fitur</label>
-                                                                        <input type="text" class="form-control" value="{{ number_format($f->hargafitur + $f->biayatambahan, 0, ',', '.') }}" disabled>
+                                                                        <input type="text" class="form-control" value="Rp.{{ number_format($f->hargafitur + $f->biayatambahan, 0, ',', '.') }}" disabled>
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-2">
@@ -388,7 +388,7 @@
                         </div>
                     </div>
                     <!-- Modal Box Estimasi End-->
-           
+
                 @if (count($fitur) !== 0 && empty($detail->dokumen))
                     <form action="{{ route('done-project') }}" id="projectDone" method="post">
                         @csrf
@@ -419,7 +419,7 @@
                         event.preventDefault();
                         var totalFeatures = parseInt(localStorage.getItem('totalFeatures'));
                         var completedFeatures = parseInt(localStorage.getItem('completedFeatures'));
-                        
+
                         Swal.fire({
                             title: 'Apakah Anda yakin',
                             text: 'Ingin menyelesaikan proyek?',

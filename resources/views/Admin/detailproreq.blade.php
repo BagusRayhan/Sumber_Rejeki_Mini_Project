@@ -186,7 +186,7 @@
             max-height: 400px; /* Set the desired max height */
             overflow-y: scroll;
         }
-    
+
         .scrollable-table thead th {
             position: sticky;
             top: 0;

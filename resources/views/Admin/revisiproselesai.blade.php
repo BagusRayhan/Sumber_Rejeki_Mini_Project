@@ -70,7 +70,7 @@
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                        <input type="text" value="{{ number_format($data->harga, 0, ',', '.') ?? number_format($data->biayatambahan, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
+                        <input type="text" value="Rp.{{ number_format($data->harga, 0, ',', '.') ?? number_format($data->biayatambahan, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
                 <div class="d-flex justify-content-start mb-3">
@@ -121,7 +121,7 @@
                         max-height: 400px; /* Set the desired max height */
                         overflow-y: scroll;
                     }
-                
+
                     .scrollable-table thead th {
                         position: sticky;
                         top: 0;
@@ -148,9 +148,10 @@
                                             <td>{{ $f->status }}</td>
                                             <td>
                                                 @if ($f->hargafitur !== null)
-                                                    {{ number_format($f->hargafitur, 0, ',', '.') }}
+                                                   Rp.{{ number_format($f->hargafitur, 0, ',', '.') }}
                                                 @else
-                                                    {{ number_format($f->biayatambahan, 0, ',', '.') }}
+                                                {{-- {{ $f->biayatambahan }} --}}
+                                                    Rp.{{ number_format($f->biayatambahan, 0, ',', '.') }}
                                                 @endif
                                             </td>
                                             <td class="d-flex justify-content-evenly">

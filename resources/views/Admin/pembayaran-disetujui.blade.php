@@ -115,7 +115,7 @@
                                                                         </div>
                                                                         <div class="mb-3" style="width: 10em">
                                                                             <label class="mb-1">Biaya Akhir</label>
-                                                                            <input type="text"class="form-control" value="{{ $apv->harga/2 }}" disabled>
+                                                                            <input type="text"class="form-control" value="Rp.{{ number_format($apv->harga/2, 0, ',', '.') }}" disabled>
                                                                         </div>
                                                                     </div>
                                                                     <div class="mb-3">
@@ -128,7 +128,7 @@
                                                                     @else
                                                                         {{-- Pembayaran Akhir Cash --}}
                                                                         <div class="mb-3">
-                                                                            <p>Pembayaran sebesar <b>{{ $apv->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                            <p>Pembayaran sebesar <b>Rp.{{ number_format($apv->harga/2, 0, ',', '.') }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                         </div>
                                                                         <div class="mb-1">
                                                                             <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
@@ -144,7 +144,7 @@
                                                                         </div>
                                                                         <div class="mb-3" style="width: 10em">
                                                                             <label class="mb-1">Biaya tambahan</label>
-                                                                            <input type="text"class="form-control" value="{{ $apv->biayatambahan }}" disabled>
+                                                                            <input type="text"class="form-control" value="Rp.{{ number_format($apv->biayatambahan, 0, ',', '.') }}" disabled>
                                                                         </div>
                                                                     </div>
                                                                     <div class="mb-3">
@@ -157,7 +157,7 @@
                                                                     </div>
                                                                     @else
                                                                         <div class="mb-3">
-                                                                            <p>Pembayaran sebesar <b>{{ $apv->biayatambahan }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran3)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                            <p>Pembayaran sebesar <b>Rp.{{ number_format($apv->biayatambahan, 0, ',', '.') }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran3)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                         </div>
                                                                         <div class="d-flex justify-content-between">
                                                                             <button class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#pembayaranAwal{{ $apv->id }}">Pembayaran Awal</button>
@@ -186,7 +186,7 @@
                                                                 </div>
                                                                 <div class="mb-3" style="width: 10em">
                                                                     <label class="mb-1">Biaya Awal</label>
-                                                                    <input type="text"class="form-control" value="{{ $apv->harga/2 }}" disabled>
+                                                                    <input type="text"class="form-control" value="Rp.{{ number_format($apv->harga/2, 0, ',', '.') }}" disabled>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3">
@@ -198,7 +198,7 @@
                                                             </div>
                                                             @else
                                                                 <div class="mb-3">
-                                                                    <p>Pembayaran sebesar <b>{{ $apv->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                    <p>Pembayaran sebesar <b>Rp.{{ number_format($apv->harga/2, 0, ',', '.') }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                 </div>
                                                                 <div class="mb-1">
                                                                     <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $apv->id }}">Kembali</button>
@@ -224,7 +224,7 @@
                                                                 </div>
                                                                 <div class="mb-3" style="width: 10em">
                                                                     <label class="mb-1">Biaya Akhir</label>
-                                                                    <input type="text"class="form-control" value="{{ $apv->harga/2 }}" disabled>
+                                                                    <input type="text"class="form-control" value="Rp.{{ number_format($apv->harga/2, 0, ',', '.') }}" disabled>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3">
@@ -236,7 +236,7 @@
                                                             </div>
                                                             @else
                                                                 <div class="mb-3">
-                                                                    <p>Pembayaran sebesar <b>{{ $apv->harga/2 }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                    <p>Pembayaran sebesar <b>Rp.{{ number_format($apv->harga/2, 0, ',', '.') }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($apv->tanggalpembayaran2)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
                                                                 </div>
                                                                 <div class="mb-1">
                                                                     <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $apv->id }}">Kembali</button>

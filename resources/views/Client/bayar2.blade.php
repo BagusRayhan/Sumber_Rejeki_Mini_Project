@@ -101,7 +101,7 @@
                                     @php
                                         $totalHarga = $client2->biayatambahan ? $client2->harga + $client2->biayatambahan : $client2->harga;
                                     @endphp
-                                    Rp {{ number_format($totalHarga, 0, ',', '.') }}
+                                    Rp.{{ number_format($totalHarga, 0, ',', '.') }}
                                 </td>
 
                                 <td class="text-center ">
