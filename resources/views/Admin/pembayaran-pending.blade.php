@@ -104,7 +104,7 @@
                                                             confirmButtonText: 'Ya',
                                                             cancelButtonText: 'Batal'
                                                         }).then((result) => {
-                                                            if (result.isConfirmed) { // Corrected the syntax here, added "if" before the condition.
+                                                            if (result.isConfirmed) { 
                                                                 document.getElementById('setujuiPembayaran-' + id).submit();
                                                             }
                                                         });
