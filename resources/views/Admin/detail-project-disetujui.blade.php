@@ -199,19 +199,19 @@
                                                     });
 
                                    
-    function updateMasterCheckbox() {
-        const masterCheckbox = document.getElementById('masterCheckbox');
-        const childCheckboxes = document.querySelectorAll('.child-checkbox');
-        let allChecked = true;
+                                                function updateMasterCheckbox() {
+                                                    const masterCheckbox = document.getElementById('masterCheckbox');
+                                                    const childCheckboxes = document.querySelectorAll('.child-checkbox');
+                                                    let allChecked = true;
 
-        childCheckboxes.forEach((checkbox) => {
-            if (!checkbox.checked) {
-                allChecked = false;
-            }
-        });
+                                                    childCheckboxes.forEach((checkbox) => {
+                                                        if (!checkbox.checked) {
+                                                            allChecked = false;
+                                                        }
+                                                    });
 
-        masterCheckbox.checked = allChecked;
-    }
+                                                    masterCheckbox.checked = allChecked;
+                                                }
 
                                                     const childCheckboxes = document.querySelectorAll('.child-checkbox');
                                                     childCheckboxes.forEach((checkbox) => {
