@@ -143,7 +143,6 @@
                             <button type="button" class="btn btn-danger" id="btnDismiss">Batal</button>
                             <button type="submit" class="btn btn-primary">Tolak</button>
                         </div>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
                         <script>
                         document.getElementById('btnDismiss').addEventListener('click', function() {
                             var modal = document.getElementById('alasanDitolak{{ $data->id }}');

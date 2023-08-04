@@ -360,7 +360,7 @@
                                                 </div>
 
                 {{-- <div class="my-3 d-flex justify-content-between" style="width:{{ ($doneFeatures && $detail->dokumen == null || $doneFeatures && count($fitur) !== 0 && $detail->dokumen !== null) ? '17em' : (($detail->progress == 100) ? '17em' : '10em') }}"> --}}
-                <div class="mt-5 mb-3 d-flex justify-content-between" style="width:{{ ($detail->progress != 100 && $detail->dokumen !== null) ? '11em' : '15em' }}">
+                <div class="mt-5 mb-3 d-flex justify-content-between" style="width:{{ ($detail->progress != 100 && $detail->dokumen !== null && count($fitur) == 0) ? '11em' : '15em' }}">
                     <a href="/project-disetujui" class="btn btn-secondary btn-sm p-1"><i class="fa-solid fa-circle-arrow-left"></i> Kembali</a>
                     <button class="btn btn-warning btn-sm text-white p-1" data-bs-toggle="modal" data-bs-target="#estimasiModal"><i class="fa-solid fa-clock-rotate-left"></i> Estimasi</button>
                     <!-- Modal Box Estimasi Start -->
