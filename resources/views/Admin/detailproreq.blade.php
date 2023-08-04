@@ -141,8 +141,32 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" id="btnDismiss">Batal</button>
-                            <button type="submit" class="btn btn-primary">Tolak</button>
+                            <button type="submit" class="btn btn-primary" onclick="tolak(event)">Tolak</button>
                         </div>
+            <script>
+                function tolak(event) {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Apakah Anda yakin',
+                        text: 'Ingin Menolak project ini??',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            var form = event.target.form;
+                            if (form) {
+                                form.submit();
+                            } else {
+                                console.error('Form tidak ditemukan.');
+                            }
+                        }
+                    });
+                }
+            </script>
                         <script>
                         document.getElementById('btnDismiss').addEventListener('click', function() {
                             var modal = document.getElementById('alasanDitolak{{ $data->id }}');
@@ -172,12 +196,36 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Setuju</button>
+                        <button type="submit" class="btn btn-primary" onclick="setuju2(event)">Setuju</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+                <script>
+                function setuju2(event) {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Apakah Anda yakin',
+                        text: 'Ingin Menyetujui project ini??',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            var form = event.target.form;
+                            if (form) {
+                                form.submit();
+                            } else {
+                                console.error('Form tidak ditemukan.');
+                            }
+                        }
+                    });
+                }
+            </script>
     {{-- end harga fitur dokument --}}
 
     <style>
