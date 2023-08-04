@@ -109,6 +109,7 @@
                                         localStorage.setItem('progress', progress);
                                         localStorage.setItem('totalFeatures', totalFeatures);
                                         localStorage.setItem('completedFeatures', progress);
+                                         updateMasterCheckbox();
                                     }
 
                                     var checkboxes = document.querySelectorAll('.child-checkbox');
@@ -126,6 +127,7 @@
 
                                         window.addEventListener('load', function() {
                                         loadCheckboxStatus('masterCheckbox');
+                                         updateMasterCheckbox();
 
                                         @foreach ($fitur as $f)
                                             loadCheckboxStatus('checkFitur{{ $f->id }}');
@@ -186,7 +188,7 @@
                                                     type="checkbox" value=""
                                                     id="masterCheckbox"
                                                     {{ (count($fitur) == $done) ? 'checked' : '' }}>
-                                                                                    <script>
+                                                <script>
                                                     window.addEventListener('load', function() {
                                                         loadCheckboxStatus('masterCheckbox');
                                                         updateMasterCheckbox();
@@ -196,21 +198,20 @@
                                                         @endforeach
                                                     });
 
-                                                    function updateMasterCheckbox() {
-                                                        const masterCheckbox = document.getElementById('masterCheckbox');
-                                                        const childCheckboxes = document.querySelectorAll('.child-checkbox');
+                                   
+    function updateMasterCheckbox() {
+        const masterCheckbox = document.getElementById('masterCheckbox');
+        const childCheckboxes = document.querySelectorAll('.child-checkbox');
+        let allChecked = true;
 
-                                                        let allChecked = true;
-                                                        childCheckboxes.forEach((checkbox) => {
-                                                            console.log(checkbox.checked)
-                                                            if (!checkbox.checked) {
-                                                                allChecked = false;
-                                                            }
-                                                            else {
-                                                                allChecked = true;
-                                                            }
-                                                        });
-                                                    }
+        childCheckboxes.forEach((checkbox) => {
+            if (!checkbox.checked) {
+                allChecked = false;
+            }
+        });
+
+        masterCheckbox.checked = allChecked;
+    }
 
                                                     const childCheckboxes = document.querySelectorAll('.child-checkbox');
                                                     childCheckboxes.forEach((checkbox) => {
