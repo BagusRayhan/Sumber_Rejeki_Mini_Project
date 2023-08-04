@@ -104,7 +104,7 @@
                                                             confirmButtonText: 'Ya',
                                                             cancelButtonText: 'Batal'
                                                         }).then((result) => {
-                                                            if (result.isConfirmed) { // Corrected the syntax here, added "if" before the condition.
+                                                            if (result.isConfirmed) { 
                                                                 document.getElementById('setujuiPembayaran-' + id).submit();
                                                             }
                                                         });
@@ -143,7 +143,7 @@
                                                 </td>
                                             </tr>
                                             <div class="modal fade" id="detailTransaksi{{ $pro->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" style="width: 28em">
+                                                <div class="modal-dialog modal-dialog-centered" style="width: 23em">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5>Detail Transaksi</h5>
@@ -154,11 +154,11 @@
                                                                 @if ($pro->statusbayar == 'pembayaran awal')
                                                                     @if ($pro->metodepembayaran !== 'cash')
                                                                     <div class="wrapper d-flex justify-content-between">
-                                                                        <div class="mb-3" style="width: 12em">
+                                                                        <div class="mb-3"  style="width: 10em"">
                                                                             <label class="mb-1">Metode Pembayaran</label>
                                                                             <input type="text"class="form-control" value="{{ ($pro->metodepembayaran == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
                                                                         </div>
-                                                                        <div class="mb-3" style="width: 12em">
+                                                                        <div class="mb-3"  style="width: 10em"">
                                                                             <label class="mb-1">Biaya Awal</label>
                                                                             <input type="text"class="form-control" value="{{ isset($pro->biayatambahan) ? 'Rp.' . number_format((float)$pro->harga + (float)$pro->biayatambahan, 0, ',', '.') : 'Rp.' . number_format((float)$pro->harga/2, 0, ',', '.') }}" disabled>
                                                                         </div>
@@ -175,11 +175,11 @@
                                                                 @elseif ($pro->statusbayar == 'pembayaran akhir')
                                                                     @if ($pro->metodepembayaran2 !== 'cash')
                                                                     <div class="wrapper d-flex justify-content-between">
-                                                                        <div class="mb-3" style="width: 12em">
+                                                                        <div class="mb-3"  style="width: 10em"">
                                                                             <label class="mb-1">Metode Pembayaran</label>
                                                                             <input type="text"class="form-control" value="{{ ($pro->metodepembayaran2 == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran2 == 'bank') ? 'Bank' : '') }}" disabled>
                                                                         </div>
-                                                                        <div class="mb-3" style="width: 12em">
+                                                                        <div class="mb-3"  style="width: 10em"">
                                                                             <label class="mb-1">Biaya Akhir</label>
                                                                             <input type="text"class="form-control" value="Rp.{{ number_format($pro->harga/2, 0, ',', '.') }}" disabled>
                                                                         </div>
@@ -202,11 +202,11 @@
                                                                 @elseif ($pro->statusbayar = 'pembayaran revisi')
                                                                     @if ($pro->metodepembayaran3 !== 'cash')
                                                                     <div class="wrapper d-flex justify-content-between">
-                                                                        <div class="mb-3" style="width: 12em">
+                                                                        <div class="mb-3"  style="width: 10em"">
                                                                             <label class="mb-1">Metode Pembayaran</label>
                                                                             <input type="text"class="form-control" value="{{ ($pro->metodepembayaran3 == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran3 == 'bank') ? 'Bank' : '') }}" disabled>
                                                                         </div>
-                                                                        <div class="mb-3" style="width: 12em">
+                                                                        <div class="mb-3"  style="width: 10em"">
                                                                             <label class="mb-1">Biaya Revisi</label>
                                                                             <input type="text"class="form-control" value="Rp.{{number_format($pro->biayatambahan, 0, ',', '.') }}" disabled>
                                                                         </div>
@@ -235,7 +235,7 @@
                                                 </div>
                                             </div>
                                             <div class="modal fade" id="pembayaranAwal{{ $pro->id }}" tabindex="-1" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" style="width: 28em">
+                                                <div class="modal-dialog modal-dialog-centered" style="width: 23em">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5>Pembayaran Awal</h5>
@@ -244,11 +244,11 @@
                                                         <div class="modal-body">
                                                             @if ($pro->metodepembayaran !== 'cash')
                                                             <div class="wrapper d-flex justify-content-between">
-                                                                <div class="mb-3" style="width: 12em">
+                                                                <div class="mb-3"  style="width: 10em"">
                                                                     <label class="mb-1">Metode Pembayaran</label>
                                                                     <input type="text"class="form-control" value="{{ ($pro->metodepembayaran == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
                                                                 </div>
-                                                                <div class="mb-3" style="width: 12em">
+                                                                <div class="mb-3"  style="width: 10em"">
                                                                     <label class="mb-1">Biaya Awal</label>
                                                                     <input type="text"class="form-control" value="Rp.{{ number_format($pro->harga/2, 0, ',', '.') }}" disabled>
                                                                 </div>
@@ -273,7 +273,7 @@
                                                 </div>
                                             </div>
                                             <div class="modal fade" id="pembayaranAkhir{{ $pro->id }}" tabindex="-1" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" style="width: 28em">
+                                                <div class="modal-dialog modal-dialog-centered" style="width: 23em">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5>Pembayaran Akhir</h5>
@@ -282,11 +282,11 @@
                                                         <div class="modal-body">
                                                             @if ($pro->metodepembayaran2 !== 'cash')
                                                             <div class="wrapper d-flex justify-content-between">
-                                                                <div class="mb-3" style="width: 12em">
+                                                                <div class="mb-3"  style="width: 10em"">
                                                                     <label class="mb-1">Metode Pembayaran</label>
                                                                     <input type="text"class="form-control" value="{{ ($pro->metodepembayaran2 == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran2 == 'bank') ? 'Bank' : '') }}" disabled>
                                                                 </div>
-                                                                <div class="mb-3" style="width: 12em">
+                                                                <div class="mb-3"  style="width: 10em"">
                                                                     <label class="mb-1">Biaya Akhir</label>
                                                                     <input type="text"class="form-control" value="Rp.{{ number_format($pro->harga/2, 0, ',', '.') }}" disabled>
                                                                 </div>
