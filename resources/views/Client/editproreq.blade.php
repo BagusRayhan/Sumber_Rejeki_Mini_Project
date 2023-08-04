@@ -106,7 +106,7 @@
                             max-height: 400px; /* Set the desired max height */
                             overflow-y: scroll;
                         }
-                    
+
                         .scrollable-table thead th {
                             position: sticky;
                             top: 0;
@@ -158,7 +158,7 @@
                                                         <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6" placeholder="Masukkan Deskripsi">{{ $fitur->deskripsi }}</textarea>
                                                     </div>
                                                 </div>
-                                            <div class="modal-footer bg-dark">
+                                            <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
                                                 <button type="submit" class="btn btn-primary">Simpan</button>
                                             </div>
@@ -173,7 +173,7 @@
                                     </tr>
                                 @endif
                             </tbody>
-                        </table>                    
+                        </table>
                     </div>
                 </div>
             </div>
