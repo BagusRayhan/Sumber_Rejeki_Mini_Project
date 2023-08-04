@@ -274,8 +274,6 @@ public function deleteAll(Request $request)
     return response()->json(["succes"=>"data berhasil dihapus"]);
 }
 
-
-
     public function ambildata($id){
     $proreq = Proreq::findOrFail($id);
 

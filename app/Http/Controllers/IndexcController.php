@@ -137,11 +137,13 @@ class IndexcController extends Controller
     $request->validate([
         'napro' => 'required',
         'deadline' => 'required|date|after_or_equal:today',
+        'dokumen' => 'nullable|mimes:pdf,txt'
     ], [
         'napro.required' => 'Nama project tidak boleh kosong',
         'deadline.required' => 'Isi deadline terlebih dahulu',
         'deadline.date' => 'Format deadline tidak valid',
         'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',
+        'dokumen.mimes' => 'Dokumen pendukung harus berformat:pdf, txt'
     ]);
 
     $dtUpload = new Proreq();
@@ -198,10 +200,12 @@ class IndexcController extends Controller
 
         $request->validate([
             'deadline' => 'required|date|after_or_equal:today',
+            'dokumen' => 'nullable|mimes:pdf,txt'
         ], [
             'deadline.required' => 'Isi deadline terlebih dahulu',
             'deadline.date' => 'Format deadline tidak valid',
             'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',
+            'dokumen.mimes' => 'Dokumen pendukung harus berformat:pdf, txt'
         ]);
 
         $upProject = [];
@@ -237,7 +241,8 @@ class IndexcController extends Controller
     }
 
 
-    public function editproreq($id){
+    public function editproreq(Request $request,$id){
+
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $sosmed = Sosmed::all();
