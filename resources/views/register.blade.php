@@ -134,21 +134,20 @@
               <br>
 
               <button id="login-button" type="submit" class="btn mt-10 h-10 w-full bg-primary font-medium text-white" style="border-radius: 20px;">Register</button>
-
+              <div id="privacy-alert" class="alert alert-danger mt-2 mb-0 d-none">Mohon centang kotak kebijakan privasi terlebih dahulu.</div>
         <script>
             const rememberCheckbox = document.getElementById('remember-checkbox');
             const loginButton = document.getElementById('login-button');
-            const privacyWarning = document.getElementById('privacy-warning');
+            const privacyAlert = document.getElementById('privacy-alert');
 
             loginButton.addEventListener('click', function(event) {
               if (!rememberCheckbox.checked) {
                 event.preventDefault();
-                privacyWarning.classList.remove('hidden');
+                privacyAlert.classList.remove('d-none');
               } else {
-                privacyWarning.classList.add('hidden');
+                privacyAlert.classList.add('d-none');
               }
             });
-
     </script>
 
                     <div class="flex-col-c p-t-50">
