@@ -1011,6 +1011,23 @@ $('#bayar3').on('shown.bs.modal', function (event){
     form.attr('action', action + '/' + projectId);
 });
 
+        $('#updateForm2').on('submit', function(event) {
+        event.preventDefault(); 
+
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: 'Ingin membayar project ini sekarang?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Bayar Sekarang',
+            cancelButtonText: 'Batal',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+            });
+        });
+
 
     $('.btn-bayar').click(function() {
         var napro = $(this).data('napro');
@@ -1058,6 +1075,22 @@ $('#bayar3').on('shown.bs.modal', function (event){
         action = action.replace(/\/\d+$/, "");
         form.attr('action', action + '/' + projectId);
     });
+        $('#updateForm').on('submit', function(event) {
+        event.preventDefault(); 
+
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: 'Ingin membayar project ini sekarang?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Bayar Sekarang',
+            cancelButtonText: 'Batal',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+            });
+        });
 });
 
 </script>

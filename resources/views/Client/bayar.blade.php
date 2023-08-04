@@ -244,8 +244,23 @@ $(document).ready(function() {
         action = action.replace(/\/\d+$/, "");
         form.attr('action', action + '/' + projectId);
     });
-});
+        $('#updateForm').on('submit', function(event) {
+        event.preventDefault(); 
 
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: 'Ingin membayar project ini sekarang?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Bayar Sekarang',
+            cancelButtonText: 'Batal',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+            });
+        });
+});
 </script>
 
 <script>
@@ -484,8 +499,7 @@ $(document).ready(function() {
             {{ $data->links() }}
         </div>
     </div>
-
-                    </div>
+    </div>
       </div>
       @include('Client.Template.footer')
         </div>
