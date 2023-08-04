@@ -422,49 +422,62 @@ $(function(e){
                 window.print();
             });
             </script>
-
 <script>
-$(document).ready(function() {
-  $('#struk').on('show.bs.modal', function(event) {
-    var button = $(event.relatedTarget);
-    var nama = button.data('bs-nama');
-    var harga = button.data('bs-harga');
-    var biayatambahan = button.data('bs-biayatambahan');
-    var tanggal = button.data('bs-tanggal');
-    var tanggal2 = button.data('bs-tanggal2');
-    var metode = button.data('bs-metode');
-    var metode2 = button.data('bs-metode2');
+    $(document).ready(function() {
+      $('#struk').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget);
+        var nama = button.data('bs-nama');
+        var harga = button.data('bs-harga');
+        var biayatambahan = button.data('bs-biayatambahan');
+        var tanggal = button.data('bs-tanggal');
+        var tanggal2 = button.data('bs-tanggal2');
+        var metode = button.data('bs-metode');
+        var metode2 = button.data('bs-metode2');
 
-    var formattedTanggal = moment(tanggal).format('YYYY-MM-DD');
-    var formattedTanggal2 = moment(tanggal2).format('YYYY-MM-DD');
+        var formattedTanggal = moment(tanggal).format('YYYY-MM-DD');
+        var formattedTanggal2 = moment(tanggal2).format('YYYY-MM-DD');
 
-    var hargaSetengah = harga / 2;
-    var hargatotal = parseFloat(harga) + parseFloat(biayatambahan);
+        var hargaSetengah = harga / 2;
+        var hargatotal = parseFloat(harga) + parseFloat(biayatambahan);
 
-    var namaElem = $('#napro-awall');
-    var tanggalElem = $('#tgl-bayarr');
-    var tanggal2Elem = $('#tgl-bayarr2');
-    var metodeElem = $('#metodepembayarann');
-    var metode2Elem = $('#metodepembayarann2');
-    var hargaElem = $('#harga-proo');
-    var hargatotalElem = $('#harga-total');
-    var pembayaranAwalElem = $('.pembayaran-awal');
-    var pembayaranAkhirElem = $('.pembayaran-akhir');
-    var biayatambahanElem = $('#pembayaran-tambahan');
+        var namaElem = $('#napro-awall');
+        var tanggalElem = $('#tgl-bayarr');
+        var tanggal2Elem = $('#tgl-bayarr2');
+        var metodeElem = $('#metodepembayarann');
+        var metode2Elem = $('#metodepembayarann2');
+        var hargaElem = $('#harga-proo');
+        var hargatotalElem = $('#harga-total');
+        var pembayaranAwalElem = $('.pembayaran-awal');
+        var pembayaranAkhirElem = $('.pembayaran-akhir');
+        var biayatambahanElem = $('#pembayaran-tambahan');
 
-    namaElem.text(nama);
-    tanggalElem.text(formattedTanggal);
-    tanggal2Elem.text(formattedTanggal2);
-    metodeElem.text(metode);
-    metode2Elem.text(metode2);
-    hargaElem.text(harga);
-    pembayaranAwalElem.text(hargaSetengah);
-    pembayaranAkhirElem.text(hargaSetengah);
-    biayatambahanElem.text(biayatambahan);
-    hargatotalElem.text(hargatotal);
-  });
-});
-</script>
+        var formatter = new Intl.NumberFormat('id-ID', {
+          style: 'currency',
+          currency: 'IDR',
+          minimumFractionDigits: 0
+        });
+
+        namaElem.text(nama);
+        tanggalElem.text(formattedTanggal);
+        tanggal2Elem.text(formattedTanggal2);
+        metodeElem.text(metode);
+        metode2Elem.text(metode2);
+
+        hargaElem.text(formatter.format(harga));
+        pembayaranAwalElem.text(formatter.format(hargaSetengah));
+        pembayaranAkhirElem.text(formatter.format(hargaSetengah));
+
+        if (biayatambahan) {
+          biayatambahanElem.text(formatter.format(biayatambahan));
+        } else {
+          biayatambahanElem.text("Rp 0");
+        }
+
+        hargatotalElem.text(formatter.format(hargatotal));
+      });
+    });
+    </script>
+
     </div>
     </div>
 
@@ -532,50 +545,57 @@ $(document).ready(function() {
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+        <script>
+            $(document).ready(function() {
+              $('#struk2').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var nama = button.data('bs-nama');
+                var harga = button.data('bs-harga');
+                var biayatambahan = button.data('bs-biayatambahan');
+                var tanggal = button.data('bs-tanggal');
+                var tanggal2 = button.data('bs-tanggal2');
+                var metode = button.data('bs-metode');
+                var metode2 = button.data('bs-metode2');
 
-<script>
-$(document).ready(function() {
-    $('#struk2').on('show.bs.modal', function(event) {
-        var button = $(event.relatedTarget);
-        var nama = button.data('bs-nama');
-        var harga = button.data('bs-harga');
-        var biayatambahan = button.data('bs-biayatambahan');
-        var tanggal = button.data('bs-tanggal');
-        var tanggal2 = button.data('bs-tanggal2');
-        var metode = button.data('bs-metode');
-        var metode2 = button.data('bs-metode2');
+                var formattedTanggal = moment(tanggal).format('YYYY-MM-DD');
+                var formattedTanggal2 = moment(tanggal2).format('YYYY-MM-DD');
 
-        var formattedTanggal = moment(tanggal).format('YYYY-MM-DD');
-        var formattedTanggal2 = moment(tanggal2).format('YYYY-MM-DD');
+                var hargaSetengah = harga / 2;
+                var hargatotal = parseFloat(harga) + parseFloat(biayatambahan);
 
-        var hargaSetengah = harga / 2;
-        var hargatotal = parseFloat(harga) + parseFloat(biayatambahan);
+                var namaElem = $('#napro-awall1');
+                var tanggalElem = $('#tgl-bayarr1');
+                var tanggal2Elem = $('#tgl-bayarr21');
+                var metodeElem = $('#metodepembayarann1');
+                var metode2Elem = $('#metodepembayarann21');
+                var hargaElem = $('#harga-proo1');
+                var hargatotalElem = $('#harga-total1');
+                var pembayaranAwalElem = $('.pembayaran-awal1');
+                var pembayaranAkhirElem = $('.pembayaran-akhir1');
+                var biayatambahanElem = $('#pembayaran-tambahan1');
 
-        // Correct the IDs of the elements to match the ones in the modal
-        var namaElem = $('#napro-awall1');
-        var tanggalElem = $('#tgl-bayarr1');
-        var tanggal2Elem = $('#tgl-bayarr21');
-        var metodeElem = $('#metodepembayarann1');
-        var metode2Elem = $('#metodepembayarann21');
-        var hargaElem = $('#harga-proo1');
-        var hargatotalElem = $('#harga-total1');
-        var pembayaranAwalElem = $('.pembayaran-awal1');
-        var pembayaranAkhirElem = $('.pembayaran-akhir1');
-        var biayatambahanElem = $('#pembayaran-tambahan1');
+                var formatter = new Intl.NumberFormat('id-ID', {
+                  style: 'currency',
+                  currency: 'IDR',
+                  minimumFractionDigits: 0
+                });
 
-        namaElem.text(nama);
-        tanggalElem.text(formattedTanggal);
-        tanggal2Elem.text(formattedTanggal2);
-        metodeElem.text(metode);
-        metode2Elem.text(metode2);
-        hargaElem.text(harga);
-        pembayaranAwalElem.text(hargaSetengah);
-        pembayaranAkhirElem.text(hargaSetengah);
-        biayatambahanElem.text(biayatambahan);
-        hargatotalElem.text(hargatotal);
-    });
-});
-</script>
+                namaElem.text(nama);
+                tanggalElem.text(formattedTanggal);
+                tanggal2Elem.text(formattedTanggal2);
+                metodeElem.text(metode);
+                metode2Elem.text(metode2);
+
+                hargaElem.text(formatter.format(harga));
+                pembayaranAwalElem.text(formatter.format(hargaSetengah));
+                pembayaranAkhirElem.text(formatter.format(hargaSetengah));
+
+                biayatambahanElem.text(formatter.format(biayatambahan));
+                hargatotalElem.text(formatter.format(hargatotal));
+              });
+            });
+            </script>
+
     </div>
     </div>
 
