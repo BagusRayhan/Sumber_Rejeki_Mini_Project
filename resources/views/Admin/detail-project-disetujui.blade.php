@@ -64,7 +64,7 @@
                     </div>
                     <div class="form-group" style="width:480px">
                         <label for="exampleFormControlInput1" class="form-label">Total Harga</label>
-                        <input type="text" value="{{ isset($detail->biayatambahan) ? 'Rp ' . number_format((float)$detail->harga + (float)$detail->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$detail->harga, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
+                        <input type="text" value="{{ isset($detail->biayatambahan) ? 'Rp.' . number_format((float)$detail->harga + (float)$detail->biayatambahan, 0, ',', '.') : 'Rp.' . number_format((float)$detail->harga, 0, ',', '.') }}" class="form-control" placeholder="" disabled>
                     </div>
                 </div>
                 @if (count($fitur) !== 0)

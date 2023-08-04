@@ -251,7 +251,6 @@
 
     <script>
 
-
         var options = {
           chart: {
             height: 350,
@@ -259,7 +258,7 @@
             stacked: false
           },
           dataLabels: {
-            enabled: false
+            enabled: true
           },
           colors: ["#FF1654", "#247BA0"],
           series: [
