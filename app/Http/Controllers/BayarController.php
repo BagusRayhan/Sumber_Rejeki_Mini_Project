@@ -253,6 +253,7 @@ public function bayar2client(Request $request)
     $keyword = $request->input('keyword');
     $data = Proreq::all();
     $bayar2 = Proreq::whereIn('statusbayar', ['lunas','belum lunas'])
+                    ->orWhere('status', 'refund pending')
                     ->where('napro', 'like', '%'.$keyword.'%')
                     ->where('user_id', Auth::user()->id)
                     ->paginate(5);

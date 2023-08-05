@@ -18,9 +18,10 @@
                 </div>
             </div>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle {{ Request::routeIs('pending-bayar-admin', 'setuju-bayar-admin', 'bayar-digital-admin') ? 'active' : ''}}" data-bs-toggle="dropdown"><i class="fa fa-wallet me-2"></i>Pembayaran</a>
+                <a href="#" class="nav-link dropdown-toggle {{ Request::routeIs('pending-bayar-admin', 'setuju-bayar-admin', 'refund-admin', 'bayar-digital-admin') ? 'active' : ''}}" data-bs-toggle="dropdown"><i class="fa fa-wallet me-2"></i>Pembayaran</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="{{ route('pending-bayar-admin') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('pending-bayar-admin', 'setuju-bayar-admin') ? 'text-primary' : '' }}">Persetujuan</a>
+                    <a href="{{ route('refund-admin') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('refund-admin') ? 'text-primary' : '' }}">Pengajuan Refund</a>
                     <a href="{{ route('bayar-digital-admin') }}" class="dropdown-item py-2 px-5 fw-medium {{ Request::routeIs('bayar-digital-admin') ? 'text-primary' : '' }}">Pembayaran Digital</a>
                 </div>
             </div>

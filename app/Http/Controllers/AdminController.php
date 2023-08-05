@@ -121,6 +121,9 @@ class AdminController extends Controller
         } elseif ($notif->kategori == 'Revisi Project') {
             $notif->delete();
             return redirect()->route('projectselesai');
+        } elseif ($notif->kategori == 'Pengajuan Refund') {
+            $notif->delete();
+            return redirect()->route('refund-admin');
         }
     }
     public function readAllNotif() {

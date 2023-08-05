@@ -18,7 +18,7 @@ class AdminBayarController extends Controller
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $query = $request->input('query');
         $propend = proreq::where('statusbayar', 'pembayaran awal')->where('napro', 'LIKE', '%'.$query.'%')->orWhere('statusbayar','pembayaran akhir')->orWhere('statusbayar','pembayaran revisi')->paginate(5);
-         $propend->appends(['query' => $query]);
+        $propend->appends(['query' => $query]);
         return view('Admin.pembayaran-pending', compact('propend', 'admin', 'notification'));
     }
  
@@ -138,6 +138,43 @@ class AdminBayarController extends Controller
     return view('Admin.pembayaran-disetujui', compact('approved', 'admin', 'notification', 'query'));
 }
 
+    public function pengajuanRefund(Request $request) {
+        $admin = User::where('role', 'admin')->first();
+        $query = $request->input('query');
+        $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
+        $projectRefund = proreq::whereIn('status', ['refund','refund pending'])->where('napro', 'LIKE', '%'.$query.'%')->paginate(6);
+        $projectRefund->appends(['query' => $query]);
+        return view('Admin.pengajuan-refund', compact('projectRefund','notification','admin'));
+    }
+
+    public function payRefund(Request $request) {
+        $request->validate([
+            'buktiRefund' => 'required|mimes:png,jpg'
+        ],[
+            'buktiRefund.required' => 'Bukti tidak boleh kosong',
+            'buktiRefund.mimes' => 'Bukti tidak valid'
+        ]);
+        $pro = Proreq::findOrFail($request->project_id);
+        $file = $request->file('buktiRefund');
+        $fileName = $file->hashName();
+        $file->move(public_path('gambar/bukti/'), $fileName);
+        $pro->update([
+            'status' => 'refund pending',
+            'buktiRefund' => $fileName
+        ]);
+
+        $msg = 'Refund Masuk';
+        $notifDesk = $pro->napro;
+        Notification::create([
+            'role' => 'client',
+            'user_id' => $pro->user_id,
+            'notif' => $msg,
+            'deskripsi' => $notifDesk,
+            'kategori' => 'Refund Masuk'
+        ]);
+
+        return back()->with('success','Berhasil melakukan pembayaran');
+    }
 
     public function pembayaranDigital() {
         $admin = User::where('role', 'admin')->first();

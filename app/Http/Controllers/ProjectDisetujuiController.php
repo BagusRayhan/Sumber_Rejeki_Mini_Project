@@ -187,12 +187,40 @@ class ProjectDisetujuiController extends Controller
 
     public function disetujuiClient() {
         $client = User::find(Auth::user()->id);
+        $today = date('Y-m-d');
+        Proreq::whereDate('deadline', '<', $today)->update(['status2' => 'telat']);
+        Proreq::whereDate('deadline', '>', $today)->update(['status2' => 'proses']);
         $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $sosmed = Sosmed::all();;
         $project = Proreq::where('status', 'setuju')->where('user_id', Auth::user()->id)->paginate(5);
         return view('Client.disetujui', compact('project', 'sosmed','client','notification'));
     }
 
+    public function refundRequestClient(Request $request) {
+        $request->validate([
+            'nomorRefund' => 'required|numeric'
+        ],[
+            'nomorRefund.required' => 'Nomor tidak boleh kosong',
+            'nomorRefund.numeric' => 'Nomor tidak valid'
+        ]);
+        $pro = Proreq::findOrFail($request->project_id);
+        $pro->update([
+            'status' => 'refund',
+            'metodeRefund' => $request->metodeRefund,
+            'layananRefund' => $request->layananRefund,
+            'nomorRefund' => $request->nomorRefund
+        ]);
+        $msg = 'Pengajuan Refund';
+        $notifDesk = $pro->napro;
+        Notification::create([
+            'role' => 'admin',
+            'user_id' => $pro->user_id,
+            'notif' => $msg,
+            'deskripsi' => $notifDesk,
+            'kategori' => 'Pengajuan Refund'
+        ]);
+        return back()->with('success','Berhasil mengajukan Refund');
+    }
 
     public function detailDisetujuiClient($id) {
         $client = User::find(Auth::user()->id);

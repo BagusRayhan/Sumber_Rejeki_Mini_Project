@@ -114,6 +114,7 @@ Route::middleware(['web', 'auth'])->group(function(){
     Route::put('updateproreq', [IndexcController::class, 'update'])->name('updateproreq');
     Route::post('simpandesk', [IndexcController::class, 'simpand'])->name('simpandesk');
     Route::get('setujuclient', [ProjectDisetujuiController::class, 'disetujuiClient'])->name('setujuclient');
+    Route::put('refund-request-client', [ProjectDisetujuiController::class, 'refundRequestClient'])->name('refund-request-client');
     Route::get('selesaiclient', [SelesaiController::class, 'selesaiclient'])->name('selesaiclient');
     Route::get('revisiclient', [SelesaiController::class, 'revisiclient'])->name('revisiclient');
     Route::get('ditolakclient', [TolakController::class, 'ditolakclient'])->name('ditolakclient');
@@ -179,6 +180,8 @@ Route::middleware(['admin'])->group(function(){
     Route::get('detail-project-disetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujui'])->name('detail-disetujui-admin');
     Route::post('update-project-selesai', [ProjectDisetujuiController::class, 'doneProject'])->name('done-project');
     Route::get('pembayaran-digital', [AdminBayarController::class, 'pembayaranDigital'])->name('bayar-digital-admin');
+    Route::put('pay-refund', [AdminBayarController::class, 'payRefund'])->name('pay-refund');
+    Route::get('refund-admin', [AdminBayarController::class, 'pengajuanRefund'])->name('refund-admin');
     Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
     Route::post('/setujui-pembayaran/{id}', [AdminBayarController::class, 'setujuiPembayaran'])->name('setujui-pembayaran');
     Route::post('/tolak-pembayaran/{id}', [AdminBayarController::class, 'tolakPembayaran'])->name('tolak-pembayaran');

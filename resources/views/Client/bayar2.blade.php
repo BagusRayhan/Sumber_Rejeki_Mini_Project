@@ -152,6 +152,47 @@
                                     @endif
                                     </td>
                             </tr>
+                            @elseif ($client2->status == 'refund pending')
+                                <tr id="employee_ids{{ $client2->id }}">
+                                    <td>
+                                        <div class="form-check">
+                                            @if ($client2->status === 'refund pending')
+                                                <input class="form-check-input checkbox_ids" type="checkbox" name="ids" value="{{ $client2->id }}">
+                                            @endif
+                                        </div>
+                                    </td>
+                                    <td>{{ $client2->napro }}</td>
+                                    <td>Rp.{{ number_format($client2->harga, 0, ',', '.') }}</td>
+                                    <td class="text-center"><span class="badge bg-primary">refund</span></td>
+                                    <td class="text-center"><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailRefund{{ $client2->id }}"><i class="fa-solid fa-eye"></i> Detail</button></td>
+                                </tr>
+                                {{-- Modal Detail Refund --}}
+                                <div class="modal fade" id="detailRefund{{ $client2->id }}" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" style="width:26em">
+                                        <div class="modal-content">
+                                            <div class="modal-header border-0">
+                                                <h5 class="modal-title" id="modalTitleId">Detail Refund</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6 class="mb-3">Biaya Refund : {{ number_format($client2->harga/2, 0, ',', '.') }}</h6>
+                                                <div class="mb-3 d-flex justify-content-between">
+                                                    <div style="width:11em">
+                                                        <label for="metodeRefund" class="form-label">Metode Pembayaran</label>
+                                                        <input type="text" id="metodeRefund" class="form-control" value="{{ $client2->metodeRefund }}" disabled>
+                                                    </div>
+                                                    <div style="width:11em">
+                                                        <label for="layananRefund" class="form-label">Layanan</label>
+                                                        <input type="text" id="layananRefund" class="form-control" value="{{ $client2->layananRefund }}" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="wrapper">
+                                                    <label class="mb-1">Bukti Refund</label>
+                                                    <img src="{{ asset('gambar/bukti/'.$client2->buktiRefund) }}" alt="" class="w-100">
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
                             @endif
                             @endforeach
 
@@ -222,6 +263,13 @@ $(function(e){
             </div>
         </div>
     </div>
+    
+    
+    <!-- Optional: Place to the bottom of scripts -->
+    <script>
+        const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+    
+    </script>
 
 {{-- modal pembayaran akhir --}}
     <div class="modal fade" id="Modalbayar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">

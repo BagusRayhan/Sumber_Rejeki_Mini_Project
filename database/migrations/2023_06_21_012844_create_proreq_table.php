@@ -22,12 +22,16 @@ return new class extends Migration
             $table->string('dokumen')->nullable();
             $table->dateTime('estimasi')->nullable();
             $table->dateTime('deadline')->nullable();
-            $table->enum('status', ['draft','pending','tolak','setuju','pengajuan revisi','revisi','selesai'])->nullable();
+            $table->enum('status', ['draft','pending','tolak','setuju','refund','refund pending','pengajuan revisi','revisi','selesai'])->nullable();
             $table->enum('status2', ['Proses','telat'])->nullable();
             $table->integer('harga')->nullable();
             $table->longText('alasan')->nullable();
             $table->longText('listrevisi')->nullable();
             $table->enum('statusbayar', ['menunggu pembayaran','pembayaran awal','pembayaran akhir','pembayaran revisi','belum lunas','lunas'])->nullable();
+            $table->enum('metodeRefund', ['Bank','E-Wallet'])->nullable();
+            $table->enum('layananRefund', ['Bank BRI','Bank BCA','Bank Mandiri','DANA','OVO','GoPay','LinkAja'])->nullable();
+            $table->bigInteger('nomorRefund')->nullable();
+            $table->string('buktiRefund')->nullable();
             $table->string('biayatambahan')->nullable();
             $table->string('biayatambahan2')->nullable();
             $table->string('metodepembayaran')->nullable();
