@@ -100,7 +100,7 @@
                                                                         <div class="w-50">
                                                                             <p class="fw-bold mb-1">Harga Total Project</p>
                                                                             <h6 class="m-0">Rp. {{ number_format($pro->harga, 0, ',', '.') }}</h6>
-                                                                            <a href="" id="helpId" style="text-decoration:none; font-size: 14px">Bukti transaksi</a>
+                                                                            <button type="button" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}" class="btn btn-block p-0 text-primary" style="font-size: 14px">Detail transaksi</button>
                                                                         </div>
                                                                         <div class="w-50">
                                                                             <p class="fw-bold mb-1">Biaya Refund <span class="fw-normal">(Pembayaran awal)</span></p>
@@ -191,6 +191,50 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="modal fade" id="detailTransaksi{{ $pro->id }}" tabindex="-1" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" style="width: 26em">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="modalTitleId">Detail Transaksi</h5>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                @if ($pro->metodepembayaran !== 'cash')
+                                                            <div class="wrapper d-flex justify-content-between">
+                                                                <div class="mb-3" style="width: 10em">
+                                                                    <label class="mb-1">Metode Pembayaran</label>
+                                                                    <input type="text"class="form-control" value="{{ ($pro->metodepembayaran == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
+                                                                </div>
+                                                                <div class="mb-3" style="width: 10em">
+                                                                    <label class="mb-1">Biaya Awal</label>
+                                                                    <input type="text"class="form-control" value="Rp.{{ number_format($pro->harga/2, 0, ',', '.') }}" disabled>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="mb-1">Bukti Pembayaran</label>
+                                                                <img src="{{ asset('gambar/bukti/'.$pro->buktipembayaran) }}" class="w-100" alt="">
+                                                            </div>
+                                                            <div class="mb-1">
+                                                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>
+                                                            </div>
+                                                            @else
+                                                                <div class="mb-3">
+                                                                    <p>Pembayaran sebesar <b>Rp.{{ number_format($pro->harga/2, 0, ',', '.') }}</b> dilakukan secara <b>Cash</b> pada tanggal <b>{{ Carbon::parse($pro->tanggalpembayaran)->locale('id')->isoFormat('DD MMMM YYYY') }}</b></p>
+                                                                </div>
+                                                            @endif
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" data-bs-toggle="modal" data-bs-target="#refundPaymentModal{{ $pro->id }}" class="btn btn-primary rounded-pill w-100 mx-2 fw-bold">Kembali</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                <!-- Optional: Place to the bottom of scripts -->
+                                                <script>
+                                                    const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+                                                
+                                                </script>
                                                 @else
                                                 <a href="/detailsetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                                 @endif
