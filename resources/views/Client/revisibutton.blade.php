@@ -155,7 +155,7 @@
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Revisi Project</h1>
                             </div>
-                            <form action="{{ route('ajukan-revisi-client') }}" id="ajukanRevisiClient" method="post">
+                            <form action="{{ route('ajukan-revisi-client') }}" id="ajukanRevisiClient" onsubmit="sendRevisi(event)" method="post">
                                 <div class="modal-body">
                                     @csrf
                                     <input type="hidden" name="project_id" value="{{ $detail->id }}">
@@ -170,6 +170,25 @@
                     </div>
                 </div>
             </div>
+            <script>
+                function sendRevisi(event) {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: 'Ingin Mengajukan Revisi?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('ajukanRevisiClient').submit();
+                        }
+                    });
+                }
+            </script>
 
             <div class="container my-5">
                 <div class="panel" style="height: 90vh;">

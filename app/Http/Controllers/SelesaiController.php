@@ -114,6 +114,7 @@ class SelesaiController extends Controller
             $pro = Proreq::find($request->project_id);
             $pro->update([
                 'biayatambahan' => null,
+                'estimasi' => null,
                 'status' => 'pengajuan revisi',
                 'listrevisi' => $request->revisi
             ]);
