@@ -125,14 +125,7 @@
                                     }
 
 
-                                        window.addEventListener('load', function() {
-                                        loadCheckboxStatus('masterCheckbox');
-                                         updateMasterCheckbox();
-
-                                        @foreach ($fitur as $f)
-                                            loadCheckboxStatus('checkFitur{{ $f->id }}');
-                                        @endforeach
-                                    });
+               
 
                                     function updateStatus(featureId) {
                                         const checkbox = document.getElementById(`checkFitur${featureId}`);
@@ -189,15 +182,6 @@
                                                     id="masterCheckbox"
                                                     {{ (count($fitur) == $done) ? 'checked' : '' }}>
                                                 <script>
-                                                    window.addEventListener('load', function() {
-                                                        loadCheckboxStatus('masterCheckbox');
-                                                        updateMasterCheckbox();
-
-                                                        @foreach ($fitur as $f)
-                                                            loadCheckboxStatus('checkFitur{{ $f->id }}');
-                                                        @endforeach
-                                                    });
-
                                    
                                                 function updateMasterCheckbox() {
                                                     const masterCheckbox = document.getElementById('masterCheckbox');
