@@ -457,7 +457,7 @@
                                         confirmButtonText: 'OK'
                                     });
                                 } else {
-                                    document.getElementById('projectDone').submit();
+                                    document.getElementById('projectDoneBtn').submit();
                                 }
                             }
                         });
