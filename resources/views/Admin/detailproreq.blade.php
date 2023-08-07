@@ -196,7 +196,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary" onclick="setuju2(event)">Setuju</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="setuju2(event)">Setuju</button>
                     </div>
                 </form>
             </div>

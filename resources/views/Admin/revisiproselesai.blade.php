@@ -83,9 +83,10 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5>Revisi dari Client</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p class="w-100">{!! nl2br($data->listrevisi) !!}</p>
+                            <p class="w-100 text-break">{!! nl2br($data->listrevisi) !!}</p>
                         </div>
                         <div class="modal-footer">
                         </div>
@@ -218,8 +219,8 @@
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Fitur</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form action="{{ route('savefitur', $data->id) }}" method="POST">
+                <form action="{{ route('savefitur', $data->id) }}" method="POST">
+                    <div class="modal-body">
                         @csrf
                         <div class="wrapper d-flex justify-content-between">
                             <div class="mb-3">
@@ -234,13 +235,13 @@
                         <div class="mb-3">
                             <label for="">Deskripsi</label>
                             <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6" placeholder="Masukkan Deskripsi"></textarea>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
