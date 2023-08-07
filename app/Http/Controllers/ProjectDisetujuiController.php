@@ -123,21 +123,33 @@ class ProjectDisetujuiController extends Controller
         ]);
     }
 
-    public function upEstimasi(Request $request) {
-        $request->validate([
-            'estimasi' => 'required|date|after_or_equal:today',
-        ], [
-            'estimasi.required' => 'Isi estimasi terlebih dahulu',
-            'estimasi.date' => 'Format estimasi tidak valid',
-            'estimasi.after_or_equal' => 'Estimasi tidak boleh hari kemarin',
-        ]);
+public function upEstimasi(Request $request) {
+    $request->validate([
+        'estimasi' => [
+            'required',
+            'date',
+            'after_or_equal:today',
+            function ($attribute, $value, $fail) use ($request) {
+                $deadline = Proreq::where('id', $request->project_id)->value('deadline');
 
-        $pro = Proreq::find($request->project_id);
-        $pro->update([
-            'estimasi' => $request->estimasi
-        ]);
-        return back();
-    }
+                if ($value > $deadline) {
+                    $fail('Estimasi tidak boleh melebihi tanggal deadline');
+                }
+            },
+        ],
+    ], [
+        'estimasi.required' => 'Isi estimasi terlebih dahulu',
+        'estimasi.date' => 'Format estimasi tidak valid',
+        'estimasi.after_or_equal' => 'Estimasi tidak boleh hari kemarin',
+    ]);
+
+    $pro = Proreq::find($request->project_id);
+    $pro->update([
+        'estimasi' => $request->estimasi
+    ]);
+    return back();
+}
+
 
     public function doneProject(Request $request) {
         $pro = Proreq::find($request->project_id);
