@@ -165,7 +165,7 @@
                                                                     })
                                                                 </script>
                                                                 <div class="modal-footer border-0">
-                                                                    <button type="submit" id="sendRefundBtn" class="btn btn-primary w-100 mx-2 rounded-pill fw-bold">AJUKAN REFUND</button>
+                                                                    <button type="submit" id="sendRefundBtn" data-bs-dismiss="modal" class="btn btn-primary w-100 mx-2 rounded-pill fw-bold">AJUKAN REFUND</button>
                                                                     <button type="button" class="btn btn-block w-100 m-0 text-primary" data-bs-toggle="modal" data-bs-target="#lateProject{{ $pro->id }}">Kembali</button>
                                                                 </div>
                                                             </form>
@@ -200,11 +200,11 @@
                                                             <div class="modal-body">
                                                                 @if ($pro->metodepembayaran !== 'cash')
                                                             <div class="wrapper d-flex justify-content-between">
-                                                                <div class="mb-3" style="width: 10em">
+                                                                <div class="mb-3" style="width: 11em">
                                                                     <label class="mb-1">Metode Pembayaran</label>
                                                                     <input type="text"class="form-control" value="{{ ($pro->metodepembayaran == 'ewallet') ? 'E-Wallet' : (($pro->metodepembayaran == 'bank') ? 'Bank' : '') }}" disabled>
                                                                 </div>
-                                                                <div class="mb-3" style="width: 10em">
+                                                                <div class="mb-3" style="width: 11em">
                                                                     <label class="mb-1">Biaya Awal</label>
                                                                     <input type="text"class="form-control" value="Rp.{{ number_format($pro->harga/2, 0, ',', '.') }}" disabled>
                                                                 </div>
@@ -212,9 +212,6 @@
                                                             <div class="mb-3">
                                                                 <label class="mb-1">Bukti Pembayaran</label>
                                                                 <img src="{{ asset('gambar/bukti/'.$pro->buktipembayaran) }}" class="w-100" alt="">
-                                                            </div>
-                                                            <div class="mb-1">
-                                                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#detailTransaksi{{ $pro->id }}">Kembali</button>
                                                             </div>
                                                             @else
                                                                 <div class="mb-3">
@@ -235,6 +232,7 @@
                                                     const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
                                                 
                                                 </script>
+                                                @elseif ($pro->status == '')
                                                 @else
                                                 <a href="/detailsetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                                 @endif

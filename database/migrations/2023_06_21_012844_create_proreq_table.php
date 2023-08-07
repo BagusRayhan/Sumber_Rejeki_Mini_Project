@@ -30,7 +30,7 @@ return new class extends Migration
             $table->enum('statusbayar', ['menunggu pembayaran','pembayaran awal','pembayaran akhir','pembayaran revisi','belum lunas','lunas'])->nullable();
             $table->enum('metodeRefund', ['Bank','E-Wallet'])->nullable();
             $table->enum('layananRefund', ['Bank BRI','Bank BCA','Bank Mandiri','DANA','OVO','GoPay','LinkAja'])->nullable();
-            $table->bigInteger('nomorRefund')->nullable();
+            $table->string('nomorRefund')->nullable();
             $table->string('buktiRefund')->nullable();
             $table->string('biayatambahan')->nullable();
             $table->string('biayatambahan2')->nullable();
