@@ -125,7 +125,14 @@
                                     }
 
 
-               
+                                        window.addEventListener('load', function() {
+                                        loadCheckboxStatus('masterCheckbox');
+                                         updateMasterCheckbox();
+
+                                        @foreach ($fitur as $f)
+                                            loadCheckboxStatus('checkFitur{{ $f->id }}');
+                                        @endforeach
+                                    });
 
                                     function updateStatus(featureId) {
                                         const checkbox = document.getElementById(`checkFitur${featureId}`);
@@ -177,11 +184,20 @@
                                         <th scope="col" style="width:5em">
                                         <div class="form-check">
                                                 <input class="form-check-input master-checkbox text-center"
-                                                    onchange="doneAllFeatures({{ $detail->id }}); saveCheckboxStatus('masterCheckbox')"
+                                                    onchange=" saveCheckboxStatus('masterCheckbox')"
                                                     type="checkbox" value=""
                                                     id="masterCheckbox"
                                                     {{ (count($fitur) == $done) ? 'checked' : '' }}>
                                                 <script>
+                                                    window.addEventListener('load', function() {
+                                                        loadCheckboxStatus('masterCheckbox');
+                                                        updateMasterCheckbox();
+
+                                                        @foreach ($fitur as $f)
+                                                            loadCheckboxStatus('checkFitur{{ $f->id }}');
+                                                        @endforeach
+                                                    });
+
                                    
                                                 function updateMasterCheckbox() {
                                                     const masterCheckbox = document.getElementById('masterCheckbox');
