@@ -184,7 +184,7 @@
                                         <th scope="col" style="width:5em">
                                         <div class="form-check">
                                                 <input class="form-check-input master-checkbox text-center"
-                                                    onchange=" saveCheckboxStatus('masterCheckbox')"
+                                                    onchange="doneAllFeatures({{ $detail->id }}); saveCheckboxStatus('masterCheckbox')"
                                                     type="checkbox" value=""
                                                     id="masterCheckbox"
                                                     {{ (count($fitur) == $done) ? 'checked' : '' }}>
