@@ -394,7 +394,7 @@
                     <form action="{{ route('done-project') }}" id="projectDone" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBtn" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                        <button type="submit" class="btn btn-primary btn-sm"  onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                 @endif
 
@@ -402,7 +402,7 @@
                     <form action="{{ route('done-project') }}" id="projectDone" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBtn" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                        <button type="submit" class="btn btn-primary btn-sm"  onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                 @endif
 
