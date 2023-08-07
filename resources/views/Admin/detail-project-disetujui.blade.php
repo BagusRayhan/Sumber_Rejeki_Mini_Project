@@ -394,7 +394,7 @@
                     <form action="{{ route('done-project') }}" id="projectDone" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBtn" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                        <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBt" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                 @endif
 
@@ -402,18 +402,36 @@
                     <form action="{{ route('done-project') }}" id="projectDone" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBtn" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                        <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBt" onclick="submitForm(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                 @endif
 
                 @if ($detail->progress == 100 && $detail->dokumen !== null)
-                    <form action="{{ route('done-project') }}" id="projectDone" method="post" style="margin-right: -10%;">
+                    <form action="{{ route('done-project') }}" id="alertdokumen" method="post" style="margin-right: -10%;">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $detail->id }}">
-                        <button type="submit" class="btn btn-primary btn-sm" id="projectDoneBtn" onclick="submitForm2(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
+                        <button type="submit" class="btn btn-primary btn-sm"  onclick="alertD(event)"><i class="fa-solid fa-circle-check"></i> Selesai</button>
                     </form>
                 @endif
-
+                <script>
+                function alertD(event) {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: 'Ingin menyelesaikan proyek?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('alertdokumen').submit();
+                        }
+                    });
+                }
+            </script>
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
                 <script>
                     function submitForm(event) {
@@ -445,29 +463,7 @@
                         });
                     }
                 </script>
-                 <script>
-                    function submitForm2(event) {
-                        event.preventDefault();
-                        var totalFeatures = parseInt(localStorage.getItem('totalFeatures'));
-                        var completedFeatures = parseInt(localStorage.getItem('completedFeatures'));
 
-                        if (totalFeatures !== completedFeatures)
-                        {
-                            Swal.fire({
-                                title: 'Apakah Anda yakin',
-                                text: 'Ingin menyelesaikan proyek?',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonText: 'Ya, selesai!',
-                                cancelButtonText: 'Tidak, batal'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    document.getElementById('projectDone').submit();
-                                }
-                            });
-                        }
-                    }
-                </script>
 
 
                     {{-- <script>
