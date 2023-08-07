@@ -103,7 +103,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer border-0">
-                                                                <button type="submit" id="sendRefundBtn" class="btn btn-primary w-100 mx-2 rounded-pill fw-bold">Bayar Sekarang</button>
+                                                                <button type="submit" id="sendRefundBtn" data-bs-dismiss="modal" class="btn btn-primary w-100 mx-2 rounded-pill fw-bold">Bayar Sekarang</button>
                                                                 <button type="button" class="btn btn-block w-100 m-0 text-primary" data-bs-toggle="modal" data-bs-target="#lateProject{{ $pro->id }}">Kembali</button>
                                                             </div>
                                                           </form>

@@ -78,7 +78,7 @@ class IndexcController extends Controller
         } elseif ($notif->kategori == 'Pembayaran Awal Disetujui') {
             $notif->delete();
             return redirect()->route('setujuclient');
-        } elseif ($notif->kategori == 'Project Selesai' || $notif->kategori == 'Pembayaran Akhir Ditolak' || $notif->kategori == 'Pembayaran Revisi Disetujui') {
+        } elseif ($notif->kategori == 'Project Selesai' || $notif->kategori == 'Pembayaran Akhir Ditolak' || $notif->kategori == 'Pembayaran Revisi Disetujui' || $notif->kategori = 'Refund Masuk') {
             $notif->delete();
             return redirect()->route('bayar2client');
         } elseif ($notif->kategori == 'Pembayaran Akhir Disetujui') {
