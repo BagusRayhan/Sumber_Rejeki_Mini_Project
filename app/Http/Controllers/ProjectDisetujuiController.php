@@ -188,6 +188,9 @@ public function upEstimasi(Request $request) {
 
     public function projectChat(Request $request) {
         $id = $request->input('project_id');
+        if ($request->chat == '') {
+            return back();
+        }
         Chat::create([
             'user_id' => Auth()->user()->id,
             'project_id' => $request->project_id,
@@ -236,15 +239,26 @@ public function upEstimasi(Request $request) {
 
     public function cancelRevisionClient(Request $request) {
         $pro = Proreq::findOrFail($request->project_id);
-        Fitur::where('project_id', $pro->id)->where('status', 'revisi')->delete();
+        Fitur::where('project_id', $pro->id)->where('status2', 'revisi')->delete();
+        Fitur::where('project_id', $pro->id)->where('status', 'revisi')->update([
+            'status' => 'selesai'
+        ]);
         $pro->update([
             'status' => 'selesai',
             'status2' => null,
             'biayatambahan' => null,
             'progress' => 100,
         ]);
-
-        return back()->with('success', 'Berhasil membatalkan project');
+        $msg = 'Pembatalan Revisi';
+        $notifDesk = $pro->napro;
+        Notification::create([
+            'role' => 'admin',
+            'user_id' => $pro->user_id,
+            'notif' => $msg,
+            'deskripsi' => $notifDesk,
+            'kategori' => 'Pembatalan Revisi'
+        ]);
+        return back()->with('success', 'Berhasil membatalkan revisi');
     }
 
     public function detailDisetujuiClient($id) {
@@ -277,6 +291,9 @@ public function upEstimasi(Request $request) {
 
     public function projectChatClient(Request $request) {
         $projectid = $request->input('project_id');
+        if ($request->chat == '') {
+            return back();
+        }
         Chat::create([
             'user_id' => Auth()->user()->id,
             'project_id' => $projectid,
