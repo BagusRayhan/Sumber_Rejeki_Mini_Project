@@ -55,14 +55,15 @@ public function signupsave(Request $request)
         'name' => 'required|regex:/^[a-zA-Z]+$/',
         'email' => 'required|email|unique:users',
         'password' => 'required_with:pass|same:pass|min:6',
-        'no_tlp' => 'nullable|min:12'
+        'no_tlp' => 'nullable|min:11|max:14'
     ], [
         'password.min' => 'Password minimal 6 karakter!',
         'password.same' => 'Konfirmasi password tidak sesuai!',
         'email.unique' => 'Email sudah terdaftar!',
         'name.required' => 'Nama tidak boleh kosong!',
         'email.required' => 'Email tidak boleh kosong!',
-        'no_tlp.min' => 'no telephone minimal 12'
+        'no_tlp.min' => 'no telephone tidak boleh kurang dari 11',
+        'no_tlp.max' => 'no telephone tidak boleh lebih dari 14'
     ]);
 
     $data = $request->all();
