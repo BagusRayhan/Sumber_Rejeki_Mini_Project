@@ -36,6 +36,12 @@ class PengaturanController extends Controller
     }
 
     public function updatekebijakan(Request $request) {
+        $this->validate($request,[
+            'content' => 'required'
+        ],[
+            'content.required' => 'Isi kebijakan privasi terlebih dahulu'
+        ]);
+
         $data1 = Kebijakan::first(); 
         if ($data1) {
             $data1->kebijakan = $request->input('content');
@@ -49,8 +55,13 @@ class PengaturanController extends Controller
 
     public function updatesosmed(Request $request){
         $this->validate($request,[
-            'wa' => 'min:11|max:16'
+            'ig' => 'required',
+            'email' => 'required',
+            'wa' => 'required|min:11|max:16'
         ],[
+            'ig.required' => 'Isi akun Instagram terlebih dahulu',
+            'email.required' => 'Isi alamat email terlebih dahulu',
+            'wa.required' => 'Isi nomor whatsapp terlebih dahulu',
             'wa.min' => 'Minimal nomor 11 angka',
             'wa.max' => 'Maksimal Harga 16 angka'
         ]);
@@ -65,6 +76,12 @@ class PengaturanController extends Controller
     }
 
     public function updateAboutUs(Request $request) {
+        $this->validate($request,[
+            'about' => 'required'
+        ],[
+            'about.required' => 'Isi about us terlebih dahulu'
+        ]);
+
         $about = aboutproreq::find(1);
         $about->update([
             'about' => $request->about
@@ -73,6 +90,14 @@ class PengaturanController extends Controller
     }
 
     public function addFAQ(Request $request) {
+        $this->validate($request,[
+            'question' => 'required',
+            'answer' => 'required'
+        ],[
+            'question.required' => 'Isi pertanyaan terlebih dahulu',
+            'answer.required' => 'Isi jawaban terlebih dahulu'
+        ]);
+        
         $qmark = substr($request->question, -1);
         if ($qmark !== '?') {
             FAQ::create([
@@ -89,6 +114,14 @@ class PengaturanController extends Controller
     }
 
     public function editFAQ(Request $request) {
+        $this->validate($request,[
+            'question' => 'required',
+            'answer' => 'required'
+        ],[
+            'question.required' => 'Isi pertanyaan terlebih dahulu',
+            'answer.required' => 'Isi jawaban terlebih dahulu'
+        ]);
+
         $faq = FAQ::find($request->faq_id);
         $qmark = substr($request->question, -1);
         if ($qmark !== '?') {
