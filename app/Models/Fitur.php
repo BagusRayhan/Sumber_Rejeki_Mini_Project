@@ -10,7 +10,7 @@ class Fitur extends Model
     protected $table = "fitur";
     protected $primarykey = "id";
     protected $fillable = [
-        'id', 'project_id','namafitur','hargafitur','biayatambahan','deskripsi','status'
+        'id', 'project_id','namafitur','hargafitur','biayatambahan','deskripsi','status','status2'
     ];
 
 public function proreq()

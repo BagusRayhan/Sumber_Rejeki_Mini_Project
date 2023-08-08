@@ -303,11 +303,11 @@ public function updateproreqa($id)
         ]);
         $data = Proreq::findOrFail($id);
         $project_id = $data->id;
-
         Fitur::create([
             'project_id' => $project_id,
             'namafitur' => $request->namafitur,
             'biayatambahan' => $request->biayatambahan,
+            'status2' => 'revisi',
             'deskripsi' => $request->deskripsi
         ]);
 

@@ -163,7 +163,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" data-bs-dismiss="modal" class="btn btn-danger">Batal</button>
-                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Kirim</button>
                                 </div>
                             </form>
                         </div>

@@ -234,6 +234,19 @@ public function upEstimasi(Request $request) {
         return back()->with('success','Berhasil mengajukan Refund');
     }
 
+    public function cancelRevisionClient(Request $request) {
+        $pro = Proreq::findOrFail($request->project_id);
+        Fitur::where('project_id', $pro->id)->where('status', 'revisi')->delete();
+        $pro->update([
+            'status' => 'selesai',
+            'status2' => null,
+            'biayatambahan' => null,
+            'progress' => 100,
+        ]);
+
+        return back()->with('success', 'Berhasil membatalkan project');
+    }
+
     public function detailDisetujuiClient($id) {
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();

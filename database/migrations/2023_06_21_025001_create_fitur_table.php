@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('biayatambahan')->nullable();
             $table->text('deskripsi')->nullable();
             $table->enum('status',['belum selesai','selesai','revisi']);
+            $table->enum('status2', ['revisi'])->nullable();
             $table->foreign('project_id')->references('id')->on('proreq')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

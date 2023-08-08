@@ -115,6 +115,7 @@ Route::middleware(['web', 'auth'])->group(function(){
     Route::post('simpandesk', [IndexcController::class, 'simpand'])->name('simpandesk');
     Route::get('setujuclient', [ProjectDisetujuiController::class, 'disetujuiClient'])->name('setujuclient');
     Route::put('refund-request-client', [ProjectDisetujuiController::class, 'refundRequestClient'])->name('refund-request-client');
+    Route::put('cancel-revision', [ProjectDisetujuiController::class, 'cancelRevisionClient'])->name('cancel-revision');
     Route::get('selesaiclient', [SelesaiController::class, 'selesaiclient'])->name('selesaiclient');
     Route::get('revisiclient', [SelesaiController::class, 'revisiclient'])->name('revisiclient');
     Route::get('ditolakclient', [TolakController::class, 'ditolakclient'])->name('ditolakclient');

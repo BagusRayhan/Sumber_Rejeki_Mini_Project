@@ -56,7 +56,7 @@
                                             <td>{{ isset($pro->biayatambahan) ? 'Rp ' . number_format((float)$pro->harga + (float)$pro->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$pro->harga, 0, ',', '.') }}</td>
                                             <td><span class="badge {{ $pro->status2 == 'telat' ? 'text-bg-danger' : 'bg-warning' }}">{{ $pro->status2 == 'telat' ? $pro->status2 : 'proses' }}</span></td>
                                             <td class="d-flex justify-content-evenly">
-                                                @if ($pro->status2 == 'telat')
+                                                @if ($pro->status2 == 'telat' && $pro->biayatambahan == null)
                                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#lateProject{{ $pro->id }}"><i class="fa-solid fa-eye"></i></button>
                                                 {{-- late project modal --}}
                                                 <div class="modal fade" id="lateProject{{ $pro->id }}" tabindex="-1" data-bs-keyboard="false" aria-labelledby="lateProjectModal" aria-hidden="true">
@@ -232,7 +232,56 @@
                                                     const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
                                                 
                                                 </script>
-                                                @elseif ($pro->status == '')
+                                                @elseif ($pro->status2 == 'telat' && $pro->biayatambahan !== null)
+                                                <form action="{{ route('cancel-revision') }}" method="post" id="cancelProjectRevision" onsubmit="cancelProject(event, {{ $pro->id }})">
+                                                    @csrf
+                                                    @method('put')
+                                                    <input type="hidden" name="project_id" value="{{ $pro->id }}">
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-xmark"></i></button>
+                                                </form>
+                                                <script>
+                                                    function cancelProject(event, id) {
+                                                        event.preventDefault();
+                                                        Swal.fire({
+                                                            title: 'Apakah Anda yakin?',
+                                                            text: 'Ingin membatalkan revisi?',
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'Ya',
+                                                            cancelButtonText: 'Tidak'
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.getElementById('cancelProjectRevision').submit();
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
+                                                {{-- <div class="modal fade" id="extendsProject" tabindex="-1" aria-labelledby="modalTitleId" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Body
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary">Save</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> --}}
+                                                
+                                                
+                                                <!-- Optional: Place to the bottom of scripts -->
+                                                <script>
+                                                    const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+                                                
+                                                </script>
                                                 @else
                                                 <a href="/detailsetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                                 @endif
