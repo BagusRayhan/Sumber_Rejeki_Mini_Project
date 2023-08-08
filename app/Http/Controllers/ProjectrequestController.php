@@ -228,6 +228,9 @@ public function updateproreqa($id)
         $admin = User::where('role', 'admin')->first();
         $fitur = Fitur::where('project_id', $id)->get();
         $data = Proreq::find($id);
+        if ($data == null) {
+            return back();
+        }
         if ($data->status !== 'pengajuan revisi' ) {
             return back();
         }

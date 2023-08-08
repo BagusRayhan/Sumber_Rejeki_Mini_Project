@@ -87,6 +87,9 @@ class SelesaiController extends Controller
             $sosmed = Sosmed::all();
             $fitur = Fitur::where('project_id', $id)->get();
             $chats = Chat::where('project_id', $id)->get();
+            if ($detail == null) {
+                return back();
+            }
             if (Auth::user()->id !== $detail->user_id || $detail->status !== 'selesai' && $detail->status !== 'pengajuan revisi' ) {
                 return back();
             }

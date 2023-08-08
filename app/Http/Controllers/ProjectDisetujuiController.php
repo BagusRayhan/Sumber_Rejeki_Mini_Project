@@ -49,6 +49,9 @@ class ProjectDisetujuiController extends Controller
         $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
         $chats = Chat::where('project_id', $id)->get();
         $progress = 0;
+        if ($detail == null) {
+            return back();
+        }
         if ($detail->status !== 'setuju') {
             return back();
         }
@@ -270,6 +273,9 @@ public function upEstimasi(Request $request) {
         $progress = 0;
         $chats = Chat::where('project_id', $id)->get();
         $sosmed = Sosmed::all();
+        if ($detail == null) {
+            return back();
+        }
         if (Auth::user()->id !== $detail->user_id || $detail->status !== 'setuju') {
             return back();
         }
