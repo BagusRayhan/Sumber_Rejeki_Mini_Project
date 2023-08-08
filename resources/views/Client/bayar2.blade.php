@@ -81,6 +81,70 @@
         </div>
         <div>
     <a href="#" id="deleteAllSelectedRecord" class="btn btn-danger btn-sm">Delete All</a>
+   <script>
+$(function(e){
+    $('#select_all_ids').click(function(){
+        $('.checkbox_ids').prop('checked', $(this).prop('checked'));
+    });
+
+    $('.checkbox_ids').click(function() {
+        if ($('.checkbox_ids:checked').length === $('.checkbox_ids').length) {
+            $('#select_all_ids').prop('checked', true);
+        } else {
+            $('#select_all_ids').prop('checked', false);
+        }
+    });
+
+    $('#deleteAllSelectedRecord').click(function(e){
+        e.preventDefault();
+        var all_ids = [];
+        $('input:checkbox[name=ids]:checked').each(function(){
+            all_ids.push($(this).val());
+        });
+
+        if (all_ids.length > 0) {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dipilih akan dihapus!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('delete-all') }}",
+                        type: "DELETE",
+                        data: {
+                            ids: all_ids,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response){
+                            $.each(all_ids, function(key, val){
+                                $('#employee_ids' + val).remove();
+                            });
+                            Swal.fire(
+                                'Berhasil!',
+                                'Data berhasil dihapus.',
+                                'success'
+                            );
+                        }
+                    });
+                }
+            });
+        } else {
+            Swal.fire(
+                'Peringatan!',
+                'Pilih setidaknya satu data untuk dihapus.',
+                'warning'
+            );
+        }
+    });
+});
+</script>
+
         </div>
 
 
@@ -203,62 +267,7 @@
                             @endif
                         </tbody>
                     </table>
-<script>
-$(function(e){
-    $('#select_all_ids').click(function(){
-        $('.checkbox_ids').prop('checked', $(this).prop('checked'));
-    });
 
-    $('#deleteAllSelectedRecord').click(function(e){
-        e.preventDefault();
-        var all_ids = [];
-        $('input:checkbox[name=ids]:checked').each(function(){
-            all_ids.push($(this).val());
-        });
-
-        if (all_ids.length > 0) {
-            Swal.fire({
-                title: 'Apakah Anda yakin?',
-                text: "Data yang dipilih akan dihapus!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Ya, hapus!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: "{{ route('delete-all') }}",
-                        type: "DELETE",
-                        data: {
-                            ids: all_ids,
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(response){
-                            $.each(all_ids, function(key, val){
-                                $('#employee_ids' + val).remove();
-                            });
-                            Swal.fire(
-                                'Berhasil!',
-                                'Data berhasil dihapus.',
-                                'success'
-                            );
-                        }
-                    });
-                }
-            });
-        } else {
-            Swal.fire(
-                'Peringatan!',
-                'Pilih setidaknya satu data untuk dihapus.',
-                'warning'
-            );
-        }
-    });
-});
-
-</script>
                 </div>
             </div>
         </div>
