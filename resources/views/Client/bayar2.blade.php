@@ -871,7 +871,7 @@ $(function(e){
                 imageContainer.innerHTML = '';
 
                 if (selectedLayanan === 'dana') {
-                    const imageFilename = 'dana.png';
+                    const imageFilename = '{{ $dana->qrcode }}';
 
                     const imageUrl = 'gambar/qr/' + imageFilename;
 
@@ -1273,7 +1273,7 @@ $('#bayar3').on('shown.bs.modal', function (event){
             imageContainer.innerHTML = '';
 
             if (selectedLayanan === 'dana') {
-                const imageFilename = 'dana.png';
+                const imageFilename =`{{ $dana->qrcode }}`;
 
                 const imageUrl = 'gambar/qr/' + imageFilename;
 
@@ -1286,7 +1286,7 @@ $('#bayar3').on('shown.bs.modal', function (event){
             }
 
             if (selectedLayanan === 'ovo') {
-                const imageFilename = 'ovo.png';
+                const imageFilename = `{{ $ovo->qrcode }}`;
 
                 const imageUrl = 'gambar/qr/' + imageFilename;
 
@@ -1299,7 +1299,7 @@ $('#bayar3').on('shown.bs.modal', function (event){
             }
 
             if (selectedLayanan === 'gopay') {
-                const imageFilename = 'gopay.png';
+                const imageFilename = `{{ $gopay->qrcode }}`;
 
                 const imageUrl = 'gambar/qr/' + imageFilename;
 
@@ -1312,7 +1312,7 @@ $('#bayar3').on('shown.bs.modal', function (event){
             }
 
             if (selectedLayanan === 'linkaja') {
-                const imageFilename = 'linkaja.png';
+                const imageFilename = `{{ $linkaja->qrcode }}`;
 
                 const imageUrl = 'gambar/qr/' + imageFilename;
 

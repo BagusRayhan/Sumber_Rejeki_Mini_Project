@@ -28,7 +28,11 @@ class BayarController extends Controller
              $data->appends(['keyword' => $keyword]);
             $bank = Bank::all();
             $ewallet = EWallet::all();
-            return view('Client.bayar', compact('sosmed','client','data','bank','ewallet','notification'));
+            $dana = EWallet::findOrFail(1);
+            $ovo = EWallet::findOrFail(2);
+            $gopay = EWallet::findOrFail(3);
+            $linkaja = EWallet::findOrFail(4);
+            return view('Client.bayar', compact('sosmed','client','data','bank','ewallet','notification','dana','ovo','gopay','linkaja'));
         }
 
         public function ambilrek(Request $request){
@@ -252,13 +256,17 @@ public function bayar2client(Request $request)
     $sosmed = Sosmed::all();
     $keyword = $request->input('keyword');
     $data = Proreq::all();
+    $dana = EWallet::find(1);
+    $ovo = EWallet::find(2);
+    $gopay = EWallet::find(3);
+    $linkaja = EWallet::find(4);
     $bayar2 = Proreq::whereIn('statusbayar', ['lunas','belum lunas'])
                     ->orWhere('status', 'refund pending')
                     ->where('napro', 'like', '%'.$keyword.'%')
                     ->where('user_id', Auth::user()->id)
                     ->paginate(5);
      $bayar2->appends(['keyword' => $keyword]);
-    return view('Client.bayar2', compact('sosmed', 'bayar2', 'client','notification','data'));
+    return view('Client.bayar2', compact('sosmed', 'bayar2', 'client','notification','data','dana','ovo','gopay','linkaja'));
 }
 
 public function deleteproj($id)
