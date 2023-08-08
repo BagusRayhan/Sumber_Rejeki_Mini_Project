@@ -272,12 +272,12 @@ $(function(e){
             </div>
         </div>
     </div>
-    
-    
+
+
     <!-- Optional: Place to the bottom of scripts -->
     <script>
         const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
-    
+
     </script>
 
 {{-- modal pembayaran akhir --}}
@@ -491,6 +491,29 @@ $(function(e){
         </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <style>
+            @media print {
+                @page {
+                    size: A4;
+                    margin: 0;
+                }
+
+                html, body {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .print-content {
+                    width: 170mm;
+                    height: 257mm;
+                    padding: 20mm;
+                    box-sizing: border-box;
+                }
+            }
+        </style>
         <script>
             document.getElementById('printBtn').addEventListener('click', function() {
                 window.print();
@@ -1106,7 +1129,7 @@ $('#bayar3').on('shown.bs.modal', function (event){
 });
 
         $('#updateForm2').on('submit', function(event) {
-        event.preventDefault(); 
+        event.preventDefault();
 
         Swal.fire({
             title: 'Apakah Anda yakin?',
@@ -1170,7 +1193,7 @@ $('#bayar3').on('shown.bs.modal', function (event){
         form.attr('action', action + '/' + projectId);
     });
         $('#updateForm').on('submit', function(event) {
-        event.preventDefault(); 
+        event.preventDefault();
 
         Swal.fire({
             title: 'Apakah Anda yakin?',

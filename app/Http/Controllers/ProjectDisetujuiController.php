@@ -26,7 +26,7 @@ class ProjectDisetujuiController extends Controller
         }
         $query = $request->input('query');
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-        $projects = Proreq::where('status', 'setuju')->where('napro', 'LIKE', '%'.$query.'%')->paginate(3);
+        $projects = Proreq::where('status', 'setuju')->where('napro', 'LIKE', '%'.$query.'%')->paginate(4);
         $projects->appends(['query' => $query]);
         return view('Admin.project-disetujui', [
             'project' => $projects,
@@ -48,7 +48,7 @@ class ProjectDisetujuiController extends Controller
         });
         $done = Fitur::where('project_id', $id)->where('status', 'selesai')->count();
         $chats = Chat::where('project_id', $id)->get();
-        $progress = 0; 
+        $progress = 0;
         if ($detail->status !== 'setuju') {
             return back();
         }
@@ -204,7 +204,7 @@ public function upEstimasi(Request $request) {
         Proreq::whereDate('deadline', '>', $today)->update(['status2' => 'proses']);
         $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $sosmed = Sosmed::all();;
-        $project = Proreq::where('status', 'setuju')->where('user_id', Auth::user()->id)->paginate(5);
+        $project = Proreq::where('status', 'setuju')->where('user_id', Auth::user()->id)->paginate(4);
         return view('Client.disetujui', compact('project', 'sosmed','client','notification'));
     }
 

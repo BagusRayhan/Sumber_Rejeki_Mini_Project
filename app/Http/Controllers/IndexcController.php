@@ -24,7 +24,7 @@ class IndexcController extends Controller
         $kerjaCounter = Proreq::where('status', 'setuju')->where('user_id', Auth::user()->id)->count();
         $selesaiCounter = Proreq::where('status', 'selesai')->where('user_id', Auth::user()->id)->count();
         $notifikasi = Proreq::all();
-        $estimasi = Proreq::where('status','setuju')->where('user_id', Auth::user()->id)->get();
+        $estimasi = Proreq::where('status','setuju')->where('user_id', Auth::user()->id)->limit(4)->get();
         $fitur = Fitur::where('project_id', $client->id)->get();
         $done = Fitur::where('project_id')->where('status', 'selesai')->count();
         $progress = 0;
