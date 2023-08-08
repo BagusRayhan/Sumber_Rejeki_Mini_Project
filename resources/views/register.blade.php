@@ -134,7 +134,7 @@
               <br>
 
               <button id="login-button" type="submit" class="btn mt-10 h-10 w-full bg-primary font-medium text-white" style="border-radius: 20px;">Register</button>
-              <div id="privacy-alert" class="alert alert-danger mt-2 mb-0 d-none">Silakan baca dan centang kotak kebijakan privasi yang telah disediakan.</div>
+              <div id="privacy-alert" class="alert alert-danger mt-2 mb-0 d-none">Anda harus menyetujui kebijakan privasi</div>
         <script>
             const rememberCheckbox = document.getElementById('remember-checkbox');
             const loginButton = document.getElementById('login-button');
