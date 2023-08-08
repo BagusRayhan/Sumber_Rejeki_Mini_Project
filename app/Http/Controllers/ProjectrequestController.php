@@ -68,6 +68,9 @@ public function projectreq(Request $request)
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $admin = User::where('role', 'admin')->first();
         $data = Proreq::find($id);
+        if ($data == null) {
+            return back();
+        }
         if ($data->status !== 'pending') {
             return back();
         }
