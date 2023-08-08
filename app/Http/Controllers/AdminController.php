@@ -118,7 +118,7 @@ class AdminController extends Controller
         } elseif ($notif->kategori == 'Pembayaran Masuk') {
             $notif->delete();
             return redirect()->route('pending-bayar-admin');
-        } elseif ($notif->kategori == 'Revisi Project') {
+        } elseif ($notif->kategori == 'Revisi Project' || $notif->kategori == 'Pembatalan Revisi') {
             $notif->delete();
             return redirect()->route('projectselesai');
         } elseif ($notif->kategori == 'Pengajuan Refund') {
