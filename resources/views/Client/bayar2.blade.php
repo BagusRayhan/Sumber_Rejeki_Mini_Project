@@ -499,8 +499,8 @@ $(function(e){
         var metode = button.data('bs-metode');
         var metode2 = button.data('bs-metode2');
 
-        var formattedTanggal = moment(tanggal).format('YYYY-MM-DD');
-        var formattedTanggal2 = moment(tanggal2).format('YYYY-MM-DD');
+        var formattedTanggal = moment(tanggal).format('DD-MM-YYYY');
+        var formattedTanggal2 = moment(tanggal2).format('DD-MM-YYYY');
 
         var hargaSetengah = harga / 2;
         var hargatotal = parseFloat(harga) + parseFloat(biayatambahan);
@@ -622,8 +622,8 @@ $(function(e){
                 var metode = button.data('bs-metode');
                 var metode2 = button.data('bs-metode2');
 
-                var formattedTanggal = moment(tanggal).format('YYYY-MM-DD');
-                var formattedTanggal2 = moment(tanggal2).format('YYYY-MM-DD');
+                var formattedTanggal = moment(tanggal).format('DD-MM-YYYY');
+                var formattedTanggal2 = moment(tanggal2).format('DD-MM-YYYY');
 
                 var hargaSetengah = harga / 2;
                 var hargatotal = parseFloat(harga) + parseFloat(biayatambahan);
