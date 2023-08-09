@@ -494,23 +494,8 @@ $(function(e){
         <style>
             @media print {
                 @page {
-                    size: A4;
+                    size: 100mm 168mm;
                     margin: 0;
-                }
-
-                html, body {
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-
-                .print-content {
-                    width: 170mm;
-                    height: 257mm;
-                    padding: 20mm;
-                    box-sizing: border-box;
                 }
             }
         </style>
