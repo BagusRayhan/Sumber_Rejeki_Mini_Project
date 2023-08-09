@@ -80,14 +80,25 @@
             </a>
         </div>
         <div>
-    <a href="#" id="deleteAllSelectedRecord" class="btn btn-danger btn-sm">Delete All</a>
+    <a href="#" id="deleteAllSelectedRecord" class="btn btn-danger btn-sm d-none">Delete All</a>
    <script>
+
+    function updateDeleteAllButtonVisibility() {
+        if ($('.checkbox_ids:checked').length > 0) {
+            $('#deleteAllSelectedRecord').removeClass('d-none');
+        }else{
+            $('#deleteAllSelectedRecord').addClass('d-none');
+        }
+    }
+
 $(function(e){
     $('#select_all_ids').click(function(){
         $('.checkbox_ids').prop('checked', $(this).prop('checked'));
+        updateDeleteAllButtonVisibility();
     });
 
     $('.checkbox_ids').click(function() {
+        updateDeleteAllButtonVisibility();
         if ($('.checkbox_ids:checked').length === $('.checkbox_ids').length) {
             $('#select_all_ids').prop('checked', true);
         } else {
@@ -125,6 +136,7 @@ $(function(e){
                             $.each(all_ids, function(key, val){
                                 $('#employee_ids' + val).remove();
                             });
+                            updateDeleteAllButtonVisibility();
                             Swal.fire(
                                 'Berhasil!',
                                 'Data berhasil dihapus.',
