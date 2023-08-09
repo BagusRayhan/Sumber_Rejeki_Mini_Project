@@ -216,10 +216,11 @@ public function upEstimasi(Request $request) {
 
     public function refundRequestClient(Request $request) {
         $request->validate([
-            'nomorRefund' => 'required|numeric'
+            'nomorRefund' => 'required|numeric|gt:0'
         ],[
             'nomorRefund.required' => 'Nomor tidak boleh kosong',
-            'nomorRefund.numeric' => 'Nomor tidak valid'
+            'nomorRefund.numeric' => 'Nomor tidak valid',
+            'nomorRefund.gt' => 'Harga tidak valid'
         ]);
         $pro = Proreq::findOrFail($request->project_id);
         $pro->update([
