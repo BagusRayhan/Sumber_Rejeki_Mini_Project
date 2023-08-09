@@ -176,10 +176,11 @@ class IndexcController extends Controller
     public function simpannn(Request $request, $id)
     {
         $this->validate($request,[
-            'namafitur' => 'required',
+            'namafitur' => 'required|max:15',
             'deskripsi' => 'required',
         ],[
             'namafitur.required' => 'Fitur tidak boleh kosong',
+            'namafitur.max' => 'Fitur tidak boleh lebih dari 15',
             'deskripsi.required' => 'Deskripsi tidak boleh kosong',
         ]);
 
