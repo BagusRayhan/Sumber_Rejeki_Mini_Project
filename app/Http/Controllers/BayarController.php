@@ -267,7 +267,7 @@ public function bayar2client(Request $request)
     $ovo = EWallet::find(2);
     $gopay = EWallet::find(3);
     $linkaja = EWallet::find(4);
-    $bayar2 = Proreq::whereIn('statusbayar', ['lunas','belum lunas'])
+    $bayar2 = Proreq::whereIn('statusbayar', ['lunas','belum lunas','pembayaran akhir','pembayaran revisi'])
                     ->orWhere('status', 'refund pending')
                     ->where('napro', 'like', '%'.$keyword.'%')
                     ->where('user_id', Auth::user()->id)

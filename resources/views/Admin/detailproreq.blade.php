@@ -259,7 +259,13 @@
                     @foreach($dataa as $fitur)
                         <tr>
                             <td>{{ $fitur->namafitur }}</td>
-                            <td>{{ $fitur->deskripsi }}</td>
+                            <td>                                        
+                            @if (strlen($fitur->deskripsi) > 110)
+                                {{ substr($fitur->deskripsi, 0, 110) . '...' }}
+                            @else
+                                {{ $fitur->deskripsi }}
+                            @endif
+                            </td>
                             <td>Rp.{{ number_format($fitur->hargafitur, 0, ',', '.') }}</td>
                             <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#hargaFitur{{ $fitur->id }}"><i class="fa-solid fa-sack-dollar"></i></button></td>
                         </tr>

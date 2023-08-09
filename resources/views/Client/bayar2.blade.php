@@ -187,7 +187,7 @@ $(function(e){
                         </thead>
                         <tbody>
                         @foreach($bayar2 as $client2)
-                            @if ( $client2->statusbayar === 'belum lunas' || $client2->statusbayar === 'lunas')
+                            @if ( $client2->statusbayar === 'belum lunas' || $client2->statusbayar === 'lunas' || $client2->statusbayar == 'pembayaran akhir' || $client2->statusbayar = 'pembayaran revisi')
                             <tr id="employee_ids{{ $client2->id }}">
                                 <td>
                                     <div class="form-check">
@@ -208,7 +208,9 @@ $(function(e){
                                 @if ($client2->statusbayar == 'lunas')
                                     <span class="badge text-bg-success">{{ $client2->statusbayar }}</span>
                                 @elseif ($client2->statusbayar == 'belum lunas')
-                                    <span class="badge bg-warning text-white">{{ $client2->statusbayar }}</span>
+                                    <span class="badge bg-danger text-white">{{ $client2->statusbayar }}</span>
+                                    @elseif ($client2->statusbayar == 'pembayaran akhir' || $client2->statusbayar == 'pembayaran revisi')
+                                    <span class="badge bg-warning">menunggu persetujuan</span>
                                 @else
                                     <span class="badge">{{ $client2->statusbayar }}</span>
                                 @endif
@@ -232,6 +234,8 @@ $(function(e){
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar" data-id="{{ $client2->id }}" data-napro="{{ $client2->napro }}" data-harga="{{ $client2->harga }}" data-tanggalpembayaran="{{ $client2->tanggalpembayaran }}" data-metodepembayaran="{{ $client2->metodepembayaran }}" data-biayatambahan="{{ $client2->biayatambahan }}" class="btn btn-primary btn-bayar btn-sm" style="background-color: none">
                                             <i class="fa-solid fa-wallet"></i>&nbsp;Bayar
                                         </button>
+                                    @elseif ($client2->statusbayar == 'pembayaran akhir' || $client2->statusbayar == 'pembayaran revisi')
+                                        <i class="fa-solid fa-hourglass fs-5 text-warning-emphasis"></i>
                                     @endif
                                     </td>
                             </tr>
