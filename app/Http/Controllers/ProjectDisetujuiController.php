@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use App\Models\ProjectDisetujui;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
+use App\Mail\PembayaranSetuju;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectDisetujuiController extends Controller
 {
@@ -211,6 +213,8 @@ public function upEstimasi(Request $request) {
         $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $sosmed = Sosmed::all();;
         $project = Proreq::where('status', 'setuju')->where('user_id', Auth::user()->id)->paginate(4);
+
+        Mail::to($client->email)->send(new PembayaranSetuju());
         return view('Client.disetujui', compact('project', 'sosmed','client','notification'));
     }
 

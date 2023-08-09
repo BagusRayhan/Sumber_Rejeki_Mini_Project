@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bank;
 use App\Models\User;
+use App\Mail\DemoMail;
 use App\Models\Proreq;
 use App\Models\Sosmed;
 use App\Models\EWallet;
@@ -12,6 +13,7 @@ use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class BayarController extends Controller
 {
@@ -32,6 +34,11 @@ class BayarController extends Controller
             $ovo = EWallet::findOrFail(2);
             $gopay = EWallet::findOrFail(3);
             $linkaja = EWallet::findOrFail(4);
+            // $mailData = [
+            //     'title' => 'Mail from Admin',
+            //     'body' => 'Project telah disetujui'
+            // ];
+            Mail::to($client->email)->send(new DemoMail());
             return view('Client.bayar', compact('sosmed','client','data','bank','ewallet','notification','dana','ovo','gopay','linkaja'));
         }
 
