@@ -163,9 +163,7 @@ $(function(e){
     });
 });
 </script>
-
         </div>
-
 
     </div>
         <div class="row mt-4">

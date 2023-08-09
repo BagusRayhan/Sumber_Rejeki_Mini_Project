@@ -218,7 +218,7 @@ public function upEstimasi(Request $request) {
         return view('Client.disetujui', compact('project', 'sosmed','client','notification'));
     }
 
-    public function refundRequestClient(Request $request) {
+    public function refundRequestClient(Request $request, $id) {
         $request->validate([
             'nomorRefund' => 'required|numeric|gt:0'
         ],[
@@ -226,7 +226,7 @@ public function upEstimasi(Request $request) {
             'nomorRefund.numeric' => 'Nomor tidak valid',
             'nomorRefund.gt' => 'Harga tidak valid'
         ]);
-        $pro = Proreq::findOrFail($request->project_id);
+        $pro = Proreq::findOrFail($id);
         $pro->update([
             'status' => 'refund',
             'metodeRefund' => $request->metodeRefund,
