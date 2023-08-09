@@ -137,6 +137,13 @@ $(function(e){
                                 $('#employee_ids' + val).remove();
                             });
                             updateDeleteAllButtonVisibility();
+
+                            if ($('.checkbox_ids:checked').length > 0) { 
+                                $('#select_all_ids').prop('checked', true);
+                                } else {
+                                     $('#select_all_ids').prop('checked', false);
+                                }
+                            
                             Swal.fire(
                                 'Berhasil!',
                                 'Data berhasil dihapus.',
