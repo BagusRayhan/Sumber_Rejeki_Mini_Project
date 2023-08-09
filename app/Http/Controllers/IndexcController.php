@@ -200,9 +200,12 @@ class IndexcController extends Controller
     public function update(Request $request){
 
         $request->validate([
+            'napro' => 'required|max:30',
             'deadline' => 'required|date|after_or_equal:today',
             'dokumen' => 'nullable|mimes:pdf,txt'
         ], [
+            'napro.required' => 'Nama project harus diisi',
+            'napro.max' => 'Nama project tidak boleh lebih dari 30',
             'deadline.required' => 'Isi deadline terlebih dahulu',
             'deadline.date' => 'Format deadline tidak valid',
             'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',
