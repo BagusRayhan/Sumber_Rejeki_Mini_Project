@@ -37,7 +37,7 @@ class Authenticate extends Middleware
         if ($user && $user->role === 'client') {
             return $next($request);
         }
-
-        abort(403, 'Unauthorized');
+        return redirect('admin');
+        // abort(403, 'Unauthorized');
     }
 }
