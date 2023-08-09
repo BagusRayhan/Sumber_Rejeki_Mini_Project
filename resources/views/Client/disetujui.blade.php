@@ -117,7 +117,7 @@
                                                                                     <option value="E-Wallet">E-Wallet</option>
                                                                                 </select>
                                                                             </div>
-                                                                            <div style="width: 11em" id="paymentProvider">
+                                                                            <div style="width: 11em" id="paymentProvider{{ $pro->id }}">
                                                                                 <label for="paymentProviderList">Layanan</label>
                                                                                 <select class="form-select" name="layananRefund" id="paymentProviderList">
                                                                                     <option value="Bank BRI">Bank BRI</option>
@@ -134,7 +134,7 @@
                                                                 </div>
                                                                 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
                                                                 <script>
-                                                                    let paymentProvider = $('#paymentProvider');
+                                                                    let paymentProvider = $(`#paymentProvider{{ $pro->id }}`);
                                                                     let paymentNumberLabel = $('#paymentNumberLabel');
                                                                     const bankProvider = `<label for="paymentProviderList">Layanan</label>
                                                                         <select class="form-select" name="layananRefund" id="paymentProviderList">
