@@ -156,12 +156,31 @@
                                     </td>
                                     <td class="d-flex justify-content-evenly">
                                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editFiturModal{{ $f->id }}"><i class="fa-solid fa-pen-to-square"></i></button>
-                                        <form action="{{ route('destroy-fitur') }}" method="post">
+                                        <form action="{{ route('destroy-fitur') }}" method="post" id="deleteFitur" onsubmit="deleteFitur(event)">
                                             @csrf
                                             @method('delete')
                                             <input type="hidden" name="fitur_id" value="{{ $f->id }}">
                                             <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
                                         </form>
+                                        <script>
+                                            function deleteFitur(event, id) {
+                                                event.preventDefault();
+                                                Swal.fire({
+                                                    title: 'Apakah Anda yakin?',
+                                                    text: 'Ingin menghapus fitur?',
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'Ya',
+                                                    cancelButtonText: 'Batal'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        document.getElementById('deleteFitur').submit();
+                                                    }
+                                                });
+                                            }
+                                        </script>
                                     </td>
                                 </tr>
                             </thead>
