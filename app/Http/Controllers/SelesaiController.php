@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Pembayaran2;
 use App\Models\Chat;
 use App\Models\User;
 use App\Models\Fitur;
+use App\Mail\Selesai;
 use App\Models\Proreq;
 use App\Models\Sosmed;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
 
 class SelesaiController extends Controller
 {
@@ -31,6 +34,7 @@ class SelesaiController extends Controller
                ->paginate(5);
             $data->appends(['search' => $search]);
             $sosmed = Sosmed::all();
+            Mail::to($client->email)->send(new Pembayaran2());
             return view('Client.selesai', compact('sosmed','client','data','notification'));
         }
 

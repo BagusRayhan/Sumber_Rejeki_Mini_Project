@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Pembayaran awal telah disetujui</h1>
+    <h1>Pembayaran akhir telah disetujui</h1>
 </body>
 </html>
