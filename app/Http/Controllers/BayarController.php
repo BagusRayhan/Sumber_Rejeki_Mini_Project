@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bank;
 use App\Models\User;
 use App\Mail\DemoMail;
+use App\Mail\Selesai;
 use App\Models\Proreq;
 use App\Models\Sosmed;
 use App\Models\EWallet;
@@ -273,6 +274,7 @@ public function bayar2client(Request $request)
                     ->where('user_id', Auth::user()->id)
                     ->paginate(5);
      $bayar2->appends(['keyword' => $keyword]);
+     Mail::to($client->email)->send(new Selesai());
     return view('Client.bayar2', compact('sosmed', 'bayar2', 'client','notification','data','dana','ovo','gopay','linkaja'));
 }
 
