@@ -34,7 +34,6 @@ class SelesaiController extends Controller
                ->paginate(5);
             $data->appends(['search' => $search]);
             $sosmed = Sosmed::all();
-            Mail::to($client->email)->send(new Pembayaran2());
             return view('Client.selesai', compact('sosmed','client','data','notification'));
         }
 

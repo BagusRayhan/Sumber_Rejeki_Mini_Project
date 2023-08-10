@@ -274,7 +274,6 @@ public function bayar2client(Request $request)
                     ->where('user_id', Auth::user()->id)
                     ->paginate(5);
      $bayar2->appends(['keyword' => $keyword]);
-     Mail::to($client->email)->send(new Selesai());
     return view('Client.bayar2', compact('sosmed', 'bayar2', 'client','notification','data','dana','ovo','gopay','linkaja'));
 }
 

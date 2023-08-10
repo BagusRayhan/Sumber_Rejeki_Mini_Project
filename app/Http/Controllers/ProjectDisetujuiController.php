@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat;
 use App\Models\User;
+use App\Mail\Selesai;
 use App\Models\Fitur;
 use App\Models\Proreq;
 use App\Models\Sosmed;
 use App\Models\Notification;
 use Illuminate\Http\Request;
-use App\Models\ProjectDisetujui;
-use Illuminate\Support\Facades\Auth;
-use Yajra\DataTables\DataTables;
 use App\Mail\PembayaranSetuju;
+use App\Models\ProjectDisetujui;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class ProjectDisetujuiController extends Controller
@@ -158,6 +159,7 @@ public function upEstimasi(Request $request) {
 
     public function doneProject(Request $request) {
         $pro = Proreq::find($request->project_id);
+        $user = User::findOrFail($pro->user_id);
         $rev = $pro->pluck('tanggalpembayaran3')->first();
         if ($rev == null) {
             $pro->update([
@@ -173,6 +175,7 @@ public function upEstimasi(Request $request) {
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Project Selesai'
             ]);
+            Mail::to($user->email)->send(new Selesai());
         } else {
             $pro->update([
                 'status' => null,
@@ -213,8 +216,6 @@ public function upEstimasi(Request $request) {
         $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $sosmed = Sosmed::all();;
         $project = Proreq::where('status', 'setuju')->where('user_id', Auth::user()->id)->paginate(4);
-
-        Mail::to($client->email)->send(new PembayaranSetuju());
         return view('Client.disetujui', compact('project', 'sosmed','client','notification'));
     }
 

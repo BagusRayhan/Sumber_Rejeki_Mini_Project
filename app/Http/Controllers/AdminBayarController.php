@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PembayaranSetuju;
 use App\Models\Bank;
 use App\Models\User;
 use App\Models\proreq;
 use App\Models\EWallet;
+use App\Mail\Pembayaran2;
 use App\Models\Pembayaran;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 
 class AdminBayarController extends Controller
 {
@@ -25,6 +28,7 @@ class AdminBayarController extends Controller
     public function setujuiPembayaran(Request $request, $id)
     {
         $project = Proreq::findOrFail($id);
+        $user = User::find($project->user_id);
     
         if ($project->statusbayar === 'pembayaran awal') {
             $project->status = 'setuju';
@@ -38,6 +42,7 @@ class AdminBayarController extends Controller
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Pembayaran Awal Disetujui'
             ]);
+            Mail::to($user->email)->send(new PembayaranSetuju());
         } elseif ($project->statusbayar === 'pembayaran akhir') {
             $project->status = 'selesai';
             $project->statusbayar = 'lunas';
@@ -50,6 +55,7 @@ class AdminBayarController extends Controller
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Pembayaran Akhir Disetujui'
             ]);
+            Mail::to($user->email)->send(new Pembayaran2());
         } elseif ($project->statusbayar === 'pembayaran revisi') {
             $project->status = 'selesai';
             $project->statusbayar = 'lunas';

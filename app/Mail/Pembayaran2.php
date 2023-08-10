@@ -31,7 +31,7 @@ class Pembayaran2 extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Proreq',
+            subject: 'PROREQ',
         );
     }
 
