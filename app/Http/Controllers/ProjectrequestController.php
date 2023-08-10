@@ -299,12 +299,13 @@ public function updateproreqa($id)
     {
         $this->validate($request,[
             'namafitur' => 'required',
-            'biayatambahan' => 'required|numeric',
+            'biayatambahan' => 'required|numeric|gt:0',
             'deskripsi' => 'required',
         ],[
             'namafitur.required' => 'Fitur tidak boleh kosong',
             'biayatambahan.required' => 'Biaya tidak boleh kosong',
             'biayatambahan.numeric' => 'Harga tidak valid',
+            'biayatambahan.gt' => 'Harga tidak valid',
             'deskripsi' => 'Deskripsi tidak boleh kosong',
         ]);
         $data = Proreq::findOrFail($id);
@@ -321,6 +322,17 @@ public function updateproreqa($id)
     }
 
     public function updateFitur(Request $request, $id) {
+        $this->validate($request,[
+            'namafitur' => 'required',
+            'hargafitur' => 'required|numeric|gt:0',
+            'deskripsi' => 'required',
+        ],[
+            'namafitur.required' => 'Fitur tidak boleh kosong',
+            'hargafitur.required' => 'Biaya tidak boleh kosong',
+            'hargafitur.numeric' => 'Harga tidak valid',
+            'hargafitur.gt' => 'Harga tidak valid',
+            'deskripsi' => 'Deskripsi tidak boleh kosong',
+        ]);
         $fitur = Fitur::findOrFail($id);
         $inputData = [
             'namafitur' => $request->namafitur,

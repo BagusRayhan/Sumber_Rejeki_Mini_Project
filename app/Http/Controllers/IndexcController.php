@@ -272,6 +272,15 @@ public function showFormModal($id)
 
 public function updateFitur(Request $request, $id)
 {
+    $this->validate($request,[
+        'namafitur' => 'required|max:30',
+        'deskripsi' => 'required',
+    ],[
+        'namafitur.required' => 'Fitur tidak boleh kosong',
+        'namafitur.max' => 'Nama fitur tidak boleh lebih dari 30 character',
+        'deskripsi.required' => 'Deskripsi tidak boleh kosong',
+    ]);
+
     $fitur = Fitur::findOrFail($id);
 
     $fitur->namafitur = $request->input('namafitur');
