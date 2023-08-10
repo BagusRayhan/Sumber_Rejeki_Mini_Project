@@ -73,7 +73,13 @@ Route::post('/reset-password', function (Request $request) {
     $request->validate([
         'token' => 'required',
         'email' => 'required|email',
-        'password' => 'required|min:8|confirmed',
+        'password' => 'required|min:6|confirmed',
+    ],[
+        'email.required' => 'Email tidak boleh kosong!',
+        'email.email' => 'Harus berformat Email',
+        'password.required' => 'Password tidak boleh kosong!',
+        'password.min' => 'Password minimal 6 karakter',
+        'password.confirmed' => 'Password dengan Konfirmasi Password tidak sama'
     ]);
 
     $status = Password::reset(

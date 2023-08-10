@@ -58,7 +58,7 @@ Forgot Password
 </div>
 @endif
 
-<div class="wrap-input100 validate-input m-b-23" data-validate="Email is required">
+<div class="wrap-input100 validate-input m-b-23" data-validate="Email tidak boleh kosong">
 <span class="label-input100">Email</span>
 <input class="input100" type="email" name="email" placeholder="Masukkan email anda" required>
 <span class="focus-input100" data-symbol="&#xf15a;"></span>

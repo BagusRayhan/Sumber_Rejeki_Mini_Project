@@ -53,13 +53,13 @@
                     </div>
                     @endif
 
-        <div class="wrap-input100 validate-input m-b-23" data-validate="Email is required">
+        <div class="wrap-input100 validate-input m-b-23" data-validate="Email tidak boleh kosong">
           <span class="label-input100">Email</span>
           <input class="input100" type="text" id="email" name="email" placeholder="Masukkan email anda" value="{{ old('email') }}">
           <span class="focus-input100" data-symbol="&#xf15a;"></span>
         </div>
 
-        <div class="wrap-input100 validate-input" data-validate="Password is required">
+        <div class="wrap-input100 validate-input" data-validate="Password tidak boleh kosong">
           <span class="label-input100">Password</span>
           <input class="input100" type="password" id="password" name="password" placeholder="Masukkan password anda">
           <span class="focus-input100" data-symbol="&#xf191;"></span>

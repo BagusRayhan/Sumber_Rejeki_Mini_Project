@@ -61,13 +61,13 @@ Forgot Password
   <input type="hidden" name="token" value="{{ request()->token }}">
   <input type="hidden" name="email" value="{{ request()->email }}">
 
-        <div class="wrap-input100 validate-input" data-validate="Password is required">
+        <div class="wrap-input100 validate-input" data-validate="Password tidak boleh kosong">
           <span class="label-input100">Password</span>
           <input class="input100" type="password" id="password" name="password" placeholder="Masukkan password anda">
           <span class="focus-input100" data-symbol="&#xf191;"></span>
         </div><br>
 
-        <div class="wrap-input100 validate-input" data-validate="Password is required">
+        <div class="wrap-input100 validate-input" data-validate="Konfirmasi Password tidak boleh kosong">
           <span class="label-input100">Konfirmasi Password</span>
           <input class="input100" type="password" id="password" name="password_confirmation" placeholder="Masukkan password anda">
           <span class="focus-input100" data-symbol="&#xf191;"></span>

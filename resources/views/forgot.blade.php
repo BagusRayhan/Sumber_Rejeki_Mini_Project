@@ -40,7 +40,7 @@
 <span class="login100-form-title p-b-49">
 Forgot Password
 </span>
-<div class="wrap-input100 validate-input m-b-23" data-validate="Email is reauired">
+<div class="wrap-input100 validate-input m-b-23" data-validate="Email tidak boleh kosong">
 <span class="label-input100">Email</span>
 <input class="input100" type="text" name="email" placeholder="Masukkan email anda">
 <span class="focus-input100" data-symbol="&#xf15a;"></span>
