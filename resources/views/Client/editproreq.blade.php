@@ -128,8 +128,8 @@
                                 <tr>
                                     <td>{{ $fitur->namafitur }}</td>
                                     <td>
-                                        @if (strlen($fitur->deskripsi) > 90)
-                                            {{ substr($fitur->deskripsi, 0, 90) . '...' }}
+                                        @if (strlen($fitur->deskripsi) > 110)
+                                            {{ substr($fitur->deskripsi, 0, 110) . '...' }}
                                         @else
                                             {{ $fitur->deskripsi }}
                                         @endif

@@ -258,10 +258,16 @@
                     <tbody>
                     @foreach($dataa as $fitur)
                         <tr>
-                            <td>{{ $fitur->namafitur }}</td>
+                            <td>
+                            @if (strlen($fitur->namafitur) > 20)
+                                {{ substr($fitur->namafitur, 0, 20) . '...' }}
+                            @else
+                                {{ $fitur->namafitur }}
+                            @endif    
+                            </td>
                             <td>                                        
-                            @if (strlen($fitur->deskripsi) > 110)
-                                {{ substr($fitur->deskripsi, 0, 110) . '...' }}
+                            @if (strlen($fitur->deskripsi) > 60)
+                                {{ substr($fitur->deskripsi, 0, 60) . '...' }}
                             @else
                                 {{ $fitur->deskripsi }}
                             @endif

@@ -336,7 +336,7 @@ public function updateproreqa($id)
         $fitur->status = 'Revisi';
         $fitur->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Berhasil mengedit fitur!');
     }
 
 

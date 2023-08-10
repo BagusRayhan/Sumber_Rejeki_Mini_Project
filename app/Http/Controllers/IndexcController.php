@@ -176,11 +176,11 @@ class IndexcController extends Controller
     public function simpannn(Request $request, $id)
     {
         $this->validate($request,[
-            'namafitur' => 'required|max:100',
+            'namafitur' => 'required|max:30',
             'deskripsi' => 'required',
         ],[
             'namafitur.required' => 'Fitur tidak boleh kosong',
-            'namafitur.max' => 'Nama fitur tidak boleh lebih dari 100 character',
+            'namafitur.max' => 'Nama fitur tidak boleh lebih dari 30 character',
             'deskripsi.required' => 'Deskripsi tidak boleh kosong',
         ]);
 
@@ -194,7 +194,7 @@ class IndexcController extends Controller
             'deskripsi' => $request->deskripsi
         ]);
 
-        return redirect()->route('editproreq', $id)->with(compact('data', 'sosmed'));
+        return redirect()->route('editproreq', $id)->with(compact('data', 'sosmed'))->with('success','Berhasil menambahkan fitur!');
     }
 
     public function update(Request $request){
