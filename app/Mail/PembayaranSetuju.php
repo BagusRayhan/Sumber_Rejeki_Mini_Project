@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\proreq;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -31,7 +32,7 @@ class PembayaranSetuju extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Proreq',
+            subject: 'PROREQ',
         );
     }
 
