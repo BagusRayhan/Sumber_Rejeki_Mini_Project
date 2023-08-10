@@ -176,11 +176,11 @@ class IndexcController extends Controller
     public function simpannn(Request $request, $id)
     {
         $this->validate($request,[
-            'namafitur' => 'required|max:15',
+            'namafitur' => 'required|max:100',
             'deskripsi' => 'required',
         ],[
             'namafitur.required' => 'Fitur tidak boleh kosong',
-            'namafitur.max' => 'Fitur tidak boleh lebih dari 15',
+            'namafitur.max' => 'Nama fitur tidak boleh lebih dari 100 character',
             'deskripsi.required' => 'Deskripsi tidak boleh kosong',
         ]);
 
@@ -279,7 +279,7 @@ public function updateFitur(Request $request, $id)
 
     $fitur->save();
 
-    return back();
+    return back()->with('success','Berhasil mengubah fitur');
 }
 
 

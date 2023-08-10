@@ -128,19 +128,38 @@
                                 <tr>
                                     <td>{{ $fitur->namafitur }}</td>
                                     <td>
-                                        @if (strlen($fitur->deskripsi) > 110)
-                                            {{ substr($fitur->deskripsi, 0, 110) . '...' }}
+                                        @if (strlen($fitur->deskripsi) > 90)
+                                            {{ substr($fitur->deskripsi, 0, 90) . '...' }}
                                         @else
                                             {{ $fitur->deskripsi }}
                                         @endif
                                     </td>
                                     <td class="d-flex justify-content-evenly">
                                         <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ $fitur->id }}"><i class="fa-solid fa-pen-to-square"></i></button>&nbsp;
-                                        <form action="{{ route('destroyfitur', ['id' => $fitur->id]) }}" method="POST">
+                                        <form action="{{ route('destroyfitur', ['id' => $fitur->id]) }}" id="deleteFitur" onsubmit="deleteFitur(event, {{ $fitur->id }})" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
                                         </form>
+                                        <script>
+                                            function deleteFitur(event, id) {
+                                                event.preventDefault();
+                                                Swal.fire({
+                                                    title: 'Apakah Anda yakin?',
+                                                    text: 'Ingin menghapus fitur?',
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'Ya',
+                                                    cancelButtonText: 'Batal'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        document.getElementById('deleteFitur').submit();
+                                                    }
+                                                });
+                                            }
+                                        </script>
                                     </td>
                                 </tr>
 
