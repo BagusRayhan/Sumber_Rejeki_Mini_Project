@@ -48,10 +48,10 @@
             </div>
             @endif
             @if (session('status'))
-            <div class="alert alert-success">
-            {{ session('message') }}
-            </div>
-            @endif
+                <div class="alert alert-success">
+                    Password berhasil di ubah
+                    </div>
+                    @endif
 
         <div class="wrap-input100 validate-input m-b-23" data-validate="Email is required">
           <span class="label-input100">Email</span>
