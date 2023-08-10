@@ -175,7 +175,7 @@ public function upEstimasi(Request $request) {
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Project Selesai'
             ]);
-            Mail::to($user->email)->send(new Selesai());
+            Mail::to($user->email)->send(new Selesai($pro));
         } else {
             $pro->update([
                 'status' => null,

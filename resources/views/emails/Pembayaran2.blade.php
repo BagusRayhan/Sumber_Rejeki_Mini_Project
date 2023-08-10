@@ -42,7 +42,7 @@
         </div>
         <div class="container" style="background-color:white">
             <h3 style="font-size: 1.3em">Pembayaran Akhir Disetujui</h3>
-            <h3 style="font-weight: normal;">Transaksi Anda untuk pembayaran akhir telah disetujui. Project anda telah selesai sepenuhnya sesuai kriteria yang Anda berikan kepada kami. Jika project Anda belum sepenuhnya sempurna, silahkan ajukan revisi agar kami bisa memberikan yang terbaik untuk Anda</h3>
+            <h3 style="font-weight: normal;">Transaksi Anda untuk pembayaran akhir project <b>{{ $project->napro }}</b> telah disetujui. Project anda telah selesai sepenuhnya sesuai kriteria yang Anda berikan kepada kami. Jika project Anda belum sepenuhnya sempurna, silahkan ajukan revisi agar kami bisa memberikan yang terbaik untuk Anda</h3>
             <span>Regards, <b>PROREQ</b> Teams.</span>
         </div>
         <div class="container" style="padding: 9px; text-align:center;">

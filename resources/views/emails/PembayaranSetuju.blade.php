@@ -38,7 +38,7 @@
         </div>
         <div class="container" style="background-color:white">
             <h3 style="font-size: 1.3em">Pembayaran Awal Disetujui</h3>
-            <h3 style="font-weight: normal;">Transaksi Anda untuk pembayaran awal telah disetujui. Anda dapat melanjutkan dengan langkah-langkah sesuai petunjuk yang telah kami berikan. Terima kasih atas kepercayaan Anda kepada kami.</h3>
+            <h3 style="font-weight: normal;">Transaksi Anda untuk project <b>{{ $project->napro }}</b> pembayaran awal telah disetujui. Anda dapat melanjutkan dengan langkah-langkah sesuai petunjuk yang telah kami berikan. Terima kasih atas kepercayaan Anda kepada kami.</h3>
         </div>
         <div class="container" style="padding: 9px; text-align:center;">
             <span>Copyright, &copy; PROREQ - All Right Reserved</span>

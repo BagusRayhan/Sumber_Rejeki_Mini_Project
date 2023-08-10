@@ -42,7 +42,7 @@ class AdminBayarController extends Controller
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Pembayaran Awal Disetujui'
             ]);
-            Mail::to($user->email)->send(new PembayaranSetuju());
+            Mail::to($user->email)->send(new PembayaranSetuju($project));
         } elseif ($project->statusbayar === 'pembayaran akhir') {
             $project->status = 'selesai';
             $project->statusbayar = 'lunas';
@@ -55,7 +55,7 @@ class AdminBayarController extends Controller
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Pembayaran Akhir Disetujui'
             ]);
-            Mail::to($user->email)->send(new Pembayaran2());
+            Mail::to($user->email)->send(new Pembayaran2($project));
         } elseif ($project->statusbayar === 'pembayaran revisi') {
             $project->status = 'selesai';
             $project->statusbayar = 'lunas';
