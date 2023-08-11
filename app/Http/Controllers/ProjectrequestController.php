@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\DemoMail;
 
 class ProjectrequestController extends Controller
 {
@@ -166,6 +168,7 @@ public function updateproreqa($id)
 {
 
     $proreq = Proreq::findOrFail($id);
+    $user = User::find($proreq->user_id);
     $fitur = Fitur::where('project_id', $proreq->id)->get();
     $hrgFitur = Fitur::where('project_id', $proreq->id)->pluck('hargafitur');
     $totalHarga = $fitur->sum('hargafitur');
@@ -186,6 +189,7 @@ public function updateproreqa($id)
         'deskripsi' => $notifDesk,
         'kategori' => 'Project Disetujui'
     ]);
+    Mail::to($user->email)->send(new DemoMail($proreq));
 
     return redirect()->route('projectreq')->with('success', 'Project berhasil disetujui');
 }

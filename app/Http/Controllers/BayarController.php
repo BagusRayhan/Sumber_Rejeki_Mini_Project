@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bank;
 use App\Models\User;
-use App\Mail\DemoMail;
+
 use App\Mail\Selesai;
 use App\Models\Proreq;
 use App\Models\Sosmed;
@@ -39,7 +39,7 @@ class BayarController extends Controller
             //     'title' => 'Mail from Admin',
             //     'body' => 'Project telah disetujui'
             // ];
-            Mail::to($client->email)->send(new DemoMail());
+
             return view('Client.bayar', compact('sosmed','client','data','bank','ewallet','notification','dana','ovo','gopay','linkaja'));
         }
 
