@@ -52,7 +52,7 @@
                                 <label for="">Instagram</label><br>
                                 <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" name="ig" id="ig" value="{{ $data->ig }}"><br>
                                 <label for="">Email</label><br>
-                                <input type="email" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="email" id="email" value="{{ $data->email }}">
+                                <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="email" id="email" value="{{ $data->email }}">
                                 <br>
                                 <button type="submit" style="float: right;" class="btn btn-primary">Simpan</button>
                             </form>

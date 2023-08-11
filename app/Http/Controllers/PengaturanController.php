@@ -55,13 +55,16 @@ class PengaturanController extends Controller
 
     public function updatesosmed(Request $request){
         $this->validate($request,[
-            'ig' => 'required',
-            'email' => 'required',
-            'wa' => 'required|min:11|max:16'
+            'ig' => 'required|regex:/^[a-zA-Z0-9_.]+$/',
+            'email' => 'required|email',
+            'wa' => 'required|min:11|max:16|gt:0'
         ],[
             'ig.required' => 'Isi akun Instagram terlebih dahulu',
+            'ig.regex' => 'Isi akun Instagram dengan benar',
             'email.required' => 'Isi alamat email terlebih dahulu',
+            'email.email' => 'Isi alamat email dengan benar',
             'wa.required' => 'Isi nomor whatsapp terlebih dahulu',
+            'wa.gt' => 'Isi nomor whatsapp dengan benar',
             'wa.min' => 'Minimal nomor 11 angka',
             'wa.max' => 'Maksimal Harga 16 angka'
         ]);
