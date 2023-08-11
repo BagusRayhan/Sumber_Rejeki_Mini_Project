@@ -78,21 +78,27 @@
                     <button class="btn btn-warning btn-sm text-white mx-2" type="submit"><i class="fa-solid fa-pencil-square"></i> Ajukan Perubahan</button>
                 </div>
             </form>
-            <div class="modal fade" id="pesanRevisi" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5>Revisi dari Client</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p class="w-100 text-break">{!! nl2br($data->listrevisi) !!}</p>
-                        </div>
-                        <div class="modal-footer">
-                        </div>
-                    </div>
+            <style>
+                .modal-body {
+                    max-height: 300px;
+                    overflow-y: auto;
+                }
+            </style>
+        <div class="modal fade" id="pesanRevisi" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5>Revisi dari Client</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+            <div class="modal-body">
+                <p class="w-100 text-break">{!! nl2br($data->listrevisi) !!}</p>
+            </div>
+                <div class="modal-footer">
                 </div>
             </div>
+         </div>
+    </div>
             <script>
                   function ajukanPerubahan(event) {
                     event.preventDefault();
@@ -122,7 +128,7 @@
                 max-height: 400px; /* Set the desired max height */
                 overflow-y: scroll;
             }
-        
+
             .scrollable-table thead th {
                 position: sticky;
                 top: 0;
