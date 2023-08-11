@@ -9,18 +9,20 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class DemoMail extends Mailable
+class ProjectDisetujui extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $project;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($project)
     {
-        //
+        $this->project = $project;
     }
 
     /**
@@ -31,7 +33,7 @@ class DemoMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Proreq',
+            subject: 'Project Anda telah disetujui',
         );
     }
 
@@ -43,7 +45,7 @@ class DemoMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.DemoMail',
+            view: 'emails.ProjectDisetujui',
         );
     }
 
