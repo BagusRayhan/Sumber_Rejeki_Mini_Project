@@ -38,8 +38,9 @@
         </div>
         <div class="container" style="background-color:white">
             <h3 style="font-size: 1.3em">Project Ditolak</h3>
-            <h3 style="font-weight: normal;">Project <b>{{ $project->napro }}</b> Anda Ditolak Oleh Admin. Silahkan melakukan pemesanan ulang untuk project anda.</h3>
+            <h3 style="font-weight: normal;">Maaf, kami ingin memberitahukan bahwa Project <b>{{ $project->napro }}</b> Anda telah ditolak oleh Admin. Kami mohon maaf atas ketidaknyamanan ini dan kami akan senang untuk membantu Anda dalam mengajukan ulang project jika Anda menginginkannya.</h3>
             <h6><b>TERIMA KASIH ATAS PESANANNYA</b></h6>
+
         </div>
         <div class="container" style="padding: 9px; text-align:center;">
             <span>Copyright, &copy; PROREQ - All Right Reserved</span>
