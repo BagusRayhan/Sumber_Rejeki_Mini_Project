@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ProjectDisetujui;
+use App\Mail\ProjectDitolak;
 
 class ProjectrequestController extends Controller
 {
@@ -138,6 +139,7 @@ public function projectreq(Request $request)
 
 public function alasantolak(Request $request)
 {
+
     $request->validate([
         'alasan' => 'required'
     ],[
@@ -145,6 +147,7 @@ public function alasantolak(Request $request)
     ]);
     $id = $request->dataid;
     $pro = Proreq::findOrFail($id);
+    $user = User::find($pro->user_id);
     if (File::exists(public_path().'document/'.$pro->dokumen)) {
         unlink(public_path('document/'.$pro->document));
     }
@@ -161,6 +164,7 @@ public function alasantolak(Request $request)
         'kategori' => 'Project Ditolak'
     ]);
 
+    Mail::to($user->email)->send(new ProjectDitolak($pro));
     return redirect()->route('projectreq')->with('success', 'Project berhasil ditolak');
 }
 
