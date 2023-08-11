@@ -127,8 +127,8 @@
                                 @foreach($dataa as $fitur)
                                 <tr>
                                     <td>
-                                        @if (strlen($fitur->namafitur) > 20)
-                                        {{ substr($fitur->namafitur, 0, 20). '...' }}
+                                        @if (strlen($fitur->namafitur) > 15)
+                                        {{ substr($fitur->namafitur, 0, 15). '...' }}
                                         @else
                                         {{ $fitur->namafitur }}
                                         @endif
