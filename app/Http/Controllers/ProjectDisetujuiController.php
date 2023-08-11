@@ -7,11 +7,10 @@ use App\Models\User;
 use App\Models\Fitur;
 use App\Models\Proreq;
 use App\Models\Sosmed;
+use App\Mail\RevisiSelesai;
 use App\Mail\ProjectSelesai;
 use App\Models\Notification;
 use Illuminate\Http\Request;
-use App\Mail\PembayaranSetuju;
-use App\Models\ProjectDisetujui;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -190,6 +189,7 @@ public function upEstimasi(Request $request) {
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Revisi Project Selesai'
             ]);
+            Mail::to($user->email)->send(new RevisiSelesai($pro));
         }
         return redirect(route('project-disetujui-admin'))->with('success', 'Berhasil menyelesaikan project');
     }

@@ -8,9 +8,10 @@ use App\Models\proreq;
 use App\Models\EWallet;
 use App\Models\Pembayaran;
 use App\Mail\PembayaranAwal;
-use App\Mail\PembayaranAkhir;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use App\Mail\PembayaranAkhir;
+use App\Mail\PembayaranRevisi;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 
@@ -69,6 +70,7 @@ class AdminBayarController extends Controller
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Pembayaran Revisi Disetujui'
             ]);
+            Mail::to($user->email)->send(new PembayaranRevisi($project));
         }
         $project->save();
         return back()->with('success', 'Berhasil menyetujui project');

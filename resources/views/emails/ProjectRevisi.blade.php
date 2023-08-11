@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pembayaran Awal</title>
+    <title>Project Revisi</title>
     <style>
         body {
         font-family: Arial;
@@ -26,19 +26,23 @@
         padding: 2px 16px;
         background-color: #f1f1f1;
         }
+        .container span {
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="coupon">
         <div class="header">
-            <img src="https://i.postimg.cc/xTt6vNQN/logo.png" style="width: 3em; height: 2.3em; margin: 1em 0">
+            <img src="https://i.postimg.cc/xTt6vNQN/logo.png" style="width: 3em; height: 2em; margin: 1em 0">
             <div class="wrapper" style="display: grid; align-items:center; padding:0;">
                 <h2><b>PROREQ Company</b></h2>
             </div>
         </div>
         <div class="container" style="background-color:white">
-            <h3 style="font-size: 1.3em">Pembayaran Awal Disetujui</h3>
-            <h3 style="font-weight: normal;">Transaksi Anda untuk pembayaran awal project <b>{{ $project->napro }}</b> telah disetujui. Tim kami akan bekerja keras untuk memenuhi semua permintaan Anda agar kami bisa memberikan yang terbaik untuk Anda. Terima kasih atas kepercayaan Anda kepada kami.</h3>
+            <h3 style="font-size: 1.3em">Revisi Masuk</h3>
+            <h3 style="font-weight: normal;">Revisi project <b>{{ $project->napro }}</b> yang Anda ajukan telah kami ubah sesuai dengan ketentuan yang anda berikan. Silahkan tinjau perubahan yang kami ajukan kepada anda <a href="{{ route('detail-revisi-client', ['id' => $project->id]) }}">disini</a>.</h3>
         </div>
         <div class="container" style="padding: 9px; text-align:center;">
             <span>Copyright, &copy; PROREQ - All Right Reserved</span>

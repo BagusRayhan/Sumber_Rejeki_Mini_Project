@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ProjectDisetujui extends Mailable
+class ProjectRevisi extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -33,19 +33,19 @@ class ProjectDisetujui extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Project Anda telah disetujui',
+            subject: 'Project Anda direvisi',
         );
     }
 
     /**
      * Get the message content definition.
      *
-    * @return \Illuminate\Mail\Mailables\Content
+     * @return \Illuminate\Mail\Mailables\Content
      */
     public function content()
     {
         return new Content(
-            view: 'emails.ProjectDisetujui',
+            view: 'emails.ProjectRevisi',
         );
     }
 

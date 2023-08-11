@@ -6,13 +6,14 @@ use App\Models\Chat;
 use App\Models\User;
 use App\Models\Fitur;
 use App\Models\Proreq;
+use App\Mail\ProjectRevisi;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use App\Mail\ProjectDisetujui;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ProjectDisetujui;
 use App\Mail\ProjectDitolak;
 
 class ProjectrequestController extends Controller
@@ -104,6 +105,7 @@ public function projectreq(Request $request)
             'harga.gt' => 'Harga tidak valid',
         ]);
         $proreg = Proreq::findOrFail($id);
+        $user = User::find($proreg->user_id);
         $proreg->update([
             'status' => null,
             'statusbayar' => 'menunggu pembayaran',
@@ -118,6 +120,7 @@ public function projectreq(Request $request)
             'deskripsi' => $notifDesk,
             'kategori' => 'Project Disetujui'
         ]);
+        Mail::to($user->email)->send(new ProjectDisetujui($proreg));
         return redirect()->route('projectreq')->with('success', 'Berhasil menyetujui project');
     }
 
@@ -270,6 +273,7 @@ public function updateproreqa($id)
     {
 
         $proreq = Proreq::findOrFail($id);
+        $user = User::find($proreq->user_id);
         $request->validate([
             'napro' => 'required',
             'deadline' => 'required|date|after_or_equal:today',
@@ -299,6 +303,8 @@ public function updateproreqa($id)
             'deskripsi' => $notifDesk,
             'kategori' => 'Project Direvisi'
         ]);
+
+        Mail::to($user->email)->send(new ProjectRevisi($proreq));
 
         return redirect()->route('projectselesai')->with('success', 'Berhasil mengajukan perubahan');
     }
