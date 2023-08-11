@@ -144,7 +144,13 @@ use \Carbon\Carbon;
                                     @if (count($fitur) !== 0)
                                         @foreach ($fitur as $f)
                                             <tr>
-                                                <td>{{ $f->namafitur }}</td>
+                                                <td>
+                                                @if (strlen($f->namafitur) > 20)
+                                                    {{ substr($f->namafitur,0 ,20). '...' }}
+                                                @else
+                                                    {{ $f->namafitur }}
+                                                @endif
+                                                </td>
                                                 <td>{{ $f->status }}</td>
                                                 <td>
                                                     @if(@isset($f->biayatambahan))

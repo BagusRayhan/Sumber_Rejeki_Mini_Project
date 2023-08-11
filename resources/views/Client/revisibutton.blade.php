@@ -99,7 +99,13 @@
                                 @if (count($fitur) !== 0)
                                     @foreach ($fitur as $f)
                                         <tr>
-                                            <td>{{ $f->namafitur }}</td>
+                                            <td>
+                                                @if(strlen($f->namafitur) > 20)
+                                                {{ substr($f->namafitur,0 ,20). '...' }}
+                                                @else
+                                                {{ $f->namafitur }}
+                                            @endif
+                                            </td>
                                             <td>{{ $f->status }}</td>
                                             <td>{{ number_format($f->hargafitur + $f->biayatambahan, 0, ',', '.') ?? number_format($f->biayatambahan, 0, ',', '.') }}</td>
                                             <td class="d-flex justify-content-evenly">

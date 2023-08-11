@@ -67,8 +67,8 @@
                                                 @elseif ($pro->status2 == 'telat' && $pro->biayatambahan !== null)
                                                 <form action="{{ route('cancel-revision') }}" method="post" id="cancelProjectRevision" onsubmit="cancelProject(event, {{ $pro->id }})">
                                                     @csrf
-                                                    @method('put')
-                                                    <input type="hidden" name="project_id" >
+                                                    @method('PUT')
+                                                    <input type="hidden" name="project_id" value="{{ $pro->id }}">
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-xmark"></i></button>
                                                 </form>
                                                 <script>

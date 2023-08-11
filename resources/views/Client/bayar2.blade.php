@@ -747,7 +747,7 @@ $(function(e){
                         <br>
                     </div>
                     <div class="modal-footer d-flex flex-column justify-content-center border-0">
-                        <button type="submit" class="btn btn-primary fw-bold w-75" style="border-radius: 33px; font-family: 'Ubuntu';">Bayar Sekarang</button>
+                        <button type="submit" data-bs-dismiss="modal" class="btn btn-primary fw-bold w-75" style="border-radius: 33px; font-family: 'Ubuntu';">Bayar Sekarang</button>
                         <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" <Kembali href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar" data-bs-toggle="modal">Kembali</a>
                     </div>
                 </form>
@@ -800,7 +800,7 @@ $(function(e){
                     <br>
                 </div>
                 <div class="modal-footer d-flex flex-column justify-content-center border-0">
-                    <button type="submit" class="btn btn-primary fw-bold w-75" style="border-radius: 33px; font-family: 'Ubuntu';">Bayar Sekarang</button>
+                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary fw-bold w-75" style="border-radius: 33px; font-family: 'Ubuntu';">Bayar Sekarang</button>
                     <a href="#" class="link-offset-2 link-underline link-underline-opacity-0" data-bs-target="#Modalbayar2" data-bs-toggle="modal">Kembali</a>
                 </div>
             </form>
