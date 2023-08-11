@@ -145,8 +145,13 @@
                         @if (count($fitur) !== 0)
                             @foreach ($fitur as $f)
                                 <tr>
-                                    <td>{{ $f->namafitur }}</td>
-                                    <td>{{ $f->status }}</td>
+                                    <td>
+                                    @if(strlen($f->namafitur) > 15)
+                                        {{ substr($f->namafitur,0 ,15). '....' }}
+                                    @else
+                                        {{ $f->namafitur }}</td>
+                                    @endif
+                                        <td>{{ $f->status }}</td>
                                     <td>
                                         @if ($f->hargafitur !== null)
                                             Rp. {{ number_format($f->hargafitur, 0, ',', '.') }}

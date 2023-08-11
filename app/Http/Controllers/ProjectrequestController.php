@@ -302,11 +302,12 @@ public function updateproreqa($id)
     public function savefitur(Request $request, $id)
     {
         $this->validate($request,[
-            'namafitur' => 'required',
+            'namafitur' => 'required|max:30',
             'biayatambahan' => 'required|numeric|gt:0',
             'deskripsi' => 'required',
         ],[
             'namafitur.required' => 'Fitur tidak boleh kosong',
+            'namafitur.max' => 'Nama fitur tidak boleh lebih dari 30 karakter',
             'biayatambahan.required' => 'Biaya tidak boleh kosong',
             'biayatambahan.numeric' => 'Harga tidak valid',
             'biayatambahan.gt' => 'Harga tidak valid',
@@ -327,11 +328,12 @@ public function updateproreqa($id)
 
     public function updateFitur(Request $request, $id) {
         $this->validate($request,[
-            'namafitur' => 'required',
+            'namafitur' => 'required|max:30',
             'hargafitur' => 'required|numeric|gt:0',
             'deskripsi' => 'required',
         ],[
             'namafitur.required' => 'Fitur tidak boleh kosong',
+            'namafitur.max' => 'nama fitur tidak boleh lebih dari 30 karakter',
             'hargafitur.required' => 'Biaya tidak boleh kosong',
             'hargafitur.numeric' => 'Harga tidak valid',
             'hargafitur.gt' => 'Harga tidak valid',
