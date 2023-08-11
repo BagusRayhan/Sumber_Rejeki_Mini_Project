@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Project Selesai</title>
+    <title>Project Disetujui</title>
     <style>
         body {
         font-family: Arial;
@@ -37,8 +37,8 @@
             </div>
         </div>
         <div class="container" style="background-color:white">
-            <h3 style="font-size: 1.3em">Project Selesai</h3>
-            <h3 style="font-weight: normal;">Project Anda telah berhasil diselesaikan. Anda dapat melanjutkan dengan langkah-langkah sesuai petunjuk yang telah kami berikan.</h3>
+            <h3 style="font-size: 1.3em">Project Disetujui</h3>
+            <h3 style="font-weight: normal;">Project <b>{{ $project->napro }}</b> Anda telah disetujui. Silahkan melakukan pembayaran awal terlebih dahulu sesuai petunjuk yang telah kami berikan.</h3>
         </div>
         <div class="container" style="padding: 9px; text-align:center;">
             <span>Copyright, &copy; PROREQ - All Right Reserved</span>

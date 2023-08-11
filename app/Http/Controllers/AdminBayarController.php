@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\PembayaranSetuju;
 use App\Models\Bank;
 use App\Models\User;
 use App\Models\proreq;
 use App\Models\EWallet;
-use App\Mail\Pembayaran2;
 use App\Models\Pembayaran;
+use App\Mail\PembayaranAwal;
+use App\Mail\PembayaranAkhir;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -42,7 +42,7 @@ class AdminBayarController extends Controller
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Pembayaran Awal Disetujui'
             ]);
-            Mail::to($user->email)->send(new PembayaranSetuju($project));
+            Mail::to($user->email)->send(new PembayaranAwal($project));
         } elseif ($project->statusbayar === 'pembayaran akhir') {
             $project->status = 'selesai';
             $project->statusbayar = 'lunas';
@@ -55,7 +55,7 @@ class AdminBayarController extends Controller
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Pembayaran Akhir Disetujui'
             ]);
-            Mail::to($user->email)->send(new Pembayaran2($project));
+            Mail::to($user->email)->send(new PembayaranAkhir($project));
         } elseif ($project->statusbayar === 'pembayaran revisi') {
             $project->status = 'selesai';
             $project->statusbayar = 'lunas';

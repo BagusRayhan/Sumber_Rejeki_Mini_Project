@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\DemoMail;
+use App\Mail\ProjectDisetujui;
 
 class ProjectrequestController extends Controller
 {
@@ -189,7 +189,7 @@ public function updateproreqa($id)
         'deskripsi' => $notifDesk,
         'kategori' => 'Project Disetujui'
     ]);
-    Mail::to($user->email)->send(new DemoMail($proreq));
+    Mail::to($user->email)->send(new ProjectDisetujui($proreq));
 
     return redirect()->route('projectreq')->with('success', 'Project berhasil disetujui');
 }
@@ -197,7 +197,7 @@ public function updateproreqa($id)
     public function projectselesai(Request $request){
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $admin = User::where('role', 'admin')->first();
-         $query = $request->input('query');
+        $query = $request->input('query');
         $selesai = proreq::whereIn('status', ['selesai','pengajuan revisi','revisi'])->where('napro', 'LIKE', '%'.$query.'%')->paginate(6);
         $selesai->appends(['query' => $query]);
         return view('Admin.projectselesai', compact('selesai','admin','notification'));

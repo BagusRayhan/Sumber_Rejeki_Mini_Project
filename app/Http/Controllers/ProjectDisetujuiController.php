@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat;
 use App\Models\User;
-use App\Mail\Selesai;
 use App\Models\Fitur;
 use App\Models\Proreq;
 use App\Models\Sosmed;
+use App\Mail\ProjectSelesai;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Mail\PembayaranSetuju;
@@ -175,7 +175,7 @@ public function upEstimasi(Request $request) {
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Project Selesai'
             ]);
-            Mail::to($user->email)->send(new Selesai($pro));
+            Mail::to($user->email)->send(new ProjectSelesai($pro));
         } else {
             $pro->update([
                 'status' => null,

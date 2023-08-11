@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\proreq;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -9,7 +10,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class Pembayaran2 extends Mailable
+class PembayaranAwal extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -33,7 +34,7 @@ class Pembayaran2 extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'PROREQ',
+            subject: 'Pembayaran awal Anda telah Disetujui',
         );
     }
 
@@ -45,7 +46,7 @@ class Pembayaran2 extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.Pembayaran2',
+            view: 'emails.PembayaranSetuju',
         );
     }
 
