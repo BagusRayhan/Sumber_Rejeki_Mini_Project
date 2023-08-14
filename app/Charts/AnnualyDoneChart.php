@@ -3,7 +3,7 @@
 namespace App\Charts;
 
 use Carbon\Carbon;
-use App\Models\proreq;
+use App\Models\Proreq;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class AnnualyDoneChart
@@ -17,7 +17,7 @@ class AnnualyDoneChart
 
     public function build(): \ArielMejiaDev\LarapexCharts\LineChart
     {
-        $selesaiProjects = proreq::where('status', 'selesai')
+        $selesaiProjects = Proreq::where('status', 'selesai')
             ->selectRaw('YEAR(created_at) as year, COUNT(*) as count')
             ->groupBy('year')
             ->orderBy('year')

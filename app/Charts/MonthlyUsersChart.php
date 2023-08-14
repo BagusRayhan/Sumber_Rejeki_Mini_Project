@@ -2,7 +2,7 @@
 
 namespace App\Charts;
 
-use App\Models\proreq;
+use App\Models\Proreq;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 use Carbon\Carbon;
 use Illuminate\Support\Carbon as SupportCarbon;
@@ -18,7 +18,7 @@ class MonthlyUsersChart
 
     public function build(): \ArielMejiaDev\LarapexCharts\BarChart
     {
-        $selesaiProjects = proreq::where('status', 'selesai')
+        $selesaiProjects = Proreq::where('status', 'selesai')
         ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
         ->groupBy('month')
         ->orderBy('month')

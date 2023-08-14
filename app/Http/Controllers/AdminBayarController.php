@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bank;
 use App\Models\User;
-use App\Models\proreq;
+use App\Models\Proreq;
 use App\Models\EWallet;
 use App\Models\Pembayaran;
 use App\Mail\PembayaranAwal;
@@ -150,7 +150,7 @@ class AdminBayarController extends Controller
         $admin = User::where('role', 'admin')->first();
         $query = $request->input('query');
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-        $projectRefund = proreq::whereIn('status', ['refund','refund pending'])->where('napro', 'LIKE', '%'.$query.'%')->paginate(6);
+        $projectRefund = Proreq::whereIn('status', ['refund','refund pending'])->where('napro', 'LIKE', '%'.$query.'%')->paginate(6);
         $projectRefund->appends(['query' => $query]);
         return view('Admin.pengajuan-refund', compact('projectRefund','notification','admin'));
     }
