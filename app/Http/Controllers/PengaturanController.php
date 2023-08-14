@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\aboutproreq;
+use App\Models\Aboutproreq;
 use App\Models\FAQ;
 use App\Models\User;
 use App\Models\Sosmed;
@@ -29,7 +29,7 @@ class PengaturanController extends Controller
         $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
         $data = sosmed::all()->first();
         $data1 = Kebijakan::all()->first();
-        $about = aboutproreq::all()->first();
+        $about = Aboutproreq::all()->first();
         $faqs = FAQ::all();
 
         return view('Admin.pengaturan', compact('data', 'data1','admin','notification','about','faqs'));
@@ -85,7 +85,7 @@ class PengaturanController extends Controller
             'about.required' => 'Isi about us terlebih dahulu'
         ]);
 
-        $about = aboutproreq::find(1);
+        $about = Aboutproreq::find(1);
         $about->update([
             'about' => $request->about
         ]);
