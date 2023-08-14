@@ -59,6 +59,7 @@ class ProjectDisetujuiController extends Controller
         }
         if ($detail->status2 == 'telat') {
             return back()->with('error','Project sudah melebihi deadline');
+            Mail::to($lateProject->user->email)->send(new ProjectTelat($admin));
         }
         if ($fitur->count() > 0) {
             $progress = (100 / $fitur->count()) * $done;
