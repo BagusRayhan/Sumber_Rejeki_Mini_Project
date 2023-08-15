@@ -13,13 +13,12 @@ use App\Http\Controllers\BayarController;
 use App\Http\Controllers\TolakController;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\IndexcController;
-use App\Http\Controllers\SetujuController;
 use App\Http\Controllers\SelesaiController;
 use App\Http\Controllers\AdminBayarController;
 use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\ProjectrequestController;
 use App\Http\Controllers\ProjectDisetujuiController;
-use App\Models\aboutproreq;
+use App\Models\Aboutproreq;
 use App\Models\FAQ;
 
 /*
@@ -37,7 +36,7 @@ use App\Models\FAQ;
 Route::resource('/coba', App\Http\Controllers\CobaController::class);
 Route::get('/', function() {
     $sosmed = Sosmed::all();
-    $about = aboutproreq::find(1);
+    $about = Aboutproreq::find(1);
     $faqs = FAQ::all();
     return view('welcome', compact('sosmed','faqs','about'));
 })->name('welcome');
