@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Project Selesai</title>
-      <style>
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -66,17 +66,16 @@
     <div class="coupon">
         <div class="header">
             <img src="https://i.postimg.cc/xTt6vNQN/logo.png" alt="PROREQ Logo">
-            <div class="wrapper" style="display: grid; align-items:center; padding:0;">
-                <h2><b>PROREQ Company</b></h2>
-            </div>
+            <h2>PROREQ Company</h2>
         </div>
-        <div class="container" style="background-color:white">
-            <h3 style="font-size: 1.3em">Project Selesai</h3>
-            <h3 style="font-weight: normal;">Project <b>{{ $project->napro }}</b> Anda telah berhasil diselesaikan. Silahkan melakukan pembayaran akhir sesuai petunjuk yang telah kami berikan.</h3>
+        <div class="container">
+            <h3>Project Selesai</h3>
+            <p>Project <b>{{ $project->napro }}</b> Anda telah berhasil diselesaikan. Silahkan melakukan pembayaran akhir sesuai petunjuk yang telah kami berikan.</p>
         </div>
-        <div class="container" style="padding: 9px; text-align:center;">
-            <span>Copyright, &copy; PROREQ - All Right Reserved</span>
+        <div class="footer">
+            <p>&copy; PROREQ - All Rights Reserved</p>
         </div>
     </div>
 </body>
 </html>
+

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pembayaran Akhir</title>
-      <style>
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -66,18 +66,17 @@
     <div class="coupon">
         <div class="header">
             <img src="https://i.postimg.cc/xTt6vNQN/logo.png" alt="PROREQ Logo">
-            <div class="wrapper" style="display: grid; align-items:center; padding:0;">
-                <h2><b>PROREQ Company</b></h2>
-            </div>
+            <h2>PROREQ Company</h2>
         </div>
-        <div class="container" style="background-color:white">
-            <h3 style="font-size: 1.3em">Pembayaran Akhir Disetujui</h3>
-            <h3 style="font-weight: normal;">Transaksi Anda untuk pembayaran akhir project <b>{{ $project->napro }}</b> telah disetujui. Project anda telah selesai sepenuhnya sesuai kriteria yang Anda berikan kepada kami. Jika project Anda belum sepenuhnya sempurna, silahkan ajukan revisi agar kami bisa memberikan yang terbaik untuk Anda. Terima kasih atas kepercayaan Anda kepada kami.</h3>
+        <div class="container">
+            <h3>Pembayaran Akhir Disetujui</h3>
+            <p>Transaksi Anda untuk pembayaran akhir project <b>{{ $project->napro }}</b> telah disetujui. Project anda telah selesai sepenuhnya sesuai kriteria yang Anda berikan kepada kami. Jika project Anda belum sepenuhnya sempurna, silahkan ajukan revisi agar kami bisa memberikan yang terbaik untuk Anda. Terima kasih atas kepercayaan Anda kepada kami.</p>
             <span>Regards, <b>PROREQ</b> Teams.</span>
         </div>
-        <div class="container" style="padding: 9px; text-align:center;">
-            <span>Copyright, &copy; PROREQ - All Right Reserved</span>
+        <div class="footer">
+            <p>&copy; PROREQ - All Rights Reserved</p>
         </div>
     </div>
 </body>
 </html>
+
