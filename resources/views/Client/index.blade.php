@@ -166,32 +166,7 @@
                             </div>
                         @endif
                     </div>
-                    {{-- @if (count($pesancht) !== 0)
-                        @foreach ($pesancht as $pesan)
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $pesan->user->profil }}" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between align-items-center">
-                                        <h6 class="mb-0">{{ $pesan->user->name }}</h6> &nbsp; &nbsp;
-                                        <small>{{ Carbon::parse($pesan->chat_time)->locale('id')->isoFormat('HH:mm') }}</small>
-                                        <button class="btn btn-link ms-auto mt-10 toggle-messages-btn" data-target="#messageContent{{ $loop->index }}">
-                                            <i class="fas fa-sort-desc"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        <a href="{{ route('detailsetujui', ['id' => $pesan->id]) }}" style="text-decoration: none; color: inherit;">
-                            <div class="collapse message-content" id="messageContent{{ $loop->index }}">
-                                <p>{{ $pesan->chat }}</p>
-                            </div>
-                        </a>
-                        @endforeach
-                    @else
-                        <div class="d-flex flex-column h-100 justify-content-center align-items-center">
-                            <img src="gambar/empty-icon/empty-directory.png" style="width: 65px;">
-                            <p>Pesan tidak tersedia</p>
-                        </div>
-                    @endif --}}
+
                 </div>
             </div>
 
@@ -244,3 +219,31 @@
         @endif
         </div>
         </a> --}}
+
+
+                            {{-- @if (count($pesancht) !== 0)
+                        @foreach ($pesancht as $pesan)
+                            <div class="d-flex align-items-center border-bottom py-3">
+                                <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $pesan->user->profil }}" alt="" style="width: 40px; height: 40px;">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 justify-content-between align-items-center">
+                                        <h6 class="mb-0">{{ $pesan->user->name }}</h6> &nbsp; &nbsp;
+                                        <small>{{ Carbon::parse($pesan->chat_time)->locale('id')->isoFormat('HH:mm') }}</small>
+                                        <button class="btn btn-link ms-auto mt-10 toggle-messages-btn" data-target="#messageContent{{ $loop->index }}">
+                                            <i class="fas fa-sort-desc"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        <a href="{{ route('detailsetujui', ['id' => $pesan->id]) }}" style="text-decoration: none; color: inherit;">
+                            <div class="collapse message-content" id="messageContent{{ $loop->index }}">
+                                <p>{{ $pesan->chat }}</p>
+                            </div>
+                        </a>
+                        @endforeach
+                    @else
+                        <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+                            <img src="gambar/empty-icon/empty-directory.png" style="width: 65px;">
+                            <p>Pesan tidak tersedia</p>
+                        </div>
+                    @endif --}}

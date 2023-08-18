@@ -61,6 +61,7 @@ public function signupsave(Request $request)
         'password.same' => 'Konfirmasi password tidak sesuai!',
         'email.unique' => 'Email sudah terdaftar!',
         'name.required' => 'Nama tidak boleh kosong!',
+        'name.regex' => 'Nama hanya boleh mengandung huruf alfabet tanpa spasi.',
         'email.required' => 'Email tidak boleh kosong!',
         'no_tlp.min' => 'no telephone tidak boleh kurang dari 11',
         'no_tlp.max' => 'no telephone tidak boleh lebih dari 14'
