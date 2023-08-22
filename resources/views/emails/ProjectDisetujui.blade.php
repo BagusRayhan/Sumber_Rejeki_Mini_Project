@@ -42,7 +42,7 @@
 
         .container {
             padding: 20px;
-        }
+        } 
 
         h3 {
             font-size: 1.5em;

@@ -38,7 +38,7 @@ class ProjectDisetujui extends Mailable
     }
 
     /**
-     * Get the message content definition.
+     * Get the message content definition
      *
     * @return \Illuminate\Mail\Mailables\Content
      */
