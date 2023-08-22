@@ -98,10 +98,6 @@ public function create(array $data)
     public function forgot(){
         return view('auth.forgot-password');
     }
-    public function kebijakan(){
-        return view('kebijakanprivasi');
-    }
-
     public function logout() {
         Auth::logout();
         request()->session()->invalidate();

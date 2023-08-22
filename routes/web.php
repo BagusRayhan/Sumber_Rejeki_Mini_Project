@@ -45,7 +45,6 @@ Route::post('postlogin', [AuthController::class, 'login'])->name('postlogin');
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('postsignup', [AuthController::class, 'signupsave'])->name('postsignup');
 Route::get('forgot', [AuthController::class, 'forgot'])->name('forgot');
-Route::get('kebijakan', [AuthController::class, 'kebijakan'])->name('kebijakan');
 Route::get('kebijakan', [PengaturanController::class, 'kebijakan'])->name('kebijakan');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
