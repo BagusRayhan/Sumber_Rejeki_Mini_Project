@@ -65,19 +65,15 @@
 <body>
     <div class="coupon">
         <div class="header">
-            <img src="https://i.postimg.cc/xTt6vNQN/logo.png" style="width: 4em; height: 4em; margin: 1em 0">
-            <div class="wrapper" style="display: grid; align-items:center; padding:0;">
-                <h2><b>PROREQ Company</b></h2>
-            </div>
+            <img src="https://i.postimg.cc/xTt6vNQN/logo.png" alt="PROREQ Logo">
+            <h2>PROREQ Company</h2>
         </div>
-        <div class="container" style="background-color:white">
-            <h3 style="font-size: 1.3em">Project Ditolak</h3>
-            <h3 style="font-weight: normal;">Maaf, kami ingin memberitahukan bahwa Project <b>{{ $project->napro }}</b> Anda telah ditolak oleh Admin. Kami mohon maaf atas ketidaknyamanan ini dan kami akan senang untuk membantu Anda dalam mengajukan ulang project jika Anda menginginkannya.</h3>
-            <h6><b>TERIMA KASIH ATAS PESANANNYA</b></h6>
-
+        <div class="container">
+            <h3>Project Ditolak</h3>
+            <p>Maaf, kami ingin memberitahukan bahwa Project <b>{{ $project->napro }}</b> Anda telah ditolak oleh Admin. Kami mohon maaf atas ketidaknyamanan ini dan kami akan senang untuk membantu Anda dalam mengajukan ulang project jika Anda menginginkannya.</p>
         </div>
-        <div class="container" style="padding: 9px; text-align:center;">
-            <span>Copyright, &copy; PROREQ - All Right Reserved</span>
+        <div class="footer">
+            <p>&copy; PROREQ - All Rights Reserved</p>
         </div>
     </div>
 </body>
