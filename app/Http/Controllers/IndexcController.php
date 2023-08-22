@@ -245,7 +245,7 @@ class IndexcController extends Controller
     }
 
 
-    public function editproreq(Request $request,$id){
+    public function editProreq(Request $request,$id){
 
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
