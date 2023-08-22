@@ -1,25 +1,17 @@
 <?php
 
-use App\Models\User;
-use App\Models\Sosmed;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BayarController;
 use App\Http\Controllers\TolakController;
-use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\IndexcController;
 use App\Http\Controllers\SelesaiController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AdminBayarController;
 use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\ProjectrequestController;
 use App\Http\Controllers\ProjectDisetujuiController;
-use App\Models\Aboutproreq;
-use App\Models\FAQ;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,14 +25,8 @@ use App\Models\FAQ;
 */
 
 // Login Register
-Route::resource('/coba', App\Http\Controllers\CobaController::class);
-Route::get('/', function() {
-    $sosmed = Sosmed::all();
-    $about = Aboutproreq::find(1);
-    $faqs = FAQ::all();
-    return view('welcome', compact('sosmed','faqs','about'));
-})->name('welcome');
-Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('postlogin', [AuthController::class, 'login'])->name('postlogin');
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('postsignup', [AuthController::class, 'signupsave'])->name('postsignup');
@@ -49,66 +35,18 @@ Route::get('kebijakan', [PengaturanController::class, 'kebijakan'])->name('kebij
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['resetpassword'])->group(function () {
-    Route::get('/forgot-password', function () {
-        return view('auth.forgot-password');
-    })->name('password.request');
-
-    Route::post('/forgot-password', function (Request $request) {
-        $request->validate(['email' => 'required|email']);
-
-        $status = Password::sendResetLink($request->only('email'));
-
-        return $status === Password::RESET_LINK_SENT
-            ? back()->with(['status' => __($status)])
-            : back()->withErrors(['email' => __($status)]);
-    })->name('password.email');
-
-    Route::get('/reset-password/{token}', function (string $token) {
-        return view('auth.reset-password', ['token' => $token]);
-    })->name('password.reset');
-
-Route::post('/reset-password', function (Request $request) {
-    $request->validate([
-        'token' => 'required',
-        'email' => 'required|email',
-        'password' => 'required|min:6|confirmed',
-    ],[
-        'email.required' => 'Email tidak boleh kosong!',
-        'email.email' => 'Harus berformat Email',
-        'password.required' => 'Password tidak boleh kosong!',
-        'password.min' => 'Password minimal 6 karakter',
-        'password.confirmed' => 'Password dengan Konfirmasi Password tidak sama'
-    ]);
-
-    $status = Password::reset(
-        $request->only('email', 'password', 'password_confirmation', 'token'),
-        function (User $user, string $password) {
-            $user->forceFill([
-                'password' => Hash::make($password)
-            ])->setRememberToken(Str::random(60));
-
-            $user->save();
-
-            event(new PasswordReset($user));
-        }
-    );
-
-    if ($status === Password::PASSWORD_RESET) {
-        return redirect()->route('login')->with('status', 'berhasil mengubah password successfully. You can now log in.');
-    } else {
-        return back()->withErrors(['email' => [__($status)]]);
-    }
-})->name('password.update');
-
+    Route::get('forgot-password', [AuthController::class, 'forgotPasswordRequest'])->name('password.request');
+    Route::post('forgot-password', [AuthController::class, 'forgotPasswordEmail'])->name('password.email');
+    Route::get('reset-password/{token}', [AuthController::class, 'resetPasswordToken'])->name('password.reset');
+    Route::post('reset-password', [AuthController::class, 'resetPasswordUpdate'])->name('password.update');
 });
 
-Route::middleware(['web', 'auth'])->group(function(){
-
+Route::middleware(['web', 'auth'])->group(function() {
     //Halaman Client
     Route::get('indexclient', [IndexcController::class, 'indexclient'])->name('indexclient');
     Route::get('notifclient/{id}', [IndexcController::class, 'notifRedirectClient'])->name('notifclient');
     Route::delete('client/delete-notif', [IndexcController::class, 'readAllNotifClient'])->name('read-all-notif-client');
-    Route::put('/client/update-profile', [IndexcController::class, 'updateProfile'])->name('client.updateProfile');
+    Route::put('client/update-profile', [IndexcController::class, 'updateProfile'])->name('client.updateProfile');
     Route::get('drequestclient', [IndexcController::class, 'drequestclient'])->name('drequestclient');
     Route::get('createproreq', [IndexcController::class, 'createproreq'])->name('createproreq');
     Route::get('showproj', [IndexcController::class, 'showproj'])->name('showproj');
@@ -133,7 +71,7 @@ Route::middleware(['web', 'auth'])->group(function(){
     Route::put('update-status-bayarakhir/{id}', [BayarController::class, 'updatebayarakhir'])->name('update-status-bayarakhir');
     Route::put('update-status-bayarrevisi/{id}', [BayarController::class, 'updatebayarrevisi'])->name('update-status-bayarrevisi');
     Route::get('detailsetujui/{id}', [ProjectDisetujuiController::class, 'detailDisetujuiClient'])->name('detailsetujui');
-    Route::post('/update-progresss', [ProjectrequestController::class, 'updateProgressrange'])->name('update-progress');
+    Route::post('update-progresss', [ProjectrequestController::class, 'updateProgressrange'])->name('update-progress');
     Route::get('downloadsuppdocsclient/{dokumen?}', [ProjectrequestController::class, 'downloadSuppDocs'])->name('download-suppdocs-client');
     Route::get('get-progress', [ProjectDisetujuiController::class, 'getProgress'])->name('get-progress');
     Route::post('detailsetujui', [ProjectDisetujuiController::class, 'projectChatClient'])->name('project-chat-client');
@@ -145,13 +83,12 @@ Route::middleware(['web', 'auth'])->group(function(){
     Route::post('ajukan-revisi-client', [SelesaiController::class, 'ajukanRevisi'])->name('ajukan-revisi-client');
     Route::put('update-status/{id}', [SelesaiController::class, 'updatestatus'])->name('update-status');
     Route::put('update-statuss/{id}', [SelesaiController::class, 'updatestatuss'])->name('update-statuss');
-    Route::delete('/destroy/{id}', [TolakController::class, 'destroy'])->name('destroy');
-    Route::delete('/destroy1/{id}', [TolakController::class, 'destroy1'])->name('destroy1');
+    Route::delete('destroy/{id}', [TolakController::class, 'destroy'])->name('destroy');
+    Route::delete('destroy1/{id}', [TolakController::class, 'destroy1'])->name('destroy1');
     Route::delete('destroyfitur/{id}', [IndexcController::class, 'destroyfitur'])->name('destroyfitur');
     Route::delete('destroyrequest', [IndexcController::class, 'destroyRequest'])->name('destroy-pending-request');
     Route::delete('deleteproj/{id}', [BayarController::class, 'deleteproj'])->name('deleteproj');
-    Route::delete('/delete-all', [BayarController::class, 'deleteAll'])->name('delete-all');
-
+    Route::delete('delete-all', [BayarController::class, 'deleteAll'])->name('delete-all');
 });
 
 Route::middleware(['admin'])->group(function(){
@@ -159,14 +96,14 @@ Route::middleware(['admin'])->group(function(){
     Route::get('notif-redirect/{id}', [AdminController::class, 'notifRedirect'])->name('notif-redirect');
     Route::delete('admin/delete-notif', [AdminController::class, 'readAllNotif'])->name('read-all-notif');
     Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
-    Route::put('/admin/update-profile', [AdminController::class, 'updateProfile'])->name('admin.updateProfile');
+    Route::put('admin/update-profile', [AdminController::class, 'updateProfile'])->name('admin.updateProfile');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('detailproreq/{id}', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
     Route::get('downloadsuppdocs/{dokumen?}', [ProjectrequestController::class, 'downloadSuppDocs'])->name('download-suppdocs');
     Route::put('simpanharga/{id}', [ProjectrequestController::class, 'simpanharga'])->name('simpanharga');
     Route::put('simpanfiturr/{id}', [ProjectrequestController::class, 'simpanfiturr'])->name('simpanfiturr');
     Route::put('alasantolak', [ProjectrequestController::class, 'alasantolak'])->name('alasantolak');
-    Route::put('/update-proreq/{id}', [ProjectrequestController::class, 'updateproreqa'])->name('update-proreq');
+    Route::put('update-proreq/{id}', [ProjectrequestController::class, 'updateproreqa'])->name('update-proreq');
     Route::get('search', [ProjectrequestController::class, 'search'])->name('search');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('projectselesai', [ProjectrequestController::class, 'projectselesai'])->name('projectselesai');
@@ -191,16 +128,16 @@ Route::middleware(['admin'])->group(function(){
     Route::put('pay-refund', [AdminBayarController::class, 'payRefund'])->name('pay-refund');
     Route::get('refund-admin', [AdminBayarController::class, 'pengajuanRefund'])->name('refund-admin');
     Route::get('pembayaran-pending', [AdminBayarController::class, 'pending'])->name('pending-bayar-admin');
-    Route::post('/setujui-pembayaran/{id}', [AdminBayarController::class, 'setujuiPembayaran'])->name('setujui-pembayaran');
-    Route::post('/tolak-pembayaran/{id}', [AdminBayarController::class, 'tolakPembayaran'])->name('tolak-pembayaran');
+    Route::post('setujui-pembayaran/{id}', [AdminBayarController::class, 'setujuiPembayaran'])->name('setujui-pembayaran');
+    Route::post('tolak-pembayaran/{id}', [AdminBayarController::class, 'tolakPembayaran'])->name('tolak-pembayaran');
     Route::get('pembayaran-disetujui', [AdminBayarController::class, 'disetujui'])->name('setuju-bayar-admin');
     Route::post('detail-project-disetujui', [ProjectDisetujuiController::class, 'projectChat'])->name('project-chat');
-    Route::put('/update-status-fitur/{id}', [ProjectDisetujuiController::class, 'updateStatusFitur'])->name('update-status-fitur');
+    Route::put('update-status-fitur/{id}', [ProjectDisetujuiController::class, 'updateStatusFitur'])->name('update-status-fitur');
     Route::put('estimasi-project', [ProjectDisetujuiController::class, 'upEstimasi'])->name('estimasi-project');
     Route::post('pembayaran-digital/update-bank', [AdminBayarController::class, 'updateBank'])->name('update-bank');
     Route::post('pembayaran-digital', [AdminBayarController::class, 'updateEWallet'])->name('update-ewallet');
     Route::post('statusfitur', [ProjectDisetujuiController::class, 'statusFitur'])->name('status-fitur');
     Route::post('allstatusfitur', [ProjectDisetujuiController::class, 'allStatusFitur'])->name('all-status-fitur');
-    Route::post('/save-progress', [ProjectDisetujuiController::class, 'saveProgress'])->name('save.progress');
+    Route::post('save-progress', [ProjectDisetujuiController::class, 'saveProgress'])->name('save.progress');
     Route::delete('delete-history-project', [AdminBayarController::class, 'deleteProjectHistory'])->name('delete-history-project');
 });
