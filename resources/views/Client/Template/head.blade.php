@@ -5,7 +5,7 @@
     <meta content="" name="description">
     
     <!-- Favicon -->
-    <link href="{{ asset('ProjectManagement/dashmin/img/favicon.html') }}" rel="icon">
+    <link href="{{ asset('ProjectManagement/dashmin/img/logo.png') }}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">

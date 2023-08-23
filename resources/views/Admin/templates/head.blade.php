@@ -14,7 +14,7 @@
 
 
     <!-- Favicon -->
-    <link href="{{ asset('ProjectManagement/dashmin/img/favicon.html') }}" rel="icon">
+    <link href="{{ asset('ProjectManagement/dashmin/img/logo.png') }}" rel="icon">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
