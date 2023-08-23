@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat;
 use App\Models\User;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Proreq;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Charts\AnnualyDoneChart;
 use App\Charts\MonthlyUsersChart;
-use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class AdminController extends Controller
 {
@@ -107,6 +108,18 @@ class AdminController extends Controller
             'tahun29' => $tahun2029,
             'tahun30' => $tahun2030,
         ]);
+    }
+
+    public function clientList(Request $request) {
+        $admin = User::where('role', 'admin')->first();
+        $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
+        $query = $request->input('query');
+        $user = User::where('role', 'client')
+        ->where(function (Builder $builder) use ($query) {
+            $builder->where('name', 'like', '%' . $query . '%');
+        })->paginate(6);
+        $user->appends(['query' => $query]);
+        return view('Admin.client-list', compact('admin','notification','user'));
     }
 
     public function notifRedirect($id) {

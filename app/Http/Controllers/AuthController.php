@@ -26,7 +26,12 @@ class AuthController extends Controller
     }
 
     public function forgotPasswordEmail(Request $request) {
-        $request->validate(['email' => 'required|email']);
+        $request->validate([
+            'email' => 'required|email'
+        ],[
+            'email.required' => 'Email tidak boleh kosong',
+            'email.email' => 'Email tidak valid',
+        ]);
         $status = Password::sendResetLink($request->only('email'));
         return $status === Password::RESET_LINK_SENT ? back()->with(['status' => __($status)]) : back()->withErrors(['email' => __($status)]);
     }

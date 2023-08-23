@@ -55,7 +55,7 @@ Route::middleware(['web', 'auth'])->group(function() {
     Route::get('fitur/{id}/edit', [IndexcController::class, 'showFormModal'])->name('fituredit');
     Route::put('updatefitur/{id}', [IndexcController::class, 'updateFitur'])->name('updatefitur');
     Route::get('ambildata/{id}', [IndexcController::class, 'ambildata'])->name('ambildata');
-    Route::get('editproreq/{id}', [IndexcController::class, 'editProreq'])->name('editproreq');
+    Route::get('editproreq/{id}', [IndexcController::class, 'editproreq'])->name('editproreq');
     Route::put('updateproreq', [IndexcController::class, 'update'])->name('updateproreq');
     Route::post('simpandesk', [IndexcController::class, 'simpand'])->name('simpandesk');
     Route::get('setujuclient', [ProjectDisetujuiController::class, 'disetujuiClient'])->name('setujuclient');
@@ -96,6 +96,7 @@ Route::middleware(['admin'])->group(function(){
     Route::get('notif-redirect/{id}', [AdminController::class, 'notifRedirect'])->name('notif-redirect');
     Route::delete('admin/delete-notif', [AdminController::class, 'readAllNotif'])->name('read-all-notif');
     Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
+    Route::get('client-list', [AdminController::class, 'clientList'])->name('client-list');
     Route::put('admin/update-profile', [AdminController::class, 'updateProfile'])->name('admin.updateProfile');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('detailproreq/{id}', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
