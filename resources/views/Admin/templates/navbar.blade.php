@@ -20,6 +20,14 @@
     padding: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+
+    .sticky-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* untuk memastikan navbar tampil di atas konten lainnya */
+  }
+
   </style>
 <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
 
