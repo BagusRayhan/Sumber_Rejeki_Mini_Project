@@ -24,7 +24,7 @@
         @include('Admin.templates.sidebar')
 
         <!-- Content Start -->
-        <div class="content" style="overflow: hidden">
+        <div class="content">
 
             @include('Admin.templates.navbar')
 
@@ -50,9 +50,47 @@
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item"><b>Email</b><br> {{ $client->email }}</li>
-                                        <li class="list-group-item"><b>Jumlah Project</b><br></li>
-                                        <li class="list-group-item"></li>
+                                        <li class="list-group-item"><button class="btn w-100 btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#detailClient{{ $client->id }}">Detail</button></li>
                                     </ul>
+                                    <div class="modal fade" id="detailClient{{ $client->id }}" aria-labelledby="modalTitleId" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" style="width: 28em">
+                                            <div class="modal-content">
+                                                <div class="modal-header d-flex justify-content-start">
+                                                    <img src="{{ asset('gambar/user-profile/'. $client->profil) }}" class="rounded-circle" width="45" alt="">
+                                                    <h5 class="modal-title mx-2" id="modalTitleId">{{ $client->name }}</h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="wrapper d-flex justify-content-between">
+                                                        <ul class="list-group list-group-flush w-50">
+                                                            <li class="list-group-item border-0 mb-1 p-0"><b>No. Telpon</b><br> {{ ($client->no_tlp == null) ? '-' : $client->no_tlp }}</li>
+                                                            <li class="list-group-item border-0 mb-1 p-0"><b>Nama Perusahaan</b><br> {{ ($client->nama_perusahaan == null) ? '-' : $client->nama_perusahaan }}</li>
+                                                        </ul>
+                                                        <li class="list-group-item border-0 m-0 p-0 w-50"><b>Alamat Perusahaan</b><br> {{ ($client->alamat_perusahaan == null) ? '-' : $client->alamat_perusahaan }}</li>
+                                                    </div>
+                                                    <div class="wrapper">
+                                                        <p class="fw-bold mb-0 mt-3">List Project</p>
+                                                        <ol class="list-group list-group-numbered mt-0" style="height: 10em; overflow-y: scroll; scroll-behavior: smooth;">
+                                                            @foreach ($project as $pro)
+                                                                @if ($client->id == $pro->user_id)
+                                                                    <li class="list-group-item">{{ $pro->napro }}</li>
+                                                                @endif
+                                                            @endforeach
+                                                        </ol>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Kembali</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Optional: Place to the bottom of scripts -->
+                                    <script>
+                                        const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+
+                                    </script>
                                 </div>
                             </div>
                         </div>

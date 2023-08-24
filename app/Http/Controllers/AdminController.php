@@ -119,7 +119,8 @@ class AdminController extends Controller
             $builder->where('name', 'like', '%' . $query . '%');
         })->paginate(6);
         $user->appends(['query' => $query]);
-        return view('Admin.client-list', compact('admin','notification','user'));
+        $project = Proreq::all();
+        return view('Admin.client-list', compact('admin','notification','user','project'));
     }
 
     public function notifRedirect($id) {
