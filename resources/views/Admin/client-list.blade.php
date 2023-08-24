@@ -45,7 +45,7 @@
                             <div class="card" style="background-color: #F3F6F9;border: none">
                                 <div class="card-body">
                                     <div class="header d-grid justify-content-center">
-                                        <img src="{{ asset('gambar/user-profile/'. $client->profil) }}" width="100" class="rounded-circle">
+                                        <img src="{{ asset('gambar/user-profile/'. $client->profil) }}" width="100" class="rounded-circle profile-image">
                                         <h5 class="card-title mt-3 text-center" style="color: #191C24;opacity: 0.8">{{ $client->name }}</h5>
                                     </div>
                                     <ul class="list-group list-group-flush">
