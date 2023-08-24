@@ -19,17 +19,9 @@
     border-radius: 50%;
     padding: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-    .sticky-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000; /* untuk memastikan navbar tampil di atas konten lainnya */
-  }
-
+  } 
   </style>
-<nav class="navbar navbar-expand bg-light navbar-light sticky-nav sticky-top px-4 py-0">
+<nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
 
     <a href="#" class="sidebar-toggler flex-shrink-0 text-decoration-none">
         <i class="fa fa-bars"></i>
@@ -122,6 +114,20 @@
             </div>
         </div>
     </div>
+    <script>
+      window.onscroll = function() { stickyNavbar() };
+
+      var navbar = document.querySelector('.navbar');
+      var sticky = navbar.offsetTop;
+
+      function stickyNavbar() {
+        if (window.pageYOffset >= sticky) {
+          navbar.classList.add('sticky-nav');
+        } else {
+          navbar.classList.remove('sticky-nav');
+        }
+      }
+    </script>
 </nav>
 <!-- Navbar End -->
 <style>
