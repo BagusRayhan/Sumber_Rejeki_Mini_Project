@@ -78,12 +78,12 @@
                     <button class="btn btn-warning btn-sm text-white mx-2" type="submit"><i class="fa-solid fa-pencil-square"></i> Ajukan Perubahan</button>
                 </div>
             </form>
-            <style>
+            {{-- <style>
                 .modal-body {
                     max-height: 300px;
                     overflow-y: auto;
                 }
-            </style>
+            </style> --}}
         <div class="modal fade" id="pesanRevisi" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
