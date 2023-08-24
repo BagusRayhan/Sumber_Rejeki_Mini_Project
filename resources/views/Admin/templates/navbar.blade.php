@@ -29,7 +29,7 @@
   }
 
   </style>
-<nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+<nav class="navbar navbar-expand bg-light navbar-light sticky-nav sticky-top px-4 py-0">
 
     <a href="#" class="sidebar-toggler flex-shrink-0 text-decoration-none">
         <i class="fa fa-bars"></i>
