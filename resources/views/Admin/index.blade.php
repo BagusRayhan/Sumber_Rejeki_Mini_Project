@@ -260,7 +260,7 @@
           dataLabels: {
             enabled: true
           },
-          colors: ["#FF1654", "#247BA0"],
+          colors: ["#0d6efd", "#ffffff"],
           series: [
             {
               name: "Series A",
@@ -286,17 +286,16 @@
               },
               axisBorder: {
                 show: true,
-                color: "#FF1654"
+                color: "#ffffff"
               },
               labels: {
                 style: {
-                  colors: "#FF1654"
+                  colors: "#000000"
                 }
               },
               title: {
-                text: "Project Selesai",
                 style: {
-                  color: "#FF1654"
+                  color: "#000000"
                 }
               }
             },
