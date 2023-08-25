@@ -72,7 +72,11 @@
         </div>
         <div class="container" style="background-color:white">
             <h3 style="font-size: 1.3em">Revisi Project Selesai</h3>
-            <p>Revisi untuk project <b>{{ $project->napro }}</b> Anda telah berhasil diselesaikan. Silahkan melakukan pembayaran revisi sesuai petunjuk yang telah kami berikan.</p>
+            <p>Revisi untuk project <b>{{ $project->napro }}</b> Anda telah berhasil diselesaikan.Kami senang memberitahu Anda bahwa revisi proyek Anda telah selesai dikerjakan. Kami telah memperhatikan setiap detail untuk memastikan kepuasan Anda.
+
+                Mohon untuk segera melunasi biaya revisi sesuai dengan kesepakatan. Setelah pembayaran berhasil, kami akan memberikan Anda hasil revisi sesegera mungkin.
+
+                Terima kasih atas kerjasama Anda dalam menghadirkan proyek ini ke tingkat yang lebih baik. Kami menantikan respons Anda.</p>
         </div>
         <div class="container" style="padding: 9px; text-align:center;">
             <span>Copyright, &copy; PROREQ - All Right Reserved</span>

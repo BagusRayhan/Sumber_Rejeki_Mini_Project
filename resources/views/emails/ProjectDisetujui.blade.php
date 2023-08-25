@@ -42,7 +42,7 @@
 
         .container {
             padding: 20px;
-        } 
+        }
 
         h3 {
             font-size: 1.5em;
@@ -70,7 +70,10 @@
         </div>
         <div class="container">
             <h3>Project Disetujui</h3>
-            <p>Project <b>{{ $project->napro }}</b> Anda telah disetujui. Silahkan melakukan pembayaran awal terlebih dahulu sesuai petunjuk yang telah kami berikan.</p>
+            <p>Project <b>{{ $project->napro }}</b> Anda telah disetujui. Kabar baik! Project Anda telah disetujui oleh tim kami. Sebelum kami mulai pengerjaan, mohon lakukan pembayaran awal sesuai kesepakatan untuk memulai proses.
+                Setelah pembayaran diterima, kami akan segera memulai pengerjaan pro. Kami akan memberi Anda pembaruan berkala sepanjang perjalanan.
+                Terima kasih atas kerjasama Anda.</p>
+                <span>Regards, <b>PROREQ</b> Teams.</span>
         </div>
         <div class="footer">
             <p>&copy; PROREQ - All Rights Reserved</p>

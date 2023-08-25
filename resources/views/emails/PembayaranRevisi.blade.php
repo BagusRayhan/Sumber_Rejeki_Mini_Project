@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pembayaran Revisi</title>
-       <style>
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -65,19 +65,19 @@
 <body>
     <div class="coupon">
         <div class="header">
-            <img src="https://i.postimg.cc/xTt6vNQN/logo.png" style="width: 3em; height: 2em; margin: 1em 0">
-            <div class="wrapper" style="display: grid; align-items:center; padding:0;">
-                <h2><b>PROREQ Company</b></h2>
-            </div>
+            <img src="https://i.postimg.cc/xTt6vNQN/logo.png" alt="PROREQ Logo">
+            <h2>PROREQ Company</h2>
         </div>
         <div class="container" style="background-color:white">
             <h3 style="font-size: 1.3em">Pembayaran Revisi Disetujui</h3>
             <p>Transaksi Anda untuk pembayaran revisi project <b>{{ $project->napro }}</b> telah disetujui. Revisi yang anda ajukan telah selesai sepenuhnya sesuai kriteria yang Anda berikan kepada kami. Terima kasih atas kepercayaan Anda kepada kami.</p>
             <span>Regards, <b>PROREQ</b> Teams.</span>
         </div>
-        <div class="container" style="padding: 9px; text-align:center;">
-            <span>Copyright, &copy; PROREQ - All Right Reserved</span>
+        <div class="footer">
+            <p>&copy; PROREQ - All Rights Reserved</p>
         </div>
     </div>
 </body>
 </html>
+
+
