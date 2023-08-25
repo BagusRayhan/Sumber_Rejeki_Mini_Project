@@ -72,7 +72,7 @@
         </div>
         <div class="container" style="background-color:white">
             <h3 style="font-size: 1.3em">Project Telat</h3>
-            <h3 style="font-weight: normal;">Project <b>{{ $project->napro }}</b> Anda telah melebihi tanggal yang ditentukan. Silahkan melakukan refund kepada admin agar menarik kembali uang anda.</h3>
+            <p>Project <b>{{ $project->napro }}</b> Anda telah melebihi tanggal yang ditentukan. Silahkan melakukan refund kepada admin agar menarik kembali uang anda.</p>
         </div>
         <div class="container" style="padding: 9px; text-align:center;">
             <span>Copyright, &copy; PROREQ - All Right Reserved</span>

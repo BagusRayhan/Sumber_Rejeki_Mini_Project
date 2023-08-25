@@ -115,7 +115,7 @@ class AdminController extends Controller
         $user = User::where('role', 'client')
         ->where(function (Builder $builder) use ($query) {
             $builder->where('name', 'like', '%' . $query . '%');
-        })->paginate(8);
+        })->orderBy('name','asc')->paginate(8);
         $user->appends(['query' => $query]);
         $project = Proreq::whereIn('status', ['setuju','refund','refund pending','pengajuan revisi','revisi','selesai'])->orWhereIn('statusbayar', ['menunggu pembayaran','pembayaran awal','pembayaran akhir','pembayaran revisi','belum lunas'])->get();
         return view('Admin.client-list', compact('admin','notification','user','project'));
