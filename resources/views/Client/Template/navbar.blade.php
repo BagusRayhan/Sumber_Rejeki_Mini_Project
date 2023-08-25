@@ -21,6 +21,9 @@
     padding: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+#chooseFileButtonA {
+    cursor: pointer;
+  }
   </style>
 
   <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">

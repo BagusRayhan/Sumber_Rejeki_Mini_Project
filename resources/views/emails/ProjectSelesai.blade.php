@@ -70,7 +70,7 @@
         </div>
         <div class="container">
             <h3>Project Selesai</h3>
-            <p>Project <b>{{ $project->napro }}</b> Anda telah berhasil diselesaikan. Silahkan melakukan pembayaran akhir sesuai petunjuk yang telah kami berikan.</p>
+            <p>Project <b>{{ $project->napro }}</b> Anda telah berhasil diselesaikan. Silahkan melakukan {{ ($project->biayatambahan = null) ? 'pembayaran akhir' : 'pembayaran revisi' }} sesuai petunjuk yang telah kami berikan.</p>
         </div>
         <div class="footer">
             <p>&copy; PROREQ - All Rights Reserved</p>

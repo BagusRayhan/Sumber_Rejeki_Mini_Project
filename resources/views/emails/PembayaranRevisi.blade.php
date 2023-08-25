@@ -72,7 +72,7 @@
         </div>
         <div class="container" style="background-color:white">
             <h3 style="font-size: 1.3em">Pembayaran Revisi Disetujui</h3>
-            <h3 style="font-weight: normal;">Transaksi Anda untuk pembayaran revisi project <b>{{ $project->napro }}</b> telah disetujui. Revisi yang anda ajukan telah selesai sepenuhnya sesuai kriteria yang Anda berikan kepada kami. Terima kasih atas kepercayaan Anda kepada kami.</h3>
+            <p>Transaksi Anda untuk pembayaran revisi project <b>{{ $project->napro }}</b> telah disetujui. Revisi yang anda ajukan telah selesai sepenuhnya sesuai kriteria yang Anda berikan kepada kami. Terima kasih atas kepercayaan Anda kepada kami.</p>
             <span>Regards, <b>PROREQ</b> Teams.</span>
         </div>
         <div class="container" style="padding: 9px; text-align:center;">
