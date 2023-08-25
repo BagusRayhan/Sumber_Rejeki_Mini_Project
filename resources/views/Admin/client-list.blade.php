@@ -44,7 +44,7 @@
                         <div class="col-sm-3 mb-2 mb-sm-3">
                             <div class="card" style="background-color: #F3F6F9;border: none">
                                 <div class="card-body px-0">
-                                    <div class="header d-grid justify-content-center">
+                                    <div class="header d-flex flex-column align-items-center justify-content-center">
                                         <img src="{{ asset('gambar/user-profile/'. $client->profil) }}" class="rounded-circle profile-image" style="width: 8em; height: 8em;">
                                         <h6 class="card-title mt-3 text-center" style="color: #191C24;opacity: 0.8">{{ $client->name }}</h6>
                                     </div>
