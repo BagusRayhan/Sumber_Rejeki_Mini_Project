@@ -26,7 +26,7 @@
 
         <!-- Confirm Payment Table Start -->
         <div class="container-fluid pt-4 px-4">
-            <div class="py-4 d-flex justify-content-between">
+            <div class="py-4 d-flex justify-content-between ">
                 <div class="search-form w-25">
                     <form action="{{ route('drequestclient') }}" method="GET">
                         <div class="input-group rounded-pill" style="background: #E9EEF5">
@@ -60,7 +60,8 @@
                                     <td>{{ $item->napro }}</td>
                                     <td><span class="badge {{ ($item->status == 'draft') ? 'text-bg-danger' : 'bg-warning' }}">{{ $item->status }}</span></td>
                                     <td>{{ Carbon::parse($item->deadline)->locale('id')->isoFormat('HH:MM, DD MMMM YYYY') }}</td>
-                                    <td class="d-flex justify-content-evenly">
+                                    <td>
+                                        <div class="d-flex justify-content-evenly">
                                         <a href="{{ route('editproreq', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <form action="{{ route('destroy-pending-request') }}" method="post" onsubmit="return confirmDelete(event)">
                                             @csrf
@@ -68,7 +69,7 @@
                                             <input type="hidden" name="project_id" value="{{ $item->id }}">
                                             <button class="btn btn-danger btn-sm" type="submit"><i class="fa-solid fa-trash"></i></button>
                                         </form>
-
+                                        </div>
                                         <!-- Sweet Alert JS -->
                                         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
 

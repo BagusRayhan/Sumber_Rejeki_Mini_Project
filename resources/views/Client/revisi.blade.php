@@ -63,8 +63,10 @@
                                            Rp. {{ number_format($item->harga, 0, ',', '.') }}
                                         @endif
                                     </center></td>
-                                    <td class="d-flex justify-content-evenly">
+                                    <td>
+                                        <div class="d-flex justify-content-evenly">
                                      <a href="{{ url('detail-revisi-client', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a></center>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endif
