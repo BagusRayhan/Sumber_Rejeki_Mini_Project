@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chat;
 use App\Models\User;
 use App\Models\Proreq;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Database\Eloquent\Builder;
 use App\Charts\AnnualyDoneChart;
 use App\Charts\MonthlyUsersChart;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class AdminController extends Controller
 {
