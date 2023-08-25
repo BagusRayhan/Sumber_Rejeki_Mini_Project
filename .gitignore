@@ -1,7 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
-/public/gambar
+/public/gambar/bukti
 /public/document
 /storage/*.key
 /vendor
