@@ -39,24 +39,24 @@
             </form>
             @endif
             </div>
-                <div class="row mt-4 px-4">
+                <div class="row mt-3 px-3">
                     @foreach ($user as $client)
-                        <div class="col-sm-4 mb-2 mb-sm-4">
+                        <div class="col-sm-3 mb-2 mb-sm-3">
                             <div class="card" style="background-color: #F3F6F9;border: none">
-                                <div class="card-body">
+                                <div class="card-body px-0">
                                     <div class="header d-grid justify-content-center">
-                                        <img src="{{ asset('gambar/user-profile/'. $client->profil) }}" width="100" class="rounded-circle profile-image">
-                                        <h5 class="card-title mt-3 text-center" style="color: #191C24;opacity: 0.8">{{ $client->name }}</h5>
+                                        <img src="{{ asset('gambar/user-profile/'. $client->profil) }}" class="rounded-circle profile-image" style="width: 8em; height: 8em;">
+                                        <h6 class="card-title mt-3 text-center" style="color: #191C24;opacity: 0.8">{{ $client->name }}</h6>
                                     </div>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><b>Email</b><br> {{ $client->email }}</li>
-                                        <li class="list-group-item"><button class="btn w-100 btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#detailClient{{ $client->id }}">Detail</button></li>
+                                        <li class="list-group-item" style="font-size: .8em"><b>Email</b><br> {{ $client->email }}</li>
+                                        <li class="list-group-item"><button class="btn w-100 btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#detailClient{{ $client->id }}">Detail</button></li>
                                     </ul>
                                     <div class="modal fade" id="detailClient{{ $client->id }}" aria-labelledby="modalTitleId" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" style="width: 28em">
                                             <div class="modal-content">
                                                 <div class="modal-header d-flex justify-content-start">
-                                                    <img src="{{ asset('gambar/user-profile/'. $client->profil) }}" class="rounded-circle" width="45" alt="">
+                                                    <img src="{{ asset('gambar/user-profile/'. $client->profil) }}" class="rounded-circle profile-image" style="width: 3em; height: 3em;">
                                                     <h5 class="modal-title mx-2" id="modalTitleId">{{ $client->name }}</h5>
                                                 </div>
                                                 <div class="modal-body">
@@ -72,7 +72,7 @@
                                                         <ol class="list-group list-group-numbered mt-0" style="height: 10em; overflow-y: scroll; scroll-behavior: smooth;">
                                                             @foreach ($project as $pro)
                                                                 @if ($client->id == $pro->user_id)
-                                                                    <li class="list-group-item">{{ $pro->napro }}</li>
+                                                                    <li class="list-group-item">{{ $pro->napro }} <span class="badge rounded-pill float-end {{ ($pro->status == 'selesai') ? 'text-bg-success' : 'text-bg-danger' }}">{{ ($pro->status == 'selesai') ? 'selesai' : 'belum selesai' }}</span></li>
                                                                 @endif
                                                             @endforeach
                                                         </ol>

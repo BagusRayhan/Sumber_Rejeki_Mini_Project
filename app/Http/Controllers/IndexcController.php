@@ -246,7 +246,7 @@ class IndexcController extends Controller
 
 
     public function editProreq(Request $request,$id){
-
+        
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $sosmed = Sosmed::all();
@@ -301,7 +301,7 @@ public function updateProfile(Request $request)
         'name' => 'required|string|max:255',
         'email' => 'required|email|max:255|unique:users,email,' . $client->id,
         'fileInputA' => 'image|mimes:jpeg,jpg,png|max:2048',
-        'no_tlp' => 'nullable|min:11|max:14'
+        'no_tlp' => 'nullable|min:11|max:14|gt:0'
     ], [
         'name.required' => 'Nama harus diisi.',
         'email.required' => 'Email harus diisi.',
@@ -310,8 +310,9 @@ public function updateProfile(Request $request)
         'fileInputA.image' => 'Profil harus berupa format jpg jpeg png',
         'fileInputA.mimes' => '',
         'fileInputA.max' => 'Ukuran gambar profil tidak boleh melebihi 2 MB.',
-        'no_tlp.min' => 'Nomer Telpon Harus Lebih Dari 11',
-        'no_tlp.max' => 'Nomer Telpon Harus Kurang Dari 14'
+        'no_tlp.min' => 'Nomer Telpon Minimal 11',
+        'no_tlp.max' => 'Nomer Telpon Maksimal 14',
+        'no_tlp.gt' => 'Masukkan format nomor telepon yang benar'
     ]);
 
 
