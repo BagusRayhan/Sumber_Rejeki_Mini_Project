@@ -258,57 +258,25 @@ class BayarController extends Controller
         }
 
 
-        public function bayar2client(Request $request)
-        {
-            $clientId = Auth::user()->id;
-
-            $client = User::find($clientId);
-            $notification = Notification::where('role', 'client')
-                ->where('user_id', $clientId)
-                ->limit(4)
-                ->latest()
-                ->get();
-
-            $sosmed = Sosmed::all();
-            $keyword = $request->input('keyword');
-
-            $bayar2 = Proreq::where('user_id', $clientId)
-                ->where(function ($query) use ($keyword) {
-                    $query->where('napro', 'like', '%'.$keyword.'%')
-                          ->orWhereIn('statusbayar', ['lunas', 'belum lunas', 'pembayaran akhir', 'pembayaran revisi'])
-                          ->orWhere('status', 'refund pending');
-                })
-                ->paginate(5);
-
-            $bayar2->appends(['keyword' => $keyword]);
-
-            $dana = EWallet::find(1);
-            $ovo = EWallet::find(2);
-            $gopay = EWallet::find(3);
-            $linkaja = EWallet::find(4);
-
-            return view('Client.bayar2', compact('sosmed', 'bayar2', 'client', 'notification', 'dana', 'ovo', 'gopay', 'linkaja'));
-        }
-
-// public function bayar2client(Request $request)
-// {
-//     $client = User::find(Auth::user()->id);
-//     $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
-//     $sosmed = Sosmed::all();
-//     $keyword = $request->input('keyword');
-//     $data = Proreq::all();
-//     $dana = EWallet::find(1);
-//     $ovo = EWallet::find(2);
-//     $gopay = EWallet::find(3);
-//     $linkaja = EWallet::find(4);
-//     $bayar2 = Proreq::whereIn('statusbayar', ['lunas','belum lunas','pembayaran akhir','pembayaran revisi'])
-//                     ->orWhere('status', 'refund pending')
-//                     ->where('napro', 'like', '%'.$keyword.'%')
-//                     ->where('user_id', Auth::user()->id)
-//                     ->paginate(5);
-//      $bayar2->appends(['keyword' => $keyword]);
-//     return view('Client.bayar2', compact('sosmed', 'bayar2', 'client','notification','data','dana','ovo','gopay','linkaja'));
-// }
+public function bayar2client(Request $request)
+{
+    $client = User::find(Auth::user()->id);
+    $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
+    $sosmed = Sosmed::all();
+    $keyword = $request->input('keyword');
+    $data = Proreq::all();
+    $dana = EWallet::find(1);
+    $ovo = EWallet::find(2);
+    $gopay = EWallet::find(3);
+    $linkaja = EWallet::find(4);
+    $bayar2 = Proreq::whereIn('statusbayar', ['lunas','belum lunas','pembayaran akhir','pembayaran revisi'])
+                    ->orWhere('status', 'refund pending')
+                    ->where('napro', 'like', '%'.$keyword.'%')
+                    ->where('user_id', Auth::user()->id)
+                    ->paginate(5);
+     $bayar2->appends(['keyword' => $keyword]);
+    return view('Client.bayar2', compact('sosmed', 'bayar2', 'client','notification','data','dana','ovo','gopay','linkaja'));
+}
 
 public function deleteproj($id)
 {
