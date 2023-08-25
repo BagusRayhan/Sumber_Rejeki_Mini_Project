@@ -79,7 +79,7 @@
 
             @if (count($estimasi) > 0)
                 @foreach ($estimasi as $estimasisetuju)
-                    <div class="d-flex align-items-center border-bottom py-3">
+                    <div class="d-flex align-items-center border-bottom py-3 col-7 col-md-20 col-xl-20">
                         <a href="{{ route('setujuclient', ['id' => $estimasisetuju->id]) }}" class="d-flex w-100" style="text-decoration: none; color: inherit;">
                             <img class="rounded-circle flex-shrink-0" style="width: 3em; height: 3em; object-fit: cover;" src="/gambar/user-profile/{{ $estimasisetuju->user->profil }}">
                             <div class="ms-3 flex-grow-1">
@@ -186,8 +186,8 @@
 
 
                          {{-- <span>{{ $pesan->chat }}</span>
-                            </div>
                         </div>
+                            </div>
                         <div id="messageContent{{ $pesan->id }}" class="collapse message-content">
                         </div> --}}
 

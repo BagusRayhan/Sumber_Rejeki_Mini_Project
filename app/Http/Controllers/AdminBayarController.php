@@ -209,7 +209,7 @@ class AdminBayarController extends Controller
         $bank->update([
             'rekening' => $request->rekening
         ]);
-        return back();
+        return back()->with('success', 'Berhasil mengubah Rekening');
     }
 
     public function updateEWallet(Request $request) {

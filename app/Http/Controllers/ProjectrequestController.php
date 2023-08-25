@@ -137,7 +137,7 @@ public function projectreq(Request $request)
     $fitur->hargafitur = $request->hargafitur;
     $fitur->save();
 
-    return back();
+    return back()->with('success','Berhasil Memasukkan Harga');
 }
 
 public function alasantolak(Request $request)

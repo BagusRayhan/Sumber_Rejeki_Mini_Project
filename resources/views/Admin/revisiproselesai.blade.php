@@ -82,7 +82,7 @@
                 .modal-body {
                     max-height: 300px;
                     overflow-y: auto;
-                }
+                }   
             </style> --}}
         <div class="modal fade" id="pesanRevisi" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">

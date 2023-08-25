@@ -55,7 +55,8 @@
                                             {{-- <td>{{ number_format($pro->harga, 0, ',', '.') }}</td> --}}
                                             <td>{{ isset($pro->biayatambahan) ? 'Rp ' . number_format((float)$pro->harga + (float)$pro->biayatambahan, 0, ',', '.') : 'Rp ' . number_format((float)$pro->harga, 0, ',', '.') }}</td>
                                             <td><span class="badge {{ $pro->status2 == 'telat' ? 'text-bg-danger' : 'bg-warning' }}">{{ $pro->status2 == 'telat' ? $pro->status2 : 'proses' }}</span></td>
-                                            <td class="d-flex justify-content-evenly">
+                                            <td>
+                                                <div  class="d-flex justify-content-evenly">
                                                 @if ($pro->status2 == 'telat' && $pro->biayatambahan == null)
                                                 <button class="btn btn-primary btn-sm btn-refund" data-bs-toggle="modal" data-id="{{ $pro->id }}" data-napro="{{ $pro->napro }}" data-harga="{{ $pro->harga }}" data-tanggalpembayaran="{{ $pro->tanggalpembayaran }}" data-metodepembayaran="{{ $pro->metodepembayaran }}" data-biayatambahan="{{ $pro->biayatambahan }}"  data-bs-target="#lateProject"><i class="fa-solid fa-eye"></i></button>
                                                                                                 
@@ -117,6 +118,7 @@
                                                 @else
                                                 <a href="/detailsetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                                 @endif
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach

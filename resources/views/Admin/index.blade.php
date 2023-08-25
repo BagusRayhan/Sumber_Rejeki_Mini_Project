@@ -118,7 +118,7 @@
                                 @foreach ($incomeProject as $inc)
                                     <div class="border-bottom py-3">
                                         <a href="{{ route('detailproreq', ['id' => $inc->id]) }}" class="text-decoration-none d-flex text-dark">
-                                            <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $inc->user->profil }}" alt="" style="width: 40px; height: 40px;">
+                                            <img class="rounded-circle flex-shrink-0 profile-image" src="/gambar/user-profile/{{ $inc->user->profil }}" alt="" style="width: 40px; height: 40px;">
                                             {{-- <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;"> --}}
                                             <div class="w-100 ms-3">
                                                 <div class="d-flex w-100 justify-content-between">
@@ -147,7 +147,7 @@
                                 @foreach ($incomePayment as $inc)
                                     <div class="border-bottom py-3">
                                         <a href="{{ route('pending-bayar-admin') }}" class="text-decoration-none d-flex text-dark">
-                                            <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $inc->user->profil }}" alt="" style="width: 40px; height: 40px;">
+                                            <img class="rounded-circle flex-shrink-0 profile-image" src="/gambar/user-profile/{{ $inc->user->profil }}" alt="" style="width: 40px; height: 40px;">
                                             {{-- <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;"> --}}
                                             <div class="w-100 ms-3">
                                                 <div class="d-flex w-100 justify-content-between">
