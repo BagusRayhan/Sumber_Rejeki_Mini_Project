@@ -57,7 +57,10 @@
                                             <div class="modal-content">
                                                 <div class="modal-header d-flex justify-content-start">
                                                     <img src="{{ asset('gambar/user-profile/'. $client->profil) }}" class="rounded-circle profile-image" style="width: 3em; height: 3em;">
-                                                    <h5 class="modal-title mx-2" id="modalTitleId">{{ $client->name }}</h5>
+                                                    <div class="wrapper mx-2 d-flex flex-column justify-content-center p-0">
+                                                        <h5 class="modal-title" id="modalTitleId">{{ $client->name }}</h5>
+                                                        <span style="font-size: 14px">{{ $client->email }}</span>
+                                                    </div>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="wrapper d-flex justify-content-between">
@@ -69,17 +72,22 @@
                                                     </div>
                                                     <div class="wrapper">
                                                         <p class="fw-bold mb-0 mt-3">List Project</p>
-                                                        <ol class="list-group list-group-numbered mt-0" style="height: 10em; overflow-y: scroll; scroll-behavior: smooth;">
-                                                            @foreach ($project as $pro)
-                                                                @if ($client->id == $pro->user_id)
+                                                        @if ($project->where('user_id', $client->id)->count() > 0)
+                                                            <ol class="list-group list-group-numbered mt-0" style="height: 10em; overflow-y: scroll; scroll-behavior: smooth;">
+                                                                @foreach ($project->where('user_id', $client->id) as $pro)
                                                                     <li class="list-group-item">{{ $pro->napro }} <span class="badge rounded-pill float-end {{ ($pro->status == 'selesai') ? 'text-bg-success' : 'text-bg-danger' }}">{{ ($pro->status == 'selesai') ? 'selesai' : 'belum selesai' }}</span></li>
-                                                                @endif
-                                                            @endforeach
-                                                        </ol>
+                                                                @endforeach
+                                                            </ol>
+                                                        @else
+                                                        <div class="wrapper d-flex flex-column align-items-center justify-content-center">
+                                                            <img src="{{ asset('gambar/empty-icon/empty-directory.png') }}" class="w-25" alt="">
+                                                            <p class="text-center">tidak ada project</p>
+                                                        </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Kembali</button>
+                                                    <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Kembali</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -97,8 +105,8 @@
                     @endforeach
                     @if($user->isEmpty())
                     <div class="d-flex flex-column h-100 justify-content-center align-items-center">
-                        <img src="gambar/empty-icon/empty-directory.png" class="w-35" style="margin-top: 90px">
-                        <p>Tidak ada data</p>
+                        <img src="{{ asset('gambar/empty-icon/empty-directory.pngs') }}" class="w-50" style="margin-top: 90px">
+                        <p class="text-center">Tidak ada data</p>
                     </div>
                 @else
                     </div>
