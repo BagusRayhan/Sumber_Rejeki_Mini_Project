@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WebConfig;
 use App\Models\Chat;
 use App\Models\User;
 use App\Models\Fitur;
@@ -208,6 +209,38 @@ public function updateproreqa($id)
         $selesai = proreq::whereIn('status', ['selesai','pengajuan revisi','revisi'])->where('napro', 'LIKE', '%'.$query.'%')->paginate(6);
         $selesai->appends(['query' => $query]);
         return view('Admin.projectselesai', compact('selesai','admin','notification'));
+    }
+
+    public function webConfig(Request $request) {
+        $pro = Proreq::findOrFail($request->project_id);
+        $user = User::findOrFail($pro->user_id);
+        $request->validate([
+            'webaddress' => 'required|url:http,https',
+            'ipaddress' => 'required|ip',
+            'repository' => 'url:http,https',
+            'adminemail' => 'required|email',
+            'adminpassword' => 'required',
+        ],[
+            'webaddress.required' => 'Alamat web tidak boleh kosong',
+            'webaddress.url' => 'URL web tidak valid',
+            'ipaddress.required' => 'IP address tidak boleh kosong',
+            'ipaddress.ip' => 'IP Address tidak valid',
+            'repository.url' => 'URL tidak valid',
+            'adminemail.required' => 'Email tidak boleh kosong',
+            'adminemail.email' => 'Email tidak valid',
+            'adminpassword.required' => 'Pasword tidak boleh kosong',
+        ]);
+        $pro->update([
+            'webaddress' => $request->webaddress,
+            'ipaddress' => $request->ipaddress,
+            'repository' => $request->repository,
+            'adminemail' => $request->adminemail,
+            'adminpassword' => $request->adminpassword,
+            'cpanelusername' => $request->cpanelusername,
+            'cpanelpassword' => $request->cpanelpassword,
+        ]);
+        Mail::to($user->email)->send(new WebConfig($pro));
+        return redirect()->route('projectselesai')->with('success','Berhasil mengirimkan konfigurasi');
     }
 
 
