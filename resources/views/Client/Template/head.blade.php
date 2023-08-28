@@ -1,9 +1,11 @@
     <meta charset="utf-8">
     <title>PROREQ</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="" name="keywords">
     <meta content="" name="description">
-    
+
+    <link rel="stylesheet" href="path/to/your/css/bootstrap.min.css">
+    <link rel="stylesheet" href="path/to/your/css/your-custom-styles.css">
     <!-- Favicon -->
     <link href="{{ asset('ProjectManagement/dashmin/img/logo.png') }}" rel="icon">
 
@@ -22,7 +24,7 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('ProjectManagement/dashmin/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    
+
     <!-- Template Stylesheet -->
     <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
     <link href="{{ asset('ProjectManagement/dashmin/css/style.css') }}" rel="stylesheet">

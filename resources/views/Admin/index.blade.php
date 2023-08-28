@@ -119,7 +119,6 @@
                                     <div class="border-bottom py-3">
                                         <a href="{{ route('detailproreq', ['id' => $inc->id]) }}" class="text-decoration-none d-flex text-dark">
                                             <img class="rounded-circle flex-shrink-0 profile-image" src="/gambar/user-profile/{{ $inc->user->profil }}" alt="" style="width: 40px; height: 40px;">
-                                            {{-- <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;"> --}}
                                             <div class="w-100 ms-3">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h6 class="mb-0">{{ $inc->user->name }}</h6>
@@ -148,7 +147,6 @@
                                     <div class="border-bottom py-3">
                                         <a href="{{ route('pending-bayar-admin') }}" class="text-decoration-none d-flex text-dark">
                                             <img class="rounded-circle flex-shrink-0 profile-image" src="/gambar/user-profile/{{ $inc->user->profil }}" alt="" style="width: 40px; height: 40px;">
-                                            {{-- <img class="rounded-circle flex-shrink-0" src="{{ asset('ProjectManagement/dashmin/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;"> --}}
                                             <div class="w-100 ms-3">
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h6 class="mb-0">{{ $inc->user->name }}</h6>
@@ -198,17 +196,6 @@
                                             @endif
                                         </div>
                                     </div>
-                                    {{-- <a href="{{ route('detail-disetujui-admin', ['id' => $msg->id]) }}" style="text-decoration: none; color: inherit;">
-                                        <div class="collapse message-content" id="messageContent{{ $loop->index }}">
-                                            @if (count($msg->projectchat) !== 0)
-                                                @foreach ($msg->projectchat as $chat)
-                                                    <p>{{ $chat->chat }}</p>
-                                                @endforeach
-                                            @else
-                                                <p>Tidak ada pesan</p>
-                                            @endif
-                                        </div>
-                                    </a> --}}
                                     @endif
                                     @endforeach
                                 @else
@@ -232,18 +219,10 @@
                             });
                         });
                     </script>
-
-
             <!-- Widgets End -->
         </div>
         <!-- Content End -->
-
     </div>
-
-    {{-- <script src="{{ $chart->cdn() }}"></script> --}}
-    {{-- {{ $chart->script() }} --}}
-
-
     {{ $ychart->script() }}
 
     @include('Admin.templates.script')
@@ -277,7 +256,7 @@
             }
           },
           xaxis: {
-            categories: ['2020','2021','2022', '2023', '2024', '2025', '2026','2027', '2028', '2029', '2030'] // Replace the sample categories with the labels array
+            categories: ['2020','2021','2022', '2023', '2024', '2025', '2026','2027', '2028', '2029', '2030']
           },
           yaxis: [
             {
@@ -320,30 +299,25 @@
     </script>
 
     <script>
-        // Assuming you have the PHP variable $selesaiProjectsyear available in JavaScript
         const selesaiProjects = @JSON($selesaiProjects);
 
-        // Function to get month name from month number
         function getMonthName(monthNumber) {
           const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
           return monthNames[monthNumber - 1];
         };
 
-        // Prepare an array with count data for each month (initialize with zeros)
         const countData = Array(12).fill(0);
 
-        // Update count data with actual counts from the $selesaiProjects variable
         selesaiProjects.forEach(project => {
           const monthIndex = project.month - 1;
           countData[monthIndex] = project.count;
         });
 
-        // Get month names for the labels
         const labels = countData.map((_, index) => getMonthName(index + 1));
 
         var options = {
           series: [{
-            data: countData, // Use the countData array here instead of hardcoded values
+            data: countData,
           }],
           chart: {
             type: 'bar',
@@ -359,7 +333,7 @@
             enabled: false,
           },
           xaxis: {
-            categories: labels, // Use the labels array to show month names on the x-axis
+            categories: labels,
           }
         };
 
@@ -367,7 +341,7 @@
         chart.render();
     </script>
     <script>
-        // Sample data (replace this with your actual data)
+
         const chartData = [
             {
                 x: 'Jan',
@@ -381,10 +355,10 @@
                 x: 'Mar',
                 y: 25,
             },
-            // Add more data points as needed
+
         ];
 
-        // Chart options
+
         const chartOptions = {
             chart: {
                 type: 'line',
@@ -400,7 +374,6 @@
             },
         };
 
-        // Initialize the chart
         const apexChart = new ApexCharts(document.querySelector('#apexChart'), chartOptions);
         apexChart.render();
     </script>
