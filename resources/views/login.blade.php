@@ -80,20 +80,22 @@
                 </div><br>
                 <button id="login-button" type="submit" class="btn mt-10 h-10 w-full bg-primary font-medium text-white" style="border-radius: 20px;">Login</button>
                 <div id="privacy-alert" class="alert alert-danger mt-2 mb-0 d-none">Anda harus menyetujui kebijakan privasi</div>
-              <script>
-                const rememberCheckbox = document.getElementById('remember-checkbox');
-                const loginButton = document.getElementById('login-button');
-                const privacyAlert = document.getElementById('privacy-alert');
+                <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                    const rememberCheckbox = document.getElementById('remember-checkbox');
+                    const loginButton = document.getElementById('login-button');
+                    const privacyAlert = document.getElementById('privacy-alert');
 
-                loginButton.addEventListener('click', function(event) {
-                  if (!rememberCheckbox.checked) {
-                    event.preventDefault();
-                    privacyAlert.classList.remove('d-none');
-                  } else {
-                    privacyAlert.classList.add('d-none');
-                  }
-                });
-              </script>
+                    loginButton.addEventListener('click', function(event) {
+                      if (!rememberCheckbox.checked) {
+                        event.preventDefault();
+                        privacyAlert.classList.remove('d-none');
+                      } else {
+                        privacyAlert.classList.add('d-none');
+                      }
+                    });
+                  });
+                </script>
 
 
 
