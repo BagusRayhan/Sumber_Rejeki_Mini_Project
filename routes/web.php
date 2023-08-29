@@ -97,6 +97,8 @@ Route::middleware(['admin'])->group(function(){
     Route::delete('admin/delete-notif', [AdminController::class, 'readAllNotif'])->name('read-all-notif');
     Route::get('admin', [AdminController::class, 'index'])->name('admin-dashboard');
     Route::get('client-list', [AdminController::class, 'clientList'])->name('client-list');
+    Route::put('client-list/banned', [AdminController::class, 'bannedClient'])->name('banned-client');
+    Route::put('client-list/unbanned', [AdminController::class, 'unbannedClient'])->name('unbanned-client');
     Route::put('admin/update-profile', [AdminController::class, 'updateProfile'])->name('admin.updateProfile');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('detailproreq/{id}', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');

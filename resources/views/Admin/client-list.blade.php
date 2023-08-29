@@ -47,6 +47,9 @@
                                     <div class="header d-flex flex-column align-items-center justify-content-center">
                                         <img src="{{ asset('gambar/user-profile/'. $client->profil) }}" class="rounded-circle profile-image" style="width: 8em; height: 8em;">
                                         <h6 class="card-title mt-3 text-center" style="color: #191C24;opacity: 0.8">{{ $client->name }}</h6>
+                                        @if ($client->status == 'banned')
+                                            <span class="badge text-bg-danger rounded-pill" style="font-size: .6em">BANNED</span>
+                                        @endif
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item" style="font-size: .8em"><b>Email</b><br> {{ $client->email }}</li>
@@ -56,11 +59,11 @@
                                         <div class="modal-dialog modal-dialog-centered" style="width: 28em">
                                             <div class="modal-content">
                                                 <div class="modal-header d-flex justify-content-start">
-                                                    <img src="{{ asset('gambar/user-profile/'. $client->profil) }}" class="rounded-circle profile-image" style="width: 3em; height: 3em;">
-                                                    <div class="wrapper mx-2 d-flex flex-column justify-content-center p-0">
-                                                        <h5 class="modal-title" id="modalTitleId">{{ $client->name }}</h5>
-                                                        <span style="font-size: 14px">{{ $client->email }}</span>
-                                                    </div>
+                                                        <img src="{{ asset('gambar/user-profile/'. $client->profil) }}" class="rounded-circle profile-image" style="width: 3em; height: 3em;">
+                                                        <div class="wrapper mx-2 d-flex flex-column justify-content-center p-0">
+                                                            <h5 class="modal-title" id="modalTitleId">{{ $client->name }}</h5>
+                                                            <span style="font-size: 14px">{{ $client->email }}</span>
+                                                        </div>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="wrapper d-flex justify-content-between">
@@ -85,20 +88,70 @@
                                                         </div>
                                                         @endif
                                                     </div>
+                                                    @if ($client->alasan_dibanned != null)
+                                                        <div class="wrapper">
+                                                            <p class="fw-bold mb-0 mt-3">Alasan Dibanned</p>
+                                                            <p class="text-break">{{ $client->alasan_dibanned }}</p>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                                 <div class="modal-footer">
+                                                    @if ($client->status == 'banned')
+                                                    <form action="{{ route('unbanned-client') }}" id="unbannedClient{{ $client->id }}" onsubmit="unbannedClient(event, {{ $client->id }})" method="post">
+                                                        @csrf
+                                                        @method('put')
+                                                        <input type="hidden" name="client_id" value="{{ $client->id }}">
+                                                        <button class="btn btn-secondary btn-sm"><i class="fa-solid fa-ban"></i> Unbanned</button>
+                                                    </form>
+                                                    <script>
+                                                        function unbannedClient(event, id) {
+                                                            event.preventDefault();
+                                                            Swal.fire({
+                                                            title: 'Apakah Anda yakin?',
+                                                            text: 'Ingin menyetujui pembayaran ini',
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'Ya',
+                                                            cancelButtonText: 'Batal'
+                                                            }).then((result) => {
+                                                                if (result.isConfirmed) {
+                                                                    document.getElementById('unbannedClient' + id).submit();
+                                                                }
+                                                            });
+                                                        }
+                                                    </script>
+                                                    @else
+                                                        <button class="btn btn-danger btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#bannedReason-{{ $client->id }}" data-bs-dismiss="modal"><i class="fa-solid fa-ban"></i> Banned</button>
+                                                    @endif
                                                     <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Kembali</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
-                                    <!-- Optional: Place to the bottom of scripts -->
-                                    <script>
-                                        const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
-
-                                    </script>
+                                    <div class="modal fade" id="bannedReason-{{ $client->id }}" onsubmit="bannedClient(event, {{ $client->id }})" aria-labelledby="modalTitleId" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" style="width: 28em">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-danger" id="modalTitleId"><i class="fa-solid fa-ban"></i> Banned Client</h5>
+                                                </div>
+                                                <form action="{{ route('banned-client') }}" method="post">
+                                                    @csrf
+                                                    @method('put')
+                                                    <input type="hidden" name="client_id" value="{{ $client->id }}">
+                                                    <div class="modal-body">
+                                                        <label for="bannedreason" class="form-label">Alasan</label>
+                                                        <textarea name="bannedreason" id="bannedreason" rows="8" class="form-control" placeholder="Alasan anda untuk membekukan client ini..."></textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-danger btn-sm">Banned</button>
+                                                        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Batal</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

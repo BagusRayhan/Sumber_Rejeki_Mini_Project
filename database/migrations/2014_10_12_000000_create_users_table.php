@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('alamat_perusahaan')->nullable();
             $table->string('no_tlp')->nullable();
             $table->enum('status', ['banned'])->nullable();
+            $table->longText('alasan_dibanned')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

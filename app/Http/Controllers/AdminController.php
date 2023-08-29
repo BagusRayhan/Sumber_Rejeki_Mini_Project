@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UnbannedClient;
 use App\Models\User;
 use App\Models\Proreq;
+use App\Mail\BannedClient;
 use App\Models\Notification;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use Illuminate\Database\Eloquent\Builder;
 use App\Charts\AnnualyDoneChart;
 use App\Charts\MonthlyUsersChart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -119,6 +122,31 @@ class AdminController extends Controller
         $user->appends(['query' => $query]);
         $project = Proreq::whereIn('status', ['setuju','refund','refund pending','pengajuan revisi','revisi','selesai'])->orWhereIn('statusbayar', ['menunggu pembayaran','pembayaran awal','pembayaran akhir','pembayaran revisi','belum lunas'])->get();
         return view('Admin.client-list', compact('admin','notification','user','project'));
+    }
+
+    public function bannedClient(Request $request) {
+        $request->validate([
+            'bannedreason' => 'required',
+        ],[
+            'bannedreason.required' => 'Alasan tidak boleh kosong'
+        ]);
+        $user = User::findOrFail($request->client_id);
+        $user->update([
+            'status' => 'banned',
+            'alasan_dibanned' => $request->bannedreason,
+        ]);
+        Mail::to($user->email)->send(new BannedClient($user));
+        return back()->with('success','Berhasil Dibanned');
+    }
+
+    public function unbannedClient(Request $request) {
+        $client = User::findOrFail($request->client_id);
+        $client->update([
+            'status' => null,
+            'alasan_dibanned' => null
+        ]);
+        Mail::to($client->email)->send(new UnbannedClient($client));
+        return back()->with('success', 'Banned dibatalkan');
     }
 
     public function notifRedirect($id) {

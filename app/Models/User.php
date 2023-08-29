@@ -27,6 +27,8 @@ class User extends Authenticatable
         'nama_perusahaan',
         'alamat_perusahaan',
         'no_tlp',
+        'status',
+        'alasan_dibanned'
     ];
 
     /**

@@ -38,7 +38,7 @@
       <form class="login100-form validate-form" action="{{ route('postlogin') }}" method="POST">
         @csrf
         <span class="login100-form-title p-b-49">
-          Login
+            Login
         </span>
 
         @if ($errors->any())
@@ -81,20 +81,20 @@
                 <button id="login-button" type="submit" class="btn mt-10 h-10 w-full bg-primary font-medium text-white" style="border-radius: 20px;">Login</button>
                 <div id="privacy-alert" class="alert alert-danger mt-2 mb-0 d-none">Anda harus menyetujui kebijakan privasi</div>
                 <script>
-                  document.addEventListener('DOMContentLoaded', function() {
-                    const rememberCheckbox = document.getElementById('remember-checkbox');
-                    const loginButton = document.getElementById('login-button');
-                    const privacyAlert = document.getElementById('privacy-alert');
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const rememberCheckbox = document.getElementById('remember-checkbox');
+                        const loginButton = document.getElementById('login-button');
+                        const privacyAlert = document.getElementById('privacy-alert');
 
-                    loginButton.addEventListener('click', function(event) {
-                      if (!rememberCheckbox.checked) {
-                        event.preventDefault();
-                        privacyAlert.classList.remove('d-none');
-                      } else {
-                        privacyAlert.classList.add('d-none');
-                      }
+                        loginButton.addEventListener('click', function(event) {
+                            if (!rememberCheckbox.checked) {
+                                event.preventDefault();
+                                privacyAlert.classList.remove('d-none');
+                            } else {
+                                privacyAlert.classList.add('d-none');
+                            }
+                        });
                     });
-                  });
                 </script>
 
 
@@ -134,14 +134,15 @@
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 <script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-	  gtag('config', 'UA-23581568-13');
-	</script>
+    gtag('config', 'UA-23581568-13');
+</script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v52afc6f149f6479b8c77fa569edb01181681764108816" integrity="sha512-jGCTpDpBAYDGNYR5ztKt4BQPGef1P0giN6ZGVUi835kFF88FOmmn8jBQWNgrNd8g/Yu421NdgWhwQoaOPFflDw==" data-cf-beacon='{"rayId":"7d3f2afcd8c64acd","version":"2023.4.0","b":1,"token":"cd0b4b3a733644fc843ef0b185f98241","si":100}' crossorigin="anonymous"></script>
+
 </body>
 
-<!-- Mirrored from colorlib.com/etc/lf/Login_v4/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Jun 2023 06:45:55 GMT -->
+
 </html>

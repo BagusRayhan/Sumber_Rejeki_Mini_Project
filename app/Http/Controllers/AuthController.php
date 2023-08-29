@@ -84,7 +84,11 @@ class AuthController extends Controller
             if ($user->role === 'admin') {
                 return redirect()->route('admin-dashboard');
             } else {
-                return redirect()->route('indexclient');
+                if ($user->status == 'banned') {
+                    return back()->with('error','Akun anda telah dibanned');
+                } else {
+                    return redirect()->route('indexclient');
+                }
             }
         }
         return redirect('login')->withErrors(['email' => 'Email atau password tidak cocok!'])->withInput()->with('alert-type', 'error');
