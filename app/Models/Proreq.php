@@ -15,7 +15,7 @@ class proreq extends Model
     protected $primarykey = "id";
     protected $dates = ['estimasi'];
     protected $fillable = [
-        'id', 'nama', 'napro','progress','dokumen','estimasi','deadline','status','harga','biayatambahan','alasan','listrevisi','statusbayar','metodepembayaran','metode','buktipembayaran','tanggalpembayaran','status2','metodeRefund','layananRefund','nomorRefund','buktiRefund'
+        'id', 'nama', 'napro','progress','dokumen','estimasi','deadline','status','harga','biayatambahan','alasan','listrevisi','statusbayar','metodepembayaran','metode','buktipembayaran','tanggalpembayaran','status2','metodeRefund','layananRefund','nomorRefund','buktiRefund','webaddress','ipaddress','repository','adminemail','adminpassword','cpanelusername','cpanelpassword'
     ];
 
         public function fitur()

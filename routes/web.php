@@ -108,6 +108,7 @@ Route::middleware(['admin'])->group(function(){
     Route::get('search', [ProjectrequestController::class, 'search'])->name('search');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('projectselesai', [ProjectrequestController::class, 'projectselesai'])->name('projectselesai');
+    Route::put('projectselesai/send-config', [ProjectrequestController::class, 'webConfig'])->name('send-config');
     Route::get('pengaturan', [PengaturanController::class, 'pengaturan'])->name('pengaturan');
     Route::post('updatesosmed', [PengaturanController::class, 'updatesosmed'])->name('updatesosmed');
     Route::post('updatekebijakan', [PengaturanController::class, 'updatekebijakan'])->name('updatekebijakan');

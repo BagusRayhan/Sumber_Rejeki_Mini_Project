@@ -46,6 +46,13 @@ return new class extends Migration
             $table->string('metode3')->nullable();
             $table->string('buktipembayaran3')->nullable();
             $table->dateTime('tanggalpembayaran3')->nullable();
+            $table->string('webaddress')->nullable();
+            $table->string('ipaddress')->nullable();
+            $table->string('repository')->nullable();
+            $table->string('adminemail')->nullable();
+            $table->string('adminpassword')->nullable();
+            $table->string('cpanelusername')->unique()->nullable();
+            $table->string('cpanelpassword')->nullable();
             $table->timestamps();
         });
     }
