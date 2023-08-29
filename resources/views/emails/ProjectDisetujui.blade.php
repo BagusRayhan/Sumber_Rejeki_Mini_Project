@@ -70,9 +70,7 @@
         </div>
         <div class="container">
             <h3>Project Disetujui</h3>
-            <p>Project <b>{{ $project->napro }}</b> Anda telah disetujui. Kabar baik! Project Anda telah disetujui oleh tim kami. Sebelum kami mulai pengerjaan, mohon lakukan pembayaran awal sesuai kesepakatan untuk memulai proses.
-                Setelah pembayaran diterima, kami akan segera memulai pengerjaan pro. Kami akan memberi Anda pembaruan berkala sepanjang perjalanan.
-                Terima kasih atas kerjasama Anda.</p>
+            <p>Project <b>{{ $project->napro }}</b> Anda telah disetujui.Kami sangat senang untuk mengumumkan bahwa proyek Anda telah disetujui! Kami berharap kerjasama yang produktif ini. Mohon segera lakukan pembayaran terlebih dahulu untuk memulai langkah-langkah selanjutnya. Terima kasih atas kepercayaan Anda.</p>
                 <span>Regards, <b>PROREQ</b> Teams.</span>
         </div>
         <div class="footer">
