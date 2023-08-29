@@ -244,9 +244,10 @@ class IndexcController extends Controller
         return redirect('drequestclient')->with('success', 'Project Berhasil dikirim!');
     }
 
-
+                    // edit proreq 1
+                    
     public function editProreq(Request $request,$id){
-        
+
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $sosmed = Sosmed::all();
@@ -262,6 +263,37 @@ class IndexcController extends Controller
         Proreq::find($request->project_id)->delete();
         return back();
     }
+                       // edit proreq 2
+
+    // public function editProreq(Request $request, $id) {
+    //     $client = User::find(Auth::user()->id);
+    //     $notification = Notification::where('role', 'client')
+    //         ->where('user_id', Auth::user()->id)
+    //         ->limit(4)
+    //         ->latest()
+    //         ->get();
+    //     $sosmed = Sosmed::all();
+    //     $data = Proreq::findOrFail($id);
+    //     $dataa = Fitur::where('project_id', $id)->get();
+
+    //     if (Auth::user()->id !== $data->user_id || !in_array($data->status, ['pending', 'draft'])) {
+    //         return redirect()->back()->with('error', 'Anda tidak diizinkan untuk mengedit permintaan ini.');
+    //     }
+
+    //     return view('Client.editproreq', compact('data', 'sosmed', 'dataa', 'client', 'notification'));
+    // }
+
+    // public function destroyRequest(Request $request) {
+    //     $project = Proreq::find($request->project_id);
+
+    //     if ($project) {
+    //         $project->delete();
+    //         return redirect()->back()->with('success', 'Permintaan berhasil dihapus.');
+    //     } else {
+    //         return redirect()->back()->with('error', 'Permintaan tidak ditemukan.');
+    //     }
+    // }
+
 
 public function showFormModal($id)
 {
