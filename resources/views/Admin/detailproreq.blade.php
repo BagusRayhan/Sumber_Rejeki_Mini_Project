@@ -137,7 +137,7 @@
                             @csrf
                             @method('PUT')
                             <input type="hidden" name="dataid" value="{{ $data->id }}">
-                            <textarea class="form-control" placeholder="Masukkan Alasan Anda...." rows="6" name="alasan"></textarea>
+                            <textarea class="form-control" placeholder="Masukkan Alasan Anda...." rows="6" name="alasan" autofocus></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" id="btnDismiss">Batal</button>

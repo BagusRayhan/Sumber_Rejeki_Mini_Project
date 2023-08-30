@@ -182,7 +182,7 @@
                                                     @method('PUT')
                                                     <div class="mb-3">
                                                         <label for="fitur" >Nama Fitur</label>
-                                                        <input type="text" name="namafitur" value="{{ $fitur->namafitur }}" class="form-control" id="fitur" placeholder="Masukkan Fitur">
+                                                        <input type="text" name="namafitur" value="{{ $fitur->namafitur }}" class="form-control" id="fitur" placeholder="Masukkan Fitur" autofocus>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="deskripsi">Deskripsi</label>
@@ -223,7 +223,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="">Nama Fitur</label>
-                                <input type="text" name="namafitur" class="form-control" id="fitur" placeholder="Masukkan Fitur">
+                                <input type="text" name="namafitur" class="form-control" id="fitur" placeholder="Masukkan Fitur" autofocus>
                             </div>
                             <div class="mb-3">
                                 <label for="">Deskripsi</label>
