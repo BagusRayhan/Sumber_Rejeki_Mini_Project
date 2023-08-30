@@ -101,7 +101,7 @@
                                                         @csrf
                                                         @method('put')
                                                         <input type="hidden" name="client_id" value="{{ $client->id }}">
-                                                        <button class="btn btn-secondary btn-sm"><i class="fa-solid fa-ban"></i> Unbanned</button>
+                                                        <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-ban"></i> Unbanned</button>
                                                     </form>
                                                     <script>
                                                         function unbannedClient(event, id) {
@@ -145,7 +145,7 @@
                                                         <textarea name="bannedreason" id="bannedreason" rows="8" class="form-control" placeholder="Alasan anda untuk membekukan client ini..."></textarea>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="submit" onclick="sendRequest(event)" class="btn btn-danger btn-sm">Banned</button>
+                                                        <button type="submit" onclick="sendRequest(event)" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Banned</button>
                                                         <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Batal</button>
                                                     </div>
                                                 </form>
