@@ -46,7 +46,7 @@ class PembayaranAwal extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.pembayaranAwal',
+            view: 'emails.PembayaranAwal',
         );
     }
 

@@ -145,10 +145,34 @@
                                                         <textarea name="bannedreason" id="bannedreason" rows="8" class="form-control" placeholder="Alasan anda untuk membekukan client ini..."></textarea>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-danger btn-sm">Banned</button>
+                                                        <button type="submit" onclick="sendRequest(event)" class="btn btn-danger btn-sm">Banned</button>
                                                         <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Batal</button>
                                                     </div>
                                                 </form>
+                                                <script>
+                                                    function sendRequest(event) {
+                                                        event.preventDefault();
+                                                        Swal.fire({
+                                                            title: 'Apakah Anda yakin',
+                                                            text: 'Ingin Membanned akun ini?',
+                                                            icon: 'warning',
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: 'Ya',
+                                                            cancelButtonText: 'Batal'
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                var form = event.target.form;
+                                                                if (form) {
+                                                                    form.submit();
+                                                                } else {
+                                                                    console.error('Form tidak ditemukan.');
+                                                                }
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
                                             </div>
                                         </div>
                                     </div>
