@@ -182,7 +182,7 @@
                     @endforeach
                     @if($user->isEmpty())
                     <div class="d-flex flex-column h-100 justify-content-center align-items-center">
-                        <img src="{{ asset('gambar/empty-icon/empty-directory.pngs') }}" class="w-50" style="margin-top: 90px">
+                        <img src="gambar/empty-icon/empty-directory.png" class="w-35" style="margin-top: 90px">
                         <p class="text-center">Tidak ada data</p>
                     </div>
                 @else
