@@ -31,13 +31,19 @@ class Authenticate extends Middleware
     public function handle($request, Closure $next, ...$guards)
     {
         $this->authenticate($request, $guards);
-
+        
         // Cek role pengguna setelah autentikasi
         $user = $request->user();
+
+        if($user && $user->status === 'banned') {
+            auth()->logout();
+            $reason = $user->alasan_dibanned;
+            return redirect()->route('login')->with('error',"Akun anda telah dibanned. Alasan: $reason");
+        }
+
         if ($user && $user->role === 'client') {
             return $next($request);
         }
         return redirect('admin');
-        // abort(403, 'Unauthorized');
     }
 }
