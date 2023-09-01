@@ -108,7 +108,7 @@
                                                             event.preventDefault();
                                                             Swal.fire({
                                                             title: 'Apakah Anda yakin?',
-                                                            text: 'Ingin menyetujui pembayaran ini',
+                                                            text: 'Ingin membanned user ini?',
                                                             icon: 'warning',
                                                             showCancelButton: true,
                                                             confirmButtonColor: '#3085d6',
