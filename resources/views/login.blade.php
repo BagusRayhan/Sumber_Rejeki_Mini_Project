@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('ProjectManagement/dashmin/img/logo.png') }}" rel="icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('colorlib.com/vendor/bootstrap/css/bootstrap.min.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('colorlib.com/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
@@ -55,6 +56,12 @@
                     Password berhasil di ubah
                     </div>
                     @endif
+                    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
 
         <div class="wrap-input100 validate-input m-b-23" data-validate="Email tidak boleh kosong">
           <span class="label-input100">Email</span>
