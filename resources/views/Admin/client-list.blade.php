@@ -108,7 +108,7 @@
                                                             event.preventDefault();
                                                             Swal.fire({
                                                             title: 'Apakah Anda yakin?',
-                                                            text: 'Ingin membanned user ini?',
+                                                            text: 'Ingin membatalkan banned user ini?',
                                                             icon: 'warning',
                                                             showCancelButton: true,
                                                             confirmButtonColor: '#3085d6',
@@ -136,42 +136,42 @@
                                                 <div class="modal-header">
                                                     <h5 class="modal-title text-danger" id="modalTitleId"><i class="fa-solid fa-ban"></i> Banned Client</h5>
                                                 </div>
-                                                <form action="{{ route('banned-client') }}" method="post">
+                                                <form action="{{ route('banned-client') }}" id="sendRequest{{ $client->id }}" method="post">
                                                     @csrf
                                                     @method('put')
-                                                    <input type="hidden" name="client_id" value="{{ $client->id }}">
+                                                    <input type="hidden" name="client_id" value="{{ $client->id }}" onsubmit="sendRequest(event)">
                                                     <div class="modal-body">
                                                         <label for="bannedreason" class="form-label">Alasan</label>
                                                         <textarea name="bannedreason" id="bannedreason" rows="8" class="form-control" placeholder="Alasan anda untuk membekukan client ini..."></textarea>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="submit" onclick="sendRequest(event)" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Banned</button>
+                                                        <button type="submit" onclick="sendRequest(event, {{ $client->id }})" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Banned</button>
                                                         <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Batal</button>
                                                     </div>
                                                 </form>
                                                 <script>
-                                                    function sendRequest(event) {
-                                                        event.preventDefault();
-                                                        Swal.fire({
-                                                            title: 'Apakah Anda yakin',
-                                                            text: 'Ingin Membanned akun ini?',
-                                                            icon: 'warning',
-                                                            showCancelButton: true,
-                                                            confirmButtonColor: '#3085d6',
-                                                            cancelButtonColor: '#d33',
-                                                            confirmButtonText: 'Ya',
-                                                            cancelButtonText: 'Batal'
-                                                        }).then((result) => {
-                                                            if (result.isConfirmed) {
-                                                                var form = event.target.form;
-                                                                if (form) {
-                                                                    form.submit();
-                                                                } else {
-                                                                    console.error('Form tidak ditemukan.');
-                                                                }
+                                                  function sendRequest(event, id) {
+                                                    event.preventDefault();
+                                                    Swal.fire({
+                                                        title: 'Apakah Anda yakin',
+                                                        text: 'Ingin Membanned akun ini?',
+                                                        icon: 'warning',
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        confirmButtonText: 'Ya',
+                                                        cancelButtonText: 'Batal'
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            var form = event.target.form;
+                                                            if (form) {
+                                                                document.getElementById('sendRequest' + id).submit();
+                                                            } else {
+                                                                console.error('Form tidak ditemukan.');
                                                             }
-                                                        });
-                                                    }
+                                                        }
+                                                    });
+                                                }
                                                 </script>
                                             </div>
                                         </div>
