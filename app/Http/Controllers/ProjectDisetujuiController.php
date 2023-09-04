@@ -221,13 +221,11 @@ public function upEstimasi(Request $request) {
 
     public function refundRequestClient(Request $request, $id) {
         $request->validate([
-            'nomorRefund' => 'required|numeric|gt:0|between:10,15'
+            'nomorRefund' => 'required|gt:0|between:10,15'
         ],[
             'nomorRefund.required' => 'Nomor tidak boleh kosong',
-            'nomorRefund.numeric' => 'Nomor tidak valid',
             'nomorRefund.gt' => 'Nomor tidak valid',
-            'nomorRefund.between' => 'Nomor minimal 10 karakter maksimal 15 karakter',
-            'nomorRefund.max' => 'Nomor maksimal 15 karakter'
+            'nomorRefund.between' => 'Nomor minimal 10 karakter maksimal 15 karakter'
         ]);
         $pro = Proreq::findOrFail($id);
         $pro->update([
