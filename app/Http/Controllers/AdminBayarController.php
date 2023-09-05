@@ -134,7 +134,7 @@ class AdminBayarController extends Controller
             ]);
         }
         $projectol->save();
-        return back()->with('success','Berhasil menolak project');
+        return back()->with('success','Berhasil menolak pembayaran');
     }
 
  public function disetujui(Request $request) {
