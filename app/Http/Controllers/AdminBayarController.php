@@ -73,7 +73,7 @@ class AdminBayarController extends Controller
             Mail::to($user->email)->send(new PembayaranRevisi($project));
         }
         $project->save();
-        return back()->with('success', 'Berhasil menyetujui project');
+        return back()->with('success', 'Berhasil menyetujui pembayaran');
     }
 
     public function tolakPembayaran(Request $request, $id) {
