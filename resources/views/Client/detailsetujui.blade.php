@@ -217,7 +217,7 @@ use \Carbon\Carbon;
                                 <p class="fw-medium mt-3">Diskusikan project dengan admin</p>
                             </div>
                             <button data-bs-toggle="collapse" data-bs-target="#chatbox-container" aria-expanded="false" class="btn btn-primary fw-semibold btn-sm" onclick="openChat()">Hubungi Admin</button>
-                        </div>
+                        </div>                                           
                         <style>
                             #chatbox {
                                 height: 350px;
@@ -246,8 +246,21 @@ use \Carbon\Carbon;
                                 <div class="form-group p-1 d-flex px-2 rounded-bottom" style="bottom: 0; background: #f3f6f9;">
                                     <input type="hidden" name="project_id" value="{{ $detail->id }}">
                                     <input type="hidden" name="chat_time" value="{{ Carbon::now() }}">
-                                    <textarea class="form-control" id="chat" name="chat" style="height: 5vh; max-height: 100px" placeholder="Ketik pesan ..."></textarea>
+                                    <textarea class="form-control" id="chat1" name="chat" style="height: 5vh; max-height: 100px" placeholder="Ketik pesan ..."></textarea>
                                     <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></button>
+                                    <script>
+                                        document.addEventListener("DOMContentLoaded", function() {
+                                            function openChat() {
+                                                // Memberikan fokus pada elemen textarea dengan id "chat"
+                                                var chatElement = document.getElementById("chat");
+                                                if (chatElement) {
+                                                    chatElement.focus();
+                                                } else {
+                                                    console.error("Elemen dengan ID 'chat' tidak ditemukan.");
+                                                }
+                                            }
+                                        });
+                                    </script>                                    
                                 </div>
                             </form>
                         </div>
