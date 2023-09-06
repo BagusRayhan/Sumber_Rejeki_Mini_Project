@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EstimasiProject;
 use App\Models\Chat;
 use App\Models\User;
 use App\Models\Fitur;
@@ -148,10 +149,13 @@ public function upEstimasi(Request $request) {
         'estimasi.after_or_equal' => 'Estimasi tidak boleh hari kemarin',
     ]);
 
+
     $pro = Proreq::find($request->project_id);
+    $user = User::find($pro->user_id);
     $pro->update([
         'estimasi' => $request->estimasi
     ]);
+    Mail::to($user->email)->send(new EstimasiProject($pro));
     return back();
 }
 
