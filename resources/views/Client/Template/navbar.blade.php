@@ -157,16 +157,16 @@
                 <div class="col-md-6 mt-2">
                   <div class="form-group">
                     <label for="input2">No.Telpon</label>
-                    <input type="number" class="form-control mt-1" id="exampleFormControlInput3" name="no_tlp" value="{{ $client->no_tlp }}">
+                    <input type="number" class="form-control mt-1" placeholder="No.Telp..." id="exampleFormControlInput3" name="no_tlp" value="{{ $client->no_tlp }}">
                   </div>
                 </div>
                 <div class="mb-1 mt-2">
                   <label for="exampleFormControlInput1" class="form-label">Nama Perusahaan</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" name="nama_perusahaan" value="{{ $client->nama_perusahaan }}">
+                  <input type="text" class="form-control" placeholder="Masukkan Nama Perusahaan..." id="exampleFormControlInput1" name="nama_perusahaan" value="{{ $client->nama_perusahaan }}">
                 </div>
                 <div class="mb-1 mt-2">
                   <label for="input1">Alamat Perusahaan</label>
-                  <textarea class="form-control mt-1" id="exampleFormControlInput5" style="height: 100px" name="alamat_perusahaan">{{ $client->alamat_perusahaan }}</textarea>
+                  <textarea class="form-control mt-1" id="exampleFormControlInput5" placeholder="Masukkan Alamat Perusahaaan ..." style="height: 100px" name="alamat_perusahaan">{{ $client->alamat_perusahaan }}</textarea>
                 </div>
               </div>
               <input type="hidden" name="old_profile" value="{{ $client->profil }}">

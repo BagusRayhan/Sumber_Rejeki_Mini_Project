@@ -25,12 +25,12 @@ class AdminBayarController extends Controller
         $propend->appends(['query' => $query]);
         return view('Admin.pembayaran-pending', compact('propend', 'admin', 'notification'));
     }
- 
+
     public function setujuiPembayaran(Request $request, $id)
     {
         $project = Proreq::findOrFail($id);
         $user = User::find($project->user_id);
-    
+
         if ($project->statusbayar === 'pembayaran awal') {
             $project->status = 'setuju';
             $project->statusbayar = null;
@@ -73,8 +73,8 @@ class AdminBayarController extends Controller
             Mail::to($user->email)->send(new PembayaranRevisi($project));
         }
         $project->save();
-        return back()->with('success', 'Berhasil menyetujui project');
-    }    
+        return back()->with('success', 'Berhasil menyetujui pembayaran');
+    }
 
     public function tolakPembayaran(Request $request, $id) {
         $projectol = Proreq::findOrFail($id);
@@ -134,14 +134,14 @@ class AdminBayarController extends Controller
             ]);
         }
         $projectol->save();
-        return back()->with('success','Berhasil menolak project');
+        return back()->with('success','Berhasil menolak pembayaran');
     }
 
  public function disetujui(Request $request) {
     $admin = User::where('role', 'admin')->first();
     $query = $request->input('query');
     $notification = Notification::where('role', 'admin')->limit(4)->latest()->get();
-    $approved = Proreq::where('statusbayar', 'lunas')->where('napro', 'LIKE', '%'.$query.'%')->paginate(10); 
+    $approved = Proreq::where('statusbayar', 'lunas')->where('napro', 'LIKE', '%'.$query.'%')->paginate(10);
     $approved->appends(['query' => $query]);
     return view('Admin.pembayaran-disetujui', compact('approved', 'admin', 'notification', 'query'));
 }

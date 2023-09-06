@@ -48,16 +48,24 @@
                                 <input type="file" class="form-control" name="dokumen" id="input3">
                                 <button type="button" class="btn btn-block border" data-bs-toggle="modal" data-bs-target="#suppDocs"><i class="fa-solid fa-eye"></i></button>
                             </div>
-                            <div class="modal fade" id="suppDocs"tabindex="-1" aria-hidden="true">
+                            <div class="modal fade" id="suppDocs" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Dokumen Pendukung</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
+                                            @if ($data->dokumen == null)
+                                            <div class="wrapper d-flex flex-column align-items-center justify-content-center">
+                                                <img class="w-25 h-25" src="{{ asset('gambar/empty-icon/empty-directory.png') }}" alt="">
+                                                <p class="fw-semibold">Client tidak menyertakan dokumen untuk project ini</p>
+                                            </div>
+                                            @else
                                             <div class="mb-3">
                                                 <iframe class="w-100" src="{{ asset('document/'.$data->dokumen) }}" frameborder="0" style="height: 400px"></iframe>
                                             </div>
+                                            @endif
                                         </div>
                                         <div class="modal-footer"></div>
                                     </div>

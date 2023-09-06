@@ -20,7 +20,7 @@
                             <a href="{{ route('ditolakclient') }}" class="dropdown-item dropdown-item1 py-2 px-5 fw-medium {{ Request::routeIs('ditolakclient*') ? 'text-primary' : '' }}">Project Ditolak</a>
                         </div>
                     </div>
-                    <a href="{{ route('bayarclient') }}" class="nav-item nav-link {{ Request::routeIs('bayarclient*','bayar2client*') ? 'active' : '' }}"><i class="fa-solid fa-wallet"></i>Transaksi</a>
+                    <a href="{{ route('bayarclient') }}" class="nav-item nav-link {{ Request::routeIs('bayarclient*','bayar2client*') ? 'active' : '' }}"><i class="fa-solid fa-wallet me-2"></i>Transaksi</a>
                 </div>
                 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
                 <script>
