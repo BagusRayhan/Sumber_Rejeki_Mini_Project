@@ -91,7 +91,10 @@
                                         @if ($estimasisetuju->progress == null)
                                             <h6 class="mb-2"></h6>
                                             @if ($estimasisetuju->estimasi != null)
-                                                <span class="float-end"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasisetuju->estimasi->diffForHumans() }}</span>
+                                            @php
+                                                 $estimasiDate = Carbon::parse($estimasisetuju->estimasi);
+                                            @endphp
+                                                <span class="float-end"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasiDate->diffForHumans() }}</span>
                                             @else
                                                 <span class="float-end">Estimasi belum diatur</span>
                                             @endif
