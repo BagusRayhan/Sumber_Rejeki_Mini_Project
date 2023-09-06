@@ -80,9 +80,10 @@ class PengaturanController extends Controller
 
     public function updateAboutUs(Request $request) {
         $this->validate($request,[
-            'about' => 'required'
+            'about' => 'required|min:10'
         ],[
-            'about.required' => 'Isi about us terlebih dahulu'
+            'about.required' => 'Isi about us terlebih dahulu',
+            'about.min' => 'Isi about us minimal 10 karakter'
         ]);
 
         $about = Aboutproreq::find(1);
@@ -94,11 +95,13 @@ class PengaturanController extends Controller
 
     public function addFAQ(Request $request) {
         $this->validate($request,[
-            'question' => 'required',
-            'answer' => 'required'
+            'question' => 'required|min:10',
+            'answer' => 'required|min:10'
         ],[
             'question.required' => 'Isi pertanyaan terlebih dahulu',
-            'answer.required' => 'Isi jawaban terlebih dahulu'
+            'answer.required' => 'Isi jawaban terlebih dahulu',
+            'question.min' => 'Isi pertanyaan minimal 10 karakter',
+            'answer.min' => 'Isi jawaban minimal 10 karakter'
         ]);
         
         $qmark = substr($request->question, -1);
@@ -118,11 +121,13 @@ class PengaturanController extends Controller
 
     public function editFAQ(Request $request) {
         $this->validate($request,[
-            'question' => 'required',
-            'answer' => 'required'
+            'question' => 'required|min:10',
+            'answer' => 'required|min:10'
         ],[
             'question.required' => 'Isi pertanyaan terlebih dahulu',
-            'answer.required' => 'Isi jawaban terlebih dahulu'
+            'answer.required' => 'Isi jawaban terlebih dahulu',
+            'question.min' => 'Isi pertanyaan minimal 10 karakter',
+            'answer.min' => 'Isi jawaban minimal 10 karakter'
         ]);
 
         $faq = FAQ::find($request->faq_id);
