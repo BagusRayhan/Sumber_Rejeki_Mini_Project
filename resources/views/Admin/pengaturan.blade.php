@@ -118,36 +118,46 @@
                                 <ul class="list-group px-3" style="overflow-y: scroll; height: 24em;">
                                     @foreach ($faqs as $faq)
                                         <li class="list-group-item mb-1 d-flex justify-content-between">
-                                            <p class="my-auto">{{ $faq->question }}</p>
+                                            <style>
+                                            .p-question {
+                                                max-height: 50px;
+                                                overflow: hidden;
+                                            }
+                                            </style>
+                                            <p class="my-auto p-question">{{ $faq->question }}</p>
                                             <div class="d-flex align-items-center">
                                                 <div class="wrapper">
                                                     <button class="btn btn-block p-0 mx-2" type="button" data-bs-toggle="modal" data-bs-target="#editFAQModal{{ $faq->id }}"><i class="fa-solid fa-pen-to-square fs-6"></i></button>
                                                 </div>
-                                                <form action="{{ route('delete-faq') }}" id="deleteFAQ" onsubmit="deleteFAQ(event)" method="post">
+                                                <form action="{{ route('delete-faq', ['faq_id' => $faq->id]) }}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <input type="hidden" name="faq_id" value="{{ $faq->id }}">
-                                                    <button type="submit" class="btn btn-block p-0 mx-2"><i class="fa-solid fa-trash fs-6"></i></button>
-                                                </form>
+                                                    <button type="submit" class="btn btn-block p-0 mx-2 delete-button">
+                                                        <i class="fa-solid fa-trash fs-6"></i>
+                                                    </button>
+                                                </form>                                                                                                                                            
                                                 <script>
-                                                    function deleteFAQ(event) {
-                                                        event.preventDefault();
-                                                        Swal.fire({
-                                                            title: 'Apakah Anda yakin?',
-                                                            text: 'Menghapus FAQ',
-                                                            icon: 'warning',
-                                                            showCancelButton: true,
-                                                            confirmButtonColor: '#3085d6',
-                                                            cancelButtonColor: '#d33',
-                                                            confirmButtonText: 'Ya',
-                                                            cancelButtonText: 'Batal'
-                                                        }).then((result) => {
-                                                            if (result.isConfirmed) {
-                                                                document.getElementById('deleteFAQ').submit();
-                                                            }
+                                                    document.querySelectorAll('.delete-button').forEach(function(button) {
+                                                        button.addEventListener('click', function(event) {
+                                                            event.preventDefault();
+                                                            const form = this.parentElement; // Dapatkan form terkait dengan tombol yang diklik
+                                                            Swal.fire({
+                                                                title: 'Apakah Anda yakin?',
+                                                                text: 'Menghapus FAQ',
+                                                                icon: 'warning',
+                                                                showCancelButton: true,
+                                                                confirmButtonColor: '#3085d6',
+                                                                cancelButtonColor: '#d33',
+                                                                confirmButtonText: 'Ya',
+                                                                cancelButtonText: 'Batal'
+                                                            }).then((result) => {
+                                                                if (result.isConfirmed) {
+                                                                    form.submit(); // Submit form jika pengguna mengonfirmasi
+                                                                }
+                                                            });
                                                         });
-                                                    }
-                                                </script>
+                                                    });
+                                                </script>                                                
                                             </div>
                                             {{-- Edit FAQ Modal --}}
                                             <div class="modal fade" id="editFAQModal{{ $faq->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -200,11 +200,12 @@ class AdminBayarController extends Controller
     public function updateBank(Request $request) {
         $bank = Bank::findOrFail($request->idrekening);
         $valid = $request->validate([
-            'rekening' => 'required|numeric|min:10'
+            'rekening' => 'required|min:10|max:18|regex:/^[0-9]+$/'
         ], [
             'rekening.required' => 'Rekening tidak boleh kosong',
-            'rekening.numeric' => 'Rekening tidak valid',
-            'rekening.min' => 'Rekening tidak valid'
+            'rekening.min' => 'Rekening tidak valid',
+            'rekening.max' => 'Rekening tidak valid',
+            'rekening.regex' => 'Rekening tidak valid'
         ]);
         $bank->update([
             'rekening' => $request->rekening

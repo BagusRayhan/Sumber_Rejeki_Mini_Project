@@ -121,7 +121,7 @@ Route::middleware(['admin'])->group(function(){
     Route::post('updateaboutus', [PengaturanController::class, 'updateAboutUs'])->name('update-aboutus');
     Route::post('add-faq', [PengaturanController::class, 'addFAQ'])->name('add-faq');
     Route::post('edit-faq', [PengaturanController::class, 'editFAQ'])->name('edit-faq');
-    Route::delete('delete-faq', [PengaturanController::class, 'deleteFAQ'])->name('delete-faq');
+    Route::delete('faq/delete/{faq_id}', [PengaturanController::class, 'deleteFAQ'])->name('delete-faq');
     Route::get('revisiproselesai/{id}', [ProjectrequestController::class, 'revisiproselesai'])->name('revisiproselesai');
     Route::get('editproselesai/{id}', [ProjectrequestController::class, 'editproselesai'])->name('editproselesai');
     Route::post('updateproreq-admin/{id}', [ProjectrequestController::class, 'updateProreq'])->name('updateproreq-admin');

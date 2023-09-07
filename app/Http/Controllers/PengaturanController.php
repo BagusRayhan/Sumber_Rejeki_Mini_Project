@@ -146,11 +146,16 @@ class PengaturanController extends Controller
         return back()->with('success', 'Berhasil mengubah FAQ');
     }
 
-    public function deleteFAQ(Request $request) {
-        $faq = FAQ::find($request->faq_id);
+    public function deleteFAQ(Request $request, $faq_id) {
+        $faq = FAQ::find($faq_id);
+        if (!$faq) {
+            // Penanganan jika FAQ tidak ditemukan
+            return redirect()->back()->with('error', 'FAQ tidak ditemukan');
+        }
+    
         $faq->delete();
-        return back()->with('success', 'Berhasil menghapus FAQ');
-    }
+        return redirect()->back()->with('success', 'Berhasil menghapus FAQ');
+    }    
 
     public function kebijakan() {
         $admin = User::where('role', 'admin')->first();
