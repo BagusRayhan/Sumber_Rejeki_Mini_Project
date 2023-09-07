@@ -167,7 +167,8 @@
             </div>
           <div class="row">
               <div class="mb-1">
-                    <label for="input1">Ema." class="form-control mt-1" id="exampleFormControlInput2" name="email" value="{{ $admin->email }}"> --}}
+                    <label for="input1">Email</label>
+                    <input type="email" class="form-control mt-1" id="exampleFormControlInput2" name="email" value="{{ $admin->email }}"> 
                 </div>
               </div>
             </div>
