@@ -59,108 +59,36 @@
     <div class="limiter">
   <div class="container-login100" style="background-image: url('{{ asset('ProjectManagement/dashmin/img/bgl.png') }}');">
     <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-
-        <form class="login100-form validate-form" action="{{ route('postsignup') }}" method="POST">
+        <form class="login100-form validate-form" action="{{ route('email-verification.post') }}" method="POST">
             @csrf
-            <span class="login100-form-title p-b-49">
-              REGISTER
+            <input type="text" name="email_id">
+            <span class="login100-form-title p-b-20">
+                Verifikasi Email
             </span>
-
-            {{-- pesan untuk error --}}
-            @if ($errors->any())
-            <div class="alert alert-danger">
-            <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-            @endforeach
-            </ul>
+            <div class="mb-6 text-left p-b-50">
+                <p class="mx-3 mb-0 verif-desc">Masukkan kode verifikasi yang sudah kami kirim ke <b>{{ session('temp_email') }}</b></p>
+                <a class="mx-3 text-primary" href="{{ route('wrong-account') }}">Bukan akun anda?</a>
             </div>
-            @endif
-            @if (session('status'))
-            <div class="alert alert-success">
-            {{ session('message') }}
-            </div>
-            @endif
-            {{-- akhir pesan error --}}
-
             <div class="wrap-input100 validate-input m-b-23" data-validate="Name is required">
-              <span class="label-input100">Name</span>
-              <input class="input100" type="text" id="name" name="name" placeholder="Masukkan Nama anda" value="{{ old('name') }}">
-              <span class="focus-input100" data-symbol="&#xf207;"></span>
+                <input class="w-100 fs-25 text-center" type="text" id="code" name="code" placeholder="" maxlength="4" style="letter-spacing: 40px" autofocus>
             </div>
-
-            <div class="wrap-input100 validate-input m-b-23" data-validate="Email is required">
-              <span class="label-input100">Email</span>
-              <input class="input100" type="email" id="email" name="email" placeholder="Masukkan email anda" value="{{ old('email') }}">
-              <span class="focus-input100" data-symbol="&#xf15a;"></span>
+            <button id="login-button" type="submit" class="btn mt-10 h-10 w-full bg-primary font-medium text-white" style="border-radius: 20px;">Verifikasi</button>
+        </form>
+        @if (session()->has('code'))
+            <div class="flex-col-c p-t-50" id="resend-wrapper">
+                <span class="txt1 p-b-17 d-flex align-items-center">
+                    <a href="#" id="resendCodeBtn" class="btn btn-transparent text-primary text-left d-flex px-1 py-0 fs-14 disabled">Kirim ulang?</a>
+                    <p id="codeExpiredCountdown" class="fs-16">00:00</p>
+                </span>
             </div>
-
-            <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
-              <span class="label-input100">Password</span>
-              <input class="input100" type="password" id="password" name="password" placeholder="Masukkan password anda" value="{{ old('password') }}">
-              <span class="focus-input100" data-symbol="&#xf191;"></span>
+            @else
+            <div class="flex-col-c p-t-50" id="resend-wrapper">
+                <span class="txt1 p-b-17 d-flex align-items-center">
+                    <a href="{{ route('resend-code') }}" id="resendCodeBtn" class="btn btn-transparent text-primary text-left d-flex px-1 py-0 fs-14">Kirim ulang?</a>
+                    <p class="fs-16">00:00</p>
+                </span>
             </div>
-
-            <div class="wrap-input100 validate-input m-b-23" data-validate="Password confirmation is required">
-              <span class="label-input100">Confirm Password</span>
-              <input class="input100" type="password" id="password" name="pass" placeholder="Konfirmasi password anda">
-              <span class="focus-input100" data-symbol="&#xf191;"></span>
-              <p id="password-error" style="color: red;"></p>
-            </div>
-
-            <span class="label-input100">Input Opsional &nbsp;<i class="fa fa-sort-desc"></i></span> <br><br>
-            <div class="wrap-input100 validate-input m-b-23">
-              <span class="label-input100">Nama Perusahaan</span>
-              <input class="input100" type="text" id="nama_perusahaan" name="nama_perusahaan" placeholder="Masukkan nama perusahaan anda" value="{{ old('nama_perusahaan') }}">
-              <span class="focus-input100" data-symbol="&#xf132;"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input m-b-23">
-              <span class="label-input100">Alamat Perusahaan</span>
-              <input class="input100" type="text" id="alamat_perusahaan" name="alamat_perusahaan" placeholder="Masukkan alamat perusahaan anda" value="{{ old('alamat_perusahaan') }}">
-              <span class="focus-input100" data-symbol="&#xf112;"></span>
-            </div>
-
-            <div class="wrap-input100 validate-input m-b-23">
-              <span class="label-input100">No. Telpon</span>
-              <input class="input100" type="number" id="no_tlp" name="no_tlp" placeholder="Masukkan no telephone anda" value="{{ old('no_tlp') }}">
-              <span class="focus-input100" data-symbol="&#xf2b6;"></span>
-            </div>
-
-
-
-            <div class="d-flex justify-content-start">
-                <input type="checkbox" id="remember-checkbox">
-                <a href="kebijakan">&nbsp;Kebijakan Privasi</a>
-              </div>
-              <br>
-
-              <button id="login-button" type="submit" class="btn mt-10 h-10 w-full bg-primary font-medium text-white" style="border-radius: 20px;">Register</button>
-              <div id="privacy-alert" class="alert alert-danger mt-2 mb-0 d-none">Anda harus menyetujui kebijakan privasi</div>
-        <script>
-            const rememberCheckbox = document.getElementById('remember-checkbox');
-            const loginButton = document.getElementById('login-button');
-            const privacyAlert = document.getElementById('privacy-alert');
-
-            loginButton.addEventListener('click', function(event) {
-              if (!rememberCheckbox.checked) {
-                event.preventDefault();
-                privacyAlert.classList.remove('d-none');
-              } else {
-                privacyAlert.classList.add('d-none');
-              }
-            });
-    </script>
-
-                    <div class="flex-col-c p-t-50">
-                      <span class="txt1 p-b-17">
-                        Sudah punya akun?
-                        <a href="{{ route('login') }}" class="txt2">
-                          Login
-                        </a>
-                      </span>
-                    </div>
-          </form>
+        @endif
     </div>
   </div>
 </div>
@@ -168,7 +96,31 @@
 <div id="dropDownSelect1"></div>
 
 <script src="{{ asset('colorlib.com/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
-
+<script>
+    let expiredCountdown = setInterval(() => {
+        let resendBtnDisabled = $('#resendCodeBtn');
+        let resendBtnElement = `<div class="flex-col-c p-t-50" id="resend-wrapper">
+                <span class="txt1 p-b-17 d-flex align-items-center">
+                    <a href="{{ route('resend-code') }}" id="resendCodeBtn" class="btn btn-transparent text-primary text-left d-flex px-1 py-0 fs-14">Kirim ulang?</a>
+                    <p class="fs-16">00:00</p>
+                </span>
+            </div>`;
+        let resendBtn = $('#resendCodeBtn');
+        let expDate = new Date(`{{ session('code_expired') }}`).getTime();
+        let now = new Date().getTime();
+        let distance = expDate - now;
+        if (distance <= 0) {
+        clearInterval(expiredCountdown);
+        $('#resend-wrapper').empty();
+        $('#resend-wrapper').append(resendBtnElement);
+        } else {
+        let m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let s = Math.floor((distance % (1000 * 60)) / 1000);
+        let formattedTime = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+        $('#codeExpiredCountdown').html(formattedTime);
+        }
+    }, 1000);
+</script>
 <script src="{{ asset('colorlib.com/vendor/animsition/js/animsition.min.js') }}"></script>
 
 <script src="{{ asset('colorlib.com/vendor/bootstrap/js/popper.js') }}"></script>
@@ -193,6 +145,5 @@
 	</script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v52afc6f149f6479b8c77fa569edb01181681764108816" integrity="sha512-jGCTpDpBAYDGNYR5ztKt4BQPGef1P0giN6ZGVUi835kFF88FOmmn8jBQWNgrNd8g/Yu421NdgWhwQoaOPFflDw==" data-cf-beacon='{"rayId":"7d3f2afcd8c64acd","version":"2023.4.0","b":1,"token":"cd0b4b3a733644fc843ef0b185f98241","si":100}' crossorigin="anonymous"></script>
 </body>
-
-<!-- Mirrored from colorlib.com/etc/lf/Login_v4/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Jun 2023 06:45:55 GMT -->
+@include('sweetalert::alert')
 </html>

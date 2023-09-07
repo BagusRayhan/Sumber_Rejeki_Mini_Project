@@ -59,7 +59,7 @@
                                             @if ($data->dokumen == null)
                                             <div class="wrapper d-flex flex-column align-items-center justify-content-center">
                                                 <img class="w-25 h-25" src="{{ asset('gambar/empty-icon/empty-directory.png') }}" alt="">
-                                                <p class="fw-semibold">Client tidak menyertakan dokumen untuk project ini</p>
+                                                <p class="fw-semibold">Anda tidak menyertakan dokumen untuk project ini</p>
                                             </div>
                                             @else
                                             <div class="mb-3">

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\EmailVerification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 
@@ -18,6 +20,17 @@ class AuthController extends Controller
     }
 
     public function register() {
+        $user = User::where('email', session('temp_email'))->first();
+        if ($user) {
+            $verifiedEmail = User::where('email', session('temp_email'))->pluck('email_verified_at')->first();
+            if ($verifiedEmail == null) {
+                return redirect()->route('email-verification');
+            } else {
+                session()->forget('temp_email');
+            }
+        } else {
+            session()->forget('temp_email');
+        }
         return view('register');
     }
 
@@ -110,13 +123,66 @@ class AuthController extends Controller
             'no_tlp.min' => 'no telephone tidak boleh kurang dari 11',
             'no_tlp.max' => 'no telephone tidak boleh lebih dari 14'
         ]);
+        $code = random_int(1000, 9999);
+        $email = $request->email;
+        session([
+            'code' => $code,
+            'code_expired' => now()->addMinutes(5),
+            'temp_email' => $email,
+        ]);
         $data = $request->all();
         $data['role'] = 'client';
         $data['profil'] = 'user.jpg';
         $user = $this->create($data);
-        return redirect()->route('login')
+        Mail::to($request->email)->send(new EmailVerification($code));
+        return redirect()->route('email-verification');
+    }
+
+    public function verifEmail() {
+        if (session('temp_email') == null) {
+            return to_route('register');
+        }
+        if (now() > session('code_expired')) {
+            session()->forget(['code','code_expired']);
+        }
+        $email = User::where('email', session('temp_email'))->first();
+        return view('email-verification', [
+            'email' => $email
+        ]);
+    }
+
+    public function resendCode() {
+        $code = random_int(1000, 9999);
+        session([
+            'code' => $code,
+            'code_expired' => now()->addMinutes(5),
+        ]);
+        Mail::to(session('temp_email'))->send(new EmailVerification($code));
+        return back();
+    }
+
+    public function verifEmailStore(Request $request) {
+        if (session('code') != $request->code) {
+            return back()->with('error', 'Kode tidak sama');
+        } else {
+            $email = User::where('email', session('temp_email'))->first();
+            $email->update([
+                'email_verified_at' => now(),
+            ]);
+            session()->flush();
+            return redirect()->route('login')
             ->with('success', 'Anda berhasil melakukan registrasi!')
             ->with('alert-type', 'success');
+        }
+    }
+
+    public function wrongAccount() {
+        if(session('temp_mail') == null) {
+            return back();
+        }
+        User::where('email', session('temp_email'))->first()->delete();
+        session()->flush();
+        return view('register');
     }
 
     public function create(array $data) {
