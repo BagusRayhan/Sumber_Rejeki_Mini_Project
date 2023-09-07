@@ -88,7 +88,6 @@
                             </div>
                                 <div class="bg-light rounded h-100 p-10">
                                     <div class="pg-bar mb-3">
-                                        @if ($estimasisetuju->progress == null)
                                             <h6 class="mb-2"></h6>
                                             @if ($estimasisetuju->estimasi != null)
                                             @php
@@ -98,7 +97,6 @@
                                             @else
                                                 <span class="float-end">Estimasi belum diatur</span>
                                             @endif
-                                        @endif
                                     </div>
                                 </div>
                         </a>

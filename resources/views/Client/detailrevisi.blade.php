@@ -36,9 +36,9 @@
                             <i class="fa-solid fa-eye pe-2"></i> lihat dokumen
                         </button>
                         @if ($data->dokumen == null)
-                            <a onclick="emptyDocsDown()" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
+                        <a onclick="emptyDocsDown()" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
                         @else
-                            <a href="{{ route('download-suppdocs-client', ['dokumen' => $data->dokumen]) }}" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
+                        <a href="{{ route('download-suppdocs-client', ['dokumen' => $data->dokumen]) }}" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
                         @endif
                     </div>
                     <div class="modal fade" id="suppDocs" tabindex="-1" aria-hidden="true">
