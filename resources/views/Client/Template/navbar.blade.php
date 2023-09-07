@@ -129,12 +129,20 @@
               @csrf
               @method('put')
               <div class="profile d-flex justify-content-center">
-                <img src="/gambar/user-profile/{{ $client->profil }}" class="rounded-circle profile-image">
+                <img src="/gambar/user-profile/{{ $client->profil }}" class="rounded-circle profile-image" id="profile-pic">
                 <label for="fileInputA" class="change-profile-button d-flex justify-content-center" id="chooseFileButtonA">
                   <i class="fa-sharp fa-solid fa-image text-primary"></i>
                 </label>
                 <input type="file" id="fileInputA" name="fileInputA" style="display:none" accept=".jpg,.png,.pdf">
               </div>
+              <script>
+                 let profilePic = document.getElementById("profile-pic");
+                 let inputFile = document.getElementById("fileInputA");
+                 
+                 inputFile.onchange = function(){
+                  profilePic.src = URL.createObjectURL(inputFile.files[0]);
+                 }
+              </script>
               {{-- <div class="profile d-flex justify-content-center">
                 <img src="/gambar/user-profile/{{ $client->profil }}" class="rounded-circle profile-image">
                 <a href="#" type="file" class="change-profile-button d-flex justify-content-center" id="chooseFileButtonA">
