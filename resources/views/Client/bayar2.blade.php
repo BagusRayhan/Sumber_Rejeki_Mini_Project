@@ -219,10 +219,12 @@ $(function(e){
                                             <button type="button" data-bs-toggle="modal" data-bs-target="#struk2" data-bs-id="{{ $client2->id }}" data-bs-nama="{{ $client2->napro }}" data-bs-harga="{{ $client2->harga }}" data-bs-tanggal="{{ $client2->tanggalpembayaran }}" data-bs-biayatambahan="{{ $client2->biayatambahan }}" data-bs-tanggal2="{{ $client2->tanggalpembayaran2 }}" data-bs-metode="{{ $client2->metodepembayaran }}" data-bs-metode2="{{ $client2->metodepembayaran2 }}" class="btn btn-warning struk text-white btn-sm" style="background-color: none">
                                                 <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk
                                             </button>
-                                        @else
+                                        @elseif(empty($client2->metodepembayaran3))
                                             <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar2" data-id="{{ $client2->id }}" data-napro="{{ $client2->napro }}" data-harga="{{ $client2->harga }}" data-tanggalpembayaran="{{ $client2->tanggalpembayaran }}" data-metodepembayaran="{{ $client2->metodepembayaran }}" data-biayatambahan="{{ $client2->biayatambahan }}" data-tanggalpembayaran2="{{ $client2->tanggalpembayaran2 }}" data-metodepembayaran2="{{ $client2->metodepembayaran2 }}" class="btn btn-primary btn-revisi btn-sm" style="background-color: none">
                                                 <i class="fa-solid fa-wallet"></i>&nbsp;Bayar
                                             </button>
+                                        @elseif ($client2->statusbayar == 'pembayaran akhir' || $client2->statusbayar == 'pembayaran revisi')
+                                        <i class="fa-solid fa-hourglass fs-5 text-warning-emphasis"></i>
                                         @endif
                                     @elseif ($client2->statusbayar == 'lunas')
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#struk" data-bs-id="{{ $client2->id }}" data-bs-nama="{{ $client2->napro }}" data-bs-harga="{{ $client2->harga }}" data-bs-tanggal="{{ $client2->tanggalpembayaran }}" data-bs-tanggal2="{{ $client2->tanggalpembayaran2 }}" data-bs-metode="{{ $client2->metodepembayaran }}" data-bs-metode2="{{ $client2->metodepembayaran2 }}" class="btn btn-warning struk text-white btn-sm" style="background-color: none">
