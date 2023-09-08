@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\EmailVerification;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -94,14 +95,21 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            if ($user->role === 'admin') {
-                return redirect()->route('admin-dashboard');
-            } else {
+            if ($user->role === null) {
+                if (session('temp_email') == $user->email) {
+                    return redirect()->route('email-verification');
+                } else {
+                    User::findOrFail(Auth::user()->id)->delete();
+                    return redirect()->route('login')->with('error','Akun tidak terdaftar');
+                }
+            } elseif ($user->role === 'client') {
                 if ($user->status == 'banned') {
                     return back()->with('error','Akun anda telah dibanned');
                 } else {
                     return redirect()->route('indexclient');
                 }
+            } elseif ($user->role === 'admin') {
+                return redirect()->route('admin-dashboard');
             }
         }
         return redirect('login')->withErrors(['email' => 'Email atau password tidak cocok!'])->withInput()->with('alert-type', 'error');
@@ -131,7 +139,7 @@ class AuthController extends Controller
             'temp_email' => $email,
         ]);
         $data = $request->all();
-        $data['role'] = 'client';
+        $data['role'] = null;
         $data['profil'] = 'user.jpg';
         $user = $this->create($data);
         Mail::to($request->email)->send(new EmailVerification($code));
@@ -162,12 +170,18 @@ class AuthController extends Controller
     }
 
     public function verifEmailStore(Request $request) {
+        $request->validate([
+            'code' => 'required|numeric'
+        ],[
+            'code.required' => 'Kode tidak boleh kosong',
+            'code.numeric' => 'Kode tidak valid'
+        ]);
         if (session('code') != $request->code) {
             return back()->with('error', 'Kode tidak sama');
         } else {
             $email = User::where('email', session('temp_email'))->first();
             $email->update([
-                'email_verified_at' => now(),
+                'role' => 'client'
             ]);
             session()->flush();
             return redirect()->route('login')
@@ -177,12 +191,9 @@ class AuthController extends Controller
     }
 
     public function wrongAccount() {
-        if(session('temp_mail') == null) {
-            return back();
-        }
         User::where('email', session('temp_email'))->first()->delete();
         session()->flush();
-        return view('register');
+        return redirect()->route('register');
     }
 
     public function create(array $data) {
