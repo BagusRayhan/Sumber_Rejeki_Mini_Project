@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BayarController;
 use App\Http\Controllers\TolakController;
@@ -103,6 +104,7 @@ Route::middleware(['admin'])->group(function(){
     Route::get('client-list', [AdminController::class, 'clientList'])->name('client-list');
     Route::put('client-list/banned', [AdminController::class, 'bannedClient'])->name('banned-client');
     Route::put('client-list/unbanned', [AdminController::class, 'unbannedClient'])->name('unbanned-client');
+    Route::get('team-management', [TeamController::class, 'teamManagement'])->name('team-management');
     Route::put('admin/update-profile', [AdminController::class, 'updateProfile'])->name('admin.updateProfile');
     Route::get('projectreq', [ProjectrequestController::class, 'projectreq'])->name('projectreq');
     Route::get('detailproreq/{id}', [ProjectrequestController::class, 'detailproreq'])->name('detailproreq');
