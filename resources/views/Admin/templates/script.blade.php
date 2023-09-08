@@ -14,6 +14,43 @@
     @include('sweetalert::alert')
 
     <script src="https://cdn.datatables.net/v/bs5/dt-1.13.5/datatables.min.js"></script>
+                            
+<!-- JavaScript untuk mengubah format angka di dalam modal -->
+<!-- JavaScript untuk mengubah format angka di dalam modal -->
+<script>
+    $(document).ready(function() {
+        // Mengatur format tanda titik saat input berubah
+        $('.input-hargafitur').on('input', function() {
+            // Mengambil nilai input
+            let inputValue = $(this).val();
+    
+            // Menghapus tanda titik dan koma dari nilai saat ini (jika ada)
+            inputValue = inputValue.replace(/[.,]/g, '');
+    
+            // Menampilkan nilai yang sudah diformat kembali ke input
+            $(this).val(formatAngka(inputValue));
+        });
+        
+        function formatAngka(angka) {
+            return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+    
+        // Menghapus tanda titik sebelum mengirimkan formulir
+        $('form').submit(function() {
+            $('.input-hargafitur').each(function() {
+                // Mengambil nilai input
+                let inputValue = $(this).val();
+    
+                // Menghapus tanda titik dan koma dari nilai saat ini (jika ada)
+                inputValue = inputValue.replace(/[.,]/g, '');
+    
+                // Menampilkan nilai yang sudah diubah ke input
+                $(this).val(inputValue);
+            });
+        });
+    });
+    </script>
+               
     <script>
     $(function () {
         $('#data-table').DataTable({

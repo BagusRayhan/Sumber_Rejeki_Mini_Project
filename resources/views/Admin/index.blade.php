@@ -242,7 +242,6 @@
           colors: ["#0d6efd", "#ffffff"],
           series: [
             {
-              name: "Series A",
               data: [{{ $tahun20 }}, {{ $tahun21 }}, {{ $tahun22 }}, {{ $tahun23 }}, {{ $tahun24 }}, {{ $tahun25 }}, {{ $tahun26 }}, {{ $tahun27 }}, {{ $tahun28 }}, {{ $tahun29 }}, {{ $tahun30 }}] // Replace the sample data with the yearData array
             },
 
@@ -316,26 +315,33 @@
         const labels = countData.map((_, index) => getMonthName(index + 1));
 
         var options = {
-          series: [{
-            data: countData,
-          }],
-          chart: {
-            type: 'bar',
-            height: 350,
-          },
-          plotOptions: {
-            bar: {
-              borderRadius: 4,
-              horizontal: false,
+    series: [{
+        data: countData,
+    }],
+    chart: {
+        type: 'bar',
+        height: 350,
+    },
+    plotOptions: {
+        bar: {
+            borderRadius: 4,
+            horizontal: false,
+        }
+    },
+    dataLabels: {
+        enabled: false,
+    },
+    xaxis: {
+        categories: labels,
+    },
+    tooltip: {
+        y: {
+            formatter: function (val) {
+                return val + " project selesai";
             }
-          },
-          dataLabels: {
-            enabled: false,
-          },
-          xaxis: {
-            categories: labels,
-          }
-        };
+        }
+    }
+};
 
         var chart = new ApexCharts(document.querySelector("#myChart"), options);
         chart.render();

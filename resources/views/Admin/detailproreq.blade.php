@@ -301,8 +301,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="" class="form-label">Harga Fitur</label>
-                                                    <input type="text" name="hargafitur" class="form-control input-hargafitur" placeholder="Tentukan harga ..." value="{{ $fitur->hargafitur }}">
-                                                </div>
+                                                    <input type="text" name="hargafitur" class="form-control input-hargafitur" placeholder="Tentukan harga ..." value="{{ number_format($fitur->hargafitur, 0, ',', '.') }}">
+                                                </div>                                                         
                                             </div>
                                             <div class="mb-2">
                                                 <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
