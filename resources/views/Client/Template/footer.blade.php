@@ -1,6 +1,5 @@
-<div style="position: fixed;   bottom: 0;
-  width: 100%;">
-  <footer class="text-center text-white" style="background-color: #F3F6F9;  margin-left: -20em;">
+<div style="margin-top: 24%;" style="position: fixed;">
+  <footer class="text-center text-white" style="background-color: #F3F6F9;">
     <div class="container pt-800">
       <!-- Section: Social media -->
       <section class="mb-500">
