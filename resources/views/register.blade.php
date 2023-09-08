@@ -3,7 +3,7 @@
 
 <!-- Mirrored from colorlib.com/etc/lf/Login_v4/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Jun 2023 06:45:50 GMT -->
 <head>
-<title>register</title>
+<title>PROREQ | Register</title>
 <style>
     .input-group {
       display: flex;

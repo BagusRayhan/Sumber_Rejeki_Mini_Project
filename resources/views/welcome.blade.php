@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>PROREQ | Request Project</title>
+    <title>PROREQ | Software Host</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <link href="{{ asset('ProjectManagement/dashmin/img/logo.png') }}" rel="icon">
@@ -61,7 +61,7 @@
                 <div class="section-title">
                     <h2>Tentang Kami</h2>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-lg-6 d-flex justify-content-center" data-aos="fade-right" data-aos-delay="100">
                         <img src="{{asset('gambar/whoproreq.png')}}" class="img-fluid w-75 rounded" alt="">
@@ -123,7 +123,7 @@
                     <div class="col-xl-10">
                         <ul class="faq-list">
                             @if (count($faqs) !== 0)
-                            @foreach ($faqs as $faq)   
+                            @foreach ($faqs as $faq)
                                 <li>
                                     <div data-bs-toggle="collapse" class="collapsed question" href="#faq{{ $faq->id }}">{{ $faq->question }} <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
                                     <div id="faq{{ $faq->id }}" class="collapse" data-bs-parent=".faq-list">

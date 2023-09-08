@@ -3,7 +3,7 @@
 
 <!-- Mirrored from colorlib.com/etc/lf/Login_v4/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Jun 2023 06:45:50 GMT -->
 <head>
-    <title>Selamat datang</title>
+    <title>PROREQ | Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('ProjectManagement/dashmin/img/logo.png') }}" rel="icon">
