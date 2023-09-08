@@ -112,8 +112,8 @@
                                                         @csrf
                                                         <div class="modal-body mt-0 d-flex flex-column align-items-center justify-content-center">
                                                             <input type="hidden" name="idewallet" value="{{ $ewl->id }}">
-                                                            <img src="gambar/qr/{{ $ewl->qrcode }}" class="w-75" id="gambar-qr">
-                                                            <input type="file" class="form-control" name="qrcode" id="qrcode">
+                                                            <img src="gambar/qr/{{ $ewl->qrcode }}" class="w-75" id="gambar-qr{{ $ewl->id }}">
+                                                            <input type="file" class="form-control" name="qrcode" id="qrcode{{ $ewl->id }}">
                                                         </div>
                                                         <div class="modal-footer d-flex justify-content-center">
                                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
@@ -125,15 +125,17 @@
                                         </div>
                                         <!-- Modal Box Edit QR End -->
                                     @endforeach
+                                @endif
+                                @foreach ($ewallet as $ewl)
                                  <script>
-                                         let gambarqr = document.getElementById("gambar-qr");
-                                         let fileqr = document.getElementById("qrcode");
+                                         let gambarqr{{ $ewl->id }} = document.getElementById("gambar-qr{{ $ewl->id }}");
+                                         let fileqr{{ $ewl->id }} = document.getElementById("qrcode{{ $ewl->id }}");
 
-                                         fileqr.onchange = function(){
-                                         gambarqr.src = URL.createObjectURL(fileqr.files[0]);
+                                         fileqr{{ $ewl->id }}.onchange = function(){
+                                         gambarqr{{ $ewl->id }}.src = URL.createObjectURL(fileqr{{ $ewl->id }}.files[0]);
                                             }
                                 </script>
-                                @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>
