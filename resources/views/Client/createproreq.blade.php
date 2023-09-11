@@ -35,7 +35,7 @@
                                 <div class="form-group mb-3">
 
                                     <label for="napro">Nama Project</label>
-                                    <input type="text" value="{{ old('napro') }}" class="form-control" id="napro" name="napro" placeholder="Masukkan nama project anda" autofocus>
+                                    <input type="text" value="{{ old('napro') }}" class="form-control" id="napro" name="napro" placeholder="Masukkan Nama Project" autofocus>
                                 </div>
                             </div>
                             <div class="wrapper w-50 px-3 d-flex flex-column">
