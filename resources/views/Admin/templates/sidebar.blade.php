@@ -10,7 +10,7 @@
        <!-- Add this HTML code for the navigation bar -->
 <div class="navbar-nav w-100">
     <a href="{{ route('admin-dashboard') }}" class="nav-item nav-link {{ Request::routeIs('admin-dashboard') ? 'active' : ''}}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-    {{-- <a href="{{ route('team-management') }}" class="nav-item nav-link {{ Request::routeIs('team-management') ? 'active' : ''}}"><i class="fa fa-people-group me-2"></i>Manajemen Tim</a> --}}
+    <a href="{{ route('team-management') }}" class="nav-item nav-link {{ Request::routeIs('team-management') ? 'active' : ''}}"><i class="fa fa-people-group me-2"></i>Manajemen Tim</a>
     <a href="{{ route('client-list') }}" class="nav-item nav-link {{ Request::routeIs('client-list') ? 'active' : ''}}"><i class="fa fa-user-alt me-2"></i>Client</a>
     <div class="nav-item dropdown" id="projectDropdown"> <!-- Add an ID to the project dropdown -->
         <a href="#" class="nav-link dropdown-toggle {{ Request::routeIs('project-disetujui-admin', 'detail-disetujui-admin', 'projectreq', 'detailproreq', 'projectselesai', 'revisiproselesai', 'editproselesai') ? 'active' : ''}}" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Project</a>

@@ -37,6 +37,81 @@
                 </div>
             </div>
 
+            <style>
+                .nav-link {
+                    color: black;
+                }
+                .avatar {
+                    width: 2em;
+                    height: 2em;
+                }
+            </style>
+
+            <div class="wrapper mx-4 mt-4 d-flex justify-content-between">
+                <div class="card text-center" style="width: 24em">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active fw-semibold" aria-current="true" href="#">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Member</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <img src="{{ asset('gambar/backup/group2.png') }}" class="rounded-circle border-0" width="100">
+                        <h5 class="card-title">Team</h5>
+                        <div class="wrapper text-start my-3 d-flex flex-column">
+                            <small class="card-text fw-bold">Project Selesai</small>
+                            <small class="card-text">12</small>
+                            <small class="card-text fw-bold mt-2">Deskripsi</small>
+                            <small class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea perspiciatis cum ducimus ullam adipisci hic provident, quod sint maxime accusamus consequuntur, iusto numquam nihil id ipsam iste quisquam? Dolorem sit deserunt dicta repudiandae, exercitationem, quae quo voluptas eaque atque, sequi nesciunt. Quis dolore necessitatibus quas quaerat quos atque maiores fugiat repudiandae? Commodi fuga et pariatur! Vel fugiat, aspernatur excepturi nisi tempore iusto voluptatem facere!</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="width: 34em">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6>List Tim</h6>
+                        <button class="btn btn-primary btn-sm">Tambah tim</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">Member</th>
+                                        <th scope="col" class="text-center" style="width: 6em">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td scope="col">1</td>
+                                        <td scope="col">Xcode</td>
+                                        <td scope="col">
+                                            <button class="avatar-list avatar-list-stacked">
+                                                <span><img class="avatar rounded-circle position-absolute" src="{{ asset('gambar/user-profile/user.jpg') }}" alt="img"></span>
+                                                <span><img class="avatar rounded-circle position-absolute" style="margin-left: 1em" src="{{ asset('gambar/user-profile/user.jpg') }}" alt="img"></span>
+                                                <span><img class="avatar rounded-circle position-absolute" style="margin-left: 2em" src="{{ asset('gambar/user-profile/user.jpg') }}" alt="img"></span>
+                                                <span><img class="avatar rounded-circle position-absolute" style="margin-left: 3em" src="{{ asset('gambar/user-profile/user.jpg') }}" alt="img"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-secondary"
+        data-bs-toggle="tooltip" data-bs-placement="top"
+        data-bs-custom-class="custom-tooltip"
+        data-bs-title="This top tooltip is themed via CSS variables.">
+  Custom tooltip
+</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <!-- Content End -->
     </div>
