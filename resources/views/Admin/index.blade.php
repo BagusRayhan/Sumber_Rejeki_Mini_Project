@@ -315,33 +315,34 @@
         const labels = countData.map((_, index) => getMonthName(index + 1));
 
         var options = {
-    series: [{
-        data: countData,
-    }],
-    chart: {
-        type: 'bar',
-        height: 350,
-    },
-    plotOptions: {
-        bar: {
-            borderRadius: 4,
-            horizontal: false,
-        }
-    },
-    dataLabels: {
-        enabled: false,
-    },
-    xaxis: {
-        categories: labels,
-    },
-    tooltip: {
-        y: {
-            formatter: function (val) {
-                return val + " project selesai";
+            series: [{
+                data: countData,
+            }],
+            chart: {
+                type: 'bar',
+                height: 350,
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: false,
+                }
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            xaxis: {
+                categories: labels,
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val + " proyek selesai";
+                    }
+                },
+                seriesName: false
             }
-        }
-    }
-};
+        };
 
         var chart = new ApexCharts(document.querySelector("#myChart"), options);
         chart.render();
@@ -383,12 +384,5 @@
         const apexChart = new ApexCharts(document.querySelector('#apexChart'), chartOptions);
         apexChart.render();
     </script>
-
-
-
-
-
-
-
 
 </body>

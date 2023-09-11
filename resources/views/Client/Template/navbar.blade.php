@@ -165,7 +165,7 @@
                 <div class="col-md-6 mt-2">
                   <div class="form-group">
                     <label for="input2">No.Telpon</label>
-                    <input type="number" class="form-control mt-1" placeholder="No.Telp..." id="exampleFormControlInput3" name="no_tlp" value="{{ $client->no_tlp }}">
+                    <input type="text" class="form-control mt-1" placeholder="No.Telp..." id="exampleFormControlInput3" name="no_tlp" value="{{ $client->no_tlp }}">
                   </div>
                 </div>
                 <div class="mb-1 mt-2">
