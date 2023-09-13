@@ -289,7 +289,15 @@
           legend: {
             horizontalAlign: "left",
             offsetX: 40
-          }
+          },
+          title: {
+      text: "Project Selesai", // Judul chart
+      align: "center", // Untuk membuat judul berada di tengah
+      style: {
+        color: "#333",
+        fontSize: "22px", // Ukuran font judul
+      },
+          },
         };
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
@@ -315,37 +323,47 @@
         const labels = countData.map((_, index) => getMonthName(index + 1));
 
         var options = {
-            series: [{
-                data: countData,
-            }],
-            chart: {
-                type: 'bar',
-                height: 350,
-            },
-            plotOptions: {
-                bar: {
-                    borderRadius: 4,
-                    horizontal: false,
-                }
-            },
-            dataLabels: {
-                enabled: false,
-            },
-            xaxis: {
-                categories: labels,
-            },
-            tooltip: {
-                y: {
-                    formatter: function (val) {
-                        return val + " proyek selesai";
-                    }
-                },
-                seriesName: false
+    series: [{
+        data: countData,
+    }],
+    chart: {
+        type: 'bar',
+        height: 350,
+    },
+    plotOptions: {
+        bar: {
+            borderRadius: 4,
+            horizontal: false,
+        }
+    },
+    dataLabels: {
+        enabled: false,
+    },
+    xaxis: {
+        categories: labels,
+    },
+    tooltip: {
+        y: {
+            formatter: function (val) {
+                return val + " proyek selesai";
             }
-        };
+        },
+        seriesName: false
+    },
+    title: {
+        text: 'Project Selesai',
+        align: 'center',
+        margin: 10,
+        offsetY: 20,
+        style: {
+            fontSize: '20px'
+        }
+    }
+};
 
-        var chart = new ApexCharts(document.querySelector("#myChart"), options);
-        chart.render();
+var chart = new ApexCharts(document.querySelector("#myChart"), options);
+chart.render();
+
     </script>
     <script>
 
