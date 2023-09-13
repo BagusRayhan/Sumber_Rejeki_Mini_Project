@@ -376,7 +376,7 @@ public function updateproreqa($id)
             'deskripsi' => 'required',
         ],[
             'namafitur.required' => 'Fitur tidak boleh kosong',
-            'namafitur.max' => 'nama fitur tidak boleh lebih dari 30 karakter',
+            'namafitur.max' => 'Nama fitur tidak boleh lebih dari 30 karakter',
             'hargafitur.required' => 'Biaya tidak boleh kosong',
             'hargafitur.numeric' => 'Harga tidak valid',
             'hargafitur.gt' => 'Harga tidak valid',
