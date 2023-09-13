@@ -49,7 +49,7 @@
 
             <div class="wrapper mx-4 mt-4 d-flex justify-content-between">
                 <div class="card text-center" style="width: 24em">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between  ">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
                                 <a class="nav-link active fw-semibold" aria-current="true" href="#">Profile</a>
@@ -58,6 +58,9 @@
                                 <a class="nav-link" href="#">Member</a>
                             </li>
                         </ul>
+                        <div class="float-end">
+                            <button class="btn btn-block btn-sm"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        </div>
                     </div>
                     <div class="card-body">
                         <img src="{{ asset('gambar/backup/group2.png') }}" class="rounded-circle border-0" width="100">
@@ -82,27 +85,23 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Nama</th>
-                                        <th scope="col">Member</th>
+                                        <th scope="col">Ketua</th>
                                         <th scope="col" class="text-center" style="width: 6em">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td scope="col">1</td>
-                                        <td scope="col">Xcode</td>
-                                        <td scope="col">
-                                            <button class="avatar-list avatar-list-stacked">
-                                                <span><img class="avatar rounded-circle position-absolute" src="{{ asset('gambar/user-profile/user.jpg') }}" alt="img"></span>
-                                                <span><img class="avatar rounded-circle position-absolute" style="margin-left: 1em" src="{{ asset('gambar/user-profile/user.jpg') }}" alt="img"></span>
-                                                <span><img class="avatar rounded-circle position-absolute" style="margin-left: 2em" src="{{ asset('gambar/user-profile/user.jpg') }}" alt="img"></span>
-                                                <span><img class="avatar rounded-circle position-absolute" style="margin-left: 3em" src="{{ asset('gambar/user-profile/user.jpg') }}" alt="img"></span>
-                                            </button>
-                                            <button type="button" class="btn btn-secondary"
-        data-bs-toggle="tooltip" data-bs-placement="top"
-        data-bs-custom-class="custom-tooltip"
-        data-bs-title="This top tooltip is themed via CSS variables.">
-  Custom tooltip
-</button>
+                                        <td scope="col">asd</td>
+                                        <td scope="col">Tes</td>
+                                        <td scope="col" class="d-flex justify-content-evenly">
+                                            <button class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></button>
+                                            <form action="" method="post">
+                                                @method('delete')
+                                                @csrf
+                                                <input type="hidden" name="team_id">
+                                                <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
                                 </tbody>
