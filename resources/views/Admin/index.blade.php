@@ -290,14 +290,6 @@
             horizontalAlign: "left",
             offsetX: 40
           },
-          title: {
-      text: "Project Selesai", // Judul chart
-      align: "center", // Untuk membuat judul berada di tengah
-      style: {
-        color: "#333",
-        fontSize: "22px", // Ukuran font judul
-      },
-          },
         };
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
@@ -350,15 +342,6 @@
         },
         seriesName: false
     },
-    title: {
-        text: 'Project Selesai',
-        align: 'center',
-        margin: 10,
-        offsetY: 20,
-        style: {
-            fontSize: '20px'
-        }
-    }
 };
 
 var chart = new ApexCharts(document.querySelector("#myChart"), options);
