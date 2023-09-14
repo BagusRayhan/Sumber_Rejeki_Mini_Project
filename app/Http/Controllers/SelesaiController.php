@@ -158,7 +158,7 @@ class SelesaiController extends Controller
 
         public function destroy1(int $id)
         {
-            $data = proreq::findOrFail($id);
+            $data = Proreq::findOrFail($id);
             unlink(public_path('document/' . $data->dokumen));
             $data->delete();
             return redirect()->route('ditolakclient')->with('success', 'Berhasil menghapus data!');
@@ -166,7 +166,7 @@ class SelesaiController extends Controller
 
         public function destroypro(int $id)
         {
-            $data = proreq::findOrFail($id);
+            $data = Proreq::findOrFail($id);
             $data->delete();
             return redirect()->route('selesaiclient')->with('success', 'Berhasil menghapus data!');
         }

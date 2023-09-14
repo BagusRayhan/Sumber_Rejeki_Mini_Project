@@ -163,7 +163,6 @@ class IndexcController extends Controller
     return redirect()->route('editproreq', ['id' => $id]);
 }
 
-
      public function showproj(Request $request)
      {
         $client = User::find(Auth::user()->id);
@@ -254,7 +253,7 @@ class IndexcController extends Controller
         $data = Proreq::findorfail($id);
         $dataa = Fitur::where('project_id', $id)->get();
         if (Auth::user()->id !== $data->user_id || $data->status !== 'pending' && $data->status !== 'draft' ) {
-            return back();
+            return redirect()->route('editproreq');
         }
         return view('Client.editproreq',compact('data','sosmed','dataa','client','notification'));
     }
