@@ -9,7 +9,7 @@ use App\Models\EWallet;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class proreq extends Model
+class Proreq extends Model
 {
     protected $table = "proreq";
     protected $primarykey = "id";
