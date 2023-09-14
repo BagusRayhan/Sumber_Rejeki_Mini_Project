@@ -36,7 +36,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="row mt-1">
+                <div class="row mt-4">
                     <div class="col-12">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover" id="data-table">

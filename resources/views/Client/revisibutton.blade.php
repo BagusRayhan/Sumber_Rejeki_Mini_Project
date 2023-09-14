@@ -36,11 +36,6 @@
                         <button type="button" class="form-control text-start" data-bs-toggle="modal" data-bs-target="#suppDocs" aria-describedby="suppdocsBtn">
                             <i class="fa-solid fa-eye pe-2"></i> lihat dokumen
                         </button>
-                        @if ($detail->dokumen == null)
-                            <a onclick="emptyDocsDown()" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
-                        @else
-                            <a href="{{ route('download-suppdocs-client', ['dokumen' => $detail->dokumen]) }}" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
-                        @endif
                     </div>
                     <div class="modal fade" id="suppDocs" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -50,9 +45,16 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="mb-3">
-                                        <iframe class="w-100" src="{{ asset('document/'.$detail->dokumen) }}" frameborder="0" style="height: 400px"></iframe>
-                                    </div>
+                                @if ($detail->dokumen == null)
+                                <div class="wrapper d-flex flex-column align-items-center justify-content-center">
+                                    <img class="w-25 h-25" src="{{ asset('gambar/empty-icon/empty-directory.png') }}" alt="">
+                                    <p class="fw-semibold">Anda tidak menyertakan dokumen untuk project ini</p>
+                                </div>
+                                @else
+                                <div class="mb-3">
+                                    <iframe class="w-100" src="{{ asset('document/'.$detail->dokumen) }}" frameborder="0" style="height: 400px"></iframe>
+                                </div>
+                                @endif
                                 </div>
                                 <div class="modal-footer"></div>
                             </div>
