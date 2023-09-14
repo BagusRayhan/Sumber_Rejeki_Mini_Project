@@ -197,7 +197,7 @@
                         @csrf
                         @method('PUT')
                         <div class="mb-2">
-                            <input type="text" name="harga" id="hargaProject" class="form-control mb-2 input-hargafitur" value="{{ $data->harga }}" aria-describedby="basic-addon1">
+                            <input type="text" name="harga" class="form-control mb-2 " value="{{ $data->harga }}" aria-describedby="basic-addon1">
                             <p style="font-size: 13px; opacity: .8">Masukkan harga project berdasarkan isi dokumen</p>
                         </div>
                     </div>
@@ -304,7 +304,7 @@
                                                     @if ($fitur->hargafitur == 0)
                                                         <input type="text" name="hargafitur" class="form-control input-hargafitur" placeholder="Tentukan harga ..." value="">
                                                     @else
-                                                        <input type="text" name="hargafitur" class="form-control input-hargafitur" placeholder="Tentukan harga ..." value="{{ number_format($fitur->hargafitur, 0, ',', '.') }}">
+                                                        <input type="text" name="hargafitur" class="form-control input-hargafitur" placeholder="Tentukan harga ..." value="{{ $fitur->hargafitur }}">
                                                     @endif
                                                 </div>                                                                                                        
                                             </div>
