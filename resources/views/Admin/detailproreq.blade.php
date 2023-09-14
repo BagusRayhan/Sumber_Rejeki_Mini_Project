@@ -302,9 +302,9 @@
                                                 <div class="form-group">
                                                     <label for="" class="form-label">Harga Fitur</label>
                                                     @if ($fitur->hargafitur == 0)
-                                                        <input type="text" name="hargafitur" class="form-control input-hargafitur" placeholder="Tentukan harga ..." value="">
+                                                        <input type="text" name="hargafitur" class="form-control" placeholder="Tentukan harga ..." value="">
                                                     @else
-                                                        <input type="text" name="hargafitur" class="form-control input-hargafitur" placeholder="Tentukan harga ..." value="{{ $fitur->hargafitur }}">
+                                                        <input type="text" name="hargafitur" class="form-control" placeholder="Tentukan harga ..." value="{{ $fitur->hargafitur }}">
                                                     @endif
                                                 </div>                                                                                                        
                                             </div>

@@ -59,7 +59,7 @@
                                       <span class="badge">{{ $project->status }}</span>
                                     @endif
                                   </td>
-                                <td>Rp.{{ number_format($item->harga+$item->biayatambahan, 0, ',', '.') }}</td>
+                                <td>Rp.{{ number_format($project->harga+$project->biayatambahan, 0, ',', '.') }}</td>
                                 <td class="text-center">
                                     @if ($project->status == 'selesai')
                                         <a type="button" data-bs-toggle="modal" data-bs-target="#webSetting{{ $project->id }}" class="btn btn-primary btn-sm" style="background-color:border: none"><i class="fa-solid fa-gear"></i> Settings</a>
