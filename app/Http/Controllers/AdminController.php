@@ -200,7 +200,7 @@ class AdminController extends Controller
         if ($request->hasFile('fileInputA')) {
             $oldProfile = $admin->profil;
 
-            if ($oldProfile !== 'user.jpg') {
+            if ($oldProfile != 'user.jpg') {
                 File::delete(public_path('gambar/user-profile/' . $oldProfile));
             }
 

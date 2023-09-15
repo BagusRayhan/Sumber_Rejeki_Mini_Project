@@ -366,7 +366,7 @@ public function updateProfile(Request $request)
     if ($request->hasFile('fileInputA')) {
         $oldProfile = $client->profil;
 
-        if ($oldProfile !== 'user.jpg') {
+        if ($oldProfile != 'user.jpg') {
             File::delete(public_path('gambar/user-profile/' . $oldProfile));
         }
 

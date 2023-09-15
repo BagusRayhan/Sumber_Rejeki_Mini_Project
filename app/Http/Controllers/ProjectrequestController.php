@@ -76,7 +76,7 @@ public function projectreq(Request $request)
         if ($data == null) {
             return back();
         }
-        if ($data->status !== 'pending') {
+        if ($data->status != 'pending') {
             return back();
         }
         $dataa = Fitur::where('project_id', $data->id)->orderBy('project_id')->get();
@@ -275,7 +275,7 @@ public function updateproreqa($id)
         if ($data == null) {
             return back();
         }
-        if ($data->status !== 'pengajuan revisi' ) {
+        if ($data->status != 'pengajuan revisi' ) {
             return back();
         }
         $chats = Chat::where('project_id', $id)->get();

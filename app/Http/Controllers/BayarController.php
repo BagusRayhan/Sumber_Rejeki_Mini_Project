@@ -57,7 +57,7 @@ class BayarController extends Controller
             'metodepembayaran' => 'required',
         ];
 
-        if ($request->input('metodepembayaran') !== 'cash') {
+        if ($request->input('metodepembayaran') != 'cash') {
             $rules['metode'] = 'required';
 
             if ($request->input('metodepembayaran') === 'bank' || $request->input('metodepembayaran') === 'ewallet') {
@@ -122,7 +122,7 @@ class BayarController extends Controller
             'metodepembayaran2' => 'required',
         ];
 
-        if ($request->input('metodepembayaran2') !== 'cash') {
+        if ($request->input('metodepembayaran2') != 'cash') {
             $rules['metode2'] = 'required';
 
             if ($request->input('metodepembayaran2') === 'bank' || $request->input('metodepembayaran2') === 'ewallet') {
@@ -188,7 +188,7 @@ class BayarController extends Controller
             'metodepembayaran3' => 'required',
         ];
 
-        if ($request->input('metodepembayaran3') !== 'cash') {
+        if ($request->input('metodepembayaran3') != 'cash') {
             $rules['metode3'] = 'required';
 
             if ($request->input('metodepembayaran3') === 'bank' || $request->input('metodepembayaran3') === 'ewallet') {

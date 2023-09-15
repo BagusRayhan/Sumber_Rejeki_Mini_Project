@@ -132,7 +132,7 @@ class PengaturanController extends Controller
 
         $faq = FAQ::find($request->faq_id);
         $qmark = substr($request->question, -1);
-        if ($qmark !== '?') {
+        if ($qmark != '?') {
             $faq->update([
                 'question' => $request->question.'?',
                 'answer' => $request->answer

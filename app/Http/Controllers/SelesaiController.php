@@ -93,14 +93,14 @@ class SelesaiController extends Controller
             if ($detail == null) {
                 return back();
             }
-            if (Auth::user()->id !== $detail->user_id || $detail->status !== 'selesai' && $detail->status !== 'pengajuan revisi' ) {
+            if (Auth::user()->id != $detail->user_id || $detail->status != 'selesai' && $detail->status != 'pengajuan revisi' ) {
                 return back();
             }
             return view('Client.revisibutton', compact('sosmed','client','detail','fitur','chats','notification'));
         }
         public function detail($id){
             $data = Proreq::findOrFail($id);
-            if (Auth::user()->id !== $data->user_id || $data->status !== 'revisi' ) {
+            if (Auth::user()->id != $data->user_id || $data->status != 'revisi' ) {
                 return back();
             }
             $sosmed = Sosmed::all();

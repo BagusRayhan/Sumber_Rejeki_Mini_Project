@@ -55,7 +55,7 @@ class ProjectDisetujuiController extends Controller
         if ($detail == null) {
             return back();
         }
-        if ($detail->status !== 'setuju') {
+        if ($detail->status != 'setuju') {
             return back();
         }
         if ($detail->status2 == 'telat') {
@@ -288,7 +288,7 @@ public function upEstimasi(Request $request) {
         if ($detail == null) {
             return back();
         }
-        if (Auth::user()->id !== $detail->user_id || $detail->status !== 'setuju') {
+        if (Auth::user()->id != $detail->user_id || $detail->status != 'setuju') {
             return back();
         }
         if (count($fitur) > 0) {
