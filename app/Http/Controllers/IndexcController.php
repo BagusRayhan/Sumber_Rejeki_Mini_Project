@@ -214,7 +214,7 @@ class IndexcController extends Controller
         $upProject = [];
         $id = $request->projectid;
         $fitur = Fitur::where('project_id', $id)->count();
-        $project = Proreq::findorfail($id);
+        $project = Proreq::findOrFail($id);
         if ($request->has('dokumen')) {
             if (File::exists(public_path().'document/'.$project->dokumen)) {
                 unlink(public_path('document/'.$project->dokumen));
@@ -250,7 +250,7 @@ class IndexcController extends Controller
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $sosmed = Sosmed::all();
-        $data = Proreq::findorfail($id);
+        $data = Proreq::findOrFail($id);
         $dataa = Fitur::where('project_id', $id)->get();
         if (Auth::user()->id !== $data->user_id || $data->status !== 'pending' && $data->status !== 'draft' ) {
             return back();
