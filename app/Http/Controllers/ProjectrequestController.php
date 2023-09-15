@@ -217,7 +217,7 @@ public function updateproreqa($id)
         $request->validate([
             'webaddress' => 'required|url:http,https',
             'ipaddress' => 'required|ip',
-            'repository' => 'url:http,https',
+            'repository' => 'nullable|url:http,https',
             'adminemail' => 'required|email',
             'adminpassword' => 'required',
         ],[
