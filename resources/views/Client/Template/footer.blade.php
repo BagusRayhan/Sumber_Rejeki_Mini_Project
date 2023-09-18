@@ -1,4 +1,4 @@
-<div style="margin-top: 24%;" style="position: fixed;">
+<div style="margin-top: 10%;" style="position: fixed;">
   <footer class="text-center text-white" style="background-color: #F3F6F9;">
     <div class="container pt-800">
       <!-- Section: Social media -->

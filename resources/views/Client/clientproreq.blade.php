@@ -25,7 +25,7 @@
 
 
         <!-- Confirm Payment Table Start -->
-        <div class="container-fluid pt-4 px-4">
+        <div class="container-fluid pt-4 px-4" style="margin-bottom: 280px">
             <div class="py-4 d-flex justify-content-between ">
                 <div class="search-form w-25">
                     <form action="{{ route('drequestclient') }}" method="GET">
@@ -118,13 +118,15 @@
             {{ $data->links() }}
             </div>
         </div>
-    @include('Client.Template.footer')
-            </div>
-            <!-- Content End -->
-    @include('Client.Template.script')
-    @include('sweetalert::alert')
-
-    </body>
+        @include('Client.Template.footer')
+    </div>
+        <div class="">
+        </div>
+    <!-- Content End -->
+    
+</body>
+        @include('Client.Template.script')
+        @include('sweetalert::alert')
 
 
     <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:45:02 GMT -->
