@@ -21,7 +21,7 @@
         <div class="content">
             @include('Client.Template.navbar')
 
-            <div class="container mt-4 d-flex flex-column">
+            <div class="container mt-4 d-flex flex-column" style="margin-bottom: 220px">
                 <div class="wrapper">
                     <form action="{{ route('simpanpro') }}" method="POST"  enctype="multipart/form-data">
                     <h5 class="px-3 mb-2">Request Project</h5>
@@ -57,10 +57,9 @@
                 </div>
                 <div class="wrapper mt-3">
             </div>
-
-
     </div>
-
+    @include('Client.Template.footer')
+        </div>
 
 
 @include('Client.Template.script')

@@ -165,11 +165,12 @@ class IndexcController extends Controller
 
      public function showproj(Request $request)
      {
+        $sosmed = Sosmed::all();
         $client = User::find(Auth::user()->id);
         $notification = Notification::where('role', 'client')->where('user_id', Auth::user()->id)->limit(4)->latest()->get();
         $userid = Auth::user()->id;
         $username = User::where('id', $userid)->value('name');
-        return view('Client.createproreq',compact('client','username','notification'));
+        return view('Client.createproreq',compact('client','username','notification','sosmed'));
     }
 
     public function simpannn(Request $request, $id)
