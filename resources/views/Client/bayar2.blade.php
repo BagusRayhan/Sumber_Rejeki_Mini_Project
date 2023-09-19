@@ -219,14 +219,80 @@ $(function(e){
                                             <button type="button" data-bs-toggle="modal" data-bs-target="#struk2" data-bs-id="{{ $client2->id }}" data-bs-nama="{{ $client2->napro }}" data-bs-harga="{{ $client2->harga }}" data-bs-tanggal="{{ $client2->tanggalpembayaran }}" data-bs-biayatambahan="{{ $client2->biayatambahan }}" data-bs-tanggal2="{{ $client2->tanggalpembayaran2 }}" data-bs-metode="{{ $client2->metodepembayaran }}" data-bs-metode2="{{ $client2->metodepembayaran2 }}" class="btn btn-warning struk text-white btn-sm" style="background-color: none">
                                                 <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk
                                             </button>
-                                        @elseif(empty($client2->metodepembayaran3))
+                                        @elseif($client2->statusbayar === 'belum lunas' && !empty($client2->metodepembayaran2))
                                             <button type="button" data-bs-toggle="modal" data-bs-target="#Modalbayar2" data-id="{{ $client2->id }}" data-napro="{{ $client2->napro }}" data-harga="{{ $client2->harga }}" data-tanggalpembayaran="{{ $client2->tanggalpembayaran }}" data-metodepembayaran="{{ $client2->metodepembayaran }}" data-biayatambahan="{{ $client2->biayatambahan }}" data-tanggalpembayaran2="{{ $client2->tanggalpembayaran2 }}" data-metodepembayaran2="{{ $client2->metodepembayaran2 }}" class="btn btn-primary btn-revisi btn-sm" style="background-color: none">
                                                 <i class="fa-solid fa-wallet"></i>&nbsp;Bayar
                                             </button>
                                         @elseif ($client2->statusbayar == 'pembayaran akhir' || $client2->statusbayar == 'pembayaran revisi')
                                         <i class="fa-solid fa-hourglass fs-5 text-warning-emphasis"></i>
                                         @endif
-                                    @elseif ($client2->statusbayar == 'lunas')
+                                 @elseif (!empty($client2->metodeRefund) && $client2->statusbayar == 'lunas')
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#struk3{{ $client2->id }}" data-bs-id="{{ $client2->id }}" data-bs-nama="{{ $client2->napro }}" data-bs-harga="{{ $client2->harga }}" data-bs-tanggal="{{ $client2->tanggalpembayaran }}" data-bs-tanggal2="{{ $client2->tanggalpembayaran2 }}" data-bs-metode="{{ $client2->metodepembayaran }}" data-bs-metode2="{{ $client2->metodepembayaran2 }}" class="btn btn-warning struk text-white btn-sm" style="background-color: none">
+                                            <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk
+                                        </button>
+                                            <div class="modal fade" id="struk3{{ $client2->id }}" tabindex="-1" aria-hidden="true">
+                                            <div class="myModal">
+                                            <div class="modal-dialog modal-dialog-centered" style="width: 22em">
+                                            <div class="modal-content">
+                                                <div class="modal-header p-2">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="d-flex mt-0 pt-0 justify-content-center">
+                                                        <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/success.png') }}" alt="">
+                                                    </div>
+                                                    <p class="text-center mt-3">Pembayaran Refund!</p>
+                                                    <h4 class="fw-bold text-center mt-1 border-bottom border-dark pb-2" >{{ $client2->napro }}</h4>
+                                                    <div class="d-flex justify-content-between">
+                                                    <div class="d-grid">
+                                                        <p class="text-center">Pembayaran Awal</p>
+                                                        <p class="fw-bold text-center ">{{ $client2->harga /2 }}</p>
+                                                    </div>
+                                                    <div class="d-grid">
+                                                        <p class="text-center">Pembayaran Refund</p>
+                                                        <p class="fw-bold text-center ">{{ $client2->harga /2 }}</p>
+                                                    </div>
+                                                    </div>
+                                                    <div class="container m-0 p-0">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p class="text-secondary fs-10">Tanggal Pembayaran Awal</p>
+                                                       <p value="">{{ \Carbon\Carbon::parse($client2->tanggalpembayaran)->format('d-m-Y') }}</p>
+
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-between">
+                                                        <p class="text-secondary fs-10">Metode Refund</p>
+                                                        <p value="">{{ $client2->metodeRefund }}</p>
+                                                    </div>
+                                                        <div class="d-flex pb-0 justify-content-between">
+                                                            <p class="text-secondary fs-10">Layanan Refund</p>
+                                                            <p value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $client2->layananRefund }}<p>
+                                                        </div>
+                                                        <div class="d-flex justify-content-between">
+                                                            <p class="text-secondary fs-10">Nomor Pembayaran</p>
+                                                            <p value="">{{ $client2->nomorRefund }}</p>
+                                                        </div>
+                                                        <div class="d-flex justify-content-between">
+                                                            <p class="text-secondary fs-10">Bukti pembayaran</p>
+                                                            <a href="{{ asset('gambar/bukti/'. $client2->buktiRefund) }}" target="_blank">
+                                                                <img  src="{{ asset('gambar/bukti/'. $client2->buktiRefund) }}" alt="gambar" style="width: 140px; height:120px; margin-left:-3em">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button id="printButton{{ $client2->id }}" class="btn btn-primary w-100 fw-bold"><i class="fa-solid fa-print"></i> Cetak PDF</button>
+                                            <script>
+                                                document.getElementById('printButton{{ $client2->id }}').addEventListener('click', function() {
+                                                    window.print();
+                                                });
+                                                </script>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    @elseif ($client2->statusbayar == 'lunas' )
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#struk" data-bs-id="{{ $client2->id }}" data-bs-nama="{{ $client2->napro }}" data-bs-harga="{{ $client2->harga }}" data-bs-tanggal="{{ $client2->tanggalpembayaran }}" data-bs-tanggal2="{{ $client2->tanggalpembayaran2 }}" data-bs-metode="{{ $client2->metodepembayaran }}" data-bs-metode2="{{ $client2->metodepembayaran2 }}" class="btn btn-warning struk text-white btn-sm" style="background-color: none">
                                             <i class="fa-sharp fa-solid fa-print"></i>&nbsp;Struk
                                         </button>

@@ -167,7 +167,8 @@ class AdminBayarController extends Controller
         $fileName = $file->hashName();
         $file->move(public_path('gambar/bukti/'), $fileName);
         $pro->update([
-            'status' => 'refund pending',
+            'status' => 'selesai',
+            'statusbayar' => 'lunas',
             'buktiRefund' => $fileName
         ]);
 

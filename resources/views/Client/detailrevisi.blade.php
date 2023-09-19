@@ -49,9 +49,16 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="mb-3">
-                                        <iframe class="w-100" src="{{ asset('document/'.$data->dokumen) }}" frameborder="0" style="height: 400px"></iframe>
-                                    </div>
+                                        @if ($data->dokumen == null)
+                                        <div class="wrapper d-flex flex-column align-items-center justify-content-center">
+                                            <img class="w-25 h-25" src="{{ asset('gambar/empty-icon/empty-directory.png') }}" alt="">
+                                            <p class="fw-semibold">Client tidak menyertakan dokumen untuk project ini</p>
+                                        </div>
+                                        @else
+                                        <div class="mb-3">
+                                            <iframe class="w-100" src="{{ asset('document/'.$data->dokumen) }}" frameborder="0" style="height: 400px"></iframe>
+                                        </div>
+                                        @endif
                                 </div>
                                 <div class="modal-footer"></div>
                             </div>
