@@ -25,7 +25,7 @@
 
 
         <!-- Confirm Payment Table Start -->
-        <div class="container-fluid pt-4 px-4" style="margin-bottom: 280px">
+        <div class="container-fluid pt-4 px-4">
             <div class="py-4 d-flex justify-content-between ">
                 <div class="search-form w-25">
                     <form action="{{ route('drequestclient') }}" method="GET">

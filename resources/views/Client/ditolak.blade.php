@@ -22,7 +22,7 @@
       @include('Client.Template.navbar')
 
      {{-- //code Search --}}
-     <div class="container-fluid pt-4 px-4" style="margin-bottom: 380px">
+     <div class="container-fluid pt-4 px-4">
         <div class="search-form w-25">
             <form action="{{ route('ditolakclient') }}" method="GET">
                 <div class="input-group rounded-pill" style="background: #E9EEF5">
