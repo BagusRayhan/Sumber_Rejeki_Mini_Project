@@ -184,7 +184,6 @@ class IndexcController extends Controller
             'namafitur.max' => 'Nama fitur tidak boleh lebih dari 30 karakter',
             'deskripsi.max' => 'Nama fitur tidak boleh lebih dari 255 karakter',
             'deskripsi.required' => 'Deskripsi tidak boleh kosong',
-            'deskripsi.min' => 'Deskripsi maksimal tidak boleh lebih dari 255 karakter',
         ]);
 
         $sosmed = Sosmed::all();
