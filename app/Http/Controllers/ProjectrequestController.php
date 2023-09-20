@@ -148,9 +148,10 @@ public function alasantolak(Request $request)
 {
 
     $request->validate([
-        'alasan' => 'required'
+        'alasan' => 'required|max:255'
     ],[
-        'alasan.required' => 'Alasan tidak boleh kosong'
+        'alasan.required' => 'Alasan tidak boleh kosong',
+        'alasan.max' => 'Alasan tidak boleh lebih dari 255 karakter'
     ]);
     $id = $request->dataid;
     $pro = Proreq::findOrFail($id);
