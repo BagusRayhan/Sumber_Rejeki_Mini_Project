@@ -120,7 +120,7 @@ class AuthController extends Controller
             'name' => 'required|regex:/^[a-zA-Z\s]+$/|max:50',
             'email' => 'required|email|unique:users',
             'password' => 'required_with:pass|same:pass|min:6',
-            'no_tlp' => 'nullable|min:11|max:14',
+            'no_tlp' => 'nullable|min:11|max:14|gt:0',
             'nama_perusahaan' => 'nullable|max:50',
             'alamat_perusahaan' => 'nullable|max:255',
         ], [
@@ -133,6 +133,7 @@ class AuthController extends Controller
             'email.required' => 'Email tidak boleh kosong!',
             'no_tlp.min' => 'No telpon tidak boleh kurang dari 11',
             'no_tlp.max' => 'No telpon tidak boleh lebih dari 14',
+            'no_tlp.gt' => 'No telpon tidak valid',
             'nama_perusahaan.max' => 'Nama perusahaan tidak boleh lebih dari 50 karakter',
             'alamat_perusahaan.max' => 'Alamat tidak boleh lebih dari 255 karakter',
         ]);
