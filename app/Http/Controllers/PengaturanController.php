@@ -95,13 +95,15 @@ class PengaturanController extends Controller
 
     public function addFAQ(Request $request) {
         $this->validate($request,[
-            'question' => 'required|min:10',
-            'answer' => 'required|min:10'
+            'question' => 'required|min:10|max:100',
+            'answer' => 'required|min:10|max:100'
         ],[
             'question.required' => 'Isi pertanyaan terlebih dahulu',
             'answer.required' => 'Isi jawaban terlebih dahulu',
             'question.min' => 'Isi pertanyaan minimal 10 karakter',
-            'answer.min' => 'Isi jawaban minimal 10 karakter'
+            'answer.min' => 'Isi jawaban minimal 10 karakter',
+            'question.max' => 'Maksimal FAQ adalah 100 karakter',
+            'answer.max' => 'Isi jawaban maksimal 100 karakter',
         ]);
         
         $qmark = substr($request->question, -1);
@@ -121,13 +123,15 @@ class PengaturanController extends Controller
 
     public function editFAQ(Request $request) {
         $this->validate($request,[
-            'question' => 'required|min:10',
-            'answer' => 'required|min:10'
+            'question' => 'required|min:10|max:100',
+            'answer' => 'required|min:10|max:100'
         ],[
             'question.required' => 'Isi pertanyaan terlebih dahulu',
             'answer.required' => 'Isi jawaban terlebih dahulu',
             'question.min' => 'Isi pertanyaan minimal 10 karakter',
-            'answer.min' => 'Isi jawaban minimal 10 karakter'
+            'answer.min' => 'Isi jawaban minimal 10 karakter',
+            'question.max' => 'Maksimal FAQ adalah 100 karakter',
+            'answer.max' => 'Isi jawaban maksimal 100 karakter',
         ]);
 
         $faq = FAQ::find($request->faq_id);
