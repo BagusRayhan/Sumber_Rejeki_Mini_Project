@@ -174,6 +174,7 @@ public function upEstimasi(Request $request) {
             Notification::create([
                 'role' => 'client',
                 'user_id' => $pro->user_id,
+                'project_id' => $pro->id,
                 'notif' => $msg,
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Project Selesai'
@@ -189,6 +190,7 @@ public function upEstimasi(Request $request) {
             Notification::create([
                 'role' => 'client',
                 'user_id' => $pro->user_id,
+                'project_id' => $pro->id,
                 'notif' => $msg,
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Revisi Project Selesai'
@@ -245,6 +247,7 @@ public function upEstimasi(Request $request) {
         Notification::create([
             'role' => 'admin',
             'user_id' => $pro->user_id,
+            'project_id' => $pro->id,
             'notif' => $msg,
             'deskripsi' => $notifDesk,
             'kategori' => 'Pengajuan Refund'
@@ -269,6 +272,7 @@ public function upEstimasi(Request $request) {
         Notification::create([
             'role' => 'admin',
             'user_id' => $pro->user_id,
+            'project_id' => $pro->id,
             'notif' => $msg,
             'deskripsi' => $notifDesk,
             'kategori' => 'Pembatalan Revisi'

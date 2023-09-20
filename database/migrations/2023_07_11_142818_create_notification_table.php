@@ -17,11 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('role');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('project_id');
             $table->string('notif');
             $table->string('deskripsi');
             $table->string('kategori');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('project_id')->references('id')->on('proreq')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

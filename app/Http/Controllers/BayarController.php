@@ -105,6 +105,7 @@ class BayarController extends Controller
         Notification::create([
             'role' => 'admin',
             'user_id' => $data->user_id,
+            'project_id' => $data->id,
             'notif' => $msg,
             'deskripsi' => $notifDesk,
             'kategori' => 'Pembayaran Masuk'
@@ -170,6 +171,7 @@ class BayarController extends Controller
         Notification::create([
             'role' => 'admin',
             'user_id' => $data->user_id,
+            'project_id' => $data->id,
             'notif' => $msg,
             'deskripsi' => $notifDesk,
             'kategori' => 'Pembayaran Masuk'
@@ -235,6 +237,7 @@ class BayarController extends Controller
         Notification::create([
             'role' => 'admin',
             'user_id' => $data->user_id,
+            'project_id' => $data->id,
             'notif' => $msg,
             'deskripsi' => $notifDesk,
             'kategori' => 'Pembayaran Masuk'
