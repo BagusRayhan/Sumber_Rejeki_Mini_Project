@@ -136,16 +136,16 @@ class IndexcController extends Controller
 {
     $request->validate([
         'napro' => 'required|max:100',
-        'deadline' => 'required|date|after_or_equal:today',
+        'deadline' => 'required|regex:/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/|after_or_equal:today',
         'dokumen' => 'nullable|mimes:pdf,txt'
     ], [
         'napro.required' => 'Nama project tidak boleh kosong',
-        'napro.max' => 'Nama project tidak lebih dari 100',
+        'napro.max' => 'Nama project tidak lebih dari 100 karakter',
         'deadline.required' => 'Isi deadline terlebih dahulu',
-        'deadline.date' => 'Format deadline tidak valid',
+        'deadline.regex' => 'Format deadline tidak valid',
         'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',
-        'dokumen.mimes' => 'Dokumen pendukung harus berformat:pdf, txt'
-    ]);
+        'dokumen.mimes' => 'Dokumen pendukung harus berformat: pdf, txt'
+    ]);    
 
     $dtUpload = new Proreq();
     if ($request->has('dokumen')) {
