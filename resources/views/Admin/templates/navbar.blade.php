@@ -19,7 +19,7 @@
     border-radius: 50%;
     padding: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  } 
+  }
   </style>
 <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
 
@@ -43,30 +43,11 @@
                   <p style="font-size: 12px" class="m-0">{{ $notif->created_at->diffForHumans() }}</p>
                 </a>
                 @endforeach
-                <form action="{{ route('read-all-notif') }}" onsubmit="readAllNotif(event)" id="readAllNotif" method="post">
+                <form action="{{ route('read-all-notif') }}" id="readAllNotif" method="post">
                   @method('delete')
                   @csrf
                   <button type="submit" class="btn btn-block btn-sm w-100">Tandai semua telah dibaca</button>
                 </form>
-                <script>
-                  function readAllNotif(event) {
-                    event.preventDefault();
-                    Swal.fire({
-                      title: 'Apakah Anda yakin?',
-                      text: 'Menghapus semua notifikasi',
-                      icon: 'warning',
-                      showCancelButton: true,
-                      confirmButtonColor: '#3085d6',
-                      cancelButtonColor: '#d33',
-                      confirmButtonText: 'Ya',
-                      cancelButtonText: 'Batal'
-                    }).then((result) => {
-                      if (result.isConfirmed) {
-                        document.getElementById('readAllNotif').submit();
-                      }
-                    });
-                  }
-                </script>
                 @else
                 <a href="#" class="dropdown-item text-center rounded">Tidak ada notifikasi masuk</a>
               @endif
@@ -160,7 +141,7 @@
                   gambar.src = URL.createObjectURL(inputFile.files[0]);
                 }
               </script>
-              
+
           <div class="mb-1">
               <label for="exampleFormControlInput1" class="form-label">Nama</label>
               <input type="text" class="form-control" id="exampleFormControlInput1"  name="name" value="{{ $admin->name }}">
@@ -168,7 +149,7 @@
           <div class="row">
               <div class="mb-1">
                     <label for="input1">Email</label>
-                    <input type="email" class="form-control mt-1" id="exampleFormControlInput2" name="email" value="{{ $admin->email }}"> 
+                    <input type="email" class="form-control mt-1" id="exampleFormControlInput2" name="email" value="{{ $admin->email }}">
                 </div>
               </div>
             </div>
