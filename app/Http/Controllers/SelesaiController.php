@@ -126,6 +126,7 @@ class SelesaiController extends Controller
             ]);
             $msg = 'Revisi Project';
             $notifDesk = Auth::user()->name.' mengajukan revisi';
+            Notification::where('project_id', $pro->id)->delete();
             Notification::create([
                 'role' => 'admin',
                 'user_id' => $pro->user_id,

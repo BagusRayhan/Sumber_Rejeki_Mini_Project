@@ -36,6 +36,7 @@ class AdminBayarController extends Controller
             $project->statusbayar = null;
             $msg = 'Pembayaran Awal Disetujui';
             $notifDesk = $project->napro;
+            Notification::where('project_id', $project->id)->delete();
             Notification::create([
                 'role' => 'client',
                 'user_id' => $project->user_id,
@@ -50,6 +51,7 @@ class AdminBayarController extends Controller
             $project->statusbayar = 'lunas';
             $msg = 'Pembayaran Akhir Disetujui';
             $notifDesk = $project->napro;
+            Notification::where('project_id', $project->id)->delete();
             Notification::create([
                 'role' => 'client',
                 'user_id' => $project->user_id,
@@ -65,6 +67,7 @@ class AdminBayarController extends Controller
             // $project->tanggalpembayaran3 = null;
             $msg = 'Pembayaran Revisi Disetujui';
             $notifDesk = $project->napro;
+            Notification::where('project_id', $project->id)->delete();
             Notification::create([
                 'role' => 'client',
                 'user_id' => $project->user_id,
@@ -92,6 +95,7 @@ class AdminBayarController extends Controller
             $projectol->tanggalpembayaran = null;
             $msg = 'Pembayaran Awal Ditolak';
             $notifDesk = $projectol->napro;
+            Notification::where('project_id', $projectol->id)->delete();
             Notification::create([
                 'role' => 'client',
                 'user_id' => $projectol->user_id,
@@ -111,6 +115,7 @@ class AdminBayarController extends Controller
             $projectol->tanggalpembayaran2 = null;
             $msg = 'Pembayaran Akhir Ditolak';
             $notifDesk = $projectol->napro;
+            Notification::where('project_id', $projectol->id)->delete();
             Notification::create([
                 'role' => 'client',
                 'user_id' => $projectol->user_id,
@@ -130,6 +135,7 @@ class AdminBayarController extends Controller
             $projectol->tanggalpembayaran3 = null;
             $msg = 'Pembayaran Revisi Ditolak';
             $notifDesk = $projectol->napro;
+            Notification::where('project_id', $projectol->id)->delete();
             Notification::create([
                 'role' => 'client',
                 'user_id' => $projectol->user_id,
@@ -180,6 +186,7 @@ class AdminBayarController extends Controller
 
         $msg = 'Refund Masuk';
         $notifDesk = $pro->napro;
+        Notification::where('project_id', $pro->id)->delete();
         Notification::create([
             'role' => 'client',
             'user_id' => $pro->user_id,

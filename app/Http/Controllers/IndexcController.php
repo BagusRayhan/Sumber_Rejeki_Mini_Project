@@ -235,6 +235,7 @@ class IndexcController extends Controller
         $project->update($upProject);
         $msg = 'Project Masuk';
         $notifDesk = $project->napro.' dari '.$project->nama;
+        Notification::where('project_id', $project->id)->delete();
         Notification::create([
             'role' => 'admin',
             'user_id' => $project->user_id,

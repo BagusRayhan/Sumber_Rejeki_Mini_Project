@@ -102,6 +102,7 @@ class BayarController extends Controller
 
         $msg = 'Pembayaran Masuk';
         $notifDesk = 'Biaya awal '.$data->napro;
+        Notification::where('project_id', $data->id)->delete();
         Notification::create([
             'role' => 'admin',
             'user_id' => $data->user_id,
@@ -168,6 +169,7 @@ class BayarController extends Controller
 
         $msg = 'Pembayaran Masuk';
         $notifDesk = 'Biaya akhir '.$data->napro;
+        Notification::where('project_id', $data->id)->delete();
         Notification::create([
             'role' => 'admin',
             'user_id' => $data->user_id,
@@ -234,6 +236,7 @@ class BayarController extends Controller
 
         $msg = 'Pembayaran Masuk';
         $notifDesk = 'Biaya Revisi '.$data->napro;
+        Notification::where('project_id', $data->id)->delete();
         Notification::create([
             'role' => 'admin',
             'user_id' => $data->user_id,

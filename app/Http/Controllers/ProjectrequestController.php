@@ -114,6 +114,7 @@ public function projectreq(Request $request)
         ]);
         $msg = 'Project Disetujui';
         $notifDesk = $proreg->napro.' disetujui admin';
+        Notification::where('project_id', $proreg->id)->delete();
         Notification::create([
             'role' => 'client',
             'user_id' => $proreg->user_id,
@@ -162,6 +163,7 @@ public function alasantolak(Request $request)
     $pro->save();
     $msg = 'Project Ditolak';
     $notifDesk = $pro->napro.' Ditolak';
+    Notification::where('project_id', $pro->id)->delete();
     Notification::create([
         'role' => 'client',
         'user_id' => $pro->user_id,
@@ -193,6 +195,7 @@ public function updateproreqa($id)
 
     $msg = 'Project Disetujui';
     $notifDesk = $proreq->napro.' disetujui admin';
+    Notification::where('project_id', $proreq->id)->delete();
     Notification::create([
         'role' => 'client',
         'user_id' => $proreq->user_id,
@@ -339,6 +342,7 @@ public function updateproreqa($id)
 
         $msg = 'Project Direvisi';
         $notifDesk = $proreq->napro.' diubah oleh admin';
+        Notification::where('project_id', $proreq->id)->delete();
         Notification::create([
             'role' => 'client',
             'user_id' => $proreq->user_id,

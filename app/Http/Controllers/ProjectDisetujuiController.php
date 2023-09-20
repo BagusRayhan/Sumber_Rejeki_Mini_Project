@@ -171,6 +171,7 @@ public function upEstimasi(Request $request) {
             ]);
             $msg = 'Project Selesai';
             $notifDesk = $pro->napro.' telah selesai';
+            Notification::where('project_id', $pro->id)->delete();
             Notification::create([
                 'role' => 'client',
                 'user_id' => $pro->user_id,
@@ -187,6 +188,7 @@ public function upEstimasi(Request $request) {
             ]);
             $msg = 'Revisi Project Selesai';
             $notifDesk = $pro->napro.' telah selesai';
+            Notification::where('project_id', $pro->id)->delete();
             Notification::create([
                 'role' => 'client',
                 'user_id' => $pro->user_id,
@@ -244,6 +246,7 @@ public function upEstimasi(Request $request) {
         ]);
         $msg = 'Pengajuan Refund';
         $notifDesk = $pro->napro;
+        Notification::where('project_id', $pro->id)->delete();
         Notification::create([
             'role' => 'admin',
             'user_id' => $pro->user_id,
@@ -269,6 +272,7 @@ public function upEstimasi(Request $request) {
         ]);
         $msg = 'Pembatalan Revisi';
         $notifDesk = $pro->napro;
+        Notification::where('project_id', $pro->id)->delete();
         Notification::create([
             'role' => 'admin',
             'user_id' => $pro->user_id,
