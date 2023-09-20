@@ -96,14 +96,14 @@
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-file"></i></div>
                             <h4><a href="">Aplikasi Mobile</a></h4>
-                            <p>Kami adalah mitra terpercaya untuk mewujudkan aplikasi mobile yang kreatif dan fungsional.Kami siap membantu Anda menghadirkan solusi mobile yang modern</p>
+                            <p>Kami adalah mitra terpercaya untuk mewujudkan aplikasi mobile yang kreatif dan fungsional. Kami siap membantu Anda menghadirkan solusi mobile yang modern.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-file"></i></div>
                             <h4><a href="">Desain Grafis</a></h4>
-                            <p>Kami adalah ahli desain grafis yang berkomitmen untuk menciptakan visual yang menginspirasi dan efektif.Setiap desain kami adalah karya seni.</p>
+                            <p>Kami adalah ahli desain grafis yang berkomitmen untuk menciptakan visual yang menginspirasi dan efektif. Setiap desain kami adalah karya seni.</p>
                         </div>
                     </div>
                 </div>
