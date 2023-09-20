@@ -321,12 +321,12 @@ public function updateproreqa($id)
         $user = User::find($proreq->user_id);
         $request->validate([
             'napro' => 'required|max:30',
-            'deadline' => 'required|date|after_or_equal:today',
+            'deadline' => 'required|regex:/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/|after_or_equal:today',
         ], [
             'napro.required' => 'Nama project tidak boleh kosong',
             'napro.max' => 'Nama project tidak boleh lebih dari 30',
             'deadline.required' => 'Isi deadline terlebih dahulu',
-            'deadline.date' => 'Format deadline tidak valid',
+            'deadline.regex' => 'Format deadline tidak valid',
             'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',
         ]);
 
