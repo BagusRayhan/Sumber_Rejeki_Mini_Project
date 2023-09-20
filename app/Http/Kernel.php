@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\LoginMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -57,6 +58,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
+        'redirect.auth' => LoginMiddleware::class,
         'resetpassword' => \App\Http\Middleware\ResetPassword::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

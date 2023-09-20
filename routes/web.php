@@ -27,9 +27,9 @@ use App\Http\Controllers\ProjectDisetujuiController;
 
 // Login Register
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::get('login', [AuthController::class, 'index'])->name('login')->middleware('redirect.auth');
 Route::post('postlogin', [AuthController::class, 'login'])->name('postlogin');
-Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::get('register', [AuthController::class, 'register'])->name('register')->middleware('redirect.auth');
 Route::post('postsignup', [AuthController::class, 'signupsave'])->name('postsignup');
 Route::get('email-verification', [AuthController::class, 'verifEmail'])->name('email-verification');
 Route::get('wrong-account', [AuthController::class, 'wrongAccount'])->name('wrong-account');
