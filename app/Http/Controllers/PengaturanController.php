@@ -80,10 +80,11 @@ class PengaturanController extends Controller
 
     public function updateAboutUs(Request $request) {
         $this->validate($request,[
-            'about' => 'required|min:10'
+            'about' => 'required|min:10|max:255'
         ],[
             'about.required' => 'Isi about us terlebih dahulu',
-            'about.min' => 'Isi about us minimal 10 karakter'
+            'about.min' => 'Isi about us minimal 10 karakter',
+            'about.max' => 'About us maksimal 255 karakter'
         ]);
 
         $about = Aboutproreq::find(1);
