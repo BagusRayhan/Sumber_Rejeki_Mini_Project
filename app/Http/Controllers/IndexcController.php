@@ -339,8 +339,8 @@ public function updateProfile(Request $request)
         'email' => 'required|email|max:40|unique:users,email,' . $client->id,
         'fileInputA' => 'image|mimes:jpeg,jpg,png|max:2048',
         'no_tlp' => 'nullable|min:11|max:14|regex:/^[0-9]+$/',
-        'nama_perusahaan' => 'nullable|min:5|max:100',
-        'alamat_perusahaan' => 'nullable|min:10|max:255',
+        'nama_perusahaan' => 'nullable|max:100',
+        'alamat_perusahaan' => 'nullable|max:255',
     ], [
         'name.required' => 'Nama harus diisi.',
         'name.max' => 'Nama maksimal 30 karakter.',
@@ -355,9 +355,7 @@ public function updateProfile(Request $request)
         'no_tlp.min' => 'Nomer Telpon Minimal 11',
         'no_tlp.max' => 'Nomer Telpon Maksimal 14',
         'no_tlp.regex' => 'Masukkan format nomor telepon yang benar',
-        'nama_perusahaan.min' => 'Nama perusahaan tidak valid',
         'nama_perusahaan.max' => 'Nama perusahaan maksimal 255 karakter',
-        'alamat_perusahaan.min' => 'Alamat perusahaan tidak valid',
         'alamat_perusahaan.max' => 'Alamat perusahaan maksimal 255 karakter'
     ]);
 
