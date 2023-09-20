@@ -135,11 +135,12 @@ class IndexcController extends Controller
  public function simpann(Request $request)
 {
     $request->validate([
-        'napro' => 'required',
+        'napro' => 'required|max:100',
         'deadline' => 'required|date|after_or_equal:today',
         'dokumen' => 'nullable|mimes:pdf,txt'
     ], [
         'napro.required' => 'Nama project tidak boleh kosong',
+        'napro.max' => 'Nama project tidak lebih dari 100',
         'deadline.required' => 'Isi deadline terlebih dahulu',
         'deadline.date' => 'Format deadline tidak valid',
         'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',
