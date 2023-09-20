@@ -309,10 +309,11 @@ public function updateproreqa($id)
         $proreq = Proreq::findOrFail($id);
         $user = User::find($proreq->user_id);
         $request->validate([
-            'napro' => 'required',
+            'napro' => 'required|max:30',
             'deadline' => 'required|date|after_or_equal:today',
         ], [
             'napro.required' => 'Nama project tidak boleh kosong',
+            'napro.max' => 'Nama project tidak boleh lebih dari 30',
             'deadline.required' => 'Isi deadline terlebih dahulu',
             'deadline.date' => 'Format deadline tidak valid',
             'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',

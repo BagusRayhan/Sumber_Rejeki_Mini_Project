@@ -117,7 +117,7 @@ class AuthController extends Controller
 
     public function signupsave(Request $request) {
         $request->validate([
-            'name' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'name' => 'required|regex:/^[a-zA-Z\s]+$/|max:50',
             'email' => 'required|email|unique:users',
             'password' => 'required_with:pass|same:pass|min:6',
             'no_tlp' => 'nullable|min:11|max:14'
@@ -127,6 +127,7 @@ class AuthController extends Controller
             'email.unique' => 'Email sudah terdaftar!',
             'name.required' => 'Nama tidak boleh kosong!',
             'name.regex' => 'Nama tidak valid',
+            'name.max' => 'Nama tidak valid',
             'email.required' => 'Email tidak boleh kosong!',
             'no_tlp.min' => 'no telephone tidak boleh kurang dari 11',
             'no_tlp.max' => 'no telephone tidak boleh lebih dari 14'
