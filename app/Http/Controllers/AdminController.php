@@ -180,6 +180,8 @@ class AdminController extends Controller
             'fileInputA' => 'image|mimes:jpeg,jpg,png|max:2048',
         ], [
             'name.required' => 'Nama harus diisi.',
+            'name.max' => 'Nama maksimal 255 karakter.',
+            'name.string' => 'Nama harus berupa karakter.',
             'email.required' => 'Email harus diisi.',
             'email.email' => 'Email harus berupa alamat email yang valid.',
             'email.unique' => 'Email sudah digunakan oleh pengguna lain.',
