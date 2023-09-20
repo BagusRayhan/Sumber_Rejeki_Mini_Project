@@ -332,18 +332,18 @@ public function updateProfile(Request $request)
     $client = User::find(Auth::user()->id);
 
     $validator = Validator::make($request->all(), [
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255|unique:users,email,' . $client->id,
+        'name' => 'required|string|max:30',
+        'email' => 'required|email|max:40|unique:users,email,' . $client->id,
         'fileInputA' => 'image|mimes:jpeg,jpg,png|max:2048',
         'no_tlp' => 'nullable|min:11|max:14|regex:/^[0-9]+$/',
         'nama_perusahaan' => 'nullable|min:5|max:100',
         'alamat_perusahaan' => 'nullable|min:10|max:255',
     ], [
         'name.required' => 'Nama harus diisi.',
-        'name.max' => 'Nama maksimal 255 karakter.',
+        'name.max' => 'Nama maksimal 30 karakter.',
         'name.string' => 'Nama harus berupa karakter',
         'email.required' => 'Email harus diisi.',
-        'email.max' => 'Email maksimal 255 karakter',
+        'email.max' => 'Email maksimal 40 karakter',
         'email.email' => 'Email harus berupa alamat email yang valid.',
         'email.unique' => 'Email sudah digunakan oleh pengguna lain.',
         'fileInputA.image' => 'Profil harus berupa format jpg jpeg png',
