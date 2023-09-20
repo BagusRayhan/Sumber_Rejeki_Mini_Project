@@ -327,6 +327,7 @@ public function deleteproj($id)
 public function deleteAll(Request $request)
 {
     $ids = $request->ids;
+    Notification::whereIn('project_id',$ids)->delete();
     Proreq::whereIn('id',$ids)->delete();
     return response()->json(["succes"=>"data berhasil dihapus"]);
 }

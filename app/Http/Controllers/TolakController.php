@@ -29,6 +29,7 @@ class TolakController extends Controller
         public function destroy(int $id)
         {
             $data = Proreq::findOrFail($id);
+            Notification::where('project_id', $data->id)->delete();
             $data->delete();
             return redirect()->route('ditolakclient')->with('success', 'Berhasil menghapus data!');
         }
