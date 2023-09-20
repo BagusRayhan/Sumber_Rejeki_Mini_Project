@@ -129,12 +129,13 @@ public function projectreq(Request $request)
 {
     $fitur = Fitur::findOrFail($id);
     $request->validate([
-        'hargafitur' => 'required|numeric|gt:0'
+        'hargafitur' => 'required|numeric|gt:0|max:9999999999999',
     ],[
         'hargafitur.required' => 'Harga tidak boleh kosong',
         'hargafitur.numeric' => 'Harga tidak valid',
         'hargafitur.gt' => 'Harga tidak valid',
-    ]);
+        'hargafitur.max' => 'Harga tidak valid',
+    ]);    
     $fitur->hargafitur = $request->hargafitur;
     $fitur->save();
 
