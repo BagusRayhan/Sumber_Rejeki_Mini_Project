@@ -48,30 +48,11 @@
                 <p style="font-size: 12px" class="m-0">{{ $notif->created_at->diffForHumans() }}</p>
               </a>
               @endforeach
-              <form action="{{ route('read-all-notif-client') }}" onsubmit="readAllNotif(event)" id="readAllNotif" method="post">
+              <form action="{{ route('read-all-notif-client') }}" id="readAllNotif" method="post">
                 @method('delete')
                 @csrf
                 <button type="submit" class="btn btn-block btn-sm w-100">Tandai semua telah dibaca</button>
               </form>
-              <script>
-                function readAllNotif(event) {
-                  event.preventDefault();
-                  Swal.fire({
-                    title: 'Apakah Anda yakin?',
-                    text: 'Menghapus semua notifikasi',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                    cancelButtonText: 'Batal'
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      document.getElementById('readAllNotif').submit();
-                    }
-                  });
-                }
-              </script>
             @else
               <a class="dropdown-item text-center rounded">Tidak ada notifikasi masuk</a>
             @endif
@@ -138,7 +119,7 @@
               <script>
                  let profilePic = document.getElementById("profile-pic");
                  let inputFile = document.getElementById("fileInputA");
-                 
+
                  inputFile.onchange = function(){
                   profilePic.src = URL.createObjectURL(inputFile.files[0]);
                  }
