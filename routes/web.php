@@ -35,7 +35,7 @@ Route::get('email-verification', [AuthController::class, 'verifEmail'])->name('e
 Route::get('wrong-account', [AuthController::class, 'wrongAccount'])->name('wrong-account');
 Route::get('resend-code', [AuthController::class, 'resendCode'])->name('resend-code');
 Route::post('email-verification/verif', [AuthController::class, 'verifEmailStore'])->name('email-verification.post');
-Route::get('forgot', [AuthController::class, 'forgot'])->name('forgot');
+Route::get('forgot', [AuthController::class, 'forgot'])->name('forgot')->middleware('redirect.auth');
 Route::get('kebijakan', [PengaturanController::class, 'kebijakan'])->name('kebijakan');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
