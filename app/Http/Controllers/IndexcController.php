@@ -202,7 +202,7 @@ class IndexcController extends Controller
 
         $request->validate([
             'napro' => 'required|max:30',
-            'deadline' => 'required||regex:/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/|after_or_equal:today',
+            'deadline' => 'required|regex:/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/|after_or_equal:today',
             'dokumen' => 'nullable|mimes:pdf,txt'
         ], [
             'napro.required' => 'Nama project harus diisi',
