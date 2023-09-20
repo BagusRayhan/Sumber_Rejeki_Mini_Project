@@ -40,7 +40,7 @@ Route::get('kebijakan', [PengaturanController::class, 'kebijakan'])->name('kebij
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['resetpassword'])->group(function () {
-    Route::get('forgot-password', [AuthController::class, 'forgotPasswordRequest'])->name('password.request');
+    Route::get('forgot-password', [AuthController::class, 'forgotPasswordRequest'])->name('password.request')->middleware('redirect.auth');
     Route::post('forgot-password', [AuthController::class, 'forgotPasswordEmail'])->name('password.email');
     Route::get('reset-password/{token}', [AuthController::class, 'resetPasswordToken'])->name('password.reset');
     Route::post('reset-password', [AuthController::class, 'resetPasswordUpdate'])->name('password.update');
