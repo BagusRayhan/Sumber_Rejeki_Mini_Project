@@ -26,7 +26,7 @@ use App\Http\Controllers\ProjectDisetujuiController;
 */
 
 // Login Register
-Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome')->middleware('redirect.auth');
 Route::get('login', [AuthController::class, 'index'])->name('login')->middleware('redirect.auth');
 Route::post('postlogin', [AuthController::class, 'login'])->name('postlogin');
 Route::get('register', [AuthController::class, 'register'])->name('register')->middleware('redirect.auth');
