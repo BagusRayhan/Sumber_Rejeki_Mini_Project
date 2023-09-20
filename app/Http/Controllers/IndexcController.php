@@ -181,7 +181,7 @@ class IndexcController extends Controller
             'deskripsi' => 'required',
         ],[
             'namafitur.required' => 'Fitur tidak boleh kosong',
-            'namafitur.max' => 'Nama fitur tidak boleh lebih dari 30 character',
+            'namafitur.max' => 'Nama fitur tidak boleh lebih dari 30 karakter',
             'deskripsi.required' => 'Deskripsi tidak boleh kosong',
         ]);
 
@@ -206,7 +206,7 @@ class IndexcController extends Controller
             'dokumen' => 'nullable|mimes:pdf,txt'
         ], [
             'napro.required' => 'Nama project harus diisi',
-            'napro.max' => 'Nama project tidak boleh lebih dari 30',
+            'napro.max' => 'Nama project tidak boleh lebih dari 30 karakter',
             'deadline.required' => 'Isi deadline terlebih dahulu',
             'deadline.regex' => 'Format deadline tidak valid',
             'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',
@@ -312,7 +312,7 @@ public function updateFitur(Request $request, $id)
         'deskripsi' => 'required',
     ],[
         'namafitur.required' => 'Fitur tidak boleh kosong',
-        'namafitur.max' => 'Nama fitur tidak boleh lebih dari 30 character',
+        'namafitur.max' => 'Nama fitur tidak boleh lebih dari 30 karakter',
         'deskripsi.required' => 'Deskripsi tidak boleh kosong',
     ]);
 
