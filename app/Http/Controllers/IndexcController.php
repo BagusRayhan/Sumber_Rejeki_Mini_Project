@@ -178,11 +178,13 @@ class IndexcController extends Controller
     {
         $this->validate($request,[
             'namafitur' => 'required|max:30',
-            'deskripsi' => 'required',
+            'deskripsi' => 'required|max:255',
         ],[
             'namafitur.required' => 'Fitur tidak boleh kosong',
             'namafitur.max' => 'Nama fitur tidak boleh lebih dari 30 karakter',
+            'deskripsi.max' => 'Nama fitur tidak boleh lebih dari 255 karakter',
             'deskripsi.required' => 'Deskripsi tidak boleh kosong',
+            'deskripsi.min' => 'Deskripsi maksimal tidak boleh lebih dari 255 karakter',
         ]);
 
         $sosmed = Sosmed::all();
@@ -309,11 +311,12 @@ public function updateFitur(Request $request, $id)
 {
     $this->validate($request,[
         'namafitur' => 'required|max:30',
-        'deskripsi' => 'required',
+        'deskripsi' => 'required|max:255',
     ],[
         'namafitur.required' => 'Fitur tidak boleh kosong',
         'namafitur.max' => 'Nama fitur tidak boleh lebih dari 30 karakter',
         'deskripsi.required' => 'Deskripsi tidak boleh kosong',
+        'deskripsi.max' => 'Deskripsi tidak boleh lebih dari 255 kata',
     ]);
 
     $fitur = Fitur::findOrFail($id);
