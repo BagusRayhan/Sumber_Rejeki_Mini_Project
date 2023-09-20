@@ -362,7 +362,7 @@ public function updateproreqa($id)
         $this->validate($request,[
             'namafitur' => 'required|max:30',
             'biayatambahan' => 'required|numeric|gt:0',
-            'deskripsi' => 'required',
+            'deskripsi' => 'required|max:255',
         ],[
             'namafitur.required' => 'Fitur tidak boleh kosong',
             'namafitur.max' => 'Nama fitur tidak boleh lebih dari 30 karakter',
@@ -370,6 +370,7 @@ public function updateproreqa($id)
             'biayatambahan.numeric' => 'Harga tidak valid',
             'biayatambahan.gt' => 'Harga tidak valid',
             'deskripsi' => 'Deskripsi tidak boleh kosong',
+            'deskripsi.max' => 'Deskripsi tidak boleh lebih dari 255 karakter',
         ]);
         $data = Proreq::findOrFail($id);
         $project_id = $data->id;
@@ -388,7 +389,7 @@ public function updateproreqa($id)
         $this->validate($request,[
             'namafitur' => 'required|max:30',
             'hargafitur' => 'required|numeric|gt:0',
-            'deskripsi' => 'required',
+            'deskripsi' => 'required|max:255',
         ],[
             'namafitur.required' => 'Fitur tidak boleh kosong',
             'namafitur.max' => 'Nama fitur tidak boleh lebih dari 30 karakter',
@@ -396,6 +397,7 @@ public function updateproreqa($id)
             'hargafitur.numeric' => 'Harga tidak valid',
             'hargafitur.gt' => 'Harga tidak valid',
             'deskripsi' => 'Deskripsi tidak boleh kosong',
+            'deskripsi.max' => 'Deskripsi tidak boleh lebih dari 255 karakter',
         ]);
         $fitur = Fitur::findOrFail($id);
         $inputData = [

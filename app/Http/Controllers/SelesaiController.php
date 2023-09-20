@@ -112,10 +112,11 @@ class SelesaiController extends Controller
 
         public function ajukanRevisi(Request $request) {
             $request->validate([
-                'revisi' => 'required|min:30'
+                'revisi' => 'required|min:30|max:255'
             ],[
                 'revisi.required' => 'Deskripsi revisi tidak boleh kosong',
-                'revisi.min' => 'Deskripsi harus lebih dari 30 karakter'
+                'revisi.min' => 'Deskripsi harus lebih dari 30 karakter',
+                'revisi.max' => 'Deskripsi harus tidak boleh lebih dari 255 karakter',
             ]);
             $pro = Proreq::find($request->project_id);
             $pro->update([
