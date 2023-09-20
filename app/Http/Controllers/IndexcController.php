@@ -342,6 +342,7 @@ public function updateProfile(Request $request)
         'name.max' => 'Nama maksimal 255 karakter.',
         'name.string' => 'Nama harus berupa karakter',
         'email.required' => 'Email harus diisi.',
+        'email.max' => 'Email maksimal 255 karakter',
         'email.email' => 'Email harus berupa alamat email yang valid.',
         'email.unique' => 'Email sudah digunakan oleh pengguna lain.',
         'fileInputA.image' => 'Profil harus berupa format jpg jpeg png',

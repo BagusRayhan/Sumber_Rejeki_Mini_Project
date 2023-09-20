@@ -177,13 +177,14 @@ class AdminController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $admin->id,
-            'fileInputA' => 'image|mimes:jpeg,jpg,png|max:2048',
+            'fileInputA' => 'image|mimes:jpeg,jpg,png|max:100',
         ], [
             'name.required' => 'Nama harus diisi.',
             'name.max' => 'Nama maksimal 255 karakter.',
             'name.string' => 'Nama harus berupa karakter.',
             'email.required' => 'Email harus diisi.',
             'email.email' => 'Email harus berupa alamat email yang valid.',
+            'email.max' => 'Email harus berupa alamat email yang valid.',
             'email.unique' => 'Email sudah digunakan oleh pengguna lain.',
             'fileInputA.image' => 'Profil harus berupa gambar (JPG, JPEG, PNG).',
             'fileInputA.mimes' => '',
