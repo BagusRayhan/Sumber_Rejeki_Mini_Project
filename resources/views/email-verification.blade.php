@@ -61,7 +61,6 @@
     <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
         <form class="login100-form validate-form" action="{{ route('email-verification.post') }}" method="POST">
             @csrf
-            <input type="text" name="email_id">
             <span class="login100-form-title p-b-20">
                 Verifikasi Email
             </span>
