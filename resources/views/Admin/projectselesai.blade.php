@@ -73,7 +73,7 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="modalTitleId">Website Configuration</h5>
+                                                <h5 class="modal-title" id="modalTitleId">Konfigurasi Website</h5>
                                                 <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
                                             </div>
                                             <form action="{{ route('send-config') }}" method="post">
