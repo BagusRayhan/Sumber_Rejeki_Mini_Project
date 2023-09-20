@@ -93,7 +93,7 @@
                                             @php
                                                  $estimasiDate = Carbon::parse($estimasisetuju->estimasi);
                                             @endphp
-                                                <span class="float-end"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasiDate->diffForHumans() }}</span>
+                                               <span class="float-end"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasiDate->diffForHumans(null, ['locale' => 'id']) }}</span>
                                             @else
                                                 <span class="float-end">Estimasi belum diatur</span>
                                             @endif
