@@ -133,11 +133,11 @@ public function upEstimasi(Request $request) {
     $request->validate([
         'estimasi' => [
             'required',
-            'date',
+            'regex:/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/',
             'after_or_equal:today',
             function ($attribute, $value, $fail) use ($request) {
                 $deadline = Proreq::where('id', $request->project_id)->value('deadline');
-
+    
                 if ($value > $deadline) {
                     $fail('Estimasi tidak boleh melebihi tanggal deadline');
                 }
@@ -145,10 +145,9 @@ public function upEstimasi(Request $request) {
         ],
     ], [
         'estimasi.required' => 'Isi estimasi terlebih dahulu',
-        'estimasi.date' => 'Format estimasi tidak valid',
+        'estimasi.regex' => 'Format estimasi tidak valid',
         'estimasi.after_or_equal' => 'Estimasi tidak boleh hari kemarin',
-    ]);
-
+    ]);    
 
     $pro = Proreq::find($request->project_id);
     $user = User::find($pro->user_id);
