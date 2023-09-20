@@ -264,7 +264,7 @@ class IndexcController extends Controller
 
     public function destroyRequest(Request $request) {
         Proreq::find($request->project_id)->delete();
-        return back();
+        return back()->with('success','Berhasil Membatalkan Project');
     }
                        // edit proreq 2
 
