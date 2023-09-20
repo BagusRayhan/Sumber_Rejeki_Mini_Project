@@ -129,6 +129,7 @@ class SelesaiController extends Controller
             Notification::create([
                 'role' => 'admin',
                 'user_id' => $pro->user_id,
+                'project_id' => $pro->id,
                 'notif' => $msg,
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Revisi Project'

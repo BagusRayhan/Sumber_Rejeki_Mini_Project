@@ -238,6 +238,7 @@ class IndexcController extends Controller
         Notification::create([
             'role' => 'admin',
             'user_id' => $project->user_id,
+            'project_id' => $project->id,
             'notif' => $msg,
             'deskripsi' => $notifDesk,
             'kategori' => 'Project Masuk'
@@ -246,7 +247,7 @@ class IndexcController extends Controller
     }
 
                     // edit proreq 1
-                    
+
     public function editProreq(Request $request,$id){
 
         $client = User::find(Auth::user()->id);

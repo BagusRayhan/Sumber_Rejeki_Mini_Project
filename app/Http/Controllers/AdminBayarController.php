@@ -39,6 +39,7 @@ class AdminBayarController extends Controller
             Notification::create([
                 'role' => 'client',
                 'user_id' => $project->user_id,
+                'project_id' => $project->id,
                 'notif' => $msg,
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Pembayaran Awal Disetujui'
@@ -52,6 +53,7 @@ class AdminBayarController extends Controller
             Notification::create([
                 'role' => 'client',
                 'user_id' => $project->user_id,
+                'project_id' => $project->id,
                 'notif' => $msg,
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Pembayaran Akhir Disetujui'
@@ -66,6 +68,7 @@ class AdminBayarController extends Controller
             Notification::create([
                 'role' => 'client',
                 'user_id' => $project->user_id,
+                'project_id' => $project->id,
                 'notif' => $msg,
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Pembayaran Revisi Disetujui'
@@ -92,6 +95,7 @@ class AdminBayarController extends Controller
             Notification::create([
                 'role' => 'client',
                 'user_id' => $projectol->user_id,
+                'project_id' => $projectol->id,
                 'notif' => $msg,
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Pembayaran Awal Ditolak'
@@ -110,6 +114,7 @@ class AdminBayarController extends Controller
             Notification::create([
                 'role' => 'client',
                 'user_id' => $projectol->user_id,
+                'project_id' => $projectol->id,
                 'notif' => $msg,
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Pembayaran Akhir Ditolak'
@@ -128,6 +133,7 @@ class AdminBayarController extends Controller
             Notification::create([
                 'role' => 'client',
                 'user_id' => $projectol->user_id,
+                'project' => $projectol->id,
                 'notif' => $msg,
                 'deskripsi' => $notifDesk,
                 'kategori' => 'Pembayaran Revisi Ditolak'
@@ -177,6 +183,7 @@ class AdminBayarController extends Controller
         Notification::create([
             'role' => 'client',
             'user_id' => $pro->user_id,
+            'project_id' => $pro->id,
             'notif' => $msg,
             'deskripsi' => $notifDesk,
             'kategori' => 'Refund Masuk'

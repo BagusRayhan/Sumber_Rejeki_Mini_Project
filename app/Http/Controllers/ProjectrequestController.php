@@ -117,6 +117,7 @@ public function projectreq(Request $request)
         Notification::create([
             'role' => 'client',
             'user_id' => $proreg->user_id,
+            'project_id' => $proreg->id,
             'notif' => $msg,
             'deskripsi' => $notifDesk,
             'kategori' => 'Project Disetujui'
@@ -135,7 +136,7 @@ public function projectreq(Request $request)
         'hargafitur.numeric' => 'Harga tidak valid',
         'hargafitur.gt' => 'Harga tidak valid',
         'hargafitur.max' => 'Harga tidak valid',
-    ]);    
+    ]);
     $fitur->hargafitur = $request->hargafitur;
     $fitur->save();
 
@@ -164,6 +165,7 @@ public function alasantolak(Request $request)
     Notification::create([
         'role' => 'client',
         'user_id' => $pro->user_id,
+        'project_id' => $pro->id,
         'notif' => $msg,
         'deskripsi' => $notifDesk,
         'kategori' => 'Project Ditolak'
@@ -194,6 +196,7 @@ public function updateproreqa($id)
     Notification::create([
         'role' => 'client',
         'user_id' => $proreq->user_id,
+        'project_id' => $proreq->id,
         'notif' => $msg,
         'deskripsi' => $notifDesk,
         'kategori' => 'Project Disetujui'
@@ -339,6 +342,7 @@ public function updateproreqa($id)
         Notification::create([
             'role' => 'client',
             'user_id' => $proreq->user_id,
+            'project_id' => $proreq->id,
             'notif' => $msg,
             'deskripsi' => $notifDesk,
             'kategori' => 'Project Direvisi'
