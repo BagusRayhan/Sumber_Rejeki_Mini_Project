@@ -78,7 +78,7 @@
 
     <div class="d-flex justify-content-between">
         <div class="d-flex justify-content-start">
-            <input type="checkbox" id="remember-checkbox">
+            <input type="checkbox" id="remember-checkbox" checked>
             <a href="kebijakan">&nbsp;Kebijakan Privasi</a>
             </div>
 
