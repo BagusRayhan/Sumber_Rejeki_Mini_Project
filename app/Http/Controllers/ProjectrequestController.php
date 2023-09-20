@@ -220,7 +220,9 @@ public function updateproreqa($id)
             'ipaddress' => 'required|ip',
             'repository' => 'nullable|url:http,https',
             'adminemail' => 'required|email',
-            'adminpassword' => 'required',
+            'adminpassword' => 'required|max:50',
+            'cpanelusername' => 'nullable|max:100',
+            'cpanelpassword' => 'nullable|max:50',
         ],[
             'webaddress.required' => 'Alamat web tidak boleh kosong',
             'webaddress.url' => 'URL web tidak valid',
@@ -230,6 +232,9 @@ public function updateproreqa($id)
             'adminemail.required' => 'Email tidak boleh kosong',
             'adminemail.email' => 'Email tidak valid',
             'adminpassword.required' => 'Pasword tidak boleh kosong',
+            'adminpassword.max' => 'Pasword tidak valid',
+            'cpanelusername.max' => 'Username tidak valid',
+            'cpanelpassword.max' => 'Pasword tidak valid',
         ]);
         $pro->update([
             'webaddress' => $request->webaddress,
