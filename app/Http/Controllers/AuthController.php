@@ -120,7 +120,9 @@ class AuthController extends Controller
             'name' => 'required|regex:/^[a-zA-Z\s]+$/|max:50',
             'email' => 'required|email|unique:users',
             'password' => 'required_with:pass|same:pass|min:6',
-            'no_tlp' => 'nullable|min:11|max:14'
+            'no_tlp' => 'nullable|min:11|max:14',
+            'nama_perusahaan' => 'nullable|max:50',
+            'alamat_perusahaan' => 'nullable|max:255',
         ], [
             'password.min' => 'Password minimal 6 karakter!',
             'password.same' => 'Konfirmasi password tidak sesuai!',
@@ -129,8 +131,10 @@ class AuthController extends Controller
             'name.regex' => 'Nama tidak valid',
             'name.max' => 'Nama tidak valid',
             'email.required' => 'Email tidak boleh kosong!',
-            'no_tlp.min' => 'no telephone tidak boleh kurang dari 11',
-            'no_tlp.max' => 'no telephone tidak boleh lebih dari 14'
+            'no_tlp.min' => 'No telpon tidak boleh kurang dari 11',
+            'no_tlp.max' => 'No telpon tidak boleh lebih dari 14',
+            'nama_perusahaan.max' => 'Nama perusahaan tidak boleh lebih dari 50 karakter',
+            'alamat_perusahaan.max' => 'Alamat tidak boleh lebih dari 255 karakter',
         ]);
         $code = random_int(1000, 9999);
         $email = $request->email;
