@@ -31,15 +31,15 @@
 
             <!-- Confirm Payment Table Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="search-form w-25">
+                <div class="search-form w-100 w-md-25"> <!-- Use w-100 for full width and w-md-25 for 25% width on medium screens and larger -->
                     <form action="{{ route('pending-bayar-admin') }}" method="GET">
                         <div class="input-group rounded-pill" style="background: #E9EEF5">
                             <input type="text" name="query" value="{{ request('query') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
                             <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                         </div>
                     </form>
-                </div>
-                <div class="nav w-25 mt-4 d-flex">
+                </div>                
+                <div class="nav w-100 w-md-25 mt-4 d-flex flex-wrap"> <!-- Use w-100 for full width and w-md-25 for 25% width on medium screens and larger -->
                     <a href="/pembayaran-pending" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('pending-bayar-admin') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
                         Pending
                     </a>
@@ -52,7 +52,7 @@
                             window.location.href = 'halaman-pembayaran-disetujui.html';
                         }
                     </script>
-                </div>
+                </div>                
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="table-responsive">
