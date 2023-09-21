@@ -8,6 +8,29 @@
 @php
     use \Carbon\Carbon;
 @endphp
+<style>
+    @media (max-width: 767px) {
+         .search-form input[type="text"] {
+            width: 100%;
+        }
+        
+        .search-form .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .search-form .input-group input,
+        .search-form .input-group button {
+            margin-top: 10px;
+        }
+        
+        .search-form .input-group button {
+            position: static;
+            margin-left: 0;
+        }
+    }
+    
+</style>
     <body>
         <div class="container-xxl position-relative bg-white d-flex p-0">
             <!-- Spinner Start -->
@@ -27,25 +50,17 @@
         <!-- Confirm Payment Table Start -->
         <div class="container-fluid pt-4 px-4" style="margi">
             <div class="py-4 d-flex justify-content-between ">
-            <div class="row">
-                <div class="col-10 col-md-6">
-                    <div class="search-form">
-                        <form action="{{ route('drequestclient') }}" method="GET" class="d-flex">
-                            <div class="input-group">
-                                <input type="text" name="search" value="{{ request('search') }}" class="form-control rounded-pill" placeholder="Search ...">
-                                <button class="btn btn-primary rounded-circle"><i class="fa-solid fa-search"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="row"> 
-                <div class="col-15 col-md-9">
+<div class="search-form">
+    <form action="{{ route('drequestclient') }}" method="GET">
+        <div class="input-group rounded-pill" style="background: #E9EEF5">
+            <input type="text" name="search" value="{{ request('search') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+            <button class="btn btn-primary rounded-circle position-absolute top-0 end-0 align-items-center justify-content-center" style="z-index: 5;"><i class="fa-solid fa-search"></i></button>
+        </div>
+    </form>
+</div>
                 <div class="wrapper">
                     <a href="{{ route('showproj') }}" class="btn btn-primary btn-sm">Request Project</a>
                 </div>
-            </div>
-            </div>
             </div>
             <div class="row mt-4">
                 <div class="col-12">
