@@ -58,10 +58,10 @@
                 <div class="wrapper mt-3">
             </div>
     </div>
-    @include('Client.Template.footer')
-        </div>
+</div>
 
-
+</div>
+@include('Client.Template.footer')
 @include('Client.Template.script')
 
     </body>

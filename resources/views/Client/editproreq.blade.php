@@ -248,12 +248,12 @@
             </div>
         </div>
     </div>
-</div>
-@include('Client.Template.footer')
-
-@include('Client.Template.script')
+        </div>
+    </div>
+    @include('Client.Template.footer')
+    @include('Client.Template.script')
+</body>
 @include('sweetalert::alert')
-
 
 
  <!-- Modal Box tambah desripsi Start -->
