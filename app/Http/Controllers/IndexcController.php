@@ -145,7 +145,7 @@ class IndexcController extends Controller
         'deadline.regex' => 'Format deadline tidak valid',
         'deadline.after_or_equal' => 'Deadline tidak boleh hari kemarin',
         'dokumen.mimes' => 'Dokumen pendukung harus berformat: pdf, txt'
-    ]);    
+    ]);
 
     $dtUpload = new Proreq();
     if ($request->has('dokumen')) {
@@ -264,8 +264,13 @@ class IndexcController extends Controller
     }
 
     public function destroyRequest(Request $request) {
-        Proreq::find($request->project_id)->delete();
-        return back()->with('success','Berhasil Membatalkan Project');
+        $data = Proreq::findOrFail($request->project_id);
+        if (Auth::user()->id == $data->user_id) {
+            $data->delete();
+            return back()->with('success','Berhasil Membatalkan Project');
+        } else {
+            return back()->with('error', 'Gagal menghapus project');
+        }
     }
                        // edit proreq 2
 

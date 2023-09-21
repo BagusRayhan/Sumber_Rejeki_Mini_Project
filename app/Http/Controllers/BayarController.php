@@ -320,8 +320,13 @@ public function bayar2client(Request $request)
 public function deleteproj($id)
 {
     $data = Proreq::findOrFail($id);
-    $data->delete();
-    return redirect()->route('bayarclient');
+    dd($data->user_id);
+    if (Auth::user()->id == $data->user_id) {
+        $data->delete();
+        return redirect()->route('bayarclient');
+    } else {
+        return back()->with('error', 'Gagal menghapus project');
+    }
 }
 
 public function deleteAll(Request $request)
