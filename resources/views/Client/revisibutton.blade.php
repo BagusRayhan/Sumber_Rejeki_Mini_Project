@@ -34,7 +34,7 @@
                     <label for="exampleFormControlInput1" class="form-label">Dokumen Pendukung</label>
                     <div class="input-group">
                         <button type="button" class="form-control text-start" data-bs-toggle="modal" data-bs-target="#suppDocs" aria-describedby="suppdocsBtn">
-                            <i class="fa-solid fa-eye pe-2"></i> lihat dokumen
+                            <i class="fa-solid fa-eye pe-2"></i> Dokumen
                         </button>
                     </div>
                     <div class="modal fade" id="suppDocs" tabindex="-1" aria-hidden="true">
