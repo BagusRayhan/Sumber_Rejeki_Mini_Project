@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\WebConfig;
 use App\Models\Chat;
 use App\Models\User;
 use App\Models\Fitur;
 use App\Models\Proreq;
+use App\Mail\WebConfig;
 use App\Mail\ProjectRevisi;
+use App\Mail\ProjectDitolak;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Mail\ProjectDisetujui;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Builder;
-use App\Mail\ProjectDitolak;
 
 class ProjectrequestController extends Controller
 {
@@ -421,8 +422,14 @@ public function updateproreqa($id)
 
 
     public function destroyFitur(Request $request) {
-        Fitur::find($request->fitur_id)->delete();
-        return back()->with('success', 'Fitur berhasil dihapus');
+        $fitur = Fitur::findOrFail($request->fitur_id);
+        $project = Proreq::where('id', $request->project_id);
+        if (Auth::user()->id == $project->user_id) {
+            $fitur->delete();
+            return back()->with('success', 'Fitur berhasil dihapus');
+        } else {
+            return back()->with('error', 'Gagal menghapus fitur');
+        }
     }
 
 }

@@ -401,8 +401,13 @@ public function updateProfile(Request $request)
 public function destroyfitur($id)
 {
     $data = Fitur::findOrFail($id);
-    $data->delete();
-    return redirect()->route('editproreq', ['id' => $data->project_id]);
+    $user = Proreq::where('id', $data->project_id)->first();
+    if (Auth::user()->id == $user->user_id) {
+        $data->delete();
+        return redirect()->route('editproreq', ['id' => $data->project_id]);
+    } else {
+        return back()->with('error', 'Gagal menghapus fitur');
+    }
 }
 
 

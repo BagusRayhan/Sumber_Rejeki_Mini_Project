@@ -30,14 +30,22 @@ class TolakController extends Controller
         {
             $data = Proreq::findOrFail($id);
             Notification::where('project_id', $data->id)->delete();
-            $data->delete();
-            return redirect()->route('ditolakclient')->with('success', 'Berhasil menghapus data!');
+            if (Auth::user()->id == $data->user_id) {
+                $data->delete();
+                return redirect()->route('ditolakclient')->with('success', 'Berhasil menghapus data!');
+            } else {
+                return back()->with('error', 'Gagal menghapus data');
+            }
         }
         public function destroy1(int $id)
         {
             $data = Proreq::findOrFail($id);
-            unlink(public_path('document/' . $data->dokumen));
-            $data->delete();
+            if (Auth::user()->id == $data->user_id) {
+                unlink(public_path('document/' . $data->dokumen));
+                $data->delete();
+            } else {
+                return back()->with('success', 'Gagal menghapus data');
+            }
             return redirect()->route('ditolakclient')->with('success', 'Berhasil menghapus data!');
         }
 

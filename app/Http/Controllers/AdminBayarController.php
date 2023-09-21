@@ -12,6 +12,7 @@ use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Mail\PembayaranAkhir;
 use App\Mail\PembayaranRevisi;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 
@@ -251,7 +252,11 @@ class AdminBayarController extends Controller
 
     public function deleteProjectHistory(Request $request) {
         $pro = Proreq::findOrFail($request->project_id);
-        $pro->delete();
-        return back()->with('success', 'Berhasil menghapus project');
+        if (Auth::user()->id == $pro->user_id) {
+            $pro->delete();
+            return back()->with('success', 'Berhasil menghapus project');
+        } else {
+            return back()->with('error','Gagal menghapus data');
+        }
     }
 }
