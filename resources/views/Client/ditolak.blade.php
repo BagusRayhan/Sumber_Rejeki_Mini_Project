@@ -42,6 +42,27 @@
         <!-- Spinner End -->
         @include('Client.Template.sidebar')
 
+        <style>
+            @media (min-width: 1199px) {
+                .search-form {
+                    width: 16em;
+                    height: 2em;
+                }
+            }
+            @media (max-width: 767px) {
+                .table-responsive tr th {
+                    font-size: .5em;
+                }
+                .search-form {
+                    width: 14em;
+                    height: 2em;
+                }
+                .table-responsive tr td {
+                    font-size: .5em;
+                }
+            }
+        </style>
+
         <!-- Content Start -->
         <div class="content">
       @include('Client.Template.navbar')
@@ -95,7 +116,7 @@
                                                 cancelButtonText: 'Batal'
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
-                                                    
+
                                                     document.getElementById('deleteForm-' + id).submit();
                                                 }
                                             });
