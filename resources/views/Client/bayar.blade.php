@@ -93,7 +93,7 @@
       @include('Client.Template.navbar')
 
       <div class="container-fluid pt-4 px-4">
-        <div class="search-form w-100 w-md-25 mb-3"> <!-- Use w-100 for full width and w-md-25 for 25% width on medium screens and larger -->
+        <div class="search-form w-25">
           <form action="{{ route('bayarclient') }}" method="GET">
               <div class="input-group rounded-pill" style="background: #E9EEF5">
                   <input type="text" name="keyword" value="{{ request('keyword') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
@@ -101,17 +101,16 @@
               </div>
           </form>
       </div>
-      
       <div class="d-flex justify-content-between">
-          <div class="nav w-100 w-md-25 mt-4 d-flex flex-wrap"> <!-- Use w-100 for full width and w-md-25 for 25% width on medium screens and larger -->
-              <a href="{{ route('bayarclient') }}" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayarclient') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
-                  Pending
-              </a>
-              <a href="{{ route('bayar2client') }}" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayar2client') ? 'fw-bold border-2  border-bottom border-dark' : '' }}">
-                  Pembayaran
-              </a>
-          </div>
+      <div class="nav w-25 mt-4 d-flex">
+          <a href="{{ route('bayarclient') }}" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayarclient') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
+              Pending
+          </a>
+          <a href="{{ route('bayar2client') }}" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayar2client') ? 'fw-bold border-2  border-bottom border-dark' : '' }}">
+              Pembayaran
+          </a>
       </div>
+  </div>
       
       <div class="row mt-4">
         <div class="col-12">
