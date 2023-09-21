@@ -46,7 +46,45 @@
                 padding: 0;
             }
         }
-    </style>
+    /* Tampilan default untuk laptop */
+    @media (min-width: 768px) {
+        /* Tambahkan lebar minimum pada kolom agar tidak terlalu rapat */
+        .table-responsive table td,
+        .table-responsive table th {
+            min-width: 120px;
+        }
+    }
+
+    /* Tampilan untuk perangkat seluler */
+    @media (max-width: 767px) {
+        /* Atur font ukuran kecil pada seluruh tabel */
+        .table-responsive table {
+            font-size: 12px;
+        }
+
+        /* Atur lebar kolom agar bisa digulirkan secara horizontal */
+        .table-responsive table td,
+        .table-responsive table th {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+    /* Tampilan default untuk laptop */
+    @media (min-width: 768px) {
+        .nav {
+            flex-wrap: nowrap;
+        }
+    }
+
+    /* Tampilan untuk perangkat seluler */
+    @media (max-width: 767px) {
+        .nav {
+            flex-wrap: wrap;
+        }
+    }
+</style>
+
     <div class="container-xxl position-relative bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">

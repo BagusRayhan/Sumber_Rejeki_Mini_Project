@@ -30,6 +30,25 @@
         }
     }
     
+    @media (min-width: 768px) {
+        .table-responsive table td,
+        .table-responsive table th {
+            min-width: 120px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .table-responsive table {
+            font-size: 12px;
+        }
+
+        .table-responsive table td,
+        .table-responsive table th {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
 </style>
     <body>
         <div class="container-xxl position-relative bg-white d-flex p-0">
