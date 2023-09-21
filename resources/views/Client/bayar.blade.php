@@ -5,24 +5,11 @@
 <head>
 @include('Client.Template.head')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<style>
-    .bank-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.bank-container label {
-    margin-bottom: 10px;
-}
-
-.bank-container select,
-.bank-container input {
-    width: 900px;
-    height: 40px;
-    font-size: 16px;
-    margin-bottom: 10px;
-}
+   <style>
+        #buttonContainer {
+        display: none;
+        margin-top: 10px;
+        }
         #imageContainer img {
         float: right;
         margin-top: -140px;
@@ -36,7 +23,23 @@
         top: 174px;
         left: 31px;
     }
-
+            @media print {
+            body * {
+                visibility: hidden;
+            }
+            .modal, .modal * {
+                visibility: visible;
+            }
+            .modal {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: transparent;
+                padding: 0;
+            }
+        }
     /* Tampilan default untuk laptop */
     @media (min-width: 768px) {
         /* Tambahkan lebar minimum pada kolom agar tidak terlalu rapat */
@@ -74,7 +77,48 @@
             flex-wrap: wrap;
         }
     }
+    @media (max-width: 767px) {
+         .search-form input[type="text"] {
+            width: 200%;
+        }
+        
+        .search-form .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .search-form .input-group input,
+        .search-form .input-group button {
+            margin-top: 10px;
+        }
+        
+        .search-form .input-group button {
+            position: static;
+            margin-left: 0;
+        }
+    }
+    
+    @media (min-width: 768px) {
+        .table-responsive table td,
+        .table-responsive table th {
+            min-width: 120px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .table-responsive table {
+            font-size: 12px;
+        }
+
+        .table-responsive table td,
+        .table-responsive table th {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
 </style>
+
 </head>
 
 <body>
@@ -95,7 +139,7 @@
       <div class="container-fluid pt-4 px-4">
         <div class="search-form w-25">
           <form action="{{ route('bayarclient') }}" method="GET">
-              <div class="input-group rounded-pill" style="background: #E9EEF5">
+              <div class="input-group rounded-pill" >
                   <input type="text" name="keyword" value="{{ request('keyword') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
                   <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
               </div>
