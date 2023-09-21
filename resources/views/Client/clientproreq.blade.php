@@ -27,17 +27,25 @@
         <!-- Confirm Payment Table Start -->
         <div class="container-fluid pt-4 px-4" style="margi">
             <div class="py-4 d-flex justify-content-between ">
-                <div class="search-form w-25">
-                    <form action="{{ route('drequestclient') }}" method="GET">
-                        <div class="input-group rounded-pill" style="background: #E9EEF5">
-                            <input type="text" name="search" value="{{ request('search') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
-                            <button class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
-                        </div>
-                    </form>
+            <div class="row">
+                <div class="col-10 col-md-6">
+                    <div class="search-form">
+                        <form action="{{ route('drequestclient') }}" method="GET" class="d-flex">
+                            <div class="input-group">
+                                <input type="text" name="search" value="{{ request('search') }}" class="form-control rounded-pill" placeholder="Search ...">
+                                <button class="btn btn-primary rounded-circle"><i class="fa-solid fa-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+            </div>
+            <div class="row"> 
+                <div class="col-15 col-md-9">
                 <div class="wrapper">
                     <a href="{{ route('showproj') }}" class="btn btn-primary btn-sm">Request Project</a>
                 </div>
+            </div>
+            </div>
             </div>
             <div class="row mt-4">
                 <div class="col-12">
