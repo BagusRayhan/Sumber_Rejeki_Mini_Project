@@ -50,17 +50,9 @@
             @include('Admin.templates.navbar')
 
             <!-- Confirm Payment Table Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="search-form w-100 w-md-25"> <!-- Use w-100 for full width and w-md-25 for 25% width on medium screens and larger -->
-                    <form action="{{ route('refund-admin') }}" method="GET">
-                        <div class="input-group rounded-pill" style="background: #E9EEF5">
-                            <input type="text" name="query" value="{{ request('query') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
-                            <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
-                        </div>
-                    </form>
-                </div>     
+            <div class="container-fluid pt-4 px-4">    
                 <div class="search-form w-25">
-                    <form method="GET" action="{{ route('setuju-bayar-admin') }}" class="search-form">
+                    <form method="GET" action="{{ route('refund-admin') }}" class="search-form">
                         <div class="input-group rounded-pill" style="background: #E9EEF5">
                             <input type="text" name="query" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ..." value="{{ request('query') }}">
                             <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
