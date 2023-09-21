@@ -17,12 +17,32 @@
         <!-- Spinner End -->
         @include('Client.Template.sidebar')
 
+        <style>
+            @media (min-width: 1199px) {
+                .search-form {
+                    width: 16em;
+                    height: 2em;
+                }
+            }
+            @media (max-width: 767px) {
+                .table-responsive tr th {
+                    font-size: .5em;
+                }
+                .search-form {
+                    width: 14em;
+                    height: 2em;
+                }
+                .table-responsive tr td {
+                    font-size: .5em;
+                }
+            }
+        </style>
         <!-- Content Start -->
         <div class="content">
         @include('Client.Template.navbar')
 
         <div class="container-fluid pt-4 px-4">
-            <div class="search-form w-25">
+            <div class="search-form">
                 <form action="{{ route('setujuclient') }}" method="GET">
                     <div class="input-group rounded-pill" style="background: #E9EEF5">
                         <input type="text" name="keyword" value="{{ request('keyword') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
@@ -30,6 +50,7 @@
                     </div>
                 </form>
             </div>
+
             <div class="row mt-4">
                 <div class="col-12">
                     <div class="table-responsive">
@@ -59,11 +80,11 @@
                                                 <div  class="d-flex justify-content-evenly">
                                                 @if ($pro->status2 == 'telat' && $pro->biayatambahan == null)
                                                 <button class="btn btn-primary btn-sm btn-refund" data-bs-toggle="modal" data-id="{{ $pro->id }}" data-napro="{{ $pro->napro }}" data-harga="{{ $pro->harga }}" data-tanggalpembayaran="{{ $pro->tanggalpembayaran }}" data-metodepembayaran="{{ $pro->metodepembayaran }}" data-biayatambahan="{{ $pro->biayatambahan }}"  data-bs-target="#lateProject"><i class="fa-solid fa-eye"></i></button>
-                                                                                                
+
                                                 <!-- Optional: Place to the bottom of scripts -->
                                                 <script>
                                                     const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
-                                                
+
                                                 </script>
                                                 @elseif ($pro->status2 == 'telat' && $pro->biayatambahan !== null)
                                                 <form action="{{ route('cancel-revision') }}" method="post" id="cancelProjectRevision" onsubmit="cancelProject(event, {{ $pro->id }})">
@@ -108,12 +129,12 @@
                                                         </div>
                                                     </div>
                                                 </div> --}}
-                                                
-                                                
+
+
                                                 <!-- Optional: Place to the bottom of scripts -->
                                                 <script>
                                                     const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
-                                                
+
                                                 </script>
                                                 @else
                                                 <a href="/detailsetujui/{{ $pro->id }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
@@ -228,7 +249,7 @@
 
                                                                 $(document).ready(function() {
                                                                     var hargaFormatted4;
-                                                                        var tglBayar; 
+                                                                        var tglBayar;
                                                                         var metodepembayaran;
                                                                     $('.btn-refund').click(function() {
                                                                         var napro = $(this).data('napro');
@@ -237,27 +258,27 @@
                                                                         metodepembayaran = $(this).data('metodepembayaran');
                                                                         var projectId = $(this).data('id');
 
-                                                                        
+
                                                                         console.log("tglBayar: " + tglBayar);
                                                                         console.log("metodepembayaran: " + metodepembayaran);
 
                                                                         setengahHarga = parseInt(harga) / 2;
                                                                         hargaFormatted4 = formatHarga(setengahHarga);
                                                                         var hargaFormatted5 = formatHarga(harga);
-                                                                        
+
 
                                                                         $('#namaProject').val(napro);
                                                                         $('#hargaProject5').val(hargaFormatted5);
                                                                         $('#hargaProj').val(hargaFormatted4);
                                                                         $('#tgl-bayar').val(tglBayar);
-                                                                        $('#metodepembayaran').val(metodepembayaran); 
+                                                                        $('#metodepembayaran').val(metodepembayaran);
                                                                         $('#projectIdCash').val(projectId);
                                                                         $('#lateProject').modal('show');
                                                                     });
 
                                                                     $('.bayar-belumnya').click(function() {
                                                                         var harga = $('#hargaProj').val();
-                                                          
+
                                                                         console.log("harga: " + harga);
                                                                         console.log("tglBayar: " + tglBayar);
                                                                         console.log("metodepembayaran: " + metodepembayaran);
@@ -286,8 +307,8 @@
                                                                         var harga = $('#hargaProject5').val();
                                                                         var projectId = $('#projectIdCash').val();
 
-                                                      
-                                                                        $('#namaProjectCash').text(napro); 
+
+                                                                        $('#namaProjectCash').text(napro);
                                                                         $('#hargaProjectCash').text(harga);
                                                                         console.log("Setengah : " +hargaFormatted4);
                                                                         $('#hargaProjectCash2').text(hargaFormatted4.toString());
@@ -299,7 +320,7 @@
 
                                                                     });
                                                                         $('#sendRefundForm').on('submit', function(event) {
-                                                                        event.preventDefault(); 
+                                                                        event.preventDefault();
 
                                                                         Swal.fire({
                                                                             title: 'Apakah Anda yakin?',
@@ -333,7 +354,7 @@
                                                                             <option value="GoPay">GoPay</option>
                                                                             <option value="LinkAja">LinkAja</option>
                                                                         </select>`;
-    
+
                                                                     $('#paymentMethod').on('change', function () {
                                                                         if ($(this).val() == 'E-Wallet') {
                                                                             paymentProvider.empty();
@@ -376,7 +397,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
 
             <div style="float: right;">
             {{ $project->links() }}
