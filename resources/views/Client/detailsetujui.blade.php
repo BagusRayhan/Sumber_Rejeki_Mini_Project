@@ -36,7 +36,7 @@ use \Carbon\Carbon;
                         <label for="exampleFormControlInput1" class="form-label">Dokumen Pendukung</label>
                         <div class="input-group">
                             <button type="button" class="form-control text-start" data-bs-toggle="modal" data-bs-target="#suppDocs" aria-describedby="suppdocsBtn">
-                                <i class="fa-solid fa-eye pe-2"></i> lihat dokumen
+                                <i class="fa-solid fa-eye pe-2"></i>Dokumen
                             </button>
                             @if ($detail->dokumen == null)
                                 <a onclick="emptyDocsDown()" class="input-group-text" id="suppdocsBtn"><i class="fa-solid fa-file-arrow-down"></i></a>
