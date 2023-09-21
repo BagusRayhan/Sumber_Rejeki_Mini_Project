@@ -6,8 +6,27 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 @include('Admin.templates.head')
 
-
 <body>
+    <style>
+        @media (min-width: 1199px) {
+            .search-form {
+                width: 16em;
+                height: 2em;
+            }
+        }
+        @media (max-width: 767px) {
+            .table-responsive tr th {
+                font-size: .5em;
+            }
+            .search-form {
+                width: 14em;
+                height: 2em;
+            }
+            .table-responsive tr td {
+                font-size: .5em;
+            }
+        }
+        </style>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -27,10 +46,10 @@
             <!-- Confirm Payment Table Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="d-flex justify-content-between">
-                    <div class="search-form w-100 w-md-25"> <!-- Use w-100 for full width and w-md-25 for 25% width on medium screens and larger -->
-                        <form action="{{ route('project-disetujui-admin') }}">
+                    <div class="search-form w-25">
+                        <form method="GET" action="{{ route('project-disetujui-admin') }}" class="search-form">
                             <div class="input-group rounded-pill" style="background: #E9EEF5">
-                                <input type="text" name="query" value="{{ request('query') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
+                                <input type="text" name="query" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ..." value="{{ request('query') }}">
                                 <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                             </div>
                         </form>
