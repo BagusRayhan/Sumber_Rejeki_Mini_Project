@@ -5,6 +5,45 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
 @include('Admin.templates.head')
+
+<style>
+    @media (max-width: 767px) {
+        .search-form {
+            width: 100%;
+        }
+        .table thead tr th {
+            font-size: .5em;
+        }
+        .table tbody tr td {
+            font-size: .5em;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .search-form {
+            width: 35%;
+        }
+        .table thead tr th {
+            font-size: 1em;
+        }
+        .table tbody tr td {
+            font-size: 1em;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .search-form {
+            width: 30%;
+        }
+        .table thead tr th {
+            font-size: 1em;
+        }
+        .table tbody tr td {
+            font-size: 1em;
+        }
+    }
+</style>
+
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
@@ -24,7 +63,7 @@
 
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="search-form w-100 w-md-25"> <!-- Use w-100 for full width and w-md-25 for 25% width on medium screens and larger -->
+                <div class="search-form"> <!-- Use w-100 for full width and w-md-25 for 25% width on medium screens and larger -->
                     <form action="{{ route('projectselesai') }}" method="get">
                         @csrf
                         <div class="input-group rounded-pill" style="background: #E9EEF5">
@@ -33,117 +72,119 @@
                         </div>
                     </form>
                 </div>
-                
+
                 <div class="container-fluid">
                     <div class="row">
-                    <table class="table table-striped table-hover mt-4">
-                        <thead>
-                          <tr>
-                            <th scope="col">Nama Client</th>
-                            <th scope="col">Nama Project</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Harga Project</th>
-                            <th scope="col" class="text-center" style="width: 7em">Aksi</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($selesai as $project )
-                            <tr>
-                                <td>{{ $project->nama }}</td>
-                                <td>{{ $project->napro }}</td>
-                                <td>
-                                    @if ($project->status == 'selesai')
-                                      <span class="badge text-bg-success">{{ $project->status }}</span>
-                                    @elseif ($project->status == 'pengajuan revisi' || 'revisi')
-                                      <span class="badge bg-warning">{{ ($project->status == 'revisi') ? 'menunggu persetujuan' : $project->status }}</span>
-                                    @else
-                                      <span class="badge">{{ $project->status }}</span>
-                                    @endif
-                                  </td>
-                                <td>Rp.{{ number_format($project->harga+$project->biayatambahan, 0, ',', '.') }}</td>
-                                <td class="text-center">
-                                    @if ($project->status == 'selesai')
-                                        <a type="button" data-bs-toggle="modal" data-bs-target="#webSetting{{ $project->id }}" class="btn btn-primary btn-sm" style="background-color:border: none"><i class="fa-solid fa-gear"></i> Settings</a>
-                                    @elseif ($project->status == 'revisi')
-                                        <i class="fa-solid fa-hourglass-start text-warning fw-bold fs-5"></i>
-                                    @elseif ($project->status == 'pengajuan revisi')
-                                        <a type="button" href="{{ route('revisiproselesai',$project->id) }}" class="btn btn-primary btn-sm" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i> Revisi</a>
-                                    @endif
-                                </td>
-                                <div class="modal fade" id="webSetting{{ $project->id }}" aria-labelledby="modalTitleId" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalTitleId">Konfigurasi Website</h5>
-                                                <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                        <div class="table table-responsive">
+                            <table class="table table-striped table-hover mt-4">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Nama Client</th>
+                                    <th scope="col">Nama Project</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Harga Project</th>
+                                    <th scope="col" class="text-center" style="width: 7em">Aksi</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($selesai as $project )
+                                    <tr>
+                                        <td>{{ $project->nama }}</td>
+                                        <td>{{ $project->napro }}</td>
+                                        <td>
+                                            @if ($project->status == 'selesai')
+                                              <span class="badge text-bg-success">{{ $project->status }}</span>
+                                            @elseif ($project->status == 'pengajuan revisi' || 'revisi')
+                                              <span class="badge bg-warning">{{ ($project->status == 'revisi') ? 'menunggu persetujuan' : $project->status }}</span>
+                                            @else
+                                              <span class="badge">{{ $project->status }}</span>
+                                            @endif
+                                          </td>
+                                        <td>Rp.{{ number_format($project->harga+$project->biayatambahan, 0, ',', '.') }}</td>
+                                        <td class="text-center">
+                                            @if ($project->status == 'selesai')
+                                                <a type="button" data-bs-toggle="modal" data-bs-target="#webSetting{{ $project->id }}" class="btn btn-primary btn-sm" style="background-color:border: none"><i class="fa-solid fa-gear"></i> Settings</a>
+                                            @elseif ($project->status == 'revisi')
+                                                <i class="fa-solid fa-hourglass-start text-warning fw-bold fs-5"></i>
+                                            @elseif ($project->status == 'pengajuan revisi')
+                                                <a type="button" href="{{ route('revisiproselesai',$project->id) }}" class="btn btn-primary btn-sm" style="background-color:border: none"><i class="fa-sharp fa-solid fa-file-pen"></i> Revisi</a>
+                                            @endif
+                                        </td>
+                                        <div class="modal fade" id="webSetting{{ $project->id }}" aria-labelledby="modalTitleId" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modalTitleId">Konfigurasi Website</h5>
+                                                        <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                                                    </div>
+                                                    <form action="{{ route('send-config') }}" method="post">
+                                                        <div class="modal-body">
+                                                            @csrf
+                                                            @method('put')
+                                                            <input type="hidden" name="project_id" value="{{ $project->id }}">
+                                                            <div class="row"><h6>Website Settings</h6></div>
+                                                            <div class="row mb-2">
+                                                                <div class="col">
+                                                                    <label for="webaddress" class="form-label mb-1 mx-1">Website Address</label>
+                                                                    <input type="text" class="form-control" name="webaddress" id="webaddress" placeholder="https://proreq.com" value="{{ $project->webaddress }}">
+                                                                </div>
+                                                                <div class="col">
+                                                                    <label for="ipaddress" class="form-label mb-1 mx-1">IP Address</label>
+                                                                    <input type="text" class="form-control" name="ipaddress" id="ipaddress" placeholder="127.0.0.0" value="{{ $project->ipaddress }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col">
+                                                                    <label for="repository" class="form-label mb-1 mx-1">Repository <small class=" fw-light fst-italic text-secondary">(Opsional)</small></label>
+                                                                    <input type="text" class="form-control" name="repository" id="repository" placeholder="via Github, etc." value="{{ $project->repository }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-4"><h6>Admin Account</h6></div>
+                                                            <div class="row mb-2">
+                                                                <div class="col">
+                                                                    <label for="adminemail" class="form-label mb-1 mx-1">Email</label>
+                                                                    <input type="text" name="adminemail" id="adminemail" class="form-control" placeholder="admin@example.com" value="{{ $project->adminemail }}">
+                                                                </div>
+                                                                <div class="col">
+                                                                    <label for="adminpassword" class="form-label mb-1 mx-1">Password</label>
+                                                                    <input type="password" name="adminpassword" id="adminpassword" class="form-control" placeholder="Default password" value="{{ $project->adminpassword }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-4"><h6>Database Access <small class="fst-italic text-secondary fw-light">(Opsional)</small></h6></div>
+                                                            <div class="row mb-2">
+                                                                <div class="col">
+                                                                    <label for="cpanelusername" class="form-label mb-1 mx-1">Username</label>
+                                                                    <input type="text" name="cpanelusername" id="cpanelusername" class="form-control" placeholder="CPanel Username">
+                                                                </div>
+                                                                <div class="col">
+                                                                    <label for="cpanelpassword" class="form-label mb-1 mx-1">Password</label>
+                                                                    <input type="password" name="cpanelpassword" id="cpanelpassword" class="form-control" placeholder="CPanel Password">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-primary">Kirim</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
-                                            <form action="{{ route('send-config') }}" method="post">
-                                                <div class="modal-body">
-                                                    @csrf
-                                                    @method('put')
-                                                    <input type="hidden" name="project_id" value="{{ $project->id }}">
-                                                    <div class="row"><h6>Website Settings</h6></div>
-                                                    <div class="row mb-2">
-                                                        <div class="col">
-                                                            <label for="webaddress" class="form-label mb-1 mx-1">Website Address</label>
-                                                            <input type="text" class="form-control" name="webaddress" id="webaddress" placeholder="https://proreq.com" value="{{ $project->webaddress }}">
-                                                        </div>
-                                                        <div class="col">
-                                                            <label for="ipaddress" class="form-label mb-1 mx-1">IP Address</label>
-                                                            <input type="text" class="form-control" name="ipaddress" id="ipaddress" placeholder="127.0.0.0" value="{{ $project->ipaddress }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-2">
-                                                        <div class="col">
-                                                            <label for="repository" class="form-label mb-1 mx-1">Repository <small class=" fw-light fst-italic text-secondary">(Opsional)</small></label>
-                                                            <input type="text" class="form-control" name="repository" id="repository" placeholder="via Github, etc." value="{{ $project->repository }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mt-4"><h6>Admin Account</h6></div>
-                                                    <div class="row mb-2">
-                                                        <div class="col">
-                                                            <label for="adminemail" class="form-label mb-1 mx-1">Email</label>
-                                                            <input type="text" name="adminemail" id="adminemail" class="form-control" placeholder="admin@example.com" value="{{ $project->adminemail }}">
-                                                        </div>
-                                                        <div class="col">
-                                                            <label for="adminpassword" class="form-label mb-1 mx-1">Password</label>
-                                                            <input type="password" name="adminpassword" id="adminpassword" class="form-control" placeholder="Default password" value="{{ $project->adminpassword }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mt-4"><h6>Database Access <small class="fst-italic text-secondary fw-light">(Opsional)</small></h6></div>
-                                                    <div class="row mb-2">
-                                                        <div class="col">
-                                                            <label for="cpanelusername" class="form-label mb-1 mx-1">Username</label>
-                                                            <input type="text" name="cpanelusername" id="cpanelusername" class="form-control" placeholder="CPanel Username">
-                                                        </div>
-                                                        <div class="col">
-                                                            <label for="cpanelpassword" class="form-label mb-1 mx-1">Password</label>
-                                                            <input type="password" name="cpanelpassword" id="cpanelpassword" class="form-control" placeholder="CPanel Password">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary">Kirim</button>
-                                                </div>
-                                            </form>
                                         </div>
-                                    </div>
-                                </div>
 
 
-                                <!-- Optional: Place to the bottom of scripts -->
-                                <script>
-                                    const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+                                        <!-- Optional: Place to the bottom of scripts -->
+                                        <script>
+                                            const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
 
-                                </script>
-                              </tr>
-                            @empty
-                            <tr>
-                                <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                      </table>
+                                        </script>
+                                      </tr>
+                                    @empty
+                                    <tr>
+                                        <td class="text-center" colspan="5"><i class="fa-solid fa-empty"></i> Tidak ada data</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                              </table>
+                        </div>
                   </div>
                 </div>
                 <div style="float: right;">
