@@ -13,6 +13,26 @@
 @include('Admin.templates.head')
 
 <body>
+    <style>
+        @media (min-width: 1199px) {
+            .search-form {
+                width: 16em;
+                height: 2em;
+            }
+        }
+        @media (max-width: 767px) {
+            .table-responsive tr th {
+                font-size: .5em;
+            }
+            .search-form {
+                width: 14em;
+                height: 2em;
+            }
+            .table-responsive tr td {
+                font-size: .5em;
+            }
+        }
+        </style>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -38,7 +58,15 @@
                             <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
                         </div>
                     </form>
-                </div>                
+                </div>     
+                <div class="search-form w-25">
+                    <form method="GET" action="{{ route('setuju-bayar-admin') }}" class="search-form">
+                        <div class="input-group rounded-pill" style="background: #E9EEF5">
+                            <input type="text" name="query" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ..." value="{{ request('query') }}">
+                            <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>            
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="table-responsive">
