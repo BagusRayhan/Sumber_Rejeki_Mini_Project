@@ -320,7 +320,6 @@ public function bayar2client(Request $request)
 public function deleteproj($id)
 {
     $data = Proreq::findOrFail($id);
-    dd($data->user_id);
     if (Auth::user()->id == $data->user_id) {
         $data->delete();
         return redirect()->route('bayarclient');
