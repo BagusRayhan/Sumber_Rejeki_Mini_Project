@@ -52,7 +52,7 @@ Route::middleware(['web', 'auth'])->group(function() {
     Route::get('notifclient/{id}', [IndexcController::class, 'notifRedirectClient'])->name('notifclient');
     Route::delete('client/delete-notif', [IndexcController::class, 'readAllNotifClient'])->name('read-all-notif-client');
     Route::put('client/update-profile', [IndexcController::class, 'updateProfile'])->name('client.updateProfile');
-    Route::get('drequestclient', [IndexcController::class, 'drequestclient'])->name('drequestclient');
+Route::get('drequestclient', [IndexcController::class, 'drequestclient'])->name('drequestclient');
     Route::get('createproreq', [IndexcController::class, 'createproreq'])->name('createproreq');
     Route::get('showproj', [IndexcController::class, 'showproj'])->name('showproj');
     Route::post('simpanpro', [IndexcController::class, 'simpann'])->name('simpanpro');

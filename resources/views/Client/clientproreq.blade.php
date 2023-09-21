@@ -25,7 +25,7 @@
 
 
         <!-- Confirm Payment Table Start -->
-        <div class="container-fluid pt-4 px-4">
+        <div class="container-fluid pt-4 px-4" style="margi">
             <div class="py-4 d-flex justify-content-between ">
                 <div class="search-form w-25">
                     <form action="{{ route('drequestclient') }}" method="GET">
@@ -112,11 +112,13 @@
             {{ $data->links() }}
             </div>
         </div>
-        @include('Client.Template.footer')
     </div>
-        <div class="">
-        </div>
-    <!-- Content End -->
+    <div class="bottom" style="">
+        
+    </div>
+</div>
+@include('Client.Template.footer')
+<!-- Content End -->
     
 </body>
         @include('Client.Template.script')

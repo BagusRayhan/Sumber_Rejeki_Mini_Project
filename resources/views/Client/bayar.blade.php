@@ -41,7 +41,7 @@
 </head>
 
 <body>
-    <div class="container-xxl position-relative bg-white d-flex p-0">
+    <div class="container-xxl position-relative bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -501,11 +501,12 @@ $(document).ready(function() {
     </div>
     </div>
       </div>
-      @include('Client.Template.footer')
-        </div>
+    </div>
+    @include('Client.Template.footer')
+      </div>
+      @include('Client.Template.script')
                     <!-- Content End -->
 
-                    @include('Client.Template.script')
                 </body>
 
 <!-- Mirrored from themewagon.github.io/dashmin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 May 2023 04:45:02 GMT -->

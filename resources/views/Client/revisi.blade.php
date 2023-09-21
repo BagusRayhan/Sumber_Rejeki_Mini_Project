@@ -86,11 +86,10 @@
         </div>
     </div>
 
-      @include('Client.Template.footer')
-        </div>
-        <!-- Content End -->
-
-
+</div>
+<!-- Content End -->
+</div>
+@include('Client.Template.footer')
 @include('Client.Template.script')
 </body>
 
