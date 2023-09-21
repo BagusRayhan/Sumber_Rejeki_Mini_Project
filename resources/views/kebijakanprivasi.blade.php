@@ -17,6 +17,15 @@
     <link href="{{ asset('ProjectManagement/BizLand/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('ProjectManagement/BizLand/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
     <link href="{{ asset('ProjectManagement/BizLand/assets/css/style.css') }}" rel="stylesheet">
+    <script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var goHomeButton = document.querySelector(".back a");
+			goHomeButton.addEventListener("click", function(event) {
+				event.preventDefault();
+				history.back();
+			});
+		});
+	</script>
 </head>
 
 <body>
@@ -52,6 +61,9 @@
                 </div>
                 <div class="row d-flex justify-content-center">
                     {!! $privacypolicy->kebijakan !!}
+                </div>
+                <div class="back d-flex justify-content-center mt-3">
+                    <a href="#" class="btn btn-primary rounded-pill">Setuju</a>
                 </div>
             </div>
         </section>
