@@ -71,45 +71,45 @@
             <!-- Widgets Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-                    <div class="col-sm-12 col-md-6 col-xl-4" style="width: 66%;">
+                    <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <h6 class="mb-0">Estimasi</h6>
                             </div>
-
-            @if (count($estimasi) > 0)
-                @foreach ($estimasi as $estimasisetuju)
-                    <div class="d-flex align-items-center border-bottom py-3">
-                        <a href="{{ route('setujuclient', ['id' => $estimasisetuju->id]) }}" class="d-flex w-100" style="text-decoration: none; color: inherit;">
-                            <img class="rounded-circle flex-shrink-0" style="width: 3em; height: 3em; object-fit: cover;" src="/gambar/user-profile/{{ $estimasisetuju->user->profil }}">
-                            <div class="ms-3 flex-grow-1">
-                                <h6 class="mb-2">{{ $estimasisetuju->napro }}</h6>
-                                <span class="mb-5">Rp. {{ number_format($estimasisetuju->harga, 0, ',', '.') }}</span>
-                            </div>
-                                <div class="bg-light rounded h-100 p-10">
-                                    <div class="pg-bar mb-3">
-                                            <h6 class="mb-2"></h6>
-                                            @if ($estimasisetuju->estimasi != null)
-                                            @php
-                                                 $estimasiDate = Carbon::parse($estimasisetuju->estimasi);
-                                            @endphp
-                                               <span class="float-end"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasiDate->diffForHumans(null, ['locale' => 'id']) }}</span>
-                                            @else
-                                                <span class="float-end">Estimasi belum diatur</span>
-                                            @endif
+                    
+                            @if (count($estimasi) > 0)
+                                @foreach ($estimasi as $estimasisetuju)
+                                    <div class="d-flex align-items-center border-bottom py-3">
+                                        <a href="{{ route('setujuclient', ['id' => $estimasisetuju->id]) }}" class="d-flex w-100 text-decoration-none text-dark">
+                                            <img class="rounded-circle flex-shrink-0" style="width: 3em; height: 3em; object-fit: cover;" src="/gambar/user-profile/{{ $estimasisetuju->user->profil }}">
+                                            <div class="ms-3 flex-grow-1">
+                                                <h6 class="mb-2 text-truncate">{{ $estimasisetuju->napro }}</h6>
+                                                <span class="mb-5">Rp. {{ number_format($estimasisetuju->harga, 0, ',', '.') }}</span>
+                                            </div>
+                                            <div class="bg-light rounded h-100 p-10">
+                                                <div class="pg-bar mb-3">
+                                                    <h6 class="mb-2"></h6>
+                                                    @if ($estimasisetuju->estimasi != null)
+                                                        @php
+                                                            $estimasiDate = Carbon::parse($estimasisetuju->estimasi);
+                                                        @endphp
+                                                        <span class="float-end"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;&nbsp;{{ $estimasiDate->diffForHumans(null, ['locale' => 'id']) }}</span>
+                                                    @else
+                                                        <span class="float-end">Estimasi belum diatur</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
+                                @endforeach
+                            @else
+                                <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+                                    <img src="gambar/empty-icon/empty-directory.png" style="width: 65px;">
+                                    <p>Belum Ada Project</p>
                                 </div>
-                        </a>
-                    </div>
-                @endforeach
-            @else
-                <div class="d-flex flex-column h-100 justify-content-center align-items-center">
-                    <img src="gambar/empty-icon/empty-directory.png" style="width:65px;">
-                    <p>Belum Ada Project</p>
-                </div>
-            @endif
-             </div>
-            </div>
+                            @endif
+                        </div>
+                    </div>                    
 
 
             <div class="col-sm-12 col-md-6 col-xl-4">
@@ -121,9 +121,9 @@
                         @if (count($message) !== 0)
                             @foreach ($message->where('user_id', Auth::user()->id)->sortByDesc('created_at') as $msg)
                                 @if ($msg->status == 'setuju' || $msg->status == 'pengajuan revisi')
-                                    <button class="btn btn-block mb-2 w-100 d-flex justify-content-between" data-bs-toggle="collapse" data-bs-target="#adminChat{{ $msg->id }}" aria-expanded="false" aria-controls="collapseExample">
+                                    <button class="btn btn-block mb-2 w-100 d-flex justify-content-between text-truncate" data-bs-toggle="collapse" data-bs-target="#adminChat{{ $msg->id }}" aria-expanded="false" aria-controls="collapseExample">
                                         <div class="wrapper d-flex">
-                                            <img class="rounded-circle flex-shrink-0" src="/gambar/user-profile/{{ $admin->profil }}" alt="" style="width: 40px; height: 40px;">
+                                            <img class="rounded-circle flex-shrink-0 img-fluid" src="/gambar/user-profile/{{ $admin->profil }}" alt="" style="width: 40px; height: 40px;">
                                             <div class="wrapper mx-2 d-flex flex-column align-items-start">
                                                 <h6 class="mb-1">{{ ucfirst($admin->name) }}</h6>
                                                 <span style="font-size: 12px">{{ $msg->napro }}</span>
@@ -135,7 +135,7 @@
                                         <div class="list-group d-flex flex-column-reverse">
                                             @if (count($msg->projectchat) !== 0)
                                                 @foreach ($msg->projectchat->whereIn('user_id', $admin_id)->sortByDesc('created_at')->take(3) as $cht)
-                                                    <a href="{{ ($msg->status == 'setuju') ? route('detailsetujui', ['id' => $msg->id]) : (($msg->status == 'pengajuan revisi') ? route('revisibutton', ['id'=>$msg->id]) : '') }}" class="list-group-item list-group-item-action" style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap">{{ $cht->chat }}</a>
+                                                    <a href="{{ ($msg->status == 'setuju') ? route('detailsetujui', ['id' => $msg->id]) : (($msg->status == 'pengajuan revisi') ? route('revisibutton', ['id'=>$msg->id]) : '') }}" class="list-group-item list-group-item-action text-truncate" style="overflow:hidden;">{{ $cht->chat }}</a>
                                                 @endforeach
                                             @endif
                                         </div>
@@ -153,21 +153,20 @@
                                     </a>
                                 @else
                                 <div class="d-flex flex-column h-100 justify-content-center align-items-center">
-                                    <img src="gambar/empty-icon/empty-directory.png" class="w-50">
+                                    <img src="gambar/empty-icon/empty-directory.png" class="w-50 img-fluid">
                                     <p>Tidak ada pesan masuk</p>
                                 </div>
                                 @endif
                             @endforeach
                         @else
                             <div class="d-flex flex-column h-100 justify-content-center align-items-center">
-                                <img src="gambar/empty-icon/empty-directory.png" class="w-50">
+                                <img src="gambar/empty-icon/empty-directory.png" class="w-50 img-fluid">
                                 <p>Tidak ada pesan masuk</p>
                             </div>
                         @endif
                     </div>
-
                 </div>
-            </div>
+            </div>            
 
 
             <!-- Moved the script below the HTML content to ensure the elements are loaded before applying the script -->

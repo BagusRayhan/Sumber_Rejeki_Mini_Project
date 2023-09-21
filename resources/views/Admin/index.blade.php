@@ -36,7 +36,7 @@
             <!-- Counter Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-                    <div class="col-sm-6 col-xl-3">
+                    <div class="col-sm-6 col-md-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa-regular fa-user fa-2x text-primary"></i>
                             <div class="ms-1">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xl-3">
+                    <div class="col-sm-6 col-md-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon2.png') }}" alt="">
                             <div class="ms-1">
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xl-3">
+                    <div class="col-sm-6 col-md-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon3.png') }}" alt="">
                             <div class="ms-1">
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xl-3">
+                    <div class="col-sm-6 col-md-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <img class="w-25" src="{{ asset('ProjectManagement/dashmin/img/icon4.png') }}" alt="">
                             <div class="ms-1">
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>            
             <!-- Counter End -->
 
             <!-- Monthly Chart Start -->

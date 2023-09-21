@@ -31,14 +31,15 @@
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
                 @if(!$user->isEmpty() || !empty(request('query')))
-            <form method="GET" action="{{ route('client-list') }}" class="search-form w-25">
-                <div class="input-group rounded-pill" style="background: #E9EEF5">
-                    <input type="text" name="query" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ..." value="{{ request('query') }}">
-                    <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
-                </div>
-            </form>
-            @endif
-            </div>
+                    <form method="GET" action="{{ route('client-list') }}" class="search-form w-100 w-md-25">
+                        <!-- Use w-100 for full width and w-md-25 for 25% width on medium screens and larger -->
+                        <div class="input-group rounded-pill" style="background: #E9EEF5">
+                            <input type="text" name="query" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ..." value="{{ request('query') }}">
+                            <button type="submit" class="btn btn-primary rounded-circle position-absolute end-0" style="z-index: 5"><i class="fa-solid fa-search"></i></button>
+                        </div>
+                    </form>
+                @endif
+            </div>            
                 <div class="row mt-3 px-3">
                     @foreach ($user as $client)
                         <div class="col-sm-3 mb-2 mb-sm-3">

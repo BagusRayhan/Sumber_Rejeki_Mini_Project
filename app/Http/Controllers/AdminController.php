@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
-    public function index(MonthlyUsersChart $chart, AnnualyDoneChart $ychart) {
+    public function 
+    index(MonthlyUsersChart $chart, AnnualyDoneChart $ychart) {
         $selesaiProjects = Proreq::selectRaw('MONTH(tanggalpembayaran2) as month, COUNT(*) as count')
         ->where('status', 'selesai')
         ->groupBy('month')
