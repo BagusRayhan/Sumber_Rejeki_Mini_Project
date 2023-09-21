@@ -190,14 +190,11 @@
                         <div id="messageContent{{ $pesan->id }}" class="collapse message-content">
                         </div> --}}
 
-
-index
-
                     </div>
                 </div>
-                @include('Client.Template.footer')
-                </div>
             </div>
+        </div>
+        @include('Client.Template.footer')
             @include('Client.Template.script')
 
 </body>
