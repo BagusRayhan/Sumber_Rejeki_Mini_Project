@@ -70,13 +70,12 @@
 
             <!-- Widgets Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-12 col-md-6 col-xl-4">
+                <div class="row g-8">
+                    <div class="col-sm-8 col-xl-8 mb-3">
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <h6 class="mb-0">Estimasi</h6>
                             </div>
-                    
                             @if (count($estimasi) > 0)
                                 @foreach ($estimasi as $estimasisetuju)
                                     <div class="d-flex align-items-center border-bottom py-3">
@@ -109,64 +108,63 @@
                                 </div>
                             @endif
                         </div>
-                    </div>                    
-
-
-            <div class="col-sm-12 col-md-6 col-xl-4">
-                <div class="h-100 bg-light rounded p-4">
-                    <div class="d-flex align-items-center justify-content-start mb-2">
-                        <h6 class="mb-0">Pesan</h6>
                     </div>
-                    <div class="chat-list">
-                        @if (count($message) !== 0)
-                            @foreach ($message->where('user_id', Auth::user()->id)->sortByDesc('created_at') as $msg)
-                                @if ($msg->status == 'setuju' || $msg->status == 'pengajuan revisi')
-                                    <button class="btn btn-block mb-2 w-100 d-flex justify-content-between text-truncate" data-bs-toggle="collapse" data-bs-target="#adminChat{{ $msg->id }}" aria-expanded="false" aria-controls="collapseExample">
-                                        <div class="wrapper d-flex">
-                                            <img class="rounded-circle flex-shrink-0 img-fluid" src="/gambar/user-profile/{{ $admin->profil }}" alt="" style="width: 40px; height: 40px;">
-                                            <div class="wrapper mx-2 d-flex flex-column align-items-start">
-                                                <h6 class="mb-1">{{ ucfirst($admin->name) }}</h6>
-                                                <span style="font-size: 12px">{{ $msg->napro }}</span>
-                                            </div>
-                                        </div>
-                                        <small>{{ Carbon::parse($msg->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
-                                    </button>
-                                    <div class="collapse" id="adminChat{{ $msg->id }}" data-bs-parent=".chat-list">
-                                        <div class="list-group d-flex flex-column-reverse">
-                                            @if (count($msg->projectchat) !== 0)
-                                                @foreach ($msg->projectchat->whereIn('user_id', $admin_id)->sortByDesc('created_at')->take(3) as $cht)
-                                                    <a href="{{ ($msg->status == 'setuju') ? route('detailsetujui', ['id' => $msg->id]) : (($msg->status == 'pengajuan revisi') ? route('revisibutton', ['id'=>$msg->id]) : '') }}" class="list-group-item list-group-item-action text-truncate" style="overflow:hidden;">{{ $cht->chat }}</a>
-                                                @endforeach
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <a href="{{ route('detail-disetujui-admin', ['id' => $msg->id]) }}" style="text-decoration: none; color: inherit;">
-                                        <div class="collapse message-content">
-                                            @if (count($msg->projectchat) !== 0)
-                                                @foreach ($msg->projectchat as $chat)
-                                                    <p>{{ $chat->chat }}</p>
-                                                @endforeach
-                                            @else
-                                                <p>Tidak ada pesan</p>
-                                            @endif
-                                        </div>
-                                    </a>
-                                @else
-                                <div class="d-flex flex-column h-100 justify-content-center align-items-center">
-                                    <img src="gambar/empty-icon/empty-directory.png" class="w-50 img-fluid">
-                                    <p>Tidak ada pesan masuk</p>
-                                </div>
-                                @endif
-                            @endforeach
-                        @else
-                            <div class="d-flex flex-column h-100 justify-content-center align-items-center">
-                                <img src="gambar/empty-icon/empty-directory.png" class="w-50 img-fluid">
-                                <p>Tidak ada pesan masuk</p>
+                    <div class="col-sm-4 col-xl-4 mb-3">
+                        <div class="h-100 bg-light rounded p-4">
+                            <div class="d-flex align-items-center justify-content-start mb-2">
+                                <h6 class="mb-0">Pesan</h6>
                             </div>
-                        @endif
+                            <div class="chat-list">
+                                @if (count($message) !== 0)
+                                    @foreach ($message->where('user_id', Auth::user()->id)->sortByDesc('created_at') as $msg)
+                                        @if ($msg->status == 'setuju' || $msg->status == 'pengajuan revisi')
+                                            <button class="btn btn-block mb-2 w-100 d-flex justify-content-between text-truncate" data-bs-toggle="collapse" data-bs-target="#adminChat{{ $msg->id }}" aria-expanded="false" aria-controls="collapseExample">
+                                                <div class="wrapper d-flex">
+                                                    <img class="rounded-circle flex-shrink-0 img-fluid" src="/gambar/user-profile/{{ $admin->profil }}" alt="" style="width: 40px; height: 40px;">
+                                                    <div class="wrapper mx-2 d-flex flex-column align-items-start">
+                                                        <h6 class="mb-1">{{ ucfirst($admin->name) }}</h6>
+                                                        <span style="font-size: 12px">{{ $msg->napro }}</span>
+                                                    </div>
+                                                </div>
+                                                <small>{{ Carbon::parse($msg->chat_time)->locale('id')->isoFormat('HH:MM') }}</small>
+                                            </button>
+                                            <div class="collapse" id="adminChat{{ $msg->id }}" data-bs-parent=".chat-list">
+                                                <div class="list-group d-flex flex-column-reverse">
+                                                    @if (count($msg->projectchat) !== 0)
+                                                        @foreach ($msg->projectchat->whereIn('user_id', $admin_id)->sortByDesc('created_at')->take(3) as $cht)
+                                                            <a href="{{ ($msg->status == 'setuju') ? route('detailsetujui', ['id' => $msg->id]) : (($msg->status == 'pengajuan revisi') ? route('revisibutton', ['id'=>$msg->id]) : '') }}" class="list-group-item list-group-item-action text-truncate" style="overflow:hidden;">{{ $cht->chat }}</a>
+                                                        @endforeach
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <a href="{{ route('detail-disetujui-admin', ['id' => $msg->id]) }}" style="text-decoration: none; color: inherit;">
+                                                <div class="collapse message-content">
+                                                    @if (count($msg->projectchat) !== 0)
+                                                        @foreach ($msg->projectchat as $chat)
+                                                            <p>{{ $chat->chat }}</p>
+                                                        @endforeach
+                                                    @else
+                                                        <p>Tidak ada pesan</p>
+                                                    @endif
+                                                </div>
+                                            </a>
+                                        @else
+                                        <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+                                            <img src="gambar/empty-icon/empty-directory.png" class="w-50 img-fluid">
+                                            <p>Tidak ada pesan masuk</p>
+                                        </div>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+                                        <img src="gambar/empty-icon/empty-directory.png" class="w-50 img-fluid">
+                                        <p>Tidak ada pesan masuk</p>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>            
 
 
             <!-- Moved the script below the HTML content to ensure the elements are loaded before applying the script -->
