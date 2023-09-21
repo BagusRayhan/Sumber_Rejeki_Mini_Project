@@ -62,7 +62,7 @@
       @include('Client.Template.navbar')
 
       <div class="container-fluid pt-4 px-4">
-        <div class="search-form w-25">
+        <div class="search-form w-100 w-md-25">
             <form action="{{ route('bayar2client') }}" method="GET">
                 <div class="input-group rounded-pill" style="background: #E9EEF5">
                     <input type="text" name="keyword" value="{{ request('keyword') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
@@ -70,15 +70,18 @@
                 </div>
             </form>
         </div>
+        
         <div class="d-flex justify-content-between">
-        <div class="nav w-25 mt-4 d-flex">
-            <a href="/bayarclient" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayarclient') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
-                Pending
-            </a>
-            <a href="/bayar2client" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayar2client') ? 'fw-bold border-2  border-bottom border-dark' : '' }}">
-                Pembayaran
-            </a>
+            <div class="nav w-100 w-md-25 mt-4 d-flex flex-wrap">
+                <a href="/bayarclient" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayarclient') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
+                    Pending
+                </a>
+                <a href="/bayar2client" class="d-flex text-decoration-none text-dark px-3 py-1 border-bottom border-secondary {{ Request::routeIs('bayar2client') ? 'fw-bold border-2 border-bottom border-dark' : '' }}">
+                    Pembayaran
+                </a>
+            </div>
         </div>
+        
         <div>
     <a href="#" id="deleteAllSelectedRecord" class="btn btn-danger btn-sm d-none">Delete All</a>
    <script>
