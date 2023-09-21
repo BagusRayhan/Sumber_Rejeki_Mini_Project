@@ -52,7 +52,7 @@
             <div class="py-4 d-flex justify-content-between ">
 <div class="search-form">
     <form action="{{ route('drequestclient') }}" method="GET">
-        <div class="input-group rounded-pill" style="background: #E9EEF5">
+        <div class="input-group rounded-pill" >
             <input type="text" name="search" value="{{ request('search') }}" class="form-control rounded-pill position-relative" style="background: #E9EEF5" placeholder="Search ...">
             <button class="btn btn-primary rounded-circle position-absolute top-0 end-0 align-items-center justify-content-center" style="z-index: 5;"><i class="fa-solid fa-search"></i></button>
         </div>
